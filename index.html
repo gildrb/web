@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gil Domingos Rodrigues Barbosa</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #282828;
+            color: #ebdbb2;
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial', sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            min-height: 100vh;
+            padding: 64px;
+        }
+
+        .name {
+            font-size: 16px;
+            font-weight: 400;
+            color: #ebdbb2;
+            letter-spacing: 0.02em;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            font-weight: 400;
+            color: #d5c4a1;
+            margin-bottom: 16px;
+        }
+
+        .email {
+            font-size: 16px;
+            color: #a89984;
+            cursor: pointer;
+            margin-bottom: 8px;
+        }
+
+        .email::after {
+            content: '';
+            color: #7c6f64;
+            opacity: 1;
+        }
+
+        .email:hover::after {
+            content: ' copy';
+        }
+
+        .email.copied::after {
+            content: ' copied';
+        }
+
+        .links {
+            font-size: 16px;
+        }
+
+        .links a {
+            color: #a89984;
+            text-decoration: none;
+            margin-right: 16px;
+        }
+
+        .links a::after {
+            content: ' ↗';
+            color: #7c6f64;
+        }
+
+        .links a:hover {
+            color: #d79921;
+        }
+
+        .links a:hover::after {
+            color: #d79921;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <p class="name">gil domingos rodrigues barbosa</p>
+    <p class="subtitle">ai & data science student</p>
+    <p class="email">hello@gildrb.com</p>
+    <div class="links">
+        <a href="https://github.com/gildrb">github</a>
+        <a href="https://de.linkedin.com/in/gil-rodrigues-792786367">linkedin</a>
+    </div>
+    <script>
+        document.querySelector('.email').addEventListener('click', function() {
+            navigator.clipboard.writeText('hello@gildrb.com');
+            this.classList.add('copied');
+            setTimeout(() => this.classList.remove('copied'), 1500);
+        });
+    </script>
+</body>
+</html>
