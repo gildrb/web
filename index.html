@@ -13,8 +13,8 @@
         }
 
         body {
-            background: #282828;
-            color: #ebdbb2;
+            background: #000000;
+            color: #ffffff;
             font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial', sans-serif;
             font-size: 16px;
             line-height: 1.5;
@@ -29,37 +29,43 @@
         .name {
             font-size: 16px;
             font-weight: 400;
-            color: #ebdbb2;
+            color: #ffffff;
             letter-spacing: 0.02em;
             margin-bottom: 8px;
         }
 
         .subtitle {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 400;
-            color: #d5c4a1;
+            color: #666666;
             margin-bottom: 16px;
         }
 
         .email {
             font-size: 16px;
-            color: #a89984;
+            color: #999999;
             cursor: pointer;
             margin-bottom: 8px;
         }
 
         .email::after {
             content: '';
-            color: #7c6f64;
+            color: #666666;
             opacity: 1;
+        }
+
+        .email:hover {
+            color: #ffffff;
         }
 
         .email:hover::after {
             content: ' copy';
+            color: #666666;
         }
 
         .email.copied::after {
             content: ' copied';
+            color: #666666;
         }
 
         .links {
@@ -69,26 +75,26 @@
         }
 
         .links a {
-            color: #a89984;
+            color: #999999;
             text-decoration: none;
             margin-bottom: 8px;
         }
 
         .links a::after {
             content: ' ↗';
-            color: #7c6f64;
+            color: #666666;
         }
 
         .links a:hover {
-            color: #d79921;
+            color: #ffffff;
         }
 
         .links a:hover::after {
-            color: #d79921;
+            color: #666666;
         }
 
         .theme-toggle {
-            color: #a89984;
+            color: #999999;
             text-decoration: none;
             cursor: pointer;
             display: inline-block;
@@ -100,15 +106,15 @@
 
         .theme-toggle::after {
             content: ' ◐';
-            color: #7c6f64;
+            color: #666666;
         }
 
         .theme-toggle:hover {
-            color: #d79921;
+            color: #ffffff;
         }
 
         .theme-toggle:hover::after {
-            color: #d79921;
+            color: #666666;
         }
 
         /* Light mode styles */
