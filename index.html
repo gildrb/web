@@ -35,7 +35,7 @@
         }
 
         .subtitle {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 400;
             color: #666666;
             margin-bottom: 16px;
@@ -104,71 +104,66 @@
             font-size: 16px;
         }
 
-        .theme-toggle::after {
-            content: ' ◐';
-            color: #666666;
-        }
-
         .theme-toggle:hover {
             color: #ffffff;
         }
 
-        .theme-toggle:hover::after {
-            color: #666666;
-        }
-
         /* Light mode styles */
         body.light-mode {
-            background: #fbf1c7;
-            color: #3c3836;
+            background: #ffffff;
+            color: #000000;
         }
 
         body.light-mode .name {
-            color: #3c3836;
+            color: #000000;
         }
 
         body.light-mode .subtitle {
-            color: #504945;
+            color: #999999;
         }
 
         body.light-mode .email {
-            color: #665c54;
+            color: #666666;
         }
 
         body.light-mode .email::after {
-            color: #928374;
+            color: #999999;
+        }
+
+        body.light-mode .email:hover {
+            color: #000000;
+        }
+
+        body.light-mode .email:hover::after {
+            color: #999999;
+        }
+
+        body.light-mode .email.copied::after {
+            color: #999999;
         }
 
         body.light-mode .links a {
-            color: #665c54;
+            color: #666666;
         }
 
         body.light-mode .links a::after {
-            color: #928374;
+            color: #999999;
         }
 
         body.light-mode .links a:hover {
-            color: #d79921;
+            color: #000000;
         }
 
         body.light-mode .links a:hover::after {
-            color: #d79921;
+            color: #999999;
         }
 
         body.light-mode .theme-toggle {
-            color: #665c54;
-        }
-
-        body.light-mode .theme-toggle::after {
-            color: #928374;
+            color: #666666;
         }
 
         body.light-mode .theme-toggle:hover {
-            color: #d79921;
-        }
-
-        body.light-mode .theme-toggle:hover::after {
-            color: #d79921;
+            color: #000000;
         }
 
         @media (max-width: 768px) {
