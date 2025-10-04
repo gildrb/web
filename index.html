@@ -28,6 +28,11 @@
                 box-sizing: border-box;
             }
 
+            html,
+            body {
+                overflow: hidden;
+            }
+
             body {
                 background: #000000;
                 color: #ffffff;
@@ -59,13 +64,13 @@
             .subtitle {
                 font-size: 20px;
                 font-weight: 400;
-                color: #808080;
+                color: #6b6b6b;
                 margin-bottom: 32px;
             }
 
             .email {
                 font-size: 20px;
-                color: #808080;
+                color: #6b6b6b;
                 cursor: pointer;
                 margin-bottom: 8px;
                 width: fit-content;
@@ -78,7 +83,7 @@
 
             .email::after {
                 content: "";
-                color: #808080;
+                color: #6b6b6b;
                 opacity: 1;
             }
 
@@ -88,12 +93,12 @@
 
             .email:hover::after {
                 content: " copy";
-                color: #808080;
+                color: #6b6b6b;
             }
 
             .email.copied::after {
                 content: " copied";
-                color: #808080;
+                color: #6b6b6b;
             }
 
             .links {
@@ -103,7 +108,7 @@
             }
 
             .links a {
-                color: #808080;
+                color: #6b6b6b;
                 text-decoration: none;
                 margin-bottom: 8px;
                 width: fit-content;
@@ -111,7 +116,7 @@
 
             .links a::after {
                 content: " ↗";
-                color: #808080;
+                color: #6b6b6b;
             }
 
             .links a:hover {
@@ -119,22 +124,21 @@
             }
 
             .links a:hover::after {
-                color: #808080;
+                color: #6b6b6b;
             }
 
             .theme-toggle {
-                color: #808080;
+                color: #6b6b6b;
                 text-decoration: none;
                 cursor: pointer;
                 display: inline-block;
-                position: fixed;
-                bottom: 64px;
-                left: 64px;
+                position: relative;
                 font-size: 20px;
                 background: none;
                 border: none;
                 padding: 0;
                 font-family: inherit;
+                margin-top: 32px;
             }
 
             .theme-toggle:hover {
@@ -152,15 +156,15 @@
             }
 
             body.light-mode .subtitle {
-                color: #808080;
+                color: #6b6b6b;
             }
 
             body.light-mode .email {
-                color: #808080;
+                color: #6b6b6b;
             }
 
             body.light-mode .email::after {
-                color: #808080;
+                color: #6b6b6b;
             }
 
             body.light-mode .email:hover {
@@ -168,19 +172,19 @@
             }
 
             body.light-mode .email:hover::after {
-                color: #808080;
+                color: #6b6b6b;
             }
 
             body.light-mode .email.copied::after {
-                color: #808080;
+                color: #6b6b6b;
             }
 
             body.light-mode .links a {
-                color: #808080;
+                color: #6b6b6b;
             }
 
             body.light-mode .links a::after {
-                color: #808080;
+                color: #6b6b6b;
             }
 
             body.light-mode .links a:hover {
@@ -188,11 +192,11 @@
             }
 
             body.light-mode .links a:hover::after {
-                color: #808080;
+                color: #6b6b6b;
             }
 
             body.light-mode .theme-toggle {
-                color: #808080;
+                color: #6b6b6b;
             }
 
             body.light-mode .theme-toggle:hover {
@@ -214,11 +218,6 @@
             @media (max-width: 768px) {
                 body {
                     padding: 32px;
-                }
-
-                .theme-toggle {
-                    bottom: 32px;
-                    left: 32px;
                 }
             }
         </style>
