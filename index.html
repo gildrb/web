@@ -200,6 +200,18 @@
                 color: #000000;
             }
 
+            .sr-only {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border-width: 0;
+            }
+
             @media (max-width: 768px) {
                 body {
                     padding: 32px;
@@ -213,10 +225,11 @@
         </style>
     </head>
     <body>
+        <div class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
         <main id="main">
         <p class="name">gil domingos rodrigues barbosa</p>
         <p class="subtitle">student</p>
-        <button class="email">hello@gildrb.com</button>
+        <button class="email" aria-label="Copy email address">hello@gildrb.com</button>
         <div class="links">
             <a href="https://github.com/gildrb">github</a>
             <a href="https://de.linkedin.com/in/gil-rodrigues-792786367"
@@ -226,13 +239,23 @@
             <a href="https://bsky.app/profile/gildrb.com">bluesky</a>
         </div>
         </main>
-        <button class="theme-toggle">light</button>
+        <button class="theme-toggle" aria-label="Switch to light mode">light mode</button>
         <script>
+            const srOnly = document.querySelector(".sr-only");
+
+            function announce(message) {
+                srOnly.textContent = message;
+                setTimeout(() => {
+                    srOnly.textContent = "";
+                }, 1000);
+            }
+
             document
                 .querySelector(".email")
                 .addEventListener("click", function () {
                     navigator.clipboard.writeText("hello@gildrb.com");
                     this.classList.add("copied");
+                    announce("Email copied to clipboard");
                     setTimeout(() => this.classList.remove("copied"), 1500);
                 });
 
@@ -243,18 +266,23 @@
             const currentTheme = localStorage.getItem("theme") || "dark";
             if (currentTheme === "light") {
                 body.classList.add("light-mode");
-                themeToggle.textContent = "dark";
+                themeToggle.textContent = "dark mode";
+                themeToggle.setAttribute("aria-label", "Switch to dark mode");
             }
 
             themeToggle.addEventListener("click", function () {
                 body.classList.toggle("light-mode");
 
                 if (body.classList.contains("light-mode")) {
-                    themeToggle.textContent = "dark";
+                    themeToggle.textContent = "dark mode";
+                    themeToggle.setAttribute("aria-label", "Switch to dark mode");
                     localStorage.setItem("theme", "light");
+                    announce("Switched to light mode");
                 } else {
-                    themeToggle.textContent = "light";
+                    themeToggle.textContent = "light mode";
+                    themeToggle.setAttribute("aria-label", "Switch to light mode");
                     localStorage.setItem("theme", "dark");
+                    announce("Switched to dark mode");
                 }
             });
         </script>
