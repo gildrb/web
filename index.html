@@ -1,230 +1,240 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gil Domingos Rodrigues Barbosa</title>
-    <style>
-        @font-face {
-            font-family: 'Opening Hours Sans';
-            src: url('fonts/OpeningHoursSans-Regular.woff2') format('woff2');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Gil Rodrigues</title>
+        <style>
+            @font-face {
+                font-family: "Opening Hours Sans";
+                src: url("fonts/OpeningHoursSans-Regular.woff2") format("woff2");
+                font-weight: 400;
+                font-style: normal;
+                font-display: swap;
+            }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
 
-        body {
-            background: #000000;
-            color: #ffffff;
-            font-family: 'Opening Hours Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial', sans-serif;
-            font-size: 20px;
-            line-height: 1.5;
-            min-height: 100vh;
-            padding: 64px;
-            position: relative;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
-        }
-
-        .name {
-            font-size: 20px;
-            font-weight: 400;
-            color: #ffffff;
-            letter-spacing: 0.02em;
-            margin-bottom: 8px;
-        }
-
-        .subtitle {
-            font-size: 20px;
-            font-weight: 400;
-            color: #808080;
-            margin-bottom: 16px;
-        }
-
-        .email {
-            font-size: 20px;
-            color: #808080;
-            cursor: pointer;
-            margin-bottom: 8px;
-            width: fit-content;
-        }
-
-        .email::after {
-            content: '';
-            color: #808080;
-            opacity: 1;
-        }
-
-        .email:hover {
-            color: #ffffff;
-        }
-
-        .email:hover::after {
-            content: ' copy';
-            color: #808080;
-        }
-
-        .email.copied::after {
-            content: ' copied';
-            color: #808080;
-        }
-
-        .links {
-            font-size: 20px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .links a {
-            color: #808080;
-            text-decoration: none;
-            margin-bottom: 8px;
-            width: fit-content;
-        }
-
-        .links a::after {
-            content: ' ↗';
-            color: #808080;
-        }
-
-        .links a:hover {
-            color: #ffffff;
-        }
-
-        .links a:hover::after {
-            color: #808080;
-        }
-
-        .theme-toggle {
-            color: #808080;
-            text-decoration: none;
-            cursor: pointer;
-            display: inline-block;
-            position: fixed;
-            bottom: 64px;
-            left: 64px;
-            font-size: 20px;
-        }
-
-        .theme-toggle:hover {
-            color: #ffffff;
-        }
-
-        /* Light mode styles */
-        body.light-mode {
-            background: #ffffff;
-            color: #000000;
-        }
-
-        body.light-mode .name {
-            color: #000000;
-        }
-
-        body.light-mode .subtitle {
-            color: #808080;
-        }
-
-        body.light-mode .email {
-            color: #808080;
-        }
-
-        body.light-mode .email::after {
-            color: #808080;
-        }
-
-        body.light-mode .email:hover {
-            color: #000000;
-        }
-
-        body.light-mode .email:hover::after {
-            color: #808080;
-        }
-
-        body.light-mode .email.copied::after {
-            color: #808080;
-        }
-
-        body.light-mode .links a {
-            color: #808080;
-        }
-
-        body.light-mode .links a::after {
-            color: #808080;
-        }
-
-        body.light-mode .links a:hover {
-            color: #000000;
-        }
-
-        body.light-mode .links a:hover::after {
-            color: #808080;
-        }
-
-        body.light-mode .theme-toggle {
-            color: #808080;
-        }
-
-        body.light-mode .theme-toggle:hover {
-            color: #000000;
-        }
-
-        @media (max-width: 768px) {
             body {
-                padding: 32px;
+                background: #000000;
+                color: #ffffff;
+                font-family:
+                    "Opening Hours Sans",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    "Arial",
+                    sans-serif;
+                font-size: 20px;
+                line-height: 1.5;
+                min-height: 100vh;
+                padding: 64px;
+                position: relative;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                text-rendering: optimizeLegibility;
+            }
+
+            .name {
+                font-size: 20px;
+                font-weight: 400;
+                color: #ffffff;
+                letter-spacing: 0.02em;
+                margin-bottom: 8px;
+            }
+
+            .subtitle {
+                font-size: 20px;
+                font-weight: 400;
+                color: #808080;
+                margin-bottom: 16px;
+            }
+
+            .email {
+                font-size: 20px;
+                color: #808080;
+                cursor: pointer;
+                margin-bottom: 8px;
+                width: fit-content;
+            }
+
+            .email::after {
+                content: "";
+                color: #808080;
+                opacity: 1;
+            }
+
+            .email:hover {
+                color: #ffffff;
+            }
+
+            .email:hover::after {
+                content: " copy";
+                color: #808080;
+            }
+
+            .email.copied::after {
+                content: " copied";
+                color: #808080;
+            }
+
+            .links {
+                font-size: 20px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .links a {
+                color: #808080;
+                text-decoration: none;
+                margin-bottom: 8px;
+                width: fit-content;
+            }
+
+            .links a::after {
+                content: " ↗";
+                color: #808080;
+            }
+
+            .links a:hover {
+                color: #ffffff;
+            }
+
+            .links a:hover::after {
+                color: #808080;
             }
 
             .theme-toggle {
-                bottom: 32px;
-                left: 32px;
+                color: #808080;
+                text-decoration: none;
+                cursor: pointer;
+                display: inline-block;
+                position: fixed;
+                bottom: 64px;
+                left: 64px;
+                font-size: 20px;
             }
-        }
-    </style>
-</head>
-<body>
-    <p class="name">gil domingos rodrigues barbosa</p>
-    <p class="subtitle">student</p>
-    <p class="email">hello@gildrb.com</p>
-    <div class="links">
-        <a href="https://github.com/gildrb">github</a>
-        <a href="https://de.linkedin.com/in/gil-rodrigues-792786367">linkedin</a>
-        <a href="http://behance.net/gildrb">behance</a>
-        <a href="https://bsky.app/profile/gildrb.com">bluesky</a>
-    </div>
-    <span class="theme-toggle">light</span>
-    <script>
-        document.querySelector('.email').addEventListener('click', function() {
-            navigator.clipboard.writeText('hello@gildrb.com');
-            this.classList.add('copied');
-            setTimeout(() => this.classList.remove('copied'), 1500);
-        });
 
-        const themeToggle = document.querySelector('.theme-toggle');
-        const body = document.body;
-
-        // Check for saved theme preference or default to dark mode
-        const currentTheme = localStorage.getItem('theme') || 'dark';
-        if (currentTheme === 'light') {
-            body.classList.add('light-mode');
-            themeToggle.textContent = 'dark';
-        }
-
-        themeToggle.addEventListener('click', function() {
-            body.classList.toggle('light-mode');
-
-            if (body.classList.contains('light-mode')) {
-                themeToggle.textContent = 'dark';
-                localStorage.setItem('theme', 'light');
-            } else {
-                themeToggle.textContent = 'light';
-                localStorage.setItem('theme', 'dark');
+            .theme-toggle:hover {
+                color: #ffffff;
             }
-        });
-    </script>
-</body>
+
+            /* Light mode styles */
+            body.light-mode {
+                background: #ffffff;
+                color: #000000;
+            }
+
+            body.light-mode .name {
+                color: #000000;
+            }
+
+            body.light-mode .subtitle {
+                color: #808080;
+            }
+
+            body.light-mode .email {
+                color: #808080;
+            }
+
+            body.light-mode .email::after {
+                color: #808080;
+            }
+
+            body.light-mode .email:hover {
+                color: #000000;
+            }
+
+            body.light-mode .email:hover::after {
+                color: #808080;
+            }
+
+            body.light-mode .email.copied::after {
+                color: #808080;
+            }
+
+            body.light-mode .links a {
+                color: #808080;
+            }
+
+            body.light-mode .links a::after {
+                color: #808080;
+            }
+
+            body.light-mode .links a:hover {
+                color: #000000;
+            }
+
+            body.light-mode .links a:hover::after {
+                color: #808080;
+            }
+
+            body.light-mode .theme-toggle {
+                color: #808080;
+            }
+
+            body.light-mode .theme-toggle:hover {
+                color: #000000;
+            }
+
+            @media (max-width: 768px) {
+                body {
+                    padding: 32px;
+                }
+
+                .theme-toggle {
+                    bottom: 32px;
+                    left: 32px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <p class="name">gil domingos rodrigues barbosa</p>
+        <p class="subtitle">student</p>
+        <p class="email">hello@gildrb.com</p>
+        <div class="links">
+            <a href="https://github.com/gildrb">github</a>
+            <a href="https://de.linkedin.com/in/gil-rodrigues-792786367"
+                >linkedin</a
+            >
+            <a href="http://behance.net/gildrb">behance</a>
+            <a href="https://bsky.app/profile/gildrb.com">bluesky</a>
+        </div>
+        <span class="theme-toggle">light</span>
+        <script>
+            document
+                .querySelector(".email")
+                .addEventListener("click", function () {
+                    navigator.clipboard.writeText("hello@gildrb.com");
+                    this.classList.add("copied");
+                    setTimeout(() => this.classList.remove("copied"), 1500);
+                });
+
+            const themeToggle = document.querySelector(".theme-toggle");
+            const body = document.body;
+
+            // Check for saved theme preference or default to dark mode
+            const currentTheme = localStorage.getItem("theme") || "dark";
+            if (currentTheme === "light") {
+                body.classList.add("light-mode");
+                themeToggle.textContent = "dark";
+            }
+
+            themeToggle.addEventListener("click", function () {
+                body.classList.toggle("light-mode");
+
+                if (body.classList.contains("light-mode")) {
+                    themeToggle.textContent = "dark";
+                    localStorage.setItem("theme", "light");
+                } else {
+                    themeToggle.textContent = "light";
+                    localStorage.setItem("theme", "dark");
+                }
+            });
+        </script>
+    </body>
 </html>
