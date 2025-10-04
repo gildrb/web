@@ -14,6 +14,13 @@
             as="font"
             type="font/woff2"
         />
+        <script>
+            // Apply theme before CSS is parsed to prevent flash
+            const savedTheme = localStorage.getItem("theme") || "dark";
+            if (savedTheme === "light") {
+                document.documentElement.classList.add("light-mode");
+            }
+        </script>
         <style>
             @font-face {
                 font-family: "Opening Hours Sans";
@@ -155,60 +162,60 @@
             }
 
             /* Light mode styles */
-            body.light-mode {
+            .light-mode body {
                 background: #ffffff;
                 color: #000000;
             }
 
-            body.light-mode .name {
+            .light-mode .name {
                 color: #000000;
             }
 
-            body.light-mode .subtitle {
+            .light-mode .subtitle {
                 color: #6b6b6b;
             }
 
-            body.light-mode .email {
+            .light-mode .email {
                 color: #6b6b6b;
             }
 
-            body.light-mode .email::after {
+            .light-mode .email::after {
                 color: #6b6b6b;
             }
 
-            body.light-mode .email:hover {
+            .light-mode .email:hover {
                 color: #000000;
             }
 
-            body.light-mode .email:hover::after {
+            .light-mode .email:hover::after {
                 color: #6b6b6b;
             }
 
-            body.light-mode .email.copied::after {
+            .light-mode .email.copied::after {
                 color: #6b6b6b;
             }
 
-            body.light-mode .links a {
+            .light-mode .links a {
                 color: #6b6b6b;
             }
 
-            body.light-mode .links a::after {
+            .light-mode .links a::after {
                 color: #6b6b6b;
             }
 
-            body.light-mode .links a:hover {
+            .light-mode .links a:hover {
                 color: #000000;
             }
 
-            body.light-mode .links a:hover::after {
+            .light-mode .links a:hover::after {
                 color: #6b6b6b;
             }
 
-            body.light-mode .theme-toggle {
+            .light-mode .theme-toggle {
                 color: #6b6b6b;
             }
 
-            body.light-mode .theme-toggle:hover {
+            .light-mode .theme-toggle:hover {
                 color: #000000;
             }
 
@@ -237,13 +244,6 @@
         </style>
     </head>
     <body>
-        <script>
-            // Apply saved theme immediately to prevent flash
-            const savedTheme = localStorage.getItem("theme") || "dark";
-            if (savedTheme === "light") {
-                document.body.classList.add("light-mode");
-            }
-        </script>
         <div class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
         <main id="main">
         <p class="name">gil domingos rodrigues barbosa</p>
@@ -279,18 +279,18 @@
                 });
 
             const themeToggle = document.querySelector(".theme-toggle");
-            const body = document.body;
+            const html = document.documentElement;
 
             // Set initial button text based on current theme
-            if (body.classList.contains("light-mode")) {
+            if (html.classList.contains("light-mode")) {
                 themeToggle.textContent = "dark mode";
                 themeToggle.setAttribute("aria-label", "Switch to dark mode");
             }
 
             themeToggle.addEventListener("click", function () {
-                body.classList.toggle("light-mode");
+                html.classList.toggle("light-mode");
 
-                if (body.classList.contains("light-mode")) {
+                if (html.classList.contains("light-mode")) {
                     themeToggle.textContent = "dark mode";
                     themeToggle.setAttribute("aria-label", "Switch to dark mode");
                     localStorage.setItem("theme", "light");
