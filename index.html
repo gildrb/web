@@ -237,6 +237,13 @@
         </style>
     </head>
     <body>
+        <script>
+            // Apply saved theme immediately to prevent flash
+            const savedTheme = localStorage.getItem("theme") || "dark";
+            if (savedTheme === "light") {
+                document.body.classList.add("light-mode");
+            }
+        </script>
         <div class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
         <main id="main">
         <p class="name">gil domingos rodrigues barbosa</p>
@@ -274,10 +281,8 @@
             const themeToggle = document.querySelector(".theme-toggle");
             const body = document.body;
 
-            // Check for saved theme preference or default to dark mode
-            const currentTheme = localStorage.getItem("theme") || "dark";
-            if (currentTheme === "light") {
-                body.classList.add("light-mode");
+            // Set initial button text based on current theme
+            if (body.classList.contains("light-mode")) {
                 themeToggle.textContent = "dark mode";
                 themeToggle.setAttribute("aria-label", "Switch to dark mode");
             }
