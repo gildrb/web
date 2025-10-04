@@ -4,8 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gil Domingos Rodrigues Barbosa</title>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'Opening Hours Sans';
+            src: url('fonts/OpeningHoursSans-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
         * {
             margin: 0;
             padding: 0;
@@ -15,8 +21,8 @@
         body {
             background: #000000;
             color: #ffffff;
-            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial', sans-serif;
-            font-size: 16px;
+            font-family: 'Opening Hours Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial', sans-serif;
+            font-size: 20px;
             line-height: 1.5;
             min-height: 100vh;
             padding: 64px;
@@ -27,7 +33,7 @@
         }
 
         .name {
-            font-size: 16px;
+            font-size: 20px;
             font-weight: 400;
             color: #ffffff;
             letter-spacing: 0.02em;
@@ -35,17 +41,18 @@
         }
 
         .subtitle {
-            font-size: 16px;
+            font-size: 20px;
             font-weight: 400;
             color: #808080;
             margin-bottom: 16px;
         }
 
         .email {
-            font-size: 16px;
+            font-size: 20px;
             color: #808080;
             cursor: pointer;
             margin-bottom: 8px;
+            width: fit-content;
         }
 
         .email::after {
@@ -69,7 +76,7 @@
         }
 
         .links {
-            font-size: 16px;
+            font-size: 20px;
             display: flex;
             flex-direction: column;
         }
@@ -78,6 +85,7 @@
             color: #808080;
             text-decoration: none;
             margin-bottom: 8px;
+            width: fit-content;
         }
 
         .links a::after {
@@ -101,7 +109,7 @@
             position: fixed;
             bottom: 64px;
             left: 64px;
-            font-size: 16px;
+            font-size: 20px;
         }
 
         .theme-toggle:hover {
@@ -186,6 +194,7 @@
         <a href="https://github.com/gildrb">github</a>
         <a href="https://de.linkedin.com/in/gil-rodrigues-792786367">linkedin</a>
         <a href="http://behance.net/gildrb">behance</a>
+        <a href="https://bsky.app/profile/gildrb.com">bluesky</a>
     </div>
     <span class="theme-toggle">light</span>
     <script>
