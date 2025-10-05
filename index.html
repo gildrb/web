@@ -104,11 +104,16 @@
                 opacity: 1;
             }
 
-            .email:hover {
+            .email:hover,
+            .email:focus,
+            .email:focus-visible {
                 color: #ffffff;
+                outline: none;
             }
 
-            .email:hover::after {
+            .email:hover::after,
+            .email:focus::after,
+            .email:focus-visible::after {
                 content: " copy";
                 color: #808080;
             }
