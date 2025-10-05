@@ -105,15 +105,13 @@
             }
 
             .email:hover,
-            .email:focus,
-            .email:focus-visible {
+            .email:focus {
                 color: #ffffff;
                 outline: none;
             }
 
             .email:hover::after,
-            .email:focus::after,
-            .email:focus-visible::after {
+            .email:focus::after {
                 content: " copy";
                 color: #808080;
             }
@@ -141,11 +139,14 @@
                 color: #808080;
             }
 
-            .links a:hover {
+            .links a:hover,
+            .links a:focus {
                 color: #ffffff;
+                outline: none;
             }
 
-            .links a:hover::after {
+            .links a:hover::after,
+            .links a:focus::after {
                 color: #808080;
             }
 
@@ -210,6 +211,34 @@
                     announce("Email copied to clipboard");
                     setTimeout(() => this.classList.remove("copied"), 1500);
                 });
+
+            // Arrow key navigation
+            const focusableElements = [
+                document.querySelector(".email"),
+                ...document.querySelectorAll(".links a"),
+            ];
+
+            document.addEventListener("keydown", function (e) {
+                if (e.key !== "ArrowUp" && e.key !== "ArrowDown") return;
+
+                const activeElement = document.activeElement;
+                const currentIndex = focusableElements.indexOf(activeElement);
+
+                if (currentIndex === -1) return;
+
+                e.preventDefault();
+
+                let nextIndex;
+                if (e.key === "ArrowDown") {
+                    nextIndex = (currentIndex + 1) % focusableElements.length;
+                } else {
+                    nextIndex =
+                        (currentIndex - 1 + focusableElements.length) %
+                        focusableElements.length;
+                }
+
+                focusableElements[nextIndex].focus();
+            });
         </script>
     </body>
 </html>
