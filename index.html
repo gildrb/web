@@ -200,7 +200,7 @@
             document
                 .querySelector(".email")
                 .addEventListener("click", function () {
-                    navigator.clipboard.writeText("hello@gildrb.com");
+                    navigator.clipboard.writeText("hi@gildrb.com");
                     this.classList.add("copied");
                     announce("Email copied to clipboard");
                     setTimeout(() => this.classList.remove("copied"), 1500);
