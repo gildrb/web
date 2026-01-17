@@ -1,4 +1,5 @@
-.vercel.json
-.sitemap.xml
-.robots.txt
-/fonts
+.DS_Store
+vercel.json
+sitemap.xml
+robots.txt
+fonts/
