@@ -23,6 +23,7 @@
                 font-style: normal;
                 font-display: swap;
             }
+
             * {
                 margin: 0;
                 padding: 0;
@@ -56,20 +57,29 @@
                 font-size: 20px;
                 line-height: 1.5;
                 min-height: 100vh;
-                padding: 64px;
-                position: relative;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
                 text-rendering: optimizeLegibility;
                 -webkit-overflow-scrolling: touch;
             }
 
-            main {
+            /* Main Layout */
+            .layout {
+                display: grid;
+                grid-template-columns: 280px 1fr;
+                min-height: 100vh;
+            }
+
+            /* Sidebar */
+            .sidebar {
                 position: sticky;
-                top: 64px;
-                bottom: 64px;
-                z-index: 10;
-                max-width: 350px;
+                top: 0;
+                height: 100vh;
+                padding: 64px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                z-index: 100;
             }
 
             .name {
@@ -85,6 +95,35 @@
                 font-weight: 400;
                 color: #808080;
                 margin-bottom: 32px;
+            }
+
+            .links {
+                font-size: 20px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .links a {
+                color: #808080;
+                text-decoration: none;
+                margin-bottom: 8px;
+                width: fit-content;
+            }
+
+            .links a::after {
+                content: " ↗";
+                color: #808080;
+            }
+
+            .links a:hover,
+            .links a:focus {
+                color: #ffffff;
+                outline: none;
+            }
+
+            .links a:hover::after,
+            .links a:focus::after {
+                color: #808080;
             }
 
             .email {
@@ -123,70 +162,90 @@
                 color: #808080;
             }
 
-            .links {
-                font-size: 20px;
+            /* Content Area */
+            .content {
+                padding: 64px;
+                padding-left: 40px;
+                max-width: 1400px;
+            }
+
+            /* Showcase Section - OpenAI style sticky scroll */
+            .showcase {
+                display: grid;
+                grid-template-columns: 1.4fr 1fr;
+                gap: 24px;
+                margin-bottom: 120px;
+                align-items: start;
+            }
+
+            .showcase-featured {
+                position: sticky;
+                top: 64px;
+            }
+
+            .showcase-featured .image-wrapper {
+                position: relative;
+                overflow: hidden;
+                border-radius: 8px;
+            }
+
+            .showcase-featured img {
+                width: 100%;
+                height: auto;
+                display: block;
+                user-select: none;
+                -webkit-user-drag: none;
+            }
+
+            .showcase-featured .image-wrapper::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .showcase-scroll {
                 display: flex;
                 flex-direction: column;
+                gap: 24px;
             }
 
-            .links a {
-                color: #808080;
-                text-decoration: none;
-                margin-bottom: 8px;
-                width: fit-content;
-            }
-
-            .links a::after {
-                content: " ↗";
-                color: #808080;
-            }
-
-            .links a:hover,
-            .links a:focus {
-                color: #ffffff;
-                outline: none;
-            }
-
-            .links a:hover::after,
-            .links a:focus::after {
-                color: #808080;
-            }
-
-            .sr-only {
-                position: absolute;
-                width: 1px;
-                height: 1px;
-                padding: 0;
-                margin: -1px;
+            .showcase-scroll .image-wrapper {
+                position: relative;
                 overflow: hidden;
-                clip: rect(0, 0, 0, 0);
-                white-space: nowrap;
-                border-width: 0;
+                border-radius: 8px;
             }
 
-            @media (max-width: 768px) {
-                body {
-                    padding: 32px;
-                }
-
-                main {
-                    top: 32px;
-                }
+            .showcase-scroll img {
+                width: 100%;
+                height: auto;
+                display: block;
+                user-select: none;
+                -webkit-user-drag: none;
             }
 
-            /* Gallery */
+            .showcase-scroll .image-wrapper::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            /* Standard Gallery for remaining items */
             .gallery {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
-                gap: 50px;
-                max-width: 1200px;
-                margin: 80px auto 0;
-                padding: 0 64px;
+                gap: 24px;
+                margin-bottom: 120px;
             }
 
             .gallery-item {
                 position: relative;
-                border-radius: 0px;
+                border-radius: 8px;
                 overflow: hidden;
             }
 
@@ -211,16 +270,85 @@
                 -webkit-user-drag: none;
             }
 
-            @media (max-width: 768px) {
-                .gallery {
-                    padding: 0;
+            /* Section titles (optional) */
+            .section-title {
+                font-size: 16px;
+                color: #808080;
+                margin-bottom: 24px;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+            }
+
+            /* Accessibility */
+            .sr-only {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border-width: 0;
+            }
+
+            /* Responsive */
+            @media (max-width: 1100px) {
+                .layout {
+                    grid-template-columns: 240px 1fr;
+                }
+
+                .sidebar {
+                    padding: 48px 32px;
+                }
+
+                .content {
+                    padding: 48px 32px;
+                    padding-left: 24px;
+                }
+
+                .showcase {
+                    grid-template-columns: 1fr 1fr;
                 }
             }
 
-            @media (max-width: 565px) {
-                .gallery {
+            @media (max-width: 900px) {
+                .showcase {
                     grid-template-columns: 1fr;
                 }
+
+                .showcase-featured {
+                    position: relative;
+                    top: 0;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .layout {
+                    grid-template-columns: 1fr;
+                }
+
+                .sidebar {
+                    position: relative;
+                    height: auto;
+                    padding: 32px;
+                    padding-bottom: 48px;
+                }
+
+                .content {
+                    padding: 32px;
+                    padding-top: 0;
+                }
+
+                .showcase {
+                    margin-bottom: 80px;
+                }
+
+                .gallery {
+                    grid-template-columns: 1fr;
+                    margin-bottom: 80px;
+                }
+
                 .gallery-item.full {
                     grid-column: span 1;
                 }
@@ -234,51 +362,76 @@
             aria-live="polite"
             aria-atomic="true"
         ></div>
-        <main id="main">
-            <p class="name">Gil Domingos Rodrigues Barbosa</p>
-            <p class="subtitle">Student</p>
-            <div class="links">
-                <a href="http://behance.net/gildrb">Behance</a>
-                <a href="https://github.com/gildrb">GitHub</a>
-                <a href="https://www.linkedin.com/in/gildrb/">LinkedIn</a>
-            </div>
-            <button class="email" aria-label="Copy email address">
-                hi@gildrb.com
-            </button>
-        </main>
-        <section class="gallery">
-            <div class="gallery-item full">
-                <img src="images/1.jpg" alt="Description">
-            </div>
-            <div class="gallery-item">
-                <img src="images/2.jpg" alt="Description">
-            </div>
-            <div class="gallery-item">
-                <img src="images/3.jpg" alt="Description">
-            </div>
-            <div class="gallery-item">
-                <img src="images/4.jpg" alt="Description">
-            </div>
-            <div class="gallery-item">
-                <img src="images/5.png" alt="Description">
-            </div>
-            <div class="gallery-item">
-                <img src="images/6.jpg" alt="Description">
-            </div>
-            <div class="gallery-item">
-                <img src="images/7.jpg" alt="Description">
-            </div>
-            <div class="gallery-item">
-                <img src="images/8.jpeg" alt="Description">
-            </div>
-            <div class="gallery-item">
-                <img src="images/9.jpeg" alt="Description">
-            </div>
-            <div class="gallery-item">
-                <img src="images/10.png" alt="Description">
-            </div>
-            <!-- Add more images as needed -->
-        </section>
+
+        <div class="layout">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <p class="name">Gil Domingos Rodrigues Barbosa</p>
+                <p class="subtitle">Student</p>
+                <div class="links">
+                    <a href="http://behance.net/gildrb">Behance</a>
+                    <a href="https://github.com/gildrb">GitHub</a>
+                    <a href="https://www.linkedin.com/in/gildrb/">LinkedIn</a>
+                </div>
+                <button class="email" aria-label="Copy email address">
+                    hi@gildrb.com
+                </button>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="content">
+                <!-- Showcase 1: Featured + scrolling items -->
+                <section class="showcase">
+                    <div class="showcase-featured">
+                        <div class="image-wrapper">
+                            <img src="images/1.jpg" alt="Description" />
+                        </div>
+                    </div>
+                    <div class="showcase-scroll">
+                        <div class="image-wrapper">
+                            <img src="images/2.jpg" alt="Description" />
+                        </div>
+                        <div class="image-wrapper">
+                            <img src="images/3.jpg" alt="Description" />
+                        </div>
+                        <div class="image-wrapper">
+                            <img src="images/4.jpg" alt="Description" />
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Showcase 2: Another featured section -->
+                <section class="showcase">
+                    <div class="showcase-featured">
+                        <div class="image-wrapper">
+                            <img src="images/5.png" alt="Description" />
+                        </div>
+                    </div>
+                    <div class="showcase-scroll">
+                        <div class="image-wrapper">
+                            <img src="images/6.jpg" alt="Description" />
+                        </div>
+                        <div class="image-wrapper">
+                            <img src="images/7.jpg" alt="Description" />
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Regular gallery for remaining items -->
+                <section class="gallery">
+                    <div class="gallery-item">
+                        <img src="images/8.jpeg" alt="Description" />
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/9.jpeg" alt="Description" />
+                    </div>
+                    <div class="gallery-item full">
+                        <img src="images/10.png" alt="Description" />
+                    </div>
+                </section>
+            </main>
+        </div>
+
         <script>
             const srOnly = document.querySelector(".sr-only");
 
@@ -289,6 +442,7 @@
                 }, 1000);
             }
 
+            // Email copy functionality
             document
                 .querySelector(".email")
                 .addEventListener("click", function () {
@@ -297,12 +451,11 @@
                     announce("Email copied to clipboard");
                     setTimeout(() => this.classList.remove("copied"), 1500);
                 });
-                // Add to your existing script
-            document.querySelectorAll('.gallery-item img').forEach(img => {
-                img.addEventListener('contextmenu', e => e.preventDefault());
-            });
 
-                
+            // Disable right-click on all images
+            document.querySelectorAll("img").forEach((img) => {
+                img.addEventListener("contextmenu", (e) => e.preventDefault());
+            });
 
             // Arrow key navigation
             const focusableElements = [
