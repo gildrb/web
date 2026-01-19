@@ -171,6 +171,46 @@
                     top: 32px;
                 }
             }
+
+            /* Gallery */
+            .gallery {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 50px;
+                max-width: 1200px;
+                margin: 80px auto 0;
+                padding: 0 64px;
+            }
+
+            .gallery-item {
+                border-radius: 0px;
+                overflow: hidden;
+            }
+
+            .gallery-item.full {
+                grid-column: span 2;
+            }
+
+            .gallery-item img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            @media (max-width: 768px) {
+                .gallery {
+                    padding: 0 32px;
+                }
+            }
+
+            @media (max-width: 565px) {
+                .gallery {
+                    grid-template-columns: 1fr;
+                }
+                .gallery-item.full {
+                    grid-column: span 1;
+                }
+            }
         </style>
     </head>
     <body>
@@ -192,6 +232,39 @@
                 hi@gildrb.com
             </button>
         </main>
+        <section class="gallery">
+            <div class="gallery-item full">
+                <img src="images/1.jpg" alt="Description">
+            </div>
+            <div class="gallery-item full">
+                <img src="images/2.jpg" alt="Description">
+            </div>
+            <div class="gallery-item full">
+                <img src="images/3.jpg" alt="Description">
+            </div>
+            <div class="gallery-item full">
+                <img src="images/4.jpg" alt="Description">
+            </div>
+            <div class="gallery-item full">
+                <img src="images/5.png" alt="Description">
+            </div>
+            <div class="gallery-item full">
+                <img src="images/6.jpg" alt="Description">
+            </div>
+            <div class="gallery-item full">
+                <img src="images/7.jpg" alt="Description">
+            </div>
+            <div class="gallery-item full">
+                <img src="images/8.jpeg" alt="Description">
+            </div>
+            <div class="gallery-item full">
+                <img src="images/9.jpeg" alt="Description">
+            </div>
+            <div class="gallery-item full">
+                <img src="images/10.png" alt="Description">
+            </div>
+            <!-- Add more images as needed -->
+        </section>
         <script>
             const srOnly = document.querySelector(".sr-only");
 
