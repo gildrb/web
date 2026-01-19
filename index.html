@@ -9,9 +9,8 @@
         />
         <title>Gil Rodrigues</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><style>rect{fill:black}@media(prefers-color-scheme:dark){rect{fill:white}}</style><rect x='20' y='20' width='60' height='60'/></svg>">
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://rsms.me/">
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
         <style>
             * {
                 margin: 0;
@@ -37,12 +36,10 @@
                 background: #000000;
                 color: #ffffff;
                 font-family:
-                    "Google Sans",
-                    -apple-system,
-                    BlinkMacSystemFont,
-                    "Segoe UI",
-                    "Arial",
+                    "Inter",
                     sans-serif;
+                font-feature-settings: 'liga' 1, 'calt' 1;
+                font-weight: 400;
                 font-size: 20px;
                 line-height: 1.5;
                 min-height: 100vh;
@@ -50,6 +47,13 @@
                 -moz-osx-font-smoothing: grayscale;
                 text-rendering: optimizeLegibility;
                 -webkit-overflow-scrolling: touch;
+            }
+            @supports (font-variation-settings: normal) {
+                :root {
+                    font-family:
+                        InterVariable,
+                        sans-serif;
+                }
             }
 
             /* Outer wrapper to center everything */
@@ -80,7 +84,7 @@
             }
 
             .name {
-                font-size: 20px;
+                font-size: 23px;
                 font-weight: 400;
                 color: #ffffff;
                 letter-spacing: 0.02em;
@@ -126,6 +130,7 @@
 
             .email {
                 font-size: 20px;
+                font-weight: 400;
                 color: #808080;
                 cursor: pointer;
                 margin-top: 24px;
@@ -380,7 +385,7 @@
                     <p class="name">Gil Rodrigues</p>
                     <p class="subtitle">Student</p>
                     <div class="links">
-                        <a href="http://behance.net/gildrb">Behance</a>
+                        <a href="http://behance.net/gildrb">Bēhance</a>
                         <a href="https://github.com/gildrb">GitHub</a>
                         <a href="https://www.linkedin.com/in/gildrb/">LinkedIn</a>
                     </div>
