@@ -1,8 +1,3 @@
 .DS_Store
-vercel.json
-sitemap.xml
-robots.txt
 node_modules
-package-lock.json
-package.json
-images/*
+
