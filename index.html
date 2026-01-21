@@ -16,6 +16,20 @@
         </script>
         <script defer src="/_vercel/insights/script.js"></script>
         <style>
+            :root {
+                --bg: #000000;
+                --text-primary: #ffffff;
+                --text-secondary: #808080;
+            }
+
+            @media (prefers-color-scheme: light) {
+                :root {
+                    --bg: #ffffff;
+                    --text-primary: #000000;
+                    --text-secondary: #4D4D4D;
+                }
+            }
+
             * {
                 margin: 0;
                 padding: 0;
@@ -23,8 +37,8 @@
             }
 
             ::selection {
-                color: #ffffff;
-                background: #808080;
+                color: var(--text-primary);
+                background: var(--text-secondary);
             }
 
             html {
@@ -40,7 +54,7 @@
                 font-size: 24px;
                 font-weight: 400;
                 letter-spacing: -0.02em;
-                color: #ffffff;
+                color: var(--text-primary);
                 margin-bottom: 8px;
                 white-space: nowrap;
                 -webkit-font-smoothing: antialiased;
@@ -50,7 +64,7 @@
             .subtitle {
                 font-size: 20px;
                 font-weight: 400;
-                color: #808080;
+                color: var(--text-secondary);
                 margin-bottom: 32px;
                 -webkit-font-smoothing: antialiased;
                 -webkit-text-size-adjust: 100%;
@@ -70,7 +84,7 @@
             .email {
                 font-size: 20px;
                 font-weight: 400;
-                color: #808080;
+                color: var(--text-secondary);
                 cursor: pointer;
                 margin-top: 24px;
                 margin-bottom: 8px;
@@ -86,8 +100,8 @@
             }
 
             body {
-                background: #000000;
-                color: #ffffff;
+                background: var(--bg);
+                color: var(--text-primary);
                 font-family:
                     "Inter",
                     sans-serif;
@@ -143,7 +157,7 @@
 
 
             .links a {
-                color: #808080;
+                color: var(--text-secondary);
                 text-decoration: none;
                 margin-bottom: 8px;
                 width: fit-content;
@@ -151,13 +165,13 @@
 
             .links a::after {
                 content: " ↗";
-                color: #808080;
+                color: var(--text-secondary);
             }
 
             @media (hover: hover) {
             .links a:hover,
             .links a:focus {
-                color: #ffffff;
+                color: var(--text-primary);
                 outline: none;
                 }
             }
@@ -165,20 +179,20 @@
             @media (hover: hover) {
                 .links a:hover::after,
                 .links a:focus::after {
-                    color: #808080;
+                    color: var(--text-secondary);
                 }
             }
 
             .email::after {
                 content: "";
-                color: #808080;
+                color: var(--text-secondary);
                 opacity: 1;
             }
 
             @media (hover: hover) {
             .email:hover,
             .email:focus {
-                color: #ffffff;
+                color: var(--text-primary);
                 outline: none;
                 }
             }   
@@ -187,13 +201,13 @@
             .email:hover::after,
             .email:focus::after {
                 content: " copy";
-                color: #808080;
+                color: var(--text-secondary);
                 }
             }
 
             .email.copied::after {
                 content: " copied";
-                color: #808080;
+                color: var(--text-secondary);
             }
 
             /* Content Area */
@@ -217,7 +231,7 @@
             .showcase-featured .image-wrapper {
                 position: relative;
                 overflow: hidden;
-                border-radius: 8px;
+                border-radius: 0px;
             }
 
             .showcase-featured img {
@@ -246,7 +260,7 @@
             .showcase-scroll .image-wrapper {
                 position: relative;
                 overflow: hidden;
-                border-radius: 8px;
+                border-radius: 0px;
             }
 
             .showcase-scroll img {
@@ -276,7 +290,7 @@
 
             .gallery-item {
                 position: relative;
-                border-radius: 8px;
+                border-radius: 0px;
                 overflow: hidden;
             }
 
@@ -304,7 +318,7 @@
             /* Section titles (optional) */
             .section-title {
                 font-size: 16px;
-                color: #808080;
+                color: var(--text-secondary);
                 margin-bottom: 24px;
                 letter-spacing: 0.05em;
                 text-transform: uppercase;
