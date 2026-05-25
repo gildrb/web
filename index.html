@@ -1030,9 +1030,11 @@
             const imagePreview = document.querySelector(".image-preview");
             const previewImage = imagePreview.querySelector("img");
             let previouslyFocusedElement = null;
+            let shouldRestorePreviewFocus = false;
 
-            function openImagePreview(image) {
+            function openImagePreview(image, options = {}) {
                 previouslyFocusedElement = document.activeElement;
+                shouldRestorePreviewFocus = options.restoreFocus;
                 previewImage.src = image.currentSrc || image.src;
                 previewImage.alt = image.alt;
                 imagePreview.hidden = false;
@@ -1048,10 +1050,12 @@
                 previewImage.src = "data:,";
                 document.body.classList.remove("preview-open");
 
-                if (previouslyFocusedElement) {
+                if (shouldRestorePreviewFocus && previouslyFocusedElement) {
                     previouslyFocusedElement.focus({ preventScroll: true });
                 }
 
+                previouslyFocusedElement = null;
+                shouldRestorePreviewFocus = false;
                 announce("Image closed");
             }
 
@@ -1061,8 +1065,10 @@
                     const image = imageTrigger.querySelector("img");
                     if (!image) return;
 
-                    imageTrigger.addEventListener("click", () => {
-                        openImagePreview(image);
+                    imageTrigger.addEventListener("click", (event) => {
+                        openImagePreview(image, {
+                            restoreFocus: event.detail === 0,
+                        });
                     });
                 });
 
