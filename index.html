@@ -277,7 +277,7 @@
             }
 
             @media (hover: hover) {
-                .theme-toggle:hover {
+                .theme-toggle:hover:not(.hover-suppressed) {
                     color: var(--text-primary);
                 }
             }
@@ -967,6 +967,18 @@
 
             updateThemeToggle();
 
+            let themeToggleUsedPointer = false;
+
+            themeToggle.addEventListener("pointerdown", (event) => {
+                themeToggleUsedPointer =
+                    event.pointerType === "mouse" ||
+                    event.pointerType === "pen";
+            });
+
+            themeToggle.addEventListener("pointerleave", () => {
+                themeToggle.classList.remove("hover-suppressed");
+            });
+
             themePreference.addEventListener("change", () => {
                 if (!document.documentElement.dataset.theme) {
                     updateThemeToggle();
@@ -976,7 +988,13 @@
             themeToggle.addEventListener("click", () => {
                 const nextTheme = getTheme() === "dark" ? "light" : "dark";
                 setTheme(nextTheme);
-                themeToggle.blur();
+
+                if (themeToggleUsedPointer) {
+                    themeToggle.classList.add("hover-suppressed");
+                    themeToggle.blur();
+                }
+
+                themeToggleUsedPointer = false;
                 announce(`Switched to ${nextTheme} mode`);
             });
 
