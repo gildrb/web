@@ -117,6 +117,10 @@
                 -webkit-overflow-scrolling: touch;
             }
 
+            body.preview-open {
+                overflow: hidden;
+            }
+
             @supports (font-variation-settings: normal) {
                 :root {
                     font-family:
@@ -228,6 +232,7 @@
                 position: relative;
                 overflow: hidden;
                 border-radius: 0px;
+                cursor: zoom-in;
             }
 
             .showcase-featured img {
@@ -245,6 +250,7 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
+                pointer-events: none;
             }
 
             .showcase-scroll {
@@ -257,6 +263,7 @@
                 position: relative;
                 overflow: hidden;
                 border-radius: 0px;
+                cursor: zoom-in;
             }
 
             .showcase-scroll img {
@@ -274,6 +281,7 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
+                pointer-events: none;
             }
 
             .gallery {
@@ -287,6 +295,7 @@
                 position: relative;
                 border-radius: 0px;
                 overflow: hidden;
+                cursor: zoom-in;
             }
 
             .gallery-item::after {
@@ -296,6 +305,7 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
+                pointer-events: none;
             }
 
             .gallery-item.full {
@@ -305,6 +315,57 @@
             .gallery-item img {
                 width: 100%;
                 height: auto;
+                display: block;
+                user-select: none;
+                -webkit-user-drag: none;
+            }
+
+            .image-wrapper:focus-visible,
+            .gallery-item:focus-visible {
+                outline: 1px solid var(--text-primary);
+                outline-offset: 4px;
+            }
+
+            .image-preview {
+                --preview-inline-space: 96px;
+                --preview-block-space: 128px;
+                position: fixed;
+                inset: 0;
+                z-index: 1000;
+                width: 100%;
+                min-height: 100vh;
+                display: block;
+                padding: 64px 48px;
+                border: 0;
+                background: var(--bg);
+                cursor: zoom-out;
+                appearance: none;
+                color: inherit;
+                font: inherit;
+                text-align: inherit;
+            }
+
+            .image-preview[hidden] {
+                display: none;
+            }
+
+            .image-preview-frame {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: min(
+                    calc(100vw - var(--preview-inline-space)),
+                    calc(1900px - var(--preview-inline-space))
+                );
+                height: calc(100vh - var(--preview-block-space));
+                margin: 0 auto;
+            }
+
+            .image-preview img {
+                width: auto;
+                height: auto;
+                max-width: 100%;
+                max-height: 100%;
                 display: block;
                 user-select: none;
                 -webkit-user-drag: none;
@@ -333,6 +394,12 @@
             @media (max-width: 1400px) {
                 .wrapper {
                     padding: 0 32px;
+                }
+
+                .image-preview {
+                    --preview-inline-space: 64px;
+                    padding-right: 32px;
+                    padding-left: 32px;
                 }
 
                 .layout {
@@ -368,6 +435,12 @@
             @media (max-width: 768px) {
                 .wrapper {
                     padding: 0 24px;
+                }
+
+                .image-preview {
+                    --preview-inline-space: 48px;
+                    --preview-block-space: 64px;
+                    padding: 32px 24px;
                 }
 
                 .layout {
@@ -412,6 +485,16 @@
             aria-live="polite"
             aria-atomic="true"
         ></div>
+        <button
+            class="image-preview"
+            type="button"
+            aria-label="Close enlarged image"
+            hidden
+        >
+            <span class="image-preview-frame">
+                <img alt="" />
+            </span>
+        </button>
 
         <div class="wrapper">
             <div class="layout">
@@ -526,6 +609,58 @@
                      setTimeout(() => this.classList.remove("copied"), 1500);
                  });
 
+            const imagePreview = document.querySelector(".image-preview");
+            const previewImage = imagePreview.querySelector("img");
+            let previouslyFocusedElement = null;
+
+            function openImagePreview(image) {
+                previouslyFocusedElement = document.activeElement;
+                previewImage.src = image.currentSrc || image.src;
+                previewImage.alt = image.alt;
+                imagePreview.hidden = false;
+                document.body.classList.add("preview-open");
+                imagePreview.focus({ preventScroll: true });
+                announce("Image enlarged");
+            }
+
+            function closeImagePreview() {
+                if (imagePreview.hidden) return;
+
+                imagePreview.hidden = true;
+                previewImage.removeAttribute("src");
+                document.body.classList.remove("preview-open");
+
+                if (previouslyFocusedElement) {
+                    previouslyFocusedElement.focus({ preventScroll: true });
+                }
+
+                announce("Image closed");
+            }
+
+            document
+                .querySelectorAll(".image-wrapper, .gallery-item")
+                .forEach((imageTrigger) => {
+                    const image = imageTrigger.querySelector("img");
+                    if (!image) return;
+
+                    imageTrigger.setAttribute("role", "button");
+                    imageTrigger.setAttribute("tabindex", "0");
+                    imageTrigger.setAttribute("aria-label", "Open image preview");
+
+                    imageTrigger.addEventListener("click", () => {
+                        openImagePreview(image);
+                    });
+
+                    imageTrigger.addEventListener("keydown", (e) => {
+                        if (e.key !== "Enter" && e.key !== " ") return;
+
+                        e.preventDefault();
+                        openImagePreview(image);
+                    });
+                });
+
+            imagePreview.addEventListener("click", closeImagePreview);
+
             // Disable right-click on all images
             document.querySelectorAll("img").forEach((img) => {
                 img.addEventListener("contextmenu", (e) => e.preventDefault());
@@ -538,6 +673,14 @@
             ];
 
             document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape" && !imagePreview.hidden) {
+                    e.preventDefault();
+                    closeImagePreview();
+                    return;
+                }
+
+                if (!imagePreview.hidden) return;
+
                 if (e.key !== "ArrowUp" && e.key !== "ArrowDown") return;
 
                 e.preventDefault();
