@@ -171,16 +171,13 @@
             }
 
             @media (hover: hover) {
-                .links a:hover,
-                .links a:focus {
+                .links a:hover {
                     color: var(--text-primary);
-                    outline: none;
                 }
             }
 
             @media (hover: hover) {
-                .links a:hover::after,
-                .links a:focus::after {
+                .links a:hover::after {
                     color: var(--text-secondary);
                 }
             }
@@ -192,16 +189,13 @@
             }
 
             @media (hover: hover) {
-                .email:hover,
-                .email:focus {
+                .email:hover {
                     color: var(--text-primary);
-                    outline: none;
                 }
             }
 
             @media (hover: hover) {
-                .email:hover::after,
-                .email:focus::after {
+                .email:hover::after {
                     content: " copy";
                     color: var(--text-secondary);
                 }
@@ -210,6 +204,23 @@
             .email.copied::after {
                 content: " copied";
                 color: var(--text-secondary);
+            }
+
+            .email.copy-failed::after {
+                content: " failed";
+                color: var(--text-secondary);
+            }
+
+            .links a:focus:not(:focus-visible),
+            .email:focus:not(:focus-visible) {
+                outline: none;
+            }
+
+            .links a:focus-visible,
+            .email:focus-visible {
+                color: var(--text-primary);
+                outline: 1px solid var(--text-primary);
+                outline-offset: 4px;
             }
 
             .theme-toggle {
@@ -272,8 +283,8 @@
             }
 
             .theme-toggle:focus-visible {
-                outline: 1px solid var(--text-primary);
-                outline-offset: 4px;
+                outline: none;
+                box-shadow: 0 0 0 1px var(--text-primary);
             }
 
             .content {
@@ -298,6 +309,15 @@
                 overflow: hidden;
                 border-radius: 0px;
                 cursor: zoom-in;
+                width: 100%;
+                display: block;
+                padding: 0;
+                border: 0;
+                background: none;
+                appearance: none;
+                color: inherit;
+                font: inherit;
+                text-align: inherit;
             }
 
             .showcase-featured img {
@@ -329,6 +349,15 @@
                 overflow: hidden;
                 border-radius: 0px;
                 cursor: zoom-in;
+                width: 100%;
+                display: block;
+                padding: 0;
+                border: 0;
+                background: none;
+                appearance: none;
+                color: inherit;
+                font: inherit;
+                text-align: inherit;
             }
 
             .showcase-scroll img {
@@ -361,6 +390,15 @@
                 border-radius: 0px;
                 overflow: hidden;
                 cursor: zoom-in;
+                width: 100%;
+                display: block;
+                padding: 0;
+                border: 0;
+                background: none;
+                appearance: none;
+                color: inherit;
+                font: inherit;
+                text-align: inherit;
             }
 
             .gallery-item::after {
@@ -561,7 +599,7 @@
             hidden
         >
             <span class="image-preview-frame">
-                <img alt="" />
+                <img src="data:," alt="" />
             </span>
         </button>
 
@@ -590,7 +628,11 @@
                             >LinkedIn</a
                         >
                     </div>
-                    <button class="email" aria-label="Copy email address">
+                    <button
+                        class="email"
+                        type="button"
+                        aria-label="Copy email address"
+                    >
                         hi@gildrb.com
                     </button>
                     <button
@@ -637,151 +679,227 @@
                 <main class="content">
                     <section class="showcase">
                         <div class="showcase-featured">
-                            <div class="image-wrapper">
+                            <button
+                                class="image-wrapper"
+                                type="button"
+                                aria-label="Open Filen wordmark preview"
+                            >
                                 <img
                                     src="images/11.jpg"
-                                    alt="Description"
+                                    alt="Filen wordmark on a black background"
                                     loading="lazy"
                                 />
-                            </div>
+                            </button>
                         </div>
                         <div class="showcase-scroll">
-                            <div class="image-wrapper">
+                            <button
+                                class="image-wrapper"
+                                type="button"
+                                aria-label="Open Filen brand system overview preview"
+                            >
                                 <img
                                     src="images/2.jpg"
-                                    alt="Description"
+                                    alt="Filen brand system overview with logo, typography, and motion panels"
                                     loading="lazy"
                                 />
-                            </div>
-                            <div class="image-wrapper">
+                            </button>
+                            <button
+                                class="image-wrapper"
+                                type="button"
+                                aria-label="Open Filen campaign message preview"
+                            >
                                 <img
                                     src="images/3.jpg"
-                                    alt="Description"
+                                    alt="Filen campaign message reading Zero knowledge. Total control."
                                     loading="lazy"
                                 />
-                            </div>
-                            <div class="image-wrapper">
+                            </button>
+                            <button
+                                class="image-wrapper"
+                                type="button"
+                                aria-label="Open Filen app icon preview"
+                            >
                                 <img
                                     src="images/12.jpg"
-                                    alt="Description"
+                                    alt="Filen app icon and label on a black background"
                                     loading="lazy"
                                 />
-                            </div>
-                            <div class="image-wrapper">
+                            </button>
+                            <button
+                                class="image-wrapper"
+                                type="button"
+                                aria-label="Open Filen logo texture preview"
+                            >
                                 <img
                                     src="images/13.jpg"
-                                    alt="Description"
+                                    alt="Filen logo over a streaked monochrome texture"
                                     loading="lazy"
                                 />
-                            </div>
-                            <div class="image-wrapper">
+                            </button>
+                            <button
+                                class="image-wrapper"
+                                type="button"
+                                aria-label="Open Filen logo scale preview"
+                            >
                                 <img
                                     src="images/15.jpg"
-                                    alt="Description"
+                                    alt="Filen logo shown at multiple sizes on black"
                                     loading="lazy"
                                 />
-                            </div>
-                            <div class="image-wrapper">
+                            </button>
+                            <button
+                                class="image-wrapper"
+                                type="button"
+                                aria-label="Open Filen storage message preview"
+                            >
                                 <img
                                     src="images/14.jpg"
-                                    alt="Description"
+                                    alt="Filen message reading Storage that earns nothing from knowing you"
                                     loading="lazy"
                                 />
-                            </div>
+                            </button>
                         </div>
                     </section>
                     <section class="showcase">
                         <div class="showcase-featured">
-                            <div class="image-wrapper">
+                            <button
+                                class="image-wrapper"
+                                type="button"
+                                aria-label="Open Corebeam wordmark preview"
+                            >
                                 <img
                                     src="images/16.jpg"
-                                    alt="Description"
+                                    alt="Corebeam wordmark with geometric icon on black"
                                     loading="lazy"
                                 />
-                            </div>
+                            </button>
                         </div>
                         <div class="showcase-scroll">
-                            <div class="image-wrapper">
+                            <button
+                                class="image-wrapper"
+                                type="button"
+                                aria-label="Open Corebeam icon preview"
+                            >
                                 <img
                                     src="images/17.jpg"
-                                    alt="Description"
+                                    alt="Corebeam geometric icon centered on black"
                                     loading="lazy"
                                 />
-                            </div>
-                            <div class="image-wrapper">
+                            </button>
+                            <button
+                                class="image-wrapper"
+                                type="button"
+                                aria-label="Open Corebeam large wordmark preview"
+                            >
                                 <img
                                     src="images/18.jpg"
-                                    alt="Description"
+                                    alt="Large Corebeam wordmark on a black background"
                                     loading="lazy"
                                 />
-                            </div>
-                            <div class="image-wrapper">
+                            </button>
+                            <button
+                                class="image-wrapper"
+                                type="button"
+                                aria-label="Open Corebeam layout grid preview"
+                            >
                                 <img
                                     src="images/19.jpg"
-                                    alt="Description"
+                                    alt="Corebeam layout grid with blue guide lines"
                                     loading="lazy"
                                 />
-                            </div>
-                            <div class="image-wrapper">
+                            </button>
+                            <button
+                                class="image-wrapper"
+                                type="button"
+                                aria-label="Open Corebeam typography scale preview"
+                            >
                                 <img
                                     src="images/20.jpg"
-                                    alt="Description"
+                                    alt="Corebeam typography scale showing headline sizes"
                                     loading="lazy"
                                 />
-                            </div>
-                            <div class="image-wrapper">
+                            </button>
+                            <button
+                                class="image-wrapper"
+                                type="button"
+                                aria-label="Open Corebeam construction grid preview"
+                            >
                                 <img
                                     src="images/21.jpg"
-                                    alt="Description"
+                                    alt="Corebeam logo construction grid with a blue mark"
                                     loading="lazy"
                                 />
-                            </div>
-                            <div class="image-wrapper">
+                            </button>
+                            <button
+                                class="image-wrapper"
+                                type="button"
+                                aria-label="Open Corebeam logo scale preview"
+                            >
                                 <img
                                     src="images/22.jpg"
-                                    alt="Description"
+                                    alt="Corebeam logo shown at multiple sizes in blue and white"
                                     loading="lazy"
                                 />
-                            </div>
-                            <div class="image-wrapper">
+                            </button>
+                            <button
+                                class="image-wrapper"
+                                type="button"
+                                aria-label="Open Corebeam momentum message preview"
+                            >
                                 <img
                                     src="images/23.jpg"
-                                    alt="Description"
+                                    alt="Corebeam message reading Where insight becomes momentum"
                                     loading="lazy"
                                 />
-                            </div>
-                            <div class="image-wrapper">
+                            </button>
+                            <button
+                                class="image-wrapper"
+                                type="button"
+                                aria-label="Open Corebeam pattern preview"
+                            >
                                 <img
-                                    src="images/18.jpg"
-                                    alt="Description"
+                                    src="images/24.jpg"
+                                    alt="Corebeam repeating pattern with blue geometric marks"
                                     loading="lazy"
                                 />
-                            </div>
+                            </button>
                         </div>
                     </section>
 
                     <section class="gallery">
-                        <div class="gallery-item full">
+                        <button
+                            class="gallery-item full"
+                            type="button"
+                            aria-label="Open technical line illustration preview"
+                        >
                             <img
                                 src="images/10.png"
-                                alt="Description"
+                                alt="Technical line illustration on a black background"
                                 loading="lazy"
                             />
-                        </div>
-                        <div class="gallery-item">
+                        </button>
+                        <button
+                            class="gallery-item"
+                            type="button"
+                            aria-label="Open nothing wordmark preview"
+                        >
                             <img
                                 src="images/4.jpg"
-                                alt="Description"
+                                alt="Pixelated wordmark reading nothing"
                                 loading="lazy"
                             />
-                        </div>
-                        <div class="gallery-item">
+                        </button>
+                        <button
+                            class="gallery-item"
+                            type="button"
+                            aria-label="Open Logo System presentation preview"
+                        >
                             <img
                                 src="images/27.jpeg"
-                                alt="Description"
+                                alt="Logo System presentation cover with a blue geometric mark"
                                 loading="lazy"
                             />
-                        </div>
+                        </button>
                     </section>
                 </main>
             </div>
@@ -865,12 +983,21 @@
             // Email copy functionality
             document
                 .querySelector(".email")
-                .addEventListener("click", function () {
-                    navigator.clipboard.writeText("hi@gildrb.com");
-                    this.classList.add("copied");
+                .addEventListener("click", async function () {
                     this.blur();
-                    announce("Email copied to clipboard");
-                    setTimeout(() => this.classList.remove("copied"), 1500);
+
+                    try {
+                        await navigator.clipboard.writeText("hi@gildrb.com");
+                        this.classList.add("copied");
+                        announce("Email copied to clipboard");
+                    } catch {
+                        this.classList.add("copy-failed");
+                        announce("Email could not be copied");
+                    }
+
+                    setTimeout(() => {
+                        this.classList.remove("copied", "copy-failed");
+                    }, 1500);
                 });
 
             const imagePreview = document.querySelector(".image-preview");
@@ -891,7 +1018,7 @@
                 if (imagePreview.hidden) return;
 
                 imagePreview.hidden = true;
-                previewImage.removeAttribute("src");
+                previewImage.src = "data:,";
                 document.body.classList.remove("preview-open");
 
                 if (previouslyFocusedElement) {
@@ -907,21 +1034,7 @@
                     const image = imageTrigger.querySelector("img");
                     if (!image) return;
 
-                    imageTrigger.setAttribute("role", "button");
-                    imageTrigger.setAttribute("tabindex", "0");
-                    imageTrigger.setAttribute(
-                        "aria-label",
-                        "Open image preview",
-                    );
-
                     imageTrigger.addEventListener("click", () => {
-                        openImagePreview(image);
-                    });
-
-                    imageTrigger.addEventListener("keydown", (e) => {
-                        if (e.key !== "Enter" && e.key !== " ") return;
-
-                        e.preventDefault();
                         openImagePreview(image);
                     });
                 });
