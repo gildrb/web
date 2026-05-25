@@ -1153,6 +1153,7 @@
             const imagePreview = document.querySelector(".image-preview");
             const previewImage = imagePreview.querySelector("img");
             const previewImageCache = new Map();
+            const previewResourcePrefetches = new Set();
             let previouslyFocusedElement = null;
             let shouldRestorePreviewFocus = false;
             let activePreviewSrc = "";
@@ -1181,10 +1182,28 @@
                 return preloadImage;
             }
 
+            function prefetchPreviewResource(image) {
+                const previewSrc = getPreviewSrc(image);
+                if (
+                    !previewSrc ||
+                    previewImageCache.has(previewSrc) ||
+                    previewResourcePrefetches.has(previewSrc)
+                ) {
+                    return;
+                }
+
+                const prefetchLink = document.createElement("link");
+                prefetchLink.rel = "prefetch";
+                prefetchLink.as = "image";
+                prefetchLink.href = previewSrc;
+                document.head.append(prefetchLink);
+                previewResourcePrefetches.add(previewSrc);
+            }
+
             function warmPreviewImages() {
                 document
                     .querySelectorAll("main img[data-preview-src]")
-                    .forEach(prefetchPreviewImage);
+                    .forEach(prefetchPreviewResource);
             }
 
             function showPreviewImage(previewSrc) {
@@ -1293,6 +1312,15 @@
                         "focus",
                         () => prefetchPreviewImage(image),
                         { once: true },
+                    );
+
+                    imageTrigger.addEventListener(
+                        "pointerdown",
+                        () => prefetchPreviewImage(image),
+                        {
+                            once: true,
+                            passive: true,
+                        },
                     );
 
                     imageTrigger.addEventListener(
