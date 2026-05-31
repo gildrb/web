@@ -12,17 +12,17 @@
         <link
             rel="preload"
             as="image"
-            href="images/optimized/11-960.webp"
-            imagesrcset="images/optimized/11-480.webp 480w, images/optimized/11-720.webp 720w, images/optimized/11-960.webp 960w, images/optimized/11-1280.webp 1280w, images/optimized/11-1600.webp 1600w"
-            imagesizes="(max-width: 768px) calc(100vw - 48px), (max-width: 900px) calc(100vw - 336px), (max-width: 1400px) calc(67vw - 263px), 1040px"
+            href="images/optimized/32-1280.webp"
+            imagesrcset="images/optimized/32-480.webp 480w, images/optimized/32-720.webp 720w, images/optimized/32-960.webp 960w, images/optimized/32-1280.webp 1280w, images/optimized/32-1600.webp 1600w"
+            imagesizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1400px) calc(100vw - 392px), 1476px"
             media="(min-width: 769px)"
             fetchpriority="high"
         />
         <link
             rel="preload"
             as="image"
-            href="images/optimized/2-720.webp"
-            imagesrcset="images/optimized/2-480.webp 480w, images/optimized/2-720.webp 720w, images/optimized/2-960.webp 960w, images/optimized/2-1280.webp 1280w, images/optimized/2-1600.webp 1600w"
+            href="images/optimized/32-480.webp"
+            imagesrcset="images/optimized/32-480.webp 480w, images/optimized/32-720.webp 720w, images/optimized/32-960.webp 960w, images/optimized/32-1280.webp 1280w, images/optimized/32-1600.webp 1600w"
             imagesizes="calc(100vw - 48px)"
             media="(max-width: 768px)"
             fetchpriority="high"
@@ -374,6 +374,20 @@
                 gap: 20px;
             }
 
+            .showcase.reverse {
+                grid-template-columns: 1fr 2.5fr;
+            }
+
+            .showcase.reverse .showcase-featured {
+                grid-column: 2;
+                grid-row: 1;
+            }
+
+            .showcase.reverse .showcase-scroll {
+                grid-column: 1;
+                grid-row: 1;
+            }
+
             .showcase-scroll .image-wrapper {
                 position: relative;
                 overflow: hidden;
@@ -542,6 +556,10 @@
                 .showcase {
                     grid-template-columns: 2fr 1fr;
                 }
+
+                .showcase.reverse {
+                    grid-template-columns: 1fr 2fr;
+                }
             }
 
             @media (max-width: 1100px) {
@@ -552,11 +570,25 @@
                 .showcase {
                     grid-template-columns: 1.8fr 1fr;
                 }
+
+                .showcase.reverse {
+                    grid-template-columns: 1fr 1.8fr;
+                }
             }
 
             @media (max-width: 900px) {
                 .showcase {
                     grid-template-columns: 1fr;
+                }
+
+                .showcase.reverse {
+                    grid-template-columns: 1fr;
+                }
+
+                .showcase.reverse .showcase-featured,
+                .showcase.reverse .showcase-scroll {
+                    grid-column: auto;
+                    grid-row: auto;
                 }
 
                 .showcase-featured {
@@ -711,6 +743,33 @@
                 </aside>
 
                 <main class="content">
+                    <section class="gallery">
+                        <button
+                            class="gallery-item full"
+                            type="button"
+                            aria-label="Open Kernel detail preview"
+                        >
+                            <img
+                                src="images/optimized/32-960.webp"
+                                srcset="
+                                    images/optimized/32-480.webp   480w,
+                                    images/optimized/32-720.webp   720w,
+                                    images/optimized/32-960.webp   960w,
+                                    images/optimized/32-1280.webp 1280w,
+                                    images/optimized/32-1600.webp 1600w
+                                "
+                                sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1400px) calc(100vw - 392px), 1476px"
+                                data-preview-src="images/optimized/32-1600.webp"
+                                width="2048"
+                                height="1176"
+                                alt="Close crop of dark Kernel lettering with fine highlights"
+                                loading="eager"
+                                fetchpriority="high"
+                                decoding="async"
+                            />
+                        </button>
+                    </section>
+
                     <section class="showcase">
                         <div class="showcase-featured">
                             <button
@@ -732,8 +791,7 @@
                                     width="3940"
                                     height="2260"
                                     alt="Filen wordmark on a black background"
-                                    loading="eager"
-                                    fetchpriority="high"
+                                    loading="lazy"
                                     decoding="async"
                                 />
                             </button>
@@ -758,8 +816,7 @@
                                     width="1920"
                                     height="1222"
                                     alt="Filen brand system overview with logo, typography, and motion panels"
-                                    loading="eager"
-                                    fetchpriority="high"
+                                    loading="lazy"
                                     decoding="async"
                                 />
                             </button>
@@ -880,7 +937,34 @@
                             </button>
                         </div>
                     </section>
-                    <section class="showcase">
+
+                    <section class="gallery">
+                        <button
+                            class="gallery-item full"
+                            type="button"
+                            aria-label="Open angular logo mark preview"
+                        >
+                            <img
+                                src="images/optimized/28-720.webp"
+                                srcset="
+                                    images/optimized/28-480.webp   480w,
+                                    images/optimized/28-720.webp   720w,
+                                    images/optimized/28-960.webp   960w,
+                                    images/optimized/28-1280.webp 1280w,
+                                    images/optimized/28-1504.webp 1504w
+                                "
+                                sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1400px) calc(50vw - 206px), 728px"
+                                data-preview-src="images/optimized/28-1504.webp"
+                                width="1504"
+                                height="1128"
+                                alt="Black angular logo mark centered on a white background"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </button>
+                    </section>
+
+                    <section class="showcase reverse">
                         <div class="showcase-featured">
                             <button
                                 class="image-wrapper"
