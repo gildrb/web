@@ -1,4 +1,17 @@
 {
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.gildrb.com"
+        }
+      ],
+      "destination": "https://gildrb.com/$1",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/images/(.*)",

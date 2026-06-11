@@ -3,17 +3,70 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Student and Designer." />
-        <title>Gil Rodrigues</title>
+        <meta
+            name="description"
+            content="Portfolio of Gil Rodrigues, a student designer creating brand identities, logo systems, and visual systems for digital products."
+        />
+        <link rel="canonical" href="https://gildrb.com/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://gildrb.com/" />
+        <meta property="og:title" content="Gil Rodrigues - Designer Portfolio" />
+        <meta
+            property="og:description"
+            content="Portfolio of Gil Rodrigues, a student designer creating brand identities, logo systems, and visual systems for digital products."
+        />
+        <meta property="og:image" content="https://gildrb.com/images/33.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="3473" />
+        <meta property="og:image:height" content="2263" />
+        <meta
+            property="og:image:alt"
+            content="mL7 logo with black lettering and an orange streak on a white background"
+        />
+        <meta property="og:site_name" content="Gil Rodrigues" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://gildrb.com/" />
+        <meta name="twitter:title" content="Gil Rodrigues - Designer Portfolio" />
+        <meta
+            name="twitter:description"
+            content="Portfolio of Gil Rodrigues, a student designer creating brand identities, logo systems, and visual systems for digital products."
+        />
+        <meta name="twitter:image" content="https://gildrb.com/images/33.png" />
+        <meta
+            name="twitter:image:alt"
+            content="mL7 logo with black lettering and an orange streak on a white background"
+        />
+        <title>Gil Rodrigues - Designer Portfolio</title>
         <link
             rel="icon"
             href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><style>rect{fill:black}@media(prefers-color-scheme:dark){rect{fill:white}}</style><rect x='10' y='10' width='80' height='80'/></svg>"
         />
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Person",
+                "name": "Gil Rodrigues",
+                "url": "https://gildrb.com/",
+                "email": "mailto:hi@gildrb.com",
+                "jobTitle": "Student Designer",
+                "sameAs": [
+                    "https://behance.net/gildrb",
+                    "https://github.com/gildrb",
+                    "https://www.linkedin.com/in/gildrb/"
+                ],
+                "knowsAbout": [
+                    "Brand identity",
+                    "Logo systems",
+                    "Visual systems",
+                    "Digital product design"
+                ]
+            }
+        </script>
         <link
             rel="preload"
             as="image"
-            href="images/optimized/32-1280.webp"
-            imagesrcset="images/optimized/32-480.webp 480w, images/optimized/32-720.webp 720w, images/optimized/32-960.webp 960w, images/optimized/32-1280.webp 1280w, images/optimized/32-1600.webp 1600w"
+            href="images/optimized/33-1280.webp"
+            imagesrcset="images/optimized/33-480.webp 480w, images/optimized/33-720.webp 720w, images/optimized/33-960.webp 960w, images/optimized/33-1280.webp 1280w, images/optimized/33-1600.webp 1600w"
             imagesizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1400px) calc(100vw - 392px), 1476px"
             media="(min-width: 769px)"
             fetchpriority="high"
@@ -21,8 +74,8 @@
         <link
             rel="preload"
             as="image"
-            href="images/optimized/32-480.webp"
-            imagesrcset="images/optimized/32-480.webp 480w, images/optimized/32-720.webp 720w, images/optimized/32-960.webp 960w, images/optimized/32-1280.webp 1280w, images/optimized/32-1600.webp 1600w"
+            href="images/optimized/33-480.webp"
+            imagesrcset="images/optimized/33-480.webp 480w, images/optimized/33-720.webp 720w, images/optimized/33-960.webp 960w, images/optimized/33-1280.webp 1280w, images/optimized/33-1600.webp 1600w"
             imagesizes="calc(100vw - 48px)"
             media="(max-width: 768px)"
             fetchpriority="high"
@@ -179,26 +232,26 @@
                 z-index: 100;
             }
 
-            .links a {
+            .external-link {
                 color: var(--text-secondary);
                 text-decoration: none;
                 margin-bottom: 8px;
                 width: fit-content;
             }
 
-            .links a::after {
+            .external-link::after {
                 content: " ↗";
                 color: var(--text-secondary);
             }
 
             @media (hover: hover) {
-                .links a:hover {
+                .external-link:hover {
                     color: var(--text-primary);
                 }
             }
 
             @media (hover: hover) {
-                .links a:hover::after {
+                .external-link:hover::after {
                     color: var(--text-secondary);
                 }
             }
@@ -232,12 +285,12 @@
                 color: var(--text-secondary);
             }
 
-            .links a:focus:not(:focus-visible),
+            .external-link:focus:not(:focus-visible),
             .email:focus:not(:focus-visible) {
                 outline: none;
             }
 
-            .links a:focus-visible,
+            .external-link:focus-visible,
             .email:focus-visible {
                 color: var(--text-primary);
                 outline: 1px solid var(--text-primary);
@@ -528,10 +581,12 @@
 
             .section-title {
                 font-size: 16px;
+                font-weight: 400;
                 color: var(--text-secondary);
                 margin-bottom: 24px;
-                letter-spacing: 0.05em;
-                text-transform: uppercase;
+                -webkit-font-smoothing: antialiased;
+                -webkit-text-size-adjust: 100%;
+                text-rendering: optimizeLegibility;
             }
 
             .sr-only {
@@ -691,23 +746,26 @@
         <div class="wrapper">
             <div class="layout">
                 <aside class="sidebar">
-                    <p class="name">Gil Rodrigues</p>
+                    <h1 class="name">Gil Rodrigues</h1>
                     <p class="subtitle">Student and Designer</p>
                     <div class="links">
                         <p class="links-label">Links</p>
                         <a
+                            class="external-link"
                             href="https://behance.net/gildrb"
                             target="_blank"
                             rel="noopener noreferrer"
                             >Bēhance</a
                         >
                         <a
+                            class="external-link"
                             href="https://github.com/gildrb"
                             target="_blank"
                             rel="noopener noreferrer"
                             >GitHub</a
                         >
                         <a
+                            class="external-link"
                             href="https://www.linkedin.com/in/gildrb/"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -751,26 +809,35 @@
                 </aside>
 
                 <main class="content">
+                    <h2 class="section-title">
+                        <a
+                            class="external-link"
+                            href="https://www.twitch.tv/ml7support"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >mL7</a
+                        >
+                    </h2>
                     <section class="gallery">
                         <button
                             class="gallery-item full"
                             type="button"
-                            aria-label="Open Kernel detail preview"
+                            aria-label="Open ML7 logo preview"
                         >
                             <img
-                                src="images/optimized/32-960.webp"
+                                src="images/optimized/33-960.webp"
                                 srcset="
-                                    images/optimized/32-480.webp   480w,
-                                    images/optimized/32-720.webp   720w,
-                                    images/optimized/32-960.webp   960w,
-                                    images/optimized/32-1280.webp 1280w,
-                                    images/optimized/32-1600.webp 1600w
+                                    images/optimized/33-480.webp   480w,
+                                    images/optimized/33-720.webp   720w,
+                                    images/optimized/33-960.webp   960w,
+                                    images/optimized/33-1280.webp 1280w,
+                                    images/optimized/33-1600.webp 1600w
                                 "
                                 sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1400px) calc(100vw - 392px), 1476px"
-                                data-preview-src="images/optimized/32-1600.webp"
-                                width="2048"
-                                height="1176"
-                                alt="Close crop of dark Kernel lettering with fine highlights"
+                                data-preview-src="images/optimized/33-1600.webp"
+                                width="3473"
+                                height="2263"
+                                alt="mL7 logo with black lettering and an orange streak on a white background"
                                 loading="eager"
                                 fetchpriority="high"
                                 decoding="async"
@@ -778,6 +845,15 @@
                         </button>
                     </section>
 
+                    <h2 class="section-title">
+                        <a
+                            class="external-link"
+                            href="https://filen.io/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Filen</a
+                        >
+                    </h2>
                     <section class="showcase">
                         <div class="showcase-featured">
                             <button
@@ -946,32 +1022,42 @@
                         </div>
                     </section>
 
+                    <h2 class="section-title">
+                        <a
+                            class="external-link"
+                            href="https://www.twitch.tv/n0thing"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >n0thing</a
+                        >
+                    </h2>
                     <section class="gallery">
                         <button
                             class="gallery-item full"
                             type="button"
-                            aria-label="Open angular logo mark preview"
+                            aria-label="Open n0thing wordmark preview"
                         >
                             <img
-                                src="images/optimized/28-720.webp"
+                                src="images/optimized/34-960.webp"
                                 srcset="
-                                    images/optimized/28-480.webp   480w,
-                                    images/optimized/28-720.webp   720w,
-                                    images/optimized/28-960.webp   960w,
-                                    images/optimized/28-1280.webp 1280w,
-                                    images/optimized/28-1504.webp 1504w
+                                    images/optimized/34-480.webp   480w,
+                                    images/optimized/34-720.webp   720w,
+                                    images/optimized/34-960.webp   960w,
+                                    images/optimized/34-1280.webp 1280w,
+                                    images/optimized/34-1600.webp 1600w
                                 "
-                                sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1400px) calc(50vw - 206px), 728px"
-                                data-preview-src="images/optimized/28-1504.webp"
-                                width="1504"
-                                height="1128"
-                                alt="Black angular logo mark centered on a white background"
+                                sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1400px) calc(100vw - 392px), 1476px"
+                                data-preview-src="images/optimized/34-1600.webp"
+                                width="4492"
+                                height="2578"
+                                alt="n0thing logo over a purple-tinted esports team photo"
                                 loading="lazy"
                                 decoding="async"
                             />
                         </button>
                     </section>
 
+                    <h2 class="section-title">COREBEAM</h2>
                     <section class="showcase reverse">
                         <div class="showcase-featured">
                             <button
@@ -1186,11 +1272,12 @@
                         </div>
                     </section>
 
+                    <h2 class="section-title">Mantis (カマキリ)</h2>
                     <section class="gallery">
                         <button
                             class="gallery-item full"
                             type="button"
-                            aria-label="Open technical line illustration preview"
+                            aria-label="Open Mantis wireframe preview"
                         >
                             <img
                                 src="images/optimized/10-960.webp"
@@ -1205,36 +1292,25 @@
                                 data-preview-src="images/optimized/10-1600.webp"
                                 width="2182"
                                 height="1228"
-                                alt="Technical line illustration on a black background"
+                                alt="Mantis wireframe illustration on a black background"
                                 loading="lazy"
                                 decoding="async"
                             />
                         </button>
-                        <button
-                            class="gallery-item"
-                            type="button"
-                            aria-label="Open nothing wordmark preview"
+                    </section>
+
+                    <h2 class="section-title">
+                        <a
+                            class="external-link"
+                            href="https://logosystem.co/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Logo Systems</a
                         >
-                            <img
-                                src="images/optimized/4-720.webp"
-                                srcset="
-                                    images/optimized/4-480.webp   480w,
-                                    images/optimized/4-720.webp   720w,
-                                    images/optimized/4-960.webp   960w,
-                                    images/optimized/4-1280.webp 1280w,
-                                    images/optimized/4-1600.webp 1600w
-                                "
-                                sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1400px) calc(50vw - 206px), 728px"
-                                data-preview-src="images/optimized/4-1600.webp"
-                                width="2608"
-                                height="1467"
-                                alt="Pixelated wordmark reading nothing"
-                                loading="lazy"
-                                decoding="async"
-                            />
-                        </button>
+                    </h2>
+                    <section class="gallery">
                         <button
-                            class="gallery-item"
+                            class="gallery-item full"
                             type="button"
                             aria-label="Open Logo System presentation preview"
                         >
@@ -1257,6 +1333,56 @@
                             />
                         </button>
                     </section>
+
+                    <h2 class="section-title">Personal</h2>
+                    <section class="gallery">
+                        <button
+                            class="gallery-item full"
+                            type="button"
+                            aria-label="Open Kernel detail preview"
+                        >
+                            <img
+                                src="images/optimized/32-960.webp"
+                                srcset="
+                                    images/optimized/32-480.webp   480w,
+                                    images/optimized/32-720.webp   720w,
+                                    images/optimized/32-960.webp   960w,
+                                    images/optimized/32-1280.webp 1280w,
+                                    images/optimized/32-1600.webp 1600w
+                                "
+                                sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1400px) calc(100vw - 392px), 1476px"
+                                data-preview-src="images/optimized/32-1600.webp"
+                                width="2048"
+                                height="1176"
+                                alt="Close crop of dark Kernel lettering with fine highlights"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </button>
+                        <button
+                            class="gallery-item full"
+                            type="button"
+                            aria-label="Open personal angular logo mark preview"
+                        >
+                            <img
+                                src="images/optimized/28-720.webp"
+                                srcset="
+                                    images/optimized/28-480.webp   480w,
+                                    images/optimized/28-720.webp   720w,
+                                    images/optimized/28-960.webp   960w,
+                                    images/optimized/28-1280.webp 1280w,
+                                    images/optimized/28-1504.webp 1504w
+                                "
+                                sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1400px) calc(50vw - 206px), 728px"
+                                data-preview-src="images/optimized/28-1504.webp"
+                                width="1504"
+                                height="1128"
+                                alt="Personal angular logo mark centered on a white background"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </button>
+                    </section>
                 </main>
             </div>
         </div>
@@ -1267,6 +1393,21 @@
             const themePreference = window.matchMedia(
                 "(prefers-color-scheme: dark)",
             );
+            const trackedScrollMilestones = new Set();
+            const scrollMilestones = [25, 50, 75, 100];
+
+            function trackEvent(name, data = {}) {
+                if (typeof window.va !== "function") return;
+
+                try {
+                    window.va("event", {
+                        name,
+                        data,
+                    });
+                } catch {
+                    return;
+                }
+            }
 
             function announce(message) {
                 srOnly.textContent = message;
@@ -1344,6 +1485,7 @@
             themeToggle.addEventListener("click", () => {
                 const nextTheme = getTheme() === "dark" ? "light" : "dark";
                 setTheme(nextTheme);
+                trackEvent("Theme Toggle", { theme: nextTheme });
 
                 if (themeToggleUsedPointer) {
                     themeToggle.classList.add("hover-suppressed");
@@ -1363,9 +1505,11 @@
                     try {
                         await navigator.clipboard.writeText("hi@gildrb.com");
                         this.classList.add("copied");
+                        trackEvent("Email Copy", { result: "success" });
                         announce("Email copied to clipboard");
                     } catch {
                         this.classList.add("copy-failed");
+                        trackEvent("Email Copy", { result: "failed" });
                         announce("Email could not be copied");
                     }
 
@@ -1386,6 +1530,25 @@
                 return (
                     image.dataset.previewSrc || image.currentSrc || image.src
                 );
+            }
+
+            function getImageProject(image) {
+                const section = image.closest("section");
+                const title = section?.previousElementSibling;
+
+                if (title?.classList.contains("section-title")) {
+                    return title.textContent.trim();
+                }
+
+                return "Portfolio";
+            }
+
+            function getImageItem(image) {
+                const label = image.closest("button")?.ariaLabel;
+
+                return label
+                    ? label.replace(/^Open /, "").replace(/ preview$/, "")
+                    : "Image";
             }
 
             function prefetchPreviewImage(image) {
@@ -1495,6 +1658,10 @@
                     showPreviewImageWhenReady(preloadedImage, previewSrc);
                 }
 
+                trackEvent("Image Preview Open", {
+                    project: getImageProject(image),
+                    item: getImageItem(image),
+                });
                 announce("Image enlarged");
             }
 
@@ -1559,6 +1726,42 @@
                 });
 
             imagePreview.addEventListener("click", closeImagePreview);
+
+            document.querySelectorAll(".external-link").forEach((link) => {
+                link.addEventListener("click", () => {
+                    trackEvent("Profile Link Click", {
+                        destination: link.textContent.trim(),
+                    });
+                });
+            });
+
+            function trackScrollMilestones() {
+                const scrollableHeight =
+                    document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent =
+                    scrollableHeight <= 0
+                        ? 100
+                        : Math.round((window.scrollY / scrollableHeight) * 100);
+
+                scrollMilestones.forEach((milestone) => {
+                    if (
+                        scrollPercent < milestone ||
+                        trackedScrollMilestones.has(milestone)
+                    ) {
+                        return;
+                    }
+
+                    trackedScrollMilestones.add(milestone);
+                    trackEvent("Scroll Milestone", {
+                        depth: `${milestone}%`,
+                    });
+                });
+            }
+
+            window.addEventListener("scroll", trackScrollMilestones, {
+                passive: true,
+            });
+            trackScrollMilestones();
 
             // Disable right-click on all images
             document.querySelectorAll("img").forEach((img) => {
