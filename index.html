@@ -5,15 +5,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="Portfolio of Gil Rodrigues, a student designer creating brand identities, logo systems, and visual systems for digital products."
+            content="Portfolio of Gil Rodrigues, a student designer creating brand identities, logo systems, and visual systems for Filen, mL7, n0thing, Corebeam, and Logo System."
         />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
         <link rel="canonical" href="https://gildrb.com/" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://gildrb.com/" />
         <meta property="og:title" content="Gil Rodrigues" />
         <meta
             property="og:description"
-            content="Portfolio of Gil Rodrigues, a student designer creating brand identities, logo systems, and visual systems for digital products."
+            content="Portfolio of Gil Rodrigues, a student designer creating brand identities, logo systems, and visual systems for Filen, mL7, n0thing, Corebeam, and Logo System."
         />
         <meta property="og:image" content="https://gildrb.com/images/33.png" />
         <meta property="og:image:type" content="image/png" />
@@ -29,7 +30,7 @@
         <meta name="twitter:title" content="Gil Rodrigues" />
         <meta
             name="twitter:description"
-            content="Portfolio of Gil Rodrigues, a student designer creating brand identities, logo systems, and visual systems for digital products."
+            content="Portfolio of Gil Rodrigues, a student designer creating brand identities, logo systems, and visual systems for Filen, mL7, n0thing, Corebeam, and Logo System."
         />
         <meta name="twitter:image" content="https://gildrb.com/images/33.png" />
         <meta
@@ -44,21 +45,61 @@
         <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
-                "@type": "Person",
-                "name": "Gil Rodrigues",
-                "url": "https://gildrb.com/",
-                "email": "mailto:hi@gildrb.com",
-                "jobTitle": "Student Designer",
-                "sameAs": [
-                    "https://behance.net/gildrb",
-                    "https://github.com/gildrb",
-                    "https://www.linkedin.com/in/gildrb/"
-                ],
-                "knowsAbout": [
-                    "Brand identity",
-                    "Logo systems",
-                    "Visual systems",
-                    "Digital product design"
+                "@graph": [
+                    {
+                        "@type": "WebSite",
+                        "@id": "https://gildrb.com/#website",
+                        "url": "https://gildrb.com/",
+                        "name": "Gil Rodrigues"
+                    },
+                    {
+                        "@type": "ImageObject",
+                        "@id": "https://gildrb.com/#primaryimage",
+                        "url": "https://gildrb.com/images/33.png",
+                        "contentUrl": "https://gildrb.com/images/33.png",
+                        "width": 3473,
+                        "height": 2263,
+                        "caption": "mL7 logo with black lettering and an orange streak on a white background"
+                    },
+                    {
+                        "@type": "ProfilePage",
+                        "@id": "https://gildrb.com/#profile",
+                        "url": "https://gildrb.com/",
+                        "name": "Gil Rodrigues",
+                        "dateModified": "2026-06-14",
+                        "isPartOf": {
+                            "@id": "https://gildrb.com/#website"
+                        },
+                        "primaryImageOfPage": {
+                            "@id": "https://gildrb.com/#primaryimage"
+                        },
+                        "mainEntity": {
+                            "@id": "https://gildrb.com/#person"
+                        }
+                    },
+                    {
+                        "@type": "Person",
+                        "@id": "https://gildrb.com/#person",
+                        "name": "Gil Rodrigues",
+                        "url": "https://gildrb.com/",
+                        "email": "mailto:hi@gildrb.com",
+                        "jobTitle": "Student Designer",
+                        "description": "Student designer creating brand identities, logo systems, and visual systems for digital products.",
+                        "image": {
+                            "@id": "https://gildrb.com/#primaryimage"
+                        },
+                        "sameAs": [
+                            "https://behance.net/gildrb",
+                            "https://github.com/gildrb",
+                            "https://www.linkedin.com/in/gildrb/"
+                        ],
+                        "knowsAbout": [
+                            "Brand identity",
+                            "Logo systems",
+                            "Visual systems",
+                            "Digital product design"
+                        ]
+                    }
                 ]
             }
         </script>

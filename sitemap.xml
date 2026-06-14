@@ -1,9 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+>
   <url>
     <loc>https://gildrb.com/</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/33-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/11-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/2-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/3-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/12-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/13-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/15-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/14-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/34-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/16-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/17-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/18-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/19-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/20-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/21-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/22-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/23-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/24-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/10-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/27-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/32-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://gildrb.com/images/optimized/28-1504.webp</image:loc>
+    </image:image>
   </url>
 </urlset>
