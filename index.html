@@ -1825,11 +1825,16 @@
             });
 
             // Arrow key navigation
-            const focusableElements = [
-                ...document.querySelectorAll(".links a"),
-                document.querySelector(".email"),
-                themeToggle,
-            ];
+            function getArrowNavigationItems() {
+                return [
+                    ...document.querySelectorAll(".links a"),
+                    document.querySelector(".email"),
+                    themeToggle,
+                    ...document.querySelectorAll(
+                        "main a[href], main button:not([disabled])",
+                    ),
+                ].filter(Boolean);
+            }
 
             document.addEventListener("keydown", function (e) {
                 if (e.key === "Escape" && !imagePreview.hidden) {
@@ -1845,23 +1850,25 @@
                 e.preventDefault();
 
                 const activeElement = document.activeElement;
-                const currentIndex = focusableElements.indexOf(activeElement);
+                const arrowNavigationItems = getArrowNavigationItems();
+                const currentIndex = arrowNavigationItems.indexOf(activeElement);
 
                 if (currentIndex === -1) {
-                    focusableElements[0].focus();
+                    arrowNavigationItems[0]?.focus();
                     return;
                 }
 
                 let nextIndex;
                 if (e.key === "ArrowDown") {
-                    nextIndex = (currentIndex + 1) % focusableElements.length;
+                    nextIndex =
+                        (currentIndex + 1) % arrowNavigationItems.length;
                 } else {
                     nextIndex =
-                        (currentIndex - 1 + focusableElements.length) %
-                        focusableElements.length;
+                        (currentIndex - 1 + arrowNavigationItems.length) %
+                        arrowNavigationItems.length;
                 }
 
-                focusableElements[nextIndex].focus();
+                arrowNavigationItems[nextIndex].focus();
             });
         </script>
         <script>
