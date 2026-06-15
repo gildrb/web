@@ -119,22 +119,6 @@
             media="(max-width: 768px)"
             fetchpriority="high"
         />
-        <script>
-            window.va =
-                window.va ||
-                function () {
-                    (window.vaq = window.vaq || []).push(arguments);
-                };
-        </script>
-        <script defer src="/_vercel/insights/script.js"></script>
-        <script>
-            window.si =
-                window.si ||
-                function () {
-                    (window.siq = window.siq || []).push(arguments);
-                };
-        </script>
-        <script defer src="/_vercel/speed-insights/script.js"></script>
         <style>
             :root {
                 --bg: #000000;
@@ -1447,6 +1431,19 @@
         </div>
 
         <script>
+            window.va =
+                window.va ||
+                function () {
+                    (window.vaq = window.vaq || []).push(arguments);
+                };
+
+            window.si =
+                window.si ||
+                function () {
+                    (window.siq = window.siq || []).push(arguments);
+                };
+        </script>
+        <script>
             const srOnly = document.querySelector(".sr-only");
             const themeToggle = document.querySelector(".theme-toggle");
             const themePreference = window.matchMedia(
@@ -1865,6 +1862,34 @@
                 }
 
                 focusableElements[nextIndex].focus();
+            });
+        </script>
+        <script>
+            function loadAnalyticsScript(src) {
+                const script = document.createElement("script");
+                script.src = src;
+                script.async = true;
+                document.body.append(script);
+            }
+
+            function loadAnalyticsScripts() {
+                loadAnalyticsScript("/_vercel/insights/script.js");
+                loadAnalyticsScript("/_vercel/speed-insights/script.js");
+            }
+
+            function scheduleAnalyticsScripts() {
+                if ("requestIdleCallback" in window) {
+                    requestIdleCallback(loadAnalyticsScripts, {
+                        timeout: 3000,
+                    });
+                    return;
+                }
+
+                setTimeout(loadAnalyticsScripts, 1500);
+            }
+
+            window.addEventListener("load", scheduleAnalyticsScripts, {
+                once: true,
             });
         </script>
     </body>
