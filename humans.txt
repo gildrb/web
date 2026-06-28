@@ -1,0 +1,20 @@
+# humans.txt for gildrb.com
+
+Owner: Gil Rodrigues
+Handle: gildrb
+Role: Student and Designer
+Canonical: https://gildrb.com/
+Legacy routes: https://gildrb.com/gil, https://gildrb.com/gil-rodrigues, and https://gildrb.com/work redirect to the canonical homepage.
+Contact: hi@gildrb.com
+Last-Updated: 2026-06-29
+
+Profiles:
+- Behance: https://behance.net/gildrb
+- GitHub: https://github.com/gildrb
+- LinkedIn: https://www.linkedin.com/in/gildrb/
+
+Summary:
+Gil Rodrigues, also known as gildrb, is focused on typography, brand identity, and logo systems.
+
+Indexing:
+This site is intended to be crawled and indexed. The LLM reference is available at https://gildrb.com/llms.txt and the machine-readable profile is available at https://gildrb.com/profile.json.

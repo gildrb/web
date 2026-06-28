@@ -1,0 +1,237 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://gildrb.com/#website",
+      "url": "https://gildrb.com/",
+      "name": "Gil Rodrigues",
+      "alternateName": "gildrb",
+      "description": "Official website and portfolio of Gil Rodrigues, also known as gildrb.",
+      "inLanguage": "en",
+      "about": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "hasPart": [
+        {
+          "@id": "https://gildrb.com/llms.txt#reference"
+        },
+        {
+          "@id": "https://gildrb.com/profile.json#profile-data"
+        },
+        {
+          "@id": "https://gildrb.com/feed.xml#feed"
+        },
+        {
+          "@id": "https://gildrb.com/humans.txt#humans"
+        }
+      ]
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://gildrb.com/#profile",
+      "url": "https://gildrb.com/",
+      "name": "Gil Rodrigues (gildrb) - Official Portfolio",
+      "description": "Official website and portfolio for Gil Rodrigues, also known as gildrb.",
+      "dateModified": "2026-06-29",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://gildrb.com/#website"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://gildrb.com/#primaryimage"
+      },
+      "mainEntity": {
+        "@id": "https://gildrb.com/#person"
+      }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://gildrb.com/#primaryimage",
+      "url": "https://gildrb.com/images/33.png",
+      "contentUrl": "https://gildrb.com/images/33.png",
+      "width": 3473,
+      "height": 2263,
+      "caption": "mL7 logo with black lettering and an orange streak on a white background"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://gildrb.com/#person",
+      "name": "Gil Rodrigues",
+      "givenName": "Gil",
+      "familyName": "Rodrigues",
+      "alternateName": [
+        "gildrb",
+        "Gil"
+      ],
+      "url": "https://gildrb.com/",
+      "email": "mailto:hi@gildrb.com",
+      "jobTitle": "Student and Designer",
+      "identifier": "gildrb",
+      "description": "Gil Rodrigues, also known as gildrb, is a student and designer focused on typography, brand identity, and logo systems.",
+      "disambiguatingDescription": "Canonical source for Gil Rodrigues at gildrb.com, the student and designer using the handle gildrb.",
+      "image": {
+        "@id": "https://gildrb.com/#primaryimage"
+      },
+      "sameAs": [
+        "https://behance.net/gildrb",
+        "https://github.com/gildrb",
+        "https://www.linkedin.com/in/gildrb/"
+      ],
+      "knowsAbout": [
+        "Brand identity",
+        "Logo systems",
+        "Typography",
+        "Identity design",
+        "Type-led design",
+        "Wordmarks"
+      ],
+      "mainEntityOfPage": {
+        "@id": "https://gildrb.com/#profile"
+      },
+      "subjectOf": [
+        {
+          "@id": "https://gildrb.com/llms.txt#reference"
+        },
+        {
+          "@id": "https://gildrb.com/profile.json#profile-data"
+        },
+        {
+          "@id": "https://gildrb.com/feed.xml#feed"
+        },
+        {
+          "@id": "https://gildrb.com/humans.txt#humans"
+        }
+      ],
+      "workExample": [
+        {
+          "@id": "https://gildrb.com/#work-filen"
+        },
+        {
+          "@id": "https://gildrb.com/#work-ml7"
+        },
+        {
+          "@id": "https://gildrb.com/#work-n0thing"
+        },
+        {
+          "@id": "https://gildrb.com/#work-mantis"
+        },
+        {
+          "@id": "https://gildrb.com/#work-curves"
+        },
+        {
+          "@id": "https://gildrb.com/#work-heph"
+        }
+      ]
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://gildrb.com/llms.txt#reference",
+      "url": "https://gildrb.com/llms.txt",
+      "name": "LLM reference for Gil Rodrigues",
+      "encodingFormat": "text/plain",
+      "dateModified": "2026-06-29",
+      "about": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "isPartOf": {
+        "@id": "https://gildrb.com/#website"
+      }
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://gildrb.com/profile.json#profile-data",
+      "url": "https://gildrb.com/profile.json",
+      "name": "Structured profile for Gil Rodrigues",
+      "encodingFormat": "application/ld+json",
+      "dateModified": "2026-06-29",
+      "about": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "isPartOf": {
+        "@id": "https://gildrb.com/#website"
+      }
+    },
+    {
+      "@type": "DataFeed",
+      "@id": "https://gildrb.com/feed.xml#feed",
+      "url": "https://gildrb.com/feed.xml",
+      "name": "Gil Rodrigues feed",
+      "encodingFormat": "application/rss+xml",
+      "dateModified": "2026-06-29",
+      "about": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "isPartOf": {
+        "@id": "https://gildrb.com/#website"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://gildrb.com/humans.txt#humans",
+      "url": "https://gildrb.com/humans.txt",
+      "name": "Humans file for Gil Rodrigues",
+      "encodingFormat": "text/plain",
+      "dateModified": "2026-06-29",
+      "about": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "isPartOf": {
+        "@id": "https://gildrb.com/#website"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://gildrb.com/#work-filen",
+      "name": "Filen brand identity",
+      "url": "https://filen.io/",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://gildrb.com/#work-ml7",
+      "name": "mL7 logo system",
+      "url": "https://www.twitch.tv/ml7support",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://gildrb.com/#work-n0thing",
+      "name": "n0thing wordmark",
+      "url": "https://www.twitch.tv/n0thing",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://gildrb.com/#work-mantis",
+      "name": "Mantis visual identity",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://gildrb.com/#work-curves",
+      "name": "CURVES free font",
+      "url": "https://www.behance.net/gallery/75409663/CURVES-Free-Font",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://gildrb.com/#work-heph",
+      "name": "Heph",
+      "url": "https://github.com/gildrb/heph",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      }
+    }
+  ]
+}

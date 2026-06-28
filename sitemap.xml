@@ -5,7 +5,7 @@
 >
   <url>
     <loc>https://gildrb.com/</loc>
-    <lastmod>2026-06-14</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -36,37 +36,7 @@
       <image:loc>https://gildrb.com/images/optimized/34-1600.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://gildrb.com/images/optimized/16-1600.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://gildrb.com/images/optimized/17-1600.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://gildrb.com/images/optimized/18-1600.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://gildrb.com/images/optimized/19-1600.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://gildrb.com/images/optimized/20-1600.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://gildrb.com/images/optimized/21-1600.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://gildrb.com/images/optimized/22-1600.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://gildrb.com/images/optimized/23-1600.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://gildrb.com/images/optimized/24-1600.webp</image:loc>
-    </image:image>
-    <image:image>
       <image:loc>https://gildrb.com/images/optimized/10-1600.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://gildrb.com/images/optimized/27-1600.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://gildrb.com/images/optimized/32-1600.webp</image:loc>
@@ -74,5 +44,29 @@
     <image:image>
       <image:loc>https://gildrb.com/images/optimized/28-1504.webp</image:loc>
     </image:image>
+  </url>
+  <url>
+    <loc>https://gildrb.com/llms.txt</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gildrb.com/profile.json</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gildrb.com/feed.xml</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gildrb.com/humans.txt</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>
