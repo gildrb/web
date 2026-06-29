@@ -35,6 +35,26 @@
       "permanent": true
     },
     {
+      "source": "/gil-rodrigues-barbosa",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/gil-rodrigues-barbosa/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/gil-domingos-rodrigues-barbosa",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/gil-domingos-rodrigues-barbosa/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/gil-rodrigues.html",
       "destination": "/",
       "permanent": true
