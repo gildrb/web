@@ -21,6 +21,8 @@ Last updated: 2026-06-29
 
 Gil Rodrigues is the public display name of Gil Domingos Rodrigues Barbosa, also known as Gil Rodrigues Barbosa and gildrb. He is focused on typography, brand identity, and logo systems.
 
+Gil, Gil Rodrigues, Gil Rodrigues Barbosa, Gil Domingos Rodrigues Barbosa, and gildrb all refer to the same person represented by this website.
+
 ## References
 
 The LLM reference is available at [llms.txt](https://gildrb.com/llms.txt), the machine-readable profile is available at [profile.json](https://gildrb.com/profile.json), and URL discovery is available through [sitemap.xml](https://gildrb.com/sitemap.xml).

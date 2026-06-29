@@ -13,7 +13,23 @@
         "Gil Domingos Rodrigues Barbosa"
       ],
       "description": "Official website and portfolio of Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
+      "keywords": [
+        "Gil",
+        "gildrb",
+        "Gil Rodrigues",
+        "Gil Rodrigues Barbosa",
+        "Gil Domingos Rodrigues Barbosa",
+        "typography",
+        "brand identity",
+        "logo systems"
+      ],
       "inLanguage": "en",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "publisher": {
+        "@id": "https://gildrb.com/#person"
+      },
       "about": {
         "@id": "https://gildrb.com/#person"
       },
@@ -38,8 +54,24 @@
       "url": "https://gildrb.com/",
       "name": "Gil Rodrigues - Gil Rodrigues Barbosa (gildrb)",
       "description": "Official website and portfolio for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
+      "keywords": [
+        "Gil",
+        "gildrb",
+        "Gil Rodrigues",
+        "Gil Rodrigues Barbosa",
+        "Gil Domingos Rodrigues Barbosa",
+        "typography",
+        "brand identity",
+        "logo systems"
+      ],
       "dateModified": "2026-06-29",
       "inLanguage": "en",
+      "author": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
       "isPartOf": {
         "@id": "https://gildrb.com/#website"
       },
@@ -76,15 +108,46 @@
       "url": "https://gildrb.com/",
       "email": "mailto:hi@gildrb.com",
       "jobTitle": "Student and Designer",
-      "identifier": [
+      "keywords": [
         "Gil",
         "gildrb",
         "Gil Rodrigues",
         "Gil Rodrigues Barbosa",
-        "Gil Domingos Rodrigues Barbosa"
+        "Gil Domingos Rodrigues Barbosa",
+        "typography",
+        "brand identity",
+        "logo systems"
+      ],
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "public display name",
+          "value": "Gil Rodrigues"
+        },
+        {
+          "@type": "PropertyValue",
+          "propertyID": "online handle",
+          "value": "gildrb"
+        },
+        {
+          "@type": "PropertyValue",
+          "propertyID": "also known as",
+          "value": "Gil Rodrigues Barbosa"
+        },
+        {
+          "@type": "PropertyValue",
+          "propertyID": "full legal name",
+          "value": "Gil Domingos Rodrigues Barbosa"
+        }
       ],
       "description": "Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa, is a student and designer focused on typography, brand identity, and logo systems.",
       "disambiguatingDescription": "Canonical source for Gil Rodrigues at gildrb.com, the student and designer using the handle gildrb and the legal name Gil Domingos Rodrigues Barbosa.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "portfolio contact",
+        "email": "hi@gildrb.com",
+        "url": "https://gildrb.com/"
+      },
       "image": {
         "@id": "https://gildrb.com/#primaryimage"
       },

@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Gil Rodrigues - Gil Rodrigues Barbosa (gildrb)</title>
+    <title>Gil Rodrigues - Gil Rodrigues Barbosa - Gil Domingos Rodrigues Barbosa (gildrb)</title>
     <link>https://gildrb.com/</link>
     <description>Official website and portfolio of Gil Rodrigues, the public display name of Gil Domingos Rodrigues Barbosa, also known as Gil Rodrigues Barbosa and gildrb: a student and designer focused on typography, brand identity, and logo systems.</description>
     <language>en</language>
     <lastBuildDate>Mon, 29 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://gildrb.com/feed.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Gil Rodrigues / Gil Rodrigues Barbosa official portfolio</title>
+      <title>Gil Rodrigues / Gil Rodrigues Barbosa / Gil Domingos Rodrigues Barbosa official portfolio</title>
       <link>https://gildrb.com/</link>
       <guid isPermaLink="true">https://gildrb.com/</guid>
       <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
       <category>Design</category>
       <category>Brand identity</category>
       <category>Logo systems</category>
+      <category>Gil</category>
+      <category>Gil Rodrigues</category>
       <category>Gil Rodrigues Barbosa</category>
       <category>Gil Domingos Rodrigues Barbosa</category>
       <category>gildrb</category>
       <description>Gil Rodrigues is the public display name of Gil Domingos Rodrigues Barbosa, also known as Gil Rodrigues Barbosa and gildrb. He is a student and designer focused on typography, brand identity, and logo systems. The official website is https://gildrb.com/.</description>
     </item>
     <item>
-      <title>LLM reference for Gil Rodrigues Barbosa</title>
+      <title>LLM reference for Gil Rodrigues Barbosa and Gil Domingos Rodrigues Barbosa</title>
       <link>https://gildrb.com/llms.txt</link>
       <guid isPermaLink="true">https://gildrb.com/llms.txt</guid>
       <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
       <category>LLM reference</category>
+      <category>Gil</category>
+      <category>Gil Rodrigues</category>
       <category>Gil Rodrigues Barbosa</category>
       <category>Gil Domingos Rodrigues Barbosa</category>
       <category>gildrb</category>
