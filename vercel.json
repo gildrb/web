@@ -271,6 +271,10 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+        },
+        {
+          "key": "Link",
+          "value": "<https://gildrb.com/robots.txt>; rel=\"canonical\"; type=\"text/plain\", <https://gildrb.com/>; rel=\"alternate\"; type=\"text/html\", <https://gildrb.com/sitemap.xml>; rel=\"sitemap\"; type=\"application/xml\", <https://gildrb.com/llms.txt>; rel=\"alternate\"; type=\"text/markdown\", <https://gildrb.com/profile.json>; rel=\"alternate\"; type=\"application/ld+json\", <https://behance.net/gildrb>; rel=\"me\", <https://github.com/gildrb>; rel=\"me\", <https://www.linkedin.com/in/gildrb/>; rel=\"me\""
         }
       ]
     },
@@ -284,6 +288,10 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+        },
+        {
+          "key": "Link",
+          "value": "<https://gildrb.com/sitemap.xml>; rel=\"canonical\"; type=\"application/xml\", <https://gildrb.com/>; rel=\"alternate\"; type=\"text/html\", <https://gildrb.com/robots.txt>; rel=\"alternate\"; type=\"text/plain\", <https://gildrb.com/llms.txt>; rel=\"alternate\"; type=\"text/markdown\", <https://gildrb.com/profile.json>; rel=\"alternate\"; type=\"application/ld+json\", <https://behance.net/gildrb>; rel=\"me\", <https://github.com/gildrb>; rel=\"me\", <https://www.linkedin.com/in/gildrb/>; rel=\"me\""
         }
       ]
     },

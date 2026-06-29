@@ -1,3 +1,8 @@
+# Site: https://gildrb.com/
+# Owner: Gil Rodrigues (gildrb), also known as Gil Rodrigues Barbosa and Gil Domingos Rodrigues Barbosa.
+# LLM reference: https://gildrb.com/llms.txt
+# Structured profile: https://gildrb.com/profile.json
+
 User-agent: *
 Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
