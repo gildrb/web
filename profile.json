@@ -158,6 +158,8 @@
         "logo systems"
       ],
       "identifier": [
+        "gildrb",
+        "gil-domingos-rodrigues-barbosa",
         {
           "@type": "PropertyValue",
           "propertyID": "public display name",
