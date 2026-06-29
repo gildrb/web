@@ -17,7 +17,28 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
+User-agent: GoogleOther
+Allow: /
+
+User-agent: GoogleOther-Image
+Allow: /
+
+User-agent: GoogleOther-Video
+Allow: /
+
 User-agent: Google-Extended
+Allow: /
+
+User-agent: Google-CloudVertexBot
+Allow: /
+
+User-agent: Google-Agent
+Allow: /
+
+User-agent: Google-NotebookLM
+Allow: /
+
+User-agent: Feedfetcher-Google
 Allow: /
 
 User-agent: ClaudeBot

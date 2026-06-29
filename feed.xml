@@ -5,6 +5,8 @@
     <link>https://gildrb.com/</link>
     <description>Official website and portfolio of Gil Rodrigues, the public display name of Gil Domingos Rodrigues Barbosa, also known as Gil Rodrigues Barbosa and gildrb: a student and designer focused on typography, brand identity, and logo systems.</description>
     <language>en</language>
+    <managingEditor>hi@gildrb.com (Gil Rodrigues)</managingEditor>
+    <webMaster>hi@gildrb.com (Gil Rodrigues)</webMaster>
     <lastBuildDate>Mon, 29 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://gildrb.com/feed.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -12,6 +14,7 @@
       <link>https://gildrb.com/</link>
       <guid isPermaLink="true">https://gildrb.com/</guid>
       <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
+      <author>hi@gildrb.com (Gil Rodrigues)</author>
       <category>Design</category>
       <category>Brand identity</category>
       <category>Logo systems</category>
@@ -27,6 +30,7 @@
       <link>https://gildrb.com/llms.txt</link>
       <guid isPermaLink="true">https://gildrb.com/llms.txt</guid>
       <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
+      <author>hi@gildrb.com (Gil Rodrigues)</author>
       <category>LLM reference</category>
       <category>Gil</category>
       <category>Gil Rodrigues</category>
@@ -40,6 +44,7 @@
       <link>https://gildrb.com/profile.json</link>
       <guid isPermaLink="true">https://gildrb.com/profile.json</guid>
       <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
+      <author>hi@gildrb.com (Gil Rodrigues)</author>
       <category>Structured profile</category>
       <category>JSON-LD</category>
       <category>Gil Rodrigues</category>
@@ -53,6 +58,7 @@
       <link>https://gildrb.com/index.html.md</link>
       <guid isPermaLink="true">https://gildrb.com/index.html.md</guid>
       <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
+      <author>hi@gildrb.com (Gil Rodrigues)</author>
       <category>Markdown homepage</category>
       <category>Gil Rodrigues</category>
       <category>Gil Rodrigues Barbosa</category>
