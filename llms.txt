@@ -2,7 +2,7 @@
 
 > Official LLM reference for Gil Rodrigues, the public display name of Gil Domingos Rodrigues Barbosa, also known as Gil Rodrigues Barbosa and gildrb: a student and designer focused on typography, brand identity, and logo systems.
 
-Last updated: 2026-06-29
+Last updated: 2026-06-30
 Canonical: [https://gildrb.com/llms.txt](https://gildrb.com/llms.txt)
 Homepage: [https://gildrb.com/](https://gildrb.com/)
 

@@ -2,6 +2,7 @@
 
 Canonical: [https://gildrb.com/llms.txt](https://gildrb.com/llms.txt)
 Homepage: [https://gildrb.com/](https://gildrb.com/)
+Last updated: 2026-06-30
 
 This well-known discovery file points search agents, language models, and crawlers to the canonical LLM reference for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.
 
