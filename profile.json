@@ -55,7 +55,7 @@
       "@type": "ProfilePage",
       "@id": "https://gildrb.com/#profile",
       "url": "https://gildrb.com/",
-      "name": "Gil Rodrigues - Gil Rodrigues Barbosa (gildrb)",
+      "name": "Gil Rodrigues",
       "alternateName": [
         "Gil",
         "gildrb",
@@ -180,9 +180,6 @@
         "contactType": "portfolio contact",
         "email": "hi@gildrb.com",
         "url": "https://gildrb.com/"
-      },
-      "image": {
-        "@id": "https://gildrb.com/#primaryimage"
       },
       "sameAs": [
         "https://behance.net/gildrb",
