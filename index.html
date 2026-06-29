@@ -527,11 +527,15 @@
                 --section-gap: 24px;
                 --section-content-gap: 6px;
                 --link-line-height: 24px;
-                --footer-title-optical-offset: 5px;
-                --footer-title-offset: calc(
-                    var(--link-line-height) + var(--section-content-gap) +
-                        var(--link-line-height) + var(--section-content-gap) +
-                        var(--link-line-height) + var(--section-content-gap)
+                --theme-toggle-size: 32px;
+                --footer-stack-bottom-gap: 4px;
+                --footer-title-center-offset: calc(
+                    var(--footer-stack-bottom-gap) + var(--link-line-height) +
+                        var(--section-content-gap) + var(--link-line-height) +
+                        var(--section-content-gap) + var(--link-line-height) +
+                        var(--section-content-gap) +
+                        (var(--link-line-height) / 2) -
+                        (var(--theme-toggle-size) / 2)
                 );
                 --sidebar-column: 280px;
                 --layout-gap: 48px;
@@ -748,8 +752,8 @@
             }
 
             .theme-toggle {
-                width: 32px;
-                height: 32px;
+                width: var(--theme-toggle-size);
+                height: var(--theme-toggle-size);
                 margin-top: auto;
                 display: inline-flex;
                 align-items: center;
@@ -761,10 +765,7 @@
                 padding: 0;
                 appearance: none;
                 cursor: pointer;
-                margin-bottom: calc(
-                    var(--footer-title-offset) -
-                        var(--footer-title-optical-offset)
-                );
+                margin-bottom: var(--footer-title-center-offset);
             }
 
             .theme-toggle svg {
@@ -1077,7 +1078,7 @@
                 flex-direction: column;
                 row-gap: var(--section-content-gap);
                 margin-top: -72px;
-                margin-bottom: 4px;
+                margin-bottom: var(--footer-stack-bottom-gap);
                 font-size: 16px;
                 font-weight: 400;
                 -webkit-font-smoothing: antialiased;
