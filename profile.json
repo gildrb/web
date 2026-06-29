@@ -111,6 +111,27 @@
       "url": "https://gildrb.com/",
       "email": "mailto:hi@gildrb.com",
       "jobTitle": "Student and Designer",
+      "hasOccupation": {
+        "@type": "Occupation",
+        "name": "Designer",
+        "description": "Student and designer focused on typography, brand identity, and logo systems.",
+        "skills": [
+          "Typography",
+          "Brand identity",
+          "Logo systems",
+          "Identity design",
+          "Type-led design",
+          "Wordmarks"
+        ]
+      },
+      "skills": [
+        "Typography",
+        "Brand identity",
+        "Logo systems",
+        "Identity design",
+        "Type-led design",
+        "Wordmarks"
+      ],
       "keywords": [
         "Gil",
         "gildrb",
