@@ -1575,9 +1575,6 @@
             const themePreference = window.matchMedia(
                 "(prefers-color-scheme: dark)",
             );
-            const trackedScrollMilestones = new Set();
-            const scrollMilestones = [25, 50, 75, 100];
-
             function trackEvent(name, data = {}) {
                 if (typeof window.va !== "function") return;
 
@@ -1916,34 +1913,6 @@
                     });
                 });
             });
-
-            function trackScrollMilestones() {
-                const scrollableHeight =
-                    document.documentElement.scrollHeight - window.innerHeight;
-                const scrollPercent =
-                    scrollableHeight <= 0
-                        ? 100
-                        : Math.round((window.scrollY / scrollableHeight) * 100);
-
-                scrollMilestones.forEach((milestone) => {
-                    if (
-                        scrollPercent < milestone ||
-                        trackedScrollMilestones.has(milestone)
-                    ) {
-                        return;
-                    }
-
-                    trackedScrollMilestones.add(milestone);
-                    trackEvent("Scroll Milestone", {
-                        depth: `${milestone}%`,
-                    });
-                });
-            }
-
-            window.addEventListener("scroll", trackScrollMilestones, {
-                passive: true,
-            });
-            trackScrollMilestones();
 
             // Disable right-click on all images
             document.querySelectorAll("img").forEach((img) => {
