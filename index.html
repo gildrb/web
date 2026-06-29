@@ -70,7 +70,7 @@
         />
         <meta
             property="og:title"
-            content="Gil Rodrigues - Gil Rodrigues Barbosa (gildrb)"
+            content="Gil Rodrigues"
         />
         <meta
             property="og:description"
@@ -89,7 +89,7 @@
         <meta name="twitter:url" content="https://gildrb.com/" />
         <meta
             name="twitter:title"
-            content="Gil Rodrigues - Gil Rodrigues Barbosa (gildrb)"
+            content="Gil Rodrigues"
         />
         <meta
             name="twitter:description"
@@ -100,7 +100,7 @@
             name="twitter:image:alt"
             content="mL7 logo with black lettering and an orange streak on a white background"
         />
-        <title>Gil Rodrigues - Gil Rodrigues Barbosa (gildrb)</title>
+        <title>Gil Rodrigues</title>
         <link
             rel="icon"
             href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><style>rect{fill:black}@media(prefers-color-scheme:dark){rect{fill:white}}</style><rect x='10' y='10' width='80' height='80'/></svg>"
@@ -489,6 +489,8 @@
                 --text-secondary: #808080;
                 --section-gap: 24px;
                 --section-content-gap: 6px;
+                --sidebar-column: 280px;
+                --layout-gap: 48px;
             }
 
             @media (prefers-color-scheme: light) {
@@ -617,9 +619,9 @@
 
             .layout {
                 display: grid;
-                grid-template-columns: 280px 1fr;
+                grid-template-columns: var(--sidebar-column) 1fr;
                 min-height: 100vh;
-                gap: 48px;
+                gap: var(--layout-gap);
             }
 
             .sidebar {
@@ -633,7 +635,8 @@
                 z-index: 100;
             }
 
-            .external-link {
+            .external-link,
+            .file-link {
                 color: var(--text-secondary);
                 text-decoration: none;
                 width: fit-content;
@@ -645,7 +648,8 @@
             }
 
             @media (hover: hover) {
-                .external-link:hover {
+                .external-link:hover,
+                .file-link:hover {
                     color: var(--text-primary);
                 }
             }
@@ -686,11 +690,13 @@
             }
 
             .external-link:focus:not(:focus-visible),
+            .file-link:focus:not(:focus-visible),
             .email:focus:not(:focus-visible) {
                 outline: none;
             }
 
             .external-link:focus-visible,
+            .file-link:focus-visible,
             .email:focus-visible {
                 color: var(--text-primary);
                 outline: 1px solid var(--text-primary);
@@ -1019,12 +1025,9 @@
             }
 
             .machine-links {
-                display: grid;
-                grid-auto-flow: column;
-                grid-template-rows: repeat(3, auto);
-                grid-auto-columns: max-content;
-                gap: var(--section-content-gap);
-                column-gap: 24px;
+                display: flex;
+                flex-direction: column;
+                row-gap: var(--section-content-gap);
                 margin-top: -72px;
                 margin-bottom: 4px;
                 font-size: 16px;
@@ -1034,7 +1037,7 @@
                 text-rendering: optimizeLegibility;
             }
 
-            .machine-links .external-link {
+            .machine-links .file-link {
                 margin-bottom: 0;
             }
 
@@ -1051,6 +1054,10 @@
             }
 
             @media (max-width: 1400px) {
+                :root {
+                    --layout-gap: 32px;
+                }
+
                 .wrapper {
                     padding: 0 32px;
                 }
@@ -1059,10 +1066,6 @@
                     --preview-inline-space: 64px;
                     padding-right: 32px;
                     padding-left: 32px;
-                }
-
-                .layout {
-                    gap: 32px;
                 }
 
                 .showcase {
@@ -1075,8 +1078,12 @@
             }
 
             @media (max-width: 1100px) {
+                :root {
+                    --sidebar-column: 240px;
+                }
+
                 .layout {
-                    grid-template-columns: 240px 1fr;
+                    grid-template-columns: var(--sidebar-column) 1fr;
                 }
 
                 .showcase {
@@ -1735,46 +1742,27 @@
                         class="machine-links"
                         aria-label="Machine-readable files"
                     >
+                        <p class="links-label">Files</p>
                         <a
-                            class="external-link"
-                            href="llms.txt"
-                            rel="alternate"
-                            type="text/markdown"
-                            >llms.txt</a
-                        >
-                        <a
-                            class="external-link"
-                            href="index.html.md"
-                            rel="alternate"
-                            type="text/markdown"
-                            >index.html.md</a
-                        >
-                        <a
-                            class="external-link"
+                            class="file-link"
                             href="humans.txt"
                             rel="author"
                             type="text/plain"
                             >humans.txt</a
                         >
                         <a
-                            class="external-link"
+                            class="file-link"
+                            href="llms.txt"
+                            rel="alternate"
+                            type="text/markdown"
+                            >llms.txt</a
+                        >
+                        <a
+                            class="file-link"
                             href="profile.json"
                             rel="alternate"
                             type="application/ld+json"
                             >profile.json</a
-                        >
-                        <a
-                            class="external-link"
-                            href="feed.xml"
-                            rel="alternate"
-                            type="application/rss+xml"
-                            >feed.xml</a
-                        >
-                        <a
-                            class="external-link"
-                            href="sitemap.xml"
-                            type="application/xml"
-                            >sitemap.xml</a
                         >
                     </nav>
                 </main>
