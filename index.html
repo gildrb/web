@@ -422,8 +422,6 @@
                 font-weight: 400;
                 color: var(--text-secondary);
                 cursor: pointer;
-                margin-top: 24px;
-                margin-bottom: 8px;
                 width: fit-content;
                 background: none;
                 border: none;
@@ -848,9 +846,14 @@
                 margin-bottom: 24px;
             }
 
-            .profile-summary .section-title {
+            .profile-summary .section-title,
+            .contact-section .section-title {
                 color: var(--text-primary);
                 margin-bottom: 8px;
+            }
+
+            .contact-section {
+                margin-bottom: 24px;
             }
 
             .profile-copy {
@@ -987,7 +990,7 @@
                 .name {
                     grid-column: 1;
                     order: 1;
-                    margin-bottom: 24px;
+                    margin-bottom: 32px;
                 }
 
                 .theme-toggle {
@@ -996,6 +999,7 @@
                     justify-self: end;
                     align-self: start;
                     margin-top: 0;
+                    margin-left: 16px;
                 }
 
                 .name {
@@ -1010,17 +1014,21 @@
                 .links {
                     grid-column: 1 / -1;
                     order: 4;
-                    margin-bottom: 48px;
+                    margin-bottom: 24px;
                 }
 
                 .email {
-                    grid-column: 1 / -1;
-                    order: 2;
                     margin-top: 0;
-                    margin-bottom: 48px;
+                    margin-bottom: 0;
                 }
 
                 .profile-summary {
+                    grid-column: 1 / -1;
+                    order: 2;
+                    margin-bottom: 24px;
+                }
+
+                .contact-section {
                     grid-column: 1 / -1;
                     order: 3;
                     margin-bottom: 40px;
@@ -1112,13 +1120,6 @@
                         >
                     </div>
                     <button
-                        class="email"
-                        type="button"
-                        aria-label="Copy hi@gildrb.com"
-                    >
-                        hi@gildrb.com
-                    </button>
-                    <button
                         class="theme-toggle"
                         type="button"
                         aria-label="Switch to light mode"
@@ -1159,6 +1160,17 @@
                             Student and designer focused on typography, brand
                             identity, and logo systems.
                         </p>
+                    </section>
+
+                    <section class="contact-section">
+                        <h2 class="section-title">Contact</h2>
+                        <button
+                            class="email"
+                            type="button"
+                            aria-label="Copy hi@gildrb.com"
+                        >
+                            hi@gildrb.com
+                        </button>
                     </section>
 
                     <p class="work-label">Work</p>
