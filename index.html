@@ -185,6 +185,26 @@
                             {
                                 "@id": "https://gildrb.com/humans.txt#humans"
                             }
+                        ],
+                        "workExample": [
+                            {
+                                "@id": "https://gildrb.com/#work-filen"
+                            },
+                            {
+                                "@id": "https://gildrb.com/#work-ml7"
+                            },
+                            {
+                                "@id": "https://gildrb.com/#work-n0thing"
+                            },
+                            {
+                                "@id": "https://gildrb.com/#work-mantis"
+                            },
+                            {
+                                "@id": "https://gildrb.com/#work-curves"
+                            },
+                            {
+                                "@id": "https://gildrb.com/#work-heph"
+                            }
                         ]
                     },
                     {
@@ -930,30 +950,33 @@
                 }
 
                 .layout {
-                    grid-template-columns: 1fr;
+                    grid-template-columns: minmax(0, 1fr) 32px;
                     gap: 0;
+                    min-height: auto;
+                    padding: 32px 0;
                 }
 
                 .sidebar {
                     position: relative;
                     height: auto;
-                    padding: 32px 0;
-                    padding-bottom: 48px;
-                    display: grid;
-                    grid-template-columns: minmax(0, 1fr) 32px;
-                    column-gap: 16px;
-                    align-items: start;
+                    padding: 0;
+                    display: contents;
                 }
 
-                .name,
-                .links,
-                .email {
+                .content {
+                    display: contents;
+                    padding: 0;
+                }
+
+                .name {
                     grid-column: 1;
+                    order: 1;
+                    margin-bottom: 32px;
                 }
 
                 .theme-toggle {
                     grid-column: 2;
-                    grid-row: 1;
+                    order: 1;
                     justify-self: end;
                     align-self: start;
                     margin-top: 0;
@@ -963,8 +986,26 @@
                     white-space: normal;
                 }
 
-                .content {
-                    padding: 0 0 32px 0;
+                .content > * {
+                    grid-column: 1 / -1;
+                    order: 5;
+                }
+
+                .links {
+                    grid-column: 1 / -1;
+                    order: 3;
+                }
+
+                .email {
+                    grid-column: 1 / -1;
+                    order: 4;
+                    margin-bottom: 48px;
+                }
+
+                .profile-summary {
+                    grid-column: 1 / -1;
+                    order: 2;
+                    margin-bottom: 40px;
                 }
 
                 .showcase {
