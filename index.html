@@ -534,13 +534,15 @@
                 --link-line-height: 24px;
                 --theme-toggle-size: 32px;
                 --footer-stack-bottom-gap: 4px;
+                --footer-title-optical-offset: 4px;
                 --footer-title-center-offset: calc(
                     var(--footer-stack-bottom-gap) + var(--link-line-height) +
                         var(--section-content-gap) + var(--link-line-height) +
                         var(--section-content-gap) + var(--link-line-height) +
                         var(--section-content-gap) +
                         (var(--link-line-height) / 2) -
-                        (var(--theme-toggle-size) / 2)
+                        (var(--theme-toggle-size) / 2) -
+                        var(--footer-title-optical-offset)
                 );
                 --sidebar-column: 280px;
                 --layout-gap: 48px;
