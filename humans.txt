@@ -5,7 +5,7 @@ Short name: Gil
 Full legal name: Gil Domingos Rodrigues Barbosa
 Also known as: Gil Rodrigues Barbosa
 Handle: gildrb
-Role: Student and Designer
+Role: Student and designer
 Focus: Typography, brand identity, and logo systems
 Contact: [hi@gildrb.com](mailto:hi@gildrb.com)
 Canonical: [https://gildrb.com/humans.txt](https://gildrb.com/humans.txt)

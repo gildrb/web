@@ -25,6 +25,21 @@
       "permanent": true
     },
     {
+      "source": "/gildrb",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/gildrb/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/gildrb.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/gil-rodrigues",
       "destination": "/",
       "permanent": true
@@ -45,12 +60,22 @@
       "permanent": true
     },
     {
+      "source": "/gil-rodrigues-barbosa.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/gil-domingos-rodrigues-barbosa",
       "destination": "/",
       "permanent": true
     },
     {
       "source": "/gil-domingos-rodrigues-barbosa/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/gil-domingos-rodrigues-barbosa.html",
       "destination": "/",
       "permanent": true
     },
