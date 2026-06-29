@@ -1099,9 +1099,12 @@
 
         <div class="wrapper">
             <div class="layout">
-                <aside class="sidebar">
-                    <h1 class="name">Gil Rodrigues</h1>
-                    <div class="links">
+                <aside class="sidebar" aria-labelledby="site-title">
+                    <h1 class="name" id="site-title">Gil Rodrigues</h1>
+                    <nav
+                        class="links"
+                        aria-label="Public profiles and projects"
+                    >
                         <p class="links-label">Links</p>
                         <a
                             class="external-link"
@@ -1139,7 +1142,7 @@
                             rel="noopener noreferrer"
                             >CURVES</a
                         >
-                    </div>
+                    </nav>
                     <button
                         class="theme-toggle"
                         type="button"
@@ -1194,67 +1197,71 @@
                         </button>
                     </section>
 
-                    <p class="work-label">Work</p>
-                    <h2 class="section-title">
-                        <a
-                            class="external-link"
-                            href="https://filen.io/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            >Filen</a
+                    <section class="work-section" aria-labelledby="work-title">
+                        <h2 class="work-label" id="work-title">Work</h2>
+                        <h3 class="section-title" id="work-filen-title">
+                            <a
+                                class="external-link"
+                                href="https://filen.io/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >Filen</a
+                            >
+                        </h3>
+                        <section
+                            class="showcase"
+                            aria-labelledby="work-filen-title"
                         >
-                    </h2>
-                    <section class="showcase">
-                        <div class="showcase-featured">
-                            <button
-                                class="image-wrapper"
-                                type="button"
-                                aria-label="Open Filen wordmark preview"
-                            >
-                                <img
-                                    src="images/optimized/11-960.webp"
-                                    srcset="
-                                        images/optimized/11-480.webp   480w,
-                                        images/optimized/11-720.webp   720w,
-                                        images/optimized/11-960.webp   960w,
-                                        images/optimized/11-1280.webp 1280w,
-                                        images/optimized/11-1600.webp 1600w
-                                    "
-                                    sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 900px) calc(100vw - 336px), (max-width: 1400px) calc(67vw - 263px), 1040px"
-                                    data-preview-src="images/optimized/11-1600.webp"
-                                    width="3940"
-                                    height="2260"
-                                    alt="Filen wordmark on a black background"
-                                    loading="eager"
-                                    fetchpriority="high"
-                                    decoding="async"
-                                />
-                            </button>
-                        </div>
-                        <div class="showcase-scroll">
-                            <button
-                                class="image-wrapper"
-                                type="button"
-                                aria-label="Open Filen brand system overview preview"
-                            >
-                                <img
-                                    src="images/optimized/2-720.webp"
-                                    srcset="
-                                        images/optimized/2-480.webp   480w,
-                                        images/optimized/2-720.webp   720w,
-                                        images/optimized/2-960.webp   960w,
-                                        images/optimized/2-1280.webp 1280w,
-                                        images/optimized/2-1600.webp 1600w
-                                    "
-                                    sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 900px) calc(100vw - 336px), (max-width: 1400px) calc(33vw - 129px), 416px"
-                                    data-preview-src="images/optimized/2-1600.webp"
-                                    width="1920"
-                                    height="1222"
-                                    alt="Filen brand system overview with logo, typography, and motion panels"
-                                    loading="lazy"
-                                    decoding="async"
-                                />
-                            </button>
+                            <div class="showcase-featured">
+                                <button
+                                    class="image-wrapper"
+                                    type="button"
+                                    aria-label="Open Filen wordmark preview"
+                                >
+                                    <img
+                                        src="images/optimized/11-960.webp"
+                                        srcset="
+                                            images/optimized/11-480.webp   480w,
+                                            images/optimized/11-720.webp   720w,
+                                            images/optimized/11-960.webp   960w,
+                                            images/optimized/11-1280.webp 1280w,
+                                            images/optimized/11-1600.webp 1600w
+                                        "
+                                        sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 900px) calc(100vw - 336px), (max-width: 1400px) calc(67vw - 263px), 1040px"
+                                        data-preview-src="images/optimized/11-1600.webp"
+                                        width="3940"
+                                        height="2260"
+                                        alt="Filen wordmark on a black background"
+                                        loading="eager"
+                                        fetchpriority="high"
+                                        decoding="async"
+                                    />
+                                </button>
+                            </div>
+                            <div class="showcase-scroll">
+                                <button
+                                    class="image-wrapper"
+                                    type="button"
+                                    aria-label="Open Filen brand system overview preview"
+                                >
+                                    <img
+                                        src="images/optimized/2-720.webp"
+                                        srcset="
+                                            images/optimized/2-480.webp   480w,
+                                            images/optimized/2-720.webp   720w,
+                                            images/optimized/2-960.webp   960w,
+                                            images/optimized/2-1280.webp 1280w,
+                                            images/optimized/2-1600.webp 1600w
+                                        "
+                                        sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 900px) calc(100vw - 336px), (max-width: 1400px) calc(33vw - 129px), 416px"
+                                        data-preview-src="images/optimized/2-1600.webp"
+                                        width="1920"
+                                        height="1222"
+                                        alt="Filen brand system overview with logo, typography, and motion panels"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                </button>
                             <button
                                 class="image-wrapper"
                                 type="button"
@@ -1373,8 +1380,13 @@
                         </div>
                     </section>
 
-                    <h2 class="section-title">Mantis (カマキリ)</h2>
-                    <section class="gallery">
+                    <h3 class="section-title" id="work-mantis-title">
+                        Mantis (カマキリ)
+                    </h3>
+                    <section
+                        class="gallery"
+                        aria-labelledby="work-mantis-title"
+                    >
                         <button
                             class="gallery-item full"
                             type="button"
@@ -1400,7 +1412,7 @@
                         </button>
                     </section>
 
-                    <h2 class="section-title">
+                    <h3 class="section-title" id="work-n0thing-title">
                         <a
                             class="external-link"
                             href="https://www.twitch.tv/n0thing"
@@ -1408,8 +1420,11 @@
                             rel="noopener noreferrer"
                             >n0thing</a
                         >
-                    </h2>
-                    <section class="gallery">
+                    </h3>
+                    <section
+                        class="gallery"
+                        aria-labelledby="work-n0thing-title"
+                    >
                         <button
                             class="gallery-item full"
                             type="button"
@@ -1435,7 +1450,7 @@
                         </button>
                     </section>
 
-                    <h2 class="section-title">
+                    <h3 class="section-title" id="work-ml7-title">
                         <a
                             class="external-link"
                             href="https://www.twitch.tv/ml7support"
@@ -1443,8 +1458,11 @@
                             rel="noopener noreferrer"
                             >mL7</a
                         >
-                    </h2>
-                    <section class="gallery">
+                    </h3>
+                    <section
+                        class="gallery"
+                        aria-labelledby="work-ml7-title"
+                    >
                         <button
                             class="gallery-item full"
                             type="button"
@@ -1470,8 +1488,13 @@
                         </button>
                     </section>
 
-                    <h2 class="section-title">Personal</h2>
-                    <section class="gallery">
+                    <h3 class="section-title" id="work-personal-title">
+                        Personal
+                    </h3>
+                    <section
+                        class="gallery"
+                        aria-labelledby="work-personal-title"
+                    >
                         <button
                             class="gallery-item full"
                             type="button"
@@ -1518,6 +1541,7 @@
                                 decoding="async"
                             />
                         </button>
+                    </section>
                     </section>
                     <nav
                         class="machine-links"

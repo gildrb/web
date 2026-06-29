@@ -94,6 +94,10 @@
         },
         {
           "key": "Link",
+          "value": "<https://gildrb.com/>; rel=\"canonical\"; type=\"text/html\""
+        },
+        {
+          "key": "Link",
           "value": "<https://gildrb.com/>; rel=\"author\"; type=\"text/html\", <https://gildrb.com/llms.txt>; rel=\"alternate\"; type=\"text/markdown\", <https://gildrb.com/profile.json>; rel=\"alternate\"; type=\"application/ld+json\", <https://gildrb.com/feed.xml>; rel=\"alternate\"; type=\"application/rss+xml\", <https://gildrb.com/humans.txt>; rel=\"author\"; type=\"text/plain\", <https://behance.net/gildrb>; rel=\"me\", <https://github.com/gildrb>; rel=\"me\", <https://www.linkedin.com/in/gildrb/>; rel=\"me\""
         }
       ]
@@ -108,6 +112,10 @@
         {
           "key": "X-Robots-Tag",
           "value": "index, follow, max-snippet:-1, max-image-preview:large"
+        },
+        {
+          "key": "Link",
+          "value": "<https://gildrb.com/>; rel=\"canonical\"; type=\"text/html\""
         },
         {
           "key": "Link",
@@ -129,6 +137,10 @@
         {
           "key": "X-Robots-Tag",
           "value": "index, follow, max-snippet:-1, max-image-preview:large"
+        },
+        {
+          "key": "Link",
+          "value": "<https://gildrb.com/>; rel=\"canonical\"; type=\"text/html\", <https://gildrb.com/profile.json>; rel=\"alternate\"; type=\"application/ld+json\", <https://gildrb.com/feed.xml>; rel=\"alternate\"; type=\"application/rss+xml\", <https://gildrb.com/humans.txt>; rel=\"author\"; type=\"text/plain\""
         }
       ]
     },
@@ -146,6 +158,10 @@
         {
           "key": "X-Robots-Tag",
           "value": "index, follow, max-snippet:-1, max-image-preview:large"
+        },
+        {
+          "key": "Link",
+          "value": "<https://gildrb.com/>; rel=\"canonical\"; type=\"text/html\", <https://gildrb.com/llms.txt>; rel=\"alternate\"; type=\"text/markdown\", <https://gildrb.com/feed.xml>; rel=\"alternate\"; type=\"application/rss+xml\", <https://gildrb.com/humans.txt>; rel=\"author\"; type=\"text/plain\""
         }
       ]
     },
@@ -163,6 +179,10 @@
         {
           "key": "X-Robots-Tag",
           "value": "index, follow, max-snippet:-1, max-image-preview:large"
+        },
+        {
+          "key": "Link",
+          "value": "<https://gildrb.com/>; rel=\"canonical\"; type=\"text/html\", <https://gildrb.com/llms.txt>; rel=\"alternate\"; type=\"text/markdown\", <https://gildrb.com/profile.json>; rel=\"alternate\"; type=\"application/ld+json\", <https://gildrb.com/humans.txt>; rel=\"author\"; type=\"text/plain\""
         }
       ]
     },
@@ -180,6 +200,10 @@
         {
           "key": "X-Robots-Tag",
           "value": "index, follow, max-snippet:-1, max-image-preview:large"
+        },
+        {
+          "key": "Link",
+          "value": "<https://gildrb.com/>; rel=\"canonical\"; type=\"text/html\", <https://gildrb.com/llms.txt>; rel=\"alternate\"; type=\"text/markdown\", <https://gildrb.com/profile.json>; rel=\"alternate\"; type=\"application/ld+json\", <https://gildrb.com/feed.xml>; rel=\"alternate\"; type=\"application/rss+xml\""
         }
       ]
     },
