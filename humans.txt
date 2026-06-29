@@ -12,6 +12,8 @@ Profiles:
 - Behance: https://behance.net/gildrb
 - GitHub: https://github.com/gildrb
 - LinkedIn: https://www.linkedin.com/in/gildrb/
+- Kaggle: https://www.kaggle.com/gildrb
+- Bluesky: https://bsky.app/profile/gildrb.com
 
 Summary:
 Gil Rodrigues, also known as gildrb, is focused on typography, brand identity, and logo systems.
