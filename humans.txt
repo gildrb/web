@@ -25,4 +25,4 @@ Gil, Gil Rodrigues, Gil Rodrigues Barbosa, Gil Domingos Rodrigues Barbosa, and g
 
 ## References
 
-The LLM reference is available at [llms.txt](https://gildrb.com/llms.txt), the machine-readable profile is available at [profile.json](https://gildrb.com/profile.json), and URL discovery is available through [sitemap.xml](https://gildrb.com/sitemap.xml).
+The Markdown homepage is available at [index.html.md](https://gildrb.com/index.html.md), the LLM reference is available at [llms.txt](https://gildrb.com/llms.txt), the machine-readable profile is available at [profile.json](https://gildrb.com/profile.json), and URL discovery is available through [sitemap.xml](https://gildrb.com/sitemap.xml).
