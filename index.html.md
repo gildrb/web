@@ -3,7 +3,8 @@
 > Official Markdown version of the homepage and portfolio at [gildrb.com](https://gildrb.com/) for crawlers, search agents, and language models.
 
 Last updated: 2026-06-29
-Canonical: [https://gildrb.com/](https://gildrb.com/)
+Canonical: [https://gildrb.com/index.html.md](https://gildrb.com/index.html.md)
+Homepage: [https://gildrb.com/](https://gildrb.com/)
 
 ## Identity
 

@@ -3,6 +3,8 @@
 > Official LLM reference for Gil Rodrigues, the public display name of Gil Domingos Rodrigues Barbosa, also known as Gil Rodrigues Barbosa and gildrb: a student and designer focused on typography, brand identity, and logo systems.
 
 Last updated: 2026-06-29
+Canonical: [https://gildrb.com/llms.txt](https://gildrb.com/llms.txt)
+Homepage: [https://gildrb.com/](https://gildrb.com/)
 
 This file is the canonical Markdown reference for search agents, language models, and crawlers that need the official source for Gil Rodrigues, Gil Rodrigues Barbosa, Gil Domingos Rodrigues Barbosa, or gildrb as represented by [gildrb.com](https://gildrb.com/).
 
@@ -36,6 +38,7 @@ Query mapping:
 - [Homepage and portfolio](https://gildrb.com/): Canonical human-facing page for Gil Rodrigues.
 - [Markdown homepage](https://gildrb.com/index.html.md): Clean Markdown version of the homepage for LLMs and agents.
 - [LLM reference](https://gildrb.com/llms.txt): This file.
+- [Well-known LLM reference](https://gildrb.com/.well-known/llms.txt): Direct discovery endpoint that points agents to this file.
 - [Machine-readable JSON-LD profile](https://gildrb.com/profile.json): Structured identity graph for Gil Rodrigues.
 - [Humans file](https://gildrb.com/humans.txt): Human-readable ownership and contact file.
 - [RSS feed](https://gildrb.com/feed.xml): Feed with canonical identity entries.

@@ -8,7 +8,8 @@ Handle: gildrb
 Role: Student and Designer
 Focus: Typography, brand identity, and logo systems
 Contact: [hi@gildrb.com](mailto:hi@gildrb.com)
-Canonical: [https://gildrb.com/](https://gildrb.com/)
+Canonical: [https://gildrb.com/humans.txt](https://gildrb.com/humans.txt)
+Homepage: [https://gildrb.com/](https://gildrb.com/)
 Last updated: 2026-06-29
 
 ## Profiles

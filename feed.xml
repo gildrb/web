@@ -36,6 +36,19 @@
       <description>Self-contained LLM reference for Gil Rodrigues, Gil Rodrigues Barbosa, Gil Domingos Rodrigues Barbosa, and gildrb at gildrb.com, with canonical profile links and machine-readable data.</description>
     </item>
     <item>
+      <title>Structured profile for Gil Rodrigues, also known as gildrb</title>
+      <link>https://gildrb.com/profile.json</link>
+      <guid isPermaLink="true">https://gildrb.com/profile.json</guid>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
+      <category>Structured profile</category>
+      <category>JSON-LD</category>
+      <category>Gil Rodrigues</category>
+      <category>Gil Rodrigues Barbosa</category>
+      <category>Gil Domingos Rodrigues Barbosa</category>
+      <category>gildrb</category>
+      <description>Machine-readable JSON-LD identity graph for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.</description>
+    </item>
+    <item>
       <title>Markdown homepage for Gil Rodrigues / Gil Rodrigues Barbosa / Gil Domingos Rodrigues Barbosa</title>
       <link>https://gildrb.com/index.html.md</link>
       <guid isPermaLink="true">https://gildrb.com/index.html.md</guid>
