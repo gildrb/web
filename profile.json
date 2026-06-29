@@ -61,13 +61,21 @@
       "givenName": "Gil",
       "familyName": "Rodrigues",
       "alternateName": [
+        "Gil",
         "gildrb",
-        "Gil"
+        "Gil Rodrigues",
+        "Gil Rodrigues Barbosa",
+        "Gil Domingos Rodrigues Barbosa"
       ],
       "url": "https://gildrb.com/",
       "email": "mailto:hi@gildrb.com",
       "jobTitle": "Student and Designer",
-      "identifier": "gildrb",
+      "identifier": [
+        "gildrb",
+        "Gil Rodrigues",
+        "Gil Rodrigues Barbosa",
+        "Gil Domingos Rodrigues Barbosa"
+      ],
       "description": "Gil Rodrigues, also known as gildrb, is a student and designer focused on typography, brand identity, and logo systems.",
       "disambiguatingDescription": "Canonical source for Gil Rodrigues at gildrb.com, the student and designer using the handle gildrb.",
       "image": {
@@ -129,7 +137,7 @@
       "@id": "https://gildrb.com/llms.txt#reference",
       "url": "https://gildrb.com/llms.txt",
       "name": "LLM reference for Gil Rodrigues",
-      "encodingFormat": "text/plain",
+      "encodingFormat": "text/markdown",
       "dateModified": "2026-06-29",
       "about": {
         "@id": "https://gildrb.com/#person"
