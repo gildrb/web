@@ -342,6 +342,8 @@
                 --bg: #000000;
                 --text-primary: #ffffff;
                 --text-secondary: #808080;
+                --section-gap: 48px;
+                --section-content-gap: 8px;
             }
 
             @media (prefers-color-scheme: light) {
@@ -380,7 +382,7 @@
                 font-weight: 400;
                 letter-spacing: -0.02em;
                 color: var(--text-primary);
-                margin-bottom: 16px;
+                margin-bottom: var(--section-gap);
                 white-space: nowrap;
                 -webkit-font-smoothing: antialiased;
                 text-rendering: optimizeLegibility;
@@ -391,6 +393,7 @@
                 font-weight: 400;
                 display: flex;
                 flex-direction: column;
+                row-gap: var(--section-content-gap);
                 -webkit-font-smoothing: antialiased;
                 -webkit-text-size-adjust: 100%;
                 text-rendering: optimizeLegibility;
@@ -398,12 +401,13 @@
 
             .links-label {
                 color: var(--text-primary);
-                margin-bottom: 8px;
                 width: fit-content;
             }
 
             .projects-label {
-                margin-top: 24px;
+                margin-top: calc(
+                    var(--section-gap) - var(--section-content-gap)
+                );
             }
 
             .work-label {
@@ -487,7 +491,6 @@
             .external-link {
                 color: var(--text-secondary);
                 text-decoration: none;
-                margin-bottom: 8px;
                 width: fit-content;
             }
 
@@ -843,17 +846,17 @@
 
             .profile-summary {
                 max-width: 720px;
-                margin-bottom: 24px;
+                margin-bottom: var(--section-gap);
             }
 
             .profile-summary .section-title,
             .contact-section .section-title {
                 color: var(--text-primary);
-                margin-bottom: 8px;
+                margin-bottom: var(--section-content-gap);
             }
 
             .contact-section {
-                margin-bottom: 24px;
+                margin-bottom: var(--section-gap);
             }
 
             .profile-copy {
@@ -874,7 +877,7 @@
                 display: flex;
                 gap: 16px;
                 margin-top: -72px;
-                margin-bottom: 64px;
+                margin-bottom: 4px;
                 font-size: 16px;
                 font-weight: 400;
                 -webkit-font-smoothing: antialiased;
@@ -990,7 +993,7 @@
                 .name {
                     grid-column: 1;
                     order: 1;
-                    margin-bottom: 32px;
+                    margin-bottom: var(--section-gap);
                 }
 
                 .theme-toggle {
@@ -1014,7 +1017,7 @@
                 .links {
                     grid-column: 1 / -1;
                     order: 4;
-                    margin-bottom: 24px;
+                    margin-bottom: var(--section-gap);
                 }
 
                 .email {
@@ -1025,21 +1028,17 @@
                 .profile-summary {
                     grid-column: 1 / -1;
                     order: 2;
-                    margin-bottom: 24px;
+                    margin-bottom: var(--section-gap);
                 }
 
                 .contact-section {
                     grid-column: 1 / -1;
                     order: 3;
-                    margin-bottom: 40px;
+                    margin-bottom: var(--section-gap);
                 }
 
                 .showcase {
                     margin-bottom: 80px;
-                }
-
-                .profile-summary {
-                    margin-bottom: 24px;
                 }
 
                 .gallery {
