@@ -414,6 +414,10 @@
         {
           "key": "Permissions-Policy",
           "value": "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
+        },
+        {
+          "key": "Content-Signal",
+          "value": "search=yes, ai-input=yes, ai-train=yes"
         }
       ]
     }
