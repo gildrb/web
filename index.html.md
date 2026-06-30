@@ -61,6 +61,8 @@ Gil Rodrigues is a student and designer focused on typography, brand identity, a
 - [LLM reference](https://gildrb.com/llms.txt)
 - [Well-known LLM reference](https://gildrb.com/.well-known/llms.txt)
 - [WebFinger identity](https://gildrb.com/.well-known/webfinger)
+- [Host metadata](https://gildrb.com/.well-known/host-meta)
+- [Host metadata JSON](https://gildrb.com/.well-known/host-meta.json)
 - [Structured JSON-LD profile](https://gildrb.com/profile.json)
 - [Humans file](https://gildrb.com/humans.txt)
 - [RSS feed](https://gildrb.com/feed.xml)

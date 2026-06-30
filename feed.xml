@@ -69,6 +69,21 @@
       <description>Standards-based JRD identity discovery document for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.</description>
     </item>
     <item>
+      <title>Host metadata for Gil Rodrigues identity discovery</title>
+      <link>https://gildrb.com/.well-known/host-meta</link>
+      <guid isPermaLink="true">https://gildrb.com/.well-known/host-meta</guid>
+      <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
+      <author>hi@gildrb.com (Gil Rodrigues)</author>
+      <category>Host metadata</category>
+      <category>WebFinger</category>
+      <category>Identity discovery</category>
+      <category>Gil Rodrigues</category>
+      <category>Gil Rodrigues Barbosa</category>
+      <category>Gil Domingos Rodrigues Barbosa</category>
+      <category>gildrb</category>
+      <description>XRD host metadata for gildrb.com advertising the WebFinger lookup template for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.</description>
+    </item>
+    <item>
       <title>Markdown homepage for Gil Rodrigues / Gil Rodrigues Barbosa / Gil Domingos Rodrigues Barbosa</title>
       <link>https://gildrb.com/index.html.md</link>
       <guid isPermaLink="true">https://gildrb.com/index.html.md</guid>

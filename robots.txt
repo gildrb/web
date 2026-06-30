@@ -3,6 +3,7 @@
 # LLM reference: https://gildrb.com/llms.txt
 # Structured profile: https://gildrb.com/profile.json
 # WebFinger identity: https://gildrb.com/.well-known/webfinger
+# Host metadata: https://gildrb.com/.well-known/host-meta
 
 User-agent: *
 Content-Signal: search=yes, ai-input=yes, ai-train=yes

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XRD xmlns="http://docs.oasis-open.org/ns/xri/xrd-1.0">
+  <Subject>https://gildrb.com/</Subject>
+  <Alias>acct:gildrb@gildrb.com</Alias>
+  <Alias>https://gildrb.com/#person</Alias>
+  <Alias>https://gildrb.com/profile.json#person</Alias>
+  <Alias>mailto:hi@gildrb.com</Alias>
+  <Link
+    rel="lrdd"
+    type="application/jrd+json"
+    template="https://gildrb.com/.well-known/webfinger?resource={uri}"
+  />
+  <Link rel="canonical" type="text/html" href="https://gildrb.com/" />
+  <Link
+    rel="describedby"
+    type="application/ld+json"
+    href="https://gildrb.com/profile.json"
+  />
+  <Link
+    rel="alternate"
+    type="text/markdown"
+    href="https://gildrb.com/llms.txt"
+  />
+  <Link rel="author" type="text/plain" href="https://gildrb.com/humans.txt" />
+</XRD>

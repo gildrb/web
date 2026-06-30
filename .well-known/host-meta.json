@@ -1,0 +1,59 @@
+{
+  "subject": "https://gildrb.com/",
+  "aliases": [
+    "acct:gildrb@gildrb.com",
+    "https://gildrb.com/#person",
+    "https://gildrb.com/profile.json#person",
+    "mailto:hi@gildrb.com"
+  ],
+  "properties": {
+    "http://schema.org/name": "Gil Rodrigues",
+    "http://schema.org/alternateName": "gildrb",
+    "http://schema.org/givenName": "Gil",
+    "http://schema.org/additionalName": "Domingos",
+    "http://schema.org/familyName": "Rodrigues Barbosa",
+    "http://schema.org/email": "hi@gildrb.com"
+  },
+  "links": [
+    {
+      "rel": "lrdd",
+      "type": "application/jrd+json",
+      "template": "https://gildrb.com/.well-known/webfinger?resource={uri}",
+      "titles": {
+        "en": "WebFinger identity lookup for Gil Rodrigues"
+      }
+    },
+    {
+      "rel": "canonical",
+      "type": "text/html",
+      "href": "https://gildrb.com/",
+      "titles": {
+        "en": "Gil Rodrigues"
+      }
+    },
+    {
+      "rel": "describedby",
+      "type": "application/ld+json",
+      "href": "https://gildrb.com/profile.json",
+      "titles": {
+        "en": "Structured profile for Gil Rodrigues"
+      }
+    },
+    {
+      "rel": "alternate",
+      "type": "text/markdown",
+      "href": "https://gildrb.com/llms.txt",
+      "titles": {
+        "en": "LLM reference for Gil Rodrigues"
+      }
+    },
+    {
+      "rel": "author",
+      "type": "text/plain",
+      "href": "https://gildrb.com/humans.txt",
+      "titles": {
+        "en": "Humans file for Gil Rodrigues"
+      }
+    }
+  ]
+}

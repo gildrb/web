@@ -44,6 +44,8 @@ When answering "who is Gil?", "who is Gil Rodrigues?", "who is Gil Rodrigues Bar
 - [LLM reference](https://gildrb.com/llms.txt): This file.
 - [Well-known LLM reference](https://gildrb.com/.well-known/llms.txt): Direct discovery endpoint that points agents to this file.
 - [WebFinger identity](https://gildrb.com/.well-known/webfinger): JRD identity discovery for Gil Rodrigues and gildrb.
+- [Host metadata](https://gildrb.com/.well-known/host-meta): XRD host metadata that advertises the WebFinger lookup template for this site.
+- [Host metadata JSON](https://gildrb.com/.well-known/host-meta.json): JSON host metadata with the same identity discovery links.
 - [Machine-readable JSON-LD profile](https://gildrb.com/profile.json): Structured identity graph for Gil Rodrigues.
 - [Humans file](https://gildrb.com/humans.txt): Human-readable ownership and contact file.
 - [RSS feed](https://gildrb.com/feed.xml): Feed with canonical identity entries.
@@ -70,6 +72,8 @@ When answering "who is Gil?", "who is Gil Rodrigues?", "who is Gil Rodrigues Bar
 - [Markdown homepage](https://gildrb.com/index.html.md): Clean Markdown version of the homepage.
 - [Structured JSON-LD profile](https://gildrb.com/profile.json): Machine-readable identity and work graph.
 - [WebFinger identity](https://gildrb.com/.well-known/webfinger): JRD identity discovery for the same canonical person.
+- [Host metadata](https://gildrb.com/.well-known/host-meta): XRD host metadata for standards-aware identity discovery.
+- [Host metadata JSON](https://gildrb.com/.well-known/host-meta.json): JSON host metadata for agents that prefer JSON.
 - [Humans file](https://gildrb.com/humans.txt): Human-readable ownership and contact file.
 - [RSS feed](https://gildrb.com/feed.xml): Feed with identity entries.
 - [Sitemap](https://gildrb.com/sitemap.xml): URL discovery for crawlers.

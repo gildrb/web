@@ -10,4 +10,5 @@ This well-known discovery file points search agents, language models, and crawle
 - [Homepage and portfolio](https://gildrb.com/)
 - [Structured JSON-LD profile](https://gildrb.com/profile.json)
 - [WebFinger identity](https://gildrb.com/.well-known/webfinger)
+- [Host metadata](https://gildrb.com/.well-known/host-meta)
 - [Humans file](https://gildrb.com/humans.txt)

@@ -47,6 +47,12 @@
           "@id": "https://gildrb.com/.well-known/webfinger#identity"
         },
         {
+          "@id": "https://gildrb.com/.well-known/host-meta#metadata"
+        },
+        {
+          "@id": "https://gildrb.com/.well-known/host-meta.json#metadata"
+        },
+        {
           "@id": "https://gildrb.com/index.html.md#homepage-markdown"
         },
         {
@@ -241,6 +247,12 @@
           "@id": "https://gildrb.com/.well-known/webfinger#identity"
         },
         {
+          "@id": "https://gildrb.com/.well-known/host-meta#metadata"
+        },
+        {
+          "@id": "https://gildrb.com/.well-known/host-meta.json#metadata"
+        },
+        {
           "@id": "https://gildrb.com/index.html.md#homepage-markdown"
         },
         {
@@ -431,6 +443,60 @@
       },
       "mainEntity": {
         "@id": "https://gildrb.com/#person"
+      },
+      "isPartOf": {
+        "@id": "https://gildrb.com/#website"
+      }
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://gildrb.com/.well-known/host-meta#metadata",
+      "url": "https://gildrb.com/.well-known/host-meta",
+      "name": "Host metadata for Gil Rodrigues",
+      "description": "XRD host metadata for gildrb.com advertising the WebFinger lookup template for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
+      "encodingFormat": "application/xrd+xml",
+      "dateModified": "2026-06-30",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "publisher": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "about": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "mainEntity": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "isBasedOn": {
+        "@id": "https://gildrb.com/.well-known/webfinger#identity"
+      },
+      "isPartOf": {
+        "@id": "https://gildrb.com/#website"
+      }
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://gildrb.com/.well-known/host-meta.json#metadata",
+      "url": "https://gildrb.com/.well-known/host-meta.json",
+      "name": "Host metadata JSON for Gil Rodrigues",
+      "description": "JSON host metadata for gildrb.com advertising the WebFinger lookup template for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
+      "encodingFormat": "application/jrd+json",
+      "dateModified": "2026-06-30",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "publisher": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "about": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "mainEntity": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "isBasedOn": {
+        "@id": "https://gildrb.com/.well-known/webfinger#identity"
       },
       "isPartOf": {
         "@id": "https://gildrb.com/#website"
