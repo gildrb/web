@@ -928,6 +928,14 @@
                 color: var(--text-secondary);
             }
 
+            .contact-section .external-link {
+                font-size: 16px;
+                font-weight: 400;
+                -webkit-font-smoothing: antialiased;
+                -webkit-text-size-adjust: 100%;
+                text-rendering: optimizeLegibility;
+            }
+
             .external-link:focus:not(:focus-visible),
             .file-link:focus:not(:focus-visible),
             .email:focus:not(:focus-visible) {
@@ -2347,12 +2355,16 @@
 
             // Arrow key navigation
             function getArrowNavigationItems() {
+                const contactItems = document.querySelectorAll(
+                    ".contact-section a[href], .contact-section button:not([disabled])",
+                );
+
                 return [
                     ...document.querySelectorAll(".links a"),
-                    document.querySelector(".email"),
+                    ...contactItems,
                     themeToggle,
                     ...document.querySelectorAll(
-                        "main a[href], main button:not([disabled])",
+                        "main :not(.contact-section) a[href], main :not(.contact-section) button:not([disabled])",
                     ),
                 ].filter(Boolean);
             }
