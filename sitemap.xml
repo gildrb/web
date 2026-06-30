@@ -5,7 +5,7 @@
 >
   <url>
     <loc>https://gildrb.com/</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-06-30T10:44:07+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -47,55 +47,55 @@
   </url>
   <url>
     <loc>https://gildrb.com/llms.txt</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-06-30T10:44:07+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://gildrb.com/.well-known/llms.txt</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-06-30T10:44:07+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://gildrb.com/.well-known/webfinger</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-06-30T10:44:07+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://gildrb.com/.well-known/host-meta</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-06-30T10:44:07+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://gildrb.com/.well-known/host-meta.json</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-06-30T10:44:07+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://gildrb.com/index.html.md</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-06-30T10:44:07+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://gildrb.com/profile.json</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-06-30T10:44:07+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://gildrb.com/feed.xml</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-06-30T10:44:07+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://gildrb.com/humans.txt</loc>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-06-30T10:44:07+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
