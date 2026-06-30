@@ -12,7 +12,7 @@
         "Gil Rodrigues Barbosa",
         "Gil Domingos Rodrigues Barbosa"
       ],
-      "description": "Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa, is a student and designer focused on typography, brand identity, and logo systems.",
+      "description": "Gil Rodrigues is the public display name of Gil Domingos Rodrigues Barbosa, also known as Gil Rodrigues Barbosa and gildrb. He is a designer focused on typography, brand identity, and logo systems.",
       "keywords": [
         "Gil",
         "gildrb",
@@ -67,15 +67,6 @@
       ]
     },
     {
-      "@type": "ImageObject",
-      "@id": "https://gildrb.com/#primaryimage",
-      "url": "https://gildrb.com/images/gil-rodrigues-ml7-logo-system.png",
-      "contentUrl": "https://gildrb.com/images/gil-rodrigues-ml7-logo-system.png",
-      "width": 3473,
-      "height": 2263,
-      "caption": "mL7 logo with black lettering and an orange streak on a white background"
-    },
-    {
       "@type": [
         "ProfilePage",
         "WebPage"
@@ -90,7 +81,7 @@
         "Gil Domingos Rodrigues Barbosa"
       ],
       "headline": "Gil Rodrigues",
-      "description": "Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa, is a student and designer focused on typography, brand identity, and logo systems.",
+      "description": "Gil Rodrigues is the public display name of Gil Domingos Rodrigues Barbosa, also known as Gil Rodrigues Barbosa and gildrb. He is a designer focused on typography, brand identity, and logo systems.",
       "keywords": [
         "Gil",
         "gildrb",
@@ -102,7 +93,7 @@
         "logo systems"
       ],
       "dateCreated": "2026-06-14T18:42:48Z",
-      "dateModified": "2026-06-30T12:36:18Z",
+      "dateModified": "2026-06-30T12:54:20Z",
       "inLanguage": "en",
       "author": {
         "@id": "https://gildrb.com/#person"
@@ -115,9 +106,6 @@
       },
       "isPartOf": {
         "@id": "https://gildrb.com/#website"
-      },
-      "primaryImageOfPage": {
-        "@id": "https://gildrb.com/#primaryimage"
       },
       "mainEntity": {
         "@id": "https://gildrb.com/#person"
@@ -137,15 +125,15 @@
         "Gil Rodrigues Barbosa",
         "Gil Domingos Rodrigues Barbosa"
       ],
-      "description": "Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa, is a student and designer focused on typography, brand identity, and logo systems.",
-      "disambiguatingDescription": "Canonical source for Gil Rodrigues at gildrb.com, the student and designer using the handle gildrb and the legal name Gil Domingos Rodrigues Barbosa.",
+      "description": "Gil Rodrigues is the public display name of Gil Domingos Rodrigues Barbosa, also known as Gil Rodrigues Barbosa and gildrb. He is a designer focused on typography, brand identity, and logo systems.",
+      "disambiguatingDescription": "Canonical source for Gil Rodrigues at gildrb.com, the designer using the handle gildrb and the legal name Gil Domingos Rodrigues Barbosa.",
       "url": "https://gildrb.com/",
       "email": "mailto:hi@gildrb.com",
       "jobTitle": "Designer",
       "hasOccupation": {
         "@type": "Occupation",
         "name": "Designer",
-        "description": "Student and designer focused on typography, brand identity, and logo systems.",
+        "description": "Designer focused on typography, brand identity, and logo systems.",
         "skills": [
           "Typography",
           "Brand identity",
@@ -217,7 +205,7 @@
       ],
       "contactPoint": {
         "@type": "ContactPoint",
-        "contactType": "portfolio contact",
+        "contactType": "website contact",
         "email": "hi@gildrb.com",
         "url": "https://gildrb.com/"
       },
@@ -274,29 +262,6 @@
         {
           "@id": "https://www.linkedin.com/in/gildrb/#profile"
         }
-      ],
-      "workExample": [
-        {
-          "@id": "https://gildrb.com/#work-filen"
-        },
-        {
-          "@id": "https://gildrb.com/#work-ml7"
-        },
-        {
-          "@id": "https://gildrb.com/#work-n0thing"
-        },
-        {
-          "@id": "https://gildrb.com/#work-mantis"
-        },
-        {
-          "@id": "https://gildrb.com/#work-personal"
-        },
-        {
-          "@id": "https://gildrb.com/#work-curves"
-        },
-        {
-          "@id": "https://gildrb.com/#work-heph"
-        }
       ]
     },
     {
@@ -306,7 +271,7 @@
       "name": "LLM reference for Gil Rodrigues",
       "sameAs": "https://gildrb.com/.well-known/llms.txt",
       "encodingFormat": "text/markdown",
-      "dateModified": "2026-06-30T12:36:18Z",
+      "dateModified": "2026-06-30T12:54:20Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -381,7 +346,7 @@
       "name": "Well-known LLM discovery for Gil Rodrigues",
       "description": "Direct well-known discovery file for agents and crawlers looking for the LLM reference for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
       "encodingFormat": "text/markdown",
-      "dateModified": "2026-06-30T12:36:18Z",
+      "dateModified": "2026-06-30T12:54:20Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -406,9 +371,9 @@
       "@id": "https://gildrb.com/index.html.md#homepage-markdown",
       "url": "https://gildrb.com/index.html.md",
       "name": "Markdown homepage for Gil Rodrigues / Gil Rodrigues Barbosa / Gil Domingos Rodrigues Barbosa",
-      "description": "Markdown version of the homepage and portfolio for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
+      "description": "Markdown version of the homepage for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
       "encodingFormat": "text/markdown",
-      "dateModified": "2026-06-30T12:36:18Z",
+      "dateModified": "2026-06-30T12:54:20Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -432,7 +397,7 @@
       "name": "WebFinger identity for Gil Rodrigues",
       "description": "JRD identity discovery document for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
       "encodingFormat": "application/jrd+json",
-      "dateModified": "2026-06-30T12:36:18Z",
+      "dateModified": "2026-06-30T12:54:20Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -456,7 +421,7 @@
       "name": "Host metadata for Gil Rodrigues",
       "description": "XRD host metadata for gildrb.com advertising the WebFinger lookup template for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
       "encodingFormat": "application/xrd+xml",
-      "dateModified": "2026-06-30T12:36:18Z",
+      "dateModified": "2026-06-30T12:54:20Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -483,7 +448,7 @@
       "name": "Host metadata JSON for Gil Rodrigues",
       "description": "JSON host metadata for gildrb.com advertising the WebFinger lookup template for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
       "encodingFormat": "application/jrd+json",
-      "dateModified": "2026-06-30T12:36:18Z",
+      "dateModified": "2026-06-30T12:54:20Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -509,7 +474,7 @@
       "url": "https://gildrb.com/profile.json",
       "name": "Structured profile for Gil Rodrigues",
       "encodingFormat": "application/ld+json",
-      "dateModified": "2026-06-30T12:36:18Z",
+      "dateModified": "2026-06-30T12:54:20Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -532,7 +497,7 @@
       "url": "https://gildrb.com/feed.xml",
       "name": "Gil Rodrigues feed",
       "encodingFormat": "application/rss+xml",
-      "dateModified": "2026-06-30T12:36:18Z",
+      "dateModified": "2026-06-30T12:54:20Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -555,7 +520,7 @@
       "url": "https://gildrb.com/humans.txt",
       "name": "Humans file for Gil Rodrigues",
       "encodingFormat": "text/plain",
-      "dateModified": "2026-06-30T12:36:18Z",
+      "dateModified": "2026-06-30T12:54:20Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -571,326 +536,6 @@
       "isPartOf": {
         "@id": "https://gildrb.com/#website"
       }
-    },
-    {
-      "@type": "CreativeWork",
-      "@id": "https://gildrb.com/#work-filen",
-      "name": "Filen brand identity",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      },
-      "url": "https://filen.io/",
-      "description": "Brand identity, typography, and logo-system work by Gil Rodrigues for Filen.",
-      "keywords": [
-        "Gil Rodrigues",
-        "Filen",
-        "brand identity",
-        "typography",
-        "logo system"
-      ],
-      "image": [
-        {
-          "@id": "https://gildrb.com/#image-filen-wordmark"
-        },
-        {
-          "@id": "https://gildrb.com/#image-filen-brand-system-overview"
-        },
-        {
-          "@id": "https://gildrb.com/#image-filen-zero-knowledge-campaign"
-        },
-        {
-          "@id": "https://gildrb.com/#image-filen-app-icon"
-        },
-        {
-          "@id": "https://gildrb.com/#image-filen-logo-texture"
-        },
-        {
-          "@id": "https://gildrb.com/#image-filen-logo-scale"
-        },
-        {
-          "@id": "https://gildrb.com/#image-filen-storage-message"
-        }
-      ]
-    },
-    {
-      "@type": "CreativeWork",
-      "@id": "https://gildrb.com/#work-ml7",
-      "name": "mL7 logo system",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      },
-      "url": "https://www.twitch.tv/ml7support",
-      "description": "Logo-system work by Gil Rodrigues for mL7.",
-      "keywords": [
-        "Gil Rodrigues",
-        "mL7",
-        "logo system",
-        "identity design"
-      ],
-      "image": {
-        "@id": "https://gildrb.com/#image-ml7-logo-system"
-      }
-    },
-    {
-      "@type": "CreativeWork",
-      "@id": "https://gildrb.com/#work-n0thing",
-      "name": "n0thing wordmark",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      },
-      "url": "https://www.twitch.tv/n0thing",
-      "description": "Wordmark and identity work by Gil Rodrigues for n0thing.",
-      "keywords": [
-        "Gil Rodrigues",
-        "n0thing",
-        "wordmark",
-        "identity design"
-      ],
-      "image": {
-        "@id": "https://gildrb.com/#image-n0thing-wordmark"
-      }
-    },
-    {
-      "@type": "CreativeWork",
-      "@id": "https://gildrb.com/#work-mantis",
-      "name": "Mantis visual identity",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      },
-      "url": "https://gildrb.com/#work-mantis-title",
-      "description": "Visual identity exploration by Gil Rodrigues for Mantis.",
-      "keywords": [
-        "Gil Rodrigues",
-        "Mantis",
-        "visual identity",
-        "identity design"
-      ],
-      "image": {
-        "@id": "https://gildrb.com/#image-mantis-wireframe-identity"
-      }
-    },
-    {
-      "@type": "CreativeWork",
-      "@id": "https://gildrb.com/#work-personal",
-      "name": "Personal identity work",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      },
-      "url": "https://gildrb.com/#work-personal-title",
-      "description": "Personal logo and identity studies by Gil Rodrigues.",
-      "keywords": [
-        "Gil Rodrigues",
-        "personal identity",
-        "logo mark",
-        "lettering"
-      ],
-      "image": [
-        {
-          "@id": "https://gildrb.com/#image-personal-kernel-lettering"
-        },
-        {
-          "@id": "https://gildrb.com/#image-personal-angular-logo-mark"
-        }
-      ]
-    },
-    {
-      "@type": "ImageObject",
-      "@id": "https://gildrb.com/#image-filen-wordmark",
-      "url": "https://gildrb.com/images/optimized/gil-rodrigues-filen-wordmark-1600.webp",
-      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-filen-wordmark-1600.webp",
-      "name": "Filen wordmark by Gil Rodrigues",
-      "caption": "Filen wordmark on a black background, shown in the Gil Rodrigues portfolio.",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      },
-      "copyrightHolder": {
-        "@id": "https://gildrb.com/#person"
-      }
-    },
-    {
-      "@type": "ImageObject",
-      "@id": "https://gildrb.com/#image-filen-brand-system-overview",
-      "url": "https://gildrb.com/images/optimized/gil-rodrigues-filen-brand-system-overview-1600.webp",
-      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-filen-brand-system-overview-1600.webp",
-      "name": "Filen brand system overview by Gil Rodrigues",
-      "caption": "Filen brand system overview with logo, typography, and motion panels, shown in the Gil Rodrigues portfolio.",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      },
-      "copyrightHolder": {
-        "@id": "https://gildrb.com/#person"
-      }
-    },
-    {
-      "@type": "ImageObject",
-      "@id": "https://gildrb.com/#image-filen-zero-knowledge-campaign",
-      "url": "https://gildrb.com/images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-1600.webp",
-      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-1600.webp",
-      "name": "Filen campaign message by Gil Rodrigues",
-      "caption": "Filen campaign message for zero knowledge and total control, shown in the Gil Rodrigues portfolio.",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      },
-      "copyrightHolder": {
-        "@id": "https://gildrb.com/#person"
-      }
-    },
-    {
-      "@type": "ImageObject",
-      "@id": "https://gildrb.com/#image-filen-app-icon",
-      "url": "https://gildrb.com/images/optimized/gil-rodrigues-filen-app-icon-1600.webp",
-      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-filen-app-icon-1600.webp",
-      "name": "Filen app icon by Gil Rodrigues",
-      "caption": "Filen app icon and label on a black background, shown in the Gil Rodrigues portfolio.",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      },
-      "copyrightHolder": {
-        "@id": "https://gildrb.com/#person"
-      }
-    },
-    {
-      "@type": "ImageObject",
-      "@id": "https://gildrb.com/#image-filen-logo-texture",
-      "url": "https://gildrb.com/images/optimized/gil-rodrigues-filen-logo-texture-1600.webp",
-      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-filen-logo-texture-1600.webp",
-      "name": "Filen logo texture by Gil Rodrigues",
-      "caption": "Filen logo over a streaked monochrome texture, shown in the Gil Rodrigues portfolio.",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      },
-      "copyrightHolder": {
-        "@id": "https://gildrb.com/#person"
-      }
-    },
-    {
-      "@type": "ImageObject",
-      "@id": "https://gildrb.com/#image-filen-logo-scale",
-      "url": "https://gildrb.com/images/optimized/gil-rodrigues-filen-logo-scale-1600.webp",
-      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-filen-logo-scale-1600.webp",
-      "name": "Filen logo scale study by Gil Rodrigues",
-      "caption": "Filen logo shown at multiple sizes on black, shown in the Gil Rodrigues portfolio.",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      },
-      "copyrightHolder": {
-        "@id": "https://gildrb.com/#person"
-      }
-    },
-    {
-      "@type": "ImageObject",
-      "@id": "https://gildrb.com/#image-filen-storage-message",
-      "url": "https://gildrb.com/images/optimized/gil-rodrigues-filen-storage-message-1600.webp",
-      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-filen-storage-message-1600.webp",
-      "name": "Filen storage message by Gil Rodrigues",
-      "caption": "Filen message reading Storage that earns nothing from knowing you, shown in the Gil Rodrigues portfolio.",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      },
-      "copyrightHolder": {
-        "@id": "https://gildrb.com/#person"
-      }
-    },
-    {
-      "@type": "ImageObject",
-      "@id": "https://gildrb.com/#image-mantis-wireframe-identity",
-      "url": "https://gildrb.com/images/optimized/gil-rodrigues-mantis-wireframe-identity-1600.webp",
-      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-mantis-wireframe-identity-1600.webp",
-      "name": "Mantis wireframe identity by Gil Rodrigues",
-      "caption": "Mantis wireframe illustration on a black background, shown in the Gil Rodrigues portfolio.",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      },
-      "copyrightHolder": {
-        "@id": "https://gildrb.com/#person"
-      }
-    },
-    {
-      "@type": "ImageObject",
-      "@id": "https://gildrb.com/#image-n0thing-wordmark",
-      "url": "https://gildrb.com/images/optimized/gil-rodrigues-n0thing-wordmark-1600.webp",
-      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-n0thing-wordmark-1600.webp",
-      "name": "n0thing wordmark by Gil Rodrigues",
-      "caption": "n0thing logo over a purple-tinted esports team photo, shown in the Gil Rodrigues portfolio.",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      },
-      "copyrightHolder": {
-        "@id": "https://gildrb.com/#person"
-      }
-    },
-    {
-      "@type": "ImageObject",
-      "@id": "https://gildrb.com/#image-ml7-logo-system",
-      "url": "https://gildrb.com/images/optimized/gil-rodrigues-ml7-logo-system-1600.webp",
-      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-ml7-logo-system-1600.webp",
-      "name": "mL7 logo system by Gil Rodrigues",
-      "caption": "mL7 logo with black lettering and an orange streak on a white background, shown in the Gil Rodrigues portfolio.",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      },
-      "copyrightHolder": {
-        "@id": "https://gildrb.com/#person"
-      }
-    },
-    {
-      "@type": "ImageObject",
-      "@id": "https://gildrb.com/#image-personal-kernel-lettering",
-      "url": "https://gildrb.com/images/optimized/gil-rodrigues-personal-kernel-lettering-1600.webp",
-      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-personal-kernel-lettering-1600.webp",
-      "name": "Kernel lettering by Gil Rodrigues",
-      "caption": "Close crop of dark Kernel lettering with fine highlights, shown in the Gil Rodrigues portfolio.",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      },
-      "copyrightHolder": {
-        "@id": "https://gildrb.com/#person"
-      }
-    },
-    {
-      "@type": "ImageObject",
-      "@id": "https://gildrb.com/#image-personal-angular-logo-mark",
-      "url": "https://gildrb.com/images/optimized/gil-rodrigues-personal-angular-logo-mark-1504.webp",
-      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-personal-angular-logo-mark-1504.webp",
-      "name": "Personal angular logo mark by Gil Rodrigues",
-      "caption": "Personal angular logo mark centered on a white background, shown in the Gil Rodrigues portfolio.",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      },
-      "copyrightHolder": {
-        "@id": "https://gildrb.com/#person"
-      }
-    },
-    {
-      "@type": "CreativeWork",
-      "@id": "https://gildrb.com/#work-curves",
-      "name": "CURVES free font",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      },
-      "url": "https://www.behance.net/gallery/75409663/CURVES-Free-Font",
-      "description": "Free font project by Gil Rodrigues, published on Behance.",
-      "keywords": [
-        "Gil Rodrigues",
-        "CURVES",
-        "free font",
-        "typography"
-      ]
-    },
-    {
-      "@type": "CreativeWork",
-      "@id": "https://gildrb.com/#work-heph",
-      "name": "Heph",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      },
-      "url": "https://github.com/gildrb/heph",
-      "description": "Software project linked from the Gil Rodrigues portfolio.",
-      "keywords": [
-        "Gil Rodrigues",
-        "Heph",
-        "software project"
-      ]
     }
   ]
 }

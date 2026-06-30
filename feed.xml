@@ -3,98 +3,24 @@
   <channel>
     <title>Gil Rodrigues - Gil Rodrigues Barbosa - Gil Domingos Rodrigues Barbosa (gildrb)</title>
     <link>https://gildrb.com/</link>
-    <description>Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa, is a student and designer focused on typography, brand identity, and logo systems.</description>
+    <description>Gil Rodrigues is the public display name of Gil Domingos Rodrigues Barbosa, also known as Gil Rodrigues Barbosa and gildrb. He is a designer focused on typography, brand identity, and logo systems.</description>
     <language>en</language>
     <managingEditor>hi@gildrb.com (Gil Rodrigues)</managingEditor>
     <webMaster>hi@gildrb.com (Gil Rodrigues)</webMaster>
-    <lastBuildDate>Tue, 30 Jun 2026 12:36:18 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 30 Jun 2026 12:54:20 +0000</lastBuildDate>
     <atom:link href="https://gildrb.com/feed.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Gil Rodrigues / Gil Rodrigues Barbosa / Gil Domingos Rodrigues Barbosa</title>
+      <title>Gil Rodrigues</title>
       <link>https://gildrb.com/</link>
       <guid isPermaLink="true">https://gildrb.com/</guid>
-      <pubDate>Tue, 30 Jun 2026 12:36:18 +0000</pubDate>
+      <pubDate>Tue, 30 Jun 2026 12:54:20 +0000</pubDate>
       <author>hi@gildrb.com (Gil Rodrigues)</author>
-      <category>Design</category>
-      <category>Brand identity</category>
-      <category>Logo systems</category>
       <category>Gil</category>
       <category>Gil Rodrigues</category>
       <category>Gil Rodrigues Barbosa</category>
       <category>Gil Domingos Rodrigues Barbosa</category>
       <category>gildrb</category>
-      <description>Gil Rodrigues is the public display name of Gil Domingos Rodrigues Barbosa, also known as Gil Rodrigues Barbosa and gildrb. He is a student and designer focused on typography, brand identity, and logo systems. The canonical website is https://gildrb.com/.</description>
-    </item>
-    <item>
-      <title>LLM reference for Gil Rodrigues Barbosa and Gil Domingos Rodrigues Barbosa</title>
-      <link>https://gildrb.com/llms.txt</link>
-      <guid isPermaLink="true">https://gildrb.com/llms.txt</guid>
-      <pubDate>Tue, 30 Jun 2026 12:36:18 +0000</pubDate>
-      <author>hi@gildrb.com (Gil Rodrigues)</author>
-      <category>LLM reference</category>
-      <category>Gil</category>
-      <category>Gil Rodrigues</category>
-      <category>Gil Rodrigues Barbosa</category>
-      <category>Gil Domingos Rodrigues Barbosa</category>
-      <category>gildrb</category>
-      <description>Self-contained LLM reference for Gil Rodrigues, Gil Rodrigues Barbosa, Gil Domingos Rodrigues Barbosa, and gildrb at gildrb.com, with canonical profile links and machine-readable data.</description>
-    </item>
-    <item>
-      <title>Structured profile for Gil Rodrigues, also known as gildrb</title>
-      <link>https://gildrb.com/profile.json</link>
-      <guid isPermaLink="true">https://gildrb.com/profile.json</guid>
-      <pubDate>Tue, 30 Jun 2026 12:36:18 +0000</pubDate>
-      <author>hi@gildrb.com (Gil Rodrigues)</author>
-      <category>Structured profile</category>
-      <category>JSON-LD</category>
-      <category>Gil Rodrigues</category>
-      <category>Gil Rodrigues Barbosa</category>
-      <category>Gil Domingos Rodrigues Barbosa</category>
-      <category>gildrb</category>
-      <description>Machine-readable JSON-LD identity graph for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.</description>
-    </item>
-    <item>
-      <title>WebFinger identity for Gil Rodrigues and gildrb</title>
-      <link>https://gildrb.com/.well-known/webfinger</link>
-      <guid isPermaLink="true">https://gildrb.com/.well-known/webfinger</guid>
-      <pubDate>Tue, 30 Jun 2026 12:36:18 +0000</pubDate>
-      <author>hi@gildrb.com (Gil Rodrigues)</author>
-      <category>WebFinger</category>
-      <category>JRD</category>
-      <category>Identity discovery</category>
-      <category>Gil Rodrigues</category>
-      <category>Gil Rodrigues Barbosa</category>
-      <category>Gil Domingos Rodrigues Barbosa</category>
-      <category>gildrb</category>
-      <description>Standards-based JRD identity discovery document for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.</description>
-    </item>
-    <item>
-      <title>Host metadata for Gil Rodrigues identity discovery</title>
-      <link>https://gildrb.com/.well-known/host-meta</link>
-      <guid isPermaLink="true">https://gildrb.com/.well-known/host-meta</guid>
-      <pubDate>Tue, 30 Jun 2026 12:36:18 +0000</pubDate>
-      <author>hi@gildrb.com (Gil Rodrigues)</author>
-      <category>Host metadata</category>
-      <category>WebFinger</category>
-      <category>Identity discovery</category>
-      <category>Gil Rodrigues</category>
-      <category>Gil Rodrigues Barbosa</category>
-      <category>Gil Domingos Rodrigues Barbosa</category>
-      <category>gildrb</category>
-      <description>XRD host metadata for gildrb.com advertising the WebFinger lookup template for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.</description>
-    </item>
-    <item>
-      <title>Markdown homepage for Gil Rodrigues / Gil Rodrigues Barbosa / Gil Domingos Rodrigues Barbosa</title>
-      <link>https://gildrb.com/index.html.md</link>
-      <guid isPermaLink="true">https://gildrb.com/index.html.md</guid>
-      <pubDate>Tue, 30 Jun 2026 12:36:18 +0000</pubDate>
-      <author>hi@gildrb.com (Gil Rodrigues)</author>
-      <category>Markdown homepage</category>
-      <category>Gil Rodrigues</category>
-      <category>Gil Rodrigues Barbosa</category>
-      <category>Gil Domingos Rodrigues Barbosa</category>
-      <category>gildrb</category>
-      <description>Clean Markdown version of the one-page portfolio for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.</description>
+      <description>Gil Rodrigues is the public display name of Gil Domingos Rodrigues Barbosa, also known as Gil Rodrigues Barbosa and gildrb. The canonical website is https://gildrb.com/.</description>
     </item>
   </channel>
 </rss>
