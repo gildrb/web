@@ -58,7 +58,19 @@
       ]
     },
     {
-      "@type": ["ProfilePage", "WebPage"],
+      "@type": "ImageObject",
+      "@id": "https://gildrb.com/#primaryimage",
+      "url": "https://gildrb.com/images/gil-rodrigues-ml7-logo-system.png",
+      "contentUrl": "https://gildrb.com/images/gil-rodrigues-ml7-logo-system.png",
+      "width": 3473,
+      "height": 2263,
+      "caption": "mL7 logo with black lettering and an orange streak on a white background"
+    },
+    {
+      "@type": [
+        "ProfilePage",
+        "WebPage"
+      ],
       "@id": "https://gildrb.com/#profile",
       "url": "https://gildrb.com/",
       "name": "Gil Rodrigues",
@@ -102,15 +114,6 @@
       }
     },
     {
-      "@type": "ImageObject",
-      "@id": "https://gildrb.com/#primaryimage",
-      "url": "https://gildrb.com/images/gil-rodrigues-ml7-logo-system.png",
-      "contentUrl": "https://gildrb.com/images/gil-rodrigues-ml7-logo-system.png",
-      "width": 3473,
-      "height": 2263,
-      "caption": "mL7 logo with black lettering and an orange streak on a white background"
-    },
-    {
       "@type": "Person",
       "@id": "https://gildrb.com/#person",
       "name": "Gil Rodrigues",
@@ -124,6 +127,8 @@
         "Gil Rodrigues Barbosa",
         "Gil Domingos Rodrigues Barbosa"
       ],
+      "description": "Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa, is a student and designer focused on typography, brand identity, and logo systems.",
+      "disambiguatingDescription": "Canonical source for Gil Rodrigues at gildrb.com, the student and designer using the handle gildrb and the legal name Gil Domingos Rodrigues Barbosa.",
       "url": "https://gildrb.com/",
       "email": "mailto:hi@gildrb.com",
       "jobTitle": "Designer",
@@ -200,13 +205,14 @@
           "value": "Gil Domingos Rodrigues Barbosa"
         }
       ],
-      "description": "Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa, is a student and designer focused on typography, brand identity, and logo systems.",
-      "disambiguatingDescription": "Canonical source for Gil Rodrigues at gildrb.com, the student and designer using the handle gildrb and the legal name Gil Domingos Rodrigues Barbosa.",
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "portfolio contact",
         "email": "hi@gildrb.com",
         "url": "https://gildrb.com/"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://gildrb.com/#profile"
       },
       "sameAs": [
         "https://behance.net/gildrb",
@@ -221,9 +227,6 @@
         "Type-led design",
         "Wordmarks"
       ],
-      "mainEntityOfPage": {
-        "@id": "https://gildrb.com/#profile"
-      },
       "subjectOf": [
         {
           "@id": "https://gildrb.com/llms.txt#reference"
@@ -476,58 +479,18 @@
       "@type": "CreativeWork",
       "@id": "https://gildrb.com/#work-filen",
       "name": "Filen brand identity",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
       "url": "https://filen.io/",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      }
-    },
-    {
-      "@type": "CreativeWork",
-      "@id": "https://gildrb.com/#work-ml7",
-      "name": "mL7 logo system",
-      "url": "https://www.twitch.tv/ml7support",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      }
-    },
-    {
-      "@type": "CreativeWork",
-      "@id": "https://gildrb.com/#work-n0thing",
-      "name": "n0thing wordmark",
-      "url": "https://www.twitch.tv/n0thing",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      }
-    },
-    {
-      "@type": "CreativeWork",
-      "@id": "https://gildrb.com/#work-mantis",
-      "name": "Mantis visual identity",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      }
-    },
-    {
-      "@type": "CreativeWork",
-      "@id": "https://gildrb.com/#work-curves",
-      "name": "CURVES free font",
-      "url": "https://www.behance.net/gallery/75409663/CURVES-Free-Font",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      }
-    },
-    {
-      "@type": "CreativeWork",
-      "@id": "https://gildrb.com/#work-heph",
-      "name": "Heph",
-      "url": "https://github.com/gildrb/heph",
-      "creator": {
-        "@id": "https://gildrb.com/#person"
-      }
-    },
-    {
-      "@type": "CreativeWork",
-      "@id": "https://gildrb.com/#work-filen",
+      "description": "Brand identity, typography, and logo-system work by Gil Rodrigues for Filen.",
+      "keywords": [
+        "Gil Rodrigues",
+        "Filen",
+        "brand identity",
+        "typography",
+        "logo system"
+      ],
       "image": [
         {
           "@id": "https://gildrb.com/#image-filen-wordmark"
@@ -555,6 +518,18 @@
     {
       "@type": "CreativeWork",
       "@id": "https://gildrb.com/#work-ml7",
+      "name": "mL7 logo system",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "url": "https://www.twitch.tv/ml7support",
+      "description": "Logo-system work by Gil Rodrigues for mL7.",
+      "keywords": [
+        "Gil Rodrigues",
+        "mL7",
+        "logo system",
+        "identity design"
+      ],
       "image": {
         "@id": "https://gildrb.com/#image-ml7-logo-system"
       }
@@ -562,6 +537,18 @@
     {
       "@type": "CreativeWork",
       "@id": "https://gildrb.com/#work-n0thing",
+      "name": "n0thing wordmark",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "url": "https://www.twitch.tv/n0thing",
+      "description": "Wordmark and identity work by Gil Rodrigues for n0thing.",
+      "keywords": [
+        "Gil Rodrigues",
+        "n0thing",
+        "wordmark",
+        "identity design"
+      ],
       "image": {
         "@id": "https://gildrb.com/#image-n0thing-wordmark"
       }
@@ -569,6 +556,17 @@
     {
       "@type": "CreativeWork",
       "@id": "https://gildrb.com/#work-mantis",
+      "name": "Mantis visual identity",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "description": "Visual identity exploration by Gil Rodrigues for Mantis.",
+      "keywords": [
+        "Gil Rodrigues",
+        "Mantis",
+        "visual identity",
+        "identity design"
+      ],
       "image": {
         "@id": "https://gildrb.com/#image-mantis-wireframe-identity"
       }
@@ -580,6 +578,13 @@
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
+      "description": "Personal logo and identity studies by Gil Rodrigues.",
+      "keywords": [
+        "Gil Rodrigues",
+        "personal identity",
+        "logo mark",
+        "lettering"
+      ],
       "image": [
         {
           "@id": "https://gildrb.com/#image-personal-kernel-lettering"
@@ -756,6 +761,24 @@
       "copyrightHolder": {
         "@id": "https://gildrb.com/#person"
       }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://gildrb.com/#work-curves",
+      "name": "CURVES free font",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "url": "https://www.behance.net/gallery/75409663/CURVES-Free-Font"
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://gildrb.com/#work-heph",
+      "name": "Heph",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "url": "https://github.com/gildrb/heph"
     }
   ]
 }
