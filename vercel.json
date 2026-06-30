@@ -106,7 +106,7 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+          "value": "public, max-age=0, s-maxage=3600, stale-while-revalidate=60"
         },
         {
           "key": "X-Robots-Tag",
@@ -123,7 +123,7 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+          "value": "public, max-age=0, s-maxage=3600, stale-while-revalidate=60"
         },
         {
           "key": "X-Robots-Tag",
@@ -144,7 +144,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+          "value": "public, max-age=0, s-maxage=3600, stale-while-revalidate=60"
         },
         {
           "key": "X-Robots-Tag",
@@ -165,7 +165,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+          "value": "public, max-age=0, s-maxage=3600, stale-while-revalidate=60"
         },
         {
           "key": "X-Robots-Tag",
@@ -186,7 +186,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+          "value": "public, max-age=0, s-maxage=3600, stale-while-revalidate=60"
         },
         {
           "key": "X-Robots-Tag",
@@ -207,7 +207,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+          "value": "public, max-age=0, s-maxage=3600, stale-while-revalidate=60"
         },
         {
           "key": "X-Robots-Tag",
@@ -228,7 +228,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+          "value": "public, max-age=0, s-maxage=3600, stale-while-revalidate=60"
         },
         {
           "key": "X-Robots-Tag",
@@ -249,7 +249,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+          "value": "public, max-age=0, s-maxage=3600, stale-while-revalidate=60"
         },
         {
           "key": "X-Robots-Tag",
@@ -270,7 +270,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+          "value": "public, max-age=0, s-maxage=3600, stale-while-revalidate=60"
         },
         {
           "key": "X-Robots-Tag",
@@ -291,7 +291,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+          "value": "public, max-age=0, s-maxage=3600, stale-while-revalidate=60"
         },
         {
           "key": "X-Robots-Tag",
@@ -312,7 +312,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+          "value": "public, max-age=0, s-maxage=3600, stale-while-revalidate=60"
         },
         {
           "key": "X-Robots-Tag",
@@ -333,7 +333,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+          "value": "public, max-age=0, s-maxage=3600, stale-while-revalidate=60"
         },
         {
           "key": "Link",
@@ -350,7 +350,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+          "value": "public, max-age=0, s-maxage=3600, stale-while-revalidate=60"
         },
         {
           "key": "Link",
@@ -367,7 +367,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+          "value": "public, max-age=0, s-maxage=3600, stale-while-revalidate=60"
         },
         {
           "key": "X-Robots-Tag",

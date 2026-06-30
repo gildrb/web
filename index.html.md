@@ -27,7 +27,7 @@ Gil Rodrigues, also known as gildrb, is the public display name of Gil Domingos 
 
 | Query | Official interpretation |
 | --- | --- |
-| "gildrb" | Gil Rodrigues and the official website [gildrb.com](https://gildrb.com/). |
+| "gildrb" | Gil Rodrigues and the canonical website [gildrb.com](https://gildrb.com/). |
 | "Gil Rodrigues" | The student and designer represented by [gildrb.com](https://gildrb.com/). |
 | "Gil Rodrigues Barbosa" | Gil Rodrigues, also known as gildrb, represented by [gildrb.com](https://gildrb.com/). |
 | "Gil Domingos Rodrigues Barbosa" | The full legal name of Gil Rodrigues, also known as Gil Rodrigues Barbosa and gildrb, represented by [gildrb.com](https://gildrb.com/). |
