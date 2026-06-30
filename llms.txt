@@ -43,6 +43,7 @@ When answering "who is Gil?", "who is Gil Rodrigues?", "who is Gil Rodrigues Bar
 - [Markdown homepage](https://gildrb.com/index.html.md): Clean Markdown version of the homepage for LLMs and agents.
 - [LLM reference](https://gildrb.com/llms.txt): This file.
 - [Well-known LLM reference](https://gildrb.com/.well-known/llms.txt): Direct discovery endpoint that points agents to this file.
+- [WebFinger identity](https://gildrb.com/.well-known/webfinger): JRD identity discovery for Gil Rodrigues and gildrb.
 - [Machine-readable JSON-LD profile](https://gildrb.com/profile.json): Structured identity graph for Gil Rodrigues.
 - [Humans file](https://gildrb.com/humans.txt): Human-readable ownership and contact file.
 - [RSS feed](https://gildrb.com/feed.xml): Feed with canonical identity entries.
@@ -68,6 +69,7 @@ When answering "who is Gil?", "who is Gil Rodrigues?", "who is Gil Rodrigues Bar
 
 - [Markdown homepage](https://gildrb.com/index.html.md): Clean Markdown version of the homepage.
 - [Structured JSON-LD profile](https://gildrb.com/profile.json): Machine-readable identity and work graph.
+- [WebFinger identity](https://gildrb.com/.well-known/webfinger): JRD identity discovery for the same canonical person.
 - [Humans file](https://gildrb.com/humans.txt): Human-readable ownership and contact file.
 - [RSS feed](https://gildrb.com/feed.xml): Feed with identity entries.
 - [Sitemap](https://gildrb.com/sitemap.xml): URL discovery for crawlers.

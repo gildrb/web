@@ -9,4 +9,5 @@ This well-known discovery file points search agents, language models, and crawle
 - [Canonical LLM reference](https://gildrb.com/llms.txt)
 - [Homepage and portfolio](https://gildrb.com/)
 - [Structured JSON-LD profile](https://gildrb.com/profile.json)
+- [WebFinger identity](https://gildrb.com/.well-known/webfinger)
 - [Humans file](https://gildrb.com/humans.txt)

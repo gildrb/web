@@ -68,6 +68,12 @@
         />
         <link
             rel="describedby"
+            type="application/jrd+json"
+            href="https://gildrb.com/.well-known/webfinger"
+            title="WebFinger identity for Gil Rodrigues"
+        />
+        <link
+            rel="describedby"
             type="application/ld+json"
             href="https://gildrb.com/profile.json"
             title="Structured profile for Gil Rodrigues"
@@ -187,6 +193,9 @@
                             },
                             {
                                 "@id": "https://gildrb.com/.well-known/llms.txt#discovery"
+                            },
+                            {
+                                "@id": "https://gildrb.com/.well-known/webfinger#identity"
                             },
                             {
                                 "@id": "https://gildrb.com/index.html.md#homepage-markdown"
@@ -377,6 +386,9 @@
                                 "@id": "https://gildrb.com/.well-known/llms.txt#discovery"
                             },
                             {
+                                "@id": "https://gildrb.com/.well-known/webfinger#identity"
+                            },
+                            {
                                 "@id": "https://gildrb.com/index.html.md#homepage-markdown"
                             },
                             {
@@ -531,6 +543,30 @@
                         "name": "Markdown homepage for Gil Rodrigues / Gil Rodrigues Barbosa / Gil Domingos Rodrigues Barbosa",
                         "description": "Markdown version of the homepage and portfolio for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
                         "encodingFormat": "text/markdown",
+                        "dateModified": "2026-06-30",
+                        "creator": {
+                            "@id": "https://gildrb.com/#person"
+                        },
+                        "publisher": {
+                            "@id": "https://gildrb.com/#person"
+                        },
+                        "about": {
+                            "@id": "https://gildrb.com/#person"
+                        },
+                        "mainEntity": {
+                            "@id": "https://gildrb.com/#person"
+                        },
+                        "isPartOf": {
+                            "@id": "https://gildrb.com/#website"
+                        }
+                    },
+                    {
+                        "@type": "Dataset",
+                        "@id": "https://gildrb.com/.well-known/webfinger#identity",
+                        "url": "https://gildrb.com/.well-known/webfinger",
+                        "name": "WebFinger identity for Gil Rodrigues",
+                        "description": "JRD identity discovery document for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
+                        "encodingFormat": "application/jrd+json",
                         "dateModified": "2026-06-30",
                         "creator": {
                             "@id": "https://gildrb.com/#person"
