@@ -560,6 +560,7 @@
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
+      "url": "https://gildrb.com/#work-mantis-title",
       "description": "Visual identity exploration by Gil Rodrigues for Mantis.",
       "keywords": [
         "Gil Rodrigues",
@@ -578,6 +579,7 @@
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
+      "url": "https://gildrb.com/#work-personal-title",
       "description": "Personal logo and identity studies by Gil Rodrigues.",
       "keywords": [
         "Gil Rodrigues",
@@ -769,7 +771,14 @@
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
-      "url": "https://www.behance.net/gallery/75409663/CURVES-Free-Font"
+      "url": "https://www.behance.net/gallery/75409663/CURVES-Free-Font",
+      "description": "Free font project by Gil Rodrigues, published on Behance.",
+      "keywords": [
+        "Gil Rodrigues",
+        "CURVES",
+        "free font",
+        "typography"
+      ]
     },
     {
       "@type": "CreativeWork",
@@ -778,7 +787,13 @@
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
-      "url": "https://github.com/gildrb/heph"
+      "url": "https://github.com/gildrb/heph",
+      "description": "Software project linked from the Gil Rodrigues portfolio.",
+      "keywords": [
+        "Gil Rodrigues",
+        "Heph",
+        "software project"
+      ]
     }
   ]
 }
