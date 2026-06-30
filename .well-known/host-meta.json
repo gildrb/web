@@ -4,11 +4,16 @@
     "acct:gildrb@gildrb.com",
     "https://gildrb.com/#person",
     "https://gildrb.com/profile.json#person",
+    "https://gildrb.com/gil",
+    "https://gildrb.com/gildrb",
+    "https://gildrb.com/gil-rodrigues",
+    "https://gildrb.com/gil-rodrigues-barbosa",
+    "https://gildrb.com/gil-domingos-rodrigues-barbosa",
     "mailto:hi@gildrb.com"
   ],
   "properties": {
     "http://schema.org/name": "Gil Rodrigues",
-    "http://schema.org/alternateName": "gildrb",
+    "http://schema.org/alternateName": "gildrb; Gil Rodrigues Barbosa; Gil Domingos Rodrigues Barbosa",
     "http://schema.org/givenName": "Gil",
     "http://schema.org/additionalName": "Domingos",
     "http://schema.org/familyName": "Rodrigues Barbosa",
