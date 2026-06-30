@@ -1247,7 +1247,15 @@
             }
 
             .contact-section {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                row-gap: var(--section-content-gap);
                 margin-bottom: var(--section-gap);
+            }
+
+            .contact-section .section-title {
+                margin-bottom: 0;
             }
 
             .profile-copy {
@@ -1628,6 +1636,13 @@
                         >
                             hi@gildrb.com
                         </button>
+                        <a
+                            class="external-link"
+                            href="https://signal.me/#eu/KlFnTOEoXJTxUNhl9y4U4-QzunoZj6eX2BrkGYibTNUmKw8OszhNgaKd-aoseeUZ"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Signal</a
+                        >
                     </section>
 
                     <section class="work-section" aria-labelledby="work-title">
