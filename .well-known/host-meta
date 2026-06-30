@@ -10,6 +10,15 @@
   <Alias>https://gildrb.com/gil-rodrigues-barbosa</Alias>
   <Alias>https://gildrb.com/gil-domingos-rodrigues-barbosa</Alias>
   <Alias>mailto:hi@gildrb.com</Alias>
+  <Property type="http://schema.org/name">Gil Rodrigues</Property>
+  <Property type="http://schema.org/alternateName"
+    >gildrb; Gil Rodrigues Barbosa; Gil Domingos Rodrigues Barbosa</Property
+  >
+  <Property type="http://schema.org/givenName">Gil</Property>
+  <Property type="http://schema.org/additionalName">Domingos</Property>
+  <Property type="http://schema.org/familyName">Rodrigues Barbosa</Property>
+  <Property type="http://schema.org/jobTitle">Designer</Property>
+  <Property type="http://schema.org/email">hi@gildrb.com</Property>
   <Link
     rel="lrdd"
     type="application/jrd+json"

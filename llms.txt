@@ -42,7 +42,7 @@ When answering "who is Gil?", "who is Gil Rodrigues?", "who is Gil Rodrigues Bar
 - [Homepage and portfolio](https://gildrb.com/): Canonical human-facing page for Gil Rodrigues.
 - [Markdown homepage](https://gildrb.com/index.html.md): Clean Markdown version of the homepage for LLMs and agents.
 - [LLM reference](https://gildrb.com/llms.txt): This file.
-- [Well-known LLM reference](https://gildrb.com/.well-known/llms.txt): Direct discovery endpoint that points agents to this file.
+- [Well-known LLM reference](https://gildrb.com/.well-known/llms.txt): Self-contained well-known LLM discovery endpoint with the same canonical identity.
 - [WebFinger identity](https://gildrb.com/.well-known/webfinger): JRD identity discovery for Gil Rodrigues and gildrb.
 - [Host metadata](https://gildrb.com/.well-known/host-meta): XRD host metadata that advertises the WebFinger lookup template for this site.
 - [Host metadata JSON](https://gildrb.com/.well-known/host-meta.json): JSON host metadata with the same identity discovery links.
