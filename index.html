@@ -796,7 +796,7 @@
                 );
             }
 
-            .work-label {
+            .portfolio-label {
                 font-size: 16px;
                 font-weight: 400;
                 color: var(--text-primary);
@@ -875,7 +875,7 @@
             }
 
             .external-link,
-            .file-link {
+            .reference-link {
                 color: var(--text-secondary);
                 text-decoration: none;
                 width: fit-content;
@@ -888,7 +888,7 @@
 
             @media (hover: hover) {
                 .external-link:hover,
-                .file-link:hover {
+                .reference-link:hover {
                     color: var(--text-primary);
                 }
             }
@@ -937,13 +937,13 @@
             }
 
             .external-link:focus:not(:focus-visible),
-            .file-link:focus:not(:focus-visible),
+            .reference-link:focus:not(:focus-visible),
             .email:focus:not(:focus-visible) {
                 outline: none;
             }
 
             .external-link:focus-visible,
-            .file-link:focus-visible,
+            .reference-link:focus-visible,
             .email:focus-visible {
                 color: var(--text-primary);
                 outline: 1px solid var(--text-primary);
@@ -1280,7 +1280,7 @@
                 margin-bottom: 0;
             }
 
-            .machine-links {
+            .references-links {
                 display: flex;
                 flex-direction: column;
                 row-gap: var(--section-content-gap);
@@ -1293,7 +1293,7 @@
                 text-rendering: optimizeLegibility;
             }
 
-            .machine-links .file-link {
+            .references-links .reference-link {
                 margin-bottom: 0;
             }
 
@@ -1463,7 +1463,7 @@
                     grid-column: span 1;
                 }
 
-                .machine-links {
+                .references-links {
                     margin-top: -32px;
                     margin-bottom: 32px;
                 }
@@ -1653,9 +1653,14 @@
                         >
                     </section>
 
-                    <section class="work-section" aria-labelledby="work-title">
-                        <h2 class="work-label" id="work-title">Work</h2>
-                        <h3 class="section-title" id="work-filen-title">
+                    <section
+                        class="portfolio-section"
+                        aria-labelledby="portfolio-title"
+                    >
+                        <h2 class="portfolio-label" id="portfolio-title">
+                            Portfolio
+                        </h2>
+                        <h3 class="section-title" id="portfolio-filen-title">
                             <a
                                 class="external-link"
                                 href="https://filen.io/"
@@ -1666,7 +1671,7 @@
                         </h3>
                         <section
                             class="showcase"
-                            aria-labelledby="work-filen-title"
+                            aria-labelledby="portfolio-filen-title"
                         >
                             <div class="showcase-featured">
                                 <button
@@ -1836,12 +1841,12 @@
                         </div>
                     </section>
 
-                    <h3 class="section-title" id="work-mantis-title">
+                    <h3 class="section-title" id="portfolio-mantis-title">
                         Mantis (カマキリ)
                     </h3>
                     <section
                         class="gallery"
-                        aria-labelledby="work-mantis-title"
+                        aria-labelledby="portfolio-mantis-title"
                     >
                         <button
                             class="gallery-item full"
@@ -1868,7 +1873,7 @@
                         </button>
                     </section>
 
-                    <h3 class="section-title" id="work-ml7-title">
+                    <h3 class="section-title" id="portfolio-ml7-title">
                         <a
                             class="external-link"
                             href="https://www.twitch.tv/ml7support"
@@ -1879,7 +1884,7 @@
                     </h3>
                     <section
                         class="gallery"
-                        aria-labelledby="work-ml7-title"
+                        aria-labelledby="portfolio-ml7-title"
                     >
                         <button
                             class="gallery-item full"
@@ -1906,7 +1911,7 @@
                         </button>
                     </section>
 
-                    <h3 class="section-title" id="work-n0thing-title">
+                    <h3 class="section-title" id="portfolio-n0thing-title">
                         <a
                             class="external-link"
                             href="https://www.twitch.tv/n0thing"
@@ -1917,7 +1922,7 @@
                     </h3>
                     <section
                         class="gallery"
-                        aria-labelledby="work-n0thing-title"
+                        aria-labelledby="portfolio-n0thing-title"
                     >
                         <button
                             class="gallery-item full"
@@ -1944,12 +1949,12 @@
                         </button>
                     </section>
 
-                    <h3 class="section-title" id="work-personal-title">
+                    <h3 class="section-title" id="portfolio-personal-title">
                         Personal
                     </h3>
                     <section
                         class="gallery"
-                        aria-labelledby="work-personal-title"
+                        aria-labelledby="portfolio-personal-title"
                     >
                         <button
                             class="gallery-item full"
@@ -2000,26 +2005,26 @@
                     </section>
                     </section>
                     <nav
-                        class="machine-links"
-                        aria-label="Machine-readable files"
+                        class="references-links"
+                        aria-label="Machine-readable references"
                     >
-                        <p class="links-label">Files</p>
+                        <p class="links-label">References</p>
                         <a
-                            class="file-link"
+                            class="reference-link"
                             href="humans.txt"
                             rel="author"
                             type="text/plain"
                             >humans.txt</a
                         >
                         <a
-                            class="file-link"
+                            class="reference-link"
                             href="llms.txt"
                             rel="alternate"
                             type="text/markdown"
                             >llms.txt</a
                         >
                         <a
-                            class="file-link"
+                            class="reference-link"
                             href="profile.json"
                             rel="alternate"
                             type="application/ld+json"
@@ -2184,7 +2189,7 @@
                 );
             }
 
-            function getImageProject(image) {
+            function getImagePortfolioSection(image) {
                 const section = image.closest("section");
                 const title = section?.previousElementSibling;
 
@@ -2272,7 +2277,7 @@
                 }
 
                 trackEvent("Image Preview Open", {
-                    project: getImageProject(image),
+                    portfolioSection: getImagePortfolioSection(image),
                     item: getImageItem(image),
                 });
                 announce("Image enlarged");
