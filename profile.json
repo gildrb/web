@@ -104,8 +104,8 @@
     {
       "@type": "ImageObject",
       "@id": "https://gildrb.com/#primaryimage",
-      "url": "https://gildrb.com/images/33.png",
-      "contentUrl": "https://gildrb.com/images/33.png",
+      "url": "https://gildrb.com/images/gil-rodrigues-ml7-logo-system.png",
+      "contentUrl": "https://gildrb.com/images/gil-rodrigues-ml7-logo-system.png",
       "width": 3473,
       "height": 2263,
       "caption": "mL7 logo with black lettering and an orange streak on a white background"
@@ -265,6 +265,9 @@
         },
         {
           "@id": "https://gildrb.com/#work-mantis"
+        },
+        {
+          "@id": "https://gildrb.com/#work-personal"
         },
         {
           "@id": "https://gildrb.com/#work-curves"
@@ -519,6 +522,238 @@
       "name": "Heph",
       "url": "https://github.com/gildrb/heph",
       "creator": {
+        "@id": "https://gildrb.com/#person"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://gildrb.com/#work-filen",
+      "image": [
+        {
+          "@id": "https://gildrb.com/#image-filen-wordmark"
+        },
+        {
+          "@id": "https://gildrb.com/#image-filen-brand-system-overview"
+        },
+        {
+          "@id": "https://gildrb.com/#image-filen-zero-knowledge-campaign"
+        },
+        {
+          "@id": "https://gildrb.com/#image-filen-app-icon"
+        },
+        {
+          "@id": "https://gildrb.com/#image-filen-logo-texture"
+        },
+        {
+          "@id": "https://gildrb.com/#image-filen-logo-scale"
+        },
+        {
+          "@id": "https://gildrb.com/#image-filen-storage-message"
+        }
+      ]
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://gildrb.com/#work-ml7",
+      "image": {
+        "@id": "https://gildrb.com/#image-ml7-logo-system"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://gildrb.com/#work-n0thing",
+      "image": {
+        "@id": "https://gildrb.com/#image-n0thing-wordmark"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://gildrb.com/#work-mantis",
+      "image": {
+        "@id": "https://gildrb.com/#image-mantis-wireframe-identity"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://gildrb.com/#work-personal",
+      "name": "Personal identity work",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "image": [
+        {
+          "@id": "https://gildrb.com/#image-personal-kernel-lettering"
+        },
+        {
+          "@id": "https://gildrb.com/#image-personal-angular-logo-mark"
+        }
+      ]
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://gildrb.com/#image-filen-wordmark",
+      "url": "https://gildrb.com/images/optimized/gil-rodrigues-filen-wordmark-1600.webp",
+      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-filen-wordmark-1600.webp",
+      "name": "Filen wordmark by Gil Rodrigues",
+      "caption": "Filen wordmark on a black background, shown in the Gil Rodrigues portfolio.",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "copyrightHolder": {
+        "@id": "https://gildrb.com/#person"
+      }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://gildrb.com/#image-filen-brand-system-overview",
+      "url": "https://gildrb.com/images/optimized/gil-rodrigues-filen-brand-system-overview-1600.webp",
+      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-filen-brand-system-overview-1600.webp",
+      "name": "Filen brand system overview by Gil Rodrigues",
+      "caption": "Filen brand system overview with logo, typography, and motion panels, shown in the Gil Rodrigues portfolio.",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "copyrightHolder": {
+        "@id": "https://gildrb.com/#person"
+      }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://gildrb.com/#image-filen-zero-knowledge-campaign",
+      "url": "https://gildrb.com/images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-1600.webp",
+      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-1600.webp",
+      "name": "Filen campaign message by Gil Rodrigues",
+      "caption": "Filen campaign message for zero knowledge and total control, shown in the Gil Rodrigues portfolio.",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "copyrightHolder": {
+        "@id": "https://gildrb.com/#person"
+      }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://gildrb.com/#image-filen-app-icon",
+      "url": "https://gildrb.com/images/optimized/gil-rodrigues-filen-app-icon-1600.webp",
+      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-filen-app-icon-1600.webp",
+      "name": "Filen app icon by Gil Rodrigues",
+      "caption": "Filen app icon and label on a black background, shown in the Gil Rodrigues portfolio.",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "copyrightHolder": {
+        "@id": "https://gildrb.com/#person"
+      }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://gildrb.com/#image-filen-logo-texture",
+      "url": "https://gildrb.com/images/optimized/gil-rodrigues-filen-logo-texture-1600.webp",
+      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-filen-logo-texture-1600.webp",
+      "name": "Filen logo texture by Gil Rodrigues",
+      "caption": "Filen logo over a streaked monochrome texture, shown in the Gil Rodrigues portfolio.",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "copyrightHolder": {
+        "@id": "https://gildrb.com/#person"
+      }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://gildrb.com/#image-filen-logo-scale",
+      "url": "https://gildrb.com/images/optimized/gil-rodrigues-filen-logo-scale-1600.webp",
+      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-filen-logo-scale-1600.webp",
+      "name": "Filen logo scale study by Gil Rodrigues",
+      "caption": "Filen logo shown at multiple sizes on black, shown in the Gil Rodrigues portfolio.",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "copyrightHolder": {
+        "@id": "https://gildrb.com/#person"
+      }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://gildrb.com/#image-filen-storage-message",
+      "url": "https://gildrb.com/images/optimized/gil-rodrigues-filen-storage-message-1600.webp",
+      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-filen-storage-message-1600.webp",
+      "name": "Filen storage message by Gil Rodrigues",
+      "caption": "Filen message reading Storage that earns nothing from knowing you, shown in the Gil Rodrigues portfolio.",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "copyrightHolder": {
+        "@id": "https://gildrb.com/#person"
+      }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://gildrb.com/#image-mantis-wireframe-identity",
+      "url": "https://gildrb.com/images/optimized/gil-rodrigues-mantis-wireframe-identity-1600.webp",
+      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-mantis-wireframe-identity-1600.webp",
+      "name": "Mantis wireframe identity by Gil Rodrigues",
+      "caption": "Mantis wireframe illustration on a black background, shown in the Gil Rodrigues portfolio.",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "copyrightHolder": {
+        "@id": "https://gildrb.com/#person"
+      }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://gildrb.com/#image-n0thing-wordmark",
+      "url": "https://gildrb.com/images/optimized/gil-rodrigues-n0thing-wordmark-1600.webp",
+      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-n0thing-wordmark-1600.webp",
+      "name": "n0thing wordmark by Gil Rodrigues",
+      "caption": "n0thing logo over a purple-tinted esports team photo, shown in the Gil Rodrigues portfolio.",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "copyrightHolder": {
+        "@id": "https://gildrb.com/#person"
+      }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://gildrb.com/#image-ml7-logo-system",
+      "url": "https://gildrb.com/images/optimized/gil-rodrigues-ml7-logo-system-1600.webp",
+      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-ml7-logo-system-1600.webp",
+      "name": "mL7 logo system by Gil Rodrigues",
+      "caption": "mL7 logo with black lettering and an orange streak on a white background, shown in the Gil Rodrigues portfolio.",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "copyrightHolder": {
+        "@id": "https://gildrb.com/#person"
+      }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://gildrb.com/#image-personal-kernel-lettering",
+      "url": "https://gildrb.com/images/optimized/gil-rodrigues-personal-kernel-lettering-1600.webp",
+      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-personal-kernel-lettering-1600.webp",
+      "name": "Kernel lettering by Gil Rodrigues",
+      "caption": "Close crop of dark Kernel lettering with fine highlights, shown in the Gil Rodrigues portfolio.",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "copyrightHolder": {
+        "@id": "https://gildrb.com/#person"
+      }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://gildrb.com/#image-personal-angular-logo-mark",
+      "url": "https://gildrb.com/images/optimized/gil-rodrigues-personal-angular-logo-mark-1504.webp",
+      "contentUrl": "https://gildrb.com/images/optimized/gil-rodrigues-personal-angular-logo-mark-1504.webp",
+      "name": "Personal angular logo mark by Gil Rodrigues",
+      "caption": "Personal angular logo mark centered on a white background, shown in the Gil Rodrigues portfolio.",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "copyrightHolder": {
         "@id": "https://gildrb.com/#person"
       }
     }
