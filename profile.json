@@ -58,7 +58,7 @@
       ]
     },
     {
-      "@type": "ProfilePage",
+      "@type": ["ProfilePage", "WebPage"],
       "@id": "https://gildrb.com/#profile",
       "url": "https://gildrb.com/",
       "name": "Gil Rodrigues",
@@ -66,8 +66,11 @@
         "Gil",
         "gildrb",
         "Gil Rodrigues Barbosa",
-        "Gil Domingos Rodrigues Barbosa"
+        "Gil Domingos Rodrigues Barbosa",
+        "Gil Rodrigues official portfolio",
+        "gildrb official portfolio"
       ],
+      "headline": "Gil Rodrigues",
       "description": "Official website and portfolio for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
       "keywords": [
         "Gil",
@@ -159,6 +162,9 @@
       ],
       "identifier": [
         "gildrb",
+        "gil",
+        "gil-rodrigues",
+        "gil-rodrigues-barbosa",
         "gil-domingos-rodrigues-barbosa",
         {
           "@type": "PropertyValue",
@@ -167,8 +173,23 @@
         },
         {
           "@type": "PropertyValue",
+          "propertyID": "short name",
+          "value": "Gil"
+        },
+        {
+          "@type": "PropertyValue",
           "propertyID": "online handle",
           "value": "gildrb"
+        },
+        {
+          "@type": "PropertyValue",
+          "propertyID": "canonical slug",
+          "value": "gil-rodrigues"
+        },
+        {
+          "@type": "PropertyValue",
+          "propertyID": "also known as slug",
+          "value": "gil-rodrigues-barbosa"
         },
         {
           "@type": "PropertyValue",
