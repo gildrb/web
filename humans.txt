@@ -5,12 +5,13 @@ Short name: Gil
 Full legal name: Gil Domingos Rodrigues Barbosa
 Also known as: Gil Rodrigues Barbosa
 Handle: gildrb
-Role: Designer
-Focus: Typography, brand identity, and logo systems
+Role: Design Engineer
+Studies: Artificial intelligence and data science
+Focus: Software, interfaces, type, logos, and identity systems
 Contact: [hi@gildrb.com](mailto:hi@gildrb.com)
 Canonical: [https://gildrb.com/humans.txt](https://gildrb.com/humans.txt)
 Homepage: [https://gildrb.com/](https://gildrb.com/)
-Last updated: 2026-06-30
+Last updated: 2026-07-01
 
 ## Profiles
 
@@ -20,7 +21,7 @@ Last updated: 2026-06-30
 
 ## Summary
 
-Gil Rodrigues is the public display name of Gil Domingos Rodrigues Barbosa, also known as Gil Rodrigues Barbosa and gildrb. He is a designer focused on typography, brand identity, and logo systems.
+Gil Rodrigues is the public display name of Gil Domingos Rodrigues Barbosa, also known as Gil Rodrigues Barbosa and gildrb. He is a design engineer studying artificial intelligence and data science, building software, interfaces, type, logos, and identity systems.
 
 Gil, Gil Rodrigues, Gil Rodrigues Barbosa, Gil Domingos Rodrigues Barbosa, and gildrb all refer to the same person represented by this website.
 
