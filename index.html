@@ -744,21 +744,51 @@
             media="(max-width: 768px)"
             fetchpriority="high"
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&display=swap"
-        />
         <style>
+            @font-face {
+                font-family: "Geist Mono";
+                font-style: normal;
+                font-weight: 400 600;
+                font-display: swap;
+                src: url("fonts/geist-mono-latin.woff2") format("woff2");
+                unicode-range:
+                    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+                    U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+                    U+FFFD;
+            }
+
+            @font-face {
+                font-family: "Geist Mono";
+                font-style: normal;
+                font-weight: 400 600;
+                font-display: swap;
+                src: url("fonts/geist-mono-latin-ext.woff2") format("woff2");
+                unicode-range:
+                    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+                    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF,
+                    U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+                    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+            }
+
+            @font-face {
+                font-family: "Geist Mono";
+                font-style: normal;
+                font-weight: 400 600;
+                font-display: swap;
+                src: url("fonts/geist-mono-symbols2.woff2") format("woff2");
+                unicode-range:
+                    U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD,
+                    U+2500-259F;
+            }
+
             @font-face {
                 font-family: "Geist Mono Arrow";
                 font-style: normal;
                 font-weight: 400;
                 font-display: swap;
                 unicode-range: U+2192;
-                src: url("https://fonts.gstatic.com/l/font?kit=or3yQ6H-1_WfwkMZI_qYPLs1a-t7PU0AbeE9KJ5T9i-wvHo&skey=f2030a904b731103&v=v6")
-                    format("truetype");
+                src: url("fonts/geist-mono-arrow.ttf") format("truetype");
             }
 
             :root {
@@ -1244,6 +1274,7 @@
 
             .heph-demo-shell {
                 --heph-terminal-font-size: 14px;
+                --heph-terminal-muted: #7c7c7c;
                 width: 100%;
                 max-width: 100%;
                 min-width: 0;
@@ -1331,7 +1362,7 @@
                 gap: 2ch;
                 padding: 0 0 1lh;
                 white-space: nowrap;
-                color: #6f6f6f;
+                color: var(--heph-terminal-muted);
                 overflow: hidden;
             }
 
@@ -1398,13 +1429,7 @@
 
             .heph-demo-output-rail {
                 min-width: 0;
-                transform: translateY(var(--heph-demo-scroll-offset, 0px));
-            }
-
-            @media (prefers-reduced-motion: no-preference) {
-                .heph-demo-output-rail {
-                    transition: transform 160ms ease;
-                }
+                flex: none;
             }
 
             .heph-demo-line {
@@ -1418,7 +1443,7 @@
             .heph-demo-line.muted {
                 margin-bottom: 0;
                 padding-left: 4ch;
-                color: #6f6f6f;
+                color: var(--heph-terminal-muted);
             }
 
             .heph-demo-line.materials-summary {
@@ -1428,7 +1453,7 @@
             .heph-demo-line.sources {
                 margin-bottom: 0;
                 padding-left: 2ch;
-                color: #4d4d4d;
+                color: var(--heph-terminal-muted);
                 font-style: italic;
             }
 
@@ -1459,7 +1484,7 @@
                 grid-column: 2;
                 grid-row: 1 / 3;
                 overflow: hidden;
-                color: #6f6f6f;
+                color: var(--heph-terminal-muted);
             }
 
             .heph-demo-evidence-heading,
@@ -1496,7 +1521,7 @@
                 padding: 0;
                 border: 0;
                 background: none;
-                color: #6f6f6f;
+                color: var(--heph-terminal-muted);
                 font: inherit;
                 text-align: left;
                 white-space: nowrap;
@@ -1550,7 +1575,7 @@
 
             .heph-demo-evidence-detail {
                 grid-row: 8;
-                color: #4d4d4d;
+                color: var(--heph-terminal-muted);
                 display: -webkit-box;
                 white-space: normal;
                 -webkit-line-clamp: 5;
@@ -1645,7 +1670,7 @@
             }
 
             .heph-demo-input::placeholder {
-                color: #4d4d4d;
+                color: var(--heph-terminal-muted);
                 opacity: 1;
             }
 
@@ -1662,7 +1687,7 @@
             }
 
             .heph-demo-command-row b {
-                color: #6f6f6f;
+                color: var(--heph-terminal-muted);
                 font-weight: 400;
             }
 
@@ -1700,6 +1725,11 @@
 
                 .heph-demo-prompt {
                     padding: 0 2ch;
+                }
+
+                [data-heph-demo-status-optional],
+                [data-heph-demo-command-optional] {
+                    display: none;
                 }
             }
 
@@ -3006,64 +3036,6 @@
             let hephDemoRunId = 0;
             let hephDemoRunTimers = [];
 
-            function fitHephDemoOptionalLine(line, optionalItems) {
-                if (!line) return;
-
-                optionalItems.forEach((item) => {
-                    item.hidden = false;
-                });
-
-                if (line.scrollWidth <= line.clientWidth + 1) {
-                    return;
-                }
-
-                Array.from(optionalItems)
-                    .reverse()
-                    .some((item) => {
-                        item.hidden = true;
-                        return line.scrollWidth <= line.clientWidth + 1;
-                    });
-            }
-
-            function fitHephDemoStatus() {
-                fitHephDemoOptionalLine(
-                    hephDemoStatus,
-                    hephDemoStatusOptionalItems,
-                );
-            }
-
-            function fitHephDemoCommandRow() {
-                fitHephDemoOptionalLine(
-                    hephDemoCommandRow,
-                    hephDemoCommandRow?.querySelectorAll(
-                        "[data-heph-demo-command-optional]",
-                    ) || [],
-                );
-            }
-
-            function fitHephDemoAdaptiveRows() {
-                fitHephDemoStatus();
-                fitHephDemoCommandRow();
-            }
-
-            if ("ResizeObserver" in window) {
-                const hephDemoAdaptiveRowObserver = new ResizeObserver(
-                    fitHephDemoAdaptiveRows,
-                );
-
-                if (hephDemoStatus) {
-                    hephDemoAdaptiveRowObserver.observe(hephDemoStatus);
-                }
-
-                if (hephDemoCommandRow) {
-                    hephDemoAdaptiveRowObserver.observe(hephDemoCommandRow);
-                }
-            }
-
-            window.addEventListener("resize", fitHephDemoAdaptiveRows);
-            window.requestAnimationFrame(fitHephDemoAdaptiveRows);
-            document.fonts?.ready.then(fitHephDemoAdaptiveRows);
-
             function setActiveHephDemoEvidence(item) {
                 if (!item || !hephDemoDetail) return;
 
@@ -3136,7 +3108,6 @@
                     hephDemoCommandRow.innerHTML = isRunning
                         ? "<span>STOP <b>esc</b></span><span>EXIT <b>ctrl+c</b></span>"
                         : hephDemoDefaultCommandRow;
-                    window.requestAnimationFrame(fitHephDemoCommandRow);
                 }
             }
 
@@ -3195,26 +3166,17 @@
                 );
             }
 
-            function updateHephDemoTranscriptOffset() {
-                if (!hephDemoLog || !hephDemoRail) return;
-
-                const offset = Math.max(
-                    0,
-                    hephDemoRail.scrollHeight - hephDemoLog.clientHeight,
-                );
-
-                hephDemoRail.style.setProperty(
-                    "--heph-demo-scroll-offset",
-                    `${-offset}px`,
-                );
+            function scrollHephDemoTranscriptToEnd() {
+                if (!hephDemoLog) return;
+                hephDemoLog.scrollTop = 1000000;
             }
 
             function appendHephDemoLine(text, className) {
                 const line = document.createElement("p");
                 line.className = `heph-demo-line heph-demo-dynamic ${className}`;
                 line.textContent = text;
-                hephDemoRail.append(line);
-                updateHephDemoTranscriptOffset();
+                hephDemoRail?.append(line);
+                scrollHephDemoTranscriptToEnd();
             }
 
             function createHephDemoPrompt(prompt) {
@@ -3226,19 +3188,7 @@
             }
 
             syncHephDemoComposerCursor();
-            updateHephDemoTranscriptOffset();
-
-            if ("ResizeObserver" in window && hephDemoLog && hephDemoRail) {
-                const hephDemoTranscriptObserver = new ResizeObserver(
-                    updateHephDemoTranscriptOffset,
-                );
-
-                hephDemoTranscriptObserver.observe(hephDemoLog);
-                hephDemoTranscriptObserver.observe(hephDemoRail);
-            }
-
-            window.addEventListener("resize", updateHephDemoTranscriptOffset);
-            document.fonts?.ready.then(updateHephDemoTranscriptOffset);
+            scrollHephDemoTranscriptToEnd();
 
             function startHephDemoRetrieval(prompt, options = {}) {
                 hephDemoRunId += 1;
@@ -3256,12 +3206,12 @@
                 syncHephDemoComposerCursor();
 
                 if (resetTranscript) {
-                    hephDemoRail.replaceChildren(createHephDemoPrompt(prompt));
+                    hephDemoRail?.replaceChildren(createHephDemoPrompt(prompt));
                 } else {
-                    hephDemoRail.append(createHephDemoPrompt(prompt));
+                    hephDemoRail?.append(createHephDemoPrompt(prompt));
                 }
+                scrollHephDemoTranscriptToEnd();
 
-                updateHephDemoTranscriptOffset();
                 setHephDemoRunning(true);
 
                 const steps = [
