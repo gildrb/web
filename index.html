@@ -1359,7 +1359,19 @@
                 overflow: hidden;
             }
 
+            .heph-demo-output-rail {
+                min-width: 0;
+                transform: translateY(var(--heph-demo-scroll-offset, 0px));
+            }
+
+            @media (prefers-reduced-motion: no-preference) {
+                .heph-demo-output-rail {
+                    transition: transform 160ms ease;
+                }
+            }
+
             .heph-demo-line {
+                flex: none;
                 margin-bottom: 1lh;
                 padding-left: 2ch;
                 color: #cfcfcf;
@@ -1657,7 +1669,7 @@
             @container (max-width: 560px) {
                 .heph-demo-shell {
                     --heph-terminal-font-size: 10px;
-                    height: 386px;
+                    height: 430px;
                     border-color: #383838;
                     border-radius: 15px;
                     margin: 0 auto;
@@ -1693,19 +1705,7 @@
                     flex: none;
                 }
 
-                .heph-demo-status span:nth-of-type(n + 2) {
-                    display: none;
-                }
-
                 .heph-demo-evidence {
-                    display: none;
-                }
-
-                .heph-demo-line.muted:not(.materials-summary) {
-                    display: none;
-                }
-
-                .heph-demo-line.materials-summary {
                     display: none;
                 }
 
@@ -1721,14 +1721,11 @@
                     margin-top: 1lh;
                 }
 
-                .heph-demo-command-row span:nth-child(n + 3) {
-                    display: none;
-                }
             }
 
             @container (max-width: 460px) {
                 .heph-demo-shell {
-                    height: 374px;
+                    height: 430px;
                 }
 
                 .heph-demo-prompt {
@@ -2242,73 +2239,85 @@
                                     </span>
                                 </div>
                                 <div class="heph-demo-terminal">
-                                    <div class="heph-demo-status">
+                                    <div
+                                        class="heph-demo-status"
+                                        data-heph-demo-status
+                                    >
                                         <strong>Heph</strong>
                                         <span>ARMORY <b>classics</b></span>
                                         <span>MODEL <b>gpt-5.5</b></span>
-                                        <span>REASONING <b>low</b></span>
+                                        <span data-heph-demo-status-optional
+                                            >REASONING <b>low</b></span
+                                        >
                                     </div>
                                     <div class="heph-demo-body">
                                         <div class="heph-demo-transcript">
-                                            <div class="heph-demo-prompt">
-                                                What are these materials about?
-                                            </div>
                                             <div
                                                 class="heph-demo-output"
                                                 aria-live="polite"
                                                 data-heph-demo-log
                                             >
-                                                <p
-                                                    class="heph-demo-line muted materials-summary"
+                                                <div
+                                                    class="heph-demo-output-rail"
+                                                    data-heph-demo-rail
                                                 >
-                                                    materials: index 4 sources / 118 chunks; using 4 evidence excerpts from 4 public sources. Details: /evidence
-                                                </p>
-                                                <p class="heph-demo-line">
-                                                    The classics armory contains public domain fiction about strange worlds, ambition, deduction, and gothic pursuit: Alice enters an absurd rule-bound dream world
-                                                    <button
-                                                        class="heph-demo-citation-button"
-                                                        type="button"
-                                                        tabindex="-1"
-                                                        data-evidence-id="E1"
-                                                        data-evidence-title="Alice's Adventures in Wonderland"
-                                                        data-evidence-detail="Lewis Carroll's public domain novel follows Alice into a world of unstable rules, riddles, and strange authority."
+                                                    <div class="heph-demo-prompt">
+                                                        What are these materials about?
+                                                    </div>
+                                                    <p
+                                                        class="heph-demo-line muted materials-summary"
                                                     >
-                                                        [E1]</button
-                                                    >, Victor Frankenstein recounts the cost of creating life
-                                                    <button
-                                                        class="heph-demo-citation-button"
-                                                        type="button"
-                                                        tabindex="-1"
-                                                        data-evidence-id="E2"
-                                                        data-evidence-title="Frankenstein"
-                                                        data-evidence-detail="Mary Shelley's public domain novel centers ambition, responsibility, and the consequences of creating life."
+                                                        materials: index 4 sources / 118 chunks; using 4 evidence excerpts from 4 public sources. Details: /evidence
+                                                    </p>
+                                                    <p class="heph-demo-line">
+                                                        The classics armory contains public domain fiction about strange worlds, ambition, deduction, and gothic pursuit: Alice enters an absurd rule-bound dream world
+                                                        <button
+                                                            class="heph-demo-citation-button"
+                                                            type="button"
+                                                            tabindex="-1"
+                                                            data-evidence-id="E1"
+                                                            data-evidence-title="Alice's Adventures in Wonderland"
+                                                            data-evidence-detail="Lewis Carroll's public domain novel follows Alice into a world of unstable rules, riddles, and strange authority."
+                                                        >
+                                                            [E1]</button
+                                                        >, Victor Frankenstein recounts the cost of creating life
+                                                        <button
+                                                            class="heph-demo-citation-button"
+                                                            type="button"
+                                                            tabindex="-1"
+                                                            data-evidence-id="E2"
+                                                            data-evidence-title="Frankenstein"
+                                                            data-evidence-detail="Mary Shelley's public domain novel centers ambition, responsibility, and the consequences of creating life."
+                                                        >
+                                                            [E2]</button
+                                                        >, Holmes solves cases through close observation
+                                                        <button
+                                                            class="heph-demo-citation-button"
+                                                            type="button"
+                                                            tabindex="-1"
+                                                            data-evidence-id="E3"
+                                                            data-evidence-title="The Adventures of Sherlock Holmes"
+                                                            data-evidence-detail="Arthur Conan Doyle's public domain stories show Holmes turning small observations into evidence-backed conclusions."
+                                                        >
+                                                            [E3]</button
+                                                        >, and Dracula frames a hunt through diaries, letters, and records
+                                                        <button
+                                                            class="heph-demo-citation-button"
+                                                            type="button"
+                                                            tabindex="-1"
+                                                            data-evidence-id="E4"
+                                                            data-evidence-title="Dracula"
+                                                            data-evidence-detail="Bram Stoker's public domain novel uses journals, letters, and documents to assemble a gothic pursuit."
+                                                        >
+                                                            [E4]</button
+                                                        >.
+                                                    </p>
+                                                    <p
+                                                        class="heph-demo-line sources"
                                                     >
-                                                        [E2]</button
-                                                    >, Holmes solves cases through close observation
-                                                    <button
-                                                        class="heph-demo-citation-button"
-                                                        type="button"
-                                                        tabindex="-1"
-                                                        data-evidence-id="E3"
-                                                        data-evidence-title="The Adventures of Sherlock Holmes"
-                                                        data-evidence-detail="Arthur Conan Doyle's public domain stories show Holmes turning small observations into evidence-backed conclusions."
-                                                    >
-                                                        [E3]</button
-                                                    >, and Dracula frames a hunt through diaries, letters, and records
-                                                    <button
-                                                        class="heph-demo-citation-button"
-                                                        type="button"
-                                                        tabindex="-1"
-                                                        data-evidence-id="E4"
-                                                        data-evidence-title="Dracula"
-                                                        data-evidence-detail="Bram Stoker's public domain novel uses journals, letters, and documents to assemble a gothic pursuit."
-                                                    >
-                                                        [E4]</button
-                                                    >.
-                                                </p>
-                                                <p class="heph-demo-line sources">
-                                                    sources: E1 E2 E3 E4. Open one with /evidence.
-                                                </p>
+                                                        sources: E1 E2 E3 E4. Open one with /evidence.
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                         <aside
@@ -2416,8 +2425,12 @@
                                     >
                                         <span>ARMORY <b>ctrl+a</b></span>
                                         <span>MATERIALS <b>ctrl+o</b></span>
-                                        <span>COMMANDS <b>ctrl+p</b></span>
-                                        <span>REASONING <b>shift+tab</b></span>
+                                        <span data-heph-demo-command-optional
+                                            >COMMANDS <b>ctrl+p</b></span
+                                        >
+                                        <span data-heph-demo-command-optional
+                                            >REASONING <b>shift+tab</b></span
+                                        >
                                     </div>
                                 </div>
                             </div>
@@ -2897,9 +2910,6 @@
             const hephDemoEvidenceControls = document.querySelectorAll(
                 ".heph-demo-evidence-item, .heph-demo-citation-button",
             );
-            const hephDemoPrompt = document.querySelector(
-                ".heph-demo-prompt",
-            );
             const hephDemoEvidenceMeta = document.querySelector(
                 ".heph-demo-evidence-meta",
             );
@@ -2908,6 +2918,12 @@
             );
             const hephDemoDefaultCommandRow =
                 hephDemoCommandRow?.innerHTML || "";
+            const hephDemoStatus = document.querySelector(
+                "[data-heph-demo-status]",
+            );
+            const hephDemoStatusOptionalItems = document.querySelectorAll(
+                "[data-heph-demo-status-optional]",
+            );
             const hephDemoMaterials = [
                 {
                     id: "E1",
@@ -2948,6 +2964,64 @@
             ];
             let hephDemoRunId = 0;
             let hephDemoRunTimers = [];
+
+            function fitHephDemoOptionalLine(line, optionalItems) {
+                if (!line) return;
+
+                optionalItems.forEach((item) => {
+                    item.hidden = false;
+                });
+
+                if (line.scrollWidth <= line.clientWidth + 1) {
+                    return;
+                }
+
+                Array.from(optionalItems)
+                    .reverse()
+                    .some((item) => {
+                        item.hidden = true;
+                        return line.scrollWidth <= line.clientWidth + 1;
+                    });
+            }
+
+            function fitHephDemoStatus() {
+                fitHephDemoOptionalLine(
+                    hephDemoStatus,
+                    hephDemoStatusOptionalItems,
+                );
+            }
+
+            function fitHephDemoCommandRow() {
+                fitHephDemoOptionalLine(
+                    hephDemoCommandRow,
+                    hephDemoCommandRow?.querySelectorAll(
+                        "[data-heph-demo-command-optional]",
+                    ) || [],
+                );
+            }
+
+            function fitHephDemoAdaptiveRows() {
+                fitHephDemoStatus();
+                fitHephDemoCommandRow();
+            }
+
+            if ("ResizeObserver" in window) {
+                const hephDemoAdaptiveRowObserver = new ResizeObserver(
+                    fitHephDemoAdaptiveRows,
+                );
+
+                if (hephDemoStatus) {
+                    hephDemoAdaptiveRowObserver.observe(hephDemoStatus);
+                }
+
+                if (hephDemoCommandRow) {
+                    hephDemoAdaptiveRowObserver.observe(hephDemoCommandRow);
+                }
+            }
+
+            window.addEventListener("resize", fitHephDemoAdaptiveRows);
+            window.requestAnimationFrame(fitHephDemoAdaptiveRows);
+            document.fonts?.ready.then(fitHephDemoAdaptiveRows);
 
             function setActiveHephDemoEvidence(item) {
                 if (!item || !hephDemoDetail) return;
@@ -3021,6 +3095,7 @@
                     hephDemoCommandRow.innerHTML = isRunning
                         ? "<span>STOP <b>esc</b></span><span>EXIT <b>ctrl+c</b></span>"
                         : hephDemoDefaultCommandRow;
+                    window.requestAnimationFrame(fitHephDemoCommandRow);
                 }
             }
 
@@ -3068,6 +3143,9 @@
                 "[data-heph-demo-input]",
             );
             const hephDemoLog = document.querySelector("[data-heph-demo-log]");
+            const hephDemoRail = document.querySelector(
+                "[data-heph-demo-rail]",
+            );
 
             function syncHephDemoComposerCursor() {
                 hephDemoForm?.classList.toggle(
@@ -3076,20 +3154,56 @@
                 );
             }
 
+            function updateHephDemoTranscriptOffset() {
+                if (!hephDemoLog || !hephDemoRail) return;
+
+                const offset = Math.max(
+                    0,
+                    hephDemoRail.scrollHeight - hephDemoLog.clientHeight,
+                );
+
+                hephDemoRail.style.setProperty(
+                    "--heph-demo-scroll-offset",
+                    `${-offset}px`,
+                );
+            }
+
             function appendHephDemoLine(text, className) {
                 const line = document.createElement("p");
                 line.className = `heph-demo-line heph-demo-dynamic ${className}`;
                 line.textContent = text;
-                hephDemoLog.append(line);
-                hephDemoLog.scrollTop = hephDemoLog.scrollHeight;
+                hephDemoRail.append(line);
+                updateHephDemoTranscriptOffset();
+            }
+
+            function createHephDemoPrompt(prompt) {
+                const promptLine = document.createElement("div");
+                promptLine.className = "heph-demo-prompt";
+                promptLine.textContent = prompt;
+
+                return promptLine;
             }
 
             syncHephDemoComposerCursor();
+            updateHephDemoTranscriptOffset();
 
-            function startHephDemoRetrieval(prompt) {
+            if ("ResizeObserver" in window && hephDemoLog && hephDemoRail) {
+                const hephDemoTranscriptObserver = new ResizeObserver(
+                    updateHephDemoTranscriptOffset,
+                );
+
+                hephDemoTranscriptObserver.observe(hephDemoLog);
+                hephDemoTranscriptObserver.observe(hephDemoRail);
+            }
+
+            window.addEventListener("resize", updateHephDemoTranscriptOffset);
+            document.fonts?.ready.then(updateHephDemoTranscriptOffset);
+
+            function startHephDemoRetrieval(prompt, options = {}) {
                 hephDemoRunId += 1;
                 clearHephDemoRunTimers();
 
+                const { resetTranscript = false } = options;
                 const runId = hephDemoRunId;
                 const sampledMaterials = shuffleHephDemoMaterials();
                 const featuredMaterial = sampledMaterials[0];
@@ -3097,13 +3211,16 @@
                     .map((material) => `@${material.file}`)
                     .join(", ");
 
-                if (hephDemoPrompt) {
-                    hephDemoPrompt.textContent = prompt;
-                }
-
                 hephDemoInput.value = "";
                 syncHephDemoComposerCursor();
-                hephDemoLog.replaceChildren();
+
+                if (resetTranscript) {
+                    hephDemoRail.replaceChildren(createHephDemoPrompt(prompt));
+                } else {
+                    hephDemoRail.append(createHephDemoPrompt(prompt));
+                }
+
+                updateHephDemoTranscriptOffset();
                 setHephDemoRunning(true);
 
                 const steps = [
@@ -3178,7 +3295,9 @@
                     return;
                 }
 
-                startHephDemoRetrieval("What are these materials about?");
+                startHephDemoRetrieval("What are these materials about?", {
+                    resetTranscript: true,
+                });
             }, 500);
 
             hephDemoInput?.addEventListener("input", () => {
