@@ -1563,7 +1563,6 @@
             }
 
             .heph-demo-composer.is-empty .heph-demo-input {
-                padding-left: 1ch;
                 caret-color: transparent;
             }
 
@@ -1594,7 +1593,7 @@
                 caret-color: #cfcfcf;
                 font: inherit;
                 line-height: inherit;
-                padding: 0;
+                padding: 0 0 0 1ch;
                 border-radius: 0;
                 appearance: none;
             }
@@ -1663,25 +1662,18 @@
             }
 
             @container (max-width: 560px) {
-                .heph-demo-terminal {
-                    grid-template-columns: minmax(0, 1fr);
-                    column-gap: 0;
-                }
-
-                .heph-demo-evidence {
-                    display: none;
-                }
-            }
-
-            @container (max-width: 460px) {
                 .heph-demo-shell {
-                    height: 420px;
+                    --heph-terminal-font-size: 10px;
+                    height: 386px;
+                    border-color: #383838;
+                    border-radius: 15px;
+                    margin: 0 auto;
                 }
 
                 .heph-demo-titlebar {
-                    height: 32px;
-                    grid-template-columns: 54px minmax(0, 1fr) 54px;
-                    padding: 0 10px;
+                    height: 30px;
+                    grid-template-columns: 48px minmax(0, 1fr) 48px;
+                    padding: 0 9px;
                 }
 
                 .heph-demo-window-controls {
@@ -1693,16 +1685,61 @@
                     height: 8px;
                 }
 
-                .heph-demo-status {
-                    gap: 1ch;
+                .heph-demo-terminal {
+                    grid-template-columns: minmax(0, 1fr);
+                    column-gap: 0;
                 }
 
-                .heph-demo-prompt {
-                    padding: 0 2ch;
+                .heph-demo-status {
+                    height: 2lh;
+                    gap: 1.5ch;
+                    padding: 0;
+                }
+
+                .heph-demo-status > * {
+                    flex: none;
+                }
+
+                .heph-demo-status span:nth-of-type(n + 2) {
+                    display: none;
+                }
+
+                .heph-demo-evidence {
+                    display: none;
+                }
+
+                .heph-demo-line.muted:not(.materials-summary) {
+                    display: none;
+                }
+
+                .heph-demo-line.materials-summary {
+                    display: none;
                 }
 
                 .heph-demo-line {
                     margin-bottom: 0.75lh;
+                }
+
+                .heph-demo-response {
+                    margin-top: 0;
+                }
+
+                .heph-demo-line.sources {
+                    margin-top: 1lh;
+                }
+
+                .heph-demo-command-row span:nth-child(n + 3) {
+                    display: none;
+                }
+            }
+
+            @container (max-width: 460px) {
+                .heph-demo-shell {
+                    height: 374px;
+                }
+
+                .heph-demo-prompt {
+                    padding: 0 1.5ch;
                 }
 
                 .heph-demo-evidence-list {
@@ -1713,6 +1750,22 @@
                     display: none;
                 }
 
+            }
+
+            @media (max-width: 700px) {
+                .heph-demo {
+                    grid-column: 1;
+                    padding: 34px 14px;
+                    border-radius: 24px;
+                    background: #1f1f1f;
+                }
+            }
+
+            @media (max-width: 460px) {
+                .heph-demo {
+                    padding: 32px 12px;
+                    border-radius: 22px;
+                }
             }
 
             .image-wrapper:focus-visible,
