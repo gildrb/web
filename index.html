@@ -1384,6 +1384,7 @@
             }
 
             .heph-demo-line.sources {
+                margin-bottom: 0;
                 padding-left: 2ch;
                 color: #4d4d4d;
                 font-style: italic;
@@ -1534,7 +1535,6 @@
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
-                margin-right: 1ch;
                 padding: 0;
                 color: #cfcfcf;
             }
@@ -1555,7 +1555,7 @@
                 height: 1lh;
                 position: absolute;
                 top: 50%;
-                left: 2ch;
+                left: 1ch;
                 opacity: 0;
                 background: #cfcfcf;
                 pointer-events: none;
@@ -2172,6 +2172,7 @@
                         <section
                             class="heph-demo"
                             aria-labelledby="portfolio-heph-title"
+                            aria-hidden="true"
                         >
                             <div
                                 class="heph-demo-shell"
@@ -2224,6 +2225,7 @@
                                                     <button
                                                         class="heph-demo-citation-button"
                                                         type="button"
+                                                        tabindex="-1"
                                                         data-evidence-id="E1"
                                                         data-evidence-title="Alice's Adventures in Wonderland"
                                                         data-evidence-detail="Lewis Carroll's public domain novel follows Alice into a world of unstable rules, riddles, and strange authority."
@@ -2233,6 +2235,7 @@
                                                     <button
                                                         class="heph-demo-citation-button"
                                                         type="button"
+                                                        tabindex="-1"
                                                         data-evidence-id="E2"
                                                         data-evidence-title="Frankenstein"
                                                         data-evidence-detail="Mary Shelley's public domain novel centers ambition, responsibility, and the consequences of creating life."
@@ -2242,6 +2245,7 @@
                                                     <button
                                                         class="heph-demo-citation-button"
                                                         type="button"
+                                                        tabindex="-1"
                                                         data-evidence-id="E3"
                                                         data-evidence-title="The Adventures of Sherlock Holmes"
                                                         data-evidence-detail="Arthur Conan Doyle's public domain stories show Holmes turning small observations into evidence-backed conclusions."
@@ -2251,6 +2255,7 @@
                                                     <button
                                                         class="heph-demo-citation-button"
                                                         type="button"
+                                                        tabindex="-1"
                                                         data-evidence-id="E4"
                                                         data-evidence-title="Dracula"
                                                         data-evidence-detail="Bram Stoker's public domain novel uses journals, letters, and documents to assemble a gothic pursuit."
@@ -2277,6 +2282,7 @@
                                                 <button
                                                     class="heph-demo-evidence-item is-active"
                                                     type="button"
+                                                    tabindex="-1"
                                                     data-evidence-id="E1"
                                                     data-evidence-title="Alice's Adventures in Wonderland"
                                                     data-evidence-detail="Lewis Carroll's public domain novel follows Alice into a world of unstable rules, riddles, and strange authority."
@@ -2286,6 +2292,7 @@
                                                 <button
                                                     class="heph-demo-evidence-item"
                                                     type="button"
+                                                    tabindex="-1"
                                                     data-evidence-id="E2"
                                                     data-evidence-title="Frankenstein"
                                                     data-evidence-detail="Mary Shelley's public domain novel centers ambition, responsibility, and the consequences of creating life."
@@ -2295,6 +2302,7 @@
                                                 <button
                                                     class="heph-demo-evidence-item"
                                                     type="button"
+                                                    tabindex="-1"
                                                     data-evidence-id="E3"
                                                     data-evidence-title="The Adventures of Sherlock Holmes"
                                                     data-evidence-detail="Arthur Conan Doyle's public domain stories show Holmes turning small observations into evidence-backed conclusions."
@@ -2304,6 +2312,7 @@
                                                 <button
                                                     class="heph-demo-evidence-item"
                                                     type="button"
+                                                    tabindex="-1"
                                                     data-evidence-id="E4"
                                                     data-evidence-title="Dracula"
                                                     data-evidence-detail="Bram Stoker's public domain novel uses journals, letters, and documents to assemble a gothic pursuit."
@@ -2353,6 +2362,7 @@
                                             type="text"
                                             autocomplete="off"
                                             spellcheck="false"
+                                            tabindex="-1"
                                             placeholder="Ask Heph about these materials"
                                             data-heph-demo-input
                                         />
@@ -3048,7 +3058,6 @@
                 trackEvent("Heph Demo Evidence Open", {
                     evidence: evidenceId,
                 });
-                announce(`${evidenceId} evidence opened`);
             }
 
             hephDemoEvidenceControls.forEach((item) => {
@@ -3089,12 +3098,11 @@
 
             syncHephDemoComposerCursor();
 
-            function startHephDemoRetrieval(prompt, options = {}) {
+            function startHephDemoRetrieval(prompt) {
                 hephDemoRunId += 1;
                 clearHephDemoRunTimers();
 
                 const runId = hephDemoRunId;
-                const shouldFocusInput = options.focusInput !== false;
                 const sampledMaterials = shuffleHephDemoMaterials();
                 const featuredMaterial = sampledMaterials[0];
                 const sourceList = sampledMaterials
@@ -3170,10 +3178,6 @@
                     setHephDemoRunning(false);
                     hephDemoInput.value = "";
                     syncHephDemoComposerCursor();
-                    if (shouldFocusInput) {
-                        hephDemoInput.focus();
-                    }
-                    announce("Heph demo response added");
                 });
             }
 
@@ -3186,9 +3190,7 @@
                     return;
                 }
 
-                startHephDemoRetrieval("What are these materials about?", {
-                    focusInput: false,
-                });
+                startHephDemoRetrieval("What are these materials about?");
             }, 500);
 
             hephDemoInput?.addEventListener("input", () => {
@@ -3416,7 +3418,12 @@
                     ...document.querySelectorAll(
                         "main a[href], main button:not([disabled]), main input:not([disabled])",
                     ),
-                ].filter(Boolean);
+                ].filter(
+                    (item) =>
+                        item &&
+                        item.tabIndex >= 0 &&
+                        !item.closest("[aria-hidden='true']"),
+                );
             }
 
             document.addEventListener("keydown", function (e) {
