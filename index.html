@@ -746,6 +746,7 @@
                 );
                 --sidebar-column: 280px;
                 --layout-gap: 48px;
+                --media-radius: 22px;
             }
 
             @media (prefers-color-scheme: light) {
@@ -1065,7 +1066,7 @@
             .showcase-featured .image-wrapper {
                 position: relative;
                 overflow: hidden;
-                border-radius: 0px;
+                border-radius: var(--media-radius);
                 cursor: zoom-in;
                 width: 100%;
                 display: block;
@@ -1119,7 +1120,7 @@
             .showcase-scroll .image-wrapper {
                 position: relative;
                 overflow: hidden;
-                border-radius: 0px;
+                border-radius: var(--media-radius);
                 cursor: zoom-in;
                 width: 100%;
                 display: block;
@@ -1159,7 +1160,7 @@
 
             .gallery-item {
                 position: relative;
-                border-radius: 0px;
+                border-radius: var(--media-radius);
                 overflow: hidden;
                 cursor: zoom-in;
                 width: 100%;
@@ -1815,6 +1816,7 @@
                 max-width: 100%;
                 max-height: 100%;
                 display: block;
+                border-radius: var(--media-radius);
                 user-select: none;
                 -webkit-user-drag: none;
             }
@@ -2472,29 +2474,6 @@
                                 </button>
                             </div>
                             <div class="showcase-scroll">
-                                <button
-                                    class="image-wrapper"
-                                    type="button"
-                                    aria-label="Open Filen brand system overview preview"
-                                >
-                                    <img
-                                        src="images/optimized/gil-rodrigues-filen-brand-system-overview-720.webp"
-                                        srcset="
-                                            images/optimized/gil-rodrigues-filen-brand-system-overview-480.webp   480w,
-                                            images/optimized/gil-rodrigues-filen-brand-system-overview-720.webp   720w,
-                                            images/optimized/gil-rodrigues-filen-brand-system-overview-960.webp   960w,
-                                            images/optimized/gil-rodrigues-filen-brand-system-overview-1280.webp 1280w,
-                                            images/optimized/gil-rodrigues-filen-brand-system-overview-1600.webp 1600w
-                                        "
-                                        sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 900px) calc(100vw - 336px), (max-width: 1400px) calc(33vw - 129px), 416px"
-                                        data-preview-src="images/optimized/gil-rodrigues-filen-brand-system-overview-1600.webp"
-                                        width="1920"
-                                        height="1222"
-                                        alt="Filen brand system overview with logo, typography, and motion panels"
-                                        loading="lazy"
-                                        decoding="async"
-                                    />
-                                </button>
                             <button
                                 class="image-wrapper"
                                 type="button"
