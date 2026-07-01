@@ -708,7 +708,23 @@
             media="(max-width: 768px)"
             fetchpriority="high"
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&display=swap"
+        />
         <style>
+            @font-face {
+                font-family: "Geist Mono Arrow";
+                font-style: normal;
+                font-weight: 400;
+                font-display: swap;
+                unicode-range: U+2192;
+                src: url("https://fonts.gstatic.com/l/font?kit=or3yQ6H-1_WfwkMZI_qYPLs1a-t7PU0AbeE9KJ5T9i-wvHo&skey=f2030a904b731103&v=v6")
+                    format("truetype");
+            }
+
             :root {
                 --bg: #000000;
                 --text-primary: #ffffff;
@@ -790,7 +806,7 @@
                 width: fit-content;
             }
 
-            .projects-label {
+            .contact-label {
                 margin-top: calc(
                     var(--section-gap) - var(--section-content-gap)
                 );
@@ -928,14 +944,6 @@
                 color: var(--text-secondary);
             }
 
-            .contact-section .external-link {
-                font-size: 16px;
-                font-weight: 400;
-                -webkit-font-smoothing: antialiased;
-                -webkit-text-size-adjust: 100%;
-                text-rendering: optimizeLegibility;
-            }
-
             .external-link:focus:not(:focus-visible),
             .reference-link:focus:not(:focus-visible),
             .email:focus:not(:focus-visible) {
@@ -1033,7 +1041,12 @@
             }
 
             .content {
+                min-width: 0;
                 padding: 64px 0;
+            }
+
+            .portfolio-section {
+                min-width: 0;
             }
 
             .showcase {
@@ -1182,6 +1195,526 @@
                 -webkit-user-drag: none;
             }
 
+            .heph-demo {
+                width: 100%;
+                max-width: 100%;
+                min-width: 0;
+                margin-bottom: 120px;
+                overflow: hidden;
+                container-type: inline-size;
+            }
+
+            .heph-demo-shell {
+                --heph-terminal-font-size: 14px;
+                width: 100%;
+                max-width: 100%;
+                min-width: 0;
+                height: clamp(460px, 64cqw, 720px);
+                display: grid;
+                grid-template-rows: auto minmax(0, 1fr);
+                overflow: hidden;
+                border: 1px solid #333333;
+                border-radius: 13px;
+                background: #151515;
+                color: #cfcfcf;
+                font-family:
+                    "Geist Mono",
+                    "SFMono-Regular",
+                    "SF Mono",
+                    "Menlo",
+                    "Consolas",
+                    monospace;
+                font-size: var(--heph-terminal-font-size);
+                line-height: 1.35;
+                letter-spacing: 0;
+                -webkit-font-smoothing: antialiased;
+                -webkit-text-size-adjust: 100%;
+                text-rendering: optimizeLegibility;
+            }
+
+            .heph-demo-titlebar {
+                height: 36px;
+                display: grid;
+                grid-template-columns: 64px minmax(0, 1fr) 64px;
+                align-items: center;
+                padding: 0 12px;
+                border-bottom: 1px solid #252525;
+                background: #181818;
+                color: #777777;
+                line-height: 1;
+                user-select: none;
+            }
+
+            .heph-demo-window-controls {
+                display: flex;
+                align-items: center;
+                gap: 7px;
+            }
+
+            .heph-demo-window-control {
+                width: 10px;
+                height: 10px;
+                box-sizing: border-box;
+                border: 1px solid rgba(0, 0, 0, 0.28);
+                border-radius: 50%;
+                background: #5f5f5f;
+            }
+
+            .heph-demo-window-control.close {
+                background: #ec6a5e;
+            }
+
+            .heph-demo-window-control.minimize {
+                background: #f4bf4f;
+            }
+
+            .heph-demo-window-control.zoom {
+                background: #61c554;
+            }
+
+            .heph-demo-window-title {
+                min-width: 0;
+                text-align: center;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .heph-demo-terminal {
+                min-width: 0;
+                min-height: 0;
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) clamp(16ch, 25%, 32ch);
+                grid-template-rows: auto minmax(0, 1fr) auto auto;
+                column-gap: 2ch;
+                overflow: hidden;
+                padding: 0;
+                background: #101010;
+            }
+
+            .heph-demo-status {
+                min-width: 0;
+                display: flex;
+                align-items: center;
+                grid-column: 1;
+                grid-row: 1;
+                gap: 2ch;
+                padding: 0 0 1lh;
+                white-space: nowrap;
+                color: #6f6f6f;
+                overflow: hidden;
+            }
+
+            .heph-demo-status strong {
+                color: #ffffff;
+                font-weight: 600;
+            }
+
+            .heph-demo-status b {
+                color: #8f8f8f;
+                font-weight: 400;
+            }
+
+            .heph-demo-status > * {
+                min-width: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .heph-demo-body {
+                min-width: 0;
+                min-height: 0;
+                display: contents;
+            }
+
+            .heph-demo-transcript {
+                min-width: 0;
+                min-height: 0;
+                display: flex;
+                flex-direction: column;
+                grid-column: 1;
+                grid-row: 2;
+                overflow: hidden;
+            }
+
+            .heph-demo-prompt,
+            .heph-demo-composer {
+                width: 100%;
+                max-width: 100%;
+                min-width: 0;
+                height: 3lh;
+                min-height: 3lh;
+                display: flex;
+                align-items: center;
+                background: #151515;
+            }
+
+            .heph-demo-prompt {
+                margin-bottom: 1lh;
+                padding: 0 2ch;
+                color: #ffffff;
+                font-weight: 600;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .heph-demo-output {
+                min-width: 0;
+                min-height: 0;
+                flex: 1;
+                overflow: hidden;
+            }
+
+            .heph-demo-line {
+                margin-bottom: 1lh;
+                padding-left: 2ch;
+                color: #cfcfcf;
+                overflow-wrap: break-word;
+            }
+
+            .heph-demo-line.muted {
+                margin-bottom: 0;
+                padding-left: 4ch;
+                color: #6f6f6f;
+            }
+
+            .heph-demo-line.materials-summary {
+                margin-bottom: 1lh;
+            }
+
+            .heph-demo-line.sources {
+                padding-left: 2ch;
+                color: #4d4d4d;
+                font-style: italic;
+            }
+
+            .heph-demo-citation-button {
+                display: inline;
+                padding: 0;
+                border: 0;
+                background: none;
+                color: #8f8f8f;
+                font: inherit;
+                appearance: none;
+                cursor: pointer;
+            }
+
+            .heph-demo-response {
+                margin-top: 1lh;
+                padding-left: 2ch;
+                color: #cfcfcf;
+            }
+
+            .heph-demo-evidence {
+                width: 100%;
+                max-width: 100%;
+                min-width: 0;
+                display: grid;
+                grid-template-rows: repeat(7, 1lh) minmax(0, auto);
+                align-content: start;
+                grid-column: 2;
+                grid-row: 1 / 3;
+                overflow: hidden;
+                color: #6f6f6f;
+            }
+
+            .heph-demo-evidence-heading,
+            .heph-demo-evidence-meta,
+            .heph-demo-evidence-detail {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .heph-demo-evidence-heading {
+                grid-row: 1;
+                color: #8f8f8f;
+            }
+
+            .heph-demo-evidence-meta {
+                grid-row: 2;
+            }
+
+            .heph-demo-evidence-list {
+                grid-row: 4;
+                display: flex;
+                flex-wrap: nowrap;
+                align-items: center;
+                gap: 1ch;
+                height: 1lh;
+                overflow: hidden;
+            }
+
+            .heph-demo-evidence-item {
+                min-width: 0;
+                display: inline-flex;
+                align-items: center;
+                padding: 0;
+                border: 0;
+                background: none;
+                color: #6f6f6f;
+                font: inherit;
+                text-align: left;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                appearance: none;
+                cursor: pointer;
+            }
+
+            @media (hover: hover) {
+                .heph-demo-evidence-item:hover,
+                .heph-demo-citation-button:hover {
+                    color: #cfcfcf;
+                }
+            }
+
+            .heph-demo-evidence-item.is-active {
+                color: #ffffff;
+            }
+
+            .heph-demo-evidence-item:focus:not(:focus-visible),
+            .heph-demo-citation-button:focus:not(:focus-visible),
+            .heph-demo-input:focus:not(:focus-visible) {
+                outline: none;
+            }
+
+            .heph-demo-evidence-item:focus-visible,
+            .heph-demo-citation-button:focus-visible {
+                outline: 1px solid #8f8f8f;
+                outline-offset: 3px;
+            }
+
+            .heph-demo-input:focus-visible {
+                outline: none;
+            }
+
+            .heph-demo-evidence-open {
+                grid-row: 6;
+                height: 1lh;
+                color: #8f8f8f;
+            }
+
+            .heph-demo-evidence-title {
+                grid-row: 7;
+                height: 1lh;
+                color: #cfcfcf;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .heph-demo-evidence-detail {
+                grid-row: 8;
+                color: #4d4d4d;
+                display: -webkit-box;
+                white-space: normal;
+                -webkit-line-clamp: 5;
+                -webkit-box-orient: vertical;
+            }
+
+            .heph-demo-composer {
+                align-items: center;
+                grid-column: 1 / -1;
+                grid-row: 3;
+                margin-top: 1lh;
+                padding: 0;
+                position: relative;
+            }
+
+            .heph-demo-composer:focus-within {
+                background: #191919;
+            }
+
+            .heph-demo-composer-label {
+                flex: none;
+                width: 1ch;
+                height: 1lh;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 1ch;
+                padding: 0;
+                color: #cfcfcf;
+            }
+
+            .heph-demo-composer-arrow {
+                font-family:
+                    "Geist Mono Arrow",
+                    "Geist Mono",
+                    "SFMono-Regular",
+                    "SF Mono",
+                    "Menlo",
+                    "Consolas",
+                    monospace;
+            }
+
+            .heph-demo-cursor {
+                width: 1ch;
+                height: 1lh;
+                position: absolute;
+                top: 50%;
+                left: 2ch;
+                opacity: 0;
+                background: #cfcfcf;
+                pointer-events: none;
+                transform: translateY(-50%);
+            }
+
+            .heph-demo-composer.is-empty .heph-demo-input {
+                padding-left: 1ch;
+                caret-color: transparent;
+            }
+
+            .heph-demo-composer.is-empty:not(.is-running) .heph-demo-cursor {
+                animation: heph-demo-cursor-blink 1s steps(1, end) infinite;
+            }
+
+            @keyframes heph-demo-cursor-blink {
+                0%,
+                49% {
+                    opacity: 0.9;
+                }
+
+                50%,
+                100% {
+                    opacity: 0;
+                }
+            }
+
+            .heph-demo-input {
+                width: 100%;
+                min-width: 0;
+                height: 1lh;
+                box-sizing: border-box;
+                border: 0;
+                background: transparent;
+                color: #cfcfcf;
+                caret-color: #cfcfcf;
+                font: inherit;
+                line-height: inherit;
+                padding: 0;
+                border-radius: 0;
+                appearance: none;
+            }
+
+            .heph-demo-input:focus {
+                outline: none;
+            }
+
+            .heph-demo-input::placeholder {
+                color: #4d4d4d;
+                opacity: 1;
+            }
+
+            .heph-demo-command-row {
+                min-width: 0;
+                height: 1lh;
+                display: flex;
+                grid-column: 1 / -1;
+                grid-row: 4;
+                align-items: center;
+                color: #8f8f8f;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+
+            .heph-demo-command-row b {
+                color: #6f6f6f;
+                font-weight: 400;
+            }
+
+            .heph-demo-command-row span + span {
+                margin-left: 2ch;
+            }
+
+            @supports not (height: 1cqw) {
+                .heph-demo-shell {
+                    aspect-ratio: 16 / 9;
+                    min-height: 360px;
+                    height: auto;
+                }
+            }
+
+            @container (min-width: 900px) {
+                .heph-demo-shell {
+                    height: 720px;
+                }
+            }
+
+            @container (max-width: 700px) {
+                .heph-demo-shell {
+                    height: 460px;
+                }
+
+                .heph-demo-status {
+                    gap: 1.5ch;
+                }
+
+                .heph-demo-terminal {
+                    grid-template-columns: minmax(0, 1fr) clamp(12ch, 24%, 18ch);
+                    column-gap: 1.5ch;
+                }
+
+                .heph-demo-prompt {
+                    padding: 0 2ch;
+                }
+            }
+
+            @container (max-width: 560px) {
+                .heph-demo-terminal {
+                    grid-template-columns: minmax(0, 1fr);
+                    column-gap: 0;
+                }
+
+                .heph-demo-evidence {
+                    display: none;
+                }
+            }
+
+            @container (max-width: 460px) {
+                .heph-demo-shell {
+                    height: 420px;
+                }
+
+                .heph-demo-titlebar {
+                    height: 32px;
+                    grid-template-columns: 54px minmax(0, 1fr) 54px;
+                    padding: 0 10px;
+                }
+
+                .heph-demo-window-controls {
+                    gap: 6px;
+                }
+
+                .heph-demo-window-control {
+                    width: 8px;
+                    height: 8px;
+                }
+
+                .heph-demo-status {
+                    gap: 1ch;
+                }
+
+                .heph-demo-prompt {
+                    padding: 0 2ch;
+                }
+
+                .heph-demo-line {
+                    margin-bottom: 0.75lh;
+                }
+
+                .heph-demo-evidence-list {
+                    gap: 0.75ch;
+                }
+
+                .heph-demo-evidence-detail {
+                    display: none;
+                }
+
+            }
+
             .image-wrapper:focus-visible,
             .gallery-item:focus-visible {
                 outline: 1px solid var(--text-primary);
@@ -1248,22 +1781,9 @@
                 margin-bottom: var(--section-gap);
             }
 
-            .profile-summary .section-title,
-            .contact-section .section-title {
+            .profile-summary .section-title {
                 color: var(--text-primary);
                 margin-bottom: var(--section-content-gap);
-            }
-
-            .contact-section {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                row-gap: var(--section-content-gap);
-                margin-bottom: var(--section-gap);
-            }
-
-            .contact-section .section-title {
-                margin-bottom: 0;
             }
 
             .profile-copy {
@@ -1444,13 +1964,11 @@
                     margin-bottom: var(--section-gap);
                 }
 
-                .contact-section {
-                    grid-column: 1 / -1;
-                    order: 3;
-                    margin-bottom: var(--section-gap);
+                .showcase {
+                    margin-bottom: 80px;
                 }
 
-                .showcase {
+                .heph-demo {
                     margin-bottom: 80px;
                 }
 
@@ -1549,7 +2067,7 @@
                     <h1 class="name" id="site-title" itemprop="name">Gil Rodrigues</h1>
                     <nav
                         class="links"
-                        aria-label="Public profiles and projects"
+                        aria-label="Public profiles and contact"
                     >
                         <p class="links-label">Links</p>
                         <a
@@ -1576,20 +2094,20 @@
                             rel="me noopener noreferrer"
                             >LinkedIn</a
                         >
-                        <p class="links-label projects-label">Projects</p>
-                        <a
-                            class="external-link"
-                            href="https://www.behance.net/gallery/75409663/CURVES-Free-Font"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            >CURVES</a
+                        <p class="links-label contact-label">Contact</p>
+                        <button
+                            class="email"
+                            type="button"
+                            aria-label="Copy hi@gildrb.com"
                         >
+                            hi@gildrb.com
+                        </button>
                         <a
                             class="external-link"
-                            href="https://github.com/gildrb/heph"
+                            href="https://signal.me/#eu/KlFnTOEoXJTxUNhl9y4U4-QzunoZj6eX2BrkGYibTNUmKw8OszhNgaKd-aoseeUZ"
                             target="_blank"
                             rel="noopener noreferrer"
-                            >Heph</a
+                            >Signal</a
                         >
                     </nav>
                     <button
@@ -1635,24 +2153,6 @@
                         </p>
                     </section>
 
-                    <section class="contact-section">
-                        <h2 class="section-title">Contact</h2>
-                        <button
-                            class="email"
-                            type="button"
-                            aria-label="Copy hi@gildrb.com"
-                        >
-                            hi@gildrb.com
-                        </button>
-                        <a
-                            class="external-link"
-                            href="https://signal.me/#eu/KlFnTOEoXJTxUNhl9y4U4-QzunoZj6eX2BrkGYibTNUmKw8OszhNgaKd-aoseeUZ"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            >Signal</a
-                        >
-                    </section>
-
                     <section
                         class="portfolio-section"
                         aria-labelledby="portfolio-title"
@@ -1660,6 +2160,215 @@
                         <h2 class="portfolio-label" id="portfolio-title">
                             Portfolio
                         </h2>
+                        <h3 class="section-title" id="portfolio-heph-title">
+                            <a
+                                class="external-link"
+                                href="https://github.com/gildrb/heph"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >Heph</a
+                            >
+                        </h3>
+                        <section
+                            class="heph-demo"
+                            aria-labelledby="portfolio-heph-title"
+                        >
+                            <div
+                                class="heph-demo-shell"
+                                aria-label="Simulated Heph interface using public domain materials"
+                            >
+                                <div
+                                    class="heph-demo-titlebar"
+                                    aria-hidden="true"
+                                >
+                                    <span class="heph-demo-window-controls">
+                                        <span
+                                            class="heph-demo-window-control close"
+                                        ></span>
+                                        <span
+                                            class="heph-demo-window-control minimize"
+                                        ></span>
+                                        <span
+                                            class="heph-demo-window-control zoom"
+                                        ></span>
+                                    </span>
+                                    <span class="heph-demo-window-title">
+                                        Heph
+                                    </span>
+                                    <span></span>
+                                </div>
+                                <div class="heph-demo-terminal">
+                                    <div class="heph-demo-status">
+                                        <strong>Heph</strong>
+                                        <span>ARMORY <b>classics</b></span>
+                                        <span>MODEL <b>gpt-5.5</b></span>
+                                        <span>REASONING <b>low</b></span>
+                                    </div>
+                                    <div class="heph-demo-body">
+                                        <div class="heph-demo-transcript">
+                                            <div class="heph-demo-prompt">
+                                                What are these materials about?
+                                            </div>
+                                            <div
+                                                class="heph-demo-output"
+                                                aria-live="polite"
+                                                data-heph-demo-log
+                                            >
+                                                <p
+                                                    class="heph-demo-line muted materials-summary"
+                                                >
+                                                    materials: index 4 sources / 118 chunks; using 4 evidence excerpts from 4 public sources. Details: /evidence
+                                                </p>
+                                                <p class="heph-demo-line">
+                                                    The classics armory contains public domain fiction about strange worlds, ambition, deduction, and gothic pursuit: Alice enters an absurd rule-bound dream world
+                                                    <button
+                                                        class="heph-demo-citation-button"
+                                                        type="button"
+                                                        data-evidence-id="E1"
+                                                        data-evidence-title="Alice's Adventures in Wonderland"
+                                                        data-evidence-detail="Lewis Carroll's public domain novel follows Alice into a world of unstable rules, riddles, and strange authority."
+                                                    >
+                                                        [E1]</button
+                                                    >, Victor Frankenstein recounts the cost of creating life
+                                                    <button
+                                                        class="heph-demo-citation-button"
+                                                        type="button"
+                                                        data-evidence-id="E2"
+                                                        data-evidence-title="Frankenstein"
+                                                        data-evidence-detail="Mary Shelley's public domain novel centers ambition, responsibility, and the consequences of creating life."
+                                                    >
+                                                        [E2]</button
+                                                    >, Holmes solves cases through close observation
+                                                    <button
+                                                        class="heph-demo-citation-button"
+                                                        type="button"
+                                                        data-evidence-id="E3"
+                                                        data-evidence-title="The Adventures of Sherlock Holmes"
+                                                        data-evidence-detail="Arthur Conan Doyle's public domain stories show Holmes turning small observations into evidence-backed conclusions."
+                                                    >
+                                                        [E3]</button
+                                                    >, and Dracula frames a hunt through diaries, letters, and records
+                                                    <button
+                                                        class="heph-demo-citation-button"
+                                                        type="button"
+                                                        data-evidence-id="E4"
+                                                        data-evidence-title="Dracula"
+                                                        data-evidence-detail="Bram Stoker's public domain novel uses journals, letters, and documents to assemble a gothic pursuit."
+                                                    >
+                                                        [E4]</button
+                                                    >.
+                                                </p>
+                                                <p class="heph-demo-line sources">
+                                                    sources: E1 E2 E3 E4. Open one with /evidence.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <aside
+                                            class="heph-demo-evidence"
+                                            aria-label="Demo evidence materials"
+                                        >
+                                            <p class="heph-demo-evidence-heading">
+                                                EVIDENCE
+                                            </p>
+                                            <p class="heph-demo-evidence-meta">
+                                                EXCERPTS 4
+                                            </p>
+                                            <div class="heph-demo-evidence-list">
+                                                <button
+                                                    class="heph-demo-evidence-item is-active"
+                                                    type="button"
+                                                    data-evidence-id="E1"
+                                                    data-evidence-title="Alice's Adventures in Wonderland"
+                                                    data-evidence-detail="Lewis Carroll's public domain novel follows Alice into a world of unstable rules, riddles, and strange authority."
+                                                >
+                                                    E1
+                                                </button>
+                                                <button
+                                                    class="heph-demo-evidence-item"
+                                                    type="button"
+                                                    data-evidence-id="E2"
+                                                    data-evidence-title="Frankenstein"
+                                                    data-evidence-detail="Mary Shelley's public domain novel centers ambition, responsibility, and the consequences of creating life."
+                                                >
+                                                    E2
+                                                </button>
+                                                <button
+                                                    class="heph-demo-evidence-item"
+                                                    type="button"
+                                                    data-evidence-id="E3"
+                                                    data-evidence-title="The Adventures of Sherlock Holmes"
+                                                    data-evidence-detail="Arthur Conan Doyle's public domain stories show Holmes turning small observations into evidence-backed conclusions."
+                                                >
+                                                    E3
+                                                </button>
+                                                <button
+                                                    class="heph-demo-evidence-item"
+                                                    type="button"
+                                                    data-evidence-id="E4"
+                                                    data-evidence-title="Dracula"
+                                                    data-evidence-detail="Bram Stoker's public domain novel uses journals, letters, and documents to assemble a gothic pursuit."
+                                                >
+                                                    E4
+                                                </button>
+                                            </div>
+                                            <p
+                                                class="heph-demo-evidence-open"
+                                                data-heph-demo-evidence-open
+                                            >
+                                                OPEN E1
+                                            </p>
+                                            <p
+                                                class="heph-demo-evidence-title"
+                                                data-heph-demo-evidence-title
+                                            >
+                                                Alice's Adventures in Wonderland
+                                            </p>
+                                            <p
+                                                class="heph-demo-evidence-detail"
+                                                data-heph-demo-detail
+                                            >
+                                                Lewis Carroll's public domain novel follows Alice into a world of unstable rules, riddles, and strange authority.
+                                            </p>
+                                        </aside>
+                                    </div>
+                                    <form
+                                        class="heph-demo-composer is-empty"
+                                        aria-label="Ask the simulated Heph demo"
+                                        data-heph-demo-form
+                                    >
+                                        <span
+                                            class="heph-demo-composer-label"
+                                            aria-hidden="true"
+                                            ><span
+                                                class="heph-demo-composer-arrow"
+                                                >→</span
+                                            ></span
+                                        >
+                                        <span
+                                            class="heph-demo-cursor"
+                                            aria-hidden="true"
+                                        ></span>
+                                        <input
+                                            class="heph-demo-input"
+                                            type="text"
+                                            autocomplete="off"
+                                            spellcheck="false"
+                                            placeholder="Ask Heph about these materials"
+                                            data-heph-demo-input
+                                        />
+                                    </form>
+                                    <div
+                                        class="heph-demo-command-row"
+                                        aria-hidden="true"
+                                    >
+                                        <span>ARMORY <b>ctrl+a</b></span>
+                                        <span>MATERIALS <b>ctrl+o</b></span>
+                                        <span>COMMANDS <b>ctrl+p</b></span>
+                                        <span>REASONING <b>shift+tab</b></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                         <h3 class="section-title" id="portfolio-filen-title">
                             <a
                                 class="external-link"
@@ -2176,6 +2885,346 @@
                     }, 1500);
                 });
 
+            const hephDemoDetail = document.querySelector(
+                "[data-heph-demo-detail]",
+            );
+            const hephDemoEvidenceOpen = document.querySelector(
+                "[data-heph-demo-evidence-open]",
+            );
+            const hephDemoEvidenceTitle = document.querySelector(
+                "[data-heph-demo-evidence-title]",
+            );
+            const hephDemoEvidenceItems = document.querySelectorAll(
+                ".heph-demo-evidence-item",
+            );
+            const hephDemoEvidenceControls = document.querySelectorAll(
+                ".heph-demo-evidence-item, .heph-demo-citation-button",
+            );
+            const hephDemoPrompt = document.querySelector(
+                ".heph-demo-prompt",
+            );
+            const hephDemoEvidenceMeta = document.querySelector(
+                ".heph-demo-evidence-meta",
+            );
+            const hephDemoCommandRow = document.querySelector(
+                ".heph-demo-command-row",
+            );
+            const hephDemoDefaultCommandRow =
+                hephDemoCommandRow?.innerHTML || "";
+            const hephDemoMaterials = [
+                {
+                    id: "E1",
+                    title: "Alice's Adventures in Wonderland",
+                    file: "Alice's Adventures in Wonderland.txt",
+                    excerpt:
+                        "Alice follows a white rabbit into a rule-shifting world of questions, trials, and sudden changes in scale.",
+                    detail:
+                        "Alice turns nonsense into structure: unstable rules are the material, not a break from it.",
+                },
+                {
+                    id: "E2",
+                    title: "Frankenstein",
+                    file: "Frankenstein.txt",
+                    excerpt:
+                        "Victor Frankenstein frames creation as ambition, responsibility, secrecy, and the cost of refusing care.",
+                    detail:
+                        "Frankenstein is built from nested testimony, so the horror arrives through an evidence chain.",
+                },
+                {
+                    id: "E3",
+                    title: "The Adventures of Sherlock Holmes",
+                    file: "The Adventures of Sherlock Holmes.txt",
+                    excerpt:
+                        "Holmes turns small observations into testable claims, then explains the reasoning after the case resolves.",
+                    detail:
+                        "The Holmes stories make inference visible: tiny physical details become cited conclusions.",
+                },
+                {
+                    id: "E4",
+                    title: "Dracula",
+                    file: "Dracula.txt",
+                    excerpt:
+                        "Diaries, letters, clippings, and logs make the pursuit feel like a shared dossier assembled over time.",
+                    detail:
+                        "Dracula works like a collaborative archive: each narrator contributes a partial record.",
+                },
+            ];
+            let hephDemoRunId = 0;
+            let hephDemoRunTimers = [];
+
+            function setActiveHephDemoEvidence(item) {
+                if (!item || !hephDemoDetail) return;
+
+                const evidenceId = item.dataset.evidenceId;
+
+                hephDemoEvidenceItems.forEach((evidenceItem) => {
+                    evidenceItem.classList.toggle(
+                        "is-active",
+                        evidenceItem.dataset.evidenceId === evidenceId,
+                    );
+                });
+
+                if (hephDemoEvidenceOpen) {
+                    hephDemoEvidenceOpen.textContent = `OPEN ${evidenceId}`;
+                }
+
+                if (hephDemoEvidenceTitle) {
+                    hephDemoEvidenceTitle.textContent =
+                        item.dataset.evidenceTitle || "";
+                }
+
+                hephDemoDetail.textContent = item.dataset.evidenceDetail || "";
+            }
+
+            function setActiveHephDemoEvidenceId(evidenceId) {
+                const item = Array.from(hephDemoEvidenceItems).find(
+                    (evidenceItem) =>
+                        evidenceItem.dataset.evidenceId === evidenceId,
+                );
+
+                setActiveHephDemoEvidence(item);
+            }
+
+            function shuffleHephDemoMaterials() {
+                return hephDemoMaterials
+                    .map((material) => ({
+                        material,
+                        order: Math.random(),
+                    }))
+                    .sort((left, right) => left.order - right.order)
+                    .map(({ material }) => material);
+            }
+
+            function clearHephDemoRunTimers() {
+                hephDemoRunTimers.forEach((timer) => clearTimeout(timer));
+                hephDemoRunTimers = [];
+            }
+
+            function scheduleHephDemoStep(runId, delay, callback) {
+                const timer = setTimeout(() => {
+                    if (runId !== hephDemoRunId) return;
+                    callback();
+                }, delay);
+
+                hephDemoRunTimers.push(timer);
+            }
+
+            function setHephDemoRunning(isRunning) {
+                hephDemoInput.readOnly = isRunning;
+                hephDemoForm?.classList.toggle("is-running", isRunning);
+                syncHephDemoComposerCursor();
+
+                if (hephDemoEvidenceMeta) {
+                    hephDemoEvidenceMeta.textContent = isRunning
+                        ? "writing response"
+                        : "EXCERPTS 4";
+                }
+
+                if (hephDemoCommandRow) {
+                    hephDemoCommandRow.innerHTML = isRunning
+                        ? "<span>STOP <b>esc</b></span><span>EXIT <b>ctrl+c</b></span>"
+                        : hephDemoDefaultCommandRow;
+                }
+            }
+
+            function openHephDemoEvidence(item) {
+                const evidenceId = item.dataset.evidenceId;
+                const title = item.dataset.evidenceTitle || evidenceId;
+                if (!evidenceId) return;
+
+                setActiveHephDemoEvidence(item);
+                hephDemoLog
+                    .querySelectorAll(".heph-demo-evidence-dynamic")
+                    .forEach((line) => line.remove());
+                appendHephDemoLine(
+                    `→ /evidence ${evidenceId} open`,
+                    "muted heph-demo-evidence-dynamic",
+                );
+                appendHephDemoLine(
+                    `OPEN ${evidenceId} ${title}`,
+                    "heph-demo-response heph-demo-evidence-dynamic",
+                );
+                hephDemoInput.value = "";
+                syncHephDemoComposerCursor();
+                trackEvent("Heph Demo Evidence Open", {
+                    evidence: evidenceId,
+                });
+                announce(`${evidenceId} evidence opened`);
+            }
+
+            hephDemoEvidenceControls.forEach((item) => {
+                item.addEventListener("pointerenter", () =>
+                    setActiveHephDemoEvidence(item),
+                );
+                item.addEventListener("focus", () =>
+                    setActiveHephDemoEvidence(item),
+                );
+                item.addEventListener("click", (event) => {
+                    openHephDemoEvidence(item);
+                    if (event.detail > 0) item.blur();
+                });
+            });
+
+            const hephDemoForm = document.querySelector(
+                "[data-heph-demo-form]",
+            );
+            const hephDemoInput = document.querySelector(
+                "[data-heph-demo-input]",
+            );
+            const hephDemoLog = document.querySelector("[data-heph-demo-log]");
+
+            function syncHephDemoComposerCursor() {
+                hephDemoForm?.classList.toggle(
+                    "is-empty",
+                    !hephDemoInput.value,
+                );
+            }
+
+            function appendHephDemoLine(text, className) {
+                const line = document.createElement("p");
+                line.className = `heph-demo-line heph-demo-dynamic ${className}`;
+                line.textContent = text;
+                hephDemoLog.append(line);
+                hephDemoLog.scrollTop = hephDemoLog.scrollHeight;
+            }
+
+            syncHephDemoComposerCursor();
+
+            function startHephDemoRetrieval(prompt, options = {}) {
+                hephDemoRunId += 1;
+                clearHephDemoRunTimers();
+
+                const runId = hephDemoRunId;
+                const shouldFocusInput = options.focusInput !== false;
+                const sampledMaterials = shuffleHephDemoMaterials();
+                const featuredMaterial = sampledMaterials[0];
+                const sourceList = sampledMaterials
+                    .map((material) => `@${material.file}`)
+                    .join(", ");
+
+                if (hephDemoPrompt) {
+                    hephDemoPrompt.textContent = prompt;
+                }
+
+                hephDemoInput.value = "";
+                syncHephDemoComposerCursor();
+                hephDemoLog.replaceChildren();
+                setHephDemoRunning(true);
+
+                const steps = [
+                    {
+                        text: "Preparing the material index and reading enabled evidence for a corpus overview.",
+                    },
+                    {
+                        text: "Material index ready: 4 enabled sources, 118 chunks.",
+                    },
+                    {
+                        text: "Sampling corpus overview: 4 excerpts from 4 of 4 indexed sources.",
+                    },
+                    ...sampledMaterials.map((material, index) => ({
+                        evidenceId: material.id,
+                        text: `Opened materials/${material.file}#chunk=${index + 1}: ${material.excerpt}`,
+                    })),
+                    {
+                        text: `Using 4 overview evidence excerpts from 4 of 4 indexed sources: ${sourceList}.`,
+                    },
+                    {
+                        text: "Writing a grounded classics overview.",
+                    },
+                    {
+                        text: "Ran model request gpt-5.5 (turn 1, 3 message(s), 0 tool schema(s)).",
+                    },
+                    {
+                        text: "Read first model delta from gpt-5.5 in 1.9s.",
+                    },
+                    {
+                        text: "Read complete model response from gpt-5.5: 428 character(s), 0 tool call(s) in 5.0s.",
+                    },
+                ];
+
+                steps.forEach((step, index) => {
+                    scheduleHephDemoStep(runId, 140 + index * 150, () => {
+                        if (step.evidenceId) {
+                            setActiveHephDemoEvidenceId(step.evidenceId);
+                        }
+
+                        appendHephDemoLine(step.text, "muted");
+                    });
+                });
+
+                const responseDelay = 140 + steps.length * 150 + 120;
+                scheduleHephDemoStep(runId, responseDelay, () => {
+                    appendHephDemoLine(
+                        `The classics armory contains public domain fiction about unstable rules, ambition, deduction, and documentary pursuit. Alice turns logic into a moving target [E1], Frankenstein treats creation as responsibility and consequence [E2], Holmes makes inference visible through observation [E3], and Dracula builds fear from assembled records [E4]. A useful detail: ${featuredMaterial.detail}`,
+                        "heph-demo-response",
+                    );
+                });
+
+                scheduleHephDemoStep(runId, responseDelay + 170, () => {
+                    appendHephDemoLine(
+                        "sources: E1 Alice's Adventures in Wonderland; E2 Frankenstein; E3 The Adventures of Sherlock Holmes; E4 Dracula. Details: /evidence",
+                        "sources",
+                    );
+                });
+
+                scheduleHephDemoStep(runId, responseDelay + 220, () => {
+                    setHephDemoRunning(false);
+                    hephDemoInput.value = "";
+                    syncHephDemoComposerCursor();
+                    if (shouldFocusInput) {
+                        hephDemoInput.focus();
+                    }
+                    announce("Heph demo response added");
+                });
+            }
+
+            window.setTimeout(() => {
+                if (
+                    document.activeElement === hephDemoInput ||
+                    hephDemoInput.value ||
+                    hephDemoInput.readOnly
+                ) {
+                    return;
+                }
+
+                startHephDemoRetrieval("What are these materials about?", {
+                    focusInput: false,
+                });
+            }, 500);
+
+            hephDemoInput?.addEventListener("input", () => {
+                syncHephDemoComposerCursor();
+            });
+
+            hephDemoInput?.addEventListener("keydown", (event) => {
+                if (
+                    event.key !== "Enter" ||
+                    event.shiftKey ||
+                    event.altKey ||
+                    event.ctrlKey ||
+                    event.metaKey
+                ) {
+                    return;
+                }
+
+                event.preventDefault();
+                hephDemoForm.requestSubmit();
+            });
+
+            hephDemoForm?.addEventListener("submit", (event) => {
+                event.preventDefault();
+                if (hephDemoInput.readOnly) return;
+
+                const prompt = hephDemoInput.value.trim();
+                if (!prompt) {
+                    hephDemoInput.focus();
+                    return;
+                }
+
+                startHephDemoRetrieval(prompt);
+                trackEvent("Heph Demo Submit");
+            });
+
             const imagePreview = document.querySelector(".image-preview");
             const previewImage = imagePreview.querySelector("img");
             const previewImageCache = new Map();
@@ -2360,16 +3409,13 @@
 
             // Arrow key navigation
             function getArrowNavigationItems() {
-                const contactItems = document.querySelectorAll(
-                    ".contact-section a[href], .contact-section button:not([disabled])",
-                );
-
                 return [
-                    ...document.querySelectorAll(".links a"),
-                    ...contactItems,
+                    ...document.querySelectorAll(
+                        ".links a[href], .links button:not([disabled])",
+                    ),
                     themeToggle,
                     ...document.querySelectorAll(
-                        "main :not(.contact-section) a[href], main :not(.contact-section) button:not([disabled])",
+                        "main a[href], main button:not([disabled]), main input:not([disabled])",
                     ),
                 ].filter(Boolean);
             }
