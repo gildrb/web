@@ -3277,20 +3277,6 @@
                 });
             }
 
-            window.setTimeout(() => {
-                if (
-                    document.activeElement === hephDemoInput ||
-                    hephDemoInput.value ||
-                    hephDemoInput.readOnly
-                ) {
-                    return;
-                }
-
-                startHephDemoRetrieval("What are these materials about?", {
-                    resetTranscript: true,
-                });
-            }, 500);
-
             hephDemoInput?.addEventListener("input", () => {
                 syncHephDemoComposerCursor();
             });
