@@ -1389,6 +1389,7 @@
             .heph-demo-output-rail {
                 min-width: 0;
                 flex: none;
+                transform: translateY(var(--heph-demo-scroll-offset, 0px));
             }
 
             .heph-demo-line {
@@ -3125,8 +3126,25 @@
             }
 
             function scrollHephDemoTranscriptToEnd() {
-                if (!hephDemoLog) return;
-                hephDemoLog.scrollTop = 1000000;
+                if (!hephDemoLog || !hephDemoRail) return;
+
+                const lineHeight = Number.parseFloat(
+                    window.getComputedStyle(hephDemoRail).lineHeight,
+                );
+                const rawOffset = Math.max(
+                    0,
+                    hephDemoRail.scrollHeight - hephDemoLog.clientHeight,
+                );
+                const offset =
+                    Number.isFinite(lineHeight) && lineHeight > 0
+                        ? Math.ceil(rawOffset / lineHeight) * lineHeight
+                        : rawOffset;
+
+                hephDemoLog.scrollTop = 0;
+                hephDemoRail.style.setProperty(
+                    "--heph-demo-scroll-offset",
+                    `${-offset}px`,
+                );
             }
 
             function appendHephDemoLine(text, className) {
@@ -3144,6 +3162,17 @@
 
                 return promptLine;
             }
+
+            const hephDemoResizeObserver =
+                "ResizeObserver" in window
+                    ? new ResizeObserver(scrollHephDemoTranscriptToEnd)
+                    : null;
+            if (hephDemoLog) hephDemoResizeObserver?.observe(hephDemoLog);
+            if (hephDemoRail) hephDemoResizeObserver?.observe(hephDemoRail);
+            document.fonts?.ready
+                ?.then(scrollHephDemoTranscriptToEnd)
+                .catch(() => {});
+            window.addEventListener("resize", scrollHephDemoTranscriptToEnd);
 
             syncHephDemoComposerCursor();
 
