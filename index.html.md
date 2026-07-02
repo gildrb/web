@@ -38,6 +38,12 @@ Gil Rodrigues, also known as gildrb, is the public display name of Gil Domingos 
 
 Gil Rodrigues is a design engineer studying artificial intelligence and data science. He builds software, interfaces, logos, and identity systems.
 
+## Portfolio
+
+### Heph
+
+[Heph](https://github.com/gildrb/heph) is shown on the homepage through a terminal-style product demo. The demo presents Heph as a local document workspace that indexes armory materials, samples retrieved evidence, and writes cited answers that can be inspected with `/evidence`.
+
 ## Public profiles
 
 - [Behance](https://behance.net/gildrb)

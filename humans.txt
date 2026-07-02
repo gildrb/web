@@ -25,6 +25,10 @@ Gil Rodrigues is the public display name of Gil Domingos Rodrigues Barbosa, also
 
 Gil, Gil Rodrigues, Gil Rodrigues Barbosa, Gil Domingos Rodrigues Barbosa, and gildrb all refer to the same person represented by this website.
 
+## Portfolio
+
+- Heph: Local document workspace shown on the homepage through a terminal-style product demo. The demo shows Heph indexing armory materials, sampling retrieved evidence, and writing cited answers that can be inspected with `/evidence`. Source: https://github.com/gildrb/heph
+
 ## References
 
 The Markdown homepage is available at [index.html.md](https://gildrb.com/index.html.md), the LLM reference is available at [llms.txt](https://gildrb.com/llms.txt) and [well-known llms.txt](https://gildrb.com/.well-known/llms.txt), the WebFinger identity document is available at [well-known webfinger](https://gildrb.com/.well-known/webfinger), host metadata is available at [host-meta](https://gildrb.com/.well-known/host-meta) and [host-meta.json](https://gildrb.com/.well-known/host-meta.json), the machine-readable profile is available at [profile.json](https://gildrb.com/profile.json), and URL discovery is available through [sitemap.xml](https://gildrb.com/sitemap.xml).
