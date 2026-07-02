@@ -1577,7 +1577,11 @@
             .heph-demo-evidence-detail {
                 grid-row: 8;
                 color: var(--heph-terminal-muted);
+                display: -webkit-box;
                 overflow-wrap: break-word;
+                overflow: hidden;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 8;
             }
 
             .heph-demo-composer {
@@ -2991,6 +2995,9 @@
             const hephDemoEvidenceMeta = document.querySelector(
                 ".heph-demo-evidence-meta",
             );
+            const hephDemoEvidencePanel = document.querySelector(
+                ".heph-demo-evidence",
+            );
             const hephDemoCommandRow = document.querySelector(
                 ".heph-demo-command-row",
             );
@@ -3042,6 +3049,49 @@
             ];
             let hephDemoRunId = 0;
             let hephDemoRunTimers = [];
+            let hephDemoEvidenceClampFrame = 0;
+
+            function syncHephDemoEvidenceDetailClamp() {
+                cancelAnimationFrame(hephDemoEvidenceClampFrame);
+
+                hephDemoEvidenceClampFrame = requestAnimationFrame(() => {
+                    if (!hephDemoEvidencePanel || !hephDemoDetail) return;
+
+                    const panelStyle = window.getComputedStyle(
+                        hephDemoEvidencePanel,
+                    );
+                    if (panelStyle.display === "none") return;
+
+                    const detailStyle =
+                        window.getComputedStyle(hephDemoDetail);
+                    const lineHeight = Number.parseFloat(
+                        detailStyle.lineHeight,
+                    );
+                    if (!Number.isFinite(lineHeight) || lineHeight <= 0) {
+                        return;
+                    }
+
+                    const panelRect =
+                        hephDemoEvidencePanel.getBoundingClientRect();
+                    const detailRect = hephDemoDetail.getBoundingClientRect();
+                    const paddingBottom = Number.parseFloat(
+                        panelStyle.paddingBottom,
+                    );
+                    const availableHeight = Math.max(
+                        0,
+                        panelRect.bottom - paddingBottom - detailRect.top,
+                    );
+                    const lineCount = Math.max(
+                        1,
+                        Math.floor(availableHeight / lineHeight),
+                    );
+
+                    hephDemoDetail.style.setProperty(
+                        "-webkit-line-clamp",
+                        String(lineCount),
+                    );
+                });
+            }
 
             function setActiveHephDemoEvidence(item) {
                 if (!item || !hephDemoDetail) return;
@@ -3065,6 +3115,7 @@
                 }
 
                 hephDemoDetail.textContent = item.dataset.evidenceDetail || "";
+                syncHephDemoEvidenceDetailClamp();
             }
 
             function setActiveHephDemoEvidenceId(evidenceId) {
@@ -3225,16 +3276,29 @@
 
             const hephDemoResizeObserver =
                 "ResizeObserver" in window
-                    ? new ResizeObserver(scrollHephDemoTranscriptToEnd)
+                    ? new ResizeObserver(() => {
+                          scrollHephDemoTranscriptToEnd();
+                          syncHephDemoEvidenceDetailClamp();
+                      })
                     : null;
             if (hephDemoLog) hephDemoResizeObserver?.observe(hephDemoLog);
             if (hephDemoRail) hephDemoResizeObserver?.observe(hephDemoRail);
+            if (hephDemoEvidencePanel) {
+                hephDemoResizeObserver?.observe(hephDemoEvidencePanel);
+            }
             document.fonts?.ready
-                ?.then(scrollHephDemoTranscriptToEnd)
+                ?.then(() => {
+                    scrollHephDemoTranscriptToEnd();
+                    syncHephDemoEvidenceDetailClamp();
+                })
                 .catch(() => {});
-            window.addEventListener("resize", scrollHephDemoTranscriptToEnd);
+            window.addEventListener("resize", () => {
+                scrollHephDemoTranscriptToEnd();
+                syncHephDemoEvidenceDetailClamp();
+            });
 
             syncHephDemoComposerCursor();
+            syncHephDemoEvidenceDetailClamp();
 
             function startHephDemoRetrieval(prompt, options = {}) {
                 hephDemoRunId += 1;
