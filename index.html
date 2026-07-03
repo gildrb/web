@@ -3118,12 +3118,15 @@
                 syncHephDemoEvidenceDetailClamp();
             }
 
-            function setActiveHephDemoEvidenceId(evidenceId) {
-                const item = Array.from(hephDemoEvidenceItems).find(
+            function getHephDemoEvidenceItem(evidenceId) {
+                return Array.from(hephDemoEvidenceItems).find(
                     (evidenceItem) =>
                         evidenceItem.dataset.evidenceId === evidenceId,
                 );
+            }
 
+            function setActiveHephDemoEvidenceId(evidenceId) {
+                const item = getHephDemoEvidenceItem(evidenceId);
                 setActiveHephDemoEvidence(item);
             }
 
@@ -3171,10 +3174,15 @@
 
             function openHephDemoEvidence(item) {
                 const evidenceId = item.dataset.evidenceId;
-                const title = item.dataset.evidenceTitle || evidenceId;
                 if (!evidenceId) return;
 
-                setActiveHephDemoEvidence(item);
+                const evidenceItem = getHephDemoEvidenceItem(evidenceId) || item;
+                const title =
+                    evidenceItem.dataset.evidenceTitle ||
+                    item.dataset.evidenceTitle ||
+                    evidenceId;
+
+                setActiveHephDemoEvidence(evidenceItem);
                 hephDemoLog
                     .querySelectorAll(".heph-demo-evidence-dynamic")
                     .forEach((line) => line.remove());
@@ -3193,18 +3201,20 @@
                 });
             }
 
-            hephDemoEvidenceControls.forEach((item) => {
+            function bindHephDemoEvidenceControl(item) {
                 item.addEventListener("pointerenter", () =>
-                    setActiveHephDemoEvidence(item),
+                    setActiveHephDemoEvidenceId(item.dataset.evidenceId),
                 );
                 item.addEventListener("focus", () =>
-                    setActiveHephDemoEvidence(item),
+                    setActiveHephDemoEvidenceId(item.dataset.evidenceId),
                 );
                 item.addEventListener("click", (event) => {
                     openHephDemoEvidence(item);
                     if (event.detail > 0) item.blur();
                 });
-            });
+            }
+
+            hephDemoEvidenceControls.forEach(bindHephDemoEvidenceControl);
 
             const hephDemoForm = document.querySelector(
                 "[data-heph-demo-form]",
@@ -3250,6 +3260,36 @@
                 const line = document.createElement("p");
                 line.className = `heph-demo-line heph-demo-dynamic ${className}`;
                 line.textContent = text;
+                hephDemoRail?.append(line);
+                scrollHephDemoTranscriptToEnd();
+            }
+
+            function createHephDemoCitationButton(evidenceId) {
+                const button = document.createElement("button");
+
+                button.className = "heph-demo-citation-button";
+                button.type = "button";
+                button.tabIndex = -1;
+                button.dataset.evidenceId = evidenceId;
+                button.textContent = `[${evidenceId}]`;
+
+                bindHephDemoEvidenceControl(button);
+
+                return button;
+            }
+
+            function appendHephDemoCitedLine(parts, className) {
+                const line = document.createElement("p");
+
+                line.className = `heph-demo-line heph-demo-dynamic ${className}`;
+                parts.forEach((part) => {
+                    if (typeof part === "string") {
+                        line.append(part);
+                        return;
+                    }
+
+                    line.append(createHephDemoCitationButton(part.evidenceId));
+                });
                 hephDemoRail?.append(line);
                 scrollHephDemoTranscriptToEnd();
             }
@@ -3367,8 +3407,18 @@
 
                 const responseDelay = 140 + steps.length * 150 + 120;
                 scheduleHephDemoStep(runId, responseDelay, () => {
-                    appendHephDemoLine(
-                        `Heph turns the armory into a cited answer: it indexed 4 local sources, sampled evidence across the corpus, and grounded the response in E1-E4. The sample materials cover unstable rules [E1], creation as responsibility [E2], inference from observation [E3], and pursuit assembled from records [E4]. A useful retrieved detail: ${featuredMaterial.detail}`,
+                    appendHephDemoCitedLine(
+                        [
+                            "Heph turns the armory into a cited answer: it indexed 4 local sources, sampled evidence across the corpus, and grounded the response in E1-E4. The sample materials cover unstable rules ",
+                            { evidenceId: "E1" },
+                            ", creation as responsibility ",
+                            { evidenceId: "E2" },
+                            ", inference from observation ",
+                            { evidenceId: "E3" },
+                            ", and pursuit assembled from records ",
+                            { evidenceId: "E4" },
+                            `. A useful retrieved detail: ${featuredMaterial.detail}`,
+                        ],
                         "heph-demo-response",
                     );
                 });
