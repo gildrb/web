@@ -1347,7 +1347,7 @@
                 min-width: 0;
                 min-height: 0;
                 display: grid;
-                grid-template-columns: minmax(0, 1fr) clamp(16ch, 25%, 32ch);
+                grid-template-columns: minmax(0, 1fr) 23ch;
                 grid-template-rows: auto minmax(0, 1fr) auto auto;
                 column-gap: 2ch;
                 overflow: hidden;
@@ -1487,7 +1487,7 @@
                 max-width: 100%;
                 min-width: 0;
                 display: grid;
-                grid-template-rows: repeat(6, 1lh) auto minmax(0, 1fr);
+                grid-template-rows: auto 1lh auto auto auto auto minmax(0, 1fr);
                 align-content: start;
                 grid-column: 2;
                 grid-row: 1 / 3;
@@ -1496,6 +1496,7 @@
                 color: var(--heph-terminal-muted);
             }
 
+            .heph-demo-scope-heading,
             .heph-demo-evidence-heading,
             .heph-demo-evidence-meta {
                 white-space: nowrap;
@@ -1503,29 +1504,33 @@
                 text-overflow: ellipsis;
             }
 
-            .heph-demo-evidence-heading {
+            .heph-demo-scope-heading {
                 grid-row: 1;
                 color: #8f8f8f;
             }
 
+            .heph-demo-evidence-heading {
+                grid-row: 3;
+            }
+
             .heph-demo-evidence-meta {
-                grid-row: 2;
+                grid-row: 4;
+                color: #8f8f8f;
             }
 
             .heph-demo-evidence-list {
-                grid-row: 4;
+                grid-row: 5;
                 display: flex;
-                flex-wrap: nowrap;
-                align-items: center;
-                gap: 1ch;
-                height: 1lh;
+                flex-direction: column;
+                align-items: stretch;
                 overflow: hidden;
             }
 
             .heph-demo-evidence-item {
+                width: 100%;
+                height: 1lh;
                 min-width: 0;
-                display: inline-flex;
-                align-items: center;
+                display: block;
                 padding: 0;
                 border: 0;
                 background: none;
@@ -1547,7 +1552,7 @@
             }
 
             .heph-demo-evidence-item.is-active {
-                color: #ffffff;
+                color: #cfcfcf;
             }
 
             .heph-demo-evidence-item:focus:not(:focus-visible),
@@ -1573,24 +1578,6 @@
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-            }
-
-            .heph-demo-evidence-title {
-                grid-row: 7;
-                color: #cfcfcf;
-                min-width: 0;
-                overflow-wrap: anywhere;
-            }
-
-            .heph-demo-evidence-detail {
-                grid-row: 8;
-                color: var(--heph-terminal-muted);
-                min-width: 0;
-                display: -webkit-box;
-                overflow-wrap: anywhere;
-                overflow: hidden;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 8;
             }
 
             .heph-demo-composer {
@@ -1740,7 +1727,7 @@
                 }
 
                 .heph-demo-terminal {
-                    grid-template-columns: minmax(0, 1fr) clamp(12ch, 24%, 18ch);
+                    grid-template-columns: minmax(0, 1fr) 23ch;
                     column-gap: 1.5ch;
                 }
 
@@ -1815,14 +1802,6 @@
 
                 .heph-demo-prompt {
                     padding: 0 1.5ch;
-                }
-
-                .heph-demo-evidence-list {
-                    gap: 0.75ch;
-                }
-
-                .heph-demo-evidence-detail {
-                    display: none;
                 }
 
             }
@@ -2413,10 +2392,13 @@
                                         </div>
                                         <aside
                                             class="heph-demo-evidence"
-                                            aria-label="Demo evidence materials"
+                                            aria-label="Demo scope and evidence materials"
                                         >
+                                            <p class="heph-demo-scope-heading">
+                                                SCOPE 4/4
+                                            </p>
                                             <p class="heph-demo-evidence-heading">
-                                                EVIDENCE
+                                                EVIDENCE E1 E2 E3 E4
                                             </p>
                                             <p class="heph-demo-evidence-meta">
                                                 EXCERPTS 4
@@ -2430,7 +2412,7 @@
                                                     data-evidence-title="@alice-adventures-wonderland.epub"
                                                     data-evidence-detail="PAGE 2, Chapter I | RECEIPT: &quot;she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it&quot;"
                                                 >
-                                                    E1
+                                                    @alice-adventures-wonderland.epub
                                                 </button>
                                                 <button
                                                     class="heph-demo-evidence-item"
@@ -2440,7 +2422,7 @@
                                                     data-evidence-title="@frankenstein.pdf"
                                                     data-evidence-detail="PAGE 43, Chapter V | RECEIPT: &quot;I saw the dull yellow eye of the creature open;&quot;"
                                                 >
-                                                    E2
+                                                    @frankenstein.pdf
                                                 </button>
                                                 <button
                                                     class="heph-demo-evidence-item"
@@ -2450,7 +2432,7 @@
                                                     data-evidence-title="@sherlock-holmes-adventures.epub"
                                                     data-evidence-detail="PAGE 6, A Scandal in Bohemia | RECEIPT: &quot;You see, but you do not observe.&quot;"
                                                 >
-                                                    E3
+                                                    @sherlock-holmes-adventures.epub
                                                 </button>
                                                 <button
                                                     class="heph-demo-evidence-item"
@@ -2460,26 +2442,14 @@
                                                     data-evidence-title="@dracula.pdf"
                                                     data-evidence-detail="PAGE 1, Chapter I | RECEIPT: &quot;not able to light on any map or work giving the exact locality of the Castle Dracula&quot;"
                                                 >
-                                                    E4
+                                                    @dracula.pdf
                                                 </button>
                                             </div>
                                             <p
                                                 class="heph-demo-evidence-open"
                                                 data-heph-demo-evidence-open
                                             >
-                                                OPEN /evidence
-                                            </p>
-                                            <p
-                                                class="heph-demo-evidence-title"
-                                                data-heph-demo-evidence-title
-                                            >
-                                                @alice-adventures-wonderland.epub
-                                            </p>
-                                            <p
-                                                class="heph-demo-evidence-detail"
-                                                data-heph-demo-detail
-                                            >
-                                                PAGE 2, Chapter I | RECEIPT: "she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it"
+                                                OPEN ctrl+g /evidence
                                             </p>
                                         </aside>
                                     </div>
@@ -2986,14 +2956,8 @@
                     }, 1500);
                 });
 
-            const hephDemoDetail = document.querySelector(
-                "[data-heph-demo-detail]",
-            );
             const hephDemoEvidenceOpen = document.querySelector(
                 "[data-heph-demo-evidence-open]",
-            );
-            const hephDemoEvidenceTitle = document.querySelector(
-                "[data-heph-demo-evidence-title]",
             );
             const hephDemoEvidenceItems = document.querySelectorAll(
                 ".heph-demo-evidence-item",
@@ -3003,9 +2967,6 @@
             );
             const hephDemoEvidenceMeta = document.querySelector(
                 ".heph-demo-evidence-meta",
-            );
-            const hephDemoEvidencePanel = document.querySelector(
-                ".heph-demo-evidence",
             );
             const hephDemoCommandRow = document.querySelector(
                 ".heph-demo-command-row",
@@ -3287,52 +3248,9 @@
             const hephDemoRandomItemHistory = new WeakMap();
             let hephDemoRunId = 0;
             let hephDemoRunTimers = [];
-            let hephDemoEvidenceClampFrame = 0;
-
-            function syncHephDemoEvidenceDetailClamp() {
-                cancelAnimationFrame(hephDemoEvidenceClampFrame);
-
-                hephDemoEvidenceClampFrame = requestAnimationFrame(() => {
-                    if (!hephDemoEvidencePanel || !hephDemoDetail) return;
-
-                    const panelStyle = window.getComputedStyle(
-                        hephDemoEvidencePanel,
-                    );
-                    if (panelStyle.display === "none") return;
-
-                    const detailStyle =
-                        window.getComputedStyle(hephDemoDetail);
-                    const lineHeight = Number.parseFloat(
-                        detailStyle.lineHeight,
-                    );
-                    if (!Number.isFinite(lineHeight) || lineHeight <= 0) {
-                        return;
-                    }
-
-                    const panelRect =
-                        hephDemoEvidencePanel.getBoundingClientRect();
-                    const detailRect = hephDemoDetail.getBoundingClientRect();
-                    const paddingBottom = Number.parseFloat(
-                        panelStyle.paddingBottom,
-                    );
-                    const availableHeight = Math.max(
-                        0,
-                        panelRect.bottom - paddingBottom - detailRect.top,
-                    );
-                    const lineCount = Math.max(
-                        1,
-                        Math.floor(availableHeight / lineHeight),
-                    );
-
-                    hephDemoDetail.style.setProperty(
-                        "-webkit-line-clamp",
-                        String(lineCount),
-                    );
-                });
-            }
 
             function setActiveHephDemoEvidence(item) {
-                if (!item || !hephDemoDetail) return;
+                if (!item) return;
 
                 const evidenceId = item.dataset.evidenceId;
 
@@ -3344,16 +3262,8 @@
                 });
 
                 if (hephDemoEvidenceOpen) {
-                    hephDemoEvidenceOpen.textContent = "OPEN /evidence";
+                    hephDemoEvidenceOpen.textContent = "OPEN ctrl+g /evidence";
                 }
-
-                if (hephDemoEvidenceTitle) {
-                    hephDemoEvidenceTitle.textContent =
-                        item.dataset.evidenceTitle || "";
-                }
-
-                hephDemoDetail.textContent = item.dataset.evidenceDetail || "";
-                syncHephDemoEvidenceDetailClamp();
             }
 
             function getHephDemoEvidenceItem(evidenceId) {
@@ -3485,9 +3395,7 @@
                 syncHephDemoComposerCursor();
 
                 if (hephDemoEvidenceMeta) {
-                    hephDemoEvidenceMeta.textContent = isRunning
-                        ? "writing response"
-                        : "EXCERPTS 4";
+                    hephDemoEvidenceMeta.textContent = "EXCERPTS 4";
                 }
 
                 if (hephDemoCommandRow) {
@@ -3702,27 +3610,20 @@
                 "ResizeObserver" in window
                     ? new ResizeObserver(() => {
                           scrollHephDemoTranscriptToEnd();
-                          syncHephDemoEvidenceDetailClamp();
                       })
                     : null;
             if (hephDemoLog) hephDemoResizeObserver?.observe(hephDemoLog);
             if (hephDemoRail) hephDemoResizeObserver?.observe(hephDemoRail);
-            if (hephDemoEvidencePanel) {
-                hephDemoResizeObserver?.observe(hephDemoEvidencePanel);
-            }
             document.fonts?.ready
                 ?.then(() => {
                     scrollHephDemoTranscriptToEnd();
-                    syncHephDemoEvidenceDetailClamp();
                 })
                 .catch(() => {});
             window.addEventListener("resize", () => {
                 scrollHephDemoTranscriptToEnd();
-                syncHephDemoEvidenceDetailClamp();
             });
 
             syncHephDemoComposerCursor();
-            syncHephDemoEvidenceDetailClamp();
 
             function startHephDemoRetrieval(prompt, options = {}) {
                 hephDemoRunId += 1;
