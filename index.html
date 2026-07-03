@@ -1483,7 +1483,7 @@
                 max-width: 100%;
                 min-width: 0;
                 display: grid;
-                grid-template-rows: repeat(6, 1lh) auto minmax(0, auto);
+                grid-template-rows: repeat(6, 1lh) auto minmax(0, 1fr);
                 align-content: start;
                 grid-column: 2;
                 grid-row: 1 / 3;
@@ -1566,19 +1566,24 @@
                 grid-row: 6;
                 height: 1lh;
                 color: #8f8f8f;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             .heph-demo-evidence-title {
                 grid-row: 7;
                 color: #cfcfcf;
-                overflow-wrap: break-word;
+                min-width: 0;
+                overflow-wrap: anywhere;
             }
 
             .heph-demo-evidence-detail {
                 grid-row: 8;
                 color: var(--heph-terminal-muted);
+                min-width: 0;
                 display: -webkit-box;
-                overflow-wrap: break-word;
+                overflow-wrap: anywhere;
                 overflow: hidden;
                 -webkit-box-orient: vertical;
                 -webkit-line-clamp: 8;
@@ -2358,8 +2363,8 @@
                                                             type="button"
                                                             tabindex="-1"
                                                             data-evidence-id="E1"
-                                                            data-evidence-title="@alice-adventures-wonderland.pdf"
-                                                            data-evidence-detail="SOURCE materials/alice-adventures-wonderland.pdf | PAGE 2, Chapter I | RECEIPT: &quot;she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it&quot;"
+                                                            data-evidence-title="@alice-adventures-wonderland.epub"
+                                                            data-evidence-detail="PAGE 2, Chapter I | RECEIPT: &quot;she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it&quot;"
                                                         >
                                                             [E1]</button
                                                         >. Frankenstein is ambition turning into responsibility after Victor brings the Creature to life and rejects him
@@ -2369,7 +2374,7 @@
                                                             tabindex="-1"
                                                             data-evidence-id="E2"
                                                             data-evidence-title="@frankenstein.pdf"
-                                                            data-evidence-detail="SOURCE materials/frankenstein.pdf | PAGE 43, Chapter V | RECEIPT: &quot;I saw the dull yellow eye of the creature open;&quot;"
+                                                            data-evidence-detail="PAGE 43, Chapter V | RECEIPT: &quot;I saw the dull yellow eye of the creature open;&quot;"
                                                         >
                                                             [E2]</button
                                                         >. Sherlock Holmes follows a method: observe the small detail, test it, then explain the case
@@ -2378,8 +2383,8 @@
                                                             type="button"
                                                             tabindex="-1"
                                                             data-evidence-id="E3"
-                                                            data-evidence-title="@sherlock-holmes-adventures.pdf"
-                                                            data-evidence-detail="SOURCE materials/sherlock-holmes-adventures.pdf | PAGE 6, A Scandal in Bohemia | RECEIPT: &quot;You see, but you do not observe.&quot;"
+                                                            data-evidence-title="@sherlock-holmes-adventures.epub"
+                                                            data-evidence-detail="PAGE 6, A Scandal in Bohemia | RECEIPT: &quot;You see, but you do not observe.&quot;"
                                                         >
                                                             [E3]</button
                                                         >. Dracula is built from diaries, letters, and records as people compare notes and hunt the Count
@@ -2389,7 +2394,7 @@
                                                             tabindex="-1"
                                                             data-evidence-id="E4"
                                                             data-evidence-title="@dracula.pdf"
-                                                            data-evidence-detail="SOURCE materials/dracula.pdf | PAGE 1, Chapter I | RECEIPT: &quot;not able to light on any map or work giving the exact locality of the Castle Dracula&quot;"
+                                                            data-evidence-detail="PAGE 1, Chapter I | RECEIPT: &quot;not able to light on any map or work giving the exact locality of the Castle Dracula&quot;"
                                                         >
                                                             [E4]</button
                                                         >.
@@ -2397,7 +2402,7 @@
                                                     <p
                                                         class="heph-demo-line sources"
                                                     >
-                                                        materials: E1 @alice-adventures-wonderland.pdf; E2 @frankenstein.pdf; E3 @sherlock-holmes-adventures.pdf; E4 @dracula.pdf. Details: /evidence.
+                                                        materials: E1 @alice-adventures-wonderland.epub; E2 @frankenstein.pdf; E3 @sherlock-holmes-adventures.epub; E4 @dracula.pdf. Details: /evidence.
                                                     </p>
                                                 </div>
                                             </div>
@@ -2418,8 +2423,8 @@
                                                     type="button"
                                                     tabindex="-1"
                                                     data-evidence-id="E1"
-                                                    data-evidence-title="@alice-adventures-wonderland.pdf"
-                                                    data-evidence-detail="SOURCE materials/alice-adventures-wonderland.pdf | PAGE 2, Chapter I | RECEIPT: &quot;she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it&quot;"
+                                                    data-evidence-title="@alice-adventures-wonderland.epub"
+                                                    data-evidence-detail="PAGE 2, Chapter I | RECEIPT: &quot;she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it&quot;"
                                                 >
                                                     E1
                                                 </button>
@@ -2429,7 +2434,7 @@
                                                     tabindex="-1"
                                                     data-evidence-id="E2"
                                                     data-evidence-title="@frankenstein.pdf"
-                                                    data-evidence-detail="SOURCE materials/frankenstein.pdf | PAGE 43, Chapter V | RECEIPT: &quot;I saw the dull yellow eye of the creature open;&quot;"
+                                                    data-evidence-detail="PAGE 43, Chapter V | RECEIPT: &quot;I saw the dull yellow eye of the creature open;&quot;"
                                                 >
                                                     E2
                                                 </button>
@@ -2438,8 +2443,8 @@
                                                     type="button"
                                                     tabindex="-1"
                                                     data-evidence-id="E3"
-                                                    data-evidence-title="@sherlock-holmes-adventures.pdf"
-                                                    data-evidence-detail="SOURCE materials/sherlock-holmes-adventures.pdf | PAGE 6, A Scandal in Bohemia | RECEIPT: &quot;You see, but you do not observe.&quot;"
+                                                    data-evidence-title="@sherlock-holmes-adventures.epub"
+                                                    data-evidence-detail="PAGE 6, A Scandal in Bohemia | RECEIPT: &quot;You see, but you do not observe.&quot;"
                                                 >
                                                     E3
                                                 </button>
@@ -2449,7 +2454,7 @@
                                                     tabindex="-1"
                                                     data-evidence-id="E4"
                                                     data-evidence-title="@dracula.pdf"
-                                                    data-evidence-detail="SOURCE materials/dracula.pdf | PAGE 1, Chapter I | RECEIPT: &quot;not able to light on any map or work giving the exact locality of the Castle Dracula&quot;"
+                                                    data-evidence-detail="PAGE 1, Chapter I | RECEIPT: &quot;not able to light on any map or work giving the exact locality of the Castle Dracula&quot;"
                                                 >
                                                     E4
                                                 </button>
@@ -2458,19 +2463,19 @@
                                                 class="heph-demo-evidence-open"
                                                 data-heph-demo-evidence-open
                                             >
-                                                OPEN @alice-adventures-wonderland.pdf
+                                                OPEN /evidence
                                             </p>
                                             <p
                                                 class="heph-demo-evidence-title"
                                                 data-heph-demo-evidence-title
                                             >
-                                                @alice-adventures-wonderland.pdf
+                                                @alice-adventures-wonderland.epub
                                             </p>
                                             <p
                                                 class="heph-demo-evidence-detail"
                                                 data-heph-demo-detail
                                             >
-                                                SOURCE materials/alice-adventures-wonderland.pdf | PAGE 2, Chapter I | RECEIPT: "she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it"
+                                                PAGE 2, Chapter I | RECEIPT: "she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it"
                                             </p>
                                         </aside>
                                     </div>
@@ -3012,18 +3017,18 @@
             const hephDemoMaterials = [
                 {
                     id: "E1",
-                    title: "@alice-adventures-wonderland.pdf",
+                    title: "@alice-adventures-wonderland.epub",
                     book: "Alice's Adventures in Wonderland",
-                    file: "alice-adventures-wonderland.pdf",
-                    sourceRef: "materials/alice-adventures-wonderland.pdf",
-                    sourceLabel: "E1 @alice-adventures-wonderland.pdf",
+                    file: "alice-adventures-wonderland.epub",
+                    sourceRef: "materials/alice-adventures-wonderland.epub",
+                    sourceLabel: "E1 @alice-adventures-wonderland.epub",
                     support: "dream logic, wordplay, strange rules",
                     gist:
                         "Alice follows curiosity into a world where language, manners, authority, and logic keep changing shape.",
                     excerpt:
                         'page 2, Chapter I: "she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it"',
                     detail:
-                        'SOURCE materials/alice-adventures-wonderland.pdf | PAGE 2, Chapter I | RECEIPT: "she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it"',
+                        'PAGE 2, Chapter I | RECEIPT: "she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it"',
                     keywords: [
                         "alice",
                         "wonderland",
@@ -3066,7 +3071,7 @@
                     excerpt:
                         'page 43, Chapter V: "I saw the dull yellow eye of the creature open;"',
                     detail:
-                        'SOURCE materials/frankenstein.pdf | PAGE 43, Chapter V | RECEIPT: "I saw the dull yellow eye of the creature open;"',
+                        'PAGE 43, Chapter V | RECEIPT: "I saw the dull yellow eye of the creature open;"',
                     keywords: [
                         "frankenstein",
                         "victor",
@@ -3099,18 +3104,18 @@
                 },
                 {
                     id: "E3",
-                    title: "@sherlock-holmes-adventures.pdf",
+                    title: "@sherlock-holmes-adventures.epub",
                     book: "The Adventures of Sherlock Holmes",
-                    file: "sherlock-holmes-adventures.pdf",
-                    sourceRef: "materials/sherlock-holmes-adventures.pdf",
-                    sourceLabel: "E3 @sherlock-holmes-adventures.pdf",
+                    file: "sherlock-holmes-adventures.epub",
+                    sourceRef: "materials/sherlock-holmes-adventures.epub",
+                    sourceLabel: "E3 @sherlock-holmes-adventures.epub",
                     support: "cases, observation, inference",
                     gist:
                         "The stories turn small clues into explanations as Holmes reads people, rooms, habits, and contradictions.",
                     excerpt:
                         'page 6, A Scandal in Bohemia: "You see, but you do not observe."',
                     detail:
-                        'SOURCE materials/sherlock-holmes-adventures.pdf | PAGE 6, A Scandal in Bohemia | RECEIPT: "You see, but you do not observe."',
+                        'PAGE 6, A Scandal in Bohemia | RECEIPT: "You see, but you do not observe."',
                     keywords: [
                         "sherlock",
                         "holmes",
@@ -3154,7 +3159,7 @@
                     excerpt:
                         'page 1, Chapter I: "not able to light on any map or work giving the exact locality of the Castle Dracula"',
                     detail:
-                        'SOURCE materials/dracula.pdf | PAGE 1, Chapter I | RECEIPT: "not able to light on any map or work giving the exact locality of the Castle Dracula"',
+                        'PAGE 1, Chapter I | RECEIPT: "not able to light on any map or work giving the exact locality of the Castle Dracula"',
                     keywords: [
                         "dracula",
                         "vampire",
@@ -3225,19 +3230,19 @@
             ];
             const hephDemoFollowUpAnswers = [
                 [
-                    "Ask me to compare two books and I will only use the relevant files. Responsibility points me to Frankenstein ",
+                    "Comparisons stay scoped to the relevant files. Responsibility points to Frankenstein ",
                     { evidenceId: "E2" },
-                    "; observation points me to Holmes ",
+                    "; observation points to Holmes ",
                     { evidenceId: "E3" },
                     ".",
                 ],
                 [
-                    "Use /materials to change the active set. Turn off Dracula and I should stop using the diary-and-letter evidence ",
+                    "The active set controls the answer. Once Dracula is disabled in /materials, the diary-and-letter evidence drops out ",
                     { evidenceId: "E4" },
                     ".",
                 ],
                 [
-                    "Use /evidence to inspect the passages behind the citations. The answer stays short, but the source trail stays attached.",
+                    "/evidence keeps the passages behind the citations attached, so the answer can stay short while the source trail remains inspectable.",
                 ],
                 [
                     "A clean reading path is Alice for rule-breaking ",
@@ -3256,19 +3261,19 @@
             ];
             const hephDemoNarrowFollowUpBuilders = [
                 (material) => [
-                    "Click the citation to inspect the file, page, and receipt behind this answer ",
+                    "The citation opens the file, page, and receipt behind this answer ",
                     { evidenceId: material.id },
                     ".",
                 ],
                 (material) => [
                     "I am only using ",
                     material.file,
-                    " for this answer because the question points there ",
+                    " because this answer is grounded there ",
                     { evidenceId: material.id },
                     ".",
                 ],
                 (material) => [
-                    "Ask for a comparison and I will bring in another book. This turn is grounded in ",
+                    "A comparison can bring in another book. This turn is grounded in ",
                     material.file,
                     " ",
                     { evidenceId: material.id },
@@ -3335,8 +3340,7 @@
                 });
 
                 if (hephDemoEvidenceOpen) {
-                    const title = item.dataset.evidenceTitle || evidenceId;
-                    hephDemoEvidenceOpen.textContent = `OPEN ${title}`;
+                    hephDemoEvidenceOpen.textContent = "OPEN /evidence";
                 }
 
                 if (hephDemoEvidenceTitle) {
@@ -3426,11 +3430,11 @@
                 if (hephDemoPromptWantsSources(prompt)) {
                     return [
                         [
-                            "Here is the source map for this turn: E1 is alice-adventures-wonderland.pdf ",
+                            "Here is the source map for this turn: E1 is alice-adventures-wonderland.epub ",
                             { evidenceId: "E1" },
                             ", E2 is frankenstein.pdf ",
                             { evidenceId: "E2" },
-                            ", E3 is sherlock-holmes-adventures.pdf ",
+                            ", E3 is sherlock-holmes-adventures.epub ",
                             { evidenceId: "E3" },
                             ", and E4 is dracula.pdf ",
                             { evidenceId: "E4" },
@@ -3572,9 +3576,15 @@
                     0,
                     hephDemoRail.scrollHeight - hephDemoLog.clientHeight,
                 );
+                const childTops = Array.from(hephDemoRail.children)
+                    .map((child) => child.offsetTop)
+                    .filter((offsetTop) => offsetTop >= rawOffset - 0.5);
+                const nextChildTop = childTops[0];
                 const offset =
-                    Number.isFinite(lineHeight) && lineHeight > 0
-                        ? Math.ceil(rawOffset / lineHeight) * lineHeight
+                    Number.isFinite(lineHeight) &&
+                    lineHeight > 0 &&
+                    Number.isFinite(nextChildTop)
+                        ? nextChildTop
                         : rawOffset;
 
                 hephDemoLog.scrollTop = 0;
@@ -3672,7 +3682,7 @@
 
                 if (!evidenceItem) {
                     appendHephDemoLine(
-                        "No evidence item matched that command. Try /evidence E1, /evidence E2, /evidence E3, or /evidence E4.",
+                        "No evidence item matched that command. Valid evidence ids are E1, E2, E3, and E4.",
                         "heph-demo-response",
                     );
                     hephDemoInput.value = "";
@@ -3750,7 +3760,7 @@
                         text: `Retrieved ${material.id} from ${material.sourceRef}: ${material.excerpt}`,
                     })),
                     {
-                        text: `materials: ${sourceList}. Details: /evidence`,
+                        text: `Mapped ${sampledMaterials.length} evidence receipts for /evidence.`,
                     },
                     {
                         text: "Writing cited answer.",
