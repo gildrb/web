@@ -2,7 +2,7 @@
 
 > Canonical Markdown version of the homepage at [gildrb.com](https://gildrb.com/) for crawlers, search agents, and language models.
 
-Last updated: 2026-07-02
+Last updated: 2026-07-03
 Canonical: [https://gildrb.com/index.html.md](https://gildrb.com/index.html.md)
 Homepage: [https://gildrb.com/](https://gildrb.com/)
 
@@ -42,7 +42,7 @@ Gil Rodrigues is a design engineer studying artificial intelligence and data sci
 
 ### Heph
 
-[Heph](https://github.com/gildrb/heph) is shown on the homepage through a terminal-style product demo. The demo presents Heph as a local document workspace that indexes armory materials, samples retrieved evidence, and writes cited answers that can be inspected with `/evidence`.
+[Heph](https://github.com/gildrb/heph) is shown on the homepage through a terminal-style product demo. The demo presents Heph as a local document workspace that indexes armory book files, retrieves cited evidence for each answer, and keeps source passages inspectable with `/evidence`.
 
 ## Public profiles
 

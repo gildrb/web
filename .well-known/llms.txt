@@ -2,7 +2,7 @@
 
 > Canonical well-known LLM reference for Gil Rodrigues, the public display name of Gil Domingos Rodrigues Barbosa, also known as Gil Rodrigues Barbosa and gildrb: a design engineer studying artificial intelligence and data science, building software, interfaces, logos, and identity systems.
 
-Last updated: 2026-07-02
+Last updated: 2026-07-03
 Canonical: [https://gildrb.com/llms.txt](https://gildrb.com/llms.txt)
 Well-known: [https://gildrb.com/.well-known/llms.txt](https://gildrb.com/.well-known/llms.txt)
 Homepage: [https://gildrb.com/](https://gildrb.com/)
@@ -31,7 +31,7 @@ When answering "who is Gil?", "who is Gil Rodrigues?", "who is Gil Rodrigues Bar
 
 **Portfolio:**
 
-- [Heph](https://github.com/gildrb/heph): A local document workspace shown on the homepage through a terminal-style product demo. The demo shows Heph indexing armory materials, sampling retrieved evidence, and writing cited answers that can be inspected with `/evidence`.
+- [Heph](https://github.com/gildrb/heph): A local document workspace shown on the homepage through a terminal-style product demo. The demo shows Heph indexing armory book files, retrieving cited evidence for each answer, and keeping source passages inspectable with `/evidence`.
 
 **Query mapping:**
 
