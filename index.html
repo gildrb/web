@@ -1558,7 +1558,8 @@
 
             .heph-demo-evidence-item:focus:not(:focus-visible),
             .heph-demo-citation-button:focus:not(:focus-visible),
-            .heph-demo-input:focus:not(:focus-visible) {
+            .heph-demo-input:focus:not(:focus-visible),
+            .heph-demo-submit:focus:not(:focus-visible) {
                 outline: none;
             }
 
@@ -1570,6 +1571,11 @@
 
             .heph-demo-input:focus-visible {
                 outline: none;
+            }
+
+            .heph-demo-submit:focus-visible {
+                outline: 1px solid #8f8f8f;
+                outline-offset: -1px;
             }
 
             .heph-demo-evidence-open {
@@ -1637,6 +1643,27 @@
                 transform: translateY(-50%);
             }
 
+            .heph-demo-input-overflow {
+                width: 3ch;
+                height: 1lh;
+                position: absolute;
+                top: 50%;
+                left: 1ch;
+                display: none;
+                z-index: 1;
+                background: inherit;
+                color: var(--heph-terminal-muted);
+                line-height: inherit;
+                pointer-events: none;
+                transform: translateY(-50%);
+                user-select: none;
+            }
+
+            .heph-demo-composer.has-left-overflow
+                .heph-demo-input-overflow {
+                display: block;
+            }
+
             .heph-demo-composer.is-empty .heph-demo-input {
                 caret-color: transparent;
             }
@@ -1668,13 +1695,54 @@
                 caret-color: #cfcfcf;
                 font: inherit;
                 line-height: inherit;
-                padding: 0 0 0 1ch;
+                padding: 0 5ch 0 1ch;
                 border-radius: 0;
                 appearance: none;
             }
 
             .heph-demo-input:focus {
                 outline: none;
+            }
+
+            .heph-demo-submit {
+                width: 5ch;
+                height: 3lh;
+                position: absolute;
+                top: 0;
+                right: 0;
+                display: inline-flex;
+                align-items: center;
+                justify-content: flex-end;
+                padding: 0 2ch 0 1ch;
+                border: 0;
+                background: transparent;
+                color: #8f8f8f;
+                font: inherit;
+                line-height: inherit;
+                cursor: pointer;
+                appearance: none;
+                user-select: none;
+            }
+
+            .heph-demo-submit-symbol {
+                font-family:
+                    Inter,
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
+                line-height: 1;
+            }
+
+            .heph-demo-submit:disabled {
+                cursor: default;
+                opacity: 0.5;
+            }
+
+            @media (hover: hover) {
+                .heph-demo-submit:not(:disabled):hover {
+                    color: #cfcfcf;
+                }
             }
 
             .heph-demo-input::placeholder {
@@ -2468,6 +2536,11 @@
                                             class="heph-demo-cursor"
                                             aria-hidden="true"
                                         ></span>
+                                        <span
+                                            class="heph-demo-input-overflow"
+                                            aria-hidden="true"
+                                            >...</span
+                                        >
                                         <input
                                             class="heph-demo-input"
                                             type="text"
@@ -2477,6 +2550,19 @@
                                             placeholder="Ask Heph about these materials"
                                             data-heph-demo-input
                                         />
+                                        <button
+                                            class="heph-demo-submit"
+                                            type="submit"
+                                            tabindex="-1"
+                                            aria-label="Submit Heph prompt"
+                                            data-heph-demo-submit
+                                        >
+                                            <span
+                                                class="heph-demo-submit-symbol"
+                                                aria-hidden="true"
+                                                >↵</span
+                                            >
+                                        </button>
                                     </form>
                                     <div
                                         class="heph-demo-command-row"
@@ -3396,8 +3482,9 @@
 
             function setHephDemoRunning(isRunning) {
                 hephDemoInput.readOnly = isRunning;
+                hephDemoSubmit.disabled = isRunning;
                 hephDemoForm?.classList.toggle("is-running", isRunning);
-                syncHephDemoComposerCursor();
+                syncHephDemoComposerState();
 
                 if (hephDemoEvidenceMeta) {
                     hephDemoEvidenceMeta.textContent = "EXCERPTS 4";
@@ -3443,8 +3530,7 @@
                     detail,
                     "heph-demo-response heph-demo-evidence-dynamic",
                 );
-                hephDemoInput.value = "";
-                syncHephDemoComposerCursor();
+                resetHephDemoInput();
                 trackEvent("Heph Demo Evidence Open", {
                     evidence: evidenceId,
                 });
@@ -3471,16 +3557,60 @@
             const hephDemoInput = document.querySelector(
                 "[data-heph-demo-input]",
             );
+            const hephDemoSubmit = document.querySelector(
+                "[data-heph-demo-submit]",
+            );
             const hephDemoLog = document.querySelector("[data-heph-demo-log]");
             const hephDemoRail = document.querySelector(
                 "[data-heph-demo-rail]",
             );
+            let hephDemoComposerStateFrame = 0;
 
-            function syncHephDemoComposerCursor() {
-                hephDemoForm?.classList.toggle(
+            function syncHephDemoComposerState() {
+                if (!hephDemoForm || !hephDemoInput) return;
+
+                const inputStyle = window.getComputedStyle(hephDemoInput);
+                const paddingLeft =
+                    Number.parseFloat(inputStyle.paddingLeft) || 0;
+                const paddingRight =
+                    Number.parseFloat(inputStyle.paddingRight) || 0;
+                const characterWidth =
+                    paddingLeft ||
+                    (Number.parseFloat(inputStyle.fontSize) || 1) * 0.6;
+                const caretIndex =
+                    hephDemoInput.selectionStart ?? hephDemoInput.value.length;
+                const visibleTextWidth = Math.max(
+                    0,
+                    hephDemoInput.clientWidth - paddingLeft - paddingRight,
+                );
+                const targetScrollLeft = Math.max(
+                    0,
+                    caretIndex * characterWidth - visibleTextWidth,
+                );
+
+                hephDemoInput.scrollLeft = targetScrollLeft;
+                hephDemoForm.classList.toggle(
                     "is-empty",
                     !hephDemoInput.value,
                 );
+                hephDemoForm.classList.toggle(
+                    "has-left-overflow",
+                    targetScrollLeft > 0,
+                );
+            }
+
+            function queueHephDemoComposerStateSync() {
+                cancelAnimationFrame(hephDemoComposerStateFrame);
+                hephDemoComposerStateFrame = requestAnimationFrame(() => {
+                    hephDemoComposerStateFrame = 0;
+                    syncHephDemoComposerState();
+                });
+            }
+
+            function resetHephDemoInput() {
+                hephDemoInput.value = "";
+                hephDemoInput.scrollLeft = 0;
+                syncHephDemoComposerState();
             }
 
             function scrollHephDemoTranscriptToEnd() {
@@ -3498,42 +3628,42 @@
                 if (Number.isFinite(lineHeight) && lineHeight > 0) {
                     const railTop =
                         hephDemoRail.getBoundingClientRect().top;
-                    const snapLimit = lineHeight * 1.25;
-                    let snapOffset = Infinity;
+                    const clipInset = 1;
+                    let clippedTextBottom = rawOffset;
 
                     for (const child of hephDemoRail.children) {
                         const childTop = child.offsetTop;
                         const childBottom = childTop + child.offsetHeight;
 
-                        if (childBottom < rawOffset - snapLimit) continue;
-                        if (childTop > rawOffset + snapLimit) break;
-
-                        if (
-                            childTop >= rawOffset &&
-                            childTop - rawOffset <= snapLimit
-                        ) {
-                            snapOffset = Math.min(snapOffset, childTop);
-                        }
+                        if (childBottom < rawOffset) continue;
+                        if (childTop > rawOffset + lineHeight) break;
 
                         const range = document.createRange();
                         range.selectNodeContents(child);
 
                         for (const rect of range.getClientRects()) {
                             const rectTop = rect.top - railTop;
+                            const rectBottom = rect.bottom - railTop;
 
                             if (
-                                rectTop >= rawOffset &&
-                                rectTop - rawOffset <= snapLimit
+                                rectTop < rawOffset + clipInset &&
+                                rectBottom > rawOffset + clipInset
                             ) {
-                                snapOffset = Math.min(snapOffset, rectTop);
+                                clippedTextBottom = Math.max(
+                                    clippedTextBottom,
+                                    rectBottom,
+                                );
                             }
                         }
 
                         range.detach?.();
                     }
 
-                    if (Number.isFinite(snapOffset)) {
-                        offset = snapOffset;
+                    if (clippedTextBottom > rawOffset) {
+                        offset = Math.min(
+                            rawOffset + lineHeight,
+                            clippedTextBottom,
+                        );
                     }
                 }
 
@@ -3635,8 +3765,7 @@
                         "No evidence item matched that command. Valid evidence ids are E1, E2, E3, and E4.",
                         "heph-demo-response",
                     );
-                    hephDemoInput.value = "";
-                    syncHephDemoComposerCursor();
+                    resetHephDemoInput();
                     return true;
                 }
 
@@ -3659,9 +3788,10 @@
                 .catch(() => {});
             window.addEventListener("resize", () => {
                 scrollHephDemoTranscriptToEnd();
+                queueHephDemoComposerStateSync();
             });
 
-            syncHephDemoComposerCursor();
+            syncHephDemoComposerState();
 
             function startHephDemoRetrieval(prompt, options = {}) {
                 hephDemoRunId += 1;
@@ -3676,8 +3806,7 @@
                 const responseLines =
                     buildHephDemoResponseLines(prompt);
 
-                hephDemoInput.value = "";
-                syncHephDemoComposerCursor();
+                resetHephDemoInput();
 
                 if (resetTranscript) {
                     hephDemoRail?.replaceChildren(createHephDemoPrompt(prompt));
@@ -3756,14 +3885,30 @@
                     responseDelay + responseLines.length * 170 + 50,
                     () => {
                         setHephDemoRunning(false);
-                        hephDemoInput.value = "";
-                        syncHephDemoComposerCursor();
+                        resetHephDemoInput();
                     },
                 );
             }
 
             hephDemoInput?.addEventListener("input", () => {
-                syncHephDemoComposerCursor();
+                queueHephDemoComposerStateSync();
+            });
+
+            hephDemoInput?.addEventListener("scroll", () => {
+                syncHephDemoComposerState();
+            });
+
+            ["click", "focus", "keyup", "pointerup", "select"].forEach(
+                (eventName) => {
+                    hephDemoInput?.addEventListener(
+                        eventName,
+                        queueHephDemoComposerStateSync,
+                    );
+                },
+            );
+
+            hephDemoSubmit?.addEventListener("click", (event) => {
+                if (event.detail > 0) hephDemoSubmit.blur();
             });
 
             hephDemoInput?.addEventListener("keydown", (event) => {
