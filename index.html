@@ -2820,6 +2820,13 @@
                     (window.siq = window.siq || []).push(arguments);
                 };
         </script>
+        <script defer src="/_vercel/insights/script.js"></script>
+        <script
+            defer
+            src="/_vercel/speed-insights/script.js"
+            data-route="/"
+            data-path="/"
+        ></script>
         <script>
             const srOnly = document.querySelector(".sr-only");
             const themeToggle = document.querySelector(".theme-toggle");
@@ -3987,34 +3994,6 @@
                 }
 
                 arrowNavigationItems[nextIndex].focus();
-            });
-        </script>
-        <script>
-            function loadAnalyticsScript(src) {
-                const script = document.createElement("script");
-                script.src = src;
-                script.async = true;
-                document.body.append(script);
-            }
-
-            function loadAnalyticsScripts() {
-                loadAnalyticsScript("/_vercel/insights/script.js");
-                loadAnalyticsScript("/_vercel/speed-insights/script.js");
-            }
-
-            function scheduleAnalyticsScripts() {
-                if ("requestIdleCallback" in window) {
-                    requestIdleCallback(loadAnalyticsScripts, {
-                        timeout: 3000,
-                    });
-                    return;
-                }
-
-                setTimeout(loadAnalyticsScripts, 1500);
-            }
-
-            window.addEventListener("load", scheduleAnalyticsScripts, {
-                once: true,
             });
         </script>
     </body>
