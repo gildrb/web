@@ -775,7 +775,7 @@
         />
         <link
             rel="preload"
-            href="fonts/inter-latin-400.woff2"
+            href="fonts/inter-variable-latin.woff2"
             as="font"
             type="font/woff2"
             crossorigin
@@ -788,10 +788,8 @@
             crossorigin
         />
         <style>
-            @font-face{font-family:"Inter";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/inter-latin-400.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+2212,U+2215,U+FEFF,U+FFFD}
-            @font-face{font-family:"Inter";font-style:normal;font-weight:600;font-display:swap;src:url("fonts/inter-latin-600.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+2212,U+2215,U+FEFF,U+FFFD}
+            @font-face{font-family:"Inter";font-style:normal;font-weight:400 600;font-display:swap;src:url("fonts/inter-variable-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+21A9,U+2212,U+2215,U+FEFF,U+FFFD}
             @font-face{font-family:"Geist Mono";font-style:normal;font-weight:400 600;font-display:swap;src:url("fonts/geist-mono-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-            @font-face{font-family:"Geist Mono Arrow";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/geist-mono-arrow-35b9839c.ttf") format("truetype");unicode-range:U+2192}
 
             :root {
                 --bg: #000000;
@@ -970,6 +968,12 @@
             .external-link::after {
                 content: " ↗";
                 color: var(--text-secondary);
+                font-family:
+                    Inter,
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
             }
 
             @media (hover: hover) {
@@ -1613,13 +1617,11 @@
 
             .heph-demo-composer-arrow {
                 font-family:
-                    "Geist Mono Arrow",
-                    "Geist Mono",
-                    "SFMono-Regular",
-                    "SF Mono",
-                    "Menlo",
-                    "Consolas",
-                    monospace;
+                    Inter,
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    sans-serif;
             }
 
             .heph-demo-command-arrow {
@@ -2560,7 +2562,7 @@
                                             <span
                                                 class="heph-demo-submit-symbol"
                                                 aria-hidden="true"
-                                                >↵</span
+                                                >↩</span
                                             >
                                         </button>
                                     </form>
