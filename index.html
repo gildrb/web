@@ -1266,6 +1266,12 @@
             }
 
             .heph-demo {
+                --heph-demo-shell-bg: #111111;
+                --heph-demo-titlebar-bg: #0f0f0f;
+                --heph-demo-terminal-bg: #0a0a0a;
+                --heph-demo-row-bg: #0f0f0f;
+                --heph-demo-row-focus-bg: #131313;
+                --heph-demo-mobile-bg: #171717;
                 width: 100%;
                 max-width: 100%;
                 min-width: 0;
@@ -1286,7 +1292,7 @@
                 overflow: hidden;
                 border: 1px solid #333333;
                 border-radius: 13px;
-                background: #151515;
+                background: var(--heph-demo-shell-bg);
                 color: #cfcfcf;
                 font-family:
                     "Geist Mono",
@@ -1310,7 +1316,7 @@
                 align-items: center;
                 padding: 0 10px;
                 border-bottom: 1px solid #252525;
-                background: #181818;
+                background: var(--heph-demo-titlebar-bg);
                 color: #777777;
                 line-height: 1;
                 user-select: none;
@@ -1352,7 +1358,7 @@
                 column-gap: 2ch;
                 overflow: hidden;
                 padding: 0;
-                background: #101010;
+                background: var(--heph-demo-terminal-bg);
             }
 
             .heph-demo-status {
@@ -1409,7 +1415,7 @@
                 min-height: 3lh;
                 display: flex;
                 align-items: center;
-                background: #151515;
+                background: var(--heph-demo-row-bg);
             }
 
             .heph-demo-prompt {
@@ -1585,7 +1591,7 @@
             }
 
             .heph-demo-composer:focus-within {
-                background: #191919;
+                background: var(--heph-demo-row-focus-bg);
             }
 
             .heph-demo-composer-label {
@@ -1806,7 +1812,7 @@
                     grid-column: 1;
                     padding: 34px 14px;
                     border-radius: 24px;
-                    background: #1f1f1f;
+                    background: var(--heph-demo-mobile-bg);
                 }
             }
 
@@ -3487,16 +3493,49 @@
                     0,
                     hephDemoRail.scrollHeight - hephDemoLog.clientHeight,
                 );
-                const childTops = Array.from(hephDemoRail.children)
-                    .map((child) => child.offsetTop)
-                    .filter((offsetTop) => offsetTop >= rawOffset - 0.5);
-                const nextChildTop = childTops[0];
-                const offset =
-                    Number.isFinite(lineHeight) &&
-                    lineHeight > 0 &&
-                    Number.isFinite(nextChildTop)
-                        ? nextChildTop
-                        : rawOffset;
+                let offset = rawOffset;
+
+                if (Number.isFinite(lineHeight) && lineHeight > 0) {
+                    const railTop =
+                        hephDemoRail.getBoundingClientRect().top;
+                    const snapLimit = lineHeight * 1.25;
+                    let snapOffset = Infinity;
+
+                    for (const child of hephDemoRail.children) {
+                        const childTop = child.offsetTop;
+                        const childBottom = childTop + child.offsetHeight;
+
+                        if (childBottom < rawOffset - snapLimit) continue;
+                        if (childTop > rawOffset + snapLimit) break;
+
+                        if (
+                            childTop >= rawOffset &&
+                            childTop - rawOffset <= snapLimit
+                        ) {
+                            snapOffset = Math.min(snapOffset, childTop);
+                        }
+
+                        const range = document.createRange();
+                        range.selectNodeContents(child);
+
+                        for (const rect of range.getClientRects()) {
+                            const rectTop = rect.top - railTop;
+
+                            if (
+                                rectTop >= rawOffset &&
+                                rectTop - rawOffset <= snapLimit
+                            ) {
+                                snapOffset = Math.min(snapOffset, rectTop);
+                            }
+                        }
+
+                        range.detach?.();
+                    }
+
+                    if (Number.isFinite(snapOffset)) {
+                        offset = snapOffset;
+                    }
+                }
 
                 hephDemoLog.scrollTop = 0;
                 hephDemoRail.style.setProperty(
