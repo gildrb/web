@@ -1,0 +1,114 @@
+.image-wrapper:focus-visible,
+.gallery-item:focus-visible {
+    outline: 1px solid var(--text-primary);
+    outline-offset: 4px;
+}
+
+.image-preview {
+    --preview-inline-space: 96px;
+    --preview-block-space: 128px;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    width: 100%;
+    min-height: 100vh;
+    display: block;
+    padding: 64px 48px;
+    border: 0;
+    background: var(--bg);
+    cursor: zoom-out;
+    appearance: none;
+    color: inherit;
+    font: inherit;
+    text-align: inherit;
+}
+
+.image-preview[hidden] {
+    display: none;
+}
+
+.image-preview-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min(
+        calc(100vw - var(--preview-inline-space)),
+        calc(1900px - var(--preview-inline-space))
+    );
+    height: calc(100vh - var(--preview-block-space));
+    margin: 0 auto;
+}
+
+.image-preview img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    border-radius: var(--media-radius);
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+}
+
+.profile-summary {
+    max-width: 720px;
+    margin-bottom: var(--section-gap);
+}
+
+.profile-summary .section-title {
+    color: var(--text-primary);
+    margin-bottom: var(--section-content-gap);
+}
+
+.profile-copy {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+}
+
+.profile-copy:last-child {
+    margin-bottom: 0;
+}
+
+.references-links {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--section-content-gap);
+    margin-top: -72px;
+    margin-bottom: var(--footer-stack-bottom-gap);
+    font-size: 16px;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+}
+
+.references-links .reference-link {
+    margin-bottom: 0;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}

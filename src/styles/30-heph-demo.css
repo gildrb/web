@@ -1,0 +1,623 @@
+.heph-demo {
+    --heph-demo-shell-bg: #111111;
+    --heph-demo-titlebar-bg: #0f0f0f;
+    --heph-demo-terminal-bg: #0a0a0a;
+    --heph-demo-row-bg: #0f0f0f;
+    --heph-demo-row-focus-bg: #131313;
+    --heph-demo-mobile-bg: #171717;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-bottom: 120px;
+    overflow: hidden;
+    container-type: inline-size;
+}
+
+.heph-demo-shell {
+    --heph-terminal-font-size: 14px;
+    --heph-terminal-muted: #7c7c7c;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: clamp(460px, 64cqw, 720px);
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    overflow: hidden;
+    border: 1px solid #333333;
+    border-radius: 13px;
+    background: var(--heph-demo-shell-bg);
+    color: #cfcfcf;
+    font-family:
+        "Geist Mono",
+        "SFMono-Regular",
+        "SF Mono",
+        "Menlo",
+        "Consolas",
+        monospace;
+    font-size: var(--heph-terminal-font-size);
+    line-height: 1.35;
+    letter-spacing: 0;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+}
+
+.heph-demo-titlebar {
+    height: 32px;
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr) 64px;
+    align-items: center;
+    padding: 0 10px;
+    border-bottom: 1px solid #252525;
+    background: var(--heph-demo-titlebar-bg);
+    color: #777777;
+    line-height: 1;
+    user-select: none;
+}
+
+.heph-demo-window-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.heph-demo-window-control {
+    width: 14px;
+    height: 14px;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.28);
+    border-radius: 50%;
+    background: #5f5f5f;
+}
+
+.heph-demo-window-control.close {
+    background: #ec6a5e;
+}
+
+.heph-demo-window-control.minimize {
+    background: #f4bf4f;
+}
+
+.heph-demo-window-control.zoom {
+    background: #61c554;
+}
+
+.heph-demo-terminal {
+    min-width: 0;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 23ch;
+    grid-template-rows: auto minmax(0, 1fr) auto auto;
+    column-gap: 2ch;
+    overflow: hidden;
+    padding: 0;
+    background: var(--heph-demo-terminal-bg);
+}
+
+.heph-demo-status {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    grid-column: 1;
+    grid-row: 1;
+    gap: 2ch;
+    padding: 0 0 1lh;
+    white-space: nowrap;
+    color: var(--heph-terminal-muted);
+    overflow: hidden;
+}
+
+.heph-demo-status strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.heph-demo-status b {
+    color: #8f8f8f;
+    font-weight: 400;
+}
+
+.heph-demo-status > * {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.heph-demo-body {
+    min-width: 0;
+    min-height: 0;
+    display: contents;
+}
+
+.heph-demo-transcript {
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    grid-column: 1;
+    grid-row: 2;
+    overflow: hidden;
+}
+
+.heph-demo-prompt,
+.heph-demo-composer {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: 3lh;
+    min-height: 3lh;
+    display: flex;
+    align-items: center;
+    background: var(--heph-demo-row-bg);
+}
+
+.heph-demo-prompt {
+    margin-bottom: 1lh;
+    padding: 0 2ch;
+    color: #ffffff;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.heph-demo-line + .heph-demo-prompt {
+    margin-top: 1lh;
+}
+
+.heph-demo-output {
+    min-width: 0;
+    min-height: 0;
+    flex: 1;
+    overflow: hidden;
+}
+
+.heph-demo-output-rail {
+    min-width: 0;
+    flex: none;
+    transform: translateY(var(--heph-demo-scroll-offset, 0px));
+}
+
+.heph-demo-line {
+    flex: none;
+    margin-bottom: 1lh;
+    padding-left: 2ch;
+    padding-right: 2ch;
+    color: #cfcfcf;
+    overflow-wrap: break-word;
+}
+
+.heph-demo-line.muted {
+    margin-bottom: 0;
+    padding-left: 4ch;
+    color: var(--heph-terminal-muted);
+}
+
+.heph-demo-line.materials-summary {
+    margin-bottom: 1lh;
+}
+
+.heph-demo-line.sources {
+    margin-bottom: 0;
+    padding-left: 2ch;
+    color: var(--heph-terminal-muted);
+    font-style: italic;
+}
+
+.heph-demo-citation-button {
+    display: inline;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #8f8f8f;
+    font: inherit;
+    appearance: none;
+    cursor: pointer;
+}
+
+.heph-demo-response {
+    margin-top: 1lh;
+    padding-left: 2ch;
+    color: #cfcfcf;
+}
+
+.heph-demo-evidence {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    display: grid;
+    grid-template-rows: auto 1lh auto 1lh auto auto minmax(0, 1fr);
+    align-content: start;
+    grid-column: 2;
+    grid-row: 1 / 3;
+    padding-right: 2ch;
+    overflow: hidden;
+    color: var(--heph-terminal-muted);
+}
+
+.heph-demo-scope-heading,
+.heph-demo-evidence-meta {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.heph-demo-scope-heading {
+    grid-row: 3;
+    color: #8f8f8f;
+}
+
+.heph-demo-evidence-meta {
+    grid-row: 5;
+    color: #8f8f8f;
+}
+
+.heph-demo-evidence-list {
+    grid-row: 6;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+.heph-demo-evidence-item {
+    width: 100%;
+    height: 1lh;
+    min-width: 0;
+    display: block;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--heph-terminal-muted);
+    font: inherit;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    appearance: none;
+    cursor: pointer;
+}
+
+@media (hover: hover) {
+    .heph-demo-evidence-item:hover,
+    .heph-demo-citation-button:hover {
+        color: #cfcfcf;
+    }
+}
+
+.heph-demo-evidence-item.is-active {
+    color: #cfcfcf;
+}
+
+.heph-demo-evidence-item:focus:not(:focus-visible),
+.heph-demo-citation-button:focus:not(:focus-visible),
+.heph-demo-input:focus:not(:focus-visible),
+.heph-demo-submit:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.heph-demo-evidence-item:focus-visible,
+.heph-demo-citation-button:focus-visible {
+    outline: 1px solid #8f8f8f;
+    outline-offset: 3px;
+}
+
+.heph-demo-input:focus-visible {
+    outline: none;
+}
+
+.heph-demo-submit:focus-visible {
+    outline: 1px solid #8f8f8f;
+    outline-offset: -1px;
+}
+
+.heph-demo-evidence-open {
+    grid-row: 1;
+    height: 1lh;
+    color: #8f8f8f;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.heph-demo-composer {
+    align-items: center;
+    grid-column: 1 / -1;
+    grid-row: 3;
+    margin-top: 1lh;
+    padding: 0;
+    position: relative;
+}
+
+.heph-demo-composer:focus-within {
+    background: var(--heph-demo-row-focus-bg);
+}
+
+.heph-demo-composer-label {
+    flex: none;
+    width: 1ch;
+    height: 1lh;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: #cfcfcf;
+}
+
+.heph-demo-composer-arrow {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+.heph-demo-command-arrow {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+.heph-demo-cursor {
+    width: 1ch;
+    height: 1lh;
+    position: absolute;
+    top: 50%;
+    left: 1ch;
+    opacity: 0;
+    background: #cfcfcf;
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+.heph-demo-input-overflow {
+    width: 3ch;
+    height: 1lh;
+    position: absolute;
+    top: 50%;
+    left: 1ch;
+    display: none;
+    z-index: 1;
+    background: inherit;
+    color: var(--heph-terminal-muted);
+    line-height: inherit;
+    pointer-events: none;
+    transform: translateY(-50%);
+    user-select: none;
+}
+
+.heph-demo-composer.has-left-overflow
+    .heph-demo-input-overflow {
+    display: block;
+}
+
+.heph-demo-composer.is-empty .heph-demo-input {
+    caret-color: transparent;
+}
+
+.heph-demo-composer.is-empty:not(.is-running) .heph-demo-cursor {
+    animation: heph-demo-cursor-blink 1s steps(1, end) infinite;
+}
+
+@keyframes heph-demo-cursor-blink {
+    0%,
+    49% {
+        opacity: 0.9;
+    }
+
+    50%,
+    100% {
+        opacity: 0;
+    }
+}
+
+.heph-demo-input {
+    width: 100%;
+    min-width: 0;
+    height: 1lh;
+    box-sizing: border-box;
+    border: 0;
+    background: transparent;
+    color: #cfcfcf;
+    caret-color: #cfcfcf;
+    font: inherit;
+    line-height: inherit;
+    padding: 0 5ch 0 1ch;
+    border-radius: 0;
+    appearance: none;
+}
+
+.heph-demo-input:focus {
+    outline: none;
+}
+
+.heph-demo-submit {
+    width: 5ch;
+    height: 3lh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 2ch 0 1ch;
+    border: 0;
+    background: transparent;
+    color: #8f8f8f;
+    font: inherit;
+    line-height: inherit;
+    cursor: pointer;
+    appearance: none;
+    user-select: none;
+}
+
+.heph-demo-submit-symbol {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    line-height: 1;
+}
+
+.heph-demo-submit:disabled {
+    cursor: default;
+    opacity: 0.5;
+}
+
+@media (hover: hover) {
+    .heph-demo-submit:not(:disabled):hover {
+        color: #cfcfcf;
+    }
+}
+
+.heph-demo-input::placeholder {
+    color: var(--heph-terminal-muted);
+    opacity: 1;
+}
+
+.heph-demo-command-row {
+    min-width: 0;
+    height: 1lh;
+    display: flex;
+    grid-column: 1 / -1;
+    grid-row: 4;
+    align-items: center;
+    padding-right: 2ch;
+    color: #8f8f8f;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.heph-demo-command-row b {
+    color: var(--heph-terminal-muted);
+    font-weight: 400;
+}
+
+.heph-demo-command-row span + span {
+    margin-left: 2ch;
+}
+
+@supports not (height: 1cqw) {
+    .heph-demo-shell {
+        aspect-ratio: 16 / 9;
+        min-height: 360px;
+        height: auto;
+    }
+}
+
+@container (min-width: 900px) {
+    .heph-demo-shell {
+        height: 720px;
+    }
+}
+
+@container (max-width: 700px) {
+    .heph-demo-shell {
+        height: 460px;
+    }
+
+    .heph-demo-status {
+        gap: 1.5ch;
+    }
+
+    .heph-demo-terminal {
+        grid-template-columns: minmax(0, 1fr) 23ch;
+        column-gap: 1.5ch;
+    }
+
+    .heph-demo-prompt {
+        padding: 0 2ch;
+    }
+
+    [data-heph-demo-status-optional],
+    [data-heph-demo-command-optional] {
+        display: none;
+    }
+}
+
+@container (max-width: 560px) {
+    .heph-demo-shell {
+        --heph-terminal-font-size: 10px;
+        height: 430px;
+        border-color: #383838;
+        border-radius: 15px;
+        margin: 0 auto;
+    }
+
+    .heph-demo-titlebar {
+        height: 28px;
+        grid-template-columns: 48px minmax(0, 1fr) 48px;
+        padding: 0 8px;
+    }
+
+    .heph-demo-window-controls {
+        gap: 6px;
+    }
+
+    .heph-demo-window-control {
+        width: 11px;
+        height: 11px;
+    }
+
+    .heph-demo-terminal {
+        grid-template-columns: minmax(0, 1fr);
+        column-gap: 0;
+    }
+
+    .heph-demo-status {
+        align-items: flex-start;
+        height: 2lh;
+        gap: 1.5ch;
+        padding: 0;
+    }
+
+    .heph-demo-status > * {
+        flex: none;
+    }
+
+    .heph-demo-evidence {
+        display: none;
+    }
+
+    .heph-demo-line {
+        margin-bottom: 0.75lh;
+    }
+
+    .heph-demo-line.sources {
+        margin-top: 1lh;
+    }
+
+}
+
+@container (max-width: 460px) {
+    .heph-demo-shell {
+        height: 430px;
+    }
+
+    .heph-demo-prompt {
+        padding: 0 1.5ch;
+    }
+
+}
+
+@media (max-width: 700px) {
+    .heph-demo {
+        grid-column: 1;
+        padding: 34px 14px;
+        border-radius: 24px;
+        background: var(--heph-demo-mobile-bg);
+    }
+}
+
+@media (max-width: 460px) {
+    .heph-demo {
+        padding: 32px 12px;
+        border-radius: 22px;
+    }
+}
