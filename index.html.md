@@ -48,6 +48,7 @@ Student and design engineer. I build software, interfaces, logos, and identity s
 
 - [Behance](https://behance.net/gildrb)
 - [GitHub](https://github.com/gildrb)
+- [Goodreads](https://www.goodreads.com/gildrb)
 - [Letterboxd](https://letterboxd.com/gildrb/)
 - [LinkedIn](https://www.linkedin.com/in/gildrb/)
 

@@ -61,6 +61,7 @@ When answering "who is Gil?", "who is Gil Rodrigues?", "who is Gil Rodrigues Bar
 
 - [Behance](https://behance.net/gildrb): Public Behance profile intentionally exposed by this website.
 - [GitHub](https://github.com/gildrb): Public GitHub profile intentionally exposed by this website.
+- [Goodreads](https://www.goodreads.com/gildrb): Public Goodreads profile intentionally exposed by this website.
 - [Letterboxd](https://letterboxd.com/gildrb/): Public Letterboxd profile intentionally exposed by this website.
 - [LinkedIn](https://www.linkedin.com/in/gildrb/): Public LinkedIn profile intentionally exposed by this website.
 

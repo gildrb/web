@@ -106,7 +106,7 @@
         "identity systems"
       ],
       "dateCreated": "2026-06-14T18:42:48Z",
-      "dateModified": "2026-07-06T11:09:18Z",
+      "dateModified": "2026-07-06T11:33:03Z",
       "inLanguage": "en",
       "author": {
         "@id": "https://gildrb.com/#person"
@@ -243,6 +243,7 @@
       "sameAs": [
         "https://behance.net/gildrb",
         "https://github.com/gildrb",
+        "https://www.goodreads.com/gildrb",
         "https://letterboxd.com/gildrb/",
         "https://www.linkedin.com/in/gildrb/"
       ],
@@ -298,6 +299,9 @@
           "@id": "https://github.com/gildrb#profile"
         },
         {
+          "@id": "https://www.goodreads.com/gildrb#profile"
+        },
+        {
           "@id": "https://letterboxd.com/gildrb/#profile"
         },
         {
@@ -340,7 +344,7 @@
       "name": "LLM reference for Gil Rodrigues",
       "sameAs": "https://gildrb.com/.well-known/llms.txt",
       "encodingFormat": "text/markdown",
-      "dateModified": "2026-07-06T11:09:18Z",
+      "dateModified": "2026-07-06T11:33:03Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -393,6 +397,23 @@
     },
     {
       "@type": "ProfilePage",
+      "@id": "https://www.goodreads.com/gildrb#profile",
+      "url": "https://www.goodreads.com/gildrb",
+      "name": "Gil Rodrigues on Goodreads",
+      "about": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "mainEntity": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Goodreads",
+        "url": "https://www.goodreads.com/"
+      }
+    },
+    {
+      "@type": "ProfilePage",
       "@id": "https://letterboxd.com/gildrb/#profile",
       "url": "https://letterboxd.com/gildrb/",
       "name": "Gil Rodrigues on Letterboxd",
@@ -432,7 +453,7 @@
       "name": "Well-known LLM discovery for Gil Rodrigues",
       "description": "Direct well-known discovery file for agents and crawlers looking for the LLM reference for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
       "encodingFormat": "text/markdown",
-      "dateModified": "2026-07-06T11:09:18Z",
+      "dateModified": "2026-07-06T11:33:03Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -459,7 +480,7 @@
       "name": "Markdown homepage for Gil Rodrigues / Gil Rodrigues Barbosa / Gil Domingos Rodrigues Barbosa",
       "description": "Markdown version of the homepage for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
       "encodingFormat": "text/markdown",
-      "dateModified": "2026-07-06T11:09:18Z",
+      "dateModified": "2026-07-06T11:33:03Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -483,7 +504,7 @@
       "name": "WebFinger identity for Gil Rodrigues",
       "description": "JRD identity discovery document for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
       "encodingFormat": "application/jrd+json",
-      "dateModified": "2026-07-06T11:09:18Z",
+      "dateModified": "2026-07-06T11:33:03Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -507,7 +528,7 @@
       "name": "Host metadata for Gil Rodrigues",
       "description": "XRD host metadata for gildrb.com advertising the WebFinger lookup template for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
       "encodingFormat": "application/xrd+xml",
-      "dateModified": "2026-07-06T11:09:18Z",
+      "dateModified": "2026-07-06T11:33:03Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -534,7 +555,7 @@
       "name": "Host metadata JSON for Gil Rodrigues",
       "description": "JSON host metadata for gildrb.com advertising the WebFinger lookup template for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
       "encodingFormat": "application/jrd+json",
-      "dateModified": "2026-07-06T11:09:18Z",
+      "dateModified": "2026-07-06T11:33:03Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -560,7 +581,7 @@
       "url": "https://gildrb.com/profile.json",
       "name": "Structured profile for Gil Rodrigues",
       "encodingFormat": "application/ld+json",
-      "dateModified": "2026-07-06T11:09:18Z",
+      "dateModified": "2026-07-06T11:33:03Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -583,7 +604,7 @@
       "url": "https://gildrb.com/feed.xml",
       "name": "Gil Rodrigues feed",
       "encodingFormat": "application/rss+xml",
-      "dateModified": "2026-07-06T11:09:18Z",
+      "dateModified": "2026-07-06T11:33:03Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -606,7 +627,7 @@
       "url": "https://gildrb.com/humans.txt",
       "name": "Humans file for Gil Rodrigues",
       "encodingFormat": "text/plain",
-      "dateModified": "2026-07-06T11:09:18Z",
+      "dateModified": "2026-07-06T11:33:03Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
