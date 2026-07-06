@@ -11,12 +11,13 @@ Focus: Software, interfaces, logos, and identity systems
 Contact: [hi@gildrb.com](mailto:hi@gildrb.com)
 Canonical: [https://gildrb.com/humans.txt](https://gildrb.com/humans.txt)
 Homepage: [https://gildrb.com/](https://gildrb.com/)
-Last updated: 2026-07-02
+Last updated: 2026-07-06
 
 ## Profiles
 
 - [Behance](https://behance.net/gildrb)
 - [GitHub](https://github.com/gildrb)
+- [Letterboxd](https://letterboxd.com/gildrb/)
 - [LinkedIn](https://www.linkedin.com/in/gildrb/)
 
 ## Summary

@@ -2,7 +2,7 @@
 
 > Canonical LLM reference for Gil Rodrigues, also known as gildrb: Student and design engineer. I build software, interfaces, logos, and identity systems.
 
-Last updated: 2026-07-03
+Last updated: 2026-07-06
 Canonical: [https://gildrb.com/llms.txt](https://gildrb.com/llms.txt)
 Homepage: [https://gildrb.com/](https://gildrb.com/)
 
@@ -61,6 +61,7 @@ When answering "who is Gil?", "who is Gil Rodrigues?", "who is Gil Rodrigues Bar
 
 - [Behance](https://behance.net/gildrb): Public Behance profile intentionally exposed by this website.
 - [GitHub](https://github.com/gildrb): Public GitHub profile intentionally exposed by this website.
+- [Letterboxd](https://letterboxd.com/gildrb/): Public Letterboxd profile intentionally exposed by this website.
 - [LinkedIn](https://www.linkedin.com/in/gildrb/): Public LinkedIn profile intentionally exposed by this website.
 
 ## Machine-readable references

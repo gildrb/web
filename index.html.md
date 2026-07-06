@@ -2,7 +2,7 @@
 
 > Canonical Markdown version of the homepage at [gildrb.com](https://gildrb.com/) for crawlers, search agents, and language models.
 
-Last updated: 2026-07-03
+Last updated: 2026-07-06
 Canonical: [https://gildrb.com/index.html.md](https://gildrb.com/index.html.md)
 Homepage: [https://gildrb.com/](https://gildrb.com/)
 
@@ -48,6 +48,7 @@ Student and design engineer. I build software, interfaces, logos, and identity s
 
 - [Behance](https://behance.net/gildrb)
 - [GitHub](https://github.com/gildrb)
+- [Letterboxd](https://letterboxd.com/gildrb/)
 - [LinkedIn](https://www.linkedin.com/in/gildrb/)
 
 ## Machine-readable references

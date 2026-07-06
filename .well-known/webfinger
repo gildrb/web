@@ -85,6 +85,13 @@
     },
     {
       "rel": "me",
+      "href": "https://letterboxd.com/gildrb/",
+      "titles": {
+        "en": "Gil Rodrigues on Letterboxd"
+      }
+    },
+    {
+      "rel": "me",
       "href": "https://www.linkedin.com/in/gildrb/",
       "titles": {
         "en": "Gil Rodrigues on LinkedIn"
