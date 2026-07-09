@@ -1317,8 +1317,6 @@ body.preview-open {
 }
 
 .heph-demo {
-    --heph-demo-shell-bg: #111111;
-    --heph-demo-titlebar-bg: #0f0f0f;
     --heph-demo-terminal-bg: #0a0a0a;
     --heph-demo-row-bg: #0f0f0f;
     --heph-demo-row-focus-bg: #131313;
@@ -1338,12 +1336,14 @@ body.preview-open {
     max-width: 100%;
     min-width: 0;
     height: clamp(460px, 64cqw, 720px);
+    box-sizing: border-box;
     display: grid;
     grid-template-rows: auto minmax(0, 1fr);
     overflow: hidden;
-    border: 1px solid #333333;
+    border: 1px solid rgb(255 255 255 / 0.14);
     border-radius: 13px;
-    background: var(--heph-demo-shell-bg);
+    background: var(--heph-demo-terminal-bg);
+    background-clip: padding-box;
     color: #cfcfcf;
     font-family:
         "Geist Mono",
@@ -1366,8 +1366,7 @@ body.preview-open {
     grid-template-columns: 64px minmax(0, 1fr) 64px;
     align-items: center;
     padding: 0 10px;
-    border-bottom: 1px solid #252525;
-    background: var(--heph-demo-titlebar-bg);
+    background: var(--heph-demo-terminal-bg);
     color: #777777;
     line-height: 1;
     user-select: none;
@@ -1377,27 +1376,43 @@ body.preview-open {
     display: flex;
     align-items: center;
     gap: 8px;
+    transform: translate(-2px, -2px);
 }
 
 .heph-demo-window-control {
     width: 14px;
     height: 14px;
+    position: relative;
     box-sizing: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.28);
+    border: 0;
     border-radius: 50%;
     background: #5f5f5f;
+    isolation: isolate;
+}
+
+.heph-demo-window-control::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.28);
+    border-radius: inherit;
+    mix-blend-mode: overlay;
+    pointer-events: none;
 }
 
 .heph-demo-window-control.close {
-    background: #ec6a5e;
+    background: #F96664;
+    transform: translateX(-1px);
 }
 
 .heph-demo-window-control.minimize {
-    background: #f4bf4f;
+    background: #FACE2E;
 }
 
 .heph-demo-window-control.zoom {
-    background: #61c554;
+    background: #3BC55D;
+    transform: translateX(1px);
 }
 
 .heph-demo-terminal {
@@ -1863,7 +1878,6 @@ body.preview-open {
     .heph-demo-shell {
         --heph-terminal-font-size: 10px;
         height: 430px;
-        border-color: #383838;
         border-radius: 15px;
         margin: 0 auto;
     }
