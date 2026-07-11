@@ -35,7 +35,7 @@ Gil Rodrigues, also known as gildrb, defines visual systems for digital products
 
 ## About
 
-I define visual systems for digital products and carry them from identity and interface design through implementation.
+Designing brands, interfaces, and the systems that connect them.
 
 ## Portfolio
 

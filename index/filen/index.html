@@ -1302,38 +1302,16 @@ body.preview-open {
     border-width: 0;
 }
 
-.project-link {
-    color: var(--text-secondary);
-    text-decoration: none;
-}
-
-.project-summary {
-    max-width: 700px;
-    margin: -2px 0 20px;
-    color: var(--text-secondary);
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-.project-summary .project-link {
-    white-space: nowrap;
-}
-
 .case-study-entry {
     cursor: pointer !important;
 }
 
 @media (hover: hover) {
-    .project-link:hover {
-        color: var(--text-primary);
-    }
-
     .case-study-entry:hover img {
         opacity: 0.84;
     }
 }
 
-.project-link:focus-visible,
 .case-study-entry:focus-visible {
     outline: 1px solid var(--text-primary);
     outline-offset: 4px;
@@ -1344,47 +1322,23 @@ body.preview-open {
     background: var(--bg);
 }
 
-.case-header {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: start;
-    max-width: 1900px;
-    margin: 0 auto;
-    padding: 40px 48px 0;
-}
-
-.case-home-link {
+.case-index-link {
     color: var(--text-primary);
-    font-size: 19px;
-    line-height: 32px;
-    letter-spacing: -0.02em;
     text-decoration: none;
 }
 
-.case-home-link span {
-    color: var(--text-secondary);
-}
-
-.case-header .theme-toggle {
-    margin: 0;
-}
-
 .case-article {
-    max-width: 1900px;
-    margin: 0 auto;
-    padding: 88px 48px 64px;
-    font-size: 17px;
-    line-height: 1.62;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0;
 }
 
 .case-intro,
 .case-copy,
 .case-footer-inner {
     width: min(100%, 720px);
-    margin-right: auto;
-    margin-left: auto;
+    margin-right: 0;
+    margin-left: 0;
 }
 
 .case-kicker,
@@ -1393,33 +1347,32 @@ body.preview-open {
 .case-code-label {
     color: var(--text-secondary);
     font-size: 14px;
-    line-height: 1.45;
+    line-height: 20px;
+    letter-spacing: 0;
 }
 
 .case-title {
-    max-width: 880px;
-    margin: 12px 0 22px;
-    font-size: clamp(40px, 6vw, 88px);
-    font-weight: 400;
-    line-height: 0.98;
-    letter-spacing: -0.055em;
+    max-width: 720px;
+    margin: 8px 0 24px;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 48px;
+    letter-spacing: 0;
 }
 
 .case-deck {
     max-width: 680px;
     color: var(--text-secondary);
-    font-size: clamp(20px, 2.2vw, 28px);
-    line-height: 1.35;
-    letter-spacing: -0.02em;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0;
 }
 
 .case-meta {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 24px;
-    margin-top: 48px;
-    padding-top: 20px;
-    border-top: 1px solid color-mix(in srgb, var(--text-secondary) 35%, transparent);
+    margin-top: 32px;
 }
 
 .case-meta div {
@@ -1427,10 +1380,10 @@ body.preview-open {
 }
 
 .case-meta dd {
-    margin-top: 3px;
+    margin-top: 4px;
     color: var(--text-primary);
-    font-size: 15px;
-    line-height: 1.45;
+    font-size: 14px;
+    line-height: 20px;
 }
 
 .case-section {
@@ -1439,18 +1392,18 @@ body.preview-open {
 
 .case-copy h2 {
     margin-bottom: 24px;
-    font-size: clamp(28px, 3.2vw, 42px);
-    font-weight: 400;
-    line-height: 1.08;
-    letter-spacing: -0.035em;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 40px;
+    letter-spacing: 0;
 }
 
 .case-copy h3 {
     margin: 48px 0 12px;
     font-size: 20px;
-    font-weight: 400;
-    line-height: 1.3;
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    line-height: 28px;
+    letter-spacing: 0;
 }
 
 .case-copy p + p {
@@ -1472,7 +1425,7 @@ body.preview-open {
 }
 
 .case-copy li + li {
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
 .case-media {
@@ -1514,24 +1467,23 @@ body.preview-open {
 }
 
 .case-code-label {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .case-code pre {
     overflow-x: auto;
     padding: 24px;
     border: 1px solid color-mix(in srgb, var(--text-secondary) 32%, transparent);
-    border-radius: 14px;
+    border-radius: 8px;
     background: color-mix(in srgb, var(--text-primary) 4%, var(--bg));
     color: var(--text-primary);
-    font: 14px/1.6 "Geist Mono", monospace;
+    font: 14px/20px "Geist Mono", monospace;
+    letter-spacing: 0;
     tab-size: 4;
 }
 
 .case-footer {
     margin-top: 120px;
-    padding-top: 32px;
-    border-top: 1px solid color-mix(in srgb, var(--text-secondary) 35%, transparent);
 }
 
 .case-footer-inner {
@@ -1547,50 +1499,32 @@ body.preview-open {
 }
 
 @media (hover: hover) {
-    .case-home-link:hover span,
+    .case-index-link:hover,
     .case-footer a:hover {
         color: var(--text-primary);
     }
 }
 
-.case-home-link:focus-visible,
+.case-index-link:focus-visible,
 .case-footer a:focus-visible {
     outline: 1px solid var(--text-primary);
     outline-offset: 4px;
 }
 
-@media (max-width: 1400px) {
-    .case-header {
-        padding-right: 32px;
-        padding-left: 32px;
-    }
-
-    .case-article {
-        padding-right: 32px;
-        padding-left: 32px;
-    }
-}
-
 @media (max-width: 768px) {
-    .project-summary {
-        margin-bottom: 16px;
-    }
-
-    .case-header {
-        padding: 24px 12px 0;
-    }
-
     .case-article {
-        padding: 64px 12px 40px;
         font-size: 16px;
+        line-height: 24px;
     }
 
     .case-title {
-        font-size: clamp(40px, 15vw, 64px);
+        font-size: 32px;
+        line-height: 40px;
     }
 
     .case-deck {
-        font-size: 20px;
+        font-size: 16px;
+        line-height: 24px;
     }
 
     .case-meta {
@@ -1615,8 +1549,9 @@ body.preview-open {
     }
 
     .case-code pre {
-        padding: 18px;
-        font-size: 12px;
+        padding: 16px;
+        font-size: 14px;
+        line-height: 20px;
     }
 
     .case-footer-inner {
@@ -1791,29 +1726,32 @@ body.preview-open {
             aria-live="polite"
             aria-atomic="true"
         ></div>
-        <header class="case-header">
-            <a class="case-home-link" href="/"
-                >Gil Rodrigues <span>← Index</span></a
-            >
-            <button
-                class="theme-toggle"
-                type="button"
-                aria-label="Switch to light mode"
-                title="Switch to light mode"
-            >
-                <svg class="sun-icon" viewBox="0 0 20 20" aria-hidden="true">
-                    <path d="M10 2a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 2ZM10 15a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 15ZM10 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM15.657 5.404a.75.75 0 1 0-1.06-1.06l-1.061 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM6.464 14.596a.75.75 0 1 0-1.06-1.06l-1.06 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM18 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 18 10ZM5 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 5 10ZM14.596 15.657a.75.75 0 0 0 1.06-1.06l-1.06-1.061a.75.75 0 1 0-1.06 1.06l1.06 1.06ZM5.404 6.464a.75.75 0 0 0 1.06-1.06l-1.06-1.06a.75.75 0 0 0-1.061 1.06l1.06 1.06Z" />
-                </svg>
-                <svg class="moon-icon" viewBox="0 0 20 20" aria-hidden="true">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.455 2.004a.75.75 0 0 1 .26.77 7 7 0 0 0 9.958 7.967.75.75 0 0 1 1.067.853A8.5 8.5 0 1 1 6.647 1.921a.75.75 0 0 1 .808.083Z" />
-                </svg>
-            </button>
-        </header>
+        <div class="wrapper">
+            <div class="layout">
+                <aside class="sidebar" aria-label="Case study navigation">
+                    <a class="name case-index-link" href="/">Gil Rodrigues</a>
+                    <nav class="links" aria-label="Return to portfolio">
+                        <a class="reference-link" href="/">Index</a>
+                    </nav>
+                    <button
+                        class="theme-toggle"
+                        type="button"
+                        aria-label="Switch to light mode"
+                        title="Switch to light mode"
+                    >
+                        <svg class="sun-icon" viewBox="0 0 20 20" aria-hidden="true">
+                            <path d="M10 2a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 2ZM10 15a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 15ZM10 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM15.657 5.404a.75.75 0 1 0-1.06-1.06l-1.061 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM6.464 14.596a.75.75 0 1 0-1.06-1.06l-1.06 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM18 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 18 10ZM5 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 5 10ZM14.596 15.657a.75.75 0 0 0 1.06-1.06l-1.06-1.061a.75.75 0 1 0-1.06 1.06l1.06 1.06ZM5.404 6.464a.75.75 0 0 0 1.06-1.06l-1.06-1.06a.75.75 0 0 0-1.061 1.06l1.06 1.06Z" />
+                        </svg>
+                        <svg class="moon-icon" viewBox="0 0 20 20" aria-hidden="true">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.455 2.004a.75.75 0 0 1 .26.77 7 7 0 0 0 9.958 7.967.75.75 0 0 1 1.067.853A8.5 8.5 0 1 1 6.647 1.921a.75.75 0 0 1 .808.083Z" />
+                        </svg>
+                    </button>
+                </aside>
 
-        <main class="case-article">
+                <main class="content case-article">
             <article>
                 <header class="case-intro">
-                    <p class="case-kicker">Identity system · Filen</p>
+                    <p class="case-kicker">Filen identity system</p>
                     <h1 class="case-title">Making privacy visible without reducing it to a padlock.</h1>
                     <p class="case-deck">
                         I developed Filen’s identity from a wide field of sketches into a compact mark, wordmark, app icon, and campaign language for zero-knowledge encrypted cloud storage.
@@ -2038,12 +1976,13 @@ body.preview-open {
                 <footer class="case-footer">
                     <div class="case-footer-inner">
                         <a href="/">← Return to the index</a>
-                        <a href="https://filen.io/" target="_blank" rel="noopener noreferrer">View Filen ↗</a>
                         <a href="mailto:hi@gildrb.com">hi@gildrb.com</a>
                     </div>
                 </footer>
             </article>
-        </main>
+                </main>
+            </div>
+        </div>
 
         <script>
 window.va =

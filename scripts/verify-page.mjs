@@ -91,6 +91,7 @@ const { caseScript, filenHtml, indexHtml, profileJson, siteScript } = await buil
 const currentIndex = await readText("index.html");
 const currentFilen = await readText("index/filen/index.html");
 const currentProfile = await readText("profile.json");
+const caseStyles = await readText("src/styles/50-case-study.css");
 
 assert(
     currentIndex === indexHtml,
@@ -146,6 +147,15 @@ assert(
     "Homepage does not link to the Filen case study.",
 );
 assert(
+    (indexHtml.match(/href="\/index\/filen"/g) || []).length === 1,
+    "Only the featured Filen image may link to the case study.",
+);
+assert(
+    !indexHtml.includes("project-summary") &&
+        !indexHtml.includes("Read the case study"),
+    "Homepage Filen entry must remain image-led and concise.",
+);
+assert(
     filenHtml.includes('rel="canonical" href="https://gildrb.com/index/filen"'),
     "Filen case study is missing its canonical URL.",
 );
@@ -171,6 +181,16 @@ assert(
         /filen-exploration-(?:early|development|refinement)/.test(file),
     ),
     "Cropped Filen exploration derivatives are not allowed.",
+);
+assert(
+    !filenHtml.includes("https://filen.io/"),
+    "Filen case study must not link to filen.io.",
+);
+assert(
+    !filenHtml.includes(" · ") &&
+        !caseStyles.includes("border-top:") &&
+        !caseStyles.includes("border-bottom:"),
+    "Filen case study must not introduce dot or rule dividers.",
 );
 
 console.log(
