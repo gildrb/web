@@ -42,7 +42,7 @@ function extractAssetRefs(html) {
         }
 
         if (/\.(?:avif|gif|jpe?g|png|svg|webp|woff2?)$/i.test(value)) {
-            refs.add(value);
+            refs.add(value.replace(/^\/+/, ""));
         }
     };
 
@@ -85,15 +85,20 @@ async function listFiles(relativeDir) {
     return files.flat();
 }
 
-const { indexHtml, profileJson, siteScript } = await buildPage({
+const { caseScript, filenHtml, indexHtml, profileJson, siteScript } = await buildPage({
     write: false,
 });
 const currentIndex = await readText("index.html");
+const currentFilen = await readText("index/filen/index.html");
 const currentProfile = await readText("profile.json");
 
 assert(
     currentIndex === indexHtml,
     "index.html is out of date. Run `node scripts/build-page.mjs`.",
+);
+assert(
+    currentFilen === filenHtml,
+    "index/filen/index.html is out of date. Run `node scripts/build-page.mjs`.",
 );
 assert(
     currentProfile === profileJson,
@@ -106,8 +111,12 @@ assert(
 );
 
 new Function(siteScript);
+new Function(caseScript);
 
-const assetRefs = extractAssetRefs(indexHtml);
+const assetRefs = new Set([
+    ...extractAssetRefs(indexHtml),
+    ...extractAssetRefs(filenHtml),
+]);
 const missingAssets = [...assetRefs].filter(
     (ref) => !existsSync(path.join(root, ref)),
 );
@@ -130,6 +139,38 @@ const unreferencedImages = imageFiles.filter(
 assert(
     unreferencedImages.length === 0,
     `Unreferenced image files:\n${unreferencedImages.join("\n")}`,
+);
+
+assert(
+    indexHtml.includes('href="/index/filen"'),
+    "Homepage does not link to the Filen case study.",
+);
+assert(
+    filenHtml.includes('rel="canonical" href="https://gildrb.com/index/filen"'),
+    "Filen case study is missing its canonical URL.",
+);
+assert(
+    filenHtml.includes("gil-rodrigues-filen-exploration-board-1280.webp"),
+    "Filen case study is missing the complete exploration board.",
+);
+assert(
+    [480, 720, 960, 1280].every((width) =>
+        filenHtml.includes(
+            `gil-rodrigues-filen-exploration-board-${width}.webp`,
+        ),
+    ),
+    "Filen case study must provide every optimized full-board image size.",
+);
+assert(
+    !filenHtml.includes("object-fit: cover") &&
+        !filenHtml.includes("object-position:"),
+    "Filen case study images must preserve their complete frame.",
+);
+assert(
+    !imageFiles.some((file) =>
+        /filen-exploration-(?:early|development|refinement)/.test(file),
+    ),
+    "Cropped Filen exploration derivatives are not allowed.",
 );
 
 console.log(

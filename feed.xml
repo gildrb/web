@@ -3,24 +3,34 @@
   <channel>
     <title>Gil Rodrigues - Gil Rodrigues Barbosa - Gil Domingos Rodrigues Barbosa (gildrb)</title>
     <link>https://gildrb.com/</link>
-    <description>Student and design engineer. I build software, interfaces, logos, and identity systems.</description>
+    <description>I define visual systems for digital products and carry them from identity and interface design through implementation.</description>
     <language>en</language>
     <managingEditor>hi@gildrb.com (Gil Rodrigues)</managingEditor>
     <webMaster>hi@gildrb.com (Gil Rodrigues)</webMaster>
-    <lastBuildDate>Thu, 02 Jul 2026 07:43:30 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 11 Jul 2026 07:45:32 +0000</lastBuildDate>
     <atom:link href="https://gildrb.com/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Filen identity system</title>
+      <link>https://gildrb.com/index/filen</link>
+      <guid isPermaLink="true">https://gildrb.com/index/filen</guid>
+      <pubDate>Sat, 11 Jul 2026 07:45:32 +0000</pubDate>
+      <author>hi@gildrb.com (Gil Rodrigues)</author>
+      <category>Identity design</category>
+      <category>Visual systems</category>
+      <description>How Gil Rodrigues developed Filen's identity from broad visual exploration into a scalable mark, wordmark, app icon, and campaign system.</description>
+    </item>
     <item>
       <title>Gil Rodrigues</title>
       <link>https://gildrb.com/</link>
       <guid isPermaLink="true">https://gildrb.com/</guid>
-      <pubDate>Thu, 02 Jul 2026 07:43:30 +0000</pubDate>
+      <pubDate>Sat, 11 Jul 2026 07:45:32 +0000</pubDate>
       <author>hi@gildrb.com (Gil Rodrigues)</author>
       <category>Gil</category>
       <category>Gil Rodrigues</category>
       <category>Gil Rodrigues Barbosa</category>
       <category>Gil Domingos Rodrigues Barbosa</category>
       <category>gildrb</category>
-      <description>Student and design engineer. I build software, interfaces, logos, and identity systems.</description>
+      <description>I define visual systems for digital products and carry them from identity and interface design through implementation.</description>
     </item>
   </channel>
 </rss>

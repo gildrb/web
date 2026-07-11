@@ -123,7 +123,7 @@ function closeImagePreview() {
 }
 
 document
-    .querySelectorAll(".image-wrapper, .gallery-item")
+    .querySelectorAll("button.image-wrapper, button.gallery-item")
     .forEach((imageTrigger) => {
         const image = imageTrigger.querySelector("img");
         if (!image) return;

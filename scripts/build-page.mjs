@@ -1,4 +1,4 @@
-import { readdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
@@ -82,6 +82,15 @@ export async function buildPage({ write = true } = {}) {
     )
         .map(({ text }) => text)
         .join("\n\n");
+    const caseScript = (
+        await Promise.all(
+            ["10-core.js", "20-theme.js"].map((file) =>
+                readText(`src/scripts/${file}`),
+            ),
+        )
+    )
+        .map((text) => text.trimEnd())
+        .join("\n\n");
 
     let indexHtml = await resolveIncludes(
         await readText("src/page.template.html"),
@@ -111,12 +120,37 @@ export async function buildPage({ write = true } = {}) {
         throw new Error("Generated HTML still contains inline tokens.");
     }
 
+    let filenHtml = await resolveIncludes(
+        await readText("src/filen.template.html"),
+    );
+    filenHtml = replaceToken(
+        filenHtml,
+        "<!-- @inline-css:site -->",
+        styles,
+    );
+    filenHtml = replaceToken(
+        filenHtml,
+        "<!-- @inline-js:analytics-bootstrap -->",
+        analyticsBootstrap,
+    );
+    filenHtml = replaceToken(
+        filenHtml,
+        "<!-- @inline-js:case -->",
+        caseScript,
+    );
+
+    if (filenHtml.includes("<!-- @inline-")) {
+        throw new Error("Generated Filen page still contains inline tokens.");
+    }
+
     if (write) {
         await writeFile(path.join(root, "index.html"), indexHtml);
         await writeFile(path.join(root, "profile.json"), profileJson);
+        await mkdir(path.join(root, "index/filen"), { recursive: true });
+        await writeFile(path.join(root, "index/filen/index.html"), filenHtml);
     }
 
-    return { indexHtml, profileJson, siteScript };
+    return { caseScript, filenHtml, indexHtml, profileJson, siteScript };
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
