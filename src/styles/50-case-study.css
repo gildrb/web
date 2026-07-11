@@ -18,9 +18,18 @@
     background: var(--bg);
 }
 
-.case-index-link {
+.case-location {
+    display: flex;
+    gap: 8px;
+}
+
+.case-home-link {
     color: var(--text-primary);
     text-decoration: none;
+}
+
+.case-location span {
+    color: var(--text-secondary);
 }
 
 .case-article {
@@ -37,7 +46,6 @@
     margin-left: 0;
 }
 
-.case-kicker,
 .case-meta dt,
 .case-caption,
 .case-code-label {
@@ -195,13 +203,13 @@
 }
 
 @media (hover: hover) {
-    .case-index-link:hover,
+    .case-home-link:hover,
     .case-footer a:hover {
         color: var(--text-primary);
     }
 }
 
-.case-index-link:focus-visible,
+.case-home-link:focus-visible,
 .case-footer a:focus-visible {
     outline: 1px solid var(--text-primary);
     outline-offset: 4px;

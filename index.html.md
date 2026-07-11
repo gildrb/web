@@ -45,7 +45,7 @@ Designing brands, interfaces, and the systems that connect them.
 
 ### Filen
 
-[Filen identity system](https://gildrb.com/index/filen) documents how the work moved from broad mark exploration into a scalable identity, app icon, and campaign language for zero-knowledge encrypted cloud storage.
+[Filen identity system](https://gildrb.com/filen) documents how the work moved from broad mark exploration into a scalable identity, app icon, and campaign language for zero-knowledge encrypted cloud storage.
 
 ## Public profiles
 

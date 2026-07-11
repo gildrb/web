@@ -89,9 +89,10 @@ const { caseScript, filenHtml, indexHtml, profileJson, siteScript } = await buil
     write: false,
 });
 const currentIndex = await readText("index.html");
-const currentFilen = await readText("index/filen/index.html");
+const currentFilen = await readText("filen/index.html");
 const currentProfile = await readText("profile.json");
 const caseStyles = await readText("src/styles/50-case-study.css");
+const vercelConfig = JSON.parse(await readText("vercel.json"));
 
 assert(
     currentIndex === indexHtml,
@@ -99,7 +100,7 @@ assert(
 );
 assert(
     currentFilen === filenHtml,
-    "index/filen/index.html is out of date. Run `node scripts/build-page.mjs`.",
+    "filen/index.html is out of date. Run `node scripts/build-page.mjs`.",
 );
 assert(
     currentProfile === profileJson,
@@ -143,11 +144,11 @@ assert(
 );
 
 assert(
-    indexHtml.includes('href="/index/filen"'),
+    indexHtml.includes('href="/filen"'),
     "Homepage does not link to the Filen case study.",
 );
 assert(
-    (indexHtml.match(/href="\/index\/filen"/g) || []).length === 1,
+    (indexHtml.match(/href="\/filen"/g) || []).length === 1,
     "Only the featured Filen image may link to the case study.",
 );
 assert(
@@ -156,7 +157,7 @@ assert(
     "Homepage Filen entry must remain image-led and concise.",
 );
 assert(
-    filenHtml.includes('rel="canonical" href="https://gildrb.com/index/filen"'),
+    filenHtml.includes('rel="canonical" href="https://gildrb.com/filen"'),
     "Filen case study is missing its canonical URL.",
 );
 assert(
@@ -185,6 +186,24 @@ assert(
 assert(
     !filenHtml.includes("https://filen.io/"),
     "Filen case study must not link to filen.io.",
+);
+assert(
+    filenHtml.includes('<a class="case-home-link" href="/">Gil Rodrigues</a>') &&
+        !filenHtml.includes('>Index</a>') &&
+        !filenHtml.includes("Return to the index") &&
+        !filenHtml.includes("case-kicker"),
+    "Filen navigation must use the persistent Gil Rodrigues to Filen location.",
+);
+assert(
+    ["/index/filen", "/index/filen/"].every((source) =>
+        vercelConfig.redirects.some(
+            (redirect) =>
+                redirect.source === source &&
+                redirect.destination === "/filen" &&
+                redirect.permanent === true,
+        ),
+    ),
+    "Legacy Filen routes must redirect permanently to /filen.",
 );
 assert(
     !filenHtml.includes(" · ") &&

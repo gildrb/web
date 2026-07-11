@@ -198,7 +198,7 @@
                   },
                   "hasPart": [
                     {
-                      "@id": "https://gildrb.com/index/filen#case-study"
+                      "@id": "https://gildrb.com/filen#case-study"
                     },
                     {
                       "@id": "https://gildrb.com/#heph"
@@ -506,8 +506,8 @@
                     "Article",
                     "CreativeWork"
                   ],
-                  "@id": "https://gildrb.com/index/filen#case-study",
-                  "url": "https://gildrb.com/index/filen",
+                  "@id": "https://gildrb.com/filen#case-study",
+                  "url": "https://gildrb.com/filen",
                   "name": "Filen identity system",
                   "headline": "Making privacy visible without reducing it to a padlock.",
                   "description": "How Gil Rodrigues developed Filen's identity from broad visual exploration into a scalable mark, wordmark, app icon, and campaign system.",
@@ -2123,9 +2123,18 @@ body.preview-open {
     background: var(--bg);
 }
 
-.case-index-link {
+.case-location {
+    display: flex;
+    gap: 8px;
+}
+
+.case-home-link {
     color: var(--text-primary);
     text-decoration: none;
+}
+
+.case-location span {
+    color: var(--text-secondary);
 }
 
 .case-article {
@@ -2142,7 +2151,6 @@ body.preview-open {
     margin-left: 0;
 }
 
-.case-kicker,
 .case-meta dt,
 .case-caption,
 .case-code-label {
@@ -2300,13 +2308,13 @@ body.preview-open {
 }
 
 @media (hover: hover) {
-    .case-index-link:hover,
+    .case-home-link:hover,
     .case-footer a:hover {
         color: var(--text-primary);
     }
 }
 
-.case-index-link:focus-visible,
+.case-home-link:focus-visible,
 .case-footer a:focus-visible {
     outline: 1px solid var(--text-primary);
     outline-offset: 4px;
@@ -2962,7 +2970,7 @@ body.preview-open {
                             <div class="showcase-featured">
                                 <a
                                     class="image-wrapper case-study-entry"
-                                    href="/index/filen"
+                                    href="/filen"
                                     aria-label="Read the Filen identity system case study"
                                 >
                                     <img

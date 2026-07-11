@@ -43,7 +43,7 @@
       },
       "hasPart": [
         {
-          "@id": "https://gildrb.com/index/filen#case-study"
+          "@id": "https://gildrb.com/filen#case-study"
         },
         {
           "@id": "https://gildrb.com/#heph"
@@ -351,8 +351,8 @@
         "Article",
         "CreativeWork"
       ],
-      "@id": "https://gildrb.com/index/filen#case-study",
-      "url": "https://gildrb.com/index/filen",
+      "@id": "https://gildrb.com/filen#case-study",
+      "url": "https://gildrb.com/filen",
       "name": "Filen identity system",
       "headline": "Making privacy visible without reducing it to a padlock.",
       "description": "How Gil Rodrigues developed Filen's identity from broad visual exploration into a scalable mark, wordmark, app icon, and campaign system.",

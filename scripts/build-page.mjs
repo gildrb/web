@@ -146,8 +146,8 @@ export async function buildPage({ write = true } = {}) {
     if (write) {
         await writeFile(path.join(root, "index.html"), indexHtml);
         await writeFile(path.join(root, "profile.json"), profileJson);
-        await mkdir(path.join(root, "index/filen"), { recursive: true });
-        await writeFile(path.join(root, "index/filen/index.html"), filenHtml);
+        await mkdir(path.join(root, "filen"), { recursive: true });
+        await writeFile(path.join(root, "filen/index.html"), filenHtml);
     }
 
     return { caseScript, filenHtml, indexHtml, profileJson, siteScript };
