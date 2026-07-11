@@ -120,37 +120,40 @@ export async function buildPage({ write = true } = {}) {
         throw new Error("Generated HTML still contains inline tokens.");
     }
 
-    let filenHtml = await resolveIncludes(
-        await readText("src/filen.template.html"),
-    );
-    filenHtml = replaceToken(
-        filenHtml,
-        "<!-- @inline-css:site -->",
-        styles,
-    );
-    filenHtml = replaceToken(
-        filenHtml,
-        "<!-- @inline-js:analytics-bootstrap -->",
-        analyticsBootstrap,
-    );
-    filenHtml = replaceToken(
-        filenHtml,
-        "<!-- @inline-js:case -->",
-        caseScript,
-    );
+    async function buildCasePage(templatePath) {
+        let html = await resolveIncludes(await readText(templatePath));
+        html = replaceToken(html, "<!-- @inline-css:site -->", styles);
+        html = replaceToken(
+            html,
+            "<!-- @inline-js:analytics-bootstrap -->",
+            analyticsBootstrap,
+        );
+        html = replaceToken(html, "<!-- @inline-js:case -->", caseScript);
 
-    if (filenHtml.includes("<!-- @inline-")) {
-        throw new Error("Generated Filen page still contains inline tokens.");
+        if (html.includes("<!-- @inline-")) {
+            throw new Error(
+                `Generated ${templatePath} still contains inline tokens.`,
+            );
+        }
+
+        return html;
     }
+
+    const [filenHtml, ml7Html] = await Promise.all([
+        buildCasePage("src/filen.template.html"),
+        buildCasePage("src/ml7.template.html"),
+    ]);
 
     if (write) {
         await writeFile(path.join(root, "index.html"), indexHtml);
         await writeFile(path.join(root, "profile.json"), profileJson);
         await mkdir(path.join(root, "filen"), { recursive: true });
         await writeFile(path.join(root, "filen/index.html"), filenHtml);
+        await mkdir(path.join(root, "ml7"), { recursive: true });
+        await writeFile(path.join(root, "ml7/index.html"), ml7Html);
     }
 
-    return { caseScript, filenHtml, indexHtml, profileJson, siteScript };
+    return { caseScript, filenHtml, indexHtml, ml7Html, profileJson, siteScript };
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {

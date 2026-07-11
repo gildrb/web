@@ -85,11 +85,17 @@ async function listFiles(relativeDir) {
     return files.flat();
 }
 
-const { caseScript, filenHtml, indexHtml, profileJson, siteScript } = await buildPage({
-    write: false,
-});
+const {
+    caseScript,
+    filenHtml,
+    indexHtml,
+    ml7Html,
+    profileJson,
+    siteScript,
+} = await buildPage({ write: false });
 const currentIndex = await readText("index.html");
 const currentFilen = await readText("filen/index.html");
+const currentMl7 = await readText("ml7/index.html");
 const currentProfile = await readText("profile.json");
 const caseStyles = await readText("src/styles/50-case-study.css");
 const vercelConfig = JSON.parse(await readText("vercel.json"));
@@ -101,6 +107,10 @@ assert(
 assert(
     currentFilen === filenHtml,
     "filen/index.html is out of date. Run `node scripts/build-page.mjs`.",
+);
+assert(
+    currentMl7 === ml7Html,
+    "ml7/index.html is out of date. Run `node scripts/build-page.mjs`.",
 );
 assert(
     currentProfile === profileJson,
@@ -118,6 +128,7 @@ new Function(caseScript);
 const assetRefs = new Set([
     ...extractAssetRefs(indexHtml),
     ...extractAssetRefs(filenHtml),
+    ...extractAssetRefs(ml7Html),
 ]);
 const missingAssets = [...assetRefs].filter(
     (ref) => !existsSync(path.join(root, ref)),
@@ -150,6 +161,10 @@ assert(
 assert(
     (indexHtml.match(/href="\/filen"/g) || []).length === 1,
     "Only the featured Filen image may link to the case study.",
+);
+assert(
+    (indexHtml.match(/href="\/ml7"/g) || []).length === 1,
+    "Only the featured mL7 image may link to the case study.",
 );
 assert(
     !indexHtml.includes("project-summary") &&
@@ -210,6 +225,22 @@ assert(
         !caseStyles.includes("border-top:") &&
         !caseStyles.includes("border-bottom:"),
     "Filen case study must not introduce dot or rule dividers.",
+);
+assert(
+    ml7Html.includes('rel="canonical" href="https://gildrb.com/ml7"') &&
+        ml7Html.includes(
+            '<a class="case-home-link" href="/">Gil Rodrigues</a>',
+        ) &&
+        ml7Html.includes("<span>mL7</span>") &&
+        !ml7Html.includes('>Index</a>') &&
+        !ml7Html.includes("case-kicker"),
+    "mL7 must use the same persistent case-study navigation as Filen.",
+);
+assert(
+    !ml7Html.includes("object-fit: cover") &&
+        !ml7Html.includes("object-position:") &&
+        !ml7Html.includes(" · "),
+    "mL7 must preserve complete images and omit dot dividers.",
 );
 
 console.log(

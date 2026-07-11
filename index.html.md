@@ -47,6 +47,10 @@ Designing brands, interfaces, and the systems that connect them.
 
 [Filen identity system](https://gildrb.com/filen) documents how the work moved from broad mark exploration into a scalable identity, app icon, and campaign language for zero-knowledge encrypted cloud storage.
 
+### mL7
+
+[mL7 identity](https://gildrb.com/ml7) documents the current identity artifact and the evidence still needed to complete its case study.
+
 ## Public profiles
 
 - [Behance](https://behance.net/gildrb)

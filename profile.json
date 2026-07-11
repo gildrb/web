@@ -46,6 +46,9 @@
           "@id": "https://gildrb.com/filen#case-study"
         },
         {
+          "@id": "https://gildrb.com/ml7#case-study"
+        },
+        {
           "@id": "https://gildrb.com/#heph"
         },
         {
@@ -357,6 +360,31 @@
       "headline": "Making privacy visible without reducing it to a padlock.",
       "description": "How Gil Rodrigues developed Filen's identity from broad visual exploration into a scalable mark, wordmark, app icon, and campaign system.",
       "image": "https://gildrb.com/images/optimized/gil-rodrigues-filen-wordmark-1600.webp",
+      "inLanguage": "en",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "author": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "publisher": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "isPartOf": {
+        "@id": "https://gildrb.com/#website"
+      }
+    },
+    {
+      "@type": [
+        "Article",
+        "CreativeWork"
+      ],
+      "@id": "https://gildrb.com/ml7#case-study",
+      "url": "https://gildrb.com/ml7",
+      "name": "mL7 identity",
+      "headline": "A compact identity built around speed and direction.",
+      "description": "A documented view of the mL7 identity and the evidence still needed to complete its case study.",
+      "image": "https://gildrb.com/images/optimized/gil-rodrigues-ml7-logo-system-1600.webp",
       "inLanguage": "en",
       "creator": {
         "@id": "https://gildrb.com/#person"

@@ -201,6 +201,9 @@
                       "@id": "https://gildrb.com/filen#case-study"
                     },
                     {
+                      "@id": "https://gildrb.com/ml7#case-study"
+                    },
+                    {
                       "@id": "https://gildrb.com/#heph"
                     },
                     {
@@ -512,6 +515,31 @@
                   "headline": "Making privacy visible without reducing it to a padlock.",
                   "description": "How Gil Rodrigues developed Filen's identity from broad visual exploration into a scalable mark, wordmark, app icon, and campaign system.",
                   "image": "https://gildrb.com/images/optimized/gil-rodrigues-filen-wordmark-1600.webp",
+                  "inLanguage": "en",
+                  "creator": {
+                    "@id": "https://gildrb.com/#person"
+                  },
+                  "author": {
+                    "@id": "https://gildrb.com/#person"
+                  },
+                  "publisher": {
+                    "@id": "https://gildrb.com/#person"
+                  },
+                  "isPartOf": {
+                    "@id": "https://gildrb.com/#website"
+                  }
+                },
+                {
+                  "@type": [
+                    "Article",
+                    "CreativeWork"
+                  ],
+                  "@id": "https://gildrb.com/ml7#case-study",
+                  "url": "https://gildrb.com/ml7",
+                  "name": "mL7 identity",
+                  "headline": "A compact identity built around speed and direction.",
+                  "description": "A documented view of the mL7 identity and the evidence still needed to complete its case study.",
+                  "image": "https://gildrb.com/images/optimized/gil-rodrigues-ml7-logo-system-1600.webp",
                   "inLanguage": "en",
                   "creator": {
                     "@id": "https://gildrb.com/#person"
@@ -2994,23 +3022,15 @@ body.preview-open {
                                 </a>
                             </div>
                     </section>
-                    <h3 class="section-title" id="portfolio-ml7-title">
-                        <a
-                            class="external-link"
-                            href="https://www.twitch.tv/ml7support"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            >mL7</a
-                        >
-                    </h3>
+                    <h3 class="section-title" id="portfolio-ml7-title">mL7</h3>
                     <section
                         class="gallery"
                         aria-labelledby="portfolio-ml7-title"
                     >
-                        <button
-                            class="gallery-item full"
-                            type="button"
-                            aria-label="Open ML7 logo preview"
+                        <a
+                            class="gallery-item full case-study-entry"
+                            href="/ml7"
+                            aria-label="Read the mL7 case study"
                         >
                             <img
                                 src="images/optimized/gil-rodrigues-ml7-logo-system-960.webp"
@@ -3022,14 +3042,13 @@ body.preview-open {
                                     images/optimized/gil-rodrigues-ml7-logo-system-1600.webp 1600w
                                 "
                                 sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1400px) calc(100vw - 392px), 1476px"
-                                data-preview-src="images/optimized/gil-rodrigues-ml7-logo-system-1600.webp"
                                 width="3473"
                                 height="2263"
                                 alt="mL7 logo with black lettering and an orange streak on a white background"
                                 loading="lazy"
                                 decoding="async"
                             />
-                        </button>
+                        </a>
                     </section>
                     <h3 class="section-title" id="portfolio-n0thing-title">
                         <a
