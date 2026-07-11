@@ -31,6 +31,7 @@ Gil, Gil Rodrigues, Gil Rodrigues Barbosa, Gil Domingos Rodrigues Barbosa, and g
 - Heph: Local document workspace shown on the homepage through a terminal-style product demo. The demo shows Heph indexing armory materials, sampling retrieved evidence, and writing cited answers that can be inspected with `/evidence`. Source: https://github.com/gildrb/heph
 - Filen identity system: Authored case study showing the progression from broad mark exploration to a scalable identity, app icon, and campaign language. Case study: https://gildrb.com/filen
 - mL7 identity: Documented view of the current identity artifact and the evidence still needed to complete its case study. Case study: https://gildrb.com/ml7
+- n0thing wordmark: Documented view of the current animated identity artifact and the evidence still needed to complete its case study. Case study: https://gildrb.com/n0thing
 
 ## References
 

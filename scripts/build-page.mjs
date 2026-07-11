@@ -139,9 +139,10 @@ export async function buildPage({ write = true } = {}) {
         return html;
     }
 
-    const [filenHtml, ml7Html] = await Promise.all([
+    const [filenHtml, ml7Html, n0thingHtml] = await Promise.all([
         buildCasePage("src/filen.template.html"),
         buildCasePage("src/ml7.template.html"),
+        buildCasePage("src/n0thing.template.html"),
     ]);
 
     if (write) {
@@ -151,9 +152,19 @@ export async function buildPage({ write = true } = {}) {
         await writeFile(path.join(root, "filen/index.html"), filenHtml);
         await mkdir(path.join(root, "ml7"), { recursive: true });
         await writeFile(path.join(root, "ml7/index.html"), ml7Html);
+        await mkdir(path.join(root, "n0thing"), { recursive: true });
+        await writeFile(path.join(root, "n0thing/index.html"), n0thingHtml);
     }
 
-    return { caseScript, filenHtml, indexHtml, ml7Html, profileJson, siteScript };
+    return {
+        caseScript,
+        filenHtml,
+        indexHtml,
+        ml7Html,
+        n0thingHtml,
+        profileJson,
+        siteScript,
+    };
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {

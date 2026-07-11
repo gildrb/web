@@ -51,6 +51,10 @@ Designing brands, interfaces, and the systems that connect them.
 
 [mL7 identity](https://gildrb.com/ml7) documents the current identity artifact and the evidence still needed to complete its case study.
 
+### n0thing
+
+[n0thing wordmark](https://gildrb.com/n0thing) documents the current animated identity artifact and the evidence still needed to complete its case study.
+
 ## Public profiles
 
 - [Behance](https://behance.net/gildrb)

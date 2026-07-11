@@ -204,6 +204,9 @@
                       "@id": "https://gildrb.com/ml7#case-study"
                     },
                     {
+                      "@id": "https://gildrb.com/n0thing#case-study"
+                    },
+                    {
                       "@id": "https://gildrb.com/#heph"
                     },
                     {
@@ -515,6 +518,31 @@
                   "headline": "Making privacy visible without reducing it to a padlock.",
                   "description": "How Gil Rodrigues developed Filen's identity from broad visual exploration into a scalable mark, wordmark, app icon, and campaign system.",
                   "image": "https://gildrb.com/images/optimized/gil-rodrigues-filen-wordmark-1600.webp",
+                  "inLanguage": "en",
+                  "creator": {
+                    "@id": "https://gildrb.com/#person"
+                  },
+                  "author": {
+                    "@id": "https://gildrb.com/#person"
+                  },
+                  "publisher": {
+                    "@id": "https://gildrb.com/#person"
+                  },
+                  "isPartOf": {
+                    "@id": "https://gildrb.com/#website"
+                  }
+                },
+                {
+                  "@type": [
+                    "Article",
+                    "CreativeWork"
+                  ],
+                  "@id": "https://gildrb.com/n0thing#case-study",
+                  "url": "https://gildrb.com/n0thing",
+                  "name": "n0thing wordmark",
+                  "headline": "A wordmark designed to change without losing its identity.",
+                  "description": "A documented view of the animated n0thing wordmark and the evidence still needed to complete its case study.",
+                  "image": "https://gildrb.com/images/optimized/gil-rodrigues-n0thing-wordmark-animation-1280.gif",
                   "inLanguage": "en",
                   "creator": {
                     "@id": "https://gildrb.com/#person"
@@ -3050,23 +3078,15 @@ body.preview-open {
                             />
                         </a>
                     </section>
-                    <h3 class="section-title" id="portfolio-n0thing-title">
-                        <a
-                            class="external-link"
-                            href="https://www.twitch.tv/n0thing"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            >n0thing</a
-                        >
-                    </h3>
+                    <h3 class="section-title" id="portfolio-n0thing-title">n0thing</h3>
                     <section
                         class="gallery"
                         aria-labelledby="portfolio-n0thing-title"
                     >
-                        <button
-                            class="gallery-item full"
-                            type="button"
-                            aria-label="Open n0thing wordmark animation preview"
+                        <a
+                            class="gallery-item full case-study-entry"
+                            href="/n0thing"
+                            aria-label="Read the n0thing case study"
                         >
                             <img
                                 src="images/optimized/gil-rodrigues-n0thing-wordmark-animation-960.gif"
@@ -3077,14 +3097,13 @@ body.preview-open {
                                     images/optimized/gil-rodrigues-n0thing-wordmark-animation-1280.gif 1280w
                                 "
                                 sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1400px) calc(100vw - 392px), 1476px"
-                                data-preview-src="images/optimized/gil-rodrigues-n0thing-wordmark-animation-1280.gif"
                                 width="1280"
                                 height="720"
                                 alt="Animated n0thing wordmark on a black background"
                                 loading="lazy"
                                 decoding="async"
                             />
-                        </button>
+                        </a>
                     </section>
                     <h3 class="section-title" id="portfolio-personal-title">
                         Personal

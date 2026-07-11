@@ -90,12 +90,14 @@ const {
     filenHtml,
     indexHtml,
     ml7Html,
+    n0thingHtml,
     profileJson,
     siteScript,
 } = await buildPage({ write: false });
 const currentIndex = await readText("index.html");
 const currentFilen = await readText("filen/index.html");
 const currentMl7 = await readText("ml7/index.html");
+const currentN0thing = await readText("n0thing/index.html");
 const currentProfile = await readText("profile.json");
 const caseStyles = await readText("src/styles/50-case-study.css");
 const vercelConfig = JSON.parse(await readText("vercel.json"));
@@ -111,6 +113,10 @@ assert(
 assert(
     currentMl7 === ml7Html,
     "ml7/index.html is out of date. Run `node scripts/build-page.mjs`.",
+);
+assert(
+    currentN0thing === n0thingHtml,
+    "n0thing/index.html is out of date. Run `node scripts/build-page.mjs`.",
 );
 assert(
     currentProfile === profileJson,
@@ -129,6 +135,7 @@ const assetRefs = new Set([
     ...extractAssetRefs(indexHtml),
     ...extractAssetRefs(filenHtml),
     ...extractAssetRefs(ml7Html),
+    ...extractAssetRefs(n0thingHtml),
 ]);
 const missingAssets = [...assetRefs].filter(
     (ref) => !existsSync(path.join(root, ref)),
@@ -165,6 +172,10 @@ assert(
 assert(
     (indexHtml.match(/href="\/ml7"/g) || []).length === 1,
     "Only the featured mL7 image may link to the case study.",
+);
+assert(
+    (indexHtml.match(/href="\/n0thing"/g) || []).length === 1,
+    "Only the featured n0thing image may link to the case study.",
 );
 assert(
     !indexHtml.includes("project-summary") &&
@@ -241,6 +252,24 @@ assert(
         !ml7Html.includes("object-position:") &&
         !ml7Html.includes(" · "),
     "mL7 must preserve complete images and omit dot dividers.",
+);
+assert(
+    n0thingHtml.includes(
+        'rel="canonical" href="https://gildrb.com/n0thing"',
+    ) &&
+        n0thingHtml.includes(
+            '<a class="case-home-link" href="/">Gil Rodrigues</a>',
+        ) &&
+        n0thingHtml.includes("<span>n0thing</span>") &&
+        !n0thingHtml.includes('>Index</a>') &&
+        !n0thingHtml.includes("case-kicker"),
+    "n0thing must use the same persistent case-study navigation as Filen.",
+);
+assert(
+    !n0thingHtml.includes("object-fit: cover") &&
+        !n0thingHtml.includes("object-position:") &&
+        !n0thingHtml.includes(" · "),
+    "n0thing must preserve complete images and omit dot dividers.",
 );
 
 console.log(
