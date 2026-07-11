@@ -1,7 +1,6 @@
 // Email copy functionality
-document
-    .querySelector(".email")
-    .addEventListener("click", async function () {
+document.querySelectorAll(".email").forEach((email) => {
+    email.addEventListener("click", async function () {
         this.blur();
 
         try {
@@ -19,3 +18,4 @@ document
             this.classList.remove("copied", "copy-failed");
         }, 1500);
     });
+});

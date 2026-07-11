@@ -40,14 +40,25 @@ function replaceToken(template, token, value) {
 }
 
 async function resolveIncludes(template) {
-    const includePattern = /<!-- @include:([^>]+) -->/g;
-    const matches = [...template.matchAll(includePattern)];
+    const includePattern = /<!-- @include:([^>]+) -->/;
     let html = template.replace(
         /\n?<!-- @template-only:start -->[\s\S]*?<!-- @template-only:end -->\n?/g,
         "\n",
     );
+    let includeCount = 0;
 
-    for (const match of matches) {
+    while (html.includes("<!-- @include:")) {
+        const match = html.match(includePattern);
+
+        if (!match) {
+            break;
+        }
+
+        includeCount += 1;
+        if (includeCount > 100) {
+            throw new Error("Too many nested includes; check for an include cycle.");
+        }
+
         const includePath = match[1].trim();
         const include = (await readText(`src/${includePath}`)).trimEnd();
 
@@ -84,7 +95,7 @@ export async function buildPage({ write = true } = {}) {
         .join("\n\n");
     const caseScript = (
         await Promise.all(
-            ["10-core.js", "20-theme.js"].map((file) =>
+            ["10-core.js", "20-theme.js", "30-email.js"].map((file) =>
                 readText(`src/scripts/${file}`),
             ),
         )

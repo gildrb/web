@@ -122,6 +122,20 @@
         margin-bottom: var(--section-gap);
     }
 
+    .case-page .links {
+        order: 6;
+        margin-top: 80px;
+        margin-bottom: 0;
+    }
+
+    .case-desktop-links {
+        display: none;
+    }
+
+    .case-mobile-links {
+        display: contents;
+    }
+
     .email {
         margin-top: 0;
         margin-bottom: 0;

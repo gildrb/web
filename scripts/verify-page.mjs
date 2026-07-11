@@ -100,6 +100,7 @@ const currentMl7 = await readText("ml7/index.html");
 const currentN0thing = await readText("n0thing/index.html");
 const currentProfile = await readText("profile.json");
 const caseStyles = await readText("src/styles/50-case-study.css");
+const responsiveStyles = await readText("src/styles/90-responsive.css");
 const baseStyles = await readText("src/styles/10-base.css");
 const previewFavicon = await readText("preview-favicon.svg");
 const vercelConfig = JSON.parse(await readText("vercel.json"));
@@ -132,6 +133,12 @@ assert(
 
 new Function(siteScript);
 new Function(caseScript);
+assert(
+    caseScript.includes('querySelectorAll(".email")') &&
+        caseScript.includes("navigator.clipboard") &&
+        caseScript.includes("copy-failed"),
+    "Case pages must include the shared email-copy behavior.",
+);
 
 const assetRefs = new Set([
     ...extractAssetRefs(indexHtml),
@@ -312,12 +319,55 @@ assert(
 );
 assert(
     caseStyles.includes(
-        ".case-footer a {\n    color: var(--text-primary);",
-    ) &&
+            ".case-home-link {\n    color: var(--text-secondary);",
+        ) &&
         caseStyles.includes(
-            ".case-home-link:hover,\n    .case-footer a:hover {\n        color: var(--text-secondary);",
+            ".case-location span:last-child {\n    color: var(--text-primary);",
+        ) &&
+        caseStyles.includes(
+            ".case-home-link:hover {\n        color: var(--text-secondary);",
         ),
-    "Case-study links must be primary at rest and secondary on hover.",
+    "Case locations must preserve the active-page hierarchy.",
+);
+const sharedSidebarTargets = [
+    "https://behance.net/gildrb",
+    "https://github.com/gildrb",
+    "https://www.goodreads.com/gildrb",
+    "https://letterboxd.com/gildrb/",
+    "https://www.linkedin.com/in/gildrb/",
+    "https://signal.me/",
+];
+assert(
+    [indexHtml, filenHtml, ml7Html, n0thingHtml].every(
+        (html) =>
+            sharedSidebarTargets.every((target) => html.includes(target)) &&
+            html.includes('aria-label="Copy hi@gildrb.com"') &&
+            html.includes('aria-label="Public profiles and contact"'),
+    ),
+    "Every generated route must contain the shared profile and contact sidebar.",
+);
+assert(
+    [filenHtml, ml7Html, n0thingHtml].every(
+        (html) =>
+            !html.includes('class="case-footer"') &&
+            html.includes('class="case-desktop-links"') &&
+            html.includes('class="case-mobile-links"') &&
+            html.indexOf('class="case-mobile-links"') > html.indexOf("</main>"),
+    ) &&
+        caseStyles.includes(".case-mobile-links {\n    display: none;") &&
+        responsiveStyles.includes(
+            ".case-page .links {\n        order: 6;\n        margin-top: 80px;",
+        ) &&
+        responsiveStyles.includes(
+            ".case-desktop-links {\n        display: none;",
+        ) &&
+        responsiveStyles.includes(
+            ".case-mobile-links {\n        display: contents;",
+        ) &&
+        responsiveStyles.includes(
+            ".content > * {\n        grid-column: 1 / -1;\n        order: 5;",
+        ),
+    "Case pages must avoid duplicate email footers and align mobile links DOM, focus, and visual order after the article.",
 );
 
 console.log(

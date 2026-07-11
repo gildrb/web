@@ -1281,12 +1281,24 @@ body.preview-open {
 }
 
 .case-home-link {
-    color: var(--text-primary);
+    color: var(--text-secondary);
     text-decoration: none;
 }
 
 .case-location span {
     color: var(--text-secondary);
+}
+
+.case-location span:last-child {
+    color: var(--text-primary);
+}
+
+.case-desktop-links {
+    display: contents;
+}
+
+.case-mobile-links {
+    display: none;
 }
 
 .case-article {
@@ -1296,8 +1308,7 @@ body.preview-open {
 }
 
 .case-intro,
-.case-copy,
-.case-footer-inner {
+.case-copy {
     width: min(100%, 720px);
     margin-right: 0;
     margin-left: 0;
@@ -1443,31 +1454,13 @@ body.preview-open {
     tab-size: 4;
 }
 
-.case-footer {
-    margin-top: 120px;
-}
-
-.case-footer-inner {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 24px;
-}
-
-.case-footer a {
-    color: var(--text-primary);
-    text-decoration: none;
-}
-
 @media (hover: hover) {
-    .case-home-link:hover,
-    .case-footer a:hover {
+    .case-home-link:hover {
         color: var(--text-secondary);
     }
 }
 
-.case-home-link:focus-visible,
-.case-footer a:focus-visible {
+.case-home-link:focus-visible {
     outline: 1px solid var(--text-primary);
     outline-offset: 4px;
 }
@@ -1494,8 +1487,7 @@ body.preview-open {
         margin-top: 36px;
     }
 
-    .case-section,
-    .case-footer {
+    .case-section {
         margin-top: 80px;
     }
 
@@ -1515,10 +1507,6 @@ body.preview-open {
         line-height: 20px;
     }
 
-    .case-footer-inner {
-        align-items: flex-start;
-        flex-direction: column;
-    }
 }
 
 @media (max-width: 1400px) {
@@ -1645,6 +1633,20 @@ body.preview-open {
         margin-bottom: var(--section-gap);
     }
 
+    .case-page .links {
+        order: 6;
+        margin-top: 80px;
+        margin-bottom: 0;
+    }
+
+    .case-desktop-links {
+        display: none;
+    }
+
+    .case-mobile-links {
+        display: contents;
+    }
+
     .email {
         margin-top: 0;
         margin-bottom: 0;
@@ -1690,9 +1692,34 @@ body.preview-open {
                         <span aria-hidden="true">→</span>
                         <span>n0thing</span>
                     </p>
-                    <button class="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">
-                        <svg class="sun-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 2ZM10 15a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 15ZM10 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM15.657 5.404a.75.75 0 1 0-1.06-1.06l-1.061 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM6.464 14.596a.75.75 0 1 0-1.06-1.06l-1.06 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM18 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 18 10ZM5 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 5 10ZM14.596 15.657a.75.75 0 0 0 1.06-1.06l-1.06-1.061a.75.75 0 1 0-1.06 1.06l1.06 1.06ZM5.404 6.464a.75.75 0 0 0 1.06-1.06l-1.06-1.06a.75.75 0 0 0-1.061 1.06l1.06 1.06Z" /></svg>
-                        <svg class="moon-icon" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.455 2.004a.75.75 0 0 1 .26.77 7 7 0 0 0 9.958 7.967.75.75 0 0 1 1.067.853A8.5 8.5 0 1 1 6.647 1.921a.75.75 0 0 1 .808.083Z" /></svg>
+                    <div class="case-desktop-links">
+                    <nav
+                        class="links"
+                        aria-label="Public profiles and contact"
+                    >
+                        <p class="links-label">Links</p>
+                        <a class="external-link" href="https://behance.net/gildrb" itemprop="sameAs" target="_blank" rel="me noopener noreferrer">Bēhance</a>
+                        <a class="external-link" href="https://github.com/gildrb" itemprop="sameAs" target="_blank" rel="me noopener noreferrer">GitHub</a>
+                        <a class="external-link" href="https://www.goodreads.com/gildrb" itemprop="sameAs" target="_blank" rel="me noopener noreferrer">Goodreads</a>
+                        <a class="external-link" href="https://letterboxd.com/gildrb/" itemprop="sameAs" target="_blank" rel="me noopener noreferrer">Letterboxd</a>
+                        <a class="external-link" href="https://www.linkedin.com/in/gildrb/" itemprop="sameAs" target="_blank" rel="me noopener noreferrer">LinkedIn</a>
+                        <p class="links-label contact-label">Contact</p>
+                        <button class="email" type="button" aria-label="Copy hi@gildrb.com">hi@gildrb.com</button>
+                        <a class="external-link" href="https://signal.me/#eu/KlFnTOEoXJTxUNhl9y4U4-QzunoZj6eX2BrkGYibTNUmKw8OszhNgaKd-aoseeUZ" target="_blank" rel="noopener noreferrer">Signal</a>
+                    </nav>
+                    </div>
+                    <button
+                        class="theme-toggle"
+                        type="button"
+                        aria-label="Switch to light mode"
+                        title="Switch to light mode"
+                    >
+                        <svg class="sun-icon" viewBox="0 0 20 20" aria-hidden="true">
+                            <path d="M10 2a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 2ZM10 15a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 15ZM10 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM15.657 5.404a.75.75 0 1 0-1.06-1.06l-1.061 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM6.464 14.596a.75.75 0 1 0-1.06-1.06l-1.06 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM18 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 18 10ZM5 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 5 10ZM14.596 15.657a.75.75 0 0 0 1.06-1.06l-1.06-1.061a.75.75 0 1 0-1.06 1.06l1.06 1.06ZM5.404 6.464a.75.75 0 0 0 1.06-1.06l-1.06-1.06a.75.75 0 0 0-1.061 1.06l1.06 1.06Z" />
+                        </svg>
+                        <svg class="moon-icon" viewBox="0 0 20 20" aria-hidden="true">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.455 2.004a.75.75 0 0 1 .26.77 7 7 0 0 0 9.958 7.967.75.75 0 0 1 1.067.853A8.5 8.5 0 1 1 6.647 1.921a.75.75 0 0 1 .808.083Z" />
+                        </svg>
                     </button>
                 </aside>
                 <main class="content case-article">
@@ -1726,9 +1753,24 @@ body.preview-open {
                                 <p>Those decisions will be described when the corresponding source material is available. Until then, the page states exactly what the finished artifact demonstrates and nothing more.</p>
                             </div>
                         </section>
-                        <footer class="case-footer"><div class="case-footer-inner"><a href="mailto:hi@gildrb.com">hi@gildrb.com</a></div></footer>
                     </article>
                 </main>
+                <div class="case-mobile-links">
+                    <nav
+                        class="links"
+                        aria-label="Public profiles and contact"
+                    >
+                        <p class="links-label">Links</p>
+                        <a class="external-link" href="https://behance.net/gildrb" itemprop="sameAs" target="_blank" rel="me noopener noreferrer">Bēhance</a>
+                        <a class="external-link" href="https://github.com/gildrb" itemprop="sameAs" target="_blank" rel="me noopener noreferrer">GitHub</a>
+                        <a class="external-link" href="https://www.goodreads.com/gildrb" itemprop="sameAs" target="_blank" rel="me noopener noreferrer">Goodreads</a>
+                        <a class="external-link" href="https://letterboxd.com/gildrb/" itemprop="sameAs" target="_blank" rel="me noopener noreferrer">Letterboxd</a>
+                        <a class="external-link" href="https://www.linkedin.com/in/gildrb/" itemprop="sameAs" target="_blank" rel="me noopener noreferrer">LinkedIn</a>
+                        <p class="links-label contact-label">Contact</p>
+                        <button class="email" type="button" aria-label="Copy hi@gildrb.com">hi@gildrb.com</button>
+                        <a class="external-link" href="https://signal.me/#eu/KlFnTOEoXJTxUNhl9y4U4-QzunoZj6eX2BrkGYibTNUmKw8OszhNgaKd-aoseeUZ" target="_blank" rel="noopener noreferrer">Signal</a>
+                    </nav>
+                </div>
             </div>
         </div>
         <script>
@@ -1850,6 +1892,28 @@ themeToggle.addEventListener("click", () => {
 
     themeToggleUsedPointer = false;
     announce(`Switched to ${nextTheme} mode`);
+});
+
+// Email copy functionality
+document.querySelectorAll(".email").forEach((email) => {
+    email.addEventListener("click", async function () {
+        this.blur();
+
+        try {
+            await navigator.clipboard.writeText("hi@gildrb.com");
+            this.classList.add("copied");
+            trackEvent("Email Copy", { result: "success" });
+            announce("Email copied to clipboard");
+        } catch {
+            this.classList.add("copy-failed");
+            trackEvent("Email Copy", { result: "failed" });
+            announce("Email could not be copied");
+        }
+
+        setTimeout(() => {
+            this.classList.remove("copied", "copy-failed");
+        }, 1500);
+    });
 });
         </script>
     </body>
