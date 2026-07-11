@@ -15,6 +15,10 @@
     align-items: start;
 }
 
+.showcase.showcase-full {
+    grid-template-columns: 1fr;
+}
+
 .showcase-featured {
     position: sticky;
     top: 64px;

@@ -33,7 +33,13 @@
             content="https://gildrb.com/images/optimized/gil-rodrigues-filen-wordmark-1600.webp"
         />
         <title>Filen identity system — Gil Rodrigues</title>
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link id="site-favicon" rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <script>
+            if (window.location.hostname.endsWith(".vercel.app")) {
+                document.getElementById("site-favicon").href =
+                    "/preview-favicon.svg";
+            }
+        </script>
         <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
@@ -409,6 +415,10 @@ body.preview-open {
     gap: 20px;
     margin-bottom: 120px;
     align-items: start;
+}
+
+.showcase.showcase-full {
+    grid-template-columns: 1fr;
 }
 
 .showcase-featured {

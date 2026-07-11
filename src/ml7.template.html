@@ -18,7 +18,13 @@
         <meta name="twitter:description" content="A compact identity built from a custom black wordmark and an orange directional stroke." />
         <meta name="twitter:image" content="https://gildrb.com/images/optimized/gil-rodrigues-ml7-logo-system-1600.webp" />
         <title>mL7 identity — Gil Rodrigues</title>
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link id="site-favicon" rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <script>
+            if (window.location.hostname.endsWith(".vercel.app")) {
+                document.getElementById("site-favicon").href =
+                    "/preview-favicon.svg";
+            }
+        </script>
         <link rel="preload" href="/fonts/inter-variable-latin.woff2" as="font" type="font/woff2" crossorigin />
         <link rel="preload" as="image" href="/images/optimized/gil-rodrigues-ml7-logo-system-1280.webp" imagesrcset="/images/optimized/gil-rodrigues-ml7-logo-system-480.webp 480w, /images/optimized/gil-rodrigues-ml7-logo-system-720.webp 720w, /images/optimized/gil-rodrigues-ml7-logo-system-960.webp 960w, /images/optimized/gil-rodrigues-ml7-logo-system-1280.webp 1280w, /images/optimized/gil-rodrigues-ml7-logo-system-1600.webp 1600w" imagesizes="calc(100vw - 24px)" fetchpriority="high" />
         <style>

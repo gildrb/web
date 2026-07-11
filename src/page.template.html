@@ -148,10 +148,17 @@
         />
         <title>Gil Rodrigues</title>
         <link
+            id="site-favicon"
             rel="icon"
             type="image/svg+xml"
             href="/favicon.svg"
         />
+        <script>
+            if (window.location.hostname.endsWith(".vercel.app")) {
+                document.getElementById("site-favicon").href =
+                    "/preview-favicon.svg";
+            }
+        </script>
         <script type="application/ld+json">
 <!-- @inline-json:profile-schema -->
         </script>

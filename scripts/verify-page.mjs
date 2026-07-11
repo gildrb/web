@@ -170,6 +170,13 @@ assert(
     "Only the featured Filen image may link to the case study.",
 );
 assert(
+    indexHtml.includes('class="showcase showcase-full"') &&
+        indexHtml.includes(
+            '(max-width: 1400px) calc(100vw - 392px), 1476px',
+        ),
+    "The clickable Filen media must span the full portfolio content width.",
+);
+assert(
     (indexHtml.match(/href="\/ml7"/g) || []).length === 1,
     "Only the featured mL7 image may link to the case study.",
 );
@@ -270,6 +277,15 @@ assert(
         !n0thingHtml.includes("object-position:") &&
         !n0thingHtml.includes(" · "),
     "n0thing must preserve complete images and omit dot dividers.",
+);
+assert(
+    [indexHtml, filenHtml, ml7Html, n0thingHtml].every(
+        (html) =>
+            html.includes('id="site-favicon"') &&
+            html.includes('window.location.hostname.endsWith(".vercel.app")') &&
+            html.includes('"/preview-favicon.svg"'),
+    ),
+    "Every page must use the distinct preview favicon on Vercel hosts.",
 );
 
 console.log(
