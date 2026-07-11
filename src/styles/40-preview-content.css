@@ -66,7 +66,7 @@
 }
 
 .profile-summary .section-title {
-    color: var(--text-primary);
+    color: var(--text-secondary);
     margin-bottom: var(--section-content-gap);
 }
 

@@ -100,6 +100,8 @@ const currentMl7 = await readText("ml7/index.html");
 const currentN0thing = await readText("n0thing/index.html");
 const currentProfile = await readText("profile.json");
 const caseStyles = await readText("src/styles/50-case-study.css");
+const baseStyles = await readText("src/styles/10-base.css");
+const previewFavicon = await readText("preview-favicon.svg");
 const vercelConfig = JSON.parse(await readText("vercel.json"));
 
 assert(
@@ -286,6 +288,36 @@ assert(
             html.includes('"/preview-favicon.svg"'),
     ),
     "Every page must use the distinct preview favicon on Vercel hosts.",
+);
+assert(
+    previewFavicon.includes(
+        '<rect x="10" y="10" width="80" height="80" fill="#000" />',
+    ),
+    "The preview favicon must reuse the original square geometry in black.",
+);
+assert(
+    baseStyles.includes(
+        ".links-label {\n    color: var(--text-secondary);",
+    ) &&
+        baseStyles.includes(
+            ".external-link,\n.reference-link {\n    color: var(--text-primary);",
+        ) &&
+        baseStyles.includes(
+            ".external-link:hover,\n    .reference-link:hover {\n        color: var(--text-secondary);",
+        ) &&
+        baseStyles.includes(
+            ".email {\n    font-size: 16px;\n    font-weight: 400;\n    line-height: var(--link-line-height);\n    color: var(--text-primary);",
+        ),
+    "Homepage labels and actionable links must preserve the semantic color hierarchy.",
+);
+assert(
+    caseStyles.includes(
+        ".case-footer a {\n    color: var(--text-primary);",
+    ) &&
+        caseStyles.includes(
+            ".case-home-link:hover,\n    .case-footer a:hover {\n        color: var(--text-secondary);",
+        ),
+    "Case-study links must be primary at rest and secondary on hover.",
 );
 
 console.log(

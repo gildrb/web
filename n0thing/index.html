@@ -108,7 +108,7 @@
 }
 
 .links-label {
-    color: var(--text-primary);
+    color: var(--text-secondary);
     width: fit-content;
 }
 
@@ -121,7 +121,7 @@
 .portfolio-label {
     font-size: 16px;
     font-weight: 400;
-    color: var(--text-primary);
+    color: var(--text-secondary);
     margin-bottom: 8px;
     width: fit-content;
     -webkit-font-smoothing: antialiased;
@@ -133,7 +133,7 @@
     font-size: 16px;
     font-weight: 400;
     line-height: var(--link-line-height);
-    color: var(--text-secondary);
+    color: var(--text-primary);
     cursor: pointer;
     width: fit-content;
     background: none;
@@ -199,14 +199,14 @@ body.preview-open {
 
 .external-link,
 .reference-link {
-    color: var(--text-secondary);
+    color: var(--text-primary);
     text-decoration: none;
     width: fit-content;
 }
 
 .external-link::after {
     content: " ↗";
-    color: var(--text-secondary);
+    color: inherit;
     font-family:
         Inter,
         -apple-system,
@@ -218,12 +218,6 @@ body.preview-open {
 @media (hover: hover) {
     .external-link:hover,
     .reference-link:hover {
-        color: var(--text-primary);
-    }
-}
-
-@media (hover: hover) {
-    .external-link:hover::after {
         color: var(--text-secondary);
     }
 }
@@ -236,7 +230,7 @@ body.preview-open {
 
 @media (hover: hover) {
     .email:hover {
-        color: var(--text-primary);
+        color: var(--text-secondary);
     }
 }
 
@@ -278,7 +272,7 @@ body.preview-open {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-secondary);
+    color: var(--text-primary);
     background: none;
     border: none;
     border-radius: 50%;
@@ -306,11 +300,7 @@ body.preview-open {
 
 @media (prefers-color-scheme: light) {
     :root:not([data-theme]) .theme-toggle {
-        color: color-mix(
-            in srgb,
-            var(--text-secondary) 83%,
-            var(--bg)
-        );
+        color: var(--text-primary);
     }
 
     .theme-toggle .sun-icon {
@@ -335,7 +325,7 @@ body.preview-open {
 }
 
 :root[data-theme="light"] .theme-toggle {
-    color: color-mix(in srgb, var(--text-secondary) 83%, var(--bg));
+    color: var(--text-primary);
 }
 
 :root[data-theme="light"] .theme-toggle .moon-icon {
@@ -344,7 +334,7 @@ body.preview-open {
 
 @media (hover: hover) {
     .theme-toggle:hover:not(.hover-suppressed) {
-        color: var(--text-primary);
+        color: var(--text-secondary);
     }
 }
 
@@ -1218,7 +1208,7 @@ body.preview-open {
 }
 
 .profile-summary .section-title {
-    color: var(--text-primary);
+    color: var(--text-secondary);
     margin-bottom: var(--section-content-gap);
 }
 
@@ -1465,14 +1455,14 @@ body.preview-open {
 }
 
 .case-footer a {
-    color: var(--text-secondary);
+    color: var(--text-primary);
     text-decoration: none;
 }
 
 @media (hover: hover) {
     .case-home-link:hover,
     .case-footer a:hover {
-        color: var(--text-primary);
+        color: var(--text-secondary);
     }
 }
 

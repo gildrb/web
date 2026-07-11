@@ -198,14 +198,14 @@
 }
 
 .case-footer a {
-    color: var(--text-secondary);
+    color: var(--text-primary);
     text-decoration: none;
 }
 
 @media (hover: hover) {
     .case-home-link:hover,
     .case-footer a:hover {
-        color: var(--text-primary);
+        color: var(--text-secondary);
     }
 }
 
