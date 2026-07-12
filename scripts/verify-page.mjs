@@ -103,6 +103,7 @@ const caseStyles = await readText("src/styles/50-case-study.css");
 const responsiveStyles = await readText("src/styles/90-responsive.css");
 const baseStyles = await readText("src/styles/10-base.css");
 const portfolioStyles = await readText("src/styles/20-portfolio-media.css");
+const previewContentStyles = await readText("src/styles/40-preview-content.css");
 const previewFavicon = await readText("preview-favicon.svg");
 const vercelConfig = JSON.parse(await readText("vercel.json"));
 
@@ -348,12 +349,21 @@ assert(
 );
 assert(
     caseStyles.includes(
-        ".case-location {\n    display: flex;\n    flex-wrap: wrap;",
+        ".case-location {\n    display: flex;\n    flex-wrap: wrap;\n    column-gap: 8px;\n    row-gap: 0;",
     ) &&
         caseStyles.includes(
             ".case-home-link {\n    flex-basis: 100%;",
         ),
     "Case locations must place the project arrow and name on a second line.",
+);
+assert(
+    baseStyles.includes(
+        "line-height: var(--link-line-height);\n    letter-spacing: -0.02em;\n    color: var(--text-primary);\n    min-height: calc(var(--link-line-height) * 2);",
+    ) &&
+        previewContentStyles.includes(
+            ".profile-copy {\n    font-size: 16px;\n    font-weight: 400;\n    color: var(--text-primary);",
+        ),
+    "Desktop sidebar locations must reserve two lines and homepage biography must use primary text.",
 );
 assert(
     caseStyles.includes(

@@ -94,6 +94,7 @@
     .name {
         grid-column: 1;
         order: 1;
+        min-height: 0;
         margin-bottom: var(--section-gap);
     }
 

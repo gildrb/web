@@ -21,7 +21,8 @@
 .case-location {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    column-gap: 8px;
+    row-gap: 0;
 }
 
 .case-home-link {

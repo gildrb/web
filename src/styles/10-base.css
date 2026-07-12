@@ -57,8 +57,10 @@
 .name {
     font-size: 19px;
     font-weight: 400;
+    line-height: var(--link-line-height);
     letter-spacing: -0.02em;
     color: var(--text-primary);
+    min-height: calc(var(--link-line-height) * 2);
     margin-bottom: var(--section-gap);
     white-space: nowrap;
     -webkit-font-smoothing: antialiased;
