@@ -27,12 +27,12 @@
 
 .case-home-link {
     flex-basis: 100%;
-    color: var(--text-secondary);
+    color: var(--text-tertiary);
     text-decoration: none;
 }
 
-.case-location span {
-    color: var(--text-secondary);
+.case-arrow {
+    color: var(--text-tertiary);
 }
 
 .case-location span:last-child {
@@ -54,14 +54,14 @@
 }
 
 .case-article article {
-    width: min(100%, 720px);
+    width: min(100%, 760px);
     margin-right: auto;
     margin-left: auto;
 }
 
 .case-intro,
 .case-copy {
-    width: min(100%, 720px);
+    width: min(100%, 760px);
     margin-right: auto;
     margin-left: auto;
 }
@@ -76,7 +76,7 @@
 }
 
 .case-title {
-    max-width: 720px;
+    max-width: 760px;
     margin: 8px 0 24px;
     font-size: 40px;
     font-weight: 600;
@@ -86,7 +86,7 @@
 
 .case-deck {
     max-width: 680px;
-    color: var(--text-secondary);
+    color: var(--text-primary);
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 0;
@@ -111,7 +111,7 @@
 }
 
 .case-section {
-    margin-top: 120px;
+    margin-top: 80px;
 }
 
 .case-copy h2 {
@@ -136,7 +136,7 @@
 
 .case-copy p,
 .case-copy li {
-    color: var(--text-secondary);
+    color: var(--text-primary);
 }
 
 .case-copy strong {
@@ -181,7 +181,7 @@
 }
 
 .case-caption {
-    max-width: 720px;
+    max-width: 760px;
     margin-top: 12px;
 }
 

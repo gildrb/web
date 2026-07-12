@@ -183,9 +183,9 @@ assert(
 assert(
     indexHtml.includes('class="showcase showcase-full"') &&
         indexHtml.includes(
-            '(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 720px',
+            '(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px',
         ),
-    "The clickable Filen media must use the optimized 720px content width.",
+    "The clickable Filen media must use the optimized 760px content width.",
 );
 assert(
     (indexHtml.match(/href="\/ml7"/g) || []).length === 1,
@@ -309,35 +309,36 @@ assert(
         ".links-label {\n    color: var(--text-secondary);",
     ) &&
         baseStyles.includes(
-            ".external-link,\n.reference-link {\n    color: var(--text-primary);",
+            ".external-link,\n.reference-link {\n    color: var(--text-tertiary);",
         ) &&
         baseStyles.includes(
-            ".external-link:hover,\n    .reference-link:hover {\n        color: var(--text-secondary);",
+            ".external-link:hover,\n    .reference-link:hover {\n        color: var(--text-primary);",
         ) &&
         baseStyles.includes(
-            ".email {\n    font-size: 16px;\n    font-weight: 400;\n    line-height: var(--link-line-height);\n    color: var(--text-primary);",
+            ".email {\n    font-size: 16px;\n    font-weight: 400;\n    line-height: var(--link-line-height);\n    color: var(--text-tertiary);",
         ),
     "Homepage labels and actionable links must preserve the semantic color hierarchy.",
 );
 assert(
     caseStyles.includes(
-        ".case-article article {\n    width: min(100%, 720px);\n    margin-right: auto;\n    margin-left: auto;",
+        ".case-article article {\n    width: min(100%, 760px);\n    margin-right: auto;\n    margin-left: auto;",
     ),
     "Case articles and their media must stay inside the centered blog-width boundary.",
 );
 assert(
-    baseStyles.includes("--content-column: 720px;") &&
+    baseStyles.includes("--sidebar-column: 240px;") &&
+        baseStyles.includes("--content-column: 760px;") &&
         baseStyles.includes(
             "max-width: calc(\n        var(--sidebar-column) + var(--layout-gap) + var(--content-column)\n    );\n    margin: 0 auto;",
         ) &&
         portfolioStyles.includes(
             "width: 100%;\n    max-width: var(--content-column);",
         ),
-    "Homepage and case-study content must share the centered 720px desktop column.",
+    "Homepage and case-study content must share the centered 760px desktop column.",
 );
 assert(
     caseStyles.includes(
-        ".case-home-link {\n    flex-basis: 100%;\n    color: var(--text-secondary);",
+        ".case-home-link {\n    flex-basis: 100%;\n    color: var(--text-tertiary);",
         ) &&
         caseStyles.includes(
             ".case-location span:last-child {\n    color: var(--text-primary);",
@@ -367,7 +368,7 @@ assert(
 );
 assert(
     caseStyles.includes(
-        ".case-intro,\n.case-copy {\n    width: min(100%, 720px);\n    margin-right: auto;\n    margin-left: auto;",
+        ".case-intro,\n.case-copy {\n    width: min(100%, 760px);\n    margin-right: auto;\n    margin-left: auto;",
     ),
     "Case intro and prose columns must be centered inside the wider media container.",
 );

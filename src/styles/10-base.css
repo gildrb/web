@@ -1,7 +1,8 @@
 :root {
     --bg: #000000;
     --text-primary: #ffffff;
-    --text-secondary: #808080;
+    --text-secondary: #b3b3b3;
+    --text-tertiary: #767676;
     --section-gap: 24px;
     --section-content-gap: 6px;
     --link-line-height: 24px;
@@ -17,8 +18,8 @@
             (var(--theme-toggle-size) / 2) -
             var(--footer-title-optical-offset)
     );
-    --sidebar-column: 280px;
-    --content-column: 720px;
+    --sidebar-column: 240px;
+    --content-column: 760px;
     --layout-gap: 48px;
     --media-radius: 22px;
 }
@@ -28,19 +29,22 @@
         --bg: #ffffff;
         --text-primary: #000000;
         --text-secondary: #4d4d4d;
+        --text-tertiary: #767676;
     }
 }
 
 :root[data-theme="dark"] {
     --bg: #000000;
     --text-primary: #ffffff;
-    --text-secondary: #808080;
+    --text-secondary: #b3b3b3;
+    --text-tertiary: #767676;
 }
 
 :root[data-theme="light"] {
     --bg: #ffffff;
     --text-primary: #000000;
     --text-secondary: #4d4d4d;
+    --text-tertiary: #767676;
 }
 
 * {
@@ -51,7 +55,7 @@
 
 ::selection {
     color: var(--text-primary);
-    background: var(--text-secondary);
+    background: var(--text-tertiary);
 }
 
 .name {
@@ -104,7 +108,7 @@
     font-size: 16px;
     font-weight: 400;
     line-height: var(--link-line-height);
-    color: var(--text-primary);
+    color: var(--text-tertiary);
     cursor: pointer;
     width: fit-content;
     background: none;
@@ -165,7 +169,7 @@ body.preview-open {
     position: sticky;
     top: 0;
     height: 100vh;
-    padding: 64px 0;
+    padding: 48px 0;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -174,7 +178,7 @@ body.preview-open {
 
 .external-link,
 .reference-link {
-    color: var(--text-primary);
+    color: var(--text-tertiary);
     text-decoration: none;
     width: fit-content;
 }
@@ -193,7 +197,7 @@ body.preview-open {
 @media (hover: hover) {
     .external-link:hover,
     .reference-link:hover {
-        color: var(--text-secondary);
+        color: var(--text-primary);
     }
 }
 
@@ -205,7 +209,7 @@ body.preview-open {
 
 @media (hover: hover) {
     .email:hover {
-        color: var(--text-secondary);
+        color: var(--text-primary);
     }
 }
 
@@ -247,7 +251,7 @@ body.preview-open {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-primary);
+    color: var(--text-tertiary);
     background: none;
     border: none;
     border-radius: 50%;
@@ -275,7 +279,7 @@ body.preview-open {
 
 @media (prefers-color-scheme: light) {
     :root:not([data-theme]) .theme-toggle {
-        color: var(--text-primary);
+        color: var(--text-tertiary);
     }
 
     .theme-toggle .sun-icon {
@@ -300,7 +304,7 @@ body.preview-open {
 }
 
 :root[data-theme="light"] .theme-toggle {
-    color: var(--text-primary);
+    color: var(--text-tertiary);
 }
 
 :root[data-theme="light"] .theme-toggle .moon-icon {
@@ -309,7 +313,7 @@ body.preview-open {
 
 @media (hover: hover) {
     .theme-toggle:hover:not(.hover-suppressed) {
-        color: var(--text-secondary);
+        color: var(--text-primary);
     }
 }
 
