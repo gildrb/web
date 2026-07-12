@@ -18,6 +18,7 @@
             var(--footer-title-optical-offset)
     );
     --sidebar-column: 280px;
+    --content-column: 720px;
     --layout-gap: 48px;
     --media-radius: 22px;
 }
@@ -150,6 +151,10 @@ body.preview-open {
 .layout {
     display: grid;
     grid-template-columns: var(--sidebar-column) 1fr;
+    max-width: calc(
+        var(--sidebar-column) + var(--layout-gap) + var(--content-column)
+    );
+    margin: 0 auto;
     min-height: 100vh;
     gap: var(--layout-gap);
 }

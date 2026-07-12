@@ -102,6 +102,7 @@ const currentProfile = await readText("profile.json");
 const caseStyles = await readText("src/styles/50-case-study.css");
 const responsiveStyles = await readText("src/styles/90-responsive.css");
 const baseStyles = await readText("src/styles/10-base.css");
+const portfolioStyles = await readText("src/styles/20-portfolio-media.css");
 const previewFavicon = await readText("preview-favicon.svg");
 const vercelConfig = JSON.parse(await readText("vercel.json"));
 
@@ -181,9 +182,9 @@ assert(
 assert(
     indexHtml.includes('class="showcase showcase-full"') &&
         indexHtml.includes(
-            '(max-width: 1400px) calc(100vw - 392px), 1476px',
+            '(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 720px',
         ),
-    "The clickable Filen media must span the full portfolio content width.",
+    "The clickable Filen media must use the optimized 720px content width.",
 );
 assert(
     (indexHtml.match(/href="\/ml7"/g) || []).length === 1,
@@ -324,8 +325,18 @@ assert(
     "Case articles and their media must stay inside the centered blog-width boundary.",
 );
 assert(
+    baseStyles.includes("--content-column: 720px;") &&
+        baseStyles.includes(
+            "max-width: calc(\n        var(--sidebar-column) + var(--layout-gap) + var(--content-column)\n    );\n    margin: 0 auto;",
+        ) &&
+        portfolioStyles.includes(
+            "width: 100%;\n    max-width: var(--content-column);",
+        ),
+    "Homepage and case-study content must share the centered 720px desktop column.",
+);
+assert(
     caseStyles.includes(
-            ".case-home-link {\n    color: var(--text-secondary);",
+        ".case-home-link {\n    flex-basis: 100%;\n    color: var(--text-secondary);",
         ) &&
         caseStyles.includes(
             ".case-location span:last-child {\n    color: var(--text-primary);",
@@ -334,6 +345,15 @@ assert(
             ".case-home-link:hover {\n        color: var(--text-primary);",
         ),
     "Case locations must preserve the active-page hierarchy.",
+);
+assert(
+    caseStyles.includes(
+        ".case-location {\n    display: flex;\n    flex-wrap: wrap;",
+    ) &&
+        caseStyles.includes(
+            ".case-home-link {\n    flex-basis: 100%;",
+        ),
+    "Case locations must place the project arrow and name on a second line.",
 );
 assert(
     caseStyles.includes(

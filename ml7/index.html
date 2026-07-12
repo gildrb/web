@@ -26,7 +26,7 @@
             }
         </script>
         <link rel="preload" href="/fonts/inter-variable-latin.woff2" as="font" type="font/woff2" crossorigin />
-        <link rel="preload" as="image" href="/images/optimized/gil-rodrigues-ml7-logo-system-1280.webp" imagesrcset="/images/optimized/gil-rodrigues-ml7-logo-system-480.webp 480w, /images/optimized/gil-rodrigues-ml7-logo-system-720.webp 720w, /images/optimized/gil-rodrigues-ml7-logo-system-960.webp 960w, /images/optimized/gil-rodrigues-ml7-logo-system-1280.webp 1280w, /images/optimized/gil-rodrigues-ml7-logo-system-1600.webp 1600w" imagesizes="calc(100vw - 24px)" fetchpriority="high" />
+        <link rel="preload" as="image" href="/images/optimized/gil-rodrigues-ml7-logo-system-720.webp" imagesrcset="/images/optimized/gil-rodrigues-ml7-logo-system-480.webp 480w, /images/optimized/gil-rodrigues-ml7-logo-system-720.webp 720w, /images/optimized/gil-rodrigues-ml7-logo-system-960.webp 960w, /images/optimized/gil-rodrigues-ml7-logo-system-1280.webp 1280w, /images/optimized/gil-rodrigues-ml7-logo-system-1600.webp 1600w" imagesizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 720px" fetchpriority="high" />
         <style>
 @font-face{font-family:"Inter";font-style:normal;font-weight:400 600;font-display:swap;src:url("/fonts/inter-variable-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+21A9,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Geist Mono";font-style:normal;font-weight:400 600;font-display:swap;src:url("/fonts/geist-mono-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
@@ -51,6 +51,7 @@
             var(--footer-title-optical-offset)
     );
     --sidebar-column: 280px;
+    --content-column: 720px;
     --layout-gap: 48px;
     --media-radius: 22px;
 }
@@ -183,6 +184,10 @@ body.preview-open {
 .layout {
     display: grid;
     grid-template-columns: var(--sidebar-column) 1fr;
+    max-width: calc(
+        var(--sidebar-column) + var(--layout-gap) + var(--content-column)
+    );
+    margin: 0 auto;
     min-height: 100vh;
     gap: var(--layout-gap);
 }
@@ -346,6 +351,8 @@ body.preview-open {
 
 .content {
     min-width: 0;
+    width: 100%;
+    max-width: var(--content-column);
     padding: 64px 0;
 }
 
@@ -1278,10 +1285,12 @@ body.preview-open {
 
 .case-location {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
 }
 
 .case-home-link {
+    flex-basis: 100%;
     color: var(--text-secondary);
     text-decoration: none;
 }
@@ -1742,7 +1751,7 @@ body.preview-open {
                         </header>
                         <div class="case-media">
                             <figure>
-                                <img src="/images/optimized/gil-rodrigues-ml7-logo-system-960.webp" srcset="/images/optimized/gil-rodrigues-ml7-logo-system-480.webp 480w, /images/optimized/gil-rodrigues-ml7-logo-system-720.webp 720w, /images/optimized/gil-rodrigues-ml7-logo-system-960.webp 960w, /images/optimized/gil-rodrigues-ml7-logo-system-1280.webp 1280w, /images/optimized/gil-rodrigues-ml7-logo-system-1600.webp 1600w" sizes="calc(100vw - 24px)" width="3473" height="2263" alt="mL7 logo with black lettering and an orange directional stroke on white" fetchpriority="high" decoding="async" />
+                                <img src="/images/optimized/gil-rodrigues-ml7-logo-system-720.webp" srcset="/images/optimized/gil-rodrigues-ml7-logo-system-480.webp 480w, /images/optimized/gil-rodrigues-ml7-logo-system-720.webp 720w, /images/optimized/gil-rodrigues-ml7-logo-system-960.webp 960w, /images/optimized/gil-rodrigues-ml7-logo-system-1280.webp 1280w, /images/optimized/gil-rodrigues-ml7-logo-system-1600.webp 1600w" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 720px" width="3473" height="2263" alt="mL7 logo with black lettering and an orange directional stroke on white" fetchpriority="high" decoding="async" />
                                 <figcaption class="case-caption">The documented identity artifact, shown in full and without cropping.</figcaption>
                             </figure>
                         </div>

@@ -70,7 +70,7 @@
             as="image"
             href="/images/optimized/gil-rodrigues-filen-wordmark-1280.webp"
             imagesrcset="/images/optimized/gil-rodrigues-filen-wordmark-480.webp 480w, /images/optimized/gil-rodrigues-filen-wordmark-720.webp 720w, /images/optimized/gil-rodrigues-filen-wordmark-960.webp 960w, /images/optimized/gil-rodrigues-filen-wordmark-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-wordmark-1600.webp 1600w"
-            imagesizes="calc(100vw - 24px)"
+            imagesizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 720px"
             fetchpriority="high"
         />
         <style>
@@ -97,6 +97,7 @@
             var(--footer-title-optical-offset)
     );
     --sidebar-column: 280px;
+    --content-column: 720px;
     --layout-gap: 48px;
     --media-radius: 22px;
 }
@@ -229,6 +230,10 @@ body.preview-open {
 .layout {
     display: grid;
     grid-template-columns: var(--sidebar-column) 1fr;
+    max-width: calc(
+        var(--sidebar-column) + var(--layout-gap) + var(--content-column)
+    );
+    margin: 0 auto;
     min-height: 100vh;
     gap: var(--layout-gap);
 }
@@ -392,6 +397,8 @@ body.preview-open {
 
 .content {
     min-width: 0;
+    width: 100%;
+    max-width: var(--content-column);
     padding: 64px 0;
 }
 
@@ -1324,10 +1331,12 @@ body.preview-open {
 
 .case-location {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
 }
 
 .case-home-link {
+    flex-basis: 100%;
     color: var(--text-secondary);
     text-decoration: none;
 }
@@ -1815,7 +1824,7 @@ body.preview-open {
                                 /images/optimized/gil-rodrigues-filen-wordmark-1280.webp 1280w,
                                 /images/optimized/gil-rodrigues-filen-wordmark-1600.webp 1600w
                             "
-                            sizes="calc(100vw - 24px)"
+                            sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 720px"
                             width="3940"
                             height="2260"
                             alt="Final Filen mark and wordmark in white on black"
@@ -1860,7 +1869,7 @@ body.preview-open {
                                     /images/optimized/gil-rodrigues-filen-exploration-board-960.webp   960w,
                                     /images/optimized/gil-rodrigues-filen-exploration-board-1280.webp 1280w
                                 "
-                                sizes="calc(100vw - 24px)"
+                                sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 720px"
                                 width="1280"
                                 height="956"
                                 alt="Filen exploration board containing sketches, rejected symbols, wordmarks, and refined identity directions"
@@ -1889,7 +1898,7 @@ body.preview-open {
                             <img
                                 src="/images/optimized/gil-rodrigues-filen-logo-scale-960.webp"
                                 srcset="/images/optimized/gil-rodrigues-filen-logo-scale-480.webp 480w, /images/optimized/gil-rodrigues-filen-logo-scale-720.webp 720w, /images/optimized/gil-rodrigues-filen-logo-scale-960.webp 960w, /images/optimized/gil-rodrigues-filen-logo-scale-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-logo-scale-1600.webp 1600w"
-                                sizes="(max-width: 768px) calc(100vw - 24px), 50vw"
+                                sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 350px"
                                 width="3940"
                                 height="2260"
                                 alt="Filen mark tested at four decreasing sizes"
@@ -1902,7 +1911,7 @@ body.preview-open {
                             <img
                                 src="/images/optimized/gil-rodrigues-filen-app-icon-960.webp"
                                 srcset="/images/optimized/gil-rodrigues-filen-app-icon-480.webp 480w, /images/optimized/gil-rodrigues-filen-app-icon-720.webp 720w, /images/optimized/gil-rodrigues-filen-app-icon-960.webp 960w, /images/optimized/gil-rodrigues-filen-app-icon-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-app-icon-1600.webp 1600w"
-                                sizes="(max-width: 768px) calc(100vw - 24px), 50vw"
+                                sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 350px"
                                 width="3940"
                                 height="2260"
                                 alt="Filen app icon using a dimensional rendering of the identity mark"
@@ -1929,7 +1938,7 @@ body.preview-open {
                             <img
                                 src="/images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-960.webp"
                                 srcset="/images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-480.webp 480w, /images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-720.webp 720w, /images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-960.webp 960w, /images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-1600.webp 1600w"
-                                sizes="(max-width: 768px) calc(100vw - 24px), 50vw"
+                                sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 350px"
                                 width="3940"
                                 height="2260"
                                 alt="Campaign graphic reading Zero knowledge. Total control."
@@ -1941,7 +1950,7 @@ body.preview-open {
                             <img
                                 src="/images/optimized/gil-rodrigues-filen-storage-message-960.webp"
                                 srcset="/images/optimized/gil-rodrigues-filen-storage-message-480.webp 480w, /images/optimized/gil-rodrigues-filen-storage-message-720.webp 720w, /images/optimized/gil-rodrigues-filen-storage-message-960.webp 960w, /images/optimized/gil-rodrigues-filen-storage-message-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-storage-message-1600.webp 1600w"
-                                sizes="(max-width: 768px) calc(100vw - 24px), 50vw"
+                                sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 350px"
                                 width="3940"
                                 height="2260"
                                 alt="Campaign graphic reading Storage that earns nothing from knowing you"
@@ -1955,7 +1964,7 @@ body.preview-open {
                             <img
                                 src="/images/optimized/gil-rodrigues-filen-logo-texture-960.webp"
                                 srcset="/images/optimized/gil-rodrigues-filen-logo-texture-480.webp 480w, /images/optimized/gil-rodrigues-filen-logo-texture-720.webp 720w, /images/optimized/gil-rodrigues-filen-logo-texture-960.webp 960w, /images/optimized/gil-rodrigues-filen-logo-texture-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-logo-texture-1600.webp 1600w"
-                                sizes="calc(100vw - 24px)"
+                                sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 720px"
                                 width="3940"
                                 height="2260"
                                 alt="Filen mark over a streaked monochrome visual texture"
@@ -1984,7 +1993,7 @@ body.preview-open {
     /images/optimized/gil-rodrigues-filen-exploration-board-960.webp 960w,
     /images/optimized/gil-rodrigues-filen-exploration-board-1280.webp 1280w
   "
-  sizes="calc(100vw - 24px)"
+  sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 720px"
   width="1280"
   height="956"
   loading="lazy"

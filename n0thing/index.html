@@ -50,6 +50,7 @@
             var(--footer-title-optical-offset)
     );
     --sidebar-column: 280px;
+    --content-column: 720px;
     --layout-gap: 48px;
     --media-radius: 22px;
 }
@@ -182,6 +183,10 @@ body.preview-open {
 .layout {
     display: grid;
     grid-template-columns: var(--sidebar-column) 1fr;
+    max-width: calc(
+        var(--sidebar-column) + var(--layout-gap) + var(--content-column)
+    );
+    margin: 0 auto;
     min-height: 100vh;
     gap: var(--layout-gap);
 }
@@ -345,6 +350,8 @@ body.preview-open {
 
 .content {
     min-width: 0;
+    width: 100%;
+    max-width: var(--content-column);
     padding: 64px 0;
 }
 
@@ -1277,10 +1284,12 @@ body.preview-open {
 
 .case-location {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
 }
 
 .case-home-link {
+    flex-basis: 100%;
     color: var(--text-secondary);
     text-decoration: none;
 }
@@ -1741,7 +1750,7 @@ body.preview-open {
                         </header>
                         <div class="case-media">
                             <figure>
-                                <img src="/images/optimized/gil-rodrigues-n0thing-wordmark-animation-960.gif" srcset="/images/optimized/gil-rodrigues-n0thing-wordmark-animation-480.gif 480w, /images/optimized/gil-rodrigues-n0thing-wordmark-animation-720.gif 720w, /images/optimized/gil-rodrigues-n0thing-wordmark-animation-960.gif 960w, /images/optimized/gil-rodrigues-n0thing-wordmark-animation-1280.gif 1280w" sizes="calc(100vw - 24px)" width="1280" height="720" alt="Animated n0thing wordmark in white on black" fetchpriority="high" decoding="async" />
+                                <img src="/images/optimized/gil-rodrigues-n0thing-wordmark-animation-720.gif" srcset="/images/optimized/gil-rodrigues-n0thing-wordmark-animation-480.gif 480w, /images/optimized/gil-rodrigues-n0thing-wordmark-animation-720.gif 720w, /images/optimized/gil-rodrigues-n0thing-wordmark-animation-960.gif 960w, /images/optimized/gil-rodrigues-n0thing-wordmark-animation-1280.gif 1280w" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 720px" width="1280" height="720" alt="Animated n0thing wordmark in white on black" fetchpriority="high" decoding="async" />
                                 <figcaption class="case-caption">The documented motion artifact, shown at its complete 16:9 frame without cropping.</figcaption>
                             </figure>
                         </div>

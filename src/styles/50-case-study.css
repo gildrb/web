@@ -20,10 +20,12 @@
 
 .case-location {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
 }
 
 .case-home-link {
+    flex-basis: 100%;
     color: var(--text-secondary);
     text-decoration: none;
 }
