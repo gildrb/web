@@ -319,15 +319,27 @@ assert(
 );
 assert(
     caseStyles.includes(
+        ".case-article article {\n    width: min(100%, 720px);\n    margin-right: auto;\n    margin-left: auto;",
+    ),
+    "Case articles and their media must stay inside the centered blog-width boundary.",
+);
+assert(
+    caseStyles.includes(
             ".case-home-link {\n    color: var(--text-secondary);",
         ) &&
         caseStyles.includes(
             ".case-location span:last-child {\n    color: var(--text-primary);",
         ) &&
         caseStyles.includes(
-            ".case-home-link:hover {\n        color: var(--text-secondary);",
+            ".case-home-link:hover {\n        color: var(--text-primary);",
         ),
     "Case locations must preserve the active-page hierarchy.",
+);
+assert(
+    caseStyles.includes(
+        ".case-intro,\n.case-copy {\n    width: min(100%, 720px);\n    margin-right: auto;\n    margin-left: auto;",
+    ),
+    "Case intro and prose columns must be centered inside the wider media container.",
 );
 const sharedSidebarTargets = [
     "https://behance.net/gildrb",
