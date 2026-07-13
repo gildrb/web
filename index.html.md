@@ -41,19 +41,19 @@ Designing brands, interfaces, and the systems that connect them.
 
 ### Heph
 
-[Heph](https://github.com/gildrb/heph) is shown on the homepage through a terminal-style product demo. The demo presents Heph as a local document workspace that indexes armory book files, retrieves cited evidence for each answer, and keeps source passages inspectable with `/evidence`.
+[Heph local document agent](https://gildrb.com/heph) documents how bounded armories, explicit indexing, cited answers, and `/evidence` keep local document work inspectable. The source repository is linked inside the article.
 
 ### Filen
 
 [Filen identity system](https://gildrb.com/filen) documents how the work moved from broad mark exploration into a scalable identity, app icon, and campaign language for zero-knowledge encrypted cloud storage.
 
-### mL7
-
-[mL7 identity](https://gildrb.com/ml7) documents the current identity artifact and the evidence still needed to complete its case study.
-
 ### n0thing
 
 [n0thing wordmark](https://gildrb.com/n0thing) documents the current animated identity artifact and the evidence still needed to complete its case study.
+
+### mL7
+
+[mL7 identity](https://gildrb.com/ml7) documents the current identity artifact and the evidence still needed to complete its case study.
 
 ## Public profiles
 

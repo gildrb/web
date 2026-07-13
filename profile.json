@@ -43,13 +43,16 @@
       },
       "hasPart": [
         {
+          "@id": "https://gildrb.com/heph#case-study"
+        },
+        {
           "@id": "https://gildrb.com/filen#case-study"
         },
         {
-          "@id": "https://gildrb.com/ml7#case-study"
+          "@id": "https://gildrb.com/n0thing#case-study"
         },
         {
-          "@id": "https://gildrb.com/n0thing#case-study"
+          "@id": "https://gildrb.com/ml7#case-study"
         },
         {
           "@id": "https://gildrb.com/#heph"
@@ -330,7 +333,7 @@
         "SoftwareSourceCode"
       ],
       "@id": "https://gildrb.com/#heph",
-      "url": "https://gildrb.com/#portfolio-heph-title",
+      "url": "https://gildrb.com/heph",
       "name": "Heph",
       "description": "Portfolio demo of Heph, a local document workspace that indexes armory book files, retrieves cited evidence for each answer, and keeps source passages inspectable with evidence inspection.",
       "codeRepository": "https://github.com/gildrb/heph",
@@ -346,7 +349,34 @@
         "@id": "https://gildrb.com/#person"
       },
       "mainEntityOfPage": {
-        "@id": "https://gildrb.com/#profile"
+        "@id": "https://gildrb.com/heph#case-study"
+      },
+      "isPartOf": {
+        "@id": "https://gildrb.com/#website"
+      }
+    },
+    {
+      "@type": [
+        "Article",
+        "CreativeWork"
+      ],
+      "@id": "https://gildrb.com/heph#case-study",
+      "url": "https://gildrb.com/heph",
+      "name": "Heph local document agent",
+      "headline": "Local answers are only useful when their evidence stays visible.",
+      "description": "How Heph organizes local files into armories and keeps the evidence behind each answer inspectable.",
+      "inLanguage": "en",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "author": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "publisher": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "about": {
+        "@id": "https://gildrb.com/#heph"
       },
       "isPartOf": {
         "@id": "https://gildrb.com/#website"

@@ -88,6 +88,7 @@ async function listFiles(relativeDir) {
 const {
     caseScript,
     filenHtml,
+    hephHtml,
     indexHtml,
     ml7Html,
     n0thingHtml,
@@ -96,6 +97,7 @@ const {
 } = await buildPage({ write: false });
 const currentIndex = await readText("index.html");
 const currentFilen = await readText("filen/index.html");
+const currentHeph = await readText("heph/index.html");
 const currentMl7 = await readText("ml7/index.html");
 const currentN0thing = await readText("n0thing/index.html");
 const currentProfile = await readText("profile.json");
@@ -117,6 +119,10 @@ assert(
 assert(
     currentFilen === filenHtml,
     "filen/index.html is out of date. Run `node scripts/build-page.mjs`.",
+);
+assert(
+    currentHeph === hephHtml,
+    "heph/index.html is out of date. Run `node scripts/build-page.mjs`.",
 );
 assert(
     currentMl7 === ml7Html,
@@ -148,6 +154,7 @@ assert(
 const assetRefs = new Set([
     ...extractAssetRefs(indexHtml),
     ...extractAssetRefs(filenHtml),
+    ...extractAssetRefs(hephHtml),
     ...extractAssetRefs(ml7Html),
     ...extractAssetRefs(n0thingHtml),
 ]);
@@ -249,6 +256,11 @@ assert(
     "Homepage does not link to the Filen case study.",
 );
 assert(
+    (indexHtml.match(/href="\/heph"/g) || []).length === 1 &&
+        !indexHtml.includes('href="https://github.com/gildrb/heph"'),
+    "Homepage Heph metadata must link only to the local case study.",
+);
+assert(
     (indexHtml.match(/href="\/filen"/g) || []).length === 1,
     "Only the featured Filen image may link to the case study.",
 );
@@ -271,6 +283,17 @@ assert(
     !indexHtml.includes("project-summary") &&
         !indexHtml.includes("Read the case study"),
     "Homepage Filen entry must remain image-led and concise.",
+);
+assert(
+    hephHtml.includes('rel="canonical" href="https://gildrb.com/heph"') &&
+        hephHtml.includes(
+            '<a class="case-home-link" href="/">Gil Rodrigues</a>',
+        ) &&
+        hephHtml.includes("<span>Heph</span>") &&
+        hephHtml.includes('href="https://github.com/gildrb/heph"') &&
+        hephHtml.includes("GitHub repository") &&
+        !hephHtml.includes("case-kicker"),
+    "Heph must use the shared case-study shell and link to its repository inside the article.",
 );
 assert(
     filenHtml.includes('rel="canonical" href="https://gildrb.com/filen"'),
@@ -362,7 +385,7 @@ assert(
     "n0thing must preserve complete images and omit dot dividers.",
 );
 assert(
-    [indexHtml, filenHtml, ml7Html, n0thingHtml].every(
+    [indexHtml, filenHtml, hephHtml, ml7Html, n0thingHtml].every(
         (html) =>
             html.includes('id="site-favicon"') &&
             html.includes('window.location.hostname.endsWith(".vercel.app")') &&
@@ -410,10 +433,10 @@ assert(
     "The first solid project media must use the 32px optical gap from the adjacent text block at every viewport.",
 );
 const portfolioDates = [
-    ["2026-01-14", "14.01.2026", "Filen"],
-    ["2018-11-13", "13.11.2018", "mL7"],
-    ["2019-11-15", "15.11.2019", "n0thing"],
     ["2026-04-21", "21.04.2026", "Heph"],
+    ["2026-01-14", "14.01.2026", "Filen"],
+    ["2019-11-15", "15.11.2019", "n0thing"],
+    ["2018-11-13", "13.11.2018", "mL7"],
 ];
 assert(
     portfolioDates.every(
@@ -422,10 +445,10 @@ assert(
             indexHtml.includes(`>${title}</span`),
     ) &&
         portfolioStyles.includes(
-            ".portfolio-card-meta time {\n    color: var(--text-tertiary);",
+            ".portfolio-card-meta time {\n    grid-column: 1 / -1;\n    color: var(--text-tertiary);",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-card-title {\n    color: var(--text-secondary);",
+            ".portfolio-card-title {\n    grid-column: 1;\n    grid-row: 2;\n    color: var(--text-secondary);",
         ) &&
         portfolioStyles.includes(
             ".portfolio-card,\n.showcase-featured .portfolio-card {\n    overflow: visible;\n    border-radius: 0;",
@@ -434,9 +457,26 @@ assert(
             "border: 1px solid\n        color-mix(in srgb, var(--text-primary) 14%, transparent);",
         ) &&
         portfolioStyles.includes(
-            "font-size: 14px;\n    line-height: 20px;\n}\n\n.portfolio-card-title {\n    color: var(--text-secondary);\n    font-size: 16px;\n    line-height: 24px;",
+            '.portfolio-card-meta::after {\n    content: "→";\n    grid-column: 2;\n    grid-row: 2;',
+        ) &&
+        portfolioStyles.includes(
+            ".portfolio-card-link {\n    width: 100%;",
         ),
-    "Homepage projects must expose their date and linked title below the media.",
+    "Homepage projects must expose their date, linked title, and full-width directional affordance below the media.",
+);
+const chronologicalProjectTitles = [
+    "portfolio-heph-title",
+    "portfolio-filen-title",
+    "portfolio-n0thing-title",
+    "portfolio-ml7-title",
+];
+assert(
+    chronologicalProjectTitles
+        .map((id) => indexHtml.indexOf(`id="${id}"`))
+        .every((position, index, positions) =>
+            index === 0 ? position !== -1 : position > positions[index - 1],
+        ),
+    "Homepage projects must remain ordered newest to oldest: Heph, Filen, n0thing, mL7.",
 );
 assert(
     caseStyles.includes(
@@ -512,7 +552,7 @@ const sharedSidebarTargets = [
     "https://signal.me/",
 ];
 assert(
-    [indexHtml, filenHtml, ml7Html, n0thingHtml].every(
+    [indexHtml, filenHtml, hephHtml, ml7Html, n0thingHtml].every(
         (html) =>
             sharedSidebarTargets.every((target) => html.includes(target)) &&
             html.includes('aria-label="Copy hi@gildrb.com"') &&
@@ -521,7 +561,7 @@ assert(
     "Every generated route must contain the shared profile and contact sidebar.",
 );
 assert(
-    [filenHtml, ml7Html, n0thingHtml].every(
+    [filenHtml, hephHtml, ml7Html, n0thingHtml].every(
         (html) =>
             !html.includes('class="case-footer"') &&
             html.includes('class="case-desktop-links"') &&

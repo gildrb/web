@@ -150,8 +150,9 @@ export async function buildPage({ write = true } = {}) {
         return html;
     }
 
-    const [filenHtml, ml7Html, n0thingHtml] = await Promise.all([
+    const [filenHtml, hephHtml, ml7Html, n0thingHtml] = await Promise.all([
         buildCasePage("src/filen.template.html"),
+        buildCasePage("src/heph.template.html"),
         buildCasePage("src/ml7.template.html"),
         buildCasePage("src/n0thing.template.html"),
     ]);
@@ -161,6 +162,8 @@ export async function buildPage({ write = true } = {}) {
         await writeFile(path.join(root, "profile.json"), profileJson);
         await mkdir(path.join(root, "filen"), { recursive: true });
         await writeFile(path.join(root, "filen/index.html"), filenHtml);
+        await mkdir(path.join(root, "heph"), { recursive: true });
+        await writeFile(path.join(root, "heph/index.html"), hephHtml);
         await mkdir(path.join(root, "ml7"), { recursive: true });
         await writeFile(path.join(root, "ml7/index.html"), ml7Html);
         await mkdir(path.join(root, "n0thing"), { recursive: true });
@@ -170,6 +173,7 @@ export async function buildPage({ write = true } = {}) {
     return {
         caseScript,
         filenHtml,
+        hephHtml,
         indexHtml,
         ml7Html,
         n0thingHtml,

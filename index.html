@@ -205,13 +205,16 @@
                   },
                   "hasPart": [
                     {
+                      "@id": "https://gildrb.com/heph#case-study"
+                    },
+                    {
                       "@id": "https://gildrb.com/filen#case-study"
                     },
                     {
-                      "@id": "https://gildrb.com/ml7#case-study"
+                      "@id": "https://gildrb.com/n0thing#case-study"
                     },
                     {
-                      "@id": "https://gildrb.com/n0thing#case-study"
+                      "@id": "https://gildrb.com/ml7#case-study"
                     },
                     {
                       "@id": "https://gildrb.com/#heph"
@@ -492,7 +495,7 @@
                     "SoftwareSourceCode"
                   ],
                   "@id": "https://gildrb.com/#heph",
-                  "url": "https://gildrb.com/#portfolio-heph-title",
+                  "url": "https://gildrb.com/heph",
                   "name": "Heph",
                   "description": "Portfolio demo of Heph, a local document workspace that indexes armory book files, retrieves cited evidence for each answer, and keeps source passages inspectable with evidence inspection.",
                   "codeRepository": "https://github.com/gildrb/heph",
@@ -508,7 +511,34 @@
                     "@id": "https://gildrb.com/#person"
                   },
                   "mainEntityOfPage": {
-                    "@id": "https://gildrb.com/#profile"
+                    "@id": "https://gildrb.com/heph#case-study"
+                  },
+                  "isPartOf": {
+                    "@id": "https://gildrb.com/#website"
+                  }
+                },
+                {
+                  "@type": [
+                    "Article",
+                    "CreativeWork"
+                  ],
+                  "@id": "https://gildrb.com/heph#case-study",
+                  "url": "https://gildrb.com/heph",
+                  "name": "Heph local document agent",
+                  "headline": "Local answers are only useful when their evidence stays visible.",
+                  "description": "How Heph organizes local files into armories and keeps the evidence behind each answer inspectable.",
+                  "inLanguage": "en",
+                  "creator": {
+                    "@id": "https://gildrb.com/#person"
+                  },
+                  "author": {
+                    "@id": "https://gildrb.com/#person"
+                  },
+                  "publisher": {
+                    "@id": "https://gildrb.com/#person"
+                  },
+                  "about": {
+                    "@id": "https://gildrb.com/#heph"
                   },
                   "isPartOf": {
                     "@id": "https://gildrb.com/#website"
@@ -1421,27 +1451,41 @@ body {
 }
 
 .portfolio-card-meta {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 16px;
+    row-gap: 4px;
+    width: 100%;
     margin-top: 12px;
 }
 
 .portfolio-card-meta time {
+    grid-column: 1 / -1;
     color: var(--text-tertiary);
     font-size: 14px;
     line-height: 20px;
 }
 
 .portfolio-card-title {
+    grid-column: 1;
+    grid-row: 2;
     color: var(--text-secondary);
     font-size: 16px;
     line-height: 24px;
 }
 
+.portfolio-card-meta::after {
+    content: "→";
+    grid-column: 2;
+    grid-row: 2;
+    color: var(--text-secondary);
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+}
+
 .portfolio-card-link {
-    width: fit-content;
+    width: 100%;
     color: inherit;
     text-decoration: none;
 }
@@ -1449,6 +1493,11 @@ body {
 @media (hover: hover) {
     .portfolio-card:hover .portfolio-card-title,
     .portfolio-card-link:hover .portfolio-card-title {
+        color: var(--text-primary);
+    }
+
+    .portfolio-card:hover .portfolio-card-meta::after,
+    .portfolio-card-link:hover::after {
         color: var(--text-primary);
     }
 }
@@ -2932,10 +2981,8 @@ body {
                             </div>
                             <a
                                 class="portfolio-card-meta portfolio-card-link"
-                                href="https://github.com/gildrb/heph"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="View Heph on GitHub"
+                                href="/heph"
+                                aria-label="Read the Heph local document agent case study"
                             >
                                 <time datetime="2026-04-21">21.04.2026</time>
                                 <span
@@ -2986,6 +3033,40 @@ body {
                     </section>
                     <section
                         class="gallery"
+                        aria-labelledby="portfolio-n0thing-title"
+                    >
+                        <a
+                            class="gallery-item full case-study-entry portfolio-card"
+                            href="/n0thing"
+                            aria-label="Read the n0thing case study"
+                        >
+                            <img
+                                src="images/optimized/gil-rodrigues-n0thing-wordmark-animation-960.gif"
+                                srcset="
+                                    images/optimized/gil-rodrigues-n0thing-wordmark-animation-480.gif   480w,
+                                    images/optimized/gil-rodrigues-n0thing-wordmark-animation-720.gif   720w,
+                                    images/optimized/gil-rodrigues-n0thing-wordmark-animation-960.gif   960w,
+                                    images/optimized/gil-rodrigues-n0thing-wordmark-animation-1280.gif 1280w
+                                "
+                                sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px"
+                                width="1280"
+                                height="720"
+                                alt="Animated n0thing wordmark on a black background"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                            <span class="portfolio-card-meta">
+                                <time datetime="2019-11-15">15.11.2019</time>
+                                <span
+                                    class="portfolio-card-title"
+                                    id="portfolio-n0thing-title"
+                                    >n0thing</span
+                                >
+                            </span>
+                        </a>
+                    </section>
+                    <section
+                        class="gallery"
                         aria-labelledby="portfolio-ml7-title"
                     >
                         <a
@@ -3015,40 +3096,6 @@ body {
                                     class="portfolio-card-title"
                                     id="portfolio-ml7-title"
                                     >mL7</span
-                                >
-                            </span>
-                        </a>
-                    </section>
-                    <section
-                        class="gallery"
-                        aria-labelledby="portfolio-n0thing-title"
-                    >
-                        <a
-                            class="gallery-item full case-study-entry portfolio-card"
-                            href="/n0thing"
-                            aria-label="Read the n0thing case study"
-                        >
-                            <img
-                                src="images/optimized/gil-rodrigues-n0thing-wordmark-animation-960.gif"
-                                srcset="
-                                    images/optimized/gil-rodrigues-n0thing-wordmark-animation-480.gif   480w,
-                                    images/optimized/gil-rodrigues-n0thing-wordmark-animation-720.gif   720w,
-                                    images/optimized/gil-rodrigues-n0thing-wordmark-animation-960.gif   960w,
-                                    images/optimized/gil-rodrigues-n0thing-wordmark-animation-1280.gif 1280w
-                                "
-                                sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px"
-                                width="1280"
-                                height="720"
-                                alt="Animated n0thing wordmark on a black background"
-                                loading="lazy"
-                                decoding="async"
-                            />
-                            <span class="portfolio-card-meta">
-                                <time datetime="2019-11-15">15.11.2019</time>
-                                <span
-                                    class="portfolio-card-title"
-                                    id="portfolio-n0thing-title"
-                                    >n0thing</span
                                 >
                             </span>
                         </a>
