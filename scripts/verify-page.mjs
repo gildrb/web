@@ -492,6 +492,21 @@ assert(
 );
 assert(
     caseStyles.includes(
+        ".case-title {\n    max-width: 760px;\n    margin: 0 0 24px;\n    font-size: 28px;\n    font-weight: 500;\n    line-height: 36px;",
+    ) &&
+        caseStyles.includes(
+            ".case-copy h2 {\n    margin-bottom: 24px;\n    font-size: 24px;\n    font-weight: 500;\n    line-height: 32px;",
+        ) &&
+        caseStyles.includes(
+            ".case-copy h3 {\n    margin: 48px 0 12px;\n    font-size: 19px;\n    font-weight: 500;\n    line-height: 28px;",
+        ) &&
+        caseStyles.includes(
+            ".case-title {\n        font-size: 24px;\n        line-height: 32px;",
+        ),
+    "Case-study headings must use the calm 19/24/28px hierarchy and align the page title to the article top.",
+);
+assert(
+    caseStyles.includes(
         ".case-article article {\n    width: min(100%, 760px);\n    margin-right: auto;\n    margin-left: auto;",
     ),
     "Case articles and their media must stay inside the centered blog-width boundary.",
