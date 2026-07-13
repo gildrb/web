@@ -159,7 +159,8 @@
     -webkit-user-drag: none;
 }
 
-.portfolio-card {
+.portfolio-card,
+.showcase-featured .portfolio-card {
     overflow: visible;
     border-radius: 0;
     color: inherit;
@@ -167,6 +168,8 @@
 }
 
 .portfolio-card img {
+    border: 1px solid
+        color-mix(in srgb, var(--text-primary) 14%, transparent);
     border-radius: var(--media-radius);
 }
 
@@ -176,16 +179,18 @@
     align-items: flex-start;
     gap: 4px;
     margin-top: 12px;
-    font-size: 14px;
-    line-height: 20px;
 }
 
 .portfolio-card-meta time {
     color: var(--text-tertiary);
+    font-size: 14px;
+    line-height: 20px;
 }
 
 .portfolio-card-title {
     color: var(--text-secondary);
+    font-size: 16px;
+    line-height: 24px;
 }
 
 .portfolio-card-link {

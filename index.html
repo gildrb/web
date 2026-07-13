@@ -1081,10 +1081,6 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
-body.preview-open {
-    overflow: hidden;
-}
-
 .wrapper {
     max-width: 1900px;
     margin: 0 auto;
@@ -1420,7 +1416,8 @@ body.preview-open {
     -webkit-user-drag: none;
 }
 
-.portfolio-card {
+.portfolio-card,
+.showcase-featured .portfolio-card {
     overflow: visible;
     border-radius: 0;
     color: inherit;
@@ -1428,6 +1425,8 @@ body.preview-open {
 }
 
 .portfolio-card img {
+    border: 1px solid
+        color-mix(in srgb, var(--text-primary) 14%, transparent);
     border-radius: var(--media-radius);
 }
 
@@ -1437,16 +1436,18 @@ body.preview-open {
     align-items: flex-start;
     gap: 4px;
     margin-top: 12px;
-    font-size: 14px;
-    line-height: 20px;
 }
 
 .portfolio-card-meta time {
     color: var(--text-tertiary);
+    font-size: 14px;
+    line-height: 20px;
 }
 
 .portfolio-card-title {
     color: var(--text-secondary);
+    font-size: 16px;
+    line-height: 24px;
 }
 
 .portfolio-card-link {
@@ -1475,7 +1476,7 @@ body.preview-open {
     width: 100%;
     max-width: 100%;
     min-width: 0;
-    margin-bottom: 80px;
+    margin-bottom: var(--section-gap);
     overflow: hidden;
     container-type: inline-size;
 }
@@ -2105,58 +2106,6 @@ body.preview-open {
     }
 }
 
-.image-wrapper:focus-visible,
-.gallery-item:focus-visible {
-    outline: 1px solid var(--text-primary);
-    outline-offset: 4px;
-}
-
-.image-preview {
-    --preview-inline-space: 96px;
-    --preview-block-space: 128px;
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    width: 100%;
-    min-height: 100vh;
-    display: block;
-    padding: 64px 48px;
-    border: 0;
-    background: var(--bg);
-    cursor: zoom-out;
-    appearance: none;
-    color: inherit;
-    font: inherit;
-    text-align: inherit;
-}
-
-.image-preview[hidden] {
-    display: none;
-}
-
-.image-preview-frame {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: min(
-        calc(100vw - var(--preview-inline-space)),
-        calc(1900px - var(--preview-inline-space))
-    );
-    height: calc(100vh - var(--preview-block-space));
-    margin: 0 auto;
-}
-
-.image-preview img {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-    display: block;
-    border-radius: var(--media-radius);
-    user-select: none;
-    -webkit-user-drag: none;
-}
-
 .section-title {
     font-size: 16px;
     font-weight: 400;
@@ -2492,12 +2441,6 @@ body.preview-open {
         padding: 0 32px;
     }
 
-    .image-preview {
-        --preview-inline-space: 64px;
-        padding-right: 32px;
-        padding-left: 32px;
-    }
-
     .showcase {
         grid-template-columns: 2fr 1fr;
     }
@@ -2549,12 +2492,6 @@ body.preview-open {
 @media (max-width: 768px) {
     .wrapper {
         padding: 0 12px;
-    }
-
-    .image-preview {
-        --preview-inline-space: 48px;
-        --preview-block-space: 64px;
-        padding: 32px 24px;
     }
 
     .layout {
@@ -2637,10 +2574,6 @@ body.preview-open {
         margin-bottom: 80px;
     }
 
-    .heph-demo {
-        margin-bottom: 80px;
-    }
-
     .gallery {
         grid-template-columns: 1fr;
         margin-bottom: 80px;
@@ -2664,17 +2597,6 @@ body.preview-open {
             aria-live="polite"
             aria-atomic="true"
         ></div>
-        <button
-            class="image-preview"
-            type="button"
-            aria-label="Close enlarged image"
-            hidden
-        >
-            <span class="image-preview-frame">
-                <img src="data:," alt="" decoding="async" />
-            </span>
-        </button>
-
         <div
             class="wrapper"
             itemscope
@@ -3141,66 +3063,12 @@ body.preview-open {
                             </span>
                         </a>
                     </section>
-                    <h3 class="section-title" id="portfolio-personal-title">
-                        Personal
-                    </h3>
-                    <section
-                        class="gallery"
-                        aria-labelledby="portfolio-personal-title"
-                    >
-                        <button
-                            class="gallery-item full"
-                            type="button"
-                            aria-label="Open Kernel detail preview"
-                        >
-                            <img
-                                src="images/optimized/gil-rodrigues-personal-kernel-lettering-960.webp"
-                                srcset="
-                                    images/optimized/gil-rodrigues-personal-kernel-lettering-480.webp   480w,
-                                    images/optimized/gil-rodrigues-personal-kernel-lettering-720.webp   720w,
-                                    images/optimized/gil-rodrigues-personal-kernel-lettering-960.webp   960w,
-                                    images/optimized/gil-rodrigues-personal-kernel-lettering-1280.webp 1280w,
-                                    images/optimized/gil-rodrigues-personal-kernel-lettering-1600.webp 1600w
-                                "
-                                sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px"
-                                data-preview-src="images/optimized/gil-rodrigues-personal-kernel-lettering-1600.webp"
-                                width="2048"
-                                height="1176"
-                                alt="Close crop of dark Kernel lettering with fine highlights"
-                                loading="lazy"
-                                decoding="async"
-                            />
-                        </button>
-                        <button
-                            class="gallery-item full"
-                            type="button"
-                            aria-label="Open personal angular logo mark preview"
-                        >
-                            <img
-                                src="images/optimized/gil-rodrigues-personal-angular-logo-mark-720.webp"
-                                srcset="
-                                    images/optimized/gil-rodrigues-personal-angular-logo-mark-480.webp   480w,
-                                    images/optimized/gil-rodrigues-personal-angular-logo-mark-720.webp   720w,
-                                    images/optimized/gil-rodrigues-personal-angular-logo-mark-960.webp   960w,
-                                    images/optimized/gil-rodrigues-personal-angular-logo-mark-1280.webp 1280w,
-                                    images/optimized/gil-rodrigues-personal-angular-logo-mark-1504.webp 1504w
-                                "
-                                sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px"
-                                data-preview-src="images/optimized/gil-rodrigues-personal-angular-logo-mark-1504.webp"
-                                width="1504"
-                                height="1128"
-                                alt="Personal angular logo mark centered on a white background"
-                                loading="lazy"
-                                decoding="async"
-                            />
-                        </button>
-                    </section>
                     </section>
                     <nav
                         class="references-links"
-                        aria-label="Machine-readable references"
+                        aria-label="Site files"
                     >
-                        <p class="links-label">References</p>
+                        <p class="links-label">Site files</p>
                         <a
                             class="reference-link"
                             href="humans.txt"
@@ -4274,175 +4142,6 @@ hephDemoForm?.addEventListener("submit", (event) => {
     startHephDemoRetrieval(prompt);
     trackEvent("Heph Demo Submit");
 });
-
-const imagePreview = document.querySelector(".image-preview");
-const previewImage = imagePreview.querySelector("img");
-const previewImageCache = new Map();
-let previouslyFocusedElement = null;
-let shouldRestorePreviewFocus = false;
-let activePreviewSrc = "";
-
-function getPreviewSrc(image) {
-    return (
-        image.dataset.previewSrc || image.currentSrc || image.src
-    );
-}
-
-function getImagePortfolioSection(image) {
-    const section = image.closest("section");
-    const title = section?.previousElementSibling;
-
-    if (title?.classList.contains("section-title")) {
-        return title.textContent.trim();
-    }
-
-    return "Portfolio";
-}
-
-function getImageItem(image) {
-    const label = image.closest("button")?.ariaLabel;
-
-    return label
-        ? label.replace(/^Open /, "").replace(/ preview$/, "")
-        : "Image";
-}
-
-function prefetchPreviewImage(image) {
-    const previewSrc = getPreviewSrc(image);
-    if (!previewSrc) return null;
-
-    if (previewImageCache.has(previewSrc)) {
-        return previewImageCache.get(previewSrc);
-    }
-
-    const preloadImage = new Image();
-    preloadImage.decoding = "async";
-    preloadImage.src = previewSrc;
-    previewImageCache.set(previewSrc, preloadImage);
-
-    return preloadImage;
-}
-
-function showPreviewImage(previewSrc) {
-    if (!imagePreview.hidden && activePreviewSrc === previewSrc) {
-        previewImage.src = previewSrc;
-    }
-}
-
-function showPreviewImageWhenReady(preloadedImage, previewSrc) {
-    if (!preloadedImage || !previewSrc) return;
-
-    const decodePreview = () => {
-        if (preloadedImage.decode) {
-            preloadedImage
-                .decode()
-                .then(() => showPreviewImage(previewSrc))
-                .catch(() => showPreviewImage(previewSrc));
-            return;
-        }
-
-        showPreviewImage(previewSrc);
-    };
-
-    if (
-        preloadedImage.complete &&
-        preloadedImage.naturalWidth > 0
-    ) {
-        decodePreview();
-        return;
-    }
-
-    preloadedImage.addEventListener("load", decodePreview, {
-        once: true,
-    });
-}
-
-function openImagePreview(image, options = {}) {
-    const previewSrc = getPreviewSrc(image);
-    const fallbackSrc = image.currentSrc || image.src;
-    const preloadedImage = prefetchPreviewImage(image);
-
-    previouslyFocusedElement = document.activeElement;
-    shouldRestorePreviewFocus = options.restoreFocus;
-    activePreviewSrc = previewSrc;
-    previewImage.src = fallbackSrc;
-    previewImage.alt = image.alt;
-    imagePreview.hidden = false;
-    document.body.classList.add("preview-open");
-    imagePreview.focus({ preventScroll: true });
-
-    if (previewSrc && previewSrc !== fallbackSrc) {
-        showPreviewImageWhenReady(preloadedImage, previewSrc);
-    }
-
-    trackEvent("Image Preview Open", {
-        portfolioSection: getImagePortfolioSection(image),
-        item: getImageItem(image),
-    });
-    announce("Image enlarged");
-}
-
-function closeImagePreview() {
-    if (imagePreview.hidden) return;
-
-    imagePreview.hidden = true;
-    activePreviewSrc = "";
-    previewImage.src = "data:,";
-    document.body.classList.remove("preview-open");
-
-    if (shouldRestorePreviewFocus && previouslyFocusedElement) {
-        previouslyFocusedElement.focus({ preventScroll: true });
-    }
-
-    previouslyFocusedElement = null;
-    shouldRestorePreviewFocus = false;
-    announce("Image closed");
-}
-
-document
-    .querySelectorAll("button.image-wrapper, button.gallery-item")
-    .forEach((imageTrigger) => {
-        const image = imageTrigger.querySelector("img");
-        if (!image) return;
-
-        imageTrigger.addEventListener(
-            "pointerenter",
-            () => prefetchPreviewImage(image),
-            { once: true },
-        );
-
-        imageTrigger.addEventListener(
-            "focus",
-            () => prefetchPreviewImage(image),
-            { once: true },
-        );
-
-        imageTrigger.addEventListener(
-            "pointerdown",
-            () => prefetchPreviewImage(image),
-            {
-                once: true,
-                passive: true,
-            },
-        );
-
-        imageTrigger.addEventListener(
-            "touchstart",
-            () => prefetchPreviewImage(image),
-            {
-                once: true,
-                passive: true,
-            },
-        );
-
-        imageTrigger.addEventListener("click", (event) => {
-            openImagePreview(image, {
-                restoreFocus: event.detail === 0,
-            });
-        });
-    });
-
-imagePreview.addEventListener("click", closeImagePreview);
 
 document.querySelectorAll(".external-link").forEach((link) => {
     link.addEventListener("click", () => {

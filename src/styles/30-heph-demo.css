@@ -6,7 +6,7 @@
     width: 100%;
     max-width: 100%;
     min-width: 0;
-    margin-bottom: 80px;
+    margin-bottom: var(--section-gap);
     overflow: hidden;
     container-type: inline-size;
 }

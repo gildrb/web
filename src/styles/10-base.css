@@ -144,10 +144,6 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
-body.preview-open {
-    overflow: hidden;
-}
-
 .wrapper {
     max-width: 1900px;
     margin: 0 auto;

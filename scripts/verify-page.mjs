@@ -99,6 +99,8 @@ const currentFilen = await readText("filen/index.html");
 const currentMl7 = await readText("ml7/index.html");
 const currentN0thing = await readText("n0thing/index.html");
 const currentProfile = await readText("profile.json");
+const llmsText = await readText("llms.txt");
+const wellKnownLlmsText = await readText(".well-known/llms.txt");
 const caseStyles = await readText("src/styles/50-case-study.css");
 const responsiveStyles = await readText("src/styles/90-responsive.css");
 const baseStyles = await readText("src/styles/10-base.css");
@@ -170,6 +172,38 @@ const unreferencedImages = imageFiles.filter(
 assert(
     unreferencedImages.length === 0,
     `Unreferenced image files:\n${unreferencedImages.join("\n")}`,
+);
+assert(
+    !indexHtml.includes("portfolio-personal-title") &&
+        !indexHtml.includes('class="image-preview"') &&
+        !siteScript.includes("Image Preview Open") &&
+        !imageFiles.some((file) => file.includes("personal-")),
+    "Removed Personal media and its preview machinery must not return.",
+);
+assert(
+    indexHtml.includes('aria-label="Site files"') &&
+        indexHtml.includes('<p class="links-label">Site files</p>'),
+    "The footer must describe humans.txt, llms.txt, and profile.json as site files.",
+);
+const hephAsciiSignature =
+    "HEPH // BRANDMARK RASTER 64x22 // GIL RODRIGUES / GILDRB";
+assert(
+    [llmsText, wellKnownLlmsText].every(
+        (text) =>
+            text.includes(hephAsciiSignature) &&
+            text.includes("SYSTEM // LOCAL DOCUMENT AGENT") &&
+            text.includes("SOURCE // github.com/gildrb/heph"),
+    ),
+    "Both LLM references must carry the authored Heph ASCII brandmark.",
+);
+assert(
+    (await readText("src/styles/30-heph-demo.css")).includes(
+        "margin-bottom: var(--section-gap);",
+    ) &&
+        !responsiveStyles.includes(
+            ".heph-demo {\n        margin-bottom: 80px;",
+        ),
+    "The Heph-to-Filen gap must use the same section rhythm as sidebar groups.",
 );
 
 assert(
@@ -336,6 +370,15 @@ assert(
         ) &&
         portfolioStyles.includes(
             ".portfolio-card-title {\n    color: var(--text-secondary);",
+        ) &&
+        portfolioStyles.includes(
+            ".portfolio-card,\n.showcase-featured .portfolio-card {\n    overflow: visible;\n    border-radius: 0;",
+        ) &&
+        portfolioStyles.includes(
+            "border: 1px solid\n        color-mix(in srgb, var(--text-primary) 14%, transparent);",
+        ) &&
+        portfolioStyles.includes(
+            "font-size: 14px;\n    line-height: 20px;\n}\n\n.portfolio-card-title {\n    color: var(--text-secondary);\n    font-size: 16px;\n    line-height: 24px;",
         ),
     "Homepage projects must expose their date and linked title below the media.",
 );
