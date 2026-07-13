@@ -198,12 +198,12 @@ assert(
 );
 assert(
     (await readText("src/styles/30-heph-demo.css")).includes(
-        "margin-bottom: var(--section-gap);",
+        "margin-bottom: 32px;",
     ) &&
         !responsiveStyles.includes(
             ".heph-demo {\n        margin-bottom: 80px;",
         ),
-    "The Heph-to-Filen gap must use the same section rhythm as sidebar groups.",
+    "The Heph-to-Filen gap must use the optically compensated 32px project rhythm.",
 );
 assert(
     indexHtml.includes(
@@ -225,13 +225,13 @@ assert(
 );
 assert(
     portfolioStyles.includes(
-        ".showcase {\n    display: grid;\n    grid-template-columns: 2.5fr 1fr;\n    gap: 20px;\n    margin-bottom: var(--section-gap);",
+        ".showcase {\n    display: grid;\n    grid-template-columns: 2.5fr 1fr;\n    gap: 20px;\n    margin-bottom: 32px;",
     ) &&
         portfolioStyles.includes(
-            ".gallery {\n    display: grid;\n    grid-template-columns: repeat(2, 1fr);\n    gap: 20px;\n    margin-bottom: var(--section-gap);",
+            ".gallery {\n    display: grid;\n    grid-template-columns: repeat(2, 1fr);\n    gap: 20px;\n    margin-bottom: 32px;",
         ) &&
         !responsiveStyles.includes("margin-bottom: 80px;"),
-    "Every homepage project transition must use the same 24px section rhythm at every viewport.",
+    "Every homepage project transition must use the same optically compensated 32px rhythm at every viewport.",
 );
 assert(
     previewContentStyles.includes(
@@ -240,7 +240,7 @@ assert(
         !responsiveStyles.includes(
             ".references-links {\n        margin-top:",
         ),
-    "Metadata must follow n0thing by the same positive 24px section gap without legacy negative offsets.",
+    "Metadata must follow n0thing by the same positive 32px project gap without legacy negative offsets.",
 );
 
 assert(
