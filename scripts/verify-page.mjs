@@ -103,6 +103,22 @@ const currentN0thing = await readText("n0thing/index.html");
 const currentProfile = await readText("profile.json");
 const llmsText = await readText("llms.txt");
 const wellKnownLlmsText = await readText(".well-known/llms.txt");
+const identityTexts = await Promise.all(
+    [
+        ".well-known/llms.txt",
+        ".well-known/webfinger",
+        "feed.xml",
+        "humans.txt",
+        "index.html",
+        "index.html.md",
+        "llms.txt",
+        "profile.json",
+        "src/data/profile.schema.json",
+        "src/page.template.html",
+        "src/partials/layout-open.html",
+        "src/sections/profile-summary.html",
+    ].map(async (file) => ({ file, text: await readText(file) })),
+);
 const caseStyles = await readText("src/styles/50-case-study.css");
 const responsiveStyles = await readText("src/styles/90-responsive.css");
 const baseStyles = await readText("src/styles/10-base.css");
@@ -204,6 +220,15 @@ assert(
     JSON.stringify(getGeneratedJsonLd(indexHtml)) ===
         JSON.stringify(JSON.parse(profileJson)),
     "Inline JSON-LD no longer matches profile.json.",
+);
+const staleIdentityPattern =
+    /student(?: and (?:design engineer|designer))?|Julius-Maximilians|Würzburg/i;
+const staleIdentityFiles = identityTexts
+    .filter(({ text }) => staleIdentityPattern.test(text))
+    .map(({ file }) => file);
+assert(
+    staleIdentityFiles.length === 0,
+    `Stale student or university identity copy found in:\n${staleIdentityFiles.join("\n")}`,
 );
 
 new Function(siteScript);
