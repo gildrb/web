@@ -136,13 +136,8 @@
         margin-bottom: var(--section-gap);
     }
 
-    .showcase {
-        margin-bottom: 80px;
-    }
-
     .gallery {
         grid-template-columns: 1fr;
-        margin-bottom: 80px;
     }
 
     .gallery-item.full {
@@ -150,7 +145,6 @@
     }
 
     .references-links {
-        margin-top: -32px;
         margin-bottom: 32px;
     }
 }

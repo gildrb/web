@@ -365,7 +365,7 @@ body {
     display: grid;
     grid-template-columns: 2.5fr 1fr;
     gap: 20px;
-    margin-bottom: 80px;
+    margin-bottom: var(--section-gap);
     align-items: start;
 }
 
@@ -470,7 +470,7 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    margin-bottom: 80px;
+    margin-bottom: var(--section-gap);
 }
 
 .gallery-item {
@@ -574,6 +574,11 @@ body {
     margin-bottom: var(--section-gap);
     overflow: hidden;
     container-type: inline-size;
+}
+
+.heph-demo-frame {
+    width: 100%;
+    min-width: 0;
 }
 
 .heph-demo-shell {
@@ -1188,6 +1193,9 @@ body {
 @media (max-width: 700px) {
     .heph-demo {
         grid-column: 1;
+    }
+
+    .heph-demo-frame {
         padding: 34px 14px;
         border-radius: 24px;
         background: var(--heph-demo-mobile-bg);
@@ -1195,7 +1203,7 @@ body {
 }
 
 @media (max-width: 460px) {
-    .heph-demo {
+    .heph-demo-frame {
         padding: 32px 12px;
         border-radius: 22px;
     }
@@ -1239,7 +1247,7 @@ body {
     display: flex;
     flex-direction: column;
     row-gap: var(--section-content-gap);
-    margin-top: -72px;
+    margin-top: 0;
     margin-bottom: var(--footer-stack-bottom-gap);
     font-size: 16px;
     font-weight: 400;
@@ -1665,13 +1673,8 @@ body {
         margin-bottom: var(--section-gap);
     }
 
-    .showcase {
-        margin-bottom: 80px;
-    }
-
     .gallery {
         grid-template-columns: 1fr;
-        margin-bottom: 80px;
     }
 
     .gallery-item.full {
@@ -1679,7 +1682,6 @@ body {
     }
 
     .references-links {
-        margin-top: -32px;
         margin-bottom: 32px;
     }
 }

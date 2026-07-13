@@ -11,6 +11,11 @@
     container-type: inline-size;
 }
 
+.heph-demo-frame {
+    width: 100%;
+    min-width: 0;
+}
+
 .heph-demo-shell {
     --heph-terminal-font-size: 14px;
     --heph-terminal-muted: #7c7c7c;
@@ -623,6 +628,9 @@
 @media (max-width: 700px) {
     .heph-demo {
         grid-column: 1;
+    }
+
+    .heph-demo-frame {
         padding: 34px 14px;
         border-radius: 24px;
         background: var(--heph-demo-mobile-bg);
@@ -630,7 +638,7 @@
 }
 
 @media (max-width: 460px) {
-    .heph-demo {
+    .heph-demo-frame {
         padding: 32px 12px;
         border-radius: 22px;
     }

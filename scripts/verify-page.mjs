@@ -181,9 +181,9 @@ assert(
     "Removed Personal media and its preview machinery must not return.",
 );
 assert(
-    indexHtml.includes('aria-label="Site files"') &&
-        indexHtml.includes('<p class="links-label">Site files</p>'),
-    "The footer must describe humans.txt, llms.txt, and profile.json as site files.",
+    indexHtml.includes('aria-label="Metadata"') &&
+        indexHtml.includes('<p class="links-label">Metadata</p>'),
+    "The footer must group humans.txt, llms.txt, and profile.json as metadata.",
 );
 const hephAsciiSignature =
     "HEPH // BRANDMARK RASTER 64x22 // GIL RODRIGUES / GILDRB";
@@ -204,6 +204,43 @@ assert(
             ".heph-demo {\n        margin-bottom: 80px;",
         ),
     "The Heph-to-Filen gap must use the same section rhythm as sidebar groups.",
+);
+assert(
+    indexHtml.includes(
+        '<div class="heph-demo-frame" aria-hidden="true">',
+    ) &&
+        !indexHtml.includes(
+            'aria-labelledby="portfolio-heph-title"\n                            aria-hidden="true"',
+        ) &&
+        indexHtml.indexOf(
+            '<div class="heph-demo-frame" aria-hidden="true">',
+        ) <
+            indexHtml.indexOf('class="heph-demo-shell"') &&
+        indexHtml.indexOf('class="portfolio-card-meta portfolio-card-link"') >
+            indexHtml.indexOf('<div class="heph-demo-frame">') &&
+        (await readText("src/styles/30-heph-demo.css")).includes(
+            ".heph-demo-frame {\n        padding: 34px 14px;\n        border-radius: 24px;\n        background: var(--heph-demo-mobile-bg);",
+        ),
+    "Mobile Heph chrome must wrap only the terminal, leaving its date and title below the panel.",
+);
+assert(
+    portfolioStyles.includes(
+        ".showcase {\n    display: grid;\n    grid-template-columns: 2.5fr 1fr;\n    gap: 20px;\n    margin-bottom: var(--section-gap);",
+    ) &&
+        portfolioStyles.includes(
+            ".gallery {\n    display: grid;\n    grid-template-columns: repeat(2, 1fr);\n    gap: 20px;\n    margin-bottom: var(--section-gap);",
+        ) &&
+        !responsiveStyles.includes("margin-bottom: 80px;"),
+    "Every homepage project transition must use the same 24px section rhythm at every viewport.",
+);
+assert(
+    previewContentStyles.includes(
+        ".references-links {\n    display: flex;\n    flex-direction: column;\n    row-gap: var(--section-content-gap);\n    margin-top: 0;",
+    ) &&
+        !responsiveStyles.includes(
+            ".references-links {\n        margin-top:",
+        ),
+    "Metadata must follow n0thing by the same positive 24px section gap without legacy negative offsets.",
 );
 
 assert(
