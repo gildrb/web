@@ -415,9 +415,9 @@ assert(
             "border: 1px solid\n        color-mix(in srgb, var(--text-primary) 14%, transparent);",
         ) &&
         portfolioStyles.includes(
-            "font-size: 14px;\n    line-height: 20px;\n}\n\n.portfolio-card-title {\n    color: var(--text-secondary);\n    font-size: 16px;\n    line-height: 24px;",
+            'font-size: 14px;\n    line-height: 20px;\n    font-variant-numeric: tabular-nums;\n    font-feature-settings: "tnum" 1;\n}\n\n.portfolio-card-title {\n    color: var(--text-secondary);\n    font-size: 16px;\n    line-height: 24px;',
         ),
-    "Homepage projects must expose their date and linked title below the media.",
+    "Homepage projects must expose tabular dates and their linked titles below the media.",
 );
 assert(
     caseStyles.includes(
