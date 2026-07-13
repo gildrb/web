@@ -103,6 +103,19 @@ export async function buildPage({ write = true } = {}) {
     )
         .map((text) => text.trimEnd())
         .join("\n\n");
+    const hephCaseScript = (
+        await Promise.all(
+            [
+                "10-core.js",
+                "20-theme.js",
+                "30-email.js",
+                "40-heph-data.js",
+                "50-heph-demo.js",
+            ].map((file) => readText(`src/scripts/${file}`)),
+        )
+    )
+        .map((text) => text.trimEnd())
+        .join("\n\n");
 
     let indexHtml = await resolveIncludes(
         await readText("src/page.template.html"),
@@ -132,12 +145,15 @@ export async function buildPage({ write = true } = {}) {
         throw new Error("Generated HTML still contains inline tokens.");
     }
 
-    async function buildCasePage(templatePath, slug) {
+    async function buildCasePage(templatePath, slug, script = caseScript) {
         let html = await resolveIncludes(await readText(templatePath));
         html = replaceToken(
             html,
             `<!-- @case-markdown:${slug} -->`,
-            indentBlock(await renderCaseMarkdown({ root, slug }), 24),
+            indentBlock(
+                await renderCaseMarkdown({ root, slug, resolveIncludes }),
+                24,
+            ),
         );
         html = replaceToken(html, "<!-- @inline-css:site -->", styles);
         html = replaceToken(
@@ -145,7 +161,7 @@ export async function buildPage({ write = true } = {}) {
             "<!-- @inline-js:analytics-bootstrap -->",
             analyticsBootstrap,
         );
-        html = replaceToken(html, "<!-- @inline-js:case -->", caseScript);
+        html = replaceToken(html, "<!-- @inline-js:case -->", script);
 
         if (html.includes("<!-- @inline-")) {
             throw new Error(
@@ -158,7 +174,7 @@ export async function buildPage({ write = true } = {}) {
 
     const [filenHtml, hephHtml, ml7Html, n0thingHtml] = await Promise.all([
         buildCasePage("src/filen.template.html", "filen"),
-        buildCasePage("src/heph.template.html", "heph"),
+        buildCasePage("src/heph.template.html", "heph", hephCaseScript),
         buildCasePage("src/ml7.template.html", "ml7"),
         buildCasePage("src/n0thing.template.html", "n0thing"),
     ]);

@@ -124,6 +124,7 @@ const responsiveStyles = await readText("src/styles/90-responsive.css");
 const baseStyles = await readText("src/styles/10-base.css");
 const portfolioStyles = await readText("src/styles/20-portfolio-media.css");
 const hephDemoStyles = await readText("src/styles/30-heph-demo.css");
+const hephMarkdown = await readText("content/heph.md");
 const previewContentStyles = await readText("src/styles/40-preview-content.css");
 const portfolioOpen = await readText("src/sections/portfolio-open.html");
 const previewFavicon = await readText("preview-favicon.svg");
@@ -361,6 +362,22 @@ assert(
             ".heph-demo-frame {\n        padding: 34px 14px;\n        border-radius: 24px;\n        background: var(--heph-demo-mobile-bg);",
         ),
     "Mobile Heph chrome must wrap only the terminal, leaving its date and title below the panel.",
+);
+assert(
+    hephMarkdown.includes("![Heph demo](media:heph-demo)") &&
+        hephHtml.includes('class="heph-demo case-heph-demo"') &&
+        hephHtml.indexOf("Heph is a project I have worked on for months") <
+            hephHtml.indexOf('class="heph-demo case-heph-demo"') &&
+        hephHtml.indexOf('class="heph-demo case-heph-demo"') <
+            hephHtml.indexOf(">GitHub repository</a>"),
+    "The Heph case study must place the shared demo between authored prose and the repository link.",
+);
+assert(
+    hephHtml.includes("const hephDemoForm = document.querySelector(") &&
+        hephDemoStyles.includes(
+            ".case-media .heph-demo {\n    margin-bottom: 0;",
+        ),
+    "The Heph case-study demo must reuse the live demo behavior without adding nested spacing.",
 );
 assert(
     portfolioStyles.includes(
@@ -701,18 +718,14 @@ assert(
 assert(
     caseStyles.includes("@media (min-width: 769px)") &&
         caseStyles.includes(
-            ".case-article article {\n        min-height: calc(100vh - 96px);\n        display: flex;\n        flex-direction: column;",
-        ) &&
-        caseStyles.includes(
-            ".case-article article > :last-child {\n        --case-final-line-height: 24px;\n        margin-top: auto;\n        padding-top: 80px;\n        padding-bottom: calc(\n            var(--footer-title-center-offset) +",
+            ".case-article article > :last-child {\n        --case-final-line-height: 24px;\n        padding-bottom: calc(\n            var(--footer-title-center-offset) +",
         ) &&
         caseStyles.includes(
             ".case-section:last-child .case-copy:last-child h2:last-child {\n        margin-bottom: 0;",
         ) &&
-        caseStyles.includes(
-            ".case-media + .case-copy:last-child,\n    .case-media-grid + .case-copy:last-child {\n        padding-top: var(--text-media-gap);",
-        ),
-    "Desktop case endings must share the theme toggle's calculated vertical alignment.",
+        !caseStyles.includes("margin-top: auto;") &&
+        !caseStyles.includes("padding-top: 80px;"),
+    "Desktop case endings must keep their natural flow while reserving the theme toggle's bottom boundary.",
 );
 assert(
     caseStyles.includes(
@@ -724,9 +737,7 @@ assert(
         caseStyles.includes(
             ".case-media + .case-copy,\n.case-media-grid + .case-copy {\n    margin-top: var(--text-media-gap);",
         ) &&
-        caseStyles.includes(
-            ".case-media + .case-copy:last-child,\n    .case-media-grid + .case-copy:last-child {\n        padding-top: var(--text-media-gap);",
-        ),
+        !caseStyles.includes("padding-top: var(--text-media-gap);"),
     "Case media must use the shared optical text-media gap before and after each figure.",
 );
 const sharedSidebarTargets = [

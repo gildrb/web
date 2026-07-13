@@ -126,12 +126,14 @@ function parseMarkdown(markdown) {
     };
 }
 
-async function renderMedia(root, slug, media) {
+async function renderMedia(root, slug, media, resolveIncludes) {
     const figures = await Promise.all(
         media.map(async ({ caption, id }) => {
-            const image = (
-                await readFile(path.join(root, "src/case-media", slug, `${id}.html`), "utf8")
-            ).trim();
+            const source = await readFile(
+                path.join(root, "src/case-media", slug, `${id}.html`),
+                "utf8",
+            );
+            const image = (await resolveIncludes(source)).trim();
             const renderedCaption = caption
                 ? `\n    <figcaption class="case-caption">${renderInline(caption)}</figcaption>`
                 : "";
@@ -142,7 +144,7 @@ async function renderMedia(root, slug, media) {
     return `<div class="${className}">\n${figures.join("\n")}\n</div>`;
 }
 
-export async function renderCaseMarkdown({ root, slug }) {
+export async function renderCaseMarkdown({ root, slug, resolveIncludes }) {
     const markdown = await readFile(path.join(root, "content", `${slug}.md`), "utf8");
     const parsed = parseMarkdown(markdown);
     const output = [
@@ -213,7 +215,7 @@ export async function renderCaseMarkdown({ root, slug }) {
                 media.push(parsed.blocks[index + 1]);
                 index += 1;
             }
-            output.push(await renderMedia(root, slug, media));
+            output.push(await renderMedia(root, slug, media, resolveIncludes));
         } else if (block.type === "code") {
             const label = block.title
                 ? `<p class="case-code-label">${renderInline(block.title)}</p>\n`

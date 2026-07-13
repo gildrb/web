@@ -27,6 +27,10 @@
     min-width: 0;
 }
 
+.case-media .heph-demo {
+    margin-bottom: 0;
+}
+
 .heph-demo-shell {
     --heph-terminal-font-size: 14px;
     width: 100%;

@@ -651,6 +651,10 @@ body {
     min-width: 0;
 }
 
+.case-media .heph-demo {
+    margin-bottom: 0;
+}
+
 .heph-demo-shell {
     --heph-terminal-font-size: 14px;
     width: 100%;
@@ -1559,16 +1563,8 @@ body {
 }
 
 @media (min-width: 769px) {
-    .case-article article {
-        min-height: calc(100vh - 96px);
-        display: flex;
-        flex-direction: column;
-    }
-
     .case-article article > :last-child {
         --case-final-line-height: 24px;
-        margin-top: auto;
-        padding-top: 80px;
         padding-bottom: calc(
             var(--footer-title-center-offset) +
                 (var(--theme-toggle-size) / 2) -
@@ -1578,11 +1574,6 @@ body {
 
     .case-section:last-child {
         --case-final-line-height: 32px;
-    }
-
-    .case-media + .case-copy:last-child,
-    .case-media-grid + .case-copy:last-child {
-        padding-top: var(--text-media-gap);
     }
 
     .case-section:last-child .case-copy:last-child h2:last-child {

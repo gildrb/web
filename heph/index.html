@@ -648,6 +648,10 @@ body {
     min-width: 0;
 }
 
+.case-media .heph-demo {
+    margin-bottom: 0;
+}
+
 .heph-demo-shell {
     --heph-terminal-font-size: 14px;
     width: 100%;
@@ -1556,16 +1560,8 @@ body {
 }
 
 @media (min-width: 769px) {
-    .case-article article {
-        min-height: calc(100vh - 96px);
-        display: flex;
-        flex-direction: column;
-    }
-
     .case-article article > :last-child {
         --case-final-line-height: 24px;
-        margin-top: auto;
-        padding-top: 80px;
         padding-bottom: calc(
             var(--footer-title-center-offset) +
                 (var(--theme-toggle-size) / 2) -
@@ -1575,11 +1571,6 @@ body {
 
     .case-section:last-child {
         --case-final-line-height: 32px;
-    }
-
-    .case-media + .case-copy:last-child,
-    .case-media-grid + .case-copy:last-child {
-        padding-top: var(--text-media-gap);
     }
 
     .case-section:last-child .case-copy:last-child h2:last-child {
@@ -1843,6 +1834,239 @@ body {
                         </header>
                             <div class="case-copy">
                                 <p>Heph is a project I have worked on for months that helps you work with files directly on your PC. One could argue that Codex achieves the same, which it does, however what it doesn't do is cite the exact source it used and proving that it is not made up. Heph is still a very early project and I will work hard to make it more reliable, work for more use-cases and overall increase accuracy of Heph. Heph will only get better as time goes on and the models, especially the open source ones, get better and cheaper to run. The core idea of Heph is an armory. You create a .armories folder within Heph, create a folder inside of .armories for whatever you want to study, for example you create &quot;Biology&quot;. You then access that directory by calling &quot;heph&quot;, then typing &quot;Biology&quot; into the chatbox and asking it questions. For Heph to be able to retrieve from your files you need to load all the relevant files into .armories/biology/materials so the materials get indexed. Once they're in, you can start chatting, questioning and checking the sources that Heph used to fill the gaps in your understanding. More to come.</p>
+                            </div>
+                        <div class="case-media">
+                        <figure>
+                            <div class="heph-demo case-heph-demo">
+                                                    <div class="heph-demo-frame" aria-hidden="true">
+                                                        <div
+                                                            class="heph-demo-shell"
+                                                            aria-label="Simulated Heph interface using public domain materials"
+                                                        >
+                                                        <div
+                                                            class="heph-demo-titlebar"
+                                                            aria-hidden="true"
+                                                        >
+                                                            <span class="heph-demo-window-controls">
+                                                                <span
+                                                                    class="heph-demo-window-control close"
+                                                                ></span>
+                                                                <span
+                                                                    class="heph-demo-window-control minimize"
+                                                                ></span>
+                                                                <span
+                                                                    class="heph-demo-window-control zoom"
+                                                                ></span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="heph-demo-terminal">
+                                                            <div
+                                                                class="heph-demo-status"
+                                                                data-heph-demo-status
+                                                            >
+                                                                <strong>Heph</strong>
+                                                                <span>ARMORY <b>classics</b></span>
+                                                                <span>MODEL <b>gpt-5.5</b></span>
+                                                                <span data-heph-demo-status-optional
+                                                                    >REASONING <b>low</b></span
+                                                                >
+                                                            </div>
+                                                            <div class="heph-demo-body">
+                                                                <div class="heph-demo-transcript">
+                                                                    <div
+                                                                        class="heph-demo-output"
+                                                                        aria-live="polite"
+                                                                        data-heph-demo-log
+                                                                    >
+                                                                        <div
+                                                                            class="heph-demo-output-rail"
+                                                                            data-heph-demo-rail
+                                                                        >
+                                                                            <div class="heph-demo-prompt">
+                                                                                What are these materials about?
+                                                                            </div>
+                                                                            <p
+                                                                                class="heph-demo-line muted materials-summary"
+                                                                            >
+                                                                                armory: classics; materials: 4 enabled book files.
+                                                                            </p>
+                                                                            <p class="heph-demo-line">
+                                                                                This armory has four classics. Alice is a dreamlike trip through rules that keep changing
+                                                                                <button
+                                                                                    class="heph-demo-citation-button"
+                                                                                    type="button"
+                                                                                    tabindex="-1"
+                                                                                    data-evidence-id="E1"
+                                                                                    data-evidence-title="@alice-adventures-wonderland.epub"
+                                                                                    data-evidence-detail="PAGE 2, Chapter I | RECEIPT: &quot;she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it&quot;"
+                                                                                >
+                                                                                    [E1]</button
+                                                                                >. Frankenstein is ambition turning into responsibility after Victor brings the Creature to life and rejects him
+                                                                                <button
+                                                                                    class="heph-demo-citation-button"
+                                                                                    type="button"
+                                                                                    tabindex="-1"
+                                                                                    data-evidence-id="E2"
+                                                                                    data-evidence-title="@frankenstein.pdf"
+                                                                                    data-evidence-detail="PAGE 43, Chapter V | RECEIPT: &quot;I saw the dull yellow eye of the creature open;&quot;"
+                                                                                >
+                                                                                    [E2]</button
+                                                                                >. Sherlock Holmes follows a method: observe the small detail, test it, then explain the case
+                                                                                <button
+                                                                                    class="heph-demo-citation-button"
+                                                                                    type="button"
+                                                                                    tabindex="-1"
+                                                                                    data-evidence-id="E3"
+                                                                                    data-evidence-title="@sherlock-holmes-adventures.epub"
+                                                                                    data-evidence-detail="PAGE 6, A Scandal in Bohemia | RECEIPT: &quot;You see, but you do not observe.&quot;"
+                                                                                >
+                                                                                    [E3]</button
+                                                                                >. Dracula is built from diaries, letters, and records as people compare notes and hunt the Count
+                                                                                <button
+                                                                                    class="heph-demo-citation-button"
+                                                                                    type="button"
+                                                                                    tabindex="-1"
+                                                                                    data-evidence-id="E4"
+                                                                                    data-evidence-title="@dracula.pdf"
+                                                                                    data-evidence-detail="PAGE 1, Chapter I | RECEIPT: &quot;not able to light on any map or work giving the exact locality of the Castle Dracula&quot;"
+                                                                                >
+                                                                                    [E4]</button
+                                                                                >.
+                                                                            </p>
+                                                                            <p
+                                                                                class="heph-demo-line sources"
+                                                                            >
+                                                                                materials: E1 @alice-adventures-wonderland.epub; E2 @frankenstein.pdf; E3 @sherlock-holmes-adventures.epub; E4 @dracula.pdf. Details: /evidence.
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <aside
+                                                                    class="heph-demo-evidence"
+                                                                    aria-label="Demo scope and evidence materials"
+                                                                >
+                                                                    <p
+                                                                        class="heph-demo-evidence-open"
+                                                                        data-heph-demo-evidence-open
+                                                                    >
+                                                                        EVIDENCE <b>ctrl+g</b>
+                                                                    </p>
+                                                                    <p class="heph-demo-scope-heading">
+                                                                        SCOPE <b>4/4</b>
+                                                                    </p>
+                                                                    <p class="heph-demo-evidence-meta">
+                                                                        EXCERPTS <b>4</b>
+                                                                    </p>
+                                                                    <div class="heph-demo-evidence-list">
+                                                                        <button
+                                                                            class="heph-demo-evidence-item is-active"
+                                                                            type="button"
+                                                                            tabindex="-1"
+                                                                            data-evidence-id="E1"
+                                                                            data-evidence-title="@alice-adventures-wonderland.epub"
+                                                                            data-evidence-detail="PAGE 2, Chapter I | RECEIPT: &quot;she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it&quot;"
+                                                                        >
+                                                                            @alice-adventures-wonderland.epub
+                                                                        </button>
+                                                                        <button
+                                                                            class="heph-demo-evidence-item"
+                                                                            type="button"
+                                                                            tabindex="-1"
+                                                                            data-evidence-id="E2"
+                                                                            data-evidence-title="@frankenstein.pdf"
+                                                                            data-evidence-detail="PAGE 43, Chapter V | RECEIPT: &quot;I saw the dull yellow eye of the creature open;&quot;"
+                                                                        >
+                                                                            @frankenstein.pdf
+                                                                        </button>
+                                                                        <button
+                                                                            class="heph-demo-evidence-item"
+                                                                            type="button"
+                                                                            tabindex="-1"
+                                                                            data-evidence-id="E3"
+                                                                            data-evidence-title="@sherlock-holmes-adventures.epub"
+                                                                            data-evidence-detail="PAGE 6, A Scandal in Bohemia | RECEIPT: &quot;You see, but you do not observe.&quot;"
+                                                                        >
+                                                                            @sherlock-holmes-adventures.epub
+                                                                        </button>
+                                                                        <button
+                                                                            class="heph-demo-evidence-item"
+                                                                            type="button"
+                                                                            tabindex="-1"
+                                                                            data-evidence-id="E4"
+                                                                            data-evidence-title="@dracula.pdf"
+                                                                            data-evidence-detail="PAGE 1, Chapter I | RECEIPT: &quot;not able to light on any map or work giving the exact locality of the Castle Dracula&quot;"
+                                                                        >
+                                                                            @dracula.pdf
+                                                                        </button>
+                                                                    </div>
+                                                                </aside>
+                                                            </div>
+                                                            <form
+                                                                class="heph-demo-composer is-empty"
+                                                                aria-label="Ask the simulated Heph demo"
+                                                                data-heph-demo-form
+                                                            >
+                                                                <span
+                                                                    class="heph-demo-composer-label"
+                                                                    aria-hidden="true"
+                                                                    ><span
+                                                                        class="heph-demo-composer-arrow"
+                                                                        >→</span
+                                                                    ></span
+                                                                >
+                                                                <span
+                                                                    class="heph-demo-cursor"
+                                                                    aria-hidden="true"
+                                                                ></span>
+                                                                <span
+                                                                    class="heph-demo-input-overflow"
+                                                                    aria-hidden="true"
+                                                                    >...</span
+                                                                >
+                                                                <input
+                                                                    class="heph-demo-input"
+                                                                    type="text"
+                                                                    autocomplete="off"
+                                                                    spellcheck="false"
+                                                                    tabindex="-1"
+                                                                    placeholder="Ask Heph about these materials"
+                                                                    data-heph-demo-input
+                                                                />
+                                                                <button
+                                                                    class="heph-demo-submit"
+                                                                    type="submit"
+                                                                    tabindex="-1"
+                                                                    aria-label="Submit Heph prompt"
+                                                                    data-heph-demo-submit
+                                                                >
+                                                                    <span
+                                                                        class="heph-demo-submit-symbol"
+                                                                        aria-hidden="true"
+                                                                        >↩</span
+                                                                    >
+                                                                </button>
+                                                            </form>
+                                                            <div
+                                                                class="heph-demo-command-row"
+                                                                aria-hidden="true"
+                                                            >
+                                                                <span>ARMORY <b>ctrl+a</b></span>
+                                                                <span>MATERIALS <b>ctrl+o</b></span>
+                                                                <span data-heph-demo-command-optional
+                                                                    >COMMANDS <b>ctrl+p</b></span
+                                                                >
+                                                                <span data-heph-demo-command-optional
+                                                                    >REASONING <b>shift+tab</b></span
+                                                                >
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                        </div>
+                            <figcaption class="case-caption">Heph demo</figcaption>
+                        </figure>
+                        </div>
+                            <div class="case-copy">
                                 <p><a class="external-link" href="https://github.com/gildrb/heph" target="_blank" rel="noopener noreferrer">GitHub repository</a></p>
                             </div>
                     </article>
@@ -2054,6 +2278,905 @@ document.querySelectorAll(".email").forEach((email) => {
             this.classList.remove("copied", "copy-failed");
         }, 1500);
     });
+});
+
+const hephDemoEvidenceOpen = document.querySelector(
+    "[data-heph-demo-evidence-open]",
+);
+const hephDemoEvidenceItems = document.querySelectorAll(
+    ".heph-demo-evidence-item",
+);
+const hephDemoEvidenceControls = document.querySelectorAll(
+    ".heph-demo-evidence-item, .heph-demo-citation-button",
+);
+const hephDemoEvidenceMeta = document.querySelector(
+    ".heph-demo-evidence-meta",
+);
+const hephDemoCommandRow = document.querySelector(
+    ".heph-demo-command-row",
+);
+const hephDemoDefaultCommandRow =
+    hephDemoCommandRow?.innerHTML || "";
+const hephDemoStatus = document.querySelector(
+    "[data-heph-demo-status]",
+);
+const hephDemoStatusOptionalItems = document.querySelectorAll(
+    "[data-heph-demo-status-optional]",
+);
+const hephDemoMaterials = [
+    {
+        id: "E1",
+        title: "@alice-adventures-wonderland.epub",
+        book: "Alice's Adventures in Wonderland",
+        file: "alice-adventures-wonderland.epub",
+        sourceRef: "materials/alice-adventures-wonderland.epub",
+        sourceLabel: "E1 @alice-adventures-wonderland.epub",
+        support: "dream logic, wordplay, strange rules",
+        gist:
+            "Alice follows curiosity into a world where language, manners, authority, and logic keep changing shape.",
+        excerpt:
+            'page 2, Chapter I: "she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it"',
+        detail:
+            'PAGE 2, Chapter I | RECEIPT: "she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it"',
+        keywords: [
+            "alice",
+            "wonderland",
+            "rabbit",
+            "dream",
+            "dreamlike",
+            "curiosity",
+            "rules",
+            "nonsense",
+            "wordplay",
+        ],
+        answers: [
+            [
+                "Alice is a dreamlike trip, but it is not random. The book keeps putting Alice inside games of language, size, etiquette, and authority where the rules change as she moves ",
+                { evidenceId: "E1" },
+                ".",
+            ],
+            [
+                "Alice works because the nonsense has pressure behind it: she is curious, confused, and constantly forced to decide whether a rule deserves to be followed ",
+                { evidenceId: "E1" },
+                ".",
+            ],
+            [
+                "For dream logic, Alice is the strongest source here. It starts with curiosity and keeps turning ordinary rules into riddles ",
+                { evidenceId: "E1" },
+                ".",
+            ],
+        ],
+    },
+    {
+        id: "E2",
+        title: "@frankenstein.pdf",
+        book: "Frankenstein",
+        file: "frankenstein.pdf",
+        sourceRef: "materials/frankenstein.pdf",
+        sourceLabel: "E2 @frankenstein.pdf",
+        support: "creation, abandonment, revenge",
+        gist:
+            "Victor creates life, rejects what he made, and the damage spreads through isolation, grief, and revenge.",
+        excerpt:
+            'page 43, Chapter V: "I saw the dull yellow eye of the creature open;"',
+        detail:
+            'PAGE 43, Chapter V | RECEIPT: "I saw the dull yellow eye of the creature open;"',
+        keywords: [
+            "frankenstein",
+            "victor",
+            "creature",
+            "creation",
+            "creator",
+            "ambition",
+            "responsibility",
+            "abandonment",
+            "revenge",
+            "duty",
+        ],
+        answers: [
+            [
+                "Frankenstein is about creation without care. Victor's ambition matters, but the painful part is what follows: he abandons the life he made and then lives with the consequences ",
+                { evidenceId: "E2" },
+                ".",
+            ],
+            [
+                "Frankenstein turns responsibility into a gothic problem. The Creature is not just proof of Victor's genius; he is also proof that Victor refuses the obligations of making ",
+                { evidenceId: "E2" },
+                ".",
+            ],
+            [
+                "For responsibility, I would lean on Frankenstein. The story keeps returning to a simple failure: Victor can make life, but he cannot face caring for it ",
+                { evidenceId: "E2" },
+                ".",
+            ],
+        ],
+    },
+    {
+        id: "E3",
+        title: "@sherlock-holmes-adventures.epub",
+        book: "The Adventures of Sherlock Holmes",
+        file: "sherlock-holmes-adventures.epub",
+        sourceRef: "materials/sherlock-holmes-adventures.epub",
+        sourceLabel: "E3 @sherlock-holmes-adventures.epub",
+        support: "cases, observation, inference",
+        gist:
+            "The stories turn small clues into explanations as Holmes reads people, rooms, habits, and contradictions.",
+        excerpt:
+            'page 6, A Scandal in Bohemia: "You see, but you do not observe."',
+        detail:
+            'PAGE 6, A Scandal in Bohemia | RECEIPT: "You see, but you do not observe."',
+        keywords: [
+            "sherlock",
+            "holmes",
+            "detective",
+            "case",
+            "method",
+            "observation",
+            "observe",
+            "inference",
+            "reasoning",
+            "clue",
+        ],
+        answers: [
+            [
+                "Holmes is about observation becoming method. The stories make small details useful: a habit, a stain, a disguise, or a missing fact can reopen the whole case ",
+                { evidenceId: "E3" },
+                ".",
+            ],
+            [
+                "For reasoning, Holmes is the cleanest source. He turns details other people ignore into evidence that can be checked ",
+                { evidenceId: "E3" },
+                ".",
+            ],
+            [
+                "The Holmes pattern is simple and satisfying: notice what other people skipped, test what it could mean, then make the hidden story legible ",
+                { evidenceId: "E3" },
+                ".",
+            ],
+        ],
+    },
+    {
+        id: "E4",
+        title: "@dracula.pdf",
+        book: "Dracula",
+        file: "dracula.pdf",
+        sourceRef: "materials/dracula.pdf",
+        sourceLabel: "E4 @dracula.pdf",
+        support: "journals, letters, pursuit, gothic threat",
+        gist:
+            "The book uses records, diaries, letters, and pursuit to turn private fear into a coordinated fight against Dracula.",
+        excerpt:
+            'page 1, Chapter I: "not able to light on any map or work giving the exact locality of the Castle Dracula"',
+        detail:
+            'PAGE 1, Chapter I | RECEIPT: "not able to light on any map or work giving the exact locality of the Castle Dracula"',
+        keywords: [
+            "dracula",
+            "vampire",
+            "harker",
+            "journal",
+            "journals",
+            "diary",
+            "diaries",
+            "letters",
+            "records",
+            "gothic",
+            "horror",
+            "pursuit",
+        ],
+        answers: [
+            [
+                "Dracula is horror told through records. Diaries, letters, logs, and medical notes let the characters compare what they know and coordinate the hunt ",
+                { evidenceId: "E4" },
+                ".",
+            ],
+            [
+                "Dracula feels gothic, but it is also deeply procedural. The characters survive by writing things down, sharing them, and turning fear into a plan ",
+                { evidenceId: "E4" },
+                ".",
+            ],
+            [
+                "For Dracula, the form matters as much as the monster. The book reads like a case file for a supernatural threat ",
+                { evidenceId: "E4" },
+                ".",
+            ],
+        ],
+    },
+];
+const hephDemoOverviewAnswers = [
+    [
+        "This armory has four classics. Alice is a dreamlike trip through rules that keep changing ",
+        { evidenceId: "E1" },
+        ". Frankenstein is ambition turning into responsibility after Victor brings the Creature to life and rejects him ",
+        { evidenceId: "E2" },
+        ". Sherlock Holmes follows a method: observe the small detail, test it, then explain the case ",
+        { evidenceId: "E3" },
+        ". Dracula is built from diaries, letters, and records as people compare notes and hunt the Count ",
+        { evidenceId: "E4" },
+        ".",
+    ],
+    [
+        "Read together, the books are about how people make sense of the impossible. Alice keeps asking what the rules are ",
+        { evidenceId: "E1" },
+        ". Victor learns that making life is not the same as caring for it ",
+        { evidenceId: "E2" },
+        ". Holmes makes hidden facts readable ",
+        { evidenceId: "E3" },
+        ". Dracula's hunters survive by turning private fear into shared evidence ",
+        { evidenceId: "E4" },
+        ".",
+    ],
+    [
+        "The short version: Alice follows dreamlike rules ",
+        { evidenceId: "E1" },
+        ", Frankenstein is creation without care ",
+        { evidenceId: "E2" },
+        ", Holmes is careful observation turned into casework ",
+        { evidenceId: "E3" },
+        ", and Dracula is horror organized through documents ",
+        { evidenceId: "E4" },
+        ".",
+    ],
+];
+const hephDemoFollowUpAnswers = [
+    [
+        "Comparisons stay scoped to the relevant files. Responsibility points to Frankenstein ",
+        { evidenceId: "E2" },
+        "; observation points to Holmes ",
+        { evidenceId: "E3" },
+        ".",
+    ],
+    [
+        "The active set controls the answer. Once Dracula is disabled in /materials, the diary-and-letter evidence drops out ",
+        { evidenceId: "E4" },
+        ".",
+    ],
+    [
+        "/evidence keeps the passages behind the citations attached, so the answer can stay short while the source trail remains inspectable.",
+    ],
+    [
+        "A clean reading path is Alice for rule-breaking ",
+        { evidenceId: "E1" },
+        ", Holmes for rule-making ",
+        { evidenceId: "E3" },
+        ", then Frankenstein and Dracula for what happens when the strange becomes dangerous ",
+        { evidenceId: "E2" },
+        " ",
+        { evidenceId: "E4" },
+        ".",
+    ],
+    [
+        "The files stay local in materials/. The index only decides which passages are relevant for the current question; /evidence lets you inspect what was used.",
+    ],
+];
+const hephDemoNarrowFollowUpBuilders = [
+    (material) => [
+        "The citation opens the file, page, and receipt behind this answer ",
+        { evidenceId: material.id },
+        ".",
+    ],
+    (material) => [
+        "I am only using ",
+        material.file,
+        " because this answer is grounded there ",
+        { evidenceId: material.id },
+        ".",
+    ],
+    (material) => [
+        "A comparison can bring in another book. This turn is grounded in ",
+        material.file,
+        " ",
+        { evidenceId: material.id },
+        ".",
+    ],
+];
+const hephDemoRandomItemHistory = new WeakMap();
+
+let hephDemoRunId = 0;
+let hephDemoRunTimers = [];
+
+function setActiveHephDemoEvidence(item) {
+    if (!item) return;
+
+    const evidenceId = item.dataset.evidenceId;
+
+    hephDemoEvidenceItems.forEach((evidenceItem) => {
+        evidenceItem.classList.toggle(
+            "is-active",
+            evidenceItem.dataset.evidenceId === evidenceId,
+        );
+    });
+
+    if (hephDemoEvidenceOpen) {
+        hephDemoEvidenceOpen.innerHTML = "EVIDENCE <b>ctrl+g</b>";
+    }
+}
+
+function getHephDemoEvidenceItem(evidenceId) {
+    return Array.from(hephDemoEvidenceItems).find(
+        (evidenceItem) =>
+            evidenceItem.dataset.evidenceId === evidenceId,
+    );
+}
+
+function setActiveHephDemoEvidenceId(evidenceId) {
+    const item = getHephDemoEvidenceItem(evidenceId);
+    setActiveHephDemoEvidence(item);
+}
+
+function shuffleHephDemoMaterials() {
+    return hephDemoMaterials
+        .map((material) => ({
+            material,
+            order: Math.random(),
+        }))
+        .sort((left, right) => left.order - right.order)
+        .map(({ material }) => material);
+}
+
+function randomHephDemoItem(items) {
+    if (items.length <= 1) {
+        return items[0];
+    }
+
+    const previousIndex = hephDemoRandomItemHistory.get(items);
+    let nextIndex = Math.floor(Math.random() * items.length);
+
+    if (nextIndex === previousIndex) {
+        nextIndex = (nextIndex + 1) % items.length;
+    }
+
+    hephDemoRandomItemHistory.set(items, nextIndex);
+
+    return items[nextIndex];
+}
+
+function findHephDemoMaterialForPrompt(prompt) {
+    const normalizedPrompt = prompt.toLowerCase();
+
+    return hephDemoMaterials.find((material) =>
+        material.keywords.some((keyword) =>
+            normalizedPrompt.includes(keyword),
+        ),
+    );
+}
+
+function hephDemoPromptWantsSources(prompt) {
+    return (
+        /^\/materials\b/i.test(prompt) ||
+        /\b(evidence|source|sources|citation|citations|file|files)\b/i.test(
+            prompt,
+        ) ||
+        /\b(which|list|show|open)\s+materials\b/i.test(prompt) ||
+        /\bmaterials\s+(used|enabled|source|sources)\b/i.test(
+            prompt,
+        )
+    );
+}
+
+function getHephDemoMaterialsForPrompt(prompt) {
+    const promptMaterial = findHephDemoMaterialForPrompt(prompt);
+
+    if (promptMaterial && !hephDemoPromptWantsSources(prompt)) {
+        return [promptMaterial];
+    }
+
+    return shuffleHephDemoMaterials();
+}
+
+function buildHephDemoResponseLines(prompt) {
+    const promptMaterial = findHephDemoMaterialForPrompt(prompt);
+
+    if (hephDemoPromptWantsSources(prompt)) {
+        return [
+            [
+                "Here is the source map for this turn: E1 is alice-adventures-wonderland.epub ",
+                { evidenceId: "E1" },
+                ", E2 is frankenstein.pdf ",
+                { evidenceId: "E2" },
+                ", E3 is sherlock-holmes-adventures.epub ",
+                { evidenceId: "E3" },
+                ", and E4 is dracula.pdf ",
+                { evidenceId: "E4" },
+                ". Click any citation to see the file, page, and a short receipt from the source.",
+            ],
+            randomHephDemoItem(hephDemoFollowUpAnswers),
+        ];
+    }
+
+    if (promptMaterial) {
+        const followUpBuilder = randomHephDemoItem(
+            hephDemoNarrowFollowUpBuilders,
+        );
+
+        return [
+            randomHephDemoItem(promptMaterial.answers),
+            followUpBuilder(promptMaterial),
+        ];
+    }
+
+    return [
+        randomHephDemoItem(hephDemoOverviewAnswers),
+        randomHephDemoItem(hephDemoFollowUpAnswers),
+    ];
+}
+
+function clearHephDemoRunTimers() {
+    hephDemoRunTimers.forEach((timer) => clearTimeout(timer));
+    hephDemoRunTimers = [];
+}
+
+function scheduleHephDemoStep(runId, delay, callback) {
+    const timer = setTimeout(() => {
+        if (runId !== hephDemoRunId) return;
+        callback();
+    }, delay);
+
+    hephDemoRunTimers.push(timer);
+}
+
+function setHephDemoRunning(isRunning) {
+    hephDemoInput.readOnly = isRunning;
+    hephDemoSubmit.disabled = isRunning;
+    hephDemoForm?.classList.toggle("is-running", isRunning);
+    syncHephDemoComposerState();
+
+    if (hephDemoEvidenceMeta) {
+        hephDemoEvidenceMeta.innerHTML = "EXCERPTS <b>4</b>";
+    }
+
+    if (hephDemoCommandRow) {
+        hephDemoCommandRow.innerHTML = isRunning
+            ? "<span>STOP <b>esc</b></span><span>EXIT <b>ctrl+c</b></span>"
+            : hephDemoDefaultCommandRow;
+    }
+}
+
+function openHephDemoEvidence(item, options = {}) {
+    const evidenceId = item.dataset.evidenceId;
+    if (!evidenceId) return;
+
+    const { addCommandLine = true } = options;
+    const evidenceItem = getHephDemoEvidenceItem(evidenceId) || item;
+    const title =
+        evidenceItem.dataset.evidenceTitle ||
+        item.dataset.evidenceTitle ||
+        evidenceId;
+    const detail =
+        evidenceItem.dataset.evidenceDetail ||
+        item.dataset.evidenceDetail ||
+        "";
+
+    setActiveHephDemoEvidence(evidenceItem);
+    hephDemoLog
+        .querySelectorAll(".heph-demo-evidence-dynamic")
+        .forEach((line) => line.remove());
+    if (addCommandLine) {
+        appendHephDemoCommandLine(
+            `/evidence ${evidenceId} open`,
+            "muted heph-demo-evidence-dynamic",
+        );
+    }
+    appendHephDemoLine(
+        `OPEN ${title}`,
+        "heph-demo-response heph-demo-evidence-dynamic",
+    );
+    appendHephDemoLine(
+        detail,
+        "heph-demo-response heph-demo-evidence-dynamic",
+    );
+    resetHephDemoInput();
+    trackEvent("Heph Demo Evidence Open", {
+        evidence: evidenceId,
+    });
+}
+
+function bindHephDemoEvidenceControl(item) {
+    item.addEventListener("pointerenter", () =>
+        setActiveHephDemoEvidenceId(item.dataset.evidenceId),
+    );
+    item.addEventListener("focus", () =>
+        setActiveHephDemoEvidenceId(item.dataset.evidenceId),
+    );
+    item.addEventListener("click", (event) => {
+        openHephDemoEvidence(item);
+        if (event.detail > 0) item.blur();
+    });
+}
+
+hephDemoEvidenceControls.forEach(bindHephDemoEvidenceControl);
+
+const hephDemoForm = document.querySelector(
+    "[data-heph-demo-form]",
+);
+const hephDemoInput = document.querySelector(
+    "[data-heph-demo-input]",
+);
+const hephDemoSubmit = document.querySelector(
+    "[data-heph-demo-submit]",
+);
+const hephDemoLog = document.querySelector("[data-heph-demo-log]");
+const hephDemoRail = document.querySelector(
+    "[data-heph-demo-rail]",
+);
+let hephDemoComposerStateFrame = 0;
+
+function syncHephDemoComposerState() {
+    if (!hephDemoForm || !hephDemoInput) return;
+
+    const inputStyle = window.getComputedStyle(hephDemoInput);
+    const paddingLeft =
+        Number.parseFloat(inputStyle.paddingLeft) || 0;
+    const paddingRight =
+        Number.parseFloat(inputStyle.paddingRight) || 0;
+    const characterWidth =
+        paddingLeft ||
+        (Number.parseFloat(inputStyle.fontSize) || 1) * 0.6;
+    const caretIndex =
+        hephDemoInput.selectionStart ?? hephDemoInput.value.length;
+    const visibleTextWidth = Math.max(
+        0,
+        hephDemoInput.clientWidth - paddingLeft - paddingRight,
+    );
+    const targetScrollLeft = Math.max(
+        0,
+        caretIndex * characterWidth - visibleTextWidth,
+    );
+
+    hephDemoInput.scrollLeft = targetScrollLeft;
+    hephDemoForm.classList.toggle(
+        "is-empty",
+        !hephDemoInput.value,
+    );
+    hephDemoForm.classList.toggle(
+        "has-left-overflow",
+        targetScrollLeft > 0,
+    );
+}
+
+function queueHephDemoComposerStateSync() {
+    cancelAnimationFrame(hephDemoComposerStateFrame);
+    hephDemoComposerStateFrame = requestAnimationFrame(() => {
+        hephDemoComposerStateFrame = 0;
+        syncHephDemoComposerState();
+    });
+}
+
+function resetHephDemoInput() {
+    hephDemoInput.value = "";
+    hephDemoInput.scrollLeft = 0;
+    syncHephDemoComposerState();
+}
+
+function scrollHephDemoTranscriptToEnd() {
+    if (!hephDemoLog || !hephDemoRail) return;
+
+    const lineHeight = Number.parseFloat(
+        window.getComputedStyle(hephDemoRail).lineHeight,
+    );
+    const rawOffset = Math.max(
+        0,
+        hephDemoRail.scrollHeight - hephDemoLog.clientHeight,
+    );
+    let offset = rawOffset;
+
+    if (Number.isFinite(lineHeight) && lineHeight > 0) {
+        const railTop =
+            hephDemoRail.getBoundingClientRect().top;
+        const clipInset = 1;
+        let clippedTextBottom = rawOffset;
+
+        for (const child of hephDemoRail.children) {
+            const childTop = child.offsetTop;
+            const childBottom = childTop + child.offsetHeight;
+
+            if (childBottom < rawOffset) continue;
+            if (childTop > rawOffset + lineHeight) break;
+
+            const range = document.createRange();
+            range.selectNodeContents(child);
+
+            for (const rect of range.getClientRects()) {
+                const rectTop = rect.top - railTop;
+                const rectBottom = rect.bottom - railTop;
+
+                if (
+                    rectTop < rawOffset + clipInset &&
+                    rectBottom > rawOffset + clipInset
+                ) {
+                    clippedTextBottom = Math.max(
+                        clippedTextBottom,
+                        rectBottom,
+                    );
+                }
+            }
+
+            range.detach?.();
+        }
+
+        if (clippedTextBottom > rawOffset) {
+            offset = Math.min(
+                rawOffset + lineHeight,
+                clippedTextBottom,
+            );
+        }
+    }
+
+    hephDemoLog.scrollTop = 0;
+    hephDemoRail.style.setProperty(
+        "--heph-demo-scroll-offset",
+        `${-offset}px`,
+    );
+}
+
+function appendHephDemoLine(text, className) {
+    const line = document.createElement("p");
+    line.className = `heph-demo-line heph-demo-dynamic ${className}`;
+    line.textContent = text;
+    hephDemoRail?.append(line);
+    scrollHephDemoTranscriptToEnd();
+}
+
+function createHephDemoCitationButton(evidenceId) {
+    const button = document.createElement("button");
+
+    button.className = "heph-demo-citation-button";
+    button.type = "button";
+    button.tabIndex = -1;
+    button.dataset.evidenceId = evidenceId;
+    button.textContent = `[${evidenceId}]`;
+
+    bindHephDemoEvidenceControl(button);
+
+    return button;
+}
+
+function appendHephDemoCitedLine(parts, className) {
+    const line = document.createElement("p");
+
+    line.className = `heph-demo-line heph-demo-dynamic ${className}`;
+    parts.forEach((part) => {
+        if (typeof part === "string") {
+            line.append(part);
+            return;
+        }
+
+        line.append(createHephDemoCitationButton(part.evidenceId));
+    });
+    hephDemoRail?.append(line);
+    scrollHephDemoTranscriptToEnd();
+}
+
+function appendHephDemoCommandLine(command, className) {
+    const line = document.createElement("p");
+    const arrow = document.createElement("span");
+
+    line.className = `heph-demo-line heph-demo-dynamic ${className}`;
+    arrow.className = "heph-demo-command-arrow";
+    arrow.textContent = "→";
+    line.append(arrow, ` ${command}`);
+    hephDemoRail?.append(line);
+    scrollHephDemoTranscriptToEnd();
+}
+
+function createHephDemoPrompt(prompt) {
+    const promptLine = document.createElement("div");
+    promptLine.className = "heph-demo-prompt";
+    promptLine.textContent = prompt;
+
+    return promptLine;
+}
+
+function hephDemoEvidenceIdFromCommand(prompt) {
+    const match = prompt.match(/^\/evidence(?:\s+(E[1-4]))?\b/i);
+
+    return match ? match[1]?.toUpperCase() || "" : "";
+}
+
+function getActiveHephDemoEvidenceItem() {
+    return (
+        document.querySelector(".heph-demo-evidence-item.is-active") ||
+        getHephDemoEvidenceItem("E1")
+    );
+}
+
+function runHephDemoEvidenceCommand(prompt) {
+    if (!/^\/evidence\b/i.test(prompt)) {
+        return false;
+    }
+
+    hephDemoRunId += 1;
+    clearHephDemoRunTimers();
+
+    const evidenceId = hephDemoEvidenceIdFromCommand(prompt);
+    const evidenceItem = evidenceId
+        ? getHephDemoEvidenceItem(evidenceId)
+        : getActiveHephDemoEvidenceItem();
+
+    hephDemoRail?.append(createHephDemoPrompt(prompt));
+
+    if (!evidenceItem) {
+        appendHephDemoLine(
+            "No evidence item matched that command. Valid evidence ids are E1, E2, E3, and E4.",
+            "heph-demo-response",
+        );
+        resetHephDemoInput();
+        return true;
+    }
+
+    openHephDemoEvidence(evidenceItem, { addCommandLine: false });
+    return true;
+}
+
+const hephDemoResizeObserver =
+    "ResizeObserver" in window
+        ? new ResizeObserver(() => {
+              scrollHephDemoTranscriptToEnd();
+          })
+        : null;
+if (hephDemoLog) hephDemoResizeObserver?.observe(hephDemoLog);
+if (hephDemoRail) hephDemoResizeObserver?.observe(hephDemoRail);
+document.fonts?.ready
+    ?.then(() => {
+        scrollHephDemoTranscriptToEnd();
+    })
+    .catch(() => {});
+window.addEventListener("resize", () => {
+    scrollHephDemoTranscriptToEnd();
+    queueHephDemoComposerStateSync();
+});
+
+syncHephDemoComposerState();
+
+function startHephDemoRetrieval(prompt, options = {}) {
+    hephDemoRunId += 1;
+    clearHephDemoRunTimers();
+
+    const { resetTranscript = false } = options;
+    const runId = hephDemoRunId;
+    const sampledMaterials = getHephDemoMaterialsForPrompt(prompt);
+    const sourceList = sampledMaterials
+        .map((material) => material.sourceLabel)
+        .join("; ");
+    const responseLines =
+        buildHephDemoResponseLines(prompt);
+
+    resetHephDemoInput();
+
+    if (resetTranscript) {
+        hephDemoRail?.replaceChildren(createHephDemoPrompt(prompt));
+    } else {
+        hephDemoRail?.append(createHephDemoPrompt(prompt));
+    }
+    scrollHephDemoTranscriptToEnd();
+
+    setHephDemoRunning(true);
+
+    const steps = [
+        {
+            text: "Reading enabled materials from classics.",
+        },
+        {
+            text: "Index current: 4 sources.",
+        },
+        {
+            text: "Retrieving evidence for the question.",
+        },
+        ...sampledMaterials.map((material) => ({
+            evidenceId: material.id,
+            text: `Retrieved ${material.id} from ${material.sourceRef}: ${material.excerpt}`,
+        })),
+        {
+            text: `Mapped ${sampledMaterials.length} evidence receipts for /evidence.`,
+        },
+        {
+            text: "Writing cited answer.",
+        },
+        {
+            text: "Saved evidence for /evidence.",
+        },
+        {
+            text: "Answer ready.",
+        },
+    ];
+
+    steps.forEach((step, index) => {
+        scheduleHephDemoStep(runId, 140 + index * 150, () => {
+            if (step.evidenceId) {
+                setActiveHephDemoEvidenceId(step.evidenceId);
+            }
+
+            appendHephDemoLine(step.text, "muted");
+        });
+    });
+
+    const responseDelay = 140 + steps.length * 150 + 120;
+    responseLines.forEach((responseLine, index) => {
+        scheduleHephDemoStep(
+            runId,
+            responseDelay + index * 170,
+            () => {
+                appendHephDemoCitedLine(
+                    responseLine,
+                    "heph-demo-response",
+                );
+            },
+        );
+    });
+
+    scheduleHephDemoStep(
+        runId,
+        responseDelay + responseLines.length * 170,
+        () => {
+            appendHephDemoLine(
+                `materials: ${sourceList}. Details: /evidence`,
+                "sources",
+            );
+        },
+    );
+
+    scheduleHephDemoStep(
+        runId,
+        responseDelay + responseLines.length * 170 + 50,
+        () => {
+            setHephDemoRunning(false);
+            resetHephDemoInput();
+        },
+    );
+}
+
+hephDemoInput?.addEventListener("input", () => {
+    queueHephDemoComposerStateSync();
+});
+
+hephDemoInput?.addEventListener("scroll", () => {
+    syncHephDemoComposerState();
+});
+
+["click", "focus", "keyup", "pointerup", "select"].forEach(
+    (eventName) => {
+        hephDemoInput?.addEventListener(
+            eventName,
+            queueHephDemoComposerStateSync,
+        );
+    },
+);
+
+hephDemoSubmit?.addEventListener("click", (event) => {
+    if (event.detail > 0) hephDemoSubmit.blur();
+});
+
+hephDemoInput?.addEventListener("keydown", (event) => {
+    if (
+        event.key !== "Enter" ||
+        event.shiftKey ||
+        event.altKey ||
+        event.ctrlKey ||
+        event.metaKey
+    ) {
+        return;
+    }
+
+    event.preventDefault();
+    hephDemoForm.requestSubmit();
+});
+
+hephDemoForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (hephDemoInput.readOnly) return;
+
+    const prompt = hephDemoInput.value.trim();
+    if (!prompt) {
+        hephDemoInput.focus();
+        return;
+    }
+
+    if (runHephDemoEvidenceCommand(prompt)) {
+        trackEvent("Heph Demo Evidence Command");
+        return;
+    }
+
+    startHephDemoRetrieval(prompt);
+    trackEvent("Heph Demo Submit");
 });
         </script>
     </body>
