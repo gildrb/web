@@ -1,19 +1,29 @@
 .heph-demo {
-    --heph-demo-terminal-bg: #0a0a0a;
-    --heph-demo-row-bg: #0f0f0f;
-    --heph-demo-row-focus-bg: #131313;
-    --heph-demo-mobile-bg: #171717;
+    --heph-demo-terminal-bg: color-mix(
+        in srgb,
+        var(--bg) 96%,
+        var(--text-primary)
+    );
+    --heph-demo-row-bg: color-mix(
+        in srgb,
+        var(--bg) 94%,
+        var(--text-primary)
+    );
     width: 100%;
     max-width: 100%;
     min-width: 0;
-    margin-bottom: 120px;
-    overflow: hidden;
+    margin-bottom: 32px;
+    overflow: visible;
     container-type: inline-size;
+}
+
+.heph-demo-frame {
+    width: 100%;
+    min-width: 0;
 }
 
 .heph-demo-shell {
     --heph-terminal-font-size: 14px;
-    --heph-terminal-muted: #7c7c7c;
     width: 100%;
     max-width: 100%;
     min-width: 0;
@@ -26,7 +36,7 @@
     border-radius: 13px;
     background: var(--heph-demo-terminal-bg);
     background-clip: padding-box;
-    color: #cfcfcf;
+    color: var(--text-secondary);
     font-family:
         "Geist Mono",
         "SFMono-Regular",
@@ -49,7 +59,7 @@
     align-items: center;
     padding: 0 10px;
     background: var(--heph-demo-terminal-bg);
-    color: #777777;
+    color: var(--text-tertiary);
     line-height: 1;
     user-select: none;
 }
@@ -68,7 +78,7 @@
     box-sizing: border-box;
     border: 0;
     border-radius: 50%;
-    background: #5f5f5f;
+    background: transparent;
     isolation: isolate;
 }
 
@@ -118,17 +128,17 @@
     gap: 2ch;
     padding: 0 0 1lh;
     white-space: nowrap;
-    color: var(--heph-terminal-muted);
+    color: var(--text-tertiary);
     overflow: hidden;
 }
 
 .heph-demo-status strong {
-    color: #ffffff;
+    color: var(--text-primary);
     font-weight: 600;
 }
 
 .heph-demo-status b {
-    color: #8f8f8f;
+    color: var(--text-secondary);
     font-weight: 400;
 }
 
@@ -169,7 +179,7 @@
 .heph-demo-prompt {
     margin-bottom: 1lh;
     padding: 0 2ch;
-    color: #ffffff;
+    color: var(--text-primary);
     font-weight: 600;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -198,14 +208,14 @@
     margin-bottom: 1lh;
     padding-left: 2ch;
     padding-right: 2ch;
-    color: #cfcfcf;
+    color: var(--text-primary);
     overflow-wrap: break-word;
 }
 
 .heph-demo-line.muted {
     margin-bottom: 0;
     padding-left: 4ch;
-    color: var(--heph-terminal-muted);
+    color: var(--text-tertiary);
 }
 
 .heph-demo-line.materials-summary {
@@ -215,7 +225,7 @@
 .heph-demo-line.sources {
     margin-bottom: 0;
     padding-left: 2ch;
-    color: var(--heph-terminal-muted);
+    color: var(--text-tertiary);
     font-style: italic;
 }
 
@@ -224,7 +234,7 @@
     padding: 0;
     border: 0;
     background: none;
-    color: #8f8f8f;
+    color: var(--text-secondary);
     font: inherit;
     appearance: none;
     cursor: pointer;
@@ -233,7 +243,7 @@
 .heph-demo-response {
     margin-top: 1lh;
     padding-left: 2ch;
-    color: #cfcfcf;
+    color: var(--text-primary);
 }
 
 .heph-demo-evidence {
@@ -247,7 +257,7 @@
     grid-row: 1 / 3;
     padding-right: 2ch;
     overflow: hidden;
-    color: var(--heph-terminal-muted);
+    color: var(--text-tertiary);
 }
 
 .heph-demo-scope-heading,
@@ -257,14 +267,21 @@
     text-overflow: ellipsis;
 }
 
+.heph-demo-evidence-open b,
+.heph-demo-scope-heading b,
+.heph-demo-evidence-meta b {
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
 .heph-demo-scope-heading {
     grid-row: 3;
-    color: #8f8f8f;
+    color: var(--text-tertiary);
 }
 
 .heph-demo-evidence-meta {
     grid-row: 5;
-    color: #8f8f8f;
+    color: var(--text-tertiary);
 }
 
 .heph-demo-evidence-list {
@@ -283,7 +300,7 @@
     padding: 0;
     border: 0;
     background: none;
-    color: var(--heph-terminal-muted);
+    color: var(--text-secondary);
     font: inherit;
     text-align: left;
     white-space: nowrap;
@@ -296,12 +313,12 @@
 @media (hover: hover) {
     .heph-demo-evidence-item:hover,
     .heph-demo-citation-button:hover {
-        color: #cfcfcf;
+        color: var(--text-secondary);
     }
 }
 
 .heph-demo-evidence-item.is-active {
-    color: #cfcfcf;
+    color: var(--text-secondary);
 }
 
 .heph-demo-evidence-item:focus:not(:focus-visible),
@@ -313,7 +330,7 @@
 
 .heph-demo-evidence-item:focus-visible,
 .heph-demo-citation-button:focus-visible {
-    outline: 1px solid #8f8f8f;
+    outline: 1px solid var(--text-secondary);
     outline-offset: 3px;
 }
 
@@ -322,14 +339,14 @@
 }
 
 .heph-demo-submit:focus-visible {
-    outline: 1px solid #8f8f8f;
+    outline: 1px solid var(--text-secondary);
     outline-offset: -1px;
 }
 
 .heph-demo-evidence-open {
     grid-row: 1;
     height: 1lh;
-    color: #8f8f8f;
+    color: var(--text-tertiary);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -345,7 +362,7 @@
 }
 
 .heph-demo-composer:focus-within {
-    background: var(--heph-demo-row-focus-bg);
+    background: var(--heph-demo-row-bg);
 }
 
 .heph-demo-composer-label {
@@ -356,7 +373,7 @@
     align-items: center;
     justify-content: center;
     padding: 0;
-    color: #cfcfcf;
+    color: var(--text-secondary);
 }
 
 .heph-demo-composer-arrow {
@@ -384,7 +401,7 @@
     top: 50%;
     left: 1ch;
     opacity: 0;
-    background: #cfcfcf;
+    background: var(--text-secondary);
     pointer-events: none;
     transform: translateY(-50%);
 }
@@ -398,7 +415,7 @@
     display: none;
     z-index: 1;
     background: inherit;
-    color: var(--heph-terminal-muted);
+    color: var(--text-tertiary);
     line-height: inherit;
     pointer-events: none;
     transform: translateY(-50%);
@@ -437,8 +454,8 @@
     box-sizing: border-box;
     border: 0;
     background: transparent;
-    color: #cfcfcf;
-    caret-color: #cfcfcf;
+    color: var(--text-primary);
+    caret-color: var(--text-primary);
     font: inherit;
     line-height: inherit;
     padding: 0 5ch 0 1ch;
@@ -462,7 +479,7 @@
     padding: 0 2ch 0 1ch;
     border: 0;
     background: transparent;
-    color: #8f8f8f;
+    color: var(--text-tertiary);
     font: inherit;
     line-height: inherit;
     cursor: pointer;
@@ -487,12 +504,12 @@
 
 @media (hover: hover) {
     .heph-demo-submit:not(:disabled):hover {
-        color: #cfcfcf;
+        color: var(--text-secondary);
     }
 }
 
 .heph-demo-input::placeholder {
-    color: var(--heph-terminal-muted);
+    color: var(--text-tertiary);
     opacity: 1;
 }
 
@@ -504,13 +521,13 @@
     grid-row: 4;
     align-items: center;
     padding-right: 2ch;
-    color: #8f8f8f;
+    color: var(--text-tertiary);
     white-space: nowrap;
     overflow: hidden;
 }
 
 .heph-demo-command-row b {
-    color: var(--heph-terminal-muted);
+    color: var(--text-secondary);
     font-weight: 400;
 }
 
@@ -623,14 +640,17 @@
 @media (max-width: 700px) {
     .heph-demo {
         grid-column: 1;
+    }
+
+    .heph-demo-frame {
         padding: 34px 14px;
         border-radius: 24px;
-        background: var(--heph-demo-mobile-bg);
+        background: var(--heph-demo-terminal-bg);
     }
 }
 
 @media (max-width: 460px) {
-    .heph-demo {
+    .heph-demo-frame {
         padding: 32px 12px;
         border-radius: 22px;
     }

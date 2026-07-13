@@ -1,0 +1,263 @@
+.case-study-entry {
+    cursor: pointer !important;
+}
+
+.case-study-entry:focus-visible {
+    outline: 1px solid var(--text-primary);
+    outline-offset: 4px;
+}
+
+.case-page {
+    min-height: 100vh;
+    background: var(--bg);
+}
+
+.case-location {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 8px;
+    row-gap: 0;
+}
+
+.case-home-link {
+    flex-basis: 100%;
+    color: var(--text-tertiary);
+    text-decoration: none;
+}
+
+.case-arrow {
+    color: var(--text-tertiary);
+}
+
+.case-location span:last-child {
+    color: var(--text-primary);
+}
+
+.case-desktop-links {
+    display: contents;
+}
+
+.case-mobile-links {
+    display: none;
+}
+
+.case-article {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0;
+}
+
+.case-article article {
+    width: min(100%, 760px);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.case-intro,
+.case-copy {
+    width: min(100%, 760px);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.case-meta dt,
+.case-caption,
+.case-code-label {
+    color: var(--text-tertiary);
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0;
+}
+
+.case-title {
+    max-width: 760px;
+    margin: 0 0 24px;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 36px;
+    letter-spacing: 0;
+}
+
+.case-deck {
+    max-width: 680px;
+    color: var(--text-secondary);
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0;
+}
+
+.case-meta {
+    display: grid;
+    row-gap: 12px;
+    margin-top: 32px;
+}
+
+.case-meta div {
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 104px minmax(0, 1fr);
+    column-gap: 24px;
+}
+
+.case-meta dd {
+    min-width: 0;
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.case-section {
+    margin-top: 80px;
+}
+
+.case-copy h2 {
+    margin-bottom: 24px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 32px;
+    letter-spacing: 0;
+}
+
+.case-copy h3 {
+    margin: 48px 0 12px;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0;
+}
+
+.case-copy p + p {
+    margin-top: 20px;
+}
+
+.case-copy p,
+.case-copy li {
+    color: var(--text-secondary);
+}
+
+.case-copy strong {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.case-copy ul {
+    margin: 20px 0 0 20px;
+}
+
+.case-copy li + li {
+    margin-top: 8px;
+}
+
+.case-media {
+    width: 100%;
+    margin-top: 48px;
+}
+
+.case-media-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin-top: 48px;
+}
+
+.case-media figure,
+.case-media-grid figure {
+    min-width: 0;
+}
+
+.case-media img,
+.case-media-grid img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--media-radius);
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.case-caption {
+    max-width: 760px;
+    margin-top: 12px;
+}
+
+.case-code {
+    width: min(100%, 880px);
+    margin: 48px auto 0;
+}
+
+.case-code-label {
+    margin-bottom: 8px;
+}
+
+.case-code pre {
+    overflow-x: auto;
+    padding: 24px;
+    border: 1px solid color-mix(in srgb, var(--text-secondary) 32%, transparent);
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--text-primary) 4%, var(--bg));
+    color: var(--text-primary);
+    font: 14px/20px "Geist Mono", monospace;
+    letter-spacing: 0;
+    tab-size: 4;
+}
+
+@media (hover: hover) {
+    .case-home-link:hover {
+        color: var(--text-primary);
+    }
+}
+
+.case-home-link:focus-visible {
+    outline: 1px solid var(--text-primary);
+    outline-offset: 4px;
+}
+
+@media (max-width: 768px) {
+    .case-article {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .case-title {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .case-deck {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .case-meta {
+        row-gap: 12px;
+        margin-top: 36px;
+    }
+
+    .case-meta div {
+        grid-template-columns: 88px minmax(0, 1fr);
+        column-gap: 16px;
+    }
+
+    .case-section {
+        margin-top: 80px;
+    }
+
+    .case-media,
+    .case-media-grid,
+    .case-code {
+        margin-top: 32px;
+    }
+
+    .case-media-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .case-code pre {
+        padding: 16px;
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+}

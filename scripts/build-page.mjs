@@ -1,6 +1,7 @@
-import { readdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { renderCaseMarkdown } from "./render-case-markdown.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -40,14 +41,25 @@ function replaceToken(template, token, value) {
 }
 
 async function resolveIncludes(template) {
-    const includePattern = /<!-- @include:([^>]+) -->/g;
-    const matches = [...template.matchAll(includePattern)];
+    const includePattern = /<!-- @include:([^>]+) -->/;
     let html = template.replace(
         /\n?<!-- @template-only:start -->[\s\S]*?<!-- @template-only:end -->\n?/g,
         "\n",
     );
+    let includeCount = 0;
 
-    for (const match of matches) {
+    while (html.includes("<!-- @include:")) {
+        const match = html.match(includePattern);
+
+        if (!match) {
+            break;
+        }
+
+        includeCount += 1;
+        if (includeCount > 100) {
+            throw new Error("Too many nested includes; check for an include cycle.");
+        }
+
         const includePath = match[1].trim();
         const include = (await readText(`src/${includePath}`)).trimEnd();
 
@@ -82,6 +94,15 @@ export async function buildPage({ write = true } = {}) {
     )
         .map(({ text }) => text)
         .join("\n\n");
+    const caseScript = (
+        await Promise.all(
+            ["10-core.js", "20-theme.js", "30-email.js"].map((file) =>
+                readText(`src/scripts/${file}`),
+            ),
+        )
+    )
+        .map((text) => text.trimEnd())
+        .join("\n\n");
 
     let indexHtml = await resolveIncludes(
         await readText("src/page.template.html"),
@@ -111,12 +132,60 @@ export async function buildPage({ write = true } = {}) {
         throw new Error("Generated HTML still contains inline tokens.");
     }
 
+    async function buildCasePage(templatePath, slug) {
+        let html = await resolveIncludes(await readText(templatePath));
+        html = replaceToken(
+            html,
+            `<!-- @case-markdown:${slug} -->`,
+            indentBlock(await renderCaseMarkdown({ root, slug }), 24),
+        );
+        html = replaceToken(html, "<!-- @inline-css:site -->", styles);
+        html = replaceToken(
+            html,
+            "<!-- @inline-js:analytics-bootstrap -->",
+            analyticsBootstrap,
+        );
+        html = replaceToken(html, "<!-- @inline-js:case -->", caseScript);
+
+        if (html.includes("<!-- @inline-")) {
+            throw new Error(
+                `Generated ${templatePath} still contains inline tokens.`,
+            );
+        }
+
+        return html;
+    }
+
+    const [filenHtml, hephHtml, ml7Html, n0thingHtml] = await Promise.all([
+        buildCasePage("src/filen.template.html", "filen"),
+        buildCasePage("src/heph.template.html", "heph"),
+        buildCasePage("src/ml7.template.html", "ml7"),
+        buildCasePage("src/n0thing.template.html", "n0thing"),
+    ]);
+
     if (write) {
         await writeFile(path.join(root, "index.html"), indexHtml);
         await writeFile(path.join(root, "profile.json"), profileJson);
+        await mkdir(path.join(root, "filen"), { recursive: true });
+        await writeFile(path.join(root, "filen/index.html"), filenHtml);
+        await mkdir(path.join(root, "heph"), { recursive: true });
+        await writeFile(path.join(root, "heph/index.html"), hephHtml);
+        await mkdir(path.join(root, "ml7"), { recursive: true });
+        await writeFile(path.join(root, "ml7/index.html"), ml7Html);
+        await mkdir(path.join(root, "n0thing"), { recursive: true });
+        await writeFile(path.join(root, "n0thing/index.html"), n0thingHtml);
     }
 
-    return { indexHtml, profileJson, siteScript };
+    return {
+        caseScript,
+        filenHtml,
+        hephHtml,
+        indexHtml,
+        ml7Html,
+        n0thingHtml,
+        profileJson,
+        siteScript,
+    };
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {

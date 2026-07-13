@@ -1,9 +1,13 @@
 :root {
     --bg: #000000;
     --text-primary: #ffffff;
-    --text-secondary: #808080;
+    --text-secondary: #b3b3b3;
+    --text-tertiary: #767676;
+    --highlight-bg: #b3b3b3;
+    --highlight-text: #ffffff;
     --section-gap: 24px;
     --section-content-gap: 6px;
+    --text-media-gap: 32px;
     --link-line-height: 24px;
     --theme-toggle-size: 32px;
     --footer-stack-bottom-gap: 4px;
@@ -17,7 +21,8 @@
             (var(--theme-toggle-size) / 2) -
             var(--footer-title-optical-offset)
     );
-    --sidebar-column: 280px;
+    --sidebar-column: 240px;
+    --content-column: 760px;
     --layout-gap: 48px;
     --media-radius: 22px;
 }
@@ -27,19 +32,22 @@
         --bg: #ffffff;
         --text-primary: #000000;
         --text-secondary: #4d4d4d;
+        --text-tertiary: #767676;
     }
 }
 
 :root[data-theme="dark"] {
     --bg: #000000;
     --text-primary: #ffffff;
-    --text-secondary: #808080;
+    --text-secondary: #b3b3b3;
+    --text-tertiary: #767676;
 }
 
 :root[data-theme="light"] {
     --bg: #ffffff;
     --text-primary: #000000;
     --text-secondary: #4d4d4d;
+    --text-tertiary: #767676;
 }
 
 * {
@@ -49,15 +57,17 @@
 }
 
 ::selection {
-    color: var(--text-primary);
-    background: var(--text-secondary);
+    color: var(--highlight-text);
+    background: var(--highlight-bg);
 }
 
 .name {
     font-size: 19px;
     font-weight: 400;
+    line-height: var(--link-line-height);
     letter-spacing: -0.02em;
     color: var(--text-primary);
+    min-height: calc(var(--link-line-height) * 2);
     margin-bottom: var(--section-gap);
     white-space: nowrap;
     -webkit-font-smoothing: antialiased;
@@ -76,7 +86,7 @@
 }
 
 .links-label {
-    color: var(--text-primary);
+    color: var(--text-secondary);
     width: fit-content;
 }
 
@@ -86,22 +96,11 @@
     );
 }
 
-.portfolio-label {
-    font-size: 16px;
-    font-weight: 400;
-    color: var(--text-primary);
-    margin-bottom: 8px;
-    width: fit-content;
-    -webkit-font-smoothing: antialiased;
-    -webkit-text-size-adjust: 100%;
-    text-rendering: optimizeLegibility;
-}
-
 .email {
     font-size: 16px;
     font-weight: 400;
     line-height: var(--link-line-height);
-    color: var(--text-secondary);
+    color: var(--text-tertiary);
     cursor: pointer;
     width: fit-content;
     background: none;
@@ -137,10 +136,6 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
-body.preview-open {
-    overflow: hidden;
-}
-
 .wrapper {
     max-width: 1900px;
     margin: 0 auto;
@@ -150,6 +145,10 @@ body.preview-open {
 .layout {
     display: grid;
     grid-template-columns: var(--sidebar-column) 1fr;
+    max-width: calc(
+        var(--sidebar-column) + var(--layout-gap) + var(--content-column)
+    );
+    margin: 0 auto;
     min-height: 100vh;
     gap: var(--layout-gap);
 }
@@ -158,7 +157,7 @@ body.preview-open {
     position: sticky;
     top: 0;
     height: 100vh;
-    padding: 64px 0;
+    padding: 48px 0;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -167,14 +166,14 @@ body.preview-open {
 
 .external-link,
 .reference-link {
-    color: var(--text-secondary);
+    color: var(--text-tertiary);
     text-decoration: none;
     width: fit-content;
 }
 
 .external-link::after {
     content: " ↗";
-    color: var(--text-secondary);
+    color: inherit;
     font-family:
         Inter,
         -apple-system,
@@ -187,12 +186,6 @@ body.preview-open {
     .external-link:hover,
     .reference-link:hover {
         color: var(--text-primary);
-    }
-}
-
-@media (hover: hover) {
-    .external-link:hover::after {
-        color: var(--text-secondary);
     }
 }
 
@@ -246,7 +239,7 @@ body.preview-open {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-secondary);
+    color: var(--text-tertiary);
     background: none;
     border: none;
     border-radius: 50%;
@@ -274,11 +267,7 @@ body.preview-open {
 
 @media (prefers-color-scheme: light) {
     :root:not([data-theme]) .theme-toggle {
-        color: color-mix(
-            in srgb,
-            var(--text-secondary) 83%,
-            var(--bg)
-        );
+        color: var(--text-tertiary);
     }
 
     .theme-toggle .sun-icon {
@@ -303,7 +292,7 @@ body.preview-open {
 }
 
 :root[data-theme="light"] .theme-toggle {
-    color: color-mix(in srgb, var(--text-secondary) 83%, var(--bg));
+    color: var(--text-tertiary);
 }
 
 :root[data-theme="light"] .theme-toggle .moon-icon {

@@ -20,6 +20,16 @@
       "permanent": true
     },
     {
+      "source": "/index/filen",
+      "destination": "/filen",
+      "permanent": true
+    },
+    {
+      "source": "/index/filen/",
+      "destination": "/filen",
+      "permanent": true
+    },
+    {
       "source": "/gil/",
       "destination": "/",
       "permanent": true

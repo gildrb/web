@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="Student and design engineer. I build software, interfaces, logos, and identity systems."
+            content="Designing brands, interfaces, and the systems that connect them."
         />
         <meta name="author" content="Gil Rodrigues" />
         <meta name="creator" content="Gil Rodrigues" />
@@ -15,7 +15,7 @@
         <meta name="alternate-name" content="Gil Domingos Rodrigues Barbosa" />
         <meta
             name="keywords"
-            content="Gil, Gil Rodrigues, Gil Rodrigues Barbosa, Gil Domingos Rodrigues Barbosa, gildrb, design engineer, artificial intelligence, data science, software, interfaces, typography, logos, identity systems"
+            content="Gil, Gil Rodrigues, Gil Rodrigues Barbosa, Gil Domingos Rodrigues Barbosa, gildrb, design engineer, visual systems, brand identity, interfaces, typography, frontend implementation, design systems"
         />
         <meta
             name="robots"
@@ -133,7 +133,7 @@
         />
         <meta
             property="og:description"
-            content="Student and design engineer. I build software, interfaces, logos, and identity systems."
+            content="Designing brands, interfaces, and the systems that connect them."
         />
         <meta property="og:site_name" content="Gil Rodrigues" />
         <meta name="twitter:card" content="summary" />
@@ -144,14 +144,21 @@
         />
         <meta
             name="twitter:description"
-            content="Student and design engineer. I build software, interfaces, logos, and identity systems."
+            content="Designing brands, interfaces, and the systems that connect them."
         />
         <title>Gil Rodrigues</title>
         <link
+            id="site-favicon"
             rel="icon"
             type="image/svg+xml"
             href="/favicon.svg"
         />
+        <script>
+            if (window.location.hostname.endsWith(".vercel.app")) {
+                document.getElementById("site-favicon").href =
+                    "/preview-favicon.svg";
+            }
+        </script>
         <script type="application/ld+json">
 <!-- @inline-json:profile-schema -->
         </script>
@@ -174,7 +181,7 @@
             as="image"
             href="images/optimized/gil-rodrigues-filen-wordmark-1280.webp"
             imagesrcset="images/optimized/gil-rodrigues-filen-wordmark-480.webp 480w, images/optimized/gil-rodrigues-filen-wordmark-720.webp 720w, images/optimized/gil-rodrigues-filen-wordmark-960.webp 960w, images/optimized/gil-rodrigues-filen-wordmark-1280.webp 1280w, images/optimized/gil-rodrigues-filen-wordmark-1600.webp 1600w"
-            imagesizes="(max-width: 768px) calc(100vw - 24px), (max-width: 900px) calc(100vw - 336px), (max-width: 1400px) calc(67vw - 263px), 1040px"
+            imagesizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px"
             media="(min-width: 769px)"
             fetchpriority="high"
         />
@@ -204,8 +211,6 @@
         </main>
 <!-- @template-only:end -->
 <!-- @include:partials/live-region.html -->
-<!-- @include:partials/image-preview.html -->
-
 <!-- @include:partials/layout-open.html -->
 <!-- @include:partials/sidebar.html -->
 
@@ -214,9 +219,8 @@
 <!-- @include:sections/portfolio-open.html -->
 <!-- @include:sections/portfolio-heph.html -->
 <!-- @include:sections/portfolio-filen.html -->
-<!-- @include:sections/portfolio-ml7.html -->
 <!-- @include:sections/portfolio-n0thing.html -->
-<!-- @include:sections/portfolio-personal.html -->
+<!-- @include:sections/portfolio-ml7.html -->
 <!-- @include:sections/portfolio-close.html -->
 <!-- @include:partials/references.html -->
 <!-- @include:partials/layout-close.html -->
