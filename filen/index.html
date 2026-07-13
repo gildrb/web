@@ -1547,7 +1547,7 @@ body {
 
 .case-media {
     width: 100%;
-    margin-top: 48px;
+    margin-top: var(--text-media-gap);
 }
 
 .case-media-grid {
@@ -1555,7 +1555,7 @@ body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
     width: 100%;
-    margin-top: 48px;
+    margin-top: var(--text-media-gap);
 }
 
 .case-media figure,
@@ -1576,6 +1576,11 @@ body {
 .case-caption {
     max-width: 760px;
     margin-top: 12px;
+}
+
+.case-media + .case-copy,
+.case-media-grid + .case-copy {
+    margin-top: var(--text-media-gap);
 }
 
 .case-code {
@@ -1619,6 +1624,11 @@ body {
 
     .case-section:last-child {
         --case-final-line-height: 32px;
+    }
+
+    .case-media + .case-copy:last-child,
+    .case-media-grid + .case-copy:last-child {
+        padding-top: var(--text-media-gap);
     }
 
     .case-section:last-child .case-copy:last-child h2:last-child {
@@ -1667,8 +1677,6 @@ body {
         margin-top: 80px;
     }
 
-    .case-media,
-    .case-media-grid,
     .case-code {
         margin-top: 32px;
     }
@@ -1888,18 +1896,10 @@ body {
                         <header class="case-intro">
                             <h1 class="case-title">Making privacy and obscurity visible through design</h1>
                         </header>
-                        <div class="case-media">
-                        <figure>
-                            <img alt="Final Filen mark and wordmark in white on black" decoding="async" fetchpriority="high" height="2260" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-filen-wordmark-960.webp" srcset="
-                                                        /images/optimized/gil-rodrigues-filen-wordmark-480.webp   480w,
-                                                        /images/optimized/gil-rodrigues-filen-wordmark-720.webp   720w,
-                                                        /images/optimized/gil-rodrigues-filen-wordmark-960.webp   960w,
-                                                        /images/optimized/gil-rodrigues-filen-wordmark-1280.webp 1280w,
-                                                        /images/optimized/gil-rodrigues-filen-wordmark-1600.webp 1600w
-                                                    " width="3940"/>
-                            <figcaption class="case-caption">Final Filen lockup</figcaption>
-                        </figure>
-                        </div>
+                            <div class="case-copy">
+                                <p>I have been a Filen customer for a good while and although Filen using a logo I do not particularly like isn't necessarily a product design issue, it was one of my biggest complaints. Seeing the logo really bothered me, and if you know me well enough, you know that I like to create logos to fix things that bother me personally or as a form of appreciation. I made this logo specifically for that reason.</p>
+                                <p>As you can see, the logo did not come out of nowhere and needed many attempts that I have gathered and worked on for weeks.</p>
+                            </div>
                         <div class="case-media">
                         <figure>
                             <img alt="Filen exploration board containing sketches, rejected symbols, wordmarks, and refined identity directions" decoding="async" height="956" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-filen-exploration-board-960.webp" srcset="
@@ -1911,6 +1911,23 @@ body {
                             <figcaption class="case-caption">Identity exploration board</figcaption>
                         </figure>
                         </div>
+                            <div class="case-copy">
+                                <p>I had the idea of creating a mark that is sort of a block that looks like it is disappearing that also shows the letter F with a bit of imagination. The idea was definitely there but I did not like where it was going or how it ended up looking so I scrapped that idea rather quickly.</p>
+                                <p>I then explored the idea of creating a 3D folder that is minimal and looked upon from an angle that subtly hints at the letter F. I really liked that idea but wasn't too happy with the form so I pushed it a little behind.</p>
+                                <p>I then worked on something that seems robust, almost architectural and some form of stairs. The stairs should also subtly hint at the letter F while attempting to communicating robustness and reliability but I realized quickly that in order to look reliable it can't be an open F, or in this case, open staircase. But closing the staircase made it more complicated than it needed to be which hurts it's legibility at smaller scale so I scrapped that too.</p>
+                                <p>I then thought about blocks where the upper layer is hidden which was also an attempt I didn't like.</p>
+                                <p>I even explored the Pangolin as a mascot because it's an endangered species which would align perfectly with the endangerment of privacy that Filen is trying to protect with its product. Pangolins have layers of protection and are practically impenetrable. The same way the encryption of Filen should feel like. Pangolins also have a unique pattern and a distinct face that could be used as a mascot and I liked every aspect of this idea but was hindered by my philosophy of trying to go for stunts that ends up hurting it's legibility.</p>
+                            </div>
+                        <div class="case-media">
+                        <figure>
+                            <img alt="Filen identity exploration with pangolin and architectural references" decoding="async" height="766" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-filen-pangolin-exploration-720.webp" srcset="/images/optimized/gil-rodrigues-filen-pangolin-exploration-480.webp 480w, /images/optimized/gil-rodrigues-filen-pangolin-exploration-720.webp 720w, /images/optimized/gil-rodrigues-filen-pangolin-exploration-960.webp 960w, /images/optimized/gil-rodrigues-filen-pangolin-exploration-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-pangolin-exploration-1600.webp 1600w" width="1600"/>
+                            <figcaption class="case-caption">Pangolin and identity exploration</figcaption>
+                        </figure>
+                        </div>
+                            <div class="case-copy">
+                                <p>Especially it's a digital-first company it's incredibly important to have a legible logo so the Pangolin unfortunately had to go, although I genuinely believe I was on an incredible creative trip there. I then explored shields, forms of protections, forms of folders, hidden messages, patters, but nothing had any chance of beating the folder with a particular angle that revealed the subtle F. In hindsight I think it's the perfect match because of how well it fits the idea of Filen but I really miss the Pangolins (they're so cute).</p>
+                                <p>So once I settled for the filen mark I did scale tests, created an app icon using the Icon Composer, created suitable copy to match the brand, created patterns that reflect light a certain way.</p>
+                            </div>
                         <div class="case-media-grid">
                         <figure>
                             <img alt="Filen mark tested at four decreasing sizes" decoding="async" height="2260" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px" src="/images/optimized/gil-rodrigues-filen-logo-scale-960.webp" srcset="/images/optimized/gil-rodrigues-filen-logo-scale-480.webp 480w, /images/optimized/gil-rodrigues-filen-logo-scale-720.webp 720w, /images/optimized/gil-rodrigues-filen-logo-scale-960.webp 960w, /images/optimized/gil-rodrigues-filen-logo-scale-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-logo-scale-1600.webp 1600w" width="3940"/>
@@ -1919,6 +1936,49 @@ body {
                         <figure>
                             <img alt="Filen app icon using a dimensional rendering of the identity mark" decoding="async" height="2260" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px" src="/images/optimized/gil-rodrigues-filen-app-icon-960.webp" srcset="/images/optimized/gil-rodrigues-filen-app-icon-480.webp 480w, /images/optimized/gil-rodrigues-filen-app-icon-720.webp 720w, /images/optimized/gil-rodrigues-filen-app-icon-960.webp 960w, /images/optimized/gil-rodrigues-filen-app-icon-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-app-icon-1600.webp 1600w" width="3940"/>
                             <figcaption class="case-caption">Filen app icon</figcaption>
+                        </figure>
+                        </div>
+                            <div class="case-copy">
+                                <p>and it was a lot of back and forth between ideas to say the least.</p>
+                            </div>
+                        <div class="case-media">
+                        <figure>
+                            <img alt="Metallic Filen lockup across vertical light panels" decoding="async" height="921" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-filen-light-lockup-720.webp" srcset="/images/optimized/gil-rodrigues-filen-light-lockup-480.webp 480w, /images/optimized/gil-rodrigues-filen-light-lockup-720.webp 720w, /images/optimized/gil-rodrigues-filen-light-lockup-960.webp 960w, /images/optimized/gil-rodrigues-filen-light-lockup-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-light-lockup-1600.webp 1600w" width="1600"/>
+                            <figcaption class="case-caption">Light-driven Filen lockup</figcaption>
+                        </figure>
+                        </div>
+                            <div class="case-copy">
+                                <p>I had an absolute blast to work on all the assets I had created and truly wish this mark had gone further than it did. The community of Filen liked the branding work a lot but the team is not looking for a rebrand anytime soon. I do still think it was absolutely an incredibly creative practice I did and am more than happy with how it all turned out.</p>
+                            </div>
+                        <div class="case-media">
+                        <figure>
+                            <img alt="Filen brand system board with logo, copy, icon, and typography" decoding="async" height="999" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-filen-brand-system-board-720.webp" srcset="/images/optimized/gil-rodrigues-filen-brand-system-board-480.webp 480w, /images/optimized/gil-rodrigues-filen-brand-system-board-720.webp 720w, /images/optimized/gil-rodrigues-filen-brand-system-board-960.webp 960w, /images/optimized/gil-rodrigues-filen-brand-system-board-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-brand-system-board-1600.webp 1600w" width="1600"/>
+                            <figcaption class="case-caption">Filen brand system board</figcaption>
+                        </figure>
+                        </div>
+                            <div class="case-copy">
+                                <p>i had plenty of ideas that had to do with light and think it was a step into a great direction.</p>
+                                <p>I couldn't fully let go of the Pangolins which is why I continued working on patterns.</p>
+                            </div>
+                        <div class="case-media">
+                        <figure>
+                            <img alt="Filen pattern explorations built from repeated protective scales" decoding="async" height="611" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-filen-pattern-exploration-720.webp" srcset="/images/optimized/gil-rodrigues-filen-pattern-exploration-480.webp 480w, /images/optimized/gil-rodrigues-filen-pattern-exploration-720.webp 720w, /images/optimized/gil-rodrigues-filen-pattern-exploration-960.webp 960w, /images/optimized/gil-rodrigues-filen-pattern-exploration-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-pattern-exploration-1600.webp 1600w" width="1600"/>
+                            <figcaption class="case-caption">Pangolin pattern explorations</figcaption>
+                        </figure>
+                        </div>
+                            <div class="case-copy">
+                                <p>I was also working on some red colorway but ultimately think it would hurt Filens identity in a bad way, this red color seems hostile and is not suitable for a company that should protect you. My thought initially was intimidating for attackers to not even attempt doing anything against Filen but ended up being perceived as something sketchy that you can't trust your data with. So I ended up with a monochrome colorway that I think is much more neutral and suitable for what Filen is trying to achieve.</p>
+                            </div>
+                        <div class="case-media">
+                        <figure>
+                            <img alt="Final Filen mark and wordmark in white on black" decoding="async" fetchpriority="high" height="2260" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-filen-wordmark-960.webp" srcset="
+                                                        /images/optimized/gil-rodrigues-filen-wordmark-480.webp   480w,
+                                                        /images/optimized/gil-rodrigues-filen-wordmark-720.webp   720w,
+                                                        /images/optimized/gil-rodrigues-filen-wordmark-960.webp   960w,
+                                                        /images/optimized/gil-rodrigues-filen-wordmark-1280.webp 1280w,
+                                                        /images/optimized/gil-rodrigues-filen-wordmark-1600.webp 1600w
+                                                    " width="3940"/>
+                            <figcaption class="case-caption">Final Filen lockup</figcaption>
                         </figure>
                         </div>
                         <div class="case-media-grid">
@@ -1937,11 +1997,6 @@ body {
                             <figcaption class="case-caption">Brandmark texture study</figcaption>
                         </figure>
                         </div>
-                        <section class="case-section">
-                            <div class="case-copy">
-                                <h2>MORE SOON</h2>
-                            </div>
-                        </section>
                     </article>
                 </main>
                 <div class="case-mobile-links">
@@ -1984,6 +2039,54 @@ const themeToggle = document.querySelector(".theme-toggle");
 const themePreference = window.matchMedia(
     "(prefers-color-scheme: dark)",
 );
+const scrollPositionKey = `gildrb:scroll:${window.location.pathname}${window.location.search}`;
+const navigationType = window.performance
+    .getEntriesByType("navigation")[0]?.type;
+
+if ("scrollRestoration" in window.history) {
+    window.history.scrollRestoration = "manual";
+}
+
+function saveScrollPosition() {
+    try {
+        window.sessionStorage.setItem(
+            scrollPositionKey,
+            JSON.stringify({ left: window.scrollX, top: window.scrollY }),
+        );
+    } catch {
+        return;
+    }
+}
+
+function restoreScrollPosition(event) {
+    if (!event.persisted && navigationType !== "back_forward") return;
+
+    let position;
+    try {
+        position = JSON.parse(
+            window.sessionStorage.getItem(scrollPositionKey),
+        );
+    } catch {
+        return;
+    }
+    if (!position) return;
+
+    const restore = () => {
+        window.scrollTo(position.left, position.top);
+    };
+    restore();
+    window.requestAnimationFrame(() => {
+        restore();
+        window.requestAnimationFrame(restore);
+    });
+}
+
+window.addEventListener("pagehide", saveScrollPosition);
+document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") saveScrollPosition();
+});
+window.addEventListener("pageshow", restoreScrollPosition);
+
 function trackEvent(name, data = {}) {
     if (typeof window.va !== "function") return;
 

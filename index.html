@@ -2435,7 +2435,7 @@ body {
 
 .case-media {
     width: 100%;
-    margin-top: 48px;
+    margin-top: var(--text-media-gap);
 }
 
 .case-media-grid {
@@ -2443,7 +2443,7 @@ body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
     width: 100%;
-    margin-top: 48px;
+    margin-top: var(--text-media-gap);
 }
 
 .case-media figure,
@@ -2464,6 +2464,11 @@ body {
 .case-caption {
     max-width: 760px;
     margin-top: 12px;
+}
+
+.case-media + .case-copy,
+.case-media-grid + .case-copy {
+    margin-top: var(--text-media-gap);
 }
 
 .case-code {
@@ -2507,6 +2512,11 @@ body {
 
     .case-section:last-child {
         --case-final-line-height: 32px;
+    }
+
+    .case-media + .case-copy:last-child,
+    .case-media-grid + .case-copy:last-child {
+        padding-top: var(--text-media-gap);
     }
 
     .case-section:last-child .case-copy:last-child h2:last-child {
@@ -2555,8 +2565,6 @@ body {
         margin-top: 80px;
     }
 
-    .case-media,
-    .case-media-grid,
     .case-code {
         margin-top: 32px;
     }
@@ -3259,6 +3267,54 @@ const themeToggle = document.querySelector(".theme-toggle");
 const themePreference = window.matchMedia(
     "(prefers-color-scheme: dark)",
 );
+const scrollPositionKey = `gildrb:scroll:${window.location.pathname}${window.location.search}`;
+const navigationType = window.performance
+    .getEntriesByType("navigation")[0]?.type;
+
+if ("scrollRestoration" in window.history) {
+    window.history.scrollRestoration = "manual";
+}
+
+function saveScrollPosition() {
+    try {
+        window.sessionStorage.setItem(
+            scrollPositionKey,
+            JSON.stringify({ left: window.scrollX, top: window.scrollY }),
+        );
+    } catch {
+        return;
+    }
+}
+
+function restoreScrollPosition(event) {
+    if (!event.persisted && navigationType !== "back_forward") return;
+
+    let position;
+    try {
+        position = JSON.parse(
+            window.sessionStorage.getItem(scrollPositionKey),
+        );
+    } catch {
+        return;
+    }
+    if (!position) return;
+
+    const restore = () => {
+        window.scrollTo(position.left, position.top);
+    };
+    restore();
+    window.requestAnimationFrame(() => {
+        restore();
+        window.requestAnimationFrame(restore);
+    });
+}
+
+window.addEventListener("pagehide", saveScrollPosition);
+document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") saveScrollPosition();
+});
+window.addEventListener("pageshow", restoreScrollPosition);
+
 function trackEvent(name, data = {}) {
     if (typeof window.va !== "function") return;
 

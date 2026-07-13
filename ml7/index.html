@@ -1501,7 +1501,7 @@ body {
 
 .case-media {
     width: 100%;
-    margin-top: 48px;
+    margin-top: var(--text-media-gap);
 }
 
 .case-media-grid {
@@ -1509,7 +1509,7 @@ body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
     width: 100%;
-    margin-top: 48px;
+    margin-top: var(--text-media-gap);
 }
 
 .case-media figure,
@@ -1530,6 +1530,11 @@ body {
 .case-caption {
     max-width: 760px;
     margin-top: 12px;
+}
+
+.case-media + .case-copy,
+.case-media-grid + .case-copy {
+    margin-top: var(--text-media-gap);
 }
 
 .case-code {
@@ -1573,6 +1578,11 @@ body {
 
     .case-section:last-child {
         --case-final-line-height: 32px;
+    }
+
+    .case-media + .case-copy:last-child,
+    .case-media-grid + .case-copy:last-child {
+        padding-top: var(--text-media-gap);
     }
 
     .case-section:last-child .case-copy:last-child h2:last-child {
@@ -1621,8 +1631,6 @@ body {
         margin-top: 80px;
     }
 
-    .case-media,
-    .case-media-grid,
     .case-code {
         margin-top: 32px;
     }
@@ -1837,8 +1845,10 @@ body {
                             <h1 class="case-title">The work that ended up flipping my view on life</h1>
                         </header>
                             <div class="case-copy">
-                                <p>In 2018 when I was still at school I dreaded not being able to thank the people that have helped me out in life. Genuinely upset to not be able to thank streamers or content creators who helped me escape the tough time I had at school and get distracted a bit. I was thinking about many methods to support the people I care about. Since I had no money to donate at that time as a form of appreciation I started designing for people. When I appreciated someone deeply, they helped me in some of way, or I would simply like to say thank you I have gotten into the habit to start designing.</p>
-                                <p>I was heavy into video games in 2018 and there was one person in particular that helped me out a lot at that time. I was playing serious Overwatch competitively and therefore also watched people who were much better at the game than I was to learn a thing or two. The streamer Mihai &quot;mL7&quot; Lupasc was one of those kind hearted souls that made me the person that I am today and who I designed for.  While I did post a lot of clientwork and appreciations on Twitter/X at that time I did not expect any sort of support from anyone. I came home from school and worked on a logo design that encompasses the energy I get from watching him every single day.</p>
+                                <p>In 2018 when I was still at school I dreaded not being able to thank the people that have helped me out in life. Genuinely upset to not be able to thank streamers or content creators who helped me escape the tough time I had at school and get distracted a bit.</p>
+                                <p>I was thinking about many methods to support the people I care about. Since I had no money to donate at that time as a form of appreciation I started designing for people. When I appreciated someone deeply, they helped me in some of way, or I would simply like to say thank you I have gotten into the habit to start designing.</p>
+                                <p>I was heavy into video games in 2018 and there was one person in particular that helped me out a lot at that time. I was playing serious Overwatch competitively and therefore also watched people who were much better at the game than I was to learn a thing or two. The streamer Mihai &quot;mL7&quot; Lupasc was one of those kind hearted souls that made me the person that I am today and who I designed for.</p>
+                                <p>While I did post a lot of clientwork and appreciations on Twitter/X at that time I did not expect any sort of support from anyone. I came home from school and worked on a logo design that encompasses the energy I get from watching him every single day.</p>
                                 <p>I iterated, worked on getting things right, and while the work is objectively not the greatest I was really proud of it at that time so I posted it online.</p>
                             </div>
                         <div class="case-media">
@@ -1849,7 +1859,9 @@ body {
                         </div>
                             <div class="case-copy">
                                 <p>To my surprise, mL7 actually saw the work and his manager contacted me privately.</p>
-                                <p>I had an extremely pessimistic view in 2018 due to my circumstances and what had previously happened to me in my life. I was of the belief that people don't want to help others and are generally selfish. Many encounters in real life seemed negative and people tend to not appreciate the things you do for them. Now, I know better, it's about the environment and the people you talk to rather than every person being this way. Mihai helped me flip that view entirely by seeing my work and thanking me for it.  He wanted to pay me for the work. While I never expected, nor asked him for anything he believed that I deserve that money. That day changed something in me. I am endlessly thankful for the confidence he has given to me that I carry with me every day now. Nowadays I am in a much better headspace than I used to be and get happy every time I see the logo I designed for Mihai. If you see this Mihai: Thank you for everything you have done for your community and the days you have brightened for me.</p>
+                                <p>I had an extremely pessimistic view in 2018 due to my circumstances and what had previously happened to me in my life. I was of the belief that people don't want to help others and are generally selfish. Many encounters in real life seemed negative and people tend to not appreciate the things you do for them. Now, I know better, it's about the environment and the people you talk to rather than every person being this way. Mihai helped me flip that view entirely by seeing my work and thanking me for it.</p>
+                                <p>He wanted to pay me for the work. While I never expected, nor asked him for anything he believed that I deserve that money. That day changed something in me. I am endlessly thankful for the confidence he has given to me that I carry with me every day now.</p>
+                                <p>Nowadays I am in a much better headspace than I used to be and get happy every time I see the logo I designed for Mihai. If you see this Mihai: Thank you for everything you have done for your community and the days you have brightened for me.</p>
                             </div>
                     </article>
                 </main>
@@ -1892,6 +1904,54 @@ const themeToggle = document.querySelector(".theme-toggle");
 const themePreference = window.matchMedia(
     "(prefers-color-scheme: dark)",
 );
+const scrollPositionKey = `gildrb:scroll:${window.location.pathname}${window.location.search}`;
+const navigationType = window.performance
+    .getEntriesByType("navigation")[0]?.type;
+
+if ("scrollRestoration" in window.history) {
+    window.history.scrollRestoration = "manual";
+}
+
+function saveScrollPosition() {
+    try {
+        window.sessionStorage.setItem(
+            scrollPositionKey,
+            JSON.stringify({ left: window.scrollX, top: window.scrollY }),
+        );
+    } catch {
+        return;
+    }
+}
+
+function restoreScrollPosition(event) {
+    if (!event.persisted && navigationType !== "back_forward") return;
+
+    let position;
+    try {
+        position = JSON.parse(
+            window.sessionStorage.getItem(scrollPositionKey),
+        );
+    } catch {
+        return;
+    }
+    if (!position) return;
+
+    const restore = () => {
+        window.scrollTo(position.left, position.top);
+    };
+    restore();
+    window.requestAnimationFrame(() => {
+        restore();
+        window.requestAnimationFrame(restore);
+    });
+}
+
+window.addEventListener("pagehide", saveScrollPosition);
+document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") saveScrollPosition();
+});
+window.addEventListener("pageshow", restoreScrollPosition);
+
 function trackEvent(name, data = {}) {
     if (typeof window.va !== "function") return;
 

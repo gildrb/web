@@ -708,8 +708,26 @@ assert(
         ) &&
         caseStyles.includes(
             ".case-section:last-child .case-copy:last-child h2:last-child {\n        margin-bottom: 0;",
+        ) &&
+        caseStyles.includes(
+            ".case-media + .case-copy:last-child,\n    .case-media-grid + .case-copy:last-child {\n        padding-top: var(--text-media-gap);",
         ),
     "Desktop case endings must share the theme toggle's calculated vertical alignment.",
+);
+assert(
+    caseStyles.includes(
+        ".case-media {\n    width: 100%;\n    margin-top: var(--text-media-gap);",
+    ) &&
+        caseStyles.includes(
+            ".case-media-grid {\n    display: grid;",
+        ) &&
+        caseStyles.includes(
+            ".case-media + .case-copy,\n.case-media-grid + .case-copy {\n    margin-top: var(--text-media-gap);",
+        ) &&
+        caseStyles.includes(
+            ".case-media + .case-copy:last-child,\n    .case-media-grid + .case-copy:last-child {\n        padding-top: var(--text-media-gap);",
+        ),
+    "Case media must use the shared optical text-media gap before and after each figure.",
 );
 const sharedSidebarTargets = [
     "https://behance.net/gildrb",
@@ -727,6 +745,14 @@ assert(
             html.includes('aria-label="Public profiles and contact"'),
     ),
     "Every generated route must contain the shared profile and contact sidebar.",
+);
+assert(
+    siteScript.includes('window.history.scrollRestoration = "manual";') &&
+        siteScript.includes('window.addEventListener("pagehide", saveScrollPosition);') &&
+        siteScript.includes('window.addEventListener("pageshow", restoreScrollPosition);') &&
+        caseScript.includes('window.addEventListener("pagehide", saveScrollPosition);') &&
+        caseScript.includes('window.addEventListener("pageshow", restoreScrollPosition);'),
+    "Homepage and case routes must preserve per-tab scroll positions across back/forward navigation.",
 );
 assert(
     [filenHtml, hephHtml, ml7Html, n0thingHtml].every(
