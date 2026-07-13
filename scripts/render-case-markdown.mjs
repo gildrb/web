@@ -180,7 +180,7 @@ export async function renderCaseMarkdown({ root, slug }) {
             copyOpen = true;
             continue;
         }
-        if (["h3", "paragraph", "list"].includes(block.type) && sectionOpen && !copyOpen) {
+        if (["h3", "paragraph", "list"].includes(block.type) && !copyOpen) {
             output.push('    <div class="case-copy">');
             copyOpen = true;
         }

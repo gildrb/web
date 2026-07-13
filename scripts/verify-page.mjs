@@ -158,9 +158,21 @@ for (const { slug, markdown, template } of caseSources) {
         ),
         `content/${slug}.md media captions must contain one to five words.`,
     );
+    const authoredBody = markdown
+        .split("\n")
+        .slice(1)
+        .some((line) => {
+            const trimmed = line.trim();
+            return (
+                trimmed &&
+                !trimmed.startsWith("!") &&
+                !trimmed.startsWith("#") &&
+                !trimmed.startsWith("- **")
+            );
+        });
     assert(
-        markdown.trimEnd().endsWith("## MORE SOON"),
-        `content/${slug}.md drafts must end with ## MORE SOON.`,
+        authoredBody || markdown.trimEnd().endsWith("## MORE SOON"),
+        `content/${slug}.md must contain authored prose or end with ## MORE SOON.`,
     );
 }
 
@@ -660,6 +672,19 @@ assert(
         ".case-intro,\n.case-copy {\n    width: min(100%, 760px);\n    margin-right: auto;\n    margin-left: auto;",
     ),
     "Case intro and prose columns must be centered inside the wider media container.",
+);
+assert(
+    caseStyles.includes("@media (min-width: 769px)") &&
+        caseStyles.includes(
+            ".case-article article {\n        min-height: calc(100vh - 96px);\n        display: flex;\n        flex-direction: column;",
+        ) &&
+        caseStyles.includes(
+            ".case-article article > :last-child {\n        --case-final-line-height: 24px;\n        margin-top: auto;\n        padding-top: 80px;\n        padding-bottom: calc(\n            var(--footer-title-center-offset) +",
+        ) &&
+        caseStyles.includes(
+            ".case-section:last-child .case-copy:last-child h2:last-child {\n        margin-bottom: 0;",
+        ),
+    "Desktop case endings must share the theme toggle's calculated vertical alignment.",
 );
 const sharedSidebarTargets = [
     "https://behance.net/gildrb",

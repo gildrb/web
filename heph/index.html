@@ -1550,6 +1550,33 @@ body {
     tab-size: 4;
 }
 
+@media (min-width: 769px) {
+    .case-article article {
+        min-height: calc(100vh - 96px);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .case-article article > :last-child {
+        --case-final-line-height: 24px;
+        margin-top: auto;
+        padding-top: 80px;
+        padding-bottom: calc(
+            var(--footer-title-center-offset) +
+                (var(--theme-toggle-size) / 2) -
+                (var(--case-final-line-height) / 2)
+        );
+    }
+
+    .case-section:last-child {
+        --case-final-line-height: 32px;
+    }
+
+    .case-section:last-child .case-copy:last-child h2:last-child {
+        margin-bottom: 0;
+    }
+}
+
 @media (hover: hover) {
     .case-home-link:hover {
         color: var(--text-primary);
@@ -1806,7 +1833,9 @@ body {
                         <header class="case-intro">
                             <h1 class="case-title">A local document agent for accurate, cited answers from your files</h1>
                         </header>
+                            <div class="case-copy">
                                 <p><a class="external-link" href="https://github.com/gildrb/heph" target="_blank" rel="noopener noreferrer">GitHub repository</a></p>
+                            </div>
                         <section class="case-section">
                             <div class="case-copy">
                                 <h2>MORE SOON</h2>
