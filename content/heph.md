@@ -1,5 +1,5 @@
 # A local document agent for accurate, cited answers from your files
 
-[GitHub repository](https://github.com/gildrb/heph)
+Heph is a project I have worked on for months that helps you work with files directly on your PC. One could argue that Codex achieves the same, which it does, however what it doesn't do is cite the exact source it used and proving that it is not made up. Heph is still a very early project and I will work hard to make it more reliable, work for more use-cases and overall increase accuracy of Heph. Heph will only get better as time goes on and the models, especially the open source ones, get better and cheaper to run. The core idea of Heph is an armory. You create a .armories folder within Heph, create a folder inside of .armories for whatever you want to study, for example you create "Biology". You then access that directory by calling "heph", then typing "Biology" into the chatbox and asking it questions. For Heph to be able to retrieve from your files you need to load all the relevant files into .armories/biology/materials so the materials get indexed. Once they're in, you can start chatting, questioning and checking the sources that Heph used to fill the gaps in your understanding. More to come.
 
-## MORE SOON
+[GitHub repository](https://github.com/gildrb/heph)
