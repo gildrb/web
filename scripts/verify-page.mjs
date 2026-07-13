@@ -237,6 +237,8 @@ assert(
         hephDemoStyles.includes("var(--bg) 96%") &&
         hephDemoStyles.includes("--heph-demo-row-bg: color-mix(") &&
         hephDemoStyles.includes("var(--bg) 94%") &&
+        hephDemoStyles.includes("--heph-demo-mobile-bg: color-mix(") &&
+        hephDemoStyles.includes("var(--bg) 92%") &&
         hephDemoStyles.includes("color: var(--text-primary);") &&
         hephDemoStyles.includes("color: var(--text-secondary);") &&
         hephDemoStyles.includes("color: var(--text-tertiary);") &&
@@ -313,7 +315,7 @@ assert(
                 '<div class="heph-demo-frame" aria-hidden="true">',
             ) &&
         (await readText("src/styles/30-heph-demo.css")).includes(
-            ".heph-demo-frame {\n        padding: 34px 14px;\n        border-radius: 24px;\n        background: var(--heph-demo-terminal-bg);",
+            ".heph-demo-frame {\n        padding: 34px 14px;\n        border-radius: 24px;\n        background: var(--heph-demo-mobile-bg);",
         ),
     "Mobile Heph chrome must wrap only the terminal, leaving its date and title below the panel.",
 );
