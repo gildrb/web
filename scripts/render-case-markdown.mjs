@@ -46,8 +46,8 @@ function parseMarkdown(markdown) {
         if (!match) throw new Error("Metadata must use - **Label:** Value.");
         metadata.push({ label: match[1], value: match[2] });
     }
-    if (metadata.length !== 3) {
-        throw new Error("Each case study must contain exactly three metadata rows.");
+    if (metadata.length !== 0 && metadata.length !== 3) {
+        throw new Error("Case metadata must contain either zero or three rows.");
     }
 
     const blocks = [];
@@ -151,12 +151,16 @@ export async function renderCaseMarkdown({ root, slug }) {
         ...(parsed.deck
             ? [`    <p class="case-deck">${renderInline(parsed.deck)}</p>`]
             : []),
-        '    <dl class="case-meta">',
-        ...parsed.metadata.map(
-            ({ label, value }) =>
-                `        <div><dt>${renderInline(label)}</dt><dd>${renderInline(value)}</dd></div>`,
-        ),
-        "    </dl>",
+        ...(parsed.metadata.length
+            ? [
+                  '    <dl class="case-meta">',
+                  ...parsed.metadata.map(
+                      ({ label, value }) =>
+                          `        <div><dt>${renderInline(label)}</dt><dd>${renderInline(value)}</dd></div>`,
+                  ),
+                  "    </dl>",
+              ]
+            : []),
         "</header>",
     ];
 

@@ -134,8 +134,10 @@ const routeTitles = {
 for (const { slug, markdown, template } of caseSources) {
     assert(
         markdown.startsWith("# ") &&
-            (markdown.match(/^- \*\*[^*]+:\*\* .+$/gm) || []).length === 3,
-        `content/${slug}.md must begin with a title and three metadata rows.`,
+            [0, 3].includes(
+                (markdown.match(/^- \*\*[^*]+:\*\* .+$/gm) || []).length,
+            ),
+        `content/${slug}.md must begin with a title and use zero or three metadata rows.`,
     );
     assert(
         template.includes(`<!-- @case-markdown:${slug} -->`) &&
@@ -155,6 +157,10 @@ for (const { slug, markdown, template } of caseSources) {
             (caption) => caption && caption.split(/\s+/).length <= 5,
         ),
         `content/${slug}.md media captions must contain one to five words.`,
+    );
+    assert(
+        markdown.trimEnd().endsWith("## MORE SOON"),
+        `content/${slug}.md drafts must end with ## MORE SOON.`,
     );
 }
 

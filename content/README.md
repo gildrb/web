@@ -11,7 +11,7 @@ Edit these files instead of the generated `<project>/index.html` pages or the HT
 
 ## Format
 
-Begin with one page title and exactly three metadata rows. A deck paragraph is optional:
+Begin with one page title. A deck paragraph and the complete three-row metadata group are optional:
 
 ```markdown
 # Your case-study title
@@ -22,6 +22,8 @@ Begin with one page title and exactly three metadata rows. A deck paragraph is o
 - **Scope:** What the work covered
 - **Context:** Where the work belongs
 ```
+
+For an unfinished image-led draft, omit all three metadata rows and end the file with `## MORE SOON`.
 
 Write the article with ordinary Markdown:
 
