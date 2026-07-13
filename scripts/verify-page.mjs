@@ -319,6 +319,38 @@ assert(
         ),
     "Homepage labels and actionable links must preserve the semantic color hierarchy.",
 );
+const portfolioDates = [
+    ["2026-01-14", "14.01.2026", "Filen"],
+    ["2018-11-13", "13.11.2018", "mL7"],
+    ["2019-11-15", "15.11.2019", "n0thing"],
+    ["2026-04-21", "21.04.2026", "Heph"],
+];
+assert(
+    portfolioDates.every(
+        ([datetime, date, title]) =>
+            indexHtml.includes(`<time datetime="${datetime}">${date}</time>`) &&
+            indexHtml.includes(`>${title}</span`),
+    ) &&
+        portfolioStyles.includes(
+            ".portfolio-card-meta time {\n    color: var(--text-tertiary);",
+        ) &&
+        portfolioStyles.includes(
+            ".portfolio-card-title {\n    color: var(--text-secondary);",
+        ),
+    "Homepage projects must expose their date and linked title below the media.",
+);
+assert(
+    caseStyles.includes(
+        ".case-deck {\n    max-width: 680px;\n    color: var(--text-secondary);",
+    ) &&
+        caseStyles.includes(
+            ".case-copy p,\n.case-copy li {\n    color: var(--text-secondary);",
+        ) &&
+        caseStyles.includes(
+            ".case-meta dt,\n.case-caption,\n.case-code-label {\n    color: var(--text-tertiary);",
+        ),
+    "Case-study prose and media captions must preserve the brighter-gray/darker-gray hierarchy.",
+);
 assert(
     caseStyles.includes(
         ".case-article article {\n    width: min(100%, 760px);\n    margin-right: auto;\n    margin-left: auto;",

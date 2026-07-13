@@ -1420,6 +1420,53 @@ body.preview-open {
     -webkit-user-drag: none;
 }
 
+.portfolio-card {
+    overflow: visible;
+    border-radius: 0;
+    color: inherit;
+    text-decoration: none;
+}
+
+.portfolio-card img {
+    border-radius: var(--media-radius);
+}
+
+.portfolio-card-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.portfolio-card-meta time {
+    color: var(--text-tertiary);
+}
+
+.portfolio-card-title {
+    color: var(--text-secondary);
+}
+
+.portfolio-card-link {
+    width: fit-content;
+    color: inherit;
+    text-decoration: none;
+}
+
+@media (hover: hover) {
+    .portfolio-card:hover .portfolio-card-title,
+    .portfolio-card-link:hover .portfolio-card-title {
+        color: var(--text-primary);
+    }
+}
+
+.portfolio-card-link:focus-visible {
+    outline: 1px solid var(--text-primary);
+    outline-offset: 4px;
+}
+
 .heph-demo {
     --heph-demo-terminal-bg: #0a0a0a;
     --heph-demo-row-bg: #0f0f0f;
@@ -2244,7 +2291,7 @@ body.preview-open {
 .case-meta dt,
 .case-caption,
 .case-code-label {
-    color: var(--text-secondary);
+    color: var(--text-tertiary);
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0;
@@ -2261,7 +2308,7 @@ body.preview-open {
 
 .case-deck {
     max-width: 680px;
-    color: var(--text-primary);
+    color: var(--text-secondary);
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 0;
@@ -2311,7 +2358,7 @@ body.preview-open {
 
 .case-copy p,
 .case-copy li {
-    color: var(--text-primary);
+    color: var(--text-secondary);
 }
 
 .case-copy strong {
@@ -2744,15 +2791,6 @@ body.preview-open {
                         <h2 class="portfolio-label" id="portfolio-title">
                             Portfolio
                         </h2>
-                        <h3 class="section-title" id="portfolio-heph-title">
-                            <a
-                                class="external-link"
-                                href="https://github.com/gildrb/heph"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                >Heph</a
-                            >
-                        </h3>
                         <section
                             class="heph-demo"
                             aria-labelledby="portfolio-heph-title"
@@ -2980,17 +3018,28 @@ body.preview-open {
                                     </div>
                                 </div>
                             </div>
+                            <a
+                                class="portfolio-card-meta portfolio-card-link"
+                                href="https://github.com/gildrb/heph"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="View Heph on GitHub"
+                            >
+                                <time datetime="2026-04-21">21.04.2026</time>
+                                <span
+                                    class="portfolio-card-title"
+                                    id="portfolio-heph-title"
+                                    >Heph</span
+                                >
+                            </a>
                         </section>
-                        <h3 class="section-title" id="portfolio-filen-title">
-                            Filen
-                        </h3>
                         <section
                             class="showcase showcase-full"
                             aria-labelledby="portfolio-filen-title"
                         >
                             <div class="showcase-featured">
                                 <a
-                                    class="image-wrapper case-study-entry"
+                                    class="image-wrapper case-study-entry portfolio-card"
                                     href="/filen"
                                     aria-label="Read the Filen identity system case study"
                                 >
@@ -3012,16 +3061,23 @@ body.preview-open {
                                         fetchpriority="high"
                                         decoding="async"
                                     />
+                                    <span class="portfolio-card-meta">
+                                        <time datetime="2026-01-14">14.01.2026</time>
+                                        <span
+                                            class="portfolio-card-title"
+                                            id="portfolio-filen-title"
+                                            >Filen</span
+                                        >
+                                    </span>
                                 </a>
                             </div>
                     </section>
-                    <h3 class="section-title" id="portfolio-ml7-title">mL7</h3>
                     <section
                         class="gallery"
                         aria-labelledby="portfolio-ml7-title"
                     >
                         <a
-                            class="gallery-item full case-study-entry"
+                            class="gallery-item full case-study-entry portfolio-card"
                             href="/ml7"
                             aria-label="Read the mL7 case study"
                         >
@@ -3041,15 +3097,22 @@ body.preview-open {
                                 loading="lazy"
                                 decoding="async"
                             />
+                            <span class="portfolio-card-meta">
+                                <time datetime="2018-11-13">13.11.2018</time>
+                                <span
+                                    class="portfolio-card-title"
+                                    id="portfolio-ml7-title"
+                                    >mL7</span
+                                >
+                            </span>
                         </a>
                     </section>
-                    <h3 class="section-title" id="portfolio-n0thing-title">n0thing</h3>
                     <section
                         class="gallery"
                         aria-labelledby="portfolio-n0thing-title"
                     >
                         <a
-                            class="gallery-item full case-study-entry"
+                            class="gallery-item full case-study-entry portfolio-card"
                             href="/n0thing"
                             aria-label="Read the n0thing case study"
                         >
@@ -3068,6 +3131,14 @@ body.preview-open {
                                 loading="lazy"
                                 decoding="async"
                             />
+                            <span class="portfolio-card-meta">
+                                <time datetime="2019-11-15">15.11.2019</time>
+                                <span
+                                    class="portfolio-card-title"
+                                    id="portfolio-n0thing-title"
+                                    >n0thing</span
+                                >
+                            </span>
                         </a>
                     </section>
                     <h3 class="section-title" id="portfolio-personal-title">
