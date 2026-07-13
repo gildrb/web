@@ -120,6 +120,16 @@ const caseSources = await Promise.all(
         template: await readText(`src/${slug}.template.html`),
     })),
 );
+assert(
+    indexHtml.includes("<title>Gil Rodrigues</title>"),
+    "The homepage browser title must be only Gil Rodrigues.",
+);
+const routeTitles = {
+    filen: "Filen",
+    heph: "Heph",
+    ml7: "mL7",
+    n0thing: "n0thing",
+};
 
 for (const { slug, markdown, template } of caseSources) {
     assert(
@@ -132,6 +142,10 @@ for (const { slug, markdown, template } of caseSources) {
             !template.includes('class="case-title"') &&
             !template.includes('class="case-copy"'),
         `src/${slug}.template.html must keep authored prose in content/${slug}.md.`,
+    );
+    assert(
+        template.includes(`<title>${routeTitles[slug]}</title>`),
+        `src/${slug}.template.html must use only the project name as its browser title.`,
     );
     const mediaCaptions = [
         ...markdown.matchAll(/^!\[(.*)\]\(media:[a-z0-9-]+\)$/gm),
