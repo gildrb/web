@@ -11,7 +11,7 @@ Edit these files instead of the generated `<project>/index.html` pages or the HT
 
 ## Format
 
-Begin with one page title, one deck paragraph, and exactly three metadata rows:
+Begin with one page title and exactly three metadata rows. A deck paragraph is optional:
 
 ```markdown
 # Your case-study title

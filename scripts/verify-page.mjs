@@ -125,7 +125,7 @@ for (const { slug, markdown, template } of caseSources) {
     assert(
         markdown.startsWith("# ") &&
             (markdown.match(/^- \*\*[^*]+:\*\* .+$/gm) || []).length === 3,
-        `content/${slug}.md must begin with a title, deck, and three metadata rows.`,
+        `content/${slug}.md must begin with a title and three metadata rows.`,
     );
     assert(
         template.includes(`<!-- @case-markdown:${slug} -->`) &&

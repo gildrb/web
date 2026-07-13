@@ -1,12 +1,10 @@
 # Making privacy and obscurity visible through design
 
-> Filen is a zero-knowledge cloud storage product I use daily, which is why I ended up turning my idea into a design. Genuinely love the team and product and hopeful, that my design will be used officially by the team in the future. 
-
 - **Contribution:** Everything 
 - **Scope:** Brandmark, Wordmark, Lockup, Typography, Icons, Brand colors, Copy
-- **Context:** Zero-knowledge encrypted cloud storage
+- **Context:** Branding and logo design
 
-SOON
+## MORE SOON
 
 ![The final lockup. The mark carries the recognition; the restrained wordmark keeps the system usable across product and communication surfaces.](media:filen-wordmark)
 

@@ -37,10 +37,7 @@ function parseMarkdown(markdown) {
     }
 
     while (lines[0] === "") lines.shift();
-    const deckLine = lines.shift();
-    if (!deckLine?.startsWith("> ")) {
-        throw new Error("Case title must be followed by a > deck paragraph.");
-    }
+    const deckLine = lines[0]?.startsWith("> ") ? lines.shift() : null;
 
     while (lines[0] === "") lines.shift();
     const metadata = [];
@@ -123,7 +120,7 @@ function parseMarkdown(markdown) {
 
     return {
         title: titleLine.slice(2),
-        deck: deckLine.slice(2),
+        deck: deckLine?.slice(2) ?? null,
         metadata,
         blocks,
     };
@@ -151,7 +148,9 @@ export async function renderCaseMarkdown({ root, slug }) {
     const output = [
         '<header class="case-intro">',
         `    <h1 class="case-title">${renderInline(parsed.title)}</h1>`,
-        `    <p class="case-deck">${renderInline(parsed.deck)}</p>`,
+        ...(parsed.deck
+            ? [`    <p class="case-deck">${renderInline(parsed.deck)}</p>`]
+            : []),
         '    <dl class="case-meta">',
         ...parsed.metadata.map(
             ({ label, value }) =>
