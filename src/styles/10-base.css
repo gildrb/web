@@ -5,6 +5,7 @@
     --text-tertiary: #767676;
     --section-gap: 24px;
     --section-content-gap: 6px;
+    --text-media-gap: 32px;
     --link-line-height: 24px;
     --theme-toggle-size: 32px;
     --footer-stack-bottom-gap: 4px;
@@ -91,17 +92,6 @@
     margin-top: calc(
         var(--section-gap) - var(--section-content-gap)
     );
-}
-
-.portfolio-label {
-    font-size: 16px;
-    font-weight: 400;
-    color: var(--text-secondary);
-    margin-bottom: 8px;
-    width: fit-content;
-    -webkit-font-smoothing: antialiased;
-    -webkit-text-size-adjust: 100%;
-    text-rendering: optimizeLegibility;
 }
 
 .email {

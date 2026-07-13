@@ -10,7 +10,7 @@
 
 .profile-summary {
     max-width: 760px;
-    margin-bottom: var(--section-gap);
+    margin-bottom: var(--text-media-gap);
 }
 
 .profile-summary .section-title {

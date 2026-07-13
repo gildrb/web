@@ -108,7 +108,7 @@
     .links {
         grid-column: 1 / -1;
         order: 4;
-        margin-bottom: var(--section-gap);
+        margin-bottom: var(--text-media-gap);
     }
 
     .case-page .links {

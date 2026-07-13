@@ -106,6 +106,7 @@ const responsiveStyles = await readText("src/styles/90-responsive.css");
 const baseStyles = await readText("src/styles/10-base.css");
 const portfolioStyles = await readText("src/styles/20-portfolio-media.css");
 const previewContentStyles = await readText("src/styles/40-preview-content.css");
+const portfolioOpen = await readText("src/sections/portfolio-open.html");
 const previewFavicon = await readText("preview-favicon.svg");
 const vercelConfig = JSON.parse(await readText("vercel.json"));
 
@@ -389,6 +390,24 @@ assert(
             ".email {\n    font-size: 16px;\n    font-weight: 400;\n    line-height: var(--link-line-height);\n    color: var(--text-tertiary);",
         ),
     "Homepage labels and actionable links must preserve the semantic color hierarchy.",
+);
+assert(
+    !portfolioOpen.includes("portfolio-label") &&
+        portfolioOpen.includes('aria-label="Portfolio"'),
+    "The portfolio section must retain an accessible name without a visible label.",
+);
+assert(
+    baseStyles.includes("--text-media-gap: 32px;") &&
+        previewContentStyles.includes(
+            ".profile-summary {\n    max-width: 760px;\n    margin-bottom: var(--text-media-gap);",
+        ) &&
+        responsiveStyles.includes(
+            ".links {\n        grid-column: 1 / -1;\n        order: 4;\n        margin-bottom: var(--text-media-gap);",
+        ) &&
+        responsiveStyles.includes(
+            ".profile-summary {\n        grid-column: 1 / -1;\n        order: 2;\n        margin-bottom: var(--section-gap);",
+        ),
+    "The first solid project media must use the 32px optical gap from the adjacent text block at every viewport.",
 );
 const portfolioDates = [
     ["2026-01-14", "14.01.2026", "Filen"],
