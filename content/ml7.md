@@ -6,5 +6,4 @@
 
 ## MORE SOON
 
-![The documented identity artifact, shown in full and without cropping.](media:ml7-logo-system)
-
+![mL7 logo system](media:ml7-logo-system)

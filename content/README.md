@@ -43,6 +43,8 @@ Existing responsive images use a `media:` reference. The text in square brackets
 ![Your image caption.](media:filen-wordmark)
 ```
 
+Every media reference needs a visible caption of no more than five words.
+
 Keep consecutive media lines together to render a two-column image grid. Do not rename the media identifier unless its matching file in `src/case-media/<project>/` is renamed too.
 
 Fenced code blocks can carry a visible label:

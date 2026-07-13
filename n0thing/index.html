@@ -1432,17 +1432,20 @@ body {
 
 .case-meta {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
+    row-gap: 12px;
     margin-top: 32px;
 }
 
 .case-meta div {
     min-width: 0;
+    display: grid;
+    grid-template-columns: 104px minmax(0, 1fr);
+    column-gap: 24px;
 }
 
 .case-meta dd {
-    margin-top: 4px;
+    min-width: 0;
+    margin: 0;
     color: var(--text-primary);
     font-size: 14px;
     line-height: 20px;
@@ -1572,9 +1575,13 @@ body {
     }
 
     .case-meta {
-        grid-template-columns: 1fr;
-        gap: 16px;
+        row-gap: 12px;
         margin-top: 36px;
+    }
+
+    .case-meta div {
+        grid-template-columns: 88px minmax(0, 1fr);
+        column-gap: 16px;
     }
 
     .case-section {
@@ -1808,7 +1815,7 @@ body {
                         <div class="case-media">
                         <figure>
                             <img alt="Animated n0thing wordmark in white on black" decoding="async" fetchpriority="high" height="720" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-n0thing-wordmark-animation-720.gif" srcset="/images/optimized/gil-rodrigues-n0thing-wordmark-animation-480.gif 480w, /images/optimized/gil-rodrigues-n0thing-wordmark-animation-720.gif 720w, /images/optimized/gil-rodrigues-n0thing-wordmark-animation-960.gif 960w, /images/optimized/gil-rodrigues-n0thing-wordmark-animation-1280.gif 1280w" width="1280"/>
-                            <figcaption class="case-caption">The documented motion artifact, shown at its complete 16:9 frame without cropping.</figcaption>
+                            <figcaption class="case-caption">n0thing animated wordmark</figcaption>
                         </figure>
                         </div>
                         </section>

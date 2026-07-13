@@ -1433,17 +1433,20 @@ body {
 
 .case-meta {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
+    row-gap: 12px;
     margin-top: 32px;
 }
 
 .case-meta div {
     min-width: 0;
+    display: grid;
+    grid-template-columns: 104px minmax(0, 1fr);
+    column-gap: 24px;
 }
 
 .case-meta dd {
-    margin-top: 4px;
+    min-width: 0;
+    margin: 0;
     color: var(--text-primary);
     font-size: 14px;
     line-height: 20px;
@@ -1573,9 +1576,13 @@ body {
     }
 
     .case-meta {
-        grid-template-columns: 1fr;
-        gap: 16px;
+        row-gap: 12px;
         margin-top: 36px;
+    }
+
+    .case-meta div {
+        grid-template-columns: 88px minmax(0, 1fr);
+        column-gap: 16px;
     }
 
     .case-section {
@@ -1809,7 +1816,7 @@ body {
                         <div class="case-media">
                         <figure>
                             <img alt="mL7 logo with black lettering and an orange directional stroke on white" decoding="async" fetchpriority="high" height="2263" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-ml7-logo-system-720.webp" srcset="/images/optimized/gil-rodrigues-ml7-logo-system-480.webp 480w, /images/optimized/gil-rodrigues-ml7-logo-system-720.webp 720w, /images/optimized/gil-rodrigues-ml7-logo-system-960.webp 960w, /images/optimized/gil-rodrigues-ml7-logo-system-1280.webp 1280w, /images/optimized/gil-rodrigues-ml7-logo-system-1600.webp 1600w" width="3473"/>
-                            <figcaption class="case-caption">The documented identity artifact, shown in full and without cropping.</figcaption>
+                            <figcaption class="case-caption">mL7 logo system</figcaption>
                         </figure>
                         </div>
                         </section>

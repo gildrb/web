@@ -1479,17 +1479,20 @@ body {
 
 .case-meta {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
+    row-gap: 12px;
     margin-top: 32px;
 }
 
 .case-meta div {
     min-width: 0;
+    display: grid;
+    grid-template-columns: 104px minmax(0, 1fr);
+    column-gap: 24px;
 }
 
 .case-meta dd {
-    margin-top: 4px;
+    min-width: 0;
+    margin: 0;
     color: var(--text-primary);
     font-size: 14px;
     line-height: 20px;
@@ -1619,9 +1622,13 @@ body {
     }
 
     .case-meta {
-        grid-template-columns: 1fr;
-        gap: 16px;
+        row-gap: 12px;
         margin-top: 36px;
+    }
+
+    .case-meta div {
+        grid-template-columns: 88px minmax(0, 1fr);
+        column-gap: 16px;
     }
 
     .case-section {
@@ -1867,7 +1874,7 @@ body {
                                                         /images/optimized/gil-rodrigues-filen-wordmark-1280.webp 1280w,
                                                         /images/optimized/gil-rodrigues-filen-wordmark-1600.webp 1600w
                                                     " width="3940"/>
-                            <figcaption class="case-caption">The final lockup. The mark carries the recognition; the restrained wordmark keeps the system usable across product and communication surfaces.</figcaption>
+                            <figcaption class="case-caption">Final Filen lockup</figcaption>
                         </figure>
                         </div>
                         <div class="case-media">
@@ -1878,31 +1885,33 @@ body {
                                                             /images/optimized/gil-rodrigues-filen-exploration-board-960.webp   960w,
                                                             /images/optimized/gil-rodrigues-filen-exploration-board-1280.webp 1280w
                                                         " width="1280"/>
-                            <figcaption class="case-caption">The working board, not a reconstructed process graphic. Early studies cluster at the lower left; mark-and-word combinations expand through the center; later candidates occupy the right and upper areas.</figcaption>
+                            <figcaption class="case-caption">Identity exploration board</figcaption>
                         </figure>
                         </div>
                         <div class="case-media-grid">
                         <figure>
                             <img alt="Filen mark tested at four decreasing sizes" decoding="async" height="2260" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px" src="/images/optimized/gil-rodrigues-filen-logo-scale-960.webp" srcset="/images/optimized/gil-rodrigues-filen-logo-scale-480.webp 480w, /images/optimized/gil-rodrigues-filen-logo-scale-720.webp 720w, /images/optimized/gil-rodrigues-filen-logo-scale-960.webp 960w, /images/optimized/gil-rodrigues-filen-logo-scale-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-logo-scale-1600.webp 1600w" width="3940"/>
-                            <figcaption class="case-caption">Filen Icon scaling</figcaption>
+                            <figcaption class="case-caption">Brandmark scale tests</figcaption>
                         </figure>
                         <figure>
                             <img alt="Filen app icon using a dimensional rendering of the identity mark" decoding="async" height="2260" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px" src="/images/optimized/gil-rodrigues-filen-app-icon-960.webp" srcset="/images/optimized/gil-rodrigues-filen-app-icon-480.webp 480w, /images/optimized/gil-rodrigues-filen-app-icon-720.webp 720w, /images/optimized/gil-rodrigues-filen-app-icon-960.webp 960w, /images/optimized/gil-rodrigues-filen-app-icon-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-app-icon-1600.webp 1600w" width="3940"/>
-                            <figcaption class="case-caption">App Icon</figcaption>
+                            <figcaption class="case-caption">Filen app icon</figcaption>
                         </figure>
                         </div>
                         <div class="case-media-grid">
                         <figure>
                             <img alt="Campaign graphic reading Zero knowledge. Total control." decoding="async" height="2260" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px" src="/images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-960.webp" srcset="/images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-480.webp 480w, /images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-720.webp 720w, /images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-960.webp 960w, /images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-1600.webp 1600w" width="3940"/>
+                            <figcaption class="case-caption">Zero-knowledge campaign</figcaption>
                         </figure>
                         <figure>
                             <img alt="Campaign graphic reading Storage that earns nothing from knowing you" decoding="async" height="2260" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px" src="/images/optimized/gil-rodrigues-filen-storage-message-960.webp" srcset="/images/optimized/gil-rodrigues-filen-storage-message-480.webp 480w, /images/optimized/gil-rodrigues-filen-storage-message-720.webp 720w, /images/optimized/gil-rodrigues-filen-storage-message-960.webp 960w, /images/optimized/gil-rodrigues-filen-storage-message-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-storage-message-1600.webp 1600w" width="3940"/>
+                            <figcaption class="case-caption">Private storage campaign</figcaption>
                         </figure>
                         </div>
                         <div class="case-media">
                         <figure>
                             <img alt="Filen mark over a streaked monochrome visual texture" decoding="async" height="2260" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-filen-logo-texture-960.webp" srcset="/images/optimized/gil-rodrigues-filen-logo-texture-480.webp 480w, /images/optimized/gil-rodrigues-filen-logo-texture-720.webp 720w, /images/optimized/gil-rodrigues-filen-logo-texture-960.webp 960w, /images/optimized/gil-rodrigues-filen-logo-texture-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-logo-texture-1600.webp 1600w" width="3940"/>
-                            <figcaption class="case-caption">Mark remains the centerpiece</figcaption>
+                            <figcaption class="case-caption">Brandmark texture study</figcaption>
                         </figure>
                         </div>
                         </section>

@@ -6,14 +6,14 @@
 
 ## MORE SOON
 
-![The final lockup. The mark carries the recognition; the restrained wordmark keeps the system usable across product and communication surfaces.](media:filen-wordmark)
+![Final Filen lockup](media:filen-wordmark)
 
-![The working board, not a reconstructed process graphic. Early studies cluster at the lower left; mark-and-word combinations expand through the center; later candidates occupy the right and upper areas.](media:filen-exploration-board)
+![Identity exploration board](media:filen-exploration-board)
 
-![Filen Icon scaling](media:filen-logo-scale)
-![App Icon](media:filen-app-icon)
+![Brandmark scale tests](media:filen-logo-scale)
+![Filen app icon](media:filen-app-icon)
 
-![](media:filen-zero-knowledge-campaign)
-![](media:filen-storage-message)
+![Zero-knowledge campaign](media:filen-zero-knowledge-campaign)
+![Private storage campaign](media:filen-storage-message)
 
-![Mark remains the centerpiece](media:filen-logo-texture)
+![Brandmark texture study](media:filen-logo-texture)

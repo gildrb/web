@@ -133,6 +133,15 @@ for (const { slug, markdown, template } of caseSources) {
             !template.includes('class="case-copy"'),
         `src/${slug}.template.html must keep authored prose in content/${slug}.md.`,
     );
+    const mediaCaptions = [
+        ...markdown.matchAll(/^!\[(.*)\]\(media:[a-z0-9-]+\)$/gm),
+    ].map(([, caption]) => caption.trim());
+    assert(
+        mediaCaptions.every(
+            (caption) => caption && caption.split(/\s+/).length <= 5,
+        ),
+        `content/${slug}.md media captions must contain one to five words.`,
+    );
 }
 
 assert(
