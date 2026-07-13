@@ -82,6 +82,8 @@
     --text-primary: #ffffff;
     --text-secondary: #b3b3b3;
     --text-tertiary: #767676;
+    --highlight-bg: #b3b3b3;
+    --highlight-text: #ffffff;
     --section-gap: 24px;
     --section-content-gap: 6px;
     --text-media-gap: 32px;
@@ -134,8 +136,8 @@
 }
 
 ::selection {
-    color: var(--text-primary);
-    background: var(--text-tertiary);
+    color: var(--highlight-text);
+    background: var(--highlight-bg);
 }
 
 .name {
@@ -556,10 +558,29 @@ body {
     text-decoration: none;
 }
 
-.portfolio-card img {
+.portfolio-card-image {
+    position: relative;
+    display: block;
+    overflow: hidden;
     border: 1px solid
         color-mix(in srgb, var(--text-primary) 14%, transparent);
     border-radius: var(--media-radius);
+}
+
+.portfolio-card-image::after {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.portfolio-card-image::after {
+    background: var(--highlight-bg);
+    content: "";
+}
+
+.portfolio-card-image img {
+    border-radius: calc(var(--media-radius) - 1px);
 }
 
 .portfolio-card-meta {
@@ -594,6 +615,8 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 16px;
     line-height: 24px;
+    min-width: 64px;
+    text-align: right;
 }
 
 .portfolio-card-link {
@@ -603,6 +626,10 @@ body {
 }
 
 @media (hover: hover) {
+    .portfolio-card:hover .portfolio-card-image::after {
+        opacity: 0.55;
+    }
+
     .portfolio-card:hover .portfolio-card-title,
     .portfolio-card-link:hover .portfolio-card-title {
         color: var(--text-primary);
@@ -612,6 +639,28 @@ body {
     .portfolio-card-link:hover::after {
         color: var(--text-primary);
     }
+
+    .portfolio-card:hover .portfolio-card-meta::after {
+        content: "Read →";
+    }
+
+    .portfolio-card-link:hover::after {
+        content: "Read →";
+    }
+}
+
+.portfolio-card:focus-visible .portfolio-card-image::after {
+    opacity: 0.55;
+}
+
+.portfolio-card:focus-visible .portfolio-card-meta::after {
+    color: var(--text-primary);
+    content: "Read →";
+}
+
+.portfolio-card-link:focus-visible::after {
+    color: var(--text-primary);
+    content: "Read →";
 }
 
 .portfolio-card-link:focus-visible {
@@ -620,15 +669,21 @@ body {
 }
 
 .heph-demo {
-    --heph-demo-terminal-bg: #0a0a0a;
-    --heph-demo-row-bg: #0f0f0f;
-    --heph-demo-row-focus-bg: #131313;
-    --heph-demo-mobile-bg: #171717;
+    --heph-demo-terminal-bg: color-mix(
+        in srgb,
+        var(--bg) 96%,
+        var(--text-primary)
+    );
+    --heph-demo-row-bg: color-mix(
+        in srgb,
+        var(--bg) 94%,
+        var(--text-primary)
+    );
     width: 100%;
     max-width: 100%;
     min-width: 0;
     margin-bottom: 32px;
-    overflow: hidden;
+    overflow: visible;
     container-type: inline-size;
 }
 
@@ -639,7 +694,6 @@ body {
 
 .heph-demo-shell {
     --heph-terminal-font-size: 14px;
-    --heph-terminal-muted: #7c7c7c;
     width: 100%;
     max-width: 100%;
     min-width: 0;
@@ -652,7 +706,7 @@ body {
     border-radius: 13px;
     background: var(--heph-demo-terminal-bg);
     background-clip: padding-box;
-    color: #cfcfcf;
+    color: var(--text-secondary);
     font-family:
         "Geist Mono",
         "SFMono-Regular",
@@ -675,7 +729,7 @@ body {
     align-items: center;
     padding: 0 10px;
     background: var(--heph-demo-terminal-bg);
-    color: #777777;
+    color: var(--text-tertiary);
     line-height: 1;
     user-select: none;
 }
@@ -694,7 +748,7 @@ body {
     box-sizing: border-box;
     border: 0;
     border-radius: 50%;
-    background: #5f5f5f;
+    background: transparent;
     isolation: isolate;
 }
 
@@ -744,17 +798,17 @@ body {
     gap: 2ch;
     padding: 0 0 1lh;
     white-space: nowrap;
-    color: var(--heph-terminal-muted);
+    color: var(--text-tertiary);
     overflow: hidden;
 }
 
 .heph-demo-status strong {
-    color: #ffffff;
+    color: var(--text-primary);
     font-weight: 600;
 }
 
 .heph-demo-status b {
-    color: #8f8f8f;
+    color: var(--text-secondary);
     font-weight: 400;
 }
 
@@ -795,7 +849,7 @@ body {
 .heph-demo-prompt {
     margin-bottom: 1lh;
     padding: 0 2ch;
-    color: #ffffff;
+    color: var(--text-primary);
     font-weight: 600;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -824,14 +878,14 @@ body {
     margin-bottom: 1lh;
     padding-left: 2ch;
     padding-right: 2ch;
-    color: #cfcfcf;
+    color: var(--text-primary);
     overflow-wrap: break-word;
 }
 
 .heph-demo-line.muted {
     margin-bottom: 0;
     padding-left: 4ch;
-    color: var(--heph-terminal-muted);
+    color: var(--text-tertiary);
 }
 
 .heph-demo-line.materials-summary {
@@ -841,7 +895,7 @@ body {
 .heph-demo-line.sources {
     margin-bottom: 0;
     padding-left: 2ch;
-    color: var(--heph-terminal-muted);
+    color: var(--text-tertiary);
     font-style: italic;
 }
 
@@ -850,7 +904,7 @@ body {
     padding: 0;
     border: 0;
     background: none;
-    color: #8f8f8f;
+    color: var(--text-secondary);
     font: inherit;
     appearance: none;
     cursor: pointer;
@@ -859,7 +913,7 @@ body {
 .heph-demo-response {
     margin-top: 1lh;
     padding-left: 2ch;
-    color: #cfcfcf;
+    color: var(--text-primary);
 }
 
 .heph-demo-evidence {
@@ -873,7 +927,7 @@ body {
     grid-row: 1 / 3;
     padding-right: 2ch;
     overflow: hidden;
-    color: var(--heph-terminal-muted);
+    color: var(--text-tertiary);
 }
 
 .heph-demo-scope-heading,
@@ -883,14 +937,21 @@ body {
     text-overflow: ellipsis;
 }
 
+.heph-demo-evidence-open b,
+.heph-demo-scope-heading b,
+.heph-demo-evidence-meta b {
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
 .heph-demo-scope-heading {
     grid-row: 3;
-    color: #8f8f8f;
+    color: var(--text-tertiary);
 }
 
 .heph-demo-evidence-meta {
     grid-row: 5;
-    color: #8f8f8f;
+    color: var(--text-tertiary);
 }
 
 .heph-demo-evidence-list {
@@ -909,7 +970,7 @@ body {
     padding: 0;
     border: 0;
     background: none;
-    color: var(--heph-terminal-muted);
+    color: var(--text-secondary);
     font: inherit;
     text-align: left;
     white-space: nowrap;
@@ -922,12 +983,12 @@ body {
 @media (hover: hover) {
     .heph-demo-evidence-item:hover,
     .heph-demo-citation-button:hover {
-        color: #cfcfcf;
+        color: var(--text-secondary);
     }
 }
 
 .heph-demo-evidence-item.is-active {
-    color: #cfcfcf;
+    color: var(--text-secondary);
 }
 
 .heph-demo-evidence-item:focus:not(:focus-visible),
@@ -939,7 +1000,7 @@ body {
 
 .heph-demo-evidence-item:focus-visible,
 .heph-demo-citation-button:focus-visible {
-    outline: 1px solid #8f8f8f;
+    outline: 1px solid var(--text-secondary);
     outline-offset: 3px;
 }
 
@@ -948,14 +1009,14 @@ body {
 }
 
 .heph-demo-submit:focus-visible {
-    outline: 1px solid #8f8f8f;
+    outline: 1px solid var(--text-secondary);
     outline-offset: -1px;
 }
 
 .heph-demo-evidence-open {
     grid-row: 1;
     height: 1lh;
-    color: #8f8f8f;
+    color: var(--text-tertiary);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -971,7 +1032,7 @@ body {
 }
 
 .heph-demo-composer:focus-within {
-    background: var(--heph-demo-row-focus-bg);
+    background: var(--heph-demo-row-bg);
 }
 
 .heph-demo-composer-label {
@@ -982,7 +1043,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 0;
-    color: #cfcfcf;
+    color: var(--text-secondary);
 }
 
 .heph-demo-composer-arrow {
@@ -1010,7 +1071,7 @@ body {
     top: 50%;
     left: 1ch;
     opacity: 0;
-    background: #cfcfcf;
+    background: var(--text-secondary);
     pointer-events: none;
     transform: translateY(-50%);
 }
@@ -1024,7 +1085,7 @@ body {
     display: none;
     z-index: 1;
     background: inherit;
-    color: var(--heph-terminal-muted);
+    color: var(--text-tertiary);
     line-height: inherit;
     pointer-events: none;
     transform: translateY(-50%);
@@ -1063,8 +1124,8 @@ body {
     box-sizing: border-box;
     border: 0;
     background: transparent;
-    color: #cfcfcf;
-    caret-color: #cfcfcf;
+    color: var(--text-primary);
+    caret-color: var(--text-primary);
     font: inherit;
     line-height: inherit;
     padding: 0 5ch 0 1ch;
@@ -1088,7 +1149,7 @@ body {
     padding: 0 2ch 0 1ch;
     border: 0;
     background: transparent;
-    color: #8f8f8f;
+    color: var(--text-tertiary);
     font: inherit;
     line-height: inherit;
     cursor: pointer;
@@ -1113,12 +1174,12 @@ body {
 
 @media (hover: hover) {
     .heph-demo-submit:not(:disabled):hover {
-        color: #cfcfcf;
+        color: var(--text-secondary);
     }
 }
 
 .heph-demo-input::placeholder {
-    color: var(--heph-terminal-muted);
+    color: var(--text-tertiary);
     opacity: 1;
 }
 
@@ -1130,13 +1191,13 @@ body {
     grid-row: 4;
     align-items: center;
     padding-right: 2ch;
-    color: #8f8f8f;
+    color: var(--text-tertiary);
     white-space: nowrap;
     overflow: hidden;
 }
 
 .heph-demo-command-row b {
-    color: var(--heph-terminal-muted);
+    color: var(--text-secondary);
     font-weight: 400;
 }
 
@@ -1254,7 +1315,7 @@ body {
     .heph-demo-frame {
         padding: 34px 14px;
         border-radius: 24px;
-        background: var(--heph-demo-mobile-bg);
+        background: var(--heph-demo-terminal-bg);
     }
 }
 
@@ -1330,12 +1391,6 @@ body {
 
 .case-study-entry {
     cursor: pointer !important;
-}
-
-@media (hover: hover) {
-    .case-study-entry:hover img {
-        opacity: 0.84;
-    }
 }
 
 .case-study-entry:focus-visible {
@@ -1791,229 +1846,121 @@ body {
 
                 <main class="content case-article">
             <article>
-                <header class="case-intro">
-                    <h1 class="case-title">Making privacy visible without reducing it to a padlock.</h1>
-                    <p class="case-deck">
-                        I developed Filen’s identity from a wide field of sketches into a compact mark, wordmark, app icon, and campaign language for zero-knowledge encrypted cloud storage.
-                    </p>
-                    <dl class="case-meta">
-                        <div>
-                            <dt>Contribution</dt>
-                            <dd>Identity design and visual system</dd>
-                        </div>
-                        <div>
-                            <dt>Scope</dt>
-                            <dd>Exploration, mark, wordmark, icon, campaign</dd>
-                        </div>
-                        <div>
-                            <dt>Context</dt>
-                            <dd>Zero-knowledge encrypted cloud storage</dd>
-                        </div>
-                    </dl>
-                </header>
-
-                <div class="case-media">
-                    <figure>
-                        <img
-                            src="/images/optimized/gil-rodrigues-filen-wordmark-960.webp"
-                            srcset="
-                                /images/optimized/gil-rodrigues-filen-wordmark-480.webp   480w,
-                                /images/optimized/gil-rodrigues-filen-wordmark-720.webp   720w,
-                                /images/optimized/gil-rodrigues-filen-wordmark-960.webp   960w,
-                                /images/optimized/gil-rodrigues-filen-wordmark-1280.webp 1280w,
-                                /images/optimized/gil-rodrigues-filen-wordmark-1600.webp 1600w
-                            "
-                            sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px"
-                            width="3940"
-                            height="2260"
-                            alt="Final Filen mark and wordmark in white on black"
-                            fetchpriority="high"
-                            decoding="async"
-                        />
-                        <figcaption class="case-caption">
-                            The final lockup. The mark carries the recognition; the restrained wordmark keeps the system usable across product and communication surfaces.
-                        </figcaption>
-                    </figure>
-                </div>
-
-                <section class="case-section">
-                    <div class="case-copy">
-                        <h2>The problem was larger than a logo</h2>
-                        <p>
-                            Filen is built around zero-knowledge, client-side encrypted storage. That creates a visual problem: security has to feel fundamental, but an identity made from the usual shields, locks, and circuit lines can quickly become interchangeable with every other security product.
-                        </p>
-                        <p>
-                            I treated the logo as the smallest part of a larger system. The mark needed to remain identifiable as an application icon, hold together beside a wordmark, survive at small sizes, and provide enough visual material for campaigns and product communication.
-                        </p>
-                    </div>
-                </section>
-
-                <section class="case-section">
-                    <div class="case-copy">
-                        <h2>Start broad enough to learn something</h2>
-                        <p>
-                            The first exploration was deliberately expansive. I drew literal folders, constructed letterforms, layered security metaphors, shields, containers, and folded planes. Several directions were clean enough to become logos. That was not the same as being right for Filen.
-                        </p>
-                        <p>
-                            Keeping the attempts on one board made comparison more useful than polishing them in isolation. Repeated forms became visible. So did the dead ends: marks that depended on interior detail, symbols that read primarily as shields, and letter constructions that lost their character when reduced.
-                        </p>
-                    </div>
-                    <div class="case-media">
+                        <header class="case-intro">
+                            <h1 class="case-title">Making privacy and obscurity visible through design</h1>
+                            <p class="case-deck">Filen is a zero-knowledge cloud storage product I use daily, which is why I ended up turning my idea into a design. Genuinely love the team and product and hopeful, that my design will be used officially by the team in the future.</p>
+                            <dl class="case-meta">
+                                <div><dt>Contribution</dt><dd>Everything</dd></div>
+                                <div><dt>Scope</dt><dd>Brandmark, Wordmark, Lockup, Typography, Icons, Brand colors, Copy</dd></div>
+                                <div><dt>Context</dt><dd>Zero-knowledge encrypted cloud storage</dd></div>
+                            </dl>
+                        </header>
+                        <div class="case-media">
                         <figure>
-                            <img
-                                src="/images/optimized/gil-rodrigues-filen-exploration-board-960.webp"
-                                srcset="
-                                    /images/optimized/gil-rodrigues-filen-exploration-board-480.webp   480w,
-                                    /images/optimized/gil-rodrigues-filen-exploration-board-720.webp   720w,
-                                    /images/optimized/gil-rodrigues-filen-exploration-board-960.webp   960w,
-                                    /images/optimized/gil-rodrigues-filen-exploration-board-1280.webp 1280w
-                                "
-                                sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px"
-                                width="1280"
-                                height="956"
-                                alt="Filen exploration board containing sketches, rejected symbols, wordmarks, and refined identity directions"
-                                loading="lazy"
-                                decoding="async"
-                            />
-                            <figcaption class="case-caption">
-                                The working board, not a reconstructed process graphic. Early studies cluster at the lower left; mark-and-word combinations expand through the center; later candidates occupy the right and upper areas.
-                            </figcaption>
+                            <img alt="Final Filen mark and wordmark in white on black" decoding="async" fetchpriority="high" height="2260" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-filen-wordmark-960.webp" srcset="
+                                                        /images/optimized/gil-rodrigues-filen-wordmark-480.webp   480w,
+                                                        /images/optimized/gil-rodrigues-filen-wordmark-720.webp   720w,
+                                                        /images/optimized/gil-rodrigues-filen-wordmark-960.webp   960w,
+                                                        /images/optimized/gil-rodrigues-filen-wordmark-1280.webp 1280w,
+                                                        /images/optimized/gil-rodrigues-filen-wordmark-1600.webp 1600w
+                                                    " width="3940"/>
+                            <figcaption class="case-caption">The final lockup. The mark carries the recognition; the restrained wordmark keeps the system usable across product and communication surfaces.</figcaption>
                         </figure>
-                    </div>
-                </section>
-
-                <section class="case-section">
-                    <div class="case-copy">
-                        <h2>Converging on one useful structure</h2>
-                        <p>
-                            The selected mark combines an open container with a folded, crossing top plane. It can suggest a file, a protected space, or an abstract <strong>F</strong> without requiring any one reading to work. That ambiguity is useful: the symbol belongs to the product without becoming an illustration of encryption.
-                        </p>
-                        <p>
-                            The geometry is deliberately sparse. Large filled areas preserve the silhouette when the mark is small, while the split top creates the distinctive moment. The same construction can be flat for interfaces or given depth when an application needs a more tactile expression.
-                        </p>
-                    </div>
-                    <div class="case-media-grid">
+                        </div>
+                        <section class="case-section">
+                            <div class="case-copy">
+                                <h2>The problem was larger than a logo</h2>
+                                <p>Filen is built around zero-knowledge, client-side encrypted storage. That creates a visual problem: security has to feel fundamental, but an identity made from the usual shields, locks, and circuit lines can quickly become interchangeable with every other security product.</p>
+                                <p>I treated the logo as the smallest part of a larger system. The mark needed to remain identifiable as an application icon, hold together beside a wordmark, survive at small sizes, and provide enough visual material for campaigns and product communication.</p>
+                            </div>
+                        </section>
+                        <section class="case-section">
+                            <div class="case-copy">
+                                <h2>Start broad enough to learn something</h2>
+                                <p>The first exploration was deliberately expansive. I drew literal folders, constructed letterforms, layered security metaphors, shields, containers, and folded planes. Several directions were clean enough to become logos. That was not the same as being right for Filen.</p>
+                                <p>Keeping the attempts on one board made comparison more useful than polishing them in isolation. Repeated forms became visible. So did the dead ends: marks that depended on interior detail, symbols that read primarily as shields, and letter constructions that lost their character when reduced.</p>
+                            </div>
+                        <div class="case-media">
                         <figure>
-                            <img
-                                src="/images/optimized/gil-rodrigues-filen-logo-scale-960.webp"
-                                srcset="/images/optimized/gil-rodrigues-filen-logo-scale-480.webp 480w, /images/optimized/gil-rodrigues-filen-logo-scale-720.webp 720w, /images/optimized/gil-rodrigues-filen-logo-scale-960.webp 960w, /images/optimized/gil-rodrigues-filen-logo-scale-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-logo-scale-1600.webp 1600w"
-                                sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px"
-                                width="3940"
-                                height="2260"
-                                alt="Filen mark tested at four decreasing sizes"
-                                loading="lazy"
-                                decoding="async"
-                            />
+                            <img alt="Filen exploration board containing sketches, rejected symbols, wordmarks, and refined identity directions" decoding="async" height="956" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-filen-exploration-board-960.webp" srcset="
+                                                            /images/optimized/gil-rodrigues-filen-exploration-board-480.webp   480w,
+                                                            /images/optimized/gil-rodrigues-filen-exploration-board-720.webp   720w,
+                                                            /images/optimized/gil-rodrigues-filen-exploration-board-960.webp   960w,
+                                                            /images/optimized/gil-rodrigues-filen-exploration-board-1280.webp 1280w
+                                                        " width="1280"/>
+                            <figcaption class="case-caption">The working board, not a reconstructed process graphic. Early studies cluster at the lower left; mark-and-word combinations expand through the center; later candidates occupy the right and upper areas.</figcaption>
+                        </figure>
+                        </div>
+                        </section>
+                        <section class="case-section">
+                            <div class="case-copy">
+                                <h2>Converging on one useful structure</h2>
+                                <p>The selected mark combines an open container with a folded, crossing top plane. It can suggest a file, a protected space, or an abstract <strong>F</strong> without requiring any one reading to work. That ambiguity is useful: the symbol belongs to the product without becoming an illustration of encryption.</p>
+                                <p>The geometry is deliberately sparse. Large filled areas preserve the silhouette when the mark is small, while the split top creates the distinctive moment. The same construction can be flat for interfaces or given depth when an application needs a more tactile expression.</p>
+                            </div>
+                        <div class="case-media-grid">
+                        <figure>
+                            <img alt="Filen mark tested at four decreasing sizes" decoding="async" height="2260" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px" src="/images/optimized/gil-rodrigues-filen-logo-scale-960.webp" srcset="/images/optimized/gil-rodrigues-filen-logo-scale-480.webp 480w, /images/optimized/gil-rodrigues-filen-logo-scale-720.webp 720w, /images/optimized/gil-rodrigues-filen-logo-scale-960.webp 960w, /images/optimized/gil-rodrigues-filen-logo-scale-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-logo-scale-1600.webp 1600w" width="3940"/>
                             <figcaption class="case-caption">Scale is a system requirement, not a presentation afterthought.</figcaption>
                         </figure>
                         <figure>
-                            <img
-                                src="/images/optimized/gil-rodrigues-filen-app-icon-960.webp"
-                                srcset="/images/optimized/gil-rodrigues-filen-app-icon-480.webp 480w, /images/optimized/gil-rodrigues-filen-app-icon-720.webp 720w, /images/optimized/gil-rodrigues-filen-app-icon-960.webp 960w, /images/optimized/gil-rodrigues-filen-app-icon-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-app-icon-1600.webp 1600w"
-                                sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px"
-                                width="3940"
-                                height="2260"
-                                alt="Filen app icon using a dimensional rendering of the identity mark"
-                                loading="lazy"
-                                decoding="async"
-                            />
+                            <img alt="Filen app icon using a dimensional rendering of the identity mark" decoding="async" height="2260" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px" src="/images/optimized/gil-rodrigues-filen-app-icon-960.webp" srcset="/images/optimized/gil-rodrigues-filen-app-icon-480.webp 480w, /images/optimized/gil-rodrigues-filen-app-icon-720.webp 720w, /images/optimized/gil-rodrigues-filen-app-icon-960.webp 960w, /images/optimized/gil-rodrigues-filen-app-icon-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-app-icon-1600.webp 1600w" width="3940"/>
                             <figcaption class="case-caption">The app icon adds depth while preserving the same underlying silhouette.</figcaption>
                         </figure>
-                    </div>
-                </section>
-
-                <section class="case-section">
-                    <div class="case-copy">
-                        <h2>Translate architecture into language</h2>
-                        <p>
-                            Encryption is a technical mechanism; people experience its consequences as privacy and control. The campaign layer moves between those two levels. “Zero knowledge. Total control.” names the architecture and the user benefit in one line. “Storage that earns nothing from knowing you” turns the business model into a concrete position.
-                        </p>
-                        <p>
-                            The visual language stays monochrome so that scale, contrast, rhythm, and the mark’s geometry do the work. Repeated vertical forms and controlled light give the flat identity a spatial vocabulary without introducing a separate decorative system.
-                        </p>
-                    </div>
-                    <div class="case-media-grid">
+                        </div>
+                        </section>
+                        <section class="case-section">
+                            <div class="case-copy">
+                                <h2>Translate architecture into language</h2>
+                                <p>Encryption is a technical mechanism; people experience its consequences as privacy and control. The campaign layer moves between those two levels. “Zero knowledge. Total control.” names the architecture and the user benefit in one line. “Storage that earns nothing from knowing you” turns the business model into a concrete position.</p>
+                                <p>The visual language stays monochrome so that scale, contrast, rhythm, and the mark’s geometry do the work. Repeated vertical forms and controlled light give the flat identity a spatial vocabulary without introducing a separate decorative system.</p>
+                            </div>
+                        <div class="case-media-grid">
                         <figure>
-                            <img
-                                src="/images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-960.webp"
-                                srcset="/images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-480.webp 480w, /images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-720.webp 720w, /images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-960.webp 960w, /images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-1600.webp 1600w"
-                                sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px"
-                                width="3940"
-                                height="2260"
-                                alt="Campaign graphic reading Zero knowledge. Total control."
-                                loading="lazy"
-                                decoding="async"
-                            />
+                            <img alt="Campaign graphic reading Zero knowledge. Total control." decoding="async" height="2260" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px" src="/images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-960.webp" srcset="/images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-480.webp 480w, /images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-720.webp 720w, /images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-960.webp 960w, /images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-zero-knowledge-campaign-1600.webp 1600w" width="3940"/>
                         </figure>
                         <figure>
-                            <img
-                                src="/images/optimized/gil-rodrigues-filen-storage-message-960.webp"
-                                srcset="/images/optimized/gil-rodrigues-filen-storage-message-480.webp 480w, /images/optimized/gil-rodrigues-filen-storage-message-720.webp 720w, /images/optimized/gil-rodrigues-filen-storage-message-960.webp 960w, /images/optimized/gil-rodrigues-filen-storage-message-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-storage-message-1600.webp 1600w"
-                                sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px"
-                                width="3940"
-                                height="2260"
-                                alt="Campaign graphic reading Storage that earns nothing from knowing you"
-                                loading="lazy"
-                                decoding="async"
-                            />
+                            <img alt="Campaign graphic reading Storage that earns nothing from knowing you" decoding="async" height="2260" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px" src="/images/optimized/gil-rodrigues-filen-storage-message-960.webp" srcset="/images/optimized/gil-rodrigues-filen-storage-message-480.webp 480w, /images/optimized/gil-rodrigues-filen-storage-message-720.webp 720w, /images/optimized/gil-rodrigues-filen-storage-message-960.webp 960w, /images/optimized/gil-rodrigues-filen-storage-message-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-storage-message-1600.webp 1600w" width="3940"/>
                         </figure>
-                    </div>
-                    <div class="case-media">
+                        </div>
+                        <div class="case-media">
                         <figure>
-                            <img
-                                src="/images/optimized/gil-rodrigues-filen-logo-texture-960.webp"
-                                srcset="/images/optimized/gil-rodrigues-filen-logo-texture-480.webp 480w, /images/optimized/gil-rodrigues-filen-logo-texture-720.webp 720w, /images/optimized/gil-rodrigues-filen-logo-texture-960.webp 960w, /images/optimized/gil-rodrigues-filen-logo-texture-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-logo-texture-1600.webp 1600w"
-                                sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px"
-                                width="3940"
-                                height="2260"
-                                alt="Filen mark over a streaked monochrome visual texture"
-                                loading="lazy"
-                                decoding="async"
-                            />
+                            <img alt="Filen mark over a streaked monochrome visual texture" decoding="async" height="2260" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-filen-logo-texture-960.webp" srcset="/images/optimized/gil-rodrigues-filen-logo-texture-480.webp 480w, /images/optimized/gil-rodrigues-filen-logo-texture-720.webp 720w, /images/optimized/gil-rodrigues-filen-logo-texture-960.webp 960w, /images/optimized/gil-rodrigues-filen-logo-texture-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-logo-texture-1600.webp 1600w" width="3940"/>
                             <figcaption class="case-caption">The mark remains the anchor even when the system becomes more atmospheric.</figcaption>
                         </figure>
-                    </div>
-                </section>
-
-                <section class="case-section">
-                    <div class="case-copy">
-                        <h2>Implementation continues the design work</h2>
-                        <p>
-                            A case study about a scalable identity should also be delivered as a scalable interface. This page is static HTML and CSS, with responsive sources selected by the browser. The original exploration board is never enlarged beyond its 1280-pixel source, and smaller devices avoid downloading the largest file.
-                        </p>
-                    </div>
-                    <div class="case-code">
+                        </div>
+                        </section>
+                        <section class="case-section">
+                            <div class="case-copy">
+                                <h2>Implementation continues the design work</h2>
+                                <p>A case study about a scalable identity should also be delivered as a scalable interface. This page is static HTML and CSS, with responsive sources selected by the browser. The original exploration board is never enlarged beyond its 1280-pixel source, and smaller devices avoid downloading the largest file.</p>
+                            </div>
+                        <div class="case-code">
                         <p class="case-code-label">The responsive exploration image used on this page</p>
                         <pre><code>&lt;img
-  src="/images/optimized/gil-rodrigues-filen-exploration-board-960.webp"
-  srcset="
-    /images/optimized/gil-rodrigues-filen-exploration-board-480.webp 480w,
-    /images/optimized/gil-rodrigues-filen-exploration-board-720.webp 720w,
-    /images/optimized/gil-rodrigues-filen-exploration-board-960.webp 960w,
-    /images/optimized/gil-rodrigues-filen-exploration-board-1280.webp 1280w
-  "
-  sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px"
-  width="1280"
-  height="956"
-  loading="lazy"
-  decoding="async"
-/&gt;</code></pre>
-                    </div>
-                </section>
-
-                <section class="case-section">
-                    <div class="case-copy">
-                        <h2>What the process changed</h2>
-                        <p>
-                            The strongest decision was not a single drawing. It was keeping enough alternatives visible to understand what the identity needed to stop doing. The final mark emerged after the literal security symbols, complex constructions, and fragile details had been tested against the broader system.
-                        </p>
-                        <p>
-                            Looking back, the next useful extension is not another mockup. It is documentation: spacing, minimum sizes, icon construction, motion behavior, and product tokens that let other people apply the identity without reinterpreting it each time. That is how an identity becomes maintainable rather than merely finished.
-                        </p>
-                    </div>
-                </section>
-
-            </article>
+                          src=&quot;/images/optimized/gil-rodrigues-filen-exploration-board-960.webp&quot;
+                          srcset=&quot;
+                            /images/optimized/gil-rodrigues-filen-exploration-board-480.webp 480w,
+                            /images/optimized/gil-rodrigues-filen-exploration-board-720.webp 720w,
+                            /images/optimized/gil-rodrigues-filen-exploration-board-960.webp 960w,
+                            /images/optimized/gil-rodrigues-filen-exploration-board-1280.webp 1280w
+                          &quot;
+                          sizes=&quot;(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px&quot;
+                          width=&quot;1280&quot;
+                          height=&quot;956&quot;
+                          loading=&quot;lazy&quot;
+                          decoding=&quot;async&quot;
+                        /&gt;</code></pre>
+                        </div>
+                        </section>
+                        <section class="case-section">
+                            <div class="case-copy">
+                                <h2>What the process changed</h2>
+                                <p>The strongest decision was not a single drawing. It was keeping enough alternatives visible to understand what the identity needed to stop doing. The final mark emerged after the literal security symbols, complex constructions, and fragile details had been tested against the broader system.</p>
+                                <p>Looking back, the next useful extension is not another mockup. It is documentation: spacing, minimum sizes, icon construction, motion behavior, and product tokens that let other people apply the identity without reinterpreting it each time. That is how an identity becomes maintainable rather than merely finished.</p>
+                            </div>
+                        </section>
+                    </article>
                 </main>
                 <div class="case-mobile-links">
                     <nav

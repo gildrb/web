@@ -2,12 +2,6 @@
     cursor: pointer !important;
 }
 
-@media (hover: hover) {
-    .case-study-entry:hover img {
-        opacity: 0.84;
-    }
-}
-
 .case-study-entry:focus-visible {
     outline: 1px solid var(--text-primary);
     outline-offset: 4px;

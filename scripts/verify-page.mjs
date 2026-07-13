@@ -107,10 +107,33 @@ const caseStyles = await readText("src/styles/50-case-study.css");
 const responsiveStyles = await readText("src/styles/90-responsive.css");
 const baseStyles = await readText("src/styles/10-base.css");
 const portfolioStyles = await readText("src/styles/20-portfolio-media.css");
+const hephDemoStyles = await readText("src/styles/30-heph-demo.css");
 const previewContentStyles = await readText("src/styles/40-preview-content.css");
 const portfolioOpen = await readText("src/sections/portfolio-open.html");
 const previewFavicon = await readText("preview-favicon.svg");
 const vercelConfig = JSON.parse(await readText("vercel.json"));
+const caseSlugs = ["filen", "heph", "ml7", "n0thing"];
+const caseSources = await Promise.all(
+    caseSlugs.map(async (slug) => ({
+        slug,
+        markdown: await readText(`content/${slug}.md`),
+        template: await readText(`src/${slug}.template.html`),
+    })),
+);
+
+for (const { slug, markdown, template } of caseSources) {
+    assert(
+        markdown.startsWith("# ") &&
+            (markdown.match(/^- \*\*[^*]+:\*\* .+$/gm) || []).length === 3,
+        `content/${slug}.md must begin with a title, deck, and three metadata rows.`,
+    );
+    assert(
+        template.includes(`<!-- @case-markdown:${slug} -->`) &&
+            !template.includes('class="case-title"') &&
+            !template.includes('class="case-copy"'),
+        `src/${slug}.template.html must keep authored prose in content/${slug}.md.`,
+    );
+}
 
 assert(
     currentIndex === indexHtml,
@@ -165,6 +188,44 @@ const missingAssets = [...assetRefs].filter(
 assert(
     missingAssets.length === 0,
     `Missing referenced assets:\n${missingAssets.join("\n")}`,
+);
+
+assert(
+    portfolioStyles.includes(".portfolio-card-image::after") &&
+        baseStyles.includes("--highlight-bg: #b3b3b3;") &&
+        baseStyles.includes("--highlight-text: #ffffff;") &&
+        baseStyles.includes("color: var(--highlight-text);") &&
+        baseStyles.includes("background: var(--highlight-bg);") &&
+        portfolioStyles.includes("background: var(--highlight-bg);") &&
+        portfolioStyles.includes(".portfolio-card:hover .portfolio-card-meta::after") &&
+        portfolioStyles.includes('content: "Read →";') &&
+        portfolioStyles.includes(".portfolio-card-link:hover::after") &&
+        !portfolioStyles.includes("mix-blend-mode:") &&
+        portfolioStyles.includes(".portfolio-card:hover .portfolio-card-image::after") &&
+        !caseStyles.includes(".case-study-entry:hover img"),
+    "Clickable project media must use the approved bright-gray overlay instead of opacity-only dimming.",
+);
+
+const hephDemoHexColors = new Set(
+    [...hephDemoStyles.matchAll(/#[0-9a-f]{6}/gi)].map(([color]) => color.toLowerCase()),
+);
+assert(
+    hephDemoStyles.includes("--heph-demo-terminal-bg: color-mix(") &&
+        hephDemoStyles.includes("var(--bg) 96%") &&
+        hephDemoStyles.includes("--heph-demo-row-bg: color-mix(") &&
+        hephDemoStyles.includes("var(--bg) 94%") &&
+        hephDemoStyles.includes("color: var(--text-primary);") &&
+        hephDemoStyles.includes("color: var(--text-secondary);") &&
+        hephDemoStyles.includes("color: var(--text-tertiary);") &&
+        [...hephDemoHexColors].every((color) =>
+            ["#f96664", "#face2e", "#3bc55d"].includes(color),
+        ) &&
+        indexHtml.includes("EVIDENCE <b>ctrl+g</b>") &&
+        indexHtml.includes("SCOPE <b>4/4</b>") &&
+        indexHtml.includes("EXCERPTS <b>4</b>") &&
+        siteScript.includes('hephDemoEvidenceOpen.innerHTML = "EVIDENCE <b>ctrl+g</b>"') &&
+        siteScript.includes('hephDemoEvidenceMeta.innerHTML = "EXCERPTS <b>4</b>"'),
+    "Heph must theme its surface and use shared primary, label, and value colors plus the macOS lights.",
 );
 
 const referencedImages = new Set(
@@ -225,9 +286,11 @@ assert(
         ) <
             indexHtml.indexOf('class="heph-demo-shell"') &&
         indexHtml.indexOf('class="portfolio-card-meta portfolio-card-link"') >
-            indexHtml.indexOf('<div class="heph-demo-frame">') &&
+            indexHtml.indexOf(
+                '<div class="heph-demo-frame" aria-hidden="true">',
+            ) &&
         (await readText("src/styles/30-heph-demo.css")).includes(
-            ".heph-demo-frame {\n        padding: 34px 14px;\n        border-radius: 24px;\n        background: var(--heph-demo-mobile-bg);",
+            ".heph-demo-frame {\n        padding: 34px 14px;\n        border-radius: 24px;\n        background: var(--heph-demo-terminal-bg);",
         ),
     "Mobile Heph chrome must wrap only the terminal, leaving its date and title below the panel.",
 );
@@ -463,6 +526,15 @@ assert(
             ".portfolio-card-link {\n    width: 100%;",
         ),
     "Homepage projects must expose their date, linked title, and full-width directional affordance below the media.",
+);
+assert(
+    portfolioStyles.includes(
+        ".portfolio-card-link:focus-visible {\n    outline: 1px solid var(--text-primary);\n    outline-offset: 4px;",
+    ) &&
+        (await readText("src/styles/30-heph-demo.css")).includes(
+            "margin-bottom: 32px;\n    overflow: visible;",
+        ),
+    "Heph metadata focus must use the shared offset ring without an ancestor clipping it.",
 );
 const chronologicalProjectTitles = [
     "portfolio-heph-title",

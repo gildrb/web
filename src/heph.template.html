@@ -45,43 +45,7 @@
                 </aside>
                 <main class="content case-article">
                     <article>
-                        <header class="case-intro">
-                            <h1 class="case-title">Local answers are only useful when their evidence stays visible.</h1>
-                            <p class="case-deck">Heph CLI is a local document agent that indexes files into armories, retrieves relevant passages, and keeps the evidence behind each answer inspectable.</p>
-                            <dl class="case-meta">
-                                <div><dt>Contribution</dt><dd>Product design and engineering</dd></div>
-                                <div><dt>Scope</dt><dd>CLI, retrieval workflow, and evidence interface</dd></div>
-                                <div><dt>Context</dt><dd>Open-source local document tooling</dd></div>
-                            </dl>
-                        </header>
-                        <div class="case-code">
-                            <p class="case-code-label">Install Heph and open a bounded document workspace</p>
-                            <pre><code>uv tool install heph@latest
-heph armory init research
-cp document.pdf ~/.armories/research/materials/
-heph research</code></pre>
-                        </div>
-                        <section class="case-section">
-                            <div class="case-copy">
-                                <h2>Keep each body of knowledge bounded</h2>
-                                <p>Heph organizes work into armories. Each armory owns its materials, index, settings, and memory, so a question begins with an explicit body of source material rather than an unrestricted folder or an opaque remote collection.</p>
-                                <p>Files remain user-owned. Adding material is an ordinary filesystem operation, and indexing is an explicit command. That boundary makes it easier to understand what the agent can retrieve before asking it to explain anything.</p>
-                            </div>
-                        </section>
-                        <section class="case-section">
-                            <div class="case-copy">
-                                <h2>Make retrieval inspectable</h2>
-                                <p>An answer can sound convincing while resting on the wrong passage. Heph therefore keeps citation identifiers attached to answers and exposes the retrieved passages through <code>/evidence</code>.</p>
-                                <p>The interface treats retrieval as part of the result, not hidden implementation detail. When an answer is weak, the next step is concrete: inspect the evidence, check material health, refresh the index, or change the model.</p>
-                            </div>
-                        </section>
-                        <section class="case-section">
-                            <div class="case-copy">
-                                <h2>Read and run the source</h2>
-                                <p>Heph is developed in public. The <a class="external-link" href="https://github.com/gildrb/heph" target="_blank" rel="noopener noreferrer">GitHub repository</a> contains the implementation, installation path, command reference, and current project history.</p>
-                                <p>The homepage demo condenses this workflow into one surface. The repository and the working CLI remain the source of truth for what Heph supports.</p>
-                            </div>
-                        </section>
+<!-- @case-markdown:heph -->
                     </article>
                 </main>
                 <div class="case-mobile-links">

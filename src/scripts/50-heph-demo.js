@@ -14,7 +14,7 @@ function setActiveHephDemoEvidence(item) {
     });
 
     if (hephDemoEvidenceOpen) {
-        hephDemoEvidenceOpen.textContent = "EVIDENCE ctrl+g";
+        hephDemoEvidenceOpen.innerHTML = "EVIDENCE <b>ctrl+g</b>";
     }
 }
 
@@ -148,7 +148,7 @@ function setHephDemoRunning(isRunning) {
     syncHephDemoComposerState();
 
     if (hephDemoEvidenceMeta) {
-        hephDemoEvidenceMeta.textContent = "EXCERPTS 4";
+        hephDemoEvidenceMeta.innerHTML = "EXCERPTS <b>4</b>";
     }
 
     if (hephDemoCommandRow) {

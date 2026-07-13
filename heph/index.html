@@ -33,6 +33,8 @@
     --text-primary: #ffffff;
     --text-secondary: #b3b3b3;
     --text-tertiary: #767676;
+    --highlight-bg: #b3b3b3;
+    --highlight-text: #ffffff;
     --section-gap: 24px;
     --section-content-gap: 6px;
     --text-media-gap: 32px;
@@ -85,8 +87,8 @@
 }
 
 ::selection {
-    color: var(--text-primary);
-    background: var(--text-tertiary);
+    color: var(--highlight-text);
+    background: var(--highlight-bg);
 }
 
 .name {
@@ -507,10 +509,29 @@ body {
     text-decoration: none;
 }
 
-.portfolio-card img {
+.portfolio-card-image {
+    position: relative;
+    display: block;
+    overflow: hidden;
     border: 1px solid
         color-mix(in srgb, var(--text-primary) 14%, transparent);
     border-radius: var(--media-radius);
+}
+
+.portfolio-card-image::after {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.portfolio-card-image::after {
+    background: var(--highlight-bg);
+    content: "";
+}
+
+.portfolio-card-image img {
+    border-radius: calc(var(--media-radius) - 1px);
 }
 
 .portfolio-card-meta {
@@ -545,6 +566,8 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 16px;
     line-height: 24px;
+    min-width: 64px;
+    text-align: right;
 }
 
 .portfolio-card-link {
@@ -554,6 +577,10 @@ body {
 }
 
 @media (hover: hover) {
+    .portfolio-card:hover .portfolio-card-image::after {
+        opacity: 0.55;
+    }
+
     .portfolio-card:hover .portfolio-card-title,
     .portfolio-card-link:hover .portfolio-card-title {
         color: var(--text-primary);
@@ -563,6 +590,28 @@ body {
     .portfolio-card-link:hover::after {
         color: var(--text-primary);
     }
+
+    .portfolio-card:hover .portfolio-card-meta::after {
+        content: "Read →";
+    }
+
+    .portfolio-card-link:hover::after {
+        content: "Read →";
+    }
+}
+
+.portfolio-card:focus-visible .portfolio-card-image::after {
+    opacity: 0.55;
+}
+
+.portfolio-card:focus-visible .portfolio-card-meta::after {
+    color: var(--text-primary);
+    content: "Read →";
+}
+
+.portfolio-card-link:focus-visible::after {
+    color: var(--text-primary);
+    content: "Read →";
 }
 
 .portfolio-card-link:focus-visible {
@@ -571,15 +620,21 @@ body {
 }
 
 .heph-demo {
-    --heph-demo-terminal-bg: #0a0a0a;
-    --heph-demo-row-bg: #0f0f0f;
-    --heph-demo-row-focus-bg: #131313;
-    --heph-demo-mobile-bg: #171717;
+    --heph-demo-terminal-bg: color-mix(
+        in srgb,
+        var(--bg) 96%,
+        var(--text-primary)
+    );
+    --heph-demo-row-bg: color-mix(
+        in srgb,
+        var(--bg) 94%,
+        var(--text-primary)
+    );
     width: 100%;
     max-width: 100%;
     min-width: 0;
     margin-bottom: 32px;
-    overflow: hidden;
+    overflow: visible;
     container-type: inline-size;
 }
 
@@ -590,7 +645,6 @@ body {
 
 .heph-demo-shell {
     --heph-terminal-font-size: 14px;
-    --heph-terminal-muted: #7c7c7c;
     width: 100%;
     max-width: 100%;
     min-width: 0;
@@ -603,7 +657,7 @@ body {
     border-radius: 13px;
     background: var(--heph-demo-terminal-bg);
     background-clip: padding-box;
-    color: #cfcfcf;
+    color: var(--text-secondary);
     font-family:
         "Geist Mono",
         "SFMono-Regular",
@@ -626,7 +680,7 @@ body {
     align-items: center;
     padding: 0 10px;
     background: var(--heph-demo-terminal-bg);
-    color: #777777;
+    color: var(--text-tertiary);
     line-height: 1;
     user-select: none;
 }
@@ -645,7 +699,7 @@ body {
     box-sizing: border-box;
     border: 0;
     border-radius: 50%;
-    background: #5f5f5f;
+    background: transparent;
     isolation: isolate;
 }
 
@@ -695,17 +749,17 @@ body {
     gap: 2ch;
     padding: 0 0 1lh;
     white-space: nowrap;
-    color: var(--heph-terminal-muted);
+    color: var(--text-tertiary);
     overflow: hidden;
 }
 
 .heph-demo-status strong {
-    color: #ffffff;
+    color: var(--text-primary);
     font-weight: 600;
 }
 
 .heph-demo-status b {
-    color: #8f8f8f;
+    color: var(--text-secondary);
     font-weight: 400;
 }
 
@@ -746,7 +800,7 @@ body {
 .heph-demo-prompt {
     margin-bottom: 1lh;
     padding: 0 2ch;
-    color: #ffffff;
+    color: var(--text-primary);
     font-weight: 600;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -775,14 +829,14 @@ body {
     margin-bottom: 1lh;
     padding-left: 2ch;
     padding-right: 2ch;
-    color: #cfcfcf;
+    color: var(--text-primary);
     overflow-wrap: break-word;
 }
 
 .heph-demo-line.muted {
     margin-bottom: 0;
     padding-left: 4ch;
-    color: var(--heph-terminal-muted);
+    color: var(--text-tertiary);
 }
 
 .heph-demo-line.materials-summary {
@@ -792,7 +846,7 @@ body {
 .heph-demo-line.sources {
     margin-bottom: 0;
     padding-left: 2ch;
-    color: var(--heph-terminal-muted);
+    color: var(--text-tertiary);
     font-style: italic;
 }
 
@@ -801,7 +855,7 @@ body {
     padding: 0;
     border: 0;
     background: none;
-    color: #8f8f8f;
+    color: var(--text-secondary);
     font: inherit;
     appearance: none;
     cursor: pointer;
@@ -810,7 +864,7 @@ body {
 .heph-demo-response {
     margin-top: 1lh;
     padding-left: 2ch;
-    color: #cfcfcf;
+    color: var(--text-primary);
 }
 
 .heph-demo-evidence {
@@ -824,7 +878,7 @@ body {
     grid-row: 1 / 3;
     padding-right: 2ch;
     overflow: hidden;
-    color: var(--heph-terminal-muted);
+    color: var(--text-tertiary);
 }
 
 .heph-demo-scope-heading,
@@ -834,14 +888,21 @@ body {
     text-overflow: ellipsis;
 }
 
+.heph-demo-evidence-open b,
+.heph-demo-scope-heading b,
+.heph-demo-evidence-meta b {
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
 .heph-demo-scope-heading {
     grid-row: 3;
-    color: #8f8f8f;
+    color: var(--text-tertiary);
 }
 
 .heph-demo-evidence-meta {
     grid-row: 5;
-    color: #8f8f8f;
+    color: var(--text-tertiary);
 }
 
 .heph-demo-evidence-list {
@@ -860,7 +921,7 @@ body {
     padding: 0;
     border: 0;
     background: none;
-    color: var(--heph-terminal-muted);
+    color: var(--text-secondary);
     font: inherit;
     text-align: left;
     white-space: nowrap;
@@ -873,12 +934,12 @@ body {
 @media (hover: hover) {
     .heph-demo-evidence-item:hover,
     .heph-demo-citation-button:hover {
-        color: #cfcfcf;
+        color: var(--text-secondary);
     }
 }
 
 .heph-demo-evidence-item.is-active {
-    color: #cfcfcf;
+    color: var(--text-secondary);
 }
 
 .heph-demo-evidence-item:focus:not(:focus-visible),
@@ -890,7 +951,7 @@ body {
 
 .heph-demo-evidence-item:focus-visible,
 .heph-demo-citation-button:focus-visible {
-    outline: 1px solid #8f8f8f;
+    outline: 1px solid var(--text-secondary);
     outline-offset: 3px;
 }
 
@@ -899,14 +960,14 @@ body {
 }
 
 .heph-demo-submit:focus-visible {
-    outline: 1px solid #8f8f8f;
+    outline: 1px solid var(--text-secondary);
     outline-offset: -1px;
 }
 
 .heph-demo-evidence-open {
     grid-row: 1;
     height: 1lh;
-    color: #8f8f8f;
+    color: var(--text-tertiary);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -922,7 +983,7 @@ body {
 }
 
 .heph-demo-composer:focus-within {
-    background: var(--heph-demo-row-focus-bg);
+    background: var(--heph-demo-row-bg);
 }
 
 .heph-demo-composer-label {
@@ -933,7 +994,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 0;
-    color: #cfcfcf;
+    color: var(--text-secondary);
 }
 
 .heph-demo-composer-arrow {
@@ -961,7 +1022,7 @@ body {
     top: 50%;
     left: 1ch;
     opacity: 0;
-    background: #cfcfcf;
+    background: var(--text-secondary);
     pointer-events: none;
     transform: translateY(-50%);
 }
@@ -975,7 +1036,7 @@ body {
     display: none;
     z-index: 1;
     background: inherit;
-    color: var(--heph-terminal-muted);
+    color: var(--text-tertiary);
     line-height: inherit;
     pointer-events: none;
     transform: translateY(-50%);
@@ -1014,8 +1075,8 @@ body {
     box-sizing: border-box;
     border: 0;
     background: transparent;
-    color: #cfcfcf;
-    caret-color: #cfcfcf;
+    color: var(--text-primary);
+    caret-color: var(--text-primary);
     font: inherit;
     line-height: inherit;
     padding: 0 5ch 0 1ch;
@@ -1039,7 +1100,7 @@ body {
     padding: 0 2ch 0 1ch;
     border: 0;
     background: transparent;
-    color: #8f8f8f;
+    color: var(--text-tertiary);
     font: inherit;
     line-height: inherit;
     cursor: pointer;
@@ -1064,12 +1125,12 @@ body {
 
 @media (hover: hover) {
     .heph-demo-submit:not(:disabled):hover {
-        color: #cfcfcf;
+        color: var(--text-secondary);
     }
 }
 
 .heph-demo-input::placeholder {
-    color: var(--heph-terminal-muted);
+    color: var(--text-tertiary);
     opacity: 1;
 }
 
@@ -1081,13 +1142,13 @@ body {
     grid-row: 4;
     align-items: center;
     padding-right: 2ch;
-    color: #8f8f8f;
+    color: var(--text-tertiary);
     white-space: nowrap;
     overflow: hidden;
 }
 
 .heph-demo-command-row b {
-    color: var(--heph-terminal-muted);
+    color: var(--text-secondary);
     font-weight: 400;
 }
 
@@ -1205,7 +1266,7 @@ body {
     .heph-demo-frame {
         padding: 34px 14px;
         border-radius: 24px;
-        background: var(--heph-demo-mobile-bg);
+        background: var(--heph-demo-terminal-bg);
     }
 }
 
@@ -1281,12 +1342,6 @@ body {
 
 .case-study-entry {
     cursor: pointer !important;
-}
-
-@media (hover: hover) {
-    .case-study-entry:hover img {
-        opacity: 0.84;
-    }
 }
 
 .case-study-entry:focus-visible {
@@ -1746,11 +1801,11 @@ body {
                             </dl>
                         </header>
                         <div class="case-code">
-                            <p class="case-code-label">Install Heph and open a bounded document workspace</p>
-                            <pre><code>uv tool install heph@latest
-heph armory init research
-cp document.pdf ~/.armories/research/materials/
-heph research</code></pre>
+                        <p class="case-code-label">Install Heph and open a bounded document workspace</p>
+                        <pre><code>uv tool install heph@latest
+                        heph armory init research
+                        cp document.pdf ~/.armories/research/materials/
+                        heph research</code></pre>
                         </div>
                         <section class="case-section">
                             <div class="case-copy">

@@ -3,6 +3,8 @@
     --text-primary: #ffffff;
     --text-secondary: #b3b3b3;
     --text-tertiary: #767676;
+    --highlight-bg: #b3b3b3;
+    --highlight-text: #ffffff;
     --section-gap: 24px;
     --section-content-gap: 6px;
     --text-media-gap: 32px;
@@ -55,8 +57,8 @@
 }
 
 ::selection {
-    color: var(--text-primary);
-    background: var(--text-tertiary);
+    color: var(--highlight-text);
+    background: var(--highlight-bg);
 }
 
 .name {

@@ -1,6 +1,7 @@
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { renderCaseMarkdown } from "./render-case-markdown.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -131,8 +132,13 @@ export async function buildPage({ write = true } = {}) {
         throw new Error("Generated HTML still contains inline tokens.");
     }
 
-    async function buildCasePage(templatePath) {
+    async function buildCasePage(templatePath, slug) {
         let html = await resolveIncludes(await readText(templatePath));
+        html = replaceToken(
+            html,
+            `<!-- @case-markdown:${slug} -->`,
+            indentBlock(await renderCaseMarkdown({ root, slug }), 24),
+        );
         html = replaceToken(html, "<!-- @inline-css:site -->", styles);
         html = replaceToken(
             html,
@@ -151,10 +157,10 @@ export async function buildPage({ write = true } = {}) {
     }
 
     const [filenHtml, hephHtml, ml7Html, n0thingHtml] = await Promise.all([
-        buildCasePage("src/filen.template.html"),
-        buildCasePage("src/heph.template.html"),
-        buildCasePage("src/ml7.template.html"),
-        buildCasePage("src/n0thing.template.html"),
+        buildCasePage("src/filen.template.html", "filen"),
+        buildCasePage("src/heph.template.html", "heph"),
+        buildCasePage("src/ml7.template.html", "ml7"),
+        buildCasePage("src/n0thing.template.html", "n0thing"),
     ]);
 
     if (write) {
