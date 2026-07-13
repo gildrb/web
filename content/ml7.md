@@ -2,7 +2,7 @@
 
 In 2018 when I was still at school I dreaded not being able to thank the people that have helped me out in life. Genuinely upset to not be able to thank streamers or content creators who helped me escape the tough time I had at school and get distracted a bit.
 
-## Designing as a thank you
+### Designing as a thank you
 
 I was thinking about many methods to support the people I care about. Since I had no money to donate at that time as a form of appreciation I started designing for people. When I appreciated someone deeply, they helped me in some of way, or I would simply like to say thank you I have gotten into the habit to start designing.
 
@@ -16,7 +16,7 @@ I iterated, worked on getting things right, and while the work is objectively no
 
 To my surprise, mL7 actually saw the work and his manager contacted me privately.
 
-## What it changed
+### What it changed
 
 I had an extremely pessimistic view in 2018 due to my circumstances and what had previously happened to me in my life. I was of the belief that people don't want to help others and are generally selfish. Many encounters in real life seemed negative and people tend to not appreciate the things you do for them. Now, I know better, it's about the environment and the people you talk to rather than every person being this way. Mihai helped me flip that view entirely by seeing my work and thanking me for it.
 

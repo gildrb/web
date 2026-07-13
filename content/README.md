@@ -39,6 +39,9 @@ Write paragraphs normally. Use **bold text**, `inline code`, and
 - Keep each item on one line.
 ```
 
+Use `###` for short signposts inside a continuous story. Reserve `##` for a
+major section that should have the full chapter-sized gap above it.
+
 Existing responsive images use a `media:` reference. The text in square brackets is the visible caption:
 
 ```markdown

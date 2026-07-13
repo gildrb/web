@@ -2,7 +2,7 @@
 
 I have been a Filen customer for a good while and although Filen using a logo I do not particularly like isn't necessarily a product design issue, it was one of my biggest complaints. Seeing the logo really bothered me, and if you know me well enough, you know that I like to create logos to fix things that bother me personally or as a form of appreciation. I made this logo specifically for that reason.
 
-## Trying ideas
+### Trying ideas
 
 As you can see, the logo did not come out of nowhere and needed many attempts that I have gathered and worked on for weeks.
 
@@ -22,7 +22,7 @@ I even explored the Pangolin as a mascot because it's an endangered species whic
 
 Especially it's a digital-first company it's incredibly important to have a legible logo so the Pangolin unfortunately had to go, although I genuinely believe I was on an incredible creative trip there. I then explored shields, forms of protections, forms of folders, hidden messages, patters, but nothing had any chance of beating the folder with a particular angle that revealed the subtle F. In hindsight I think it's the perfect match because of how well it fits the idea of Filen but I really miss the Pangolins (they're so cute).
 
-## Making it work
+### Making it work
 
 So once I settled for the filen mark I did scale tests, created an app icon using the Icon Composer, created suitable copy to match the brand, created patterns that reflect light a certain way.
 
@@ -39,7 +39,7 @@ I had an absolute blast to work on all the assets I had created and truly wish t
 
 i had plenty of ideas that had to do with light and think it was a step into a great direction.
 
-## The Pangolins stayed
+### The Pangolins stayed
 
 I couldn't fully let go of the Pangolins which is why I continued working on patterns.
 
