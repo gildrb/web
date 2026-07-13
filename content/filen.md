@@ -20,6 +20,12 @@ I even explored the Pangolin as a mascot because it's an endangered species whic
 
 ![Pangolin and identity exploration](media:filen-pangolin-exploration)
 
+### The Pangolins stayed
+
+I couldn't fully let go of the Pangolins which is why I continued working on patterns.
+
+![Pangolin pattern explorations](media:filen-pattern-exploration)
+
 Especially it's a digital-first company it's incredibly important to have a legible logo so the Pangolin unfortunately had to go, although I genuinely believe I was on an incredible creative trip there. I then explored shields, forms of protections, forms of folders, hidden messages, patters, but nothing had any chance of beating the folder with a particular angle that revealed the subtle F. In hindsight I think it's the perfect match because of how well it fits the idea of Filen but I really miss the Pangolins (they're so cute).
 
 ### Making it work
@@ -38,12 +44,6 @@ I had an absolute blast to work on all the assets I had created and truly wish t
 ![Filen brand system board](media:filen-brand-system-board)
 
 i had plenty of ideas that had to do with light and think it was a step into a great direction.
-
-### The Pangolins stayed
-
-I couldn't fully let go of the Pangolins which is why I continued working on patterns.
-
-![Pangolin pattern explorations](media:filen-pattern-exploration)
 
 I was also working on some red colorway but ultimately think it would hurt Filens identity in a bad way, this red color seems hostile and is not suitable for a company that should protect you. My thought initially was intimidating for attackers to not even attempt doing anything against Filen but ended up being perceived as something sketchy that you can't trust your data with. So I ended up with a monochrome colorway that I think is much more neutral and suitable for what Filen is trying to achieve.
 
