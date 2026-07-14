@@ -1536,36 +1536,11 @@ body {
         content: "Read →";
     }
 
-    .heph-demo:has(.heph-demo-zoom-link:hover) .portfolio-card-title,
-    .heph-demo:has(.heph-demo-zoom-link:hover)
-        .portfolio-card-meta::after {
-        color: var(--text-primary);
-    }
-
-    .heph-demo:has(.heph-demo-zoom-link:hover)
-        .portfolio-card-meta::after {
-        content: "Read →";
-    }
-
-    .heph-demo:has(.portfolio-card-link:hover) .heph-demo-frame::after,
-    .heph-demo:has(.heph-demo-zoom-link:hover)
-        .heph-demo-frame::after {
+    .heph-demo:has(.portfolio-card-link:hover) .heph-demo-frame::after {
         opacity: 0.55;
     }
 }
 
-.heph-demo:has(.heph-demo-zoom-link:focus-visible) .portfolio-card-title,
-.heph-demo:has(.heph-demo-zoom-link:focus-visible)
-    .portfolio-card-meta::after {
-    color: var(--text-primary);
-}
-
-.heph-demo:has(.heph-demo-zoom-link:focus-visible)
-    .portfolio-card-meta::after {
-    content: "Read →";
-}
-
-.heph-demo:has(.heph-demo-zoom-link:focus-visible) .heph-demo-frame::after,
 .heph-demo:has(.portfolio-card-link:focus-visible) .heph-demo-frame::after {
     opacity: 0.55;
 }
@@ -1959,6 +1934,7 @@ body {
 
 @media (hover: hover) {
     .heph-demo-evidence-item:hover,
+    .heph-demo-evidence-item.is-active:hover,
     .heph-demo-citation-button:hover {
         color: var(--text-primary);
     }

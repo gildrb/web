@@ -447,19 +447,19 @@ assert(
     "Homepage Heph metadata and green window control must link only to the local case study.",
 );
 assert(
-    portfolioStyles.includes(
-        ".heph-demo:has(.heph-demo-zoom-link:hover) .portfolio-card-title",
-    ) &&
-        portfolioStyles.includes(
-            ".heph-demo:has(.heph-demo-zoom-link:hover)\n        .portfolio-card-meta::after",
-        ) &&
-        hephDemoStyles.includes(
+    hephDemoStyles.includes(
             ".heph-demo-zoom-link:focus-visible,\n.heph-demo-close-link:focus-visible {\n    outline: 0;\n    box-shadow: 0 0 0 2px var(--text-primary);",
         ) &&
         hephDemoStyles.includes(
             ".case-media .heph-demo-zoom-link {\n    display: none;",
+        ) &&
+        !portfolioStyles.includes(
+            ".heph-demo:has(.heph-demo-zoom-link:hover)",
+        ) &&
+        !portfolioStyles.includes(
+            ".heph-demo:has(.heph-demo-zoom-link:focus-visible)",
         ),
-    "Hovering the homepage Heph zoom control must reveal the shared read affordance without reloading the case study demo.",
+    "The homepage green window control must remain a quiet navigation target without exposing the metadata read affordance.",
 );
 assert(
     /<a\s+class="heph-demo-close-link"\s+href="\/"\s+aria-label="Return to the portfolio"/.test(
@@ -475,9 +475,9 @@ assert(
 );
 assert(
     hephDemoStyles.includes(
-        ".heph-demo-evidence-item:hover,\n    .heph-demo-citation-button:hover {\n        color: var(--text-primary);",
+        ".heph-demo-evidence-item:hover,\n    .heph-demo-evidence-item.is-active:hover,\n    .heph-demo-citation-button:hover {\n        color: var(--text-primary);",
     ),
-    "Interactive evidence excerpts and citations must regain their primary-color hover state.",
+    "Interactive evidence excerpts and citations must use the primary hover color, including the active right-side excerpt.",
 );
 assert(
     hephDemoStyles.includes(
@@ -489,15 +489,15 @@ assert(
             ".heph-demo:has(.portfolio-card-link:hover) .heph-demo-frame::after",
         ) &&
         portfolioStyles.includes(
-            ".heph-demo:has(.heph-demo-zoom-link:hover)\n        .heph-demo-frame::after",
-        ) &&
-        portfolioStyles.includes(
             ".heph-demo:has(.portfolio-card-link:focus-visible) .heph-demo-frame::after",
         ) &&
-        portfolioStyles.includes(
+        !portfolioStyles.includes(
+            ".heph-demo:has(.heph-demo-zoom-link:hover)\n        .heph-demo-frame::after",
+        ) &&
+        !portfolioStyles.includes(
             ".heph-demo:has(.heph-demo-zoom-link:focus-visible) .heph-demo-frame::after",
         ),
-    "The Heph demo must use the shared bright-gray overlay only from its case-study affordances.",
+    "The Heph demo must use the bright-gray overlay only from its metadata link.",
 );
 assert(
     (indexHtml.match(/href="\/filen"/g) || []).length === 1,

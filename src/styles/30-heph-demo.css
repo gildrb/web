@@ -368,6 +368,7 @@
 
 @media (hover: hover) {
     .heph-demo-evidence-item:hover,
+    .heph-demo-evidence-item.is-active:hover,
     .heph-demo-citation-button:hover {
         color: var(--text-primary);
     }
