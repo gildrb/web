@@ -390,12 +390,15 @@ assert(
 );
 assert(
     hephHtml.includes('class="heph-lockup"') &&
+        caseStyles.includes(
+            ".case-media .heph-lockup {\n    width: 88%;\n    border-radius: 0;",
+        ) &&
         caseStyles.includes(':root:not([data-theme]) .heph-lockup') &&
         caseStyles.includes(':root[data-theme="light"] .heph-lockup') &&
         caseStyles.includes("filter: brightness(0);") &&
         caseStyles.includes(':root[data-theme="dark"] .heph-lockup') &&
         caseStyles.includes("filter: none;"),
-    "The Heph lockup must switch between white and dark with the active theme.",
+    "The Heph lockup must stay square, render below full width, and follow the active theme.",
 );
 assert(
     hephHtml.includes("const hephDemoForm = document.querySelector(") &&
