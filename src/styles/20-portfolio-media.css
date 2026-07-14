@@ -184,7 +184,7 @@
 }
 
 .portfolio-card-image::after {
-    background: var(--highlight-bg);
+    background: var(--text-tertiary);
     content: "";
 }
 

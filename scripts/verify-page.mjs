@@ -263,14 +263,15 @@ assert(
         baseStyles.includes("--highlight-text: #ffffff;") &&
         baseStyles.includes("color: var(--highlight-text);") &&
         baseStyles.includes("background: var(--highlight-bg);") &&
-        portfolioStyles.includes("background: var(--highlight-bg);") &&
+        portfolioStyles.includes("background: var(--text-tertiary);") &&
+        hephDemoStyles.includes("background: var(--text-tertiary);") &&
         portfolioStyles.includes(".portfolio-card:hover .portfolio-card-meta::after") &&
         portfolioStyles.includes('content: "Read →";') &&
         portfolioStyles.includes(".portfolio-card-link:hover::after") &&
         !portfolioStyles.includes("mix-blend-mode:") &&
         portfolioStyles.includes(".portfolio-card:hover .portfolio-card-image::after") &&
         !caseStyles.includes(".case-study-entry:hover img"),
-    "Clickable project media must use the approved bright-gray overlay instead of opacity-only dimming.",
+    "Clickable project media must use the approved dark-gray overlay instead of opacity-only dimming.",
 );
 
 const hephDemoHexColors = new Set(
@@ -489,7 +490,7 @@ assert(
     hephDemoStyles.includes(
         ".heph-demo-frame::after {\n    content: \"\";\n    position: absolute;\n    inset: 0;",
     ) &&
-        hephDemoStyles.includes("background: var(--highlight-bg);") &&
+        hephDemoStyles.includes("background: var(--text-tertiary);") &&
         hephDemoStyles.includes("pointer-events: none;") &&
         portfolioStyles.includes(
             ".heph-demo:has(.portfolio-card-link:hover) .heph-demo-frame::after",
@@ -503,7 +504,7 @@ assert(
         !portfolioStyles.includes(
             ".heph-demo:has(.heph-demo-zoom-link:focus-visible) .heph-demo-frame::after",
         ),
-    "The Heph demo must use the bright-gray overlay only from its metadata link.",
+    "The Heph demo must use the dark-gray overlay only from its metadata link.",
 );
 assert(
     (indexHtml.match(/href="\/filen"/g) || []).length === 1,
