@@ -1,6 +1,6 @@
 # The work that ended up flipping my view on life
 
-In 2018, when I was still at school, I hated being unable to thank the people who had helped me in life—especially the streamers and content creators who helped me escape the tough time I had at school and distract myself for a bit.
+In 2018, when I was still at school, I hated being unable to thank the people who had helped me in life, especially the streamers and content creators who helped me escape the tough time I had at school and distract myself for a bit.
 
 ### Designing as a thank you
 

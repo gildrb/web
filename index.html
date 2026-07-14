@@ -1535,6 +1535,39 @@ body {
     .portfolio-card-link:hover::after {
         content: "Read →";
     }
+
+    .heph-demo:has(.heph-demo-zoom-link:hover) .portfolio-card-title,
+    .heph-demo:has(.heph-demo-zoom-link:hover)
+        .portfolio-card-meta::after {
+        color: var(--text-primary);
+    }
+
+    .heph-demo:has(.heph-demo-zoom-link:hover)
+        .portfolio-card-meta::after {
+        content: "Read →";
+    }
+
+    .heph-demo:has(.portfolio-card-link:hover) .heph-demo-frame::after,
+    .heph-demo:has(.heph-demo-zoom-link:hover)
+        .heph-demo-frame::after {
+        opacity: 0.55;
+    }
+}
+
+.heph-demo:has(.heph-demo-zoom-link:focus-visible) .portfolio-card-title,
+.heph-demo:has(.heph-demo-zoom-link:focus-visible)
+    .portfolio-card-meta::after {
+    color: var(--text-primary);
+}
+
+.heph-demo:has(.heph-demo-zoom-link:focus-visible)
+    .portfolio-card-meta::after {
+    content: "Read →";
+}
+
+.heph-demo:has(.heph-demo-zoom-link:focus-visible) .heph-demo-frame::after,
+.heph-demo:has(.portfolio-card-link:focus-visible) .heph-demo-frame::after {
+    opacity: 0.55;
 }
 
 .portfolio-card:focus-visible .portfolio-card-image::after {
@@ -1581,8 +1614,55 @@ body {
 }
 
 .heph-demo-frame {
+    position: relative;
     width: 100%;
     min-width: 0;
+    border-radius: 13px;
+}
+
+.heph-demo-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    background: var(--highlight-bg);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.heph-demo-zoom-link,
+.heph-demo-close-link {
+    position: absolute;
+    top: 4px;
+    z-index: 3;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.heph-demo-zoom-link {
+    left: 50px;
+}
+
+.heph-demo-close-link {
+    left: 4px;
+    display: none;
+}
+
+.heph-demo-zoom-link:focus-visible,
+.heph-demo-close-link:focus-visible {
+    outline: 0;
+    box-shadow: 0 0 0 2px var(--text-primary);
+}
+
+.case-media .heph-demo-zoom-link {
+    display: none;
+}
+
+.case-media .heph-demo-close-link {
+    display: block;
 }
 
 .case-media .heph-demo {
@@ -1880,7 +1960,7 @@ body {
 @media (hover: hover) {
     .heph-demo-evidence-item:hover,
     .heph-demo-citation-button:hover {
-        color: var(--text-secondary);
+        color: var(--text-primary);
     }
 }
 
@@ -2214,12 +2294,32 @@ body {
         border-radius: 24px;
         background: var(--heph-demo-mobile-bg);
     }
+
+    .heph-demo-zoom-link {
+        top: 38px;
+        left: 64px;
+    }
+
+    .heph-demo-close-link {
+        top: 38px;
+        left: 18px;
+    }
 }
 
 @media (max-width: 460px) {
     .heph-demo-frame {
         padding: 32px 12px;
         border-radius: 22px;
+    }
+
+    .heph-demo-zoom-link {
+        top: 36px;
+        left: 62px;
+    }
+
+    .heph-demo-close-link {
+        top: 36px;
+        left: 16px;
     }
 }
 
@@ -2868,10 +2968,20 @@ body {
                             class="heph-demo"
                             aria-labelledby="portfolio-heph-title"
                         >
-                            <div class="heph-demo-frame" aria-hidden="true">
+                            <div class="heph-demo-frame">
+                                <a
+                                    class="heph-demo-zoom-link"
+                                    href="/heph"
+                                    aria-label="Open the Heph case study"
+                                ></a>
+                                <a
+                                    class="heph-demo-close-link"
+                                    href="/"
+                                    aria-label="Return to the portfolio"
+                                ></a>
                                 <div
                                     class="heph-demo-shell"
-                                    aria-label="Simulated Heph interface using public domain materials"
+                                    aria-hidden="true"
                                 >
                                 <div
                                     class="heph-demo-titlebar"
@@ -3499,7 +3609,7 @@ const hephDemoMaterials = [
         ],
         answers: [
             [
-                "Alice is a dreamlike trip, but it is not random. The book keeps putting Alice inside games of language, size, etiquette, and authority where the rules change as she moves ",
+                "Alice is a dreamlike trip governed by games of language, size, etiquette, and authority. The rules keep changing as she moves ",
                 { evidenceId: "E1" },
                 ".",
             ],
@@ -3548,7 +3658,7 @@ const hephDemoMaterials = [
                 ".",
             ],
             [
-                "Frankenstein turns responsibility into a gothic problem. The Creature is not just proof of Victor's genius; he is also proof that Victor refuses the obligations of making ",
+                "Frankenstein turns responsibility into a gothic problem. The Creature proves Victor's genius and exposes his refusal to accept the obligations of making ",
                 { evidenceId: "E2" },
                 ".",
             ],
@@ -3665,7 +3775,7 @@ const hephDemoOverviewAnswers = [
     [
         "Read together, the books are about how people make sense of the impossible. Alice keeps asking what the rules are ",
         { evidenceId: "E1" },
-        ". Victor learns that making life is not the same as caring for it ",
+        ". Victor learns that creating life and caring for it are entirely different responsibilities ",
         { evidenceId: "E2" },
         ". Holmes makes hidden facts readable ",
         { evidenceId: "E3" },
@@ -4374,19 +4484,13 @@ function getArrowNavigationItems() {
         (item) =>
             item &&
             item.tabIndex >= 0 &&
-            !item.closest("[aria-hidden='true']"),
+            !item.closest("[aria-hidden='true']") &&
+            item.getClientRects().length > 0 &&
+            getComputedStyle(item).visibility !== "hidden",
     );
 }
 
 document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && !imagePreview.hidden) {
-        e.preventDefault();
-        closeImagePreview();
-        return;
-    }
-
-    if (!imagePreview.hidden) return;
-
     if (e.key !== "ArrowUp" && e.key !== "ArrowDown") return;
 
     e.preventDefault();

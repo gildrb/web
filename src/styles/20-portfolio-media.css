@@ -256,6 +256,39 @@
     .portfolio-card-link:hover::after {
         content: "Read →";
     }
+
+    .heph-demo:has(.heph-demo-zoom-link:hover) .portfolio-card-title,
+    .heph-demo:has(.heph-demo-zoom-link:hover)
+        .portfolio-card-meta::after {
+        color: var(--text-primary);
+    }
+
+    .heph-demo:has(.heph-demo-zoom-link:hover)
+        .portfolio-card-meta::after {
+        content: "Read →";
+    }
+
+    .heph-demo:has(.portfolio-card-link:hover) .heph-demo-frame::after,
+    .heph-demo:has(.heph-demo-zoom-link:hover)
+        .heph-demo-frame::after {
+        opacity: 0.55;
+    }
+}
+
+.heph-demo:has(.heph-demo-zoom-link:focus-visible) .portfolio-card-title,
+.heph-demo:has(.heph-demo-zoom-link:focus-visible)
+    .portfolio-card-meta::after {
+    color: var(--text-primary);
+}
+
+.heph-demo:has(.heph-demo-zoom-link:focus-visible)
+    .portfolio-card-meta::after {
+    content: "Read →";
+}
+
+.heph-demo:has(.heph-demo-zoom-link:focus-visible) .heph-demo-frame::after,
+.heph-demo:has(.portfolio-card-link:focus-visible) .heph-demo-frame::after {
+    opacity: 0.55;
 }
 
 .portfolio-card:focus-visible .portfolio-card-image::after {

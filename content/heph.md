@@ -4,11 +4,11 @@ Heph is a project I have worked on for months. It helps you work with files dire
 
 ### Why I made it
 
-One could argue that Codex achieves the same thing. However, I wanted Heph to be much more focused on the sources. When I am trying to study something or fill the gaps in my understanding, I don't just want an answer that sounds right. I want to see the exact passage from the file it used so I can check it myself.
+One could argue that Codex achieves the same thing. However, I wanted Heph to be much more focused on the sources. When I am trying to study something or fill the gaps in my understanding, I want more than an answer that sounds right. I want to see the exact passage from the file it used so I can check it myself.
 
-Models can sound very confident while being slightly wrong. That is not the biggest problem when I am brainstorming, but it bothers me a lot when I am trying to learn something. If I have to search every file again just to make sure the answer isn't made up, the agent did not really save me much work.
+Models can sound very confident while being slightly wrong. That matters less when I am brainstorming, but it bothers me a lot when I am trying to learn something. If I have to search every file again just to make sure the answer isn't made up, the agent did not really save me much work.
 
-This is why Heph keeps the evidence attached to the answer. You ask a question, read the answer, and can then open the passage it used. The sources are not some extra feature I added afterward. They are basically the reason I started making Heph in the first place.
+This is why Heph keeps the evidence attached to the answer. You ask a question, read the answer, and can then open the passage it used. Keeping the sources attached was basically the reason I started making Heph in the first place.
 
 ### The armory
 
@@ -42,6 +42,6 @@ Heph is still a very early project, and there are many things I want to improve.
 
 I think Heph will naturally improve as the models, especially the open-source ones, become more capable and cheaper to run. The model can change while the main idea stays the same. Your files remain yours, and you can check what the answer is based on.
 
-I am basically building the tool I want for myself and then noticing where it falls apart in practice. It is definitely not finished, but I already like using it a lot. More to come.
+I am basically building the tool I want for myself and then noticing where it falls apart in practice. Heph is still in progress, and I already like using it a lot. More to come.
 
 [GitHub repository](https://github.com/gildrb/heph)

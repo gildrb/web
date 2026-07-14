@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://gildrb.com/filen" />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://gildrb.com/filen" />
-        <meta property="og:title" content="Filen identity system — Gil Rodrigues" />
+        <meta property="og:title" content="Filen identity system | Gil Rodrigues" />
         <meta
             property="og:description"
             content="From sketches and discarded directions to a scalable identity for zero-knowledge encrypted cloud storage."
@@ -23,7 +23,7 @@
             content="https://gildrb.com/images/optimized/gil-rodrigues-filen-wordmark-1600.webp"
         />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Filen identity system — Gil Rodrigues" />
+        <meta name="twitter:title" content="Filen identity system | Gil Rodrigues" />
         <meta
             name="twitter:description"
             content="From sketches and discarded directions to a scalable identity for zero-knowledge encrypted cloud storage."
@@ -647,6 +647,39 @@ body {
     .portfolio-card-link:hover::after {
         content: "Read →";
     }
+
+    .heph-demo:has(.heph-demo-zoom-link:hover) .portfolio-card-title,
+    .heph-demo:has(.heph-demo-zoom-link:hover)
+        .portfolio-card-meta::after {
+        color: var(--text-primary);
+    }
+
+    .heph-demo:has(.heph-demo-zoom-link:hover)
+        .portfolio-card-meta::after {
+        content: "Read →";
+    }
+
+    .heph-demo:has(.portfolio-card-link:hover) .heph-demo-frame::after,
+    .heph-demo:has(.heph-demo-zoom-link:hover)
+        .heph-demo-frame::after {
+        opacity: 0.55;
+    }
+}
+
+.heph-demo:has(.heph-demo-zoom-link:focus-visible) .portfolio-card-title,
+.heph-demo:has(.heph-demo-zoom-link:focus-visible)
+    .portfolio-card-meta::after {
+    color: var(--text-primary);
+}
+
+.heph-demo:has(.heph-demo-zoom-link:focus-visible)
+    .portfolio-card-meta::after {
+    content: "Read →";
+}
+
+.heph-demo:has(.heph-demo-zoom-link:focus-visible) .heph-demo-frame::after,
+.heph-demo:has(.portfolio-card-link:focus-visible) .heph-demo-frame::after {
+    opacity: 0.55;
 }
 
 .portfolio-card:focus-visible .portfolio-card-image::after {
@@ -693,8 +726,55 @@ body {
 }
 
 .heph-demo-frame {
+    position: relative;
     width: 100%;
     min-width: 0;
+    border-radius: 13px;
+}
+
+.heph-demo-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    background: var(--highlight-bg);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.heph-demo-zoom-link,
+.heph-demo-close-link {
+    position: absolute;
+    top: 4px;
+    z-index: 3;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.heph-demo-zoom-link {
+    left: 50px;
+}
+
+.heph-demo-close-link {
+    left: 4px;
+    display: none;
+}
+
+.heph-demo-zoom-link:focus-visible,
+.heph-demo-close-link:focus-visible {
+    outline: 0;
+    box-shadow: 0 0 0 2px var(--text-primary);
+}
+
+.case-media .heph-demo-zoom-link {
+    display: none;
+}
+
+.case-media .heph-demo-close-link {
+    display: block;
 }
 
 .case-media .heph-demo {
@@ -992,7 +1072,7 @@ body {
 @media (hover: hover) {
     .heph-demo-evidence-item:hover,
     .heph-demo-citation-button:hover {
-        color: var(--text-secondary);
+        color: var(--text-primary);
     }
 }
 
@@ -1326,12 +1406,32 @@ body {
         border-radius: 24px;
         background: var(--heph-demo-mobile-bg);
     }
+
+    .heph-demo-zoom-link {
+        top: 38px;
+        left: 64px;
+    }
+
+    .heph-demo-close-link {
+        top: 38px;
+        left: 18px;
+    }
 }
 
 @media (max-width: 460px) {
     .heph-demo-frame {
         padding: 32px 12px;
         border-radius: 22px;
+    }
+
+    .heph-demo-zoom-link {
+        top: 36px;
+        left: 62px;
+    }
+
+    .heph-demo-close-link {
+        top: 36px;
+        left: 16px;
     }
 }
 
@@ -1908,12 +2008,12 @@ body {
                             <h1 class="case-title">Making privacy and obscurity visible through design</h1>
                         </header>
                             <div class="case-copy">
-                                <p>I have been a Filen customer for a good while, and although Filen's logo is not necessarily a product design issue, it was one of my biggest complaints. Seeing it really bothered me, and anyone who knows me well knows that I like to create logos to fix things that bother me personally or as a form of appreciation. I made this logo specifically for that reason.</p>
+                                <p>I have been a Filen customer for a good while, and although Filen's logo sits outside product design, it was one of my biggest complaints. Seeing it really bothered me, and anyone who knows me well knows that I like to create logos to fix things that bother me personally or as a form of appreciation. I made this logo specifically for that reason.</p>
                                 <h3>Trying ideas</h3>
                                 <p>As you can see, the logo did not come out of nowhere. It took many attempts over several weeks.</p>
                                 <p>I had the idea of creating a mark that is a sort of disappearing block and also shows the letter F with a bit of imagination. The idea was definitely there, but I did not like where it was going or how it ended up looking, so I scrapped it rather quickly.</p>
                                 <p>Next, I explored the idea of creating a minimal 3D folder viewed from an angle that subtly hints at the letter F. I really liked that idea, but I wasn't too happy with the form, so I pushed it aside for a while.</p>
-                                <p>After that, I worked on something that seemed robust and almost architectural, like a set of stairs. The stairs were also meant to subtly hint at the letter F while communicating robustness and reliability, but I quickly realized that, in order to look reliable, it couldn't be an open F—or, in this case, an open staircase. Closing the staircase made it more complicated than it needed to be, which hurt its legibility at smaller scales, so I scrapped that too.</p>
+                                <p>After that, I worked on something that seemed robust and almost architectural, like a set of stairs. The stairs were also meant to subtly hint at the letter F while communicating robustness and reliability, but I quickly realized that, in order to look reliable, it couldn't be an open F or, in this case, an open staircase. Closing the staircase made it more complicated than it needed to be, which hurt its legibility at smaller scales, so I scrapped that too.</p>
                                 <p>I also considered blocks with a hidden upper layer, which was another attempt I didn't like.</p>
                             </div>
                         <div class="case-media">

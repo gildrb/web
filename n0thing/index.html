@@ -600,6 +600,39 @@ body {
     .portfolio-card-link:hover::after {
         content: "Read →";
     }
+
+    .heph-demo:has(.heph-demo-zoom-link:hover) .portfolio-card-title,
+    .heph-demo:has(.heph-demo-zoom-link:hover)
+        .portfolio-card-meta::after {
+        color: var(--text-primary);
+    }
+
+    .heph-demo:has(.heph-demo-zoom-link:hover)
+        .portfolio-card-meta::after {
+        content: "Read →";
+    }
+
+    .heph-demo:has(.portfolio-card-link:hover) .heph-demo-frame::after,
+    .heph-demo:has(.heph-demo-zoom-link:hover)
+        .heph-demo-frame::after {
+        opacity: 0.55;
+    }
+}
+
+.heph-demo:has(.heph-demo-zoom-link:focus-visible) .portfolio-card-title,
+.heph-demo:has(.heph-demo-zoom-link:focus-visible)
+    .portfolio-card-meta::after {
+    color: var(--text-primary);
+}
+
+.heph-demo:has(.heph-demo-zoom-link:focus-visible)
+    .portfolio-card-meta::after {
+    content: "Read →";
+}
+
+.heph-demo:has(.heph-demo-zoom-link:focus-visible) .heph-demo-frame::after,
+.heph-demo:has(.portfolio-card-link:focus-visible) .heph-demo-frame::after {
+    opacity: 0.55;
 }
 
 .portfolio-card:focus-visible .portfolio-card-image::after {
@@ -646,8 +679,55 @@ body {
 }
 
 .heph-demo-frame {
+    position: relative;
     width: 100%;
     min-width: 0;
+    border-radius: 13px;
+}
+
+.heph-demo-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    background: var(--highlight-bg);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.heph-demo-zoom-link,
+.heph-demo-close-link {
+    position: absolute;
+    top: 4px;
+    z-index: 3;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.heph-demo-zoom-link {
+    left: 50px;
+}
+
+.heph-demo-close-link {
+    left: 4px;
+    display: none;
+}
+
+.heph-demo-zoom-link:focus-visible,
+.heph-demo-close-link:focus-visible {
+    outline: 0;
+    box-shadow: 0 0 0 2px var(--text-primary);
+}
+
+.case-media .heph-demo-zoom-link {
+    display: none;
+}
+
+.case-media .heph-demo-close-link {
+    display: block;
 }
 
 .case-media .heph-demo {
@@ -945,7 +1025,7 @@ body {
 @media (hover: hover) {
     .heph-demo-evidence-item:hover,
     .heph-demo-citation-button:hover {
-        color: var(--text-secondary);
+        color: var(--text-primary);
     }
 }
 
@@ -1279,12 +1359,32 @@ body {
         border-radius: 24px;
         background: var(--heph-demo-mobile-bg);
     }
+
+    .heph-demo-zoom-link {
+        top: 38px;
+        left: 64px;
+    }
+
+    .heph-demo-close-link {
+        top: 38px;
+        left: 18px;
+    }
 }
 
 @media (max-width: 460px) {
     .heph-demo-frame {
         padding: 32px 12px;
         border-radius: 22px;
+    }
+
+    .heph-demo-zoom-link {
+        top: 36px;
+        left: 62px;
+    }
+
+    .heph-demo-close-link {
+        top: 36px;
+        left: 16px;
     }
 }
 

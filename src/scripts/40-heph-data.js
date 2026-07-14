@@ -49,7 +49,7 @@ const hephDemoMaterials = [
         ],
         answers: [
             [
-                "Alice is a dreamlike trip, but it is not random. The book keeps putting Alice inside games of language, size, etiquette, and authority where the rules change as she moves ",
+                "Alice is a dreamlike trip governed by games of language, size, etiquette, and authority. The rules keep changing as she moves ",
                 { evidenceId: "E1" },
                 ".",
             ],
@@ -98,7 +98,7 @@ const hephDemoMaterials = [
                 ".",
             ],
             [
-                "Frankenstein turns responsibility into a gothic problem. The Creature is not just proof of Victor's genius; he is also proof that Victor refuses the obligations of making ",
+                "Frankenstein turns responsibility into a gothic problem. The Creature proves Victor's genius and exposes his refusal to accept the obligations of making ",
                 { evidenceId: "E2" },
                 ".",
             ],
@@ -215,7 +215,7 @@ const hephDemoOverviewAnswers = [
     [
         "Read together, the books are about how people make sense of the impossible. Alice keeps asking what the rules are ",
         { evidenceId: "E1" },
-        ". Victor learns that making life is not the same as caring for it ",
+        ". Victor learns that creating life and caring for it are entirely different responsibilities ",
         { evidenceId: "E2" },
         ". Holmes makes hidden facts readable ",
         { evidenceId: "E3" },

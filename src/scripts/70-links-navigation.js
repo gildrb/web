@@ -25,19 +25,13 @@ function getArrowNavigationItems() {
         (item) =>
             item &&
             item.tabIndex >= 0 &&
-            !item.closest("[aria-hidden='true']"),
+            !item.closest("[aria-hidden='true']") &&
+            item.getClientRects().length > 0 &&
+            getComputedStyle(item).visibility !== "hidden",
     );
 }
 
 document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && !imagePreview.hidden) {
-        e.preventDefault();
-        closeImagePreview();
-        return;
-    }
-
-    if (!imagePreview.hidden) return;
-
     if (e.key !== "ArrowUp" && e.key !== "ArrowDown") return;
 
     e.preventDefault();

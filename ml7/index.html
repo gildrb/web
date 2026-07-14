@@ -10,11 +10,11 @@
         <link rel="canonical" href="https://gildrb.com/ml7" />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://gildrb.com/ml7" />
-        <meta property="og:title" content="mL7 identity — Gil Rodrigues" />
+        <meta property="og:title" content="mL7 identity | Gil Rodrigues" />
         <meta property="og:description" content="A compact identity built from a custom black wordmark and an orange directional stroke." />
         <meta property="og:image" content="https://gildrb.com/images/optimized/gil-rodrigues-ml7-logo-system-1600.webp" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="mL7 identity — Gil Rodrigues" />
+        <meta name="twitter:title" content="mL7 identity | Gil Rodrigues" />
         <meta name="twitter:description" content="A compact identity built from a custom black wordmark and an orange directional stroke." />
         <meta name="twitter:image" content="https://gildrb.com/images/optimized/gil-rodrigues-ml7-logo-system-1600.webp" />
         <title>mL7</title>
@@ -601,6 +601,39 @@ body {
     .portfolio-card-link:hover::after {
         content: "Read →";
     }
+
+    .heph-demo:has(.heph-demo-zoom-link:hover) .portfolio-card-title,
+    .heph-demo:has(.heph-demo-zoom-link:hover)
+        .portfolio-card-meta::after {
+        color: var(--text-primary);
+    }
+
+    .heph-demo:has(.heph-demo-zoom-link:hover)
+        .portfolio-card-meta::after {
+        content: "Read →";
+    }
+
+    .heph-demo:has(.portfolio-card-link:hover) .heph-demo-frame::after,
+    .heph-demo:has(.heph-demo-zoom-link:hover)
+        .heph-demo-frame::after {
+        opacity: 0.55;
+    }
+}
+
+.heph-demo:has(.heph-demo-zoom-link:focus-visible) .portfolio-card-title,
+.heph-demo:has(.heph-demo-zoom-link:focus-visible)
+    .portfolio-card-meta::after {
+    color: var(--text-primary);
+}
+
+.heph-demo:has(.heph-demo-zoom-link:focus-visible)
+    .portfolio-card-meta::after {
+    content: "Read →";
+}
+
+.heph-demo:has(.heph-demo-zoom-link:focus-visible) .heph-demo-frame::after,
+.heph-demo:has(.portfolio-card-link:focus-visible) .heph-demo-frame::after {
+    opacity: 0.55;
 }
 
 .portfolio-card:focus-visible .portfolio-card-image::after {
@@ -647,8 +680,55 @@ body {
 }
 
 .heph-demo-frame {
+    position: relative;
     width: 100%;
     min-width: 0;
+    border-radius: 13px;
+}
+
+.heph-demo-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    background: var(--highlight-bg);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.heph-demo-zoom-link,
+.heph-demo-close-link {
+    position: absolute;
+    top: 4px;
+    z-index: 3;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.heph-demo-zoom-link {
+    left: 50px;
+}
+
+.heph-demo-close-link {
+    left: 4px;
+    display: none;
+}
+
+.heph-demo-zoom-link:focus-visible,
+.heph-demo-close-link:focus-visible {
+    outline: 0;
+    box-shadow: 0 0 0 2px var(--text-primary);
+}
+
+.case-media .heph-demo-zoom-link {
+    display: none;
+}
+
+.case-media .heph-demo-close-link {
+    display: block;
 }
 
 .case-media .heph-demo {
@@ -946,7 +1026,7 @@ body {
 @media (hover: hover) {
     .heph-demo-evidence-item:hover,
     .heph-demo-citation-button:hover {
-        color: var(--text-secondary);
+        color: var(--text-primary);
     }
 }
 
@@ -1280,12 +1360,32 @@ body {
         border-radius: 24px;
         background: var(--heph-demo-mobile-bg);
     }
+
+    .heph-demo-zoom-link {
+        top: 38px;
+        left: 64px;
+    }
+
+    .heph-demo-close-link {
+        top: 38px;
+        left: 18px;
+    }
 }
 
 @media (max-width: 460px) {
     .heph-demo-frame {
         padding: 32px 12px;
         border-radius: 22px;
+    }
+
+    .heph-demo-zoom-link {
+        top: 36px;
+        left: 62px;
+    }
+
+    .heph-demo-close-link {
+        top: 36px;
+        left: 16px;
     }
 }
 
@@ -1856,7 +1956,7 @@ body {
                             <h1 class="case-title">The work that ended up flipping my view on life</h1>
                         </header>
                             <div class="case-copy">
-                                <p>In 2018, when I was still at school, I hated being unable to thank the people who had helped me in life—especially the streamers and content creators who helped me escape the tough time I had at school and distract myself for a bit.</p>
+                                <p>In 2018, when I was still at school, I hated being unable to thank the people who had helped me in life, especially the streamers and content creators who helped me escape the tough time I had at school and distract myself for a bit.</p>
                                 <h3>Designing as a thank you</h3>
                                 <p>I was thinking about many ways to support the people I cared about. Since I had no money to donate at that time, I started using design as a form of appreciation. I got into the habit of making something for anyone I deeply appreciated, anyone who had helped me in some way, or simply anyone I wanted to thank.</p>
                                 <p>I was heavily into video games in 2018, and there was one person in particular who helped me out a lot at that time. I was playing Overwatch competitively and therefore also watched people who were much better at the game than I was to learn a thing or two. The streamer Mihai &quot;mL7&quot; Lupasc was one of those kind-hearted souls who made me the person I am today and whom I designed for.</p>

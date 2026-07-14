@@ -1,6 +1,6 @@
 # Making privacy and obscurity visible through design
 
-I have been a Filen customer for a good while, and although Filen's logo is not necessarily a product design issue, it was one of my biggest complaints. Seeing it really bothered me, and anyone who knows me well knows that I like to create logos to fix things that bother me personally or as a form of appreciation. I made this logo specifically for that reason.
+I have been a Filen customer for a good while, and although Filen's logo sits outside product design, it was one of my biggest complaints. Seeing it really bothered me, and anyone who knows me well knows that I like to create logos to fix things that bother me personally or as a form of appreciation. I made this logo specifically for that reason.
 
 ### Trying ideas
 
@@ -10,7 +10,7 @@ I had the idea of creating a mark that is a sort of disappearing block and also 
 
 Next, I explored the idea of creating a minimal 3D folder viewed from an angle that subtly hints at the letter F. I really liked that idea, but I wasn't too happy with the form, so I pushed it aside for a while.
 
-After that, I worked on something that seemed robust and almost architectural, like a set of stairs. The stairs were also meant to subtly hint at the letter F while communicating robustness and reliability, but I quickly realized that, in order to look reliable, it couldn't be an open F—or, in this case, an open staircase. Closing the staircase made it more complicated than it needed to be, which hurt its legibility at smaller scales, so I scrapped that too.
+After that, I worked on something that seemed robust and almost architectural, like a set of stairs. The stairs were also meant to subtly hint at the letter F while communicating robustness and reliability, but I quickly realized that, in order to look reliable, it couldn't be an open F or, in this case, an open staircase. Closing the staircase made it more complicated than it needed to be, which hurt its legibility at smaller scales, so I scrapped that too.
 
 I also considered blocks with a hidden upper layer, which was another attempt I didn't like.
 

@@ -315,8 +315,14 @@ assert(
     !indexHtml.includes("portfolio-personal-title") &&
         !indexHtml.includes('class="image-preview"') &&
         !siteScript.includes("Image Preview Open") &&
+        !siteScript.includes("imagePreview") &&
+        !siteScript.includes("closeImagePreview") &&
+        siteScript.includes("item.getClientRects().length > 0") &&
+        siteScript.includes(
+            'getComputedStyle(item).visibility !== "hidden"',
+        ) &&
         !imageFiles.some((file) => file.includes("personal-")),
-    "Removed Personal media and its preview machinery must not return.",
+    "Removed Personal media and its preview machinery must stay absent, and arrow navigation must omit hidden controls.",
 );
 assert(
     indexHtml.includes('aria-label="Metadata"') &&
@@ -344,19 +350,20 @@ assert(
     "The Heph-to-Filen gap must use the optically compensated 32px project rhythm.",
 );
 assert(
-    indexHtml.includes(
-        '<div class="heph-demo-frame" aria-hidden="true">',
-    ) &&
+    indexHtml.includes('<div class="heph-demo-frame">') &&
+        indexHtml.includes(
+            'class="heph-demo-shell"\n                                    aria-hidden="true"',
+        ) &&
         !indexHtml.includes(
             'aria-labelledby="portfolio-heph-title"\n                            aria-hidden="true"',
         ) &&
         indexHtml.indexOf(
-            '<div class="heph-demo-frame" aria-hidden="true">',
+            '<div class="heph-demo-frame">',
         ) <
             indexHtml.indexOf('class="heph-demo-shell"') &&
         indexHtml.indexOf('class="portfolio-card-meta portfolio-card-link"') >
             indexHtml.indexOf(
-                '<div class="heph-demo-frame" aria-hidden="true">',
+                '<div class="heph-demo-frame">',
             ) &&
         (await readText("src/styles/30-heph-demo.css")).includes(
             ".heph-demo-frame {\n        padding: 34px 14px;\n        border-radius: 24px;\n        background: var(--heph-demo-mobile-bg);",
@@ -385,7 +392,7 @@ assert(
         const previousPosition =
             index === 0 ? -1 : hephHtml.indexOf(hephMediaSequence[index - 1]);
         return position > previousPosition;
-    }) && !hephHtml.includes("—"),
+    }) && !hephHtml.includes("\u2014"),
     "Heph media must follow the documented chronology and omit em dashes.",
 );
 assert(
@@ -432,9 +439,65 @@ assert(
     "Homepage does not link to the Filen case study.",
 );
 assert(
-    (indexHtml.match(/href="\/heph"/g) || []).length === 1 &&
+    (indexHtml.match(/href="\/heph"/g) || []).length === 2 &&
+        /<a\s+class="heph-demo-zoom-link"\s+href="\/heph"\s+aria-label="Open the Heph case study"/.test(
+            indexHtml,
+        ) &&
         !indexHtml.includes('href="https://github.com/gildrb/heph"'),
-    "Homepage Heph metadata must link only to the local case study.",
+    "Homepage Heph metadata and green window control must link only to the local case study.",
+);
+assert(
+    portfolioStyles.includes(
+        ".heph-demo:has(.heph-demo-zoom-link:hover) .portfolio-card-title",
+    ) &&
+        portfolioStyles.includes(
+            ".heph-demo:has(.heph-demo-zoom-link:hover)\n        .portfolio-card-meta::after",
+        ) &&
+        hephDemoStyles.includes(
+            ".heph-demo-zoom-link:focus-visible,\n.heph-demo-close-link:focus-visible {\n    outline: 0;\n    box-shadow: 0 0 0 2px var(--text-primary);",
+        ) &&
+        hephDemoStyles.includes(
+            ".case-media .heph-demo-zoom-link {\n    display: none;",
+        ),
+    "Hovering the homepage Heph zoom control must reveal the shared read affordance without reloading the case study demo.",
+);
+assert(
+    /<a\s+class="heph-demo-close-link"\s+href="\/"\s+aria-label="Return to the portfolio"/.test(
+        hephHtml,
+    ) &&
+        hephDemoStyles.includes(
+            ".heph-demo-close-link {\n    left: 4px;\n    display: none;",
+        ) &&
+        hephDemoStyles.includes(
+            ".case-media .heph-demo-close-link {\n    display: block;",
+        ),
+    "The Heph article must replace the homepage zoom interaction with a red window control that returns to the portfolio.",
+);
+assert(
+    hephDemoStyles.includes(
+        ".heph-demo-evidence-item:hover,\n    .heph-demo-citation-button:hover {\n        color: var(--text-primary);",
+    ),
+    "Interactive evidence excerpts and citations must regain their primary-color hover state.",
+);
+assert(
+    hephDemoStyles.includes(
+        ".heph-demo-frame::after {\n    content: \"\";\n    position: absolute;\n    inset: 0;",
+    ) &&
+        hephDemoStyles.includes("background: var(--highlight-bg);") &&
+        hephDemoStyles.includes("pointer-events: none;") &&
+        portfolioStyles.includes(
+            ".heph-demo:has(.portfolio-card-link:hover) .heph-demo-frame::after",
+        ) &&
+        portfolioStyles.includes(
+            ".heph-demo:has(.heph-demo-zoom-link:hover)\n        .heph-demo-frame::after",
+        ) &&
+        portfolioStyles.includes(
+            ".heph-demo:has(.portfolio-card-link:focus-visible) .heph-demo-frame::after",
+        ) &&
+        portfolioStyles.includes(
+            ".heph-demo:has(.heph-demo-zoom-link:focus-visible) .heph-demo-frame::after",
+        ),
+    "The Heph demo must use the shared bright-gray overlay only from its case-study affordances.",
 );
 assert(
     (indexHtml.match(/href="\/filen"/g) || []).length === 1,
@@ -577,8 +640,19 @@ assert(
     "n0thing media must follow the documented design process.",
 );
 assert(
-    !n0thingHtml.includes("—"),
-    "n0thing copy and metadata must omit em dashes.",
+    [indexHtml, filenHtml, hephHtml, ml7Html, n0thingHtml].every(
+        (html) => !html.includes("\u2014"),
+    ),
+    "Public copy and metadata must omit em dashes on every page.",
+);
+assert(
+    [indexHtml, filenHtml, hephHtml, ml7Html, n0thingHtml].every(
+        (html) =>
+            !/\b(?:it|this|that|they|he|she)\s+(?:is|are|was|were|'s|’s)\s+not\b[^.!?]{0,160}[,;:]\s*(?:it|this|that|they|he|she)\s+(?:is|are|was|were|'s|’s)\b/i.test(
+                html.replace(/<[^>]+>/g, " "),
+            ),
+    ),
+    "Public copy must omit the forbidden negative-then-positive contrast structure.",
 );
 assert(
     [indexHtml, filenHtml, hephHtml, ml7Html, n0thingHtml].every(
