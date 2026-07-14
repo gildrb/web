@@ -24,7 +24,7 @@ The demo above shows the basic interaction. This is how Heph currently looks in 
 
 ### A typeface for Heph
 
-Once Heph was already working, I started drawing a custom typeface for it. I wanted the interface to feel more polished and more like a complete system, while keeping it quiet and easy to read.
+Once Heph was already working, I started drawing a custom typeface for a GUI I was considering for it. The terminal interface shown above would continue using a monospaced terminal face. I designed this typeface for the possible graphical interface, the logo, and the wordmark. Developing those elements together would help Heph feel consistent and make the visual system fully my own.
 
 ![Drawing the first letterforms](media:heph-typeface-early)
 
@@ -32,7 +32,7 @@ I kept working through the character set, checking individual curves and how the
 
 ![Refining the typeface](media:heph-typeface-refinement)
 
-This work also led to a new Heph lockup, giving the product a clearer visual identity as I continue polishing it.
+The typeface work also led to a new Heph lockup, giving the product a clearer visual identity as I continue polishing it.
 
 ![The Heph lockup](media:heph-lockup)
 
