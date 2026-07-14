@@ -258,20 +258,18 @@ assert(
 );
 
 assert(
-    portfolioStyles.includes(".portfolio-card-image::after") &&
-        baseStyles.includes("--highlight-bg: #b3b3b3;") &&
+    baseStyles.includes("--highlight-bg: #b3b3b3;") &&
         baseStyles.includes("--highlight-text: #ffffff;") &&
         baseStyles.includes("color: var(--highlight-text);") &&
         baseStyles.includes("background: var(--highlight-bg);") &&
-        portfolioStyles.includes("background: var(--text-tertiary);") &&
-        hephDemoStyles.includes("background: var(--text-tertiary);") &&
         portfolioStyles.includes(".portfolio-card:hover .portfolio-card-meta::after") &&
         portfolioStyles.includes('content: "Read →";') &&
         portfolioStyles.includes(".portfolio-card-link:hover::after") &&
+        !portfolioStyles.includes(".portfolio-card-image::after") &&
+        !hephDemoStyles.includes(".heph-demo-frame::after") &&
         !portfolioStyles.includes("mix-blend-mode:") &&
-        portfolioStyles.includes(".portfolio-card:hover .portfolio-card-image::after") &&
         !caseStyles.includes(".case-study-entry:hover img"),
-    "Clickable project media must use the approved dark-gray overlay instead of opacity-only dimming.",
+    "Clickable project media must use only the Read arrow treatment without a hover overlay or image dimming.",
 );
 
 const hephDemoHexColors = new Set(
@@ -487,24 +485,9 @@ assert(
     "Interactive evidence excerpts and citations must use the primary hover color, including the active right-side excerpt.",
 );
 assert(
-    hephDemoStyles.includes(
-        ".heph-demo-frame::after {\n    content: \"\";\n    position: absolute;\n    inset: 0;",
-    ) &&
-        hephDemoStyles.includes("background: var(--text-tertiary);") &&
-        hephDemoStyles.includes("pointer-events: none;") &&
-        portfolioStyles.includes(
-            ".heph-demo:has(.portfolio-card-link:hover) .heph-demo-frame::after",
-        ) &&
-        portfolioStyles.includes(
-            ".heph-demo:has(.portfolio-card-link:focus-visible) .heph-demo-frame::after",
-        ) &&
-        !portfolioStyles.includes(
-            ".heph-demo:has(.heph-demo-zoom-link:hover)\n        .heph-demo-frame::after",
-        ) &&
-        !portfolioStyles.includes(
-            ".heph-demo:has(.heph-demo-zoom-link:focus-visible) .heph-demo-frame::after",
-        ),
-    "The Heph demo must use the dark-gray overlay only from its metadata link.",
+    !hephDemoStyles.includes(".heph-demo-frame::after") &&
+        !portfolioStyles.includes(".heph-demo-frame::after"),
+    "The Heph demo must not use a hover or focus overlay.",
 );
 assert(
     (indexHtml.match(/href="\/filen"/g) || []).length === 1,

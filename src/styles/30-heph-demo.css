@@ -29,17 +29,6 @@
     border-radius: 13px;
 }
 
-.heph-demo-frame::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    border-radius: inherit;
-    background: var(--text-tertiary);
-    opacity: 0;
-    pointer-events: none;
-}
-
 .heph-demo-zoom-link,
 .heph-demo-close-link {
     position: absolute;
