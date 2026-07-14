@@ -20,9 +20,9 @@ The materials get indexed so Heph can find the useful parts instead of sending e
 
 ### Where it is now
 
-Heph is still a very early project, and there are many things I want to improve. I want it to be more reliable, work for more use cases, and be more accurate overall. Indexing and retrieval can get better, and I also want checking the evidence to feel easier without it getting in the way of the conversation.
+Heph is still a very early project, and there are many things I want to improve. I want it to be more reliable, work for more use cases, and be more accurate overall. Indexing and retrieval can get better, and I also want it to be easier to check the evidence without that process getting in the way of the conversation.
 
-I think Heph will naturally get better as the models, especially the open-source ones, get better and cheaper to run. The model can change while the main idea stays the same. Your files remain yours, and you can check what the answer is based on.
+I think Heph will naturally improve as the models, especially the open-source ones, become more capable and cheaper to run. The model can change while the main idea stays the same. Your files remain yours, and you can check what the answer is based on.
 
 I am basically building the tool I want for myself and then noticing where it falls apart in practice. It is definitely not finished, but I already like using it a lot. More to come.
 
