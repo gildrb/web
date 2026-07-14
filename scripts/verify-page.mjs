@@ -277,6 +277,12 @@ const hephDemoHexColors = new Set(
     [...hephDemoStyles.matchAll(/#[0-9a-f]{6}/gi)].map(([color]) => color.toLowerCase()),
 );
 assert(
+    hephDemoStyles.includes(
+        ".heph-demo-input {\n        width: 160%;\n        font-size: 16px;\n        transform: scale(0.625);\n        transform-origin: left center;",
+    ),
+    "The mobile Heph input must retain a 16px computed font size without changing its 10px visual scale.",
+);
+assert(
     hephDemoStyles.includes("--heph-demo-terminal-bg: color-mix(") &&
         hephDemoStyles.includes("var(--bg) 96%") &&
         hephDemoStyles.includes("--heph-demo-row-bg: color-mix(") &&
