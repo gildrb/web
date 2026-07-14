@@ -1,25 +1,43 @@
 # A special client
 
-The 15th of November 2019 was a very special day for me. I was in contact with an artist known as VisionOfVIII, whom I admired a lot. I offered to help him work on his projects, as I usually did. VisionOfVIII was much better known than I was, having worked for top-tier organisations in the industry and built a massive fan base. This also meant that he had access to clients I couldn't even dream of having.
+15 November 2019 was a very special day for me. At the time, I was in contact with an artist known as VisionOfVIII, whose work I admired a lot. I often offered to help with his projects. VIII was much better known than I was. He had worked with top-tier organisations in the industry, built a massive fan base, and had access to clients I could only dream of working with.
 
 ### How it happened
 
-I think about this moment a lot because VIII talked to me in a way that other people at his level never would. If he didn't have time, he would make it. He went out of his way to talk to the people he cared about. At a certain level of popularity, people stop caring and only talk to their connections, which is something I have always despised. A simple "I have no time" or "I do not wish to talk to you" goes a long way. VisionOfVIII was never the type of guy who would treat you this way. Instead, he helped me on my journey, encouraged me, and kept me going. I watched his streams, admired his art, and appreciated VIII a lot. He happened to receive a private message from former professional player Jordan "n0thing" Gilbert, who was proficient at Counter-Strike: Global Offensive and was looking for a logo but did not have the skill set to create it himself. As you would expect from reading this post, VIII recommended me to him. Having previously had Mihai Lupascu as a customer, I never thought I would get another client I knew, watched, and respected so soon. Shortly afterward, Jordan Gilbert messaged me privately and commissioned me to design it. He was initially looking for something typewriter-like or reminiscent of an '80s madman, but he didn't tell me upfront, so I worked out some ideas. I landed on this custom n0thing mark.
+I think about this moment a lot because VIII spoke to me in a way few people at his level would. If he did not have time, he made it. He went out of his way to talk to the people he cared about.
+
+At a certain level of popularity, people can stop caring and speak only to their connections. I have always despised that. Even a simple "I have no time" or "I do not wish to talk to you" goes a long way. VIII treated me with care. He helped me on my journey, encouraged me, and kept me going. I watched his streams, admired his art, and appreciated him a lot.
+
+One day, VIII received a private message from former professional Counter-Strike: Global Offensive player Jordan "n0thing" Gilbert, who was looking for a logo. VIII recommended me for the work.
+
+Having already worked with Mihai Lupascu, I never expected another client I knew, watched, and respected to come along so soon. Shortly afterward, Jordan messaged me privately and commissioned the logo.
+
+### The first direction
+
+Jordan had a typewriter-like direction with an '80s madman feel in mind, but I did not know that at first. I worked through ideas of my own and landed on this custom pixel wordmark.
 
 ![Early pixel wordmark](media:n0thing-early-pixel-wordmark)
 
-He liked it but wanted to explore more directions. In hindsight, I wish I had gone further down the typewriter route because I think Jordan had a great vision.
+### Exploring type
 
-![Typewriter wordmark direction](media:n0thing-typewriter-direction)
+He liked the mark, but wanted to explore more directions. Once I understood what he had in mind, I explored the typewriter route.
 
-We both agreed that the typewriter wordmark felt off-balance, but I still think that if I had that same task today, I would find a way to make it work. Nonetheless, we returned to the pixel direction that he had already liked, and I developed variations of it.
+![Typewriter direction](media:n0thing-typewriter-direction)
+
+We both agreed that the typewriter wordmark felt off-balance. In hindsight, I wish I had pushed it further because I think Jordan had a great vision. If I received the same task today, I would find a way to make it work.
 
 ### Back to pixels
 
+We returned to the pixel direction Jordan had already liked, and I developed a series of variations. I tested different constructions of the zero, small changes to the letterforms and spacing, and monochrome and red-accented versions.
+
 ![Pixel wordmark variations](media:n0thing-pixel-variations)
 
-We ended up settling on the version that you can see here.
+From those variations, we settled on the final pixel wordmark. This screenshot shows the AI and PSD folders alongside the six PNG exports I prepared at the time.
 
-![n0thing animated wordmark](media:n0thing-wordmark-animation)
+![Original export folder](media:n0thing-export-folder)
 
-Although it might not be the hardest logo to create mechanically, I think we did a good job of finding something that suits him. We wanted something that felt serious, and I think we nailed it. Collaborating with Jordan was easy, and I am happy to have gotten the chance to create it.
+The final touch was motion. I animated the trailing underscore so the wordmark felt alive while preserving its serious tone.
+
+![Final wordmark in motion](media:n0thing-wordmark-animation)
+
+Although it might not be the hardest logo to create mechanically, I think we did a good job of finding something that suited Jordan. We wanted it to feel serious, and I think we nailed it. Collaborating with him was easy, and I am happy I got the chance to create it.
