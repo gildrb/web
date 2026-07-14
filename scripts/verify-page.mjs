@@ -372,6 +372,31 @@ assert(
             hephHtml.indexOf(">GitHub repository</a>"),
     "The Heph case study must place the shared demo between authored prose and the repository link.",
 );
+const hephMediaSequence = [
+    'class="heph-demo case-heph-demo"',
+    "gil-rodrigues-heph-interface-960.webp",
+    "gil-rodrigues-heph-typeface-early-960.webp",
+    "gil-rodrigues-heph-typeface-refinement-960.webp",
+    "gil-rodrigues-heph-lockup.svg",
+];
+assert(
+    hephMediaSequence.every((asset, index) => {
+        const position = hephHtml.indexOf(asset);
+        const previousPosition =
+            index === 0 ? -1 : hephHtml.indexOf(hephMediaSequence[index - 1]);
+        return position > previousPosition;
+    }) && !hephHtml.includes("—"),
+    "Heph media must follow the documented chronology and omit em dashes.",
+);
+assert(
+    hephHtml.includes('class="heph-lockup"') &&
+        caseStyles.includes(':root:not([data-theme]) .heph-lockup') &&
+        caseStyles.includes(':root[data-theme="light"] .heph-lockup') &&
+        caseStyles.includes("filter: brightness(0);") &&
+        caseStyles.includes(':root[data-theme="dark"] .heph-lockup') &&
+        caseStyles.includes("filter: none;"),
+    "The Heph lockup must switch between white and dark with the active theme.",
+);
 assert(
     hephHtml.includes("const hephDemoForm = document.querySelector(") &&
         hephDemoStyles.includes(

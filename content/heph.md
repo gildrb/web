@@ -18,6 +18,24 @@ The materials get indexed so Heph can find the useful parts instead of sending e
 
 ![Heph demo](media:heph-demo)
 
+The demo above shows the basic interaction. This is how Heph currently looks in use, with the active armory, evidence, commands, and cited answer visible together.
+
+![Heph in use](media:heph-interface)
+
+### A typeface for Heph
+
+Once Heph was already working, I started drawing a custom typeface for it. I wanted the interface to feel more polished and more like a complete system, while keeping it quiet and easy to read.
+
+![Drawing the first letterforms](media:heph-typeface-early)
+
+I kept working through the character set, checking individual curves and how the letters felt together. Some shapes took much longer to settle than I expected.
+
+![Refining the typeface](media:heph-typeface-refinement)
+
+This work also led to a new Heph lockup, giving the product a clearer visual identity as I continue polishing it.
+
+![The Heph lockup](media:heph-lockup)
+
 ### Where it is now
 
 Heph is still a very early project, and there are many things I want to improve. I want it to be more reliable, work for more use cases, and be more accurate overall. Indexing and retrieval can get better, and I also want it to be easier to check the evidence without that process getting in the way of the conversation.

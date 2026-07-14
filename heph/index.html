@@ -10,10 +10,10 @@
         <link rel="canonical" href="https://gildrb.com/heph" />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://gildrb.com/heph" />
-        <meta property="og:title" content="Heph local document agent — Gil Rodrigues" />
+        <meta property="og:title" content="Heph local document agent by Gil Rodrigues" />
         <meta property="og:description" content="A local document agent built around bounded context and inspectable evidence." />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Heph local document agent — Gil Rodrigues" />
+        <meta name="twitter:title" content="Heph local document agent by Gil Rodrigues" />
         <meta name="twitter:description" content="A local document agent built around bounded context and inspectable evidence." />
         <title>Heph</title>
         <link id="site-favicon" rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -1528,6 +1528,24 @@ body {
     -webkit-user-drag: none;
 }
 
+.heph-lockup {
+    filter: none;
+}
+
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme]) .heph-lockup {
+        filter: brightness(0);
+    }
+}
+
+:root[data-theme="light"] .heph-lockup {
+    filter: brightness(0);
+}
+
+:root[data-theme="dark"] .heph-lockup {
+    filter: none;
+}
+
 .case-caption {
     max-width: 760px;
     margin-top: 12px;
@@ -2071,6 +2089,43 @@ body {
                                                     </div>
                         </div>
                             <figcaption class="case-caption">Heph demo</figcaption>
+                        </figure>
+                        </div>
+                            <div class="case-copy">
+                                <p>The demo above shows the basic interaction. This is how Heph currently looks in use, with the active armory, evidence, commands, and cited answer visible together.</p>
+                            </div>
+                        <div class="case-media">
+                        <figure>
+                            <img alt="Heph terminal interface showing a cited answer, evidence panel, and command menu" decoding="async" height="1004" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-heph-interface-960.webp" srcset="/images/optimized/gil-rodrigues-heph-interface-480.webp 480w, /images/optimized/gil-rodrigues-heph-interface-720.webp 720w, /images/optimized/gil-rodrigues-heph-interface-960.webp 960w, /images/optimized/gil-rodrigues-heph-interface-1280.webp 1280w, /images/optimized/gil-rodrigues-heph-interface-1600.webp 1600w" width="1600"/>
+                            <figcaption class="case-caption">Heph in use</figcaption>
+                        </figure>
+                        </div>
+                            <div class="case-copy">
+                                <h3>A typeface for Heph</h3>
+                                <p>Once Heph was already working, I started drawing a custom typeface for it. I wanted the interface to feel more polished and more like a complete system, while keeping it quiet and easy to read.</p>
+                            </div>
+                        <div class="case-media">
+                        <figure>
+                            <img alt="Early Heph typeface drawing in Glyphs with the lowercase g selected" decoding="async" height="909" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-heph-typeface-early-960.webp" srcset="/images/optimized/gil-rodrigues-heph-typeface-early-480.webp 480w, /images/optimized/gil-rodrigues-heph-typeface-early-720.webp 720w, /images/optimized/gil-rodrigues-heph-typeface-early-960.webp 960w, /images/optimized/gil-rodrigues-heph-typeface-early-1280.webp 1280w, /images/optimized/gil-rodrigues-heph-typeface-early-1600.webp 1600w" width="1600"/>
+                            <figcaption class="case-caption">Drawing the first letterforms</figcaption>
+                        </figure>
+                        </div>
+                            <div class="case-copy">
+                                <p>I kept working through the character set, checking individual curves and how the letters felt together. Some shapes took much longer to settle than I expected.</p>
+                            </div>
+                        <div class="case-media">
+                        <figure>
+                            <img alt="Continued Heph typeface drawing in Glyphs with lowercase o curves beside a large y" decoding="async" height="909" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-heph-typeface-refinement-960.webp" srcset="/images/optimized/gil-rodrigues-heph-typeface-refinement-480.webp 480w, /images/optimized/gil-rodrigues-heph-typeface-refinement-720.webp 720w, /images/optimized/gil-rodrigues-heph-typeface-refinement-960.webp 960w, /images/optimized/gil-rodrigues-heph-typeface-refinement-1280.webp 1280w, /images/optimized/gil-rodrigues-heph-typeface-refinement-1600.webp 1600w" width="1600"/>
+                            <figcaption class="case-caption">Refining the typeface</figcaption>
+                        </figure>
+                        </div>
+                            <div class="case-copy">
+                                <p>This work also led to a new Heph lockup, giving the product a clearer visual identity as I continue polishing it.</p>
+                            </div>
+                        <div class="case-media">
+                        <figure>
+                            <img class="heph-lockup" alt="Heph symbol and wordmark" decoding="async" height="860" loading="lazy" src="/images/optimized/gil-rodrigues-heph-lockup.svg" width="3023"/>
+                            <figcaption class="case-caption">The Heph lockup</figcaption>
                         </figure>
                         </div>
                             <div class="case-copy">
