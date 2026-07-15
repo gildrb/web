@@ -325,9 +325,11 @@ function highlightBash(source) {
 }
 
 function highlightCode(language, source) {
+    const wrapCodeArrows = (html) =>
+        html.replace(/[\u2190-\u2199]/g, '<span class="case-code-arrow">$&</span>');
     const normalizedLanguage = language.toLowerCase();
     if (!["css", "toml", "bash"].includes(normalizedLanguage)) {
-        return escapeHtml(source).replaceAll("\n", "&#10;");
+        return wrapCodeArrows(escapeHtml(source).replaceAll("\n", "&#10;"));
     }
 
     const highlighted = (() => {
@@ -341,7 +343,7 @@ function highlightCode(language, source) {
         }
     })();
 
-    return highlighted.replaceAll("\n", "&#10;");
+    return wrapCodeArrows(highlighted.replaceAll("\n", "&#10;"));
 }
 
 function renderInline(source) {
