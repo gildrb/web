@@ -1648,7 +1648,7 @@ body {
     border-radius: 0;
     background: transparent;
     color: var(--text-primary);
-    font: 14px/20px "Geist Mono", monospace;
+    font: 14px/20px "Geist Mono", "Inter", monospace;
     letter-spacing: 0;
     tab-size: 4;
 }
@@ -2262,9 +2262,8 @@ body {
                             <figcaption class="case-caption">Heph in use</figcaption>
                         </figure>
                         </div>
-                        <section class="case-section">
                             <div class="case-copy">
-                                <h2>The armory</h2>
+                                <h3>The armory</h3>
                                 <p>The core unit in Heph is an armory. An armory is a normal folder for one topic that carries its own materials, retrieval index, memory, chats, and diagnostics. If you want to study biology, you make a <code>Biology</code> armory, drop your files into its <code>materials</code> directory, and open it with <code>heph Biology</code>.</p>
                                 <p>On disk it stays completely inspectable:</p>
                             </div>
@@ -2274,11 +2273,7 @@ body {
                         </div>
                             <div class="case-copy">
                                 <p>I kept every armory isolated on purpose. Before I ask anything, I already know exactly which files Heph can and cannot see. There is no shared vector service in the cloud and no ambiguity about scope. Your files stay yours, on your disk, in formats you can open yourself.</p>
-                            </div>
-                        </section>
-                        <section class="case-section">
-                            <div class="case-copy">
-                                <h2>How retrieval works</h2>
+                                <h3>How retrieval works</h3>
                                 <p>Most of my time on Heph went here. I did not write BM25 or train an embedding model, since good libraries already exist for both. What I wrote is everything around them: how a question gets rewritten, how the results get combined, what happens when a piece is not available, and how the context gets trimmed before the model sees it.</p>
                                 <p>Adding a file imports it into the armory and breaks it into chunks. Text and Markdown split along their own headings so sections stay whole. PDFs and Office files run through Docling first, and I keep that conversion inside a worker with hard limits on time, memory, and output size, because a broken file should fail quietly on its own rather than take the whole process down. Each chunk remembers where it came from, down to the file, the character range, and the heading above it. That is what lets an answer point back to an exact place in a real document later on.</p>
                                 <p>Indexing is incremental. Heph hashes each file, keeps the ones that have not changed, and re-chunks only what moved. The index is plain JSON you can open and read, and while it builds it refuses to follow symlinks or paths that try to climb out of the armory.</p>
@@ -2291,19 +2286,11 @@ body {
                             <div class="case-copy">
                                 <p>Sparse retrieval prefers <code>bm25s</code>. If it is not installed, Heph uses a BM25 I wrote against the standard library, and if even that is not workable it drops to TF-IDF. Dense retrieval embeds each chunk with <code>all-MiniLM-L6-v2</code> and compares by cosine similarity, and a <code>ms-marco</code> cross-encoder reranks the shortlist when it is available. I fuse the two rankings with reciprocal-rank fusion, then adjust the result with the things I found actually mattered on real questions: pseudo-relevance feedback, a boost for quoted phrases, a hint from the file path, and a penalty for negated terms.</p>
                                 <p>All of that fallback logic is there because Heph runs on other people's machines, not on a server I control. Someone might not have the embedding model downloaded, or might be on a laptop without a GPU. I would rather the answers get a little weaker than watch the program fall over, so retrieval works with whatever is on the machine and still comes back with something useful.</p>
-                            </div>
-                        </section>
-                        <section class="case-section">
-                            <div class="case-copy">
-                                <h2>Evidence you can audit</h2>
+                                <h3>Evidence you can audit</h3>
                                 <p>The part I care about most is how evidence is handled. It is a real typed object in the code with its own ID and a defined life inside a single turn.</p>
                                 <p>After retrieval, Heph builds the evidence set for a turn. It promotes distinct sources first so a single file cannot dominate the context, applies a token budget, and assigns stable IDs in prompt order (<code>E1</code>, <code>E2</code>, <code>E3</code>, <code>E4</code>). The model is told to cite those IDs, and afterwards a verification pass checks every citation in the reply against the exact evidence objects used for that turn. It can tell the difference between a verified citation, an unknown ID the model invented, an answer that carried evidence but forgot to cite it, and an answer that had no evidence at all. A long, confident answer with no citations gets flagged.</p>
                                 <p>When you open a citation, Heph maps the chunk offsets back to line spans in the original file and shows a highlighted excerpt from the real source. It refuses absolute paths and anything that tries to escape the armory while doing this. That whole chain, from retrieved chunk to typed evidence to verified citation to a highlighted line range in your file, is the feature I started the project for.</p>
-                            </div>
-                        </section>
-                        <section class="case-section">
-                            <div class="case-copy">
-                                <h2>Architecture I can defend</h2>
+                                <h3>Architecture I can defend</h3>
                                 <p>Heph is a <code>uv</code> workspace split into five packages, and the boundaries between them are enforced by import-linter contracts rather than good intentions:</p>
                             </div>
                         <div class="case-code">
@@ -2312,40 +2299,20 @@ body {
                         </div>
                             <div class="case-copy">
                                 <p>The contracts make the dependency direction executable. The <code>ai</code> runtime cannot reach up into the app. Retrieval and material code cannot import chat or UI internals. The interface layer cannot import application composition. This is what keeps a codebase of roughly 300 Python source files understandable as a single person's project. When I come back to it after a break, the architecture tells me where things belong instead of making me guess.</p>
-                            </div>
-                        </section>
-                        <section class="case-section">
-                            <div class="case-copy">
-                                <h2>Runs with any model, including local ones</h2>
+                                <h3>Runs with any model, including local ones</h3>
                                 <p>The <code>ai</code> package is a provider-neutral runtime for OpenAI-compatible APIs. Out of the box it configures Pollinations, OpenRouter, OpenAI, DeepSeek, Z.AI, a managed local <code>llama.cpp</code> server, and a custom endpoint slot. Credentials resolve lazily and are stored as provider references, so keys never get baked into a generic chat config.</p>
                                 <p>The runtime handles the things that only show up in practice: streaming deltas, tool-call normalization, usage accounting, prompt-cache shaping, retries with exponential backoff, and a circuit breaker. My favorite detail is stream recovery. If a provider drops the connection before any output has arrived, the runtime quietly retries. If it drops mid-stream after tokens are already on screen, it raises a <code>StreamRecoveryError</code> that carries the partial response, so the caller can recover cleanly instead of throwing away what the user was already reading.</p>
                                 <p>Local models get the same treatment as every remote one. <code>heph local</code> discovers, installs, and validates GGUF models, then manages the <code>llama.cpp</code> server lifecycle and probes it for tool-call support, all behind the same runtime abstraction the remote providers use.</p>
-                            </div>
-                        </section>
-                        <section class="case-section">
-                            <div class="case-copy">
-                                <h2>The interface I had to fight for</h2>
+                                <h3>The interface I had to fight for</h3>
                                 <p>The whole thing lives in a terminal, built on Textual. I use Textual as a foundation instead of forking it, but getting the interface I wanted meant reaching under the hood far more than a typical app does. I run a small runtime patch so Textual can decode the modified key sequences that tmux and xterm send, which is what makes shortcuts behave correctly across different terminals. I reimplemented the input widget so the composer handles multiline editing and shell-style word deletion. I added cross-widget text selection so you can select and copy across the transcript, the option lists, and the inputs, which the framework does not give you out of the box. I also wrote transparent rendering subclasses to stop the compositor from painting black behind panels that are supposed to stay see-through. When it all works none of it is visible, and that is exactly the goal.</p>
                                 <p>The look of the terminal is deliberate too. Colors run through a small semantic palette with named roles, a default theme with a set of presets, and real light and dark behavior, so status labels, evidence citations, and source footers all stay consistent. I keep that theming written down as its own design doc, the same way I document the rest of the product, so the terminal and everything around it stay in step.</p>
-                            </div>
-                        </section>
-                        <section class="case-section">
-                            <div class="case-copy">
-                                <h2>Treating the agent like real software</h2>
+                                <h3>Treating the agent like real software</h3>
                                 <p>A document agent reads untrusted files and remembers things across sessions, so I built it to be suspicious.</p>
                                 <p>Memory is filtered on the way in and on the way out. Entries have size and confidence limits, and they are checked for invisible Unicode, prompt-injection patterns, and secret-exfiltration patterns before they are ever trusted. Document extraction is bounded so a hostile PDF cannot exhaust memory or hang the process. Source mapping and session handling reject absolute paths, path traversal, symlink escapes, and unsafe identifiers.</p>
                                 <p>There is also an attempts subsystem that observes each answer and applies a static policy: is there enough evidence, are citations required here, is the model making an unsupported claim, should it abstain or retry. That is what turns a chat loop into something I can reason about and control.</p>
-                            </div>
-                        </section>
-                        <section class="case-section">
-                            <div class="case-copy">
-                                <h2>How I keep myself honest</h2>
+                                <h3>How I keep myself honest</h3>
                                 <p>Because I am the only person on this, the tooling has to do the work a team would. Heph runs on Python 3.13 with <code>ruff</code>, the <code>ty</code> type checker, <code>import-linter</code> for the architecture contracts, <code>bandit</code> and <code>vulture</code> and <code>gitleaks</code>, duplicate-code and complexity checks, dependency and docs-sync validation, and a large <code>pytest</code> suite (roughly 2,400 test functions across the packages). CI runs all of it on every change. There is a full documentation site and a runbook for CI failures. None of that is glamorous, and it is exactly why I trust the thing enough to use it every day.</p>
-                            </div>
-                        </section>
-                        <section class="case-section">
-                            <div class="case-copy">
-                                <h2>The identity work</h2>
+                                <h3>The identity work</h3>
                                 <p>Once the agent was solid, I started drawing a custom typeface for a graphical interface I was considering, with the terminal keeping its monospaced face. I wanted the type, the logo, and the wordmark to come from the same hand so the whole product would feel deliberate.</p>
                             </div>
                         <div class="case-media">
@@ -2372,15 +2339,12 @@ body {
                             <figcaption class="case-caption">The Heph lockup</figcaption>
                         </figure>
                         </div>
-                        </section>
-                        <section class="case-section">
                             <div class="case-copy">
-                                <h2>Where it is going</h2>
+                                <h3>Where it is going</h3>
                                 <p>Heph is young and I have a long list of things I want to sharpen: better retrieval on messy corpora, faster indexing, and an even smoother way to inspect evidence without breaking the flow of a conversation. The design is built to age well. The model behind it can improve or be swapped as open-source models get cheaper and stronger, and the core promise holds either way. Your files stay yours, and you can always check what an answer is built on.</p>
                                 <p>I am building the tool I always wanted to exist and holding it to the standard I would expect from a full team, even though it is only me. There is a lot more coming.</p>
                                 <p><a class="external-link" href="https://github.com/gildrb/heph" target="_blank" rel="noopener noreferrer">GitHub repository</a></p>
                             </div>
-                        </section>
                     </article>
                 </main>
                 <div class="case-mobile-links">
