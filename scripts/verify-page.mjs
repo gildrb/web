@@ -509,7 +509,7 @@ assert(
         hephHtml.includes(
             '<a class="case-home-link" href="/">Gil Rodrigues</a>',
         ) &&
-        hephHtml.includes("<span>Heph</span>") &&
+        hephHtml.includes('<a class="case-current-link" href="#top">Heph</a>') &&
         hephHtml.includes('href="https://github.com/gildrb/heph"') &&
         hephHtml.includes("GitHub repository") &&
         !hephHtml.includes("case-kicker"),
@@ -575,7 +575,7 @@ assert(
         ml7Html.includes(
             '<a class="case-home-link" href="/">Gil Rodrigues</a>',
         ) &&
-        ml7Html.includes("<span>mL7</span>") &&
+        ml7Html.includes('<a class="case-current-link" href="#top">mL7</a>') &&
         !ml7Html.includes('>Index</a>') &&
         !ml7Html.includes("case-kicker"),
     "mL7 must use the same persistent case-study navigation as Filen.",
@@ -593,7 +593,9 @@ assert(
         n0thingHtml.includes(
             '<a class="case-home-link" href="/">Gil Rodrigues</a>',
         ) &&
-        n0thingHtml.includes("<span>n0thing</span>") &&
+        n0thingHtml.includes(
+            '<a class="case-current-link" href="#top">n0thing</a>',
+        ) &&
         !n0thingHtml.includes('>Index</a>') &&
         !n0thingHtml.includes("case-kicker"),
     "n0thing must use the same persistent case-study navigation as Filen.",
@@ -784,13 +786,13 @@ assert(
 );
 assert(
     caseStyles.includes(
-        ".case-home-link {\n    flex-basis: 100%;\n    color: var(--text-tertiary);",
+        ".case-location .case-home-link,\n.case-arrow {\n    color: var(--text-tertiary);",
         ) &&
         caseStyles.includes(
-            ".case-location span:last-child {\n    color: var(--text-primary);",
+            ".case-location .case-current-link {\n    color: var(--text-primary);",
         ) &&
         caseStyles.includes(
-            ".case-home-link:hover {\n        color: var(--text-primary);",
+            ".case-location .case-home-link:hover {\n        color: var(--text-primary);",
         ),
     "Case locations must preserve the active-page hierarchy.",
 );

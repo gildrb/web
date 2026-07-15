@@ -2371,16 +2371,23 @@ body {
 
 .case-home-link {
     flex-basis: 100%;
-    color: var(--text-tertiary);
     text-decoration: none;
 }
 
+.case-location .case-home-link,
 .case-arrow {
     color: var(--text-tertiary);
 }
 
-.case-location span:last-child {
+@media (hover: hover) {
+    .case-location .case-home-link:hover {
+        color: var(--text-primary);
+    }
+}
+
+.case-location .case-current-link {
     color: var(--text-primary);
+    text-decoration: none;
 }
 
 .case-desktop-links {
