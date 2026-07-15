@@ -1642,6 +1642,10 @@ body {
     margin-top: var(--text-media-gap);
 }
 
+.case-code + .case-copy {
+    margin-top: 48px;
+}
+
 .case-code {
     width: min(100%, 880px);
     margin: 48px auto 0;
@@ -1725,6 +1729,10 @@ body {
     }
 
     .case-code {
+        margin-top: 32px;
+    }
+
+    .case-code + .case-copy {
         margin-top: 32px;
     }
 
@@ -2240,53 +2248,6 @@ body {
                                 <h2>Readable by machines</h2>
                                 <p>I treated discovery as a design surface. The site publishes a Schema.org identity graph as JSON-LD, a WebFinger and host-meta record, an llms.txt profile written for AI agents, an RSS feed, a humans.txt file, and a sitemap. It also serves Content-Signal headers that state plainly how the site may be searched, used as AI input, or used for training. A person, a search engine, and an AI agent all get the same clear answer about who I am.</p>
                             </div>
-                        <div class="case-media">
-                        <figure>
-                            <div class="site-endpoints">
-                            <style>
-                                .site-endpoints {
-                                    width: 100%;
-                                    color: var(--text-secondary);
-                                    font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-                                    font-size: 14px;
-                                    line-height: 20px;
-                                }
-                        
-                                .site-endpoints-list {
-                                    display: grid;
-                                    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
-                                    gap: 8px 20px;
-                                }
-                        
-                                .site-endpoint {
-                                    color: var(--text-primary);
-                                }
-                        
-                                .site-endpoint-label {
-                                    color: var(--text-secondary);
-                                }
-                        
-                                @media (max-width: 560px) {
-                                    .site-endpoints-list {
-                                        grid-template-columns: 1fr;
-                                        gap: 4px;
-                                    }
-                                }
-                            </style>
-                            <div class="site-endpoints-list">
-                                <span class="site-endpoint">JSON-LD</span><span class="site-endpoint-label">identity graph</span>
-                                <span class="site-endpoint">WebFinger</span><span class="site-endpoint-label">identity discovery</span>
-                                <span class="site-endpoint">host-meta</span><span class="site-endpoint-label">host metadata</span>
-                                <span class="site-endpoint">llms.txt</span><span class="site-endpoint-label">AI-readable profile</span>
-                                <span class="site-endpoint">RSS</span><span class="site-endpoint-label">updates feed</span>
-                                <span class="site-endpoint">humans.txt</span><span class="site-endpoint-label">human authorship</span>
-                                <span class="site-endpoint">sitemap</span><span class="site-endpoint-label">route discovery</span>
-                                <span class="site-endpoint">Content-Signal</span><span class="site-endpoint-label">usage headers</span>
-                            </div>
-                        </div>
-                            <figcaption class="case-caption">Machine-readable identity</figcaption>
-                        </figure>
-                        </div>
                         </section>
                         <section class="case-section">
                             <div class="case-copy">

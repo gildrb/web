@@ -17,14 +17,15 @@ The core unit in Heph is an armory. An armory is a normal folder for one topic t
 On disk it stays completely inspectable:
 
 ```text title="~/.armories/Biology/"
-materials/            your original files, untouched
-.harness/
-  armory.toml         armory marker and config
-  rag_index.json      chunked, hashed retrieval index
-  memory.json         persistent extracted context
-  chats/              saved sessions
-  traces/             per-turn diagnostics
-  usage/              token and cost accounting
+├── materials/ # original files
+│   └── ...
+└── .harness/ # Heph state
+    ├── armory.toml # config
+    ├── rag_index.json # retrieval index
+    ├── memory.json # extracted context
+    ├── chats/ # saved sessions
+    ├── traces/ # diagnostics
+    └── usage/ # token costs
 ```
 
 I kept every armory isolated on purpose. Before I ask anything, I already know exactly which files Heph can and cannot see. There is no shared vector service in the cloud and no ambiguity about scope. Your files stay yours, on your disk, in formats you can open yourself.
@@ -41,13 +42,13 @@ Retrieval is hybrid. A question runs through a few steps before it reaches the m
 
 ```text title="Retrieval pipeline"
 query
-  → normalization and expansion (multi-query and HyDE-style rewrites)
-  → sparse retrieval (BM25)
-  → dense retrieval (sentence-transformer embeddings)
-  → reciprocal-rank fusion
-  → optional pseudo-relevance feedback
-  → optional cross-encoder reranking
-  → source, quote, and negation post-processing
+  → normalize + expand
+  → sparse retrieval
+  → dense retrieval
+  → rank fusion
+  → feedback (optional)
+  → rerank (optional)
+  → source + quote + negation checks
   → top-k chunks
 ```
 
@@ -68,11 +69,11 @@ When you open a citation, Heph maps the chunk offsets back to line spans in the 
 Heph is a `uv` workspace split into five packages, and the boundaries between them are enforced by import-linter contracts rather than good intentions:
 
 ```text title="Packages"
-extensions   stable contracts, no runtime dependencies
-ai           provider and model runtime, OpenAI-compatible
-harness      armories, materials, RAG, evidence, memory, safety
-interfaces   terminal and Textual UI adapters
-heph         CLI, TUI composition, slash commands, SDK
+extensions # stable contracts
+ai # provider runtime
+harness # RAG + evidence
+interfaces # terminal UI
+heph # CLI + SDK
 ```
 
 The contracts make the dependency direction executable. The `ai` runtime cannot reach up into the app. Retrieval and material code cannot import chat or UI internals. The interface layer cannot import application composition. This is what keeps a codebase of roughly 300 Python source files understandable as a single person's project. When I come back to it after a break, the architecture tells me where things belong instead of making me guess.

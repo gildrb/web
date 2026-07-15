@@ -32,8 +32,6 @@ The terminal on the homepage is a from-scratch simulation of a Heph session writ
 
 I treated discovery as a design surface. The site publishes a Schema.org identity graph as JSON-LD, a WebFinger and host-meta record, an llms.txt profile written for AI agents, an RSS feed, a humans.txt file, and a sitemap. It also serves Content-Signal headers that state plainly how the site may be searched, used as AI input, or used for training. A person, a search engine, and an AI agent all get the same clear answer about who I am.
 
-![Machine-readable identity](media:site-identity-endpoints)
-
 ## Fast and accessible by default
 
 Performance and accessibility were requirements from the start. Critical CSS and JavaScript are inlined, fonts are preloaded, images are served responsively with the right size for each viewport, and the markup uses real landmarks, live regions for status updates, visible focus rings, and reduced-motion fallbacks. It loads fast and holds up whether you are on a phone, using a keyboard, or reading with a screen reader.

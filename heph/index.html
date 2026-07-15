@@ -1627,6 +1627,10 @@ body {
     margin-top: var(--text-media-gap);
 }
 
+.case-code + .case-copy {
+    margin-top: 48px;
+}
+
 .case-code {
     width: min(100%, 880px);
     margin: 48px auto 0;
@@ -1710,6 +1714,10 @@ body {
     }
 
     .case-code {
+        margin-top: 32px;
+    }
+
+    .case-code + .case-copy {
         margin-top: 32px;
     }
 
@@ -2245,14 +2253,15 @@ body {
                             </div>
                         <div class="case-code">
                         <p class="case-code-label">~/.armories/Biology/</p>
-                        <pre><code>materials/            your original files, untouched
-                        .harness/
-                          armory.toml         armory marker and config
-                          rag_index.json      chunked, hashed retrieval index
-                          memory.json         persistent extracted context
-                          chats/              saved sessions
-                          traces/             per-turn diagnostics
-                          usage/              token and cost accounting</code></pre>
+                        <pre><code>├── materials/ # original files
+                        │   └── ...
+                        └── .harness/ # Heph state
+                            ├── armory.toml # config
+                            ├── rag_index.json # retrieval index
+                            ├── memory.json # extracted context
+                            ├── chats/ # saved sessions
+                            ├── traces/ # diagnostics
+                            └── usage/ # token costs</code></pre>
                         </div>
                             <div class="case-copy">
                                 <p>I kept every armory isolated on purpose. Before I ask anything, I already know exactly which files Heph can and cannot see. There is no shared vector service in the cloud and no ambiguity about scope. Your files stay yours, on your disk, in formats you can open yourself.</p>
@@ -2269,13 +2278,13 @@ body {
                         <div class="case-code">
                         <p class="case-code-label">Retrieval pipeline</p>
                         <pre><code>query
-                          → normalization and expansion (multi-query and HyDE-style rewrites)
-                          → sparse retrieval (BM25)
-                          → dense retrieval (sentence-transformer embeddings)
-                          → reciprocal-rank fusion
-                          → optional pseudo-relevance feedback
-                          → optional cross-encoder reranking
-                          → source, quote, and negation post-processing
+                          → normalize + expand
+                          → sparse retrieval
+                          → dense retrieval
+                          → rank fusion
+                          → feedback (optional)
+                          → rerank (optional)
+                          → source + quote + negation checks
                           → top-k chunks</code></pre>
                         </div>
                             <div class="case-copy">
@@ -2298,11 +2307,11 @@ body {
                             </div>
                         <div class="case-code">
                         <p class="case-code-label">Packages</p>
-                        <pre><code>extensions   stable contracts, no runtime dependencies
-                        ai           provider and model runtime, OpenAI-compatible
-                        harness      armories, materials, RAG, evidence, memory, safety
-                        interfaces   terminal and Textual UI adapters
-                        heph         CLI, TUI composition, slash commands, SDK</code></pre>
+                        <pre><code>extensions # stable contracts
+                        ai # provider runtime
+                        harness # RAG + evidence
+                        interfaces # terminal UI
+                        heph # CLI + SDK</code></pre>
                         </div>
                             <div class="case-copy">
                                 <p>The contracts make the dependency direction executable. The <code>ai</code> runtime cannot reach up into the app. Retrieval and material code cannot import chat or UI internals. The interface layer cannot import application composition. This is what keeps a codebase of roughly 300 Python source files understandable as a single person's project. When I come back to it after a break, the architecture tells me where things belong instead of making me guess.</p>
