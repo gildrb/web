@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { buildPage } from "./build-page.mjs";
+import { siteConfig } from "./site-config.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -86,20 +87,30 @@ async function listFiles(relativeDir) {
 }
 
 const {
-    caseScript,
-    filenHtml,
-    hephHtml,
+    casePages,
+    caseScripts,
     indexHtml,
-    ml7Html,
-    n0thingHtml,
     profileJson,
     siteScript,
 } = await buildPage({ write: false });
+const {
+    filen: filenHtml,
+    heph: hephHtml,
+    ml7: ml7Html,
+    n0thing: n0thingHtml,
+} = casePages;
+const caseScript = caseScripts.filen;
+const caseHtml = Object.values(casePages);
+const allHtml = [indexHtml, ...caseHtml];
 const currentIndex = await readText("index.html");
-const currentFilen = await readText("filen/index.html");
-const currentHeph = await readText("heph/index.html");
-const currentMl7 = await readText("ml7/index.html");
-const currentN0thing = await readText("n0thing/index.html");
+const currentCasePages = Object.fromEntries(
+    await Promise.all(
+        siteConfig.caseStudies.map(async ({ slug }) => [
+            slug,
+            await readText(`${slug}/index.html`),
+        ]),
+    ),
+);
 const currentProfile = await readText("profile.json");
 const llmsText = await readText("llms.txt");
 const wellKnownLlmsText = await readText(".well-known/llms.txt");
@@ -113,7 +124,7 @@ const identityTexts = await Promise.all(
         "index.html.md",
         "llms.txt",
         "profile.json",
-        "src/data/profile.schema.json",
+        siteConfig.profileSource,
         "src/page.template.html",
         "src/partials/layout-open.html",
         "src/sections/profile-summary.html",
@@ -129,10 +140,10 @@ const previewContentStyles = await readText("src/styles/40-preview-content.css")
 const portfolioOpen = await readText("src/sections/portfolio-open.html");
 const previewFavicon = await readText("preview-favicon.svg");
 const vercelConfig = JSON.parse(await readText("vercel.json"));
-const caseSlugs = ["filen", "heph", "ml7", "n0thing"];
 const caseSources = await Promise.all(
-    caseSlugs.map(async (slug) => ({
+    siteConfig.caseStudies.map(async ({ slug, title }) => ({
         slug,
+        title,
         markdown: await readText(`content/${slug}.md`),
         template: await readText(`src/${slug}.template.html`),
     })),
@@ -141,14 +152,7 @@ assert(
     indexHtml.includes("<title>Gil Rodrigues</title>"),
     "The homepage browser title must be only Gil Rodrigues.",
 );
-const routeTitles = {
-    filen: "Filen",
-    heph: "Heph",
-    ml7: "mL7",
-    n0thing: "n0thing",
-};
-
-for (const { slug, markdown, template } of caseSources) {
+for (const { slug, title, markdown, template } of caseSources) {
     assert(
         markdown.startsWith("# ") &&
             [0, 3].includes(
@@ -163,7 +167,7 @@ for (const { slug, markdown, template } of caseSources) {
         `src/${slug}.template.html must keep authored prose in content/${slug}.md.`,
     );
     assert(
-        template.includes(`<title>${routeTitles[slug]}</title>`),
+        template.includes(`<title>${title}</title>`),
         `src/${slug}.template.html must use only the project name as its browser title.`,
     );
     const mediaCaptions = [
@@ -197,22 +201,12 @@ assert(
     currentIndex === indexHtml,
     "index.html is out of date. Run `node scripts/build-page.mjs`.",
 );
-assert(
-    currentFilen === filenHtml,
-    "filen/index.html is out of date. Run `node scripts/build-page.mjs`.",
-);
-assert(
-    currentHeph === hephHtml,
-    "heph/index.html is out of date. Run `node scripts/build-page.mjs`.",
-);
-assert(
-    currentMl7 === ml7Html,
-    "ml7/index.html is out of date. Run `node scripts/build-page.mjs`.",
-);
-assert(
-    currentN0thing === n0thingHtml,
-    "n0thing/index.html is out of date. Run `node scripts/build-page.mjs`.",
-);
+for (const { slug } of siteConfig.caseStudies) {
+    assert(
+        currentCasePages[slug] === casePages[slug],
+        `${slug}/index.html is out of date. Run \`node scripts/build-page.mjs\`.`,
+    );
+}
 assert(
     currentProfile === profileJson,
     "profile.json is out of date. Run `node scripts/build-page.mjs`.",
@@ -243,10 +237,7 @@ assert(
 
 const assetRefs = new Set([
     ...extractAssetRefs(indexHtml),
-    ...extractAssetRefs(filenHtml),
-    ...extractAssetRefs(hephHtml),
-    ...extractAssetRefs(ml7Html),
-    ...extractAssetRefs(n0thingHtml),
+    ...caseHtml.flatMap((html) => [...extractAssetRefs(html)]),
 ]);
 const missingAssets = [...assetRefs].filter(
     (ref) => !existsSync(path.join(root, ref)),
@@ -630,13 +621,13 @@ assert(
     "n0thing media must follow the documented design process.",
 );
 assert(
-    [indexHtml, filenHtml, hephHtml, ml7Html, n0thingHtml].every(
+    allHtml.every(
         (html) => !html.includes("\u2014"),
     ),
     "Public copy and metadata must omit em dashes on every page.",
 );
 assert(
-    [indexHtml, filenHtml, hephHtml, ml7Html, n0thingHtml].every(
+    allHtml.every(
         (html) =>
             !/\b(?:it|this|that|they|he|she)\s+(?:is|are|was|were|'s|’s)\s+not\b[^.!?]{0,160}[,;:]\s*(?:it|this|that|they|he|she)\s+(?:is|are|was|were|'s|’s)\b/i.test(
                 html.replace(/<[^>]+>/g, " "),
@@ -645,7 +636,7 @@ assert(
     "Public copy must omit the forbidden negative-then-positive contrast structure.",
 );
 assert(
-    [indexHtml, filenHtml, hephHtml, ml7Html, n0thingHtml].every(
+    allHtml.every(
         (html) =>
             html.includes('id="site-favicon"') &&
             html.includes('window.location.hostname.endsWith(".vercel.app")') &&
@@ -861,7 +852,7 @@ const sharedSidebarTargets = [
     "https://signal.me/",
 ];
 assert(
-    [indexHtml, filenHtml, hephHtml, ml7Html, n0thingHtml].every(
+    allHtml.every(
         (html) =>
             sharedSidebarTargets.every((target) => html.includes(target)) &&
             html.includes('aria-label="Copy hi@gildrb.com"') &&
@@ -878,7 +869,7 @@ assert(
     "Homepage and case routes must preserve per-tab scroll positions across back/forward navigation.",
 );
 assert(
-    [filenHtml, hephHtml, ml7Html, n0thingHtml].every(
+    caseHtml.every(
         (html) =>
             !html.includes('class="case-footer"') &&
             html.includes('class="case-desktop-links"') &&

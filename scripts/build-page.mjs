@@ -2,6 +2,7 @@ import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { renderCaseMarkdown } from "./render-case-markdown.mjs";
+import { siteConfig } from "./site-config.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -74,7 +75,7 @@ async function resolveIncludes(template) {
 }
 
 export async function buildPage({ write = true } = {}) {
-    const profile = JSON.parse(await readText("src/data/profile.schema.json"));
+    const profile = JSON.parse(await readText(siteConfig.profileSource));
     const profileJson = `${JSON.stringify(profile, null, 2)}\n`;
     const styles = (await readSortedFiles("src/styles", (file) =>
         file.endsWith(".css"),
@@ -82,40 +83,42 @@ export async function buildPage({ write = true } = {}) {
         .map(({ text }) => text)
         .join("\n\n");
     const analyticsBootstrap = (
-        await readText("src/scripts/00-analytics-bootstrap.js")
+        await readText(`src/scripts/${siteConfig.analyticsScript}`)
     ).trimEnd();
     const siteScript = (
         await readSortedFiles(
             "src/scripts",
             (file) =>
                 file.endsWith(".js") &&
-                file !== "00-analytics-bootstrap.js",
+                file !== siteConfig.analyticsScript,
         )
     )
         .map(({ text }) => text)
         .join("\n\n");
-    const caseScript = (
-        await Promise.all(
-            ["10-core.js", "20-theme.js", "30-email.js"].map((file) =>
-                readText(`src/scripts/${file}`),
-            ),
-        )
-    )
-        .map((text) => text.trimEnd())
-        .join("\n\n");
-    const hephCaseScript = (
-        await Promise.all(
-            [
-                "10-core.js",
-                "20-theme.js",
-                "30-email.js",
-                "40-heph-data.js",
-                "50-heph-demo.js",
-            ].map((file) => readText(`src/scripts/${file}`)),
-        )
-    )
-        .map((text) => text.trimEnd())
-        .join("\n\n");
+    const scriptBundles = new Map();
+
+    for (const { scripts } of siteConfig.caseStudies) {
+        const bundleKey = scripts.join("\0");
+
+        if (!scriptBundles.has(bundleKey)) {
+            const bundle = (
+                await Promise.all(
+                    scripts.map((file) => readText(`src/scripts/${file}`)),
+                )
+            )
+                .map((text) => text.trimEnd())
+                .join("\n\n");
+
+            scriptBundles.set(bundleKey, bundle);
+        }
+    }
+
+    const caseScripts = Object.fromEntries(
+        siteConfig.caseStudies.map(({ scripts, slug }) => [
+            slug,
+            scriptBundles.get(scripts.join("\0")),
+        ]),
+    );
 
     let indexHtml = await resolveIncludes(
         await readText("src/page.template.html"),
@@ -145,7 +148,8 @@ export async function buildPage({ write = true } = {}) {
         throw new Error("Generated HTML still contains inline tokens.");
     }
 
-    async function buildCasePage(templatePath, slug, script = caseScript) {
+    async function buildCasePage({ slug }) {
+        const templatePath = `src/${slug}.template.html`;
         let html = await resolveIncludes(await readText(templatePath));
         html = replaceToken(
             html,
@@ -161,7 +165,11 @@ export async function buildPage({ write = true } = {}) {
             "<!-- @inline-js:analytics-bootstrap -->",
             analyticsBootstrap,
         );
-        html = replaceToken(html, "<!-- @inline-js:case -->", script);
+        html = replaceToken(
+            html,
+            "<!-- @inline-js:case -->",
+            caseScripts[slug],
+        );
 
         if (html.includes("<!-- @inline-")) {
             throw new Error(
@@ -172,33 +180,31 @@ export async function buildPage({ write = true } = {}) {
         return html;
     }
 
-    const [filenHtml, hephHtml, ml7Html, n0thingHtml] = await Promise.all([
-        buildCasePage("src/filen.template.html", "filen"),
-        buildCasePage("src/heph.template.html", "heph", hephCaseScript),
-        buildCasePage("src/ml7.template.html", "ml7"),
-        buildCasePage("src/n0thing.template.html", "n0thing"),
-    ]);
+    const casePages = Object.fromEntries(
+        await Promise.all(
+            siteConfig.caseStudies.map(async (caseStudy) => [
+                caseStudy.slug,
+                await buildCasePage(caseStudy),
+            ]),
+        ),
+    );
 
     if (write) {
         await writeFile(path.join(root, "index.html"), indexHtml);
         await writeFile(path.join(root, "profile.json"), profileJson);
-        await mkdir(path.join(root, "filen"), { recursive: true });
-        await writeFile(path.join(root, "filen/index.html"), filenHtml);
-        await mkdir(path.join(root, "heph"), { recursive: true });
-        await writeFile(path.join(root, "heph/index.html"), hephHtml);
-        await mkdir(path.join(root, "ml7"), { recursive: true });
-        await writeFile(path.join(root, "ml7/index.html"), ml7Html);
-        await mkdir(path.join(root, "n0thing"), { recursive: true });
-        await writeFile(path.join(root, "n0thing/index.html"), n0thingHtml);
+
+        await Promise.all(
+            Object.entries(casePages).map(async ([slug, html]) => {
+                await mkdir(path.join(root, slug), { recursive: true });
+                await writeFile(path.join(root, slug, "index.html"), html);
+            }),
+        );
     }
 
     return {
-        caseScript,
-        filenHtml,
-        hephHtml,
+        casePages,
+        caseScripts,
         indexHtml,
-        ml7Html,
-        n0thingHtml,
         profileJson,
         siteScript,
     };
