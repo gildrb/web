@@ -1668,6 +1668,23 @@ body {
     tab-size: 4;
 }
 
+.case-code .tok-key,
+.case-code .tok-keyword {
+    color: var(--text-primary);
+}
+
+.case-code .tok-string,
+.case-code .tok-value,
+.case-code .tok-number {
+    color: var(--text-secondary);
+}
+
+.case-code .tok-comment,
+.case-code .tok-punctuation,
+.case-code .tok-operator {
+    color: var(--text-tertiary);
+}
+
 @media (min-width: 769px) {
     .case-article article > :last-child {
         --case-final-line-height: 24px;
@@ -2056,143 +2073,27 @@ body {
                                 <p>Spacing comes off a 4px scale (4, 8, 12, 16, 24, 32, 48, 64, 80) exposed as named tokens, so a 760px content column, a 240px sidebar, and a 48px layout gap are decisions I made once and reuse everywhere. Type is self-hosted Inter Variable with Geist Mono for code, on a fixed ramp: 28/36 for titles, 24/32 for section headings, 16/24 for body, 14/20 for captions, nothing lighter than weight 400, and no fluid font sizing. Interaction is just as strict: links and controls promote from tertiary to primary gray on hover, focus shows a 1px ring at a 4px offset, selection uses the bright-gray highlight, and any motion stays at or below 200ms and yields to reduced-motion.</p>
                                 <p>The spec is enforced in code. The build refuses to ship a page that violates the tokens, the type hierarchy, or the spacing rules, so the written system and the live site can never quietly disagree.</p>
                             </div>
-                        <div class="case-media">
-                        <figure>
-                            <div class="site-tokens">
-                            <style>
-                                .site-tokens {
-                                    width: 100%;
-                                    color: var(--text-secondary);
-                                }
-                                .site-token-grid {
-                                    display: grid;
-                                    grid-template-columns: repeat(2, minmax(0, 1fr));
-                                    gap: 12px 24px;
-                                    font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-                                    font-size: 14px;
-                                    line-height: 20px;
-                                }
-                                .site-token {
-                                    display: grid;
-                                    grid-template-columns: 12px minmax(0, 1fr);
-                                    column-gap: 8px;
-                                    align-items: center;
-                                    min-width: 0;
-                                }
-                                .site-token-chip {
-                                    display: block;
-                                    box-sizing: border-box;
-                                    width: 12px;
-                                    height: 12px;
-                                    background: var(--chip-color);
-                                    border: 1px solid color-mix(in srgb, var(--text-primary) 22%, transparent);
-                                }
-                                .site-token-name {
-                                    color: var(--text-primary);
-                                }
-                                .site-token-value {
-                                    color: var(--text-secondary);
-                                }
-                                .site-token-subsection {
-                                    margin-top: 48px;
-                                }
-                                .site-type-ramp {
-                                    display: grid;
-                                    gap: 8px;
-                                    color: var(--text-primary);
-                                }
-                                .site-type-ramp span {
-                                    display: block;
-                                }
-                                .site-type-title {
-                                    font-size: 28px;
-                                    line-height: 36px;
-                                }
-                                .site-type-heading {
-                                    font-size: 24px;
-                                    line-height: 32px;
-                                }
-                                .site-type-body {
-                                    font-size: 16px;
-                                    line-height: 24px;
-                                }
-                                .site-type-caption {
-                                    color: var(--text-tertiary);
-                                    font-size: 14px;
-                                    line-height: 20px;
-                                }
-                                .site-spacing-scale {
-                                    display: flex;
-                                    align-items: end;
-                                    gap: 8px;
-                                    height: 64px;
-                                }
-                                .site-spacing-bar {
-                                    display: flex;
-                                    align-items: end;
-                                    justify-content: center;
-                                    width: 24px;
-                                    height: var(--bar-height);
-                                    color: var(--text-primary);
-                                    background: var(--highlight-bg);
-                                    font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-                                    font-size: 10px;
-                                    line-height: 12px;
-                                }
-                                @media (max-width: 560px) {
-                                    .site-token-grid {
-                                        grid-template-columns: 1fr;
-                                    }
-                                }
-                            </style>
-                            <div class="site-token-grid">
-                                <div class="site-token">
-                                    <span class="site-token-chip" style="--chip-color: #000000;" aria-hidden="true"></span>
-                                    <span><span class="site-token-name">--bg</span> <span class="site-token-value">#000000</span></span>
-                                </div>
-                                <div class="site-token">
-                                    <span class="site-token-chip" style="--chip-color: #ffffff;" aria-hidden="true"></span>
-                                    <span><span class="site-token-name">--text-primary</span> <span class="site-token-value">#ffffff</span></span>
-                                </div>
-                                <div class="site-token">
-                                    <span class="site-token-chip" style="--chip-color: #b3b3b3;" aria-hidden="true"></span>
-                                    <span><span class="site-token-name">--text-secondary</span> <span class="site-token-value">#b3b3b3</span></span>
-                                </div>
-                                <div class="site-token">
-                                    <span class="site-token-chip" style="--chip-color: #767676;" aria-hidden="true"></span>
-                                    <span><span class="site-token-name">--text-tertiary</span> <span class="site-token-value">#767676</span></span>
-                                </div>
-                                <div class="site-token">
-                                    <span class="site-token-chip" style="--chip-color: #b3b3b3;" aria-hidden="true"></span>
-                                    <span><span class="site-token-name">--highlight-bg</span> <span class="site-token-value">#b3b3b3</span></span>
-                                </div>
-                                <div class="site-token">
-                                    <span class="site-token-chip" style="--chip-color: #ffffff;" aria-hidden="true"></span>
-                                    <span><span class="site-token-name">--highlight-text</span> <span class="site-token-value">#ffffff</span></span>
-                                </div>
-                            </div>
-                            <div class="site-token-subsection">
-                                <div class="site-type-ramp">
-                                    <span class="site-type-title">28/36 title</span>
-                                    <span class="site-type-heading">24/32 heading</span>
-                                    <span class="site-type-body">16/24 body</span>
-                                    <span class="site-type-caption">14/20 caption</span>
-                                </div>
-                            </div>
-                            <div class="site-token-subsection">
-                                <div class="site-spacing-scale" aria-label="4, 8, 12, 16, 24, 32, 48 pixel spacing scale">
-                                    <span class="site-spacing-bar" style="--bar-height: 8px;">4</span>
-                                    <span class="site-spacing-bar" style="--bar-height: 16px;">8</span>
-                                    <span class="site-spacing-bar" style="--bar-height: 24px;">12</span>
-                                    <span class="site-spacing-bar" style="--bar-height: 32px;">16</span>
-                                    <span class="site-spacing-bar" style="--bar-height: 48px;">24</span>
-                                    <span class="site-spacing-bar" style="--bar-height: 56px;">32</span>
-                                    <span class="site-spacing-bar" style="--bar-height: 64px;">48</span>
-                                </div>
-                            </div>
-                        </div>
-                            <figcaption class="case-caption">Design tokens</figcaption>
-                        </figure>
+                        <div class="case-code">
+                        <p class="case-code-label">src/styles/10-base.css</p>
+                        <pre><code><span class="tok-punctuation">:</span><span class="tok-key">root</span> <span class="tok-punctuation">{</span>
+                            <span class="tok-key">--bg</span><span class="tok-punctuation">:</span> <span class="tok-number">#000000</span><span class="tok-punctuation">;</span>
+                            <span class="tok-key">--text-primary</span><span class="tok-punctuation">:</span> <span class="tok-number">#ffffff</span><span class="tok-punctuation">;</span>
+                            <span class="tok-key">--text-secondary</span><span class="tok-punctuation">:</span> <span class="tok-number">#b3b3b3</span><span class="tok-punctuation">;</span>
+                            <span class="tok-key">--text-tertiary</span><span class="tok-punctuation">:</span> <span class="tok-number">#767676</span><span class="tok-punctuation">;</span>
+                            <span class="tok-key">--highlight-bg</span><span class="tok-punctuation">:</span> <span class="tok-number">#b3b3b3</span><span class="tok-punctuation">;</span>
+                            <span class="tok-key">--highlight-text</span><span class="tok-punctuation">:</span> <span class="tok-number">#ffffff</span><span class="tok-punctuation">;</span>
+                            <span class="tok-key">--section-gap</span><span class="tok-punctuation">:</span> <span class="tok-number">24px</span><span class="tok-punctuation">;</span>
+                            <span class="tok-key">--section-content-gap</span><span class="tok-punctuation">:</span> <span class="tok-number">6px</span><span class="tok-punctuation">;</span>
+                            <span class="tok-key">--text-media-gap</span><span class="tok-punctuation">:</span> <span class="tok-number">32px</span><span class="tok-punctuation">;</span>
+                            <span class="tok-key">--link-line-height</span><span class="tok-punctuation">:</span> <span class="tok-number">24px</span><span class="tok-punctuation">;</span>
+                            <span class="tok-key">--theme-toggle-size</span><span class="tok-punctuation">:</span> <span class="tok-number">32px</span><span class="tok-punctuation">;</span>
+                            <span class="tok-key">--footer-stack-bottom-gap</span><span class="tok-punctuation">:</span> <span class="tok-number">4px</span><span class="tok-punctuation">;</span>
+                            <span class="tok-key">--footer-title-optical-offset</span><span class="tok-punctuation">:</span> <span class="tok-number">4px</span><span class="tok-punctuation">;</span>
+                            <span class="tok-key">--sidebar-column</span><span class="tok-punctuation">:</span> <span class="tok-number">240px</span><span class="tok-punctuation">;</span>
+                            <span class="tok-key">--content-column</span><span class="tok-punctuation">:</span> <span class="tok-number">760px</span><span class="tok-punctuation">;</span>
+                            <span class="tok-key">--layout-gap</span><span class="tok-punctuation">:</span> <span class="tok-number">48px</span><span class="tok-punctuation">;</span>
+                            <span class="tok-key">--media-radius</span><span class="tok-punctuation">:</span> <span class="tok-number">22px</span><span class="tok-punctuation">;</span>
+                        <span class="tok-punctuation">}</span></code></pre>
                         </div>
                         </section>
                         <section class="case-section">

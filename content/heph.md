@@ -16,16 +16,21 @@ The core unit in Heph is an armory. An armory is a normal folder for one topic t
 
 On disk it stays completely inspectable:
 
-```text title="~/.armories/Biology/"
-├── materials/ # original files
-│   └── ...
-└── .harness/ # Heph state
-    ├── armory.toml # config
-    ├── rag_index.json # retrieval index
-    ├── memory.json # extracted context
-    ├── chats/ # saved sessions
-    ├── traces/ # diagnostics
-    └── usage/ # token costs
+```text title="docs/armories.md: Armory Structure"
+~/.armories/my-armory/
+├── materials/           # Your materials
+│   ├── document1.pdf
+│   ├── notes.md
+│   └── chapter1.txt
+├── .harness/          # Heph state
+│   ├── armory.toml     # Armory marker and metadata
+│   ├── rag_index.json  # Retrieval index
+│   ├── memory.json     # Armory memory
+│   ├── chats/          # Chat history
+│   ├── traces/         # JSONL traces when enabled
+│   ├── usage/          # Token and cost snapshots
+│   └── ignore          # File ignore patterns
+└── README.md           # Optional description
 ```
 
 I kept every armory isolated on purpose. Before I ask anything, I already know exactly which files Heph can and cannot see. There is no shared vector service in the cloud and no ambiguity about scope. Your files stay yours, on your disk, in formats you can open yourself.
@@ -68,12 +73,46 @@ When you open a citation, Heph maps the chunk offsets back to line spans in the 
 
 Heph is a `uv` workspace split into five packages, and the boundaries between them are enforced by import-linter contracts rather than good intentions:
 
-```text title="Packages"
-extensions # stable contracts
-ai # provider runtime
-harness # RAG + evidence
-interfaces # terminal UI
-heph # CLI + SDK
+```toml title="pyproject.toml: [tool.importlinter]"
+[tool.importlinter]
+root_packages = ["ai", "extensions", "heph", "harness", "interfaces"]
+exclude_type_checking_imports = true
+include_external_packages = true
+
+[[tool.importlinter.contracts]]
+name = "AI must stay below Heph, the harness, extensions, and interfaces"
+type = "forbidden"
+source_modules = ["ai"]
+forbidden_modules = [
+    "extensions",
+    "heph",
+    "harness",
+    "interfaces",
+]
+
+[[tool.importlinter.contracts]]
+name = "harness concerns must not import app or interfaces"
+type = "forbidden"
+source_modules = [
+    "harness.agent",
+    "harness.armory",
+    "harness.chat",
+    "harness.diagnostics",
+    "harness.attempts",
+    "harness.matching",
+    "harness.materials",
+    "harness.memory",
+    "harness.parameters",
+    "harness.privacy",
+    "harness.rag",
+    "harness.safety",
+    "harness.documents",
+    "harness.vocab",
+]
+forbidden_modules = [
+    "heph",
+    "interfaces",
+]
 ```
 
 The contracts make the dependency direction executable. The `ai` runtime cannot reach up into the app. Retrieval and material code cannot import chat or UI internals. The interface layer cannot import application composition. This is what keeps a codebase of roughly 300 Python source files understandable as a single person's project. When I come back to it after a break, the architecture tells me where things belong instead of making me guess.

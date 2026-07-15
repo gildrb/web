@@ -1653,6 +1653,23 @@ body {
     tab-size: 4;
 }
 
+.case-code .tok-key,
+.case-code .tok-keyword {
+    color: var(--text-primary);
+}
+
+.case-code .tok-string,
+.case-code .tok-value,
+.case-code .tok-number {
+    color: var(--text-secondary);
+}
+
+.case-code .tok-comment,
+.case-code .tok-punctuation,
+.case-code .tok-operator {
+    color: var(--text-tertiary);
+}
+
 @media (min-width: 769px) {
     .case-article article > :last-child {
         --case-final-line-height: 24px;
@@ -2252,16 +2269,21 @@ body {
                                 <p>On disk it stays completely inspectable:</p>
                             </div>
                         <div class="case-code">
-                        <p class="case-code-label">~/.armories/Biology/</p>
-                        <pre><code>├── materials/ # original files
-                        │   └── ...
-                        └── .harness/ # Heph state
-                            ├── armory.toml # config
-                            ├── rag_index.json # retrieval index
-                            ├── memory.json # extracted context
-                            ├── chats/ # saved sessions
-                            ├── traces/ # diagnostics
-                            └── usage/ # token costs</code></pre>
+                        <p class="case-code-label">docs/armories.md: Armory Structure</p>
+                        <pre><code>~/.armories/my-armory/
+                        ├── materials/           # Your materials
+                        │   ├── document1.pdf
+                        │   ├── notes.md
+                        │   └── chapter1.txt
+                        ├── .harness/          # Heph state
+                        │   ├── armory.toml     # Armory marker and metadata
+                        │   ├── rag_index.json  # Retrieval index
+                        │   ├── memory.json     # Armory memory
+                        │   ├── chats/          # Chat history
+                        │   ├── traces/         # JSONL traces when enabled
+                        │   ├── usage/          # Token and cost snapshots
+                        │   └── ignore          # File ignore patterns
+                        └── README.md           # Optional description</code></pre>
                         </div>
                             <div class="case-copy">
                                 <p>I kept every armory isolated on purpose. Before I ask anything, I already know exactly which files Heph can and cannot see. There is no shared vector service in the cloud and no ambiguity about scope. Your files stay yours, on your disk, in formats you can open yourself.</p>
@@ -2306,12 +2328,46 @@ body {
                                 <p>Heph is a <code>uv</code> workspace split into five packages, and the boundaries between them are enforced by import-linter contracts rather than good intentions:</p>
                             </div>
                         <div class="case-code">
-                        <p class="case-code-label">Packages</p>
-                        <pre><code>extensions # stable contracts
-                        ai # provider runtime
-                        harness # RAG + evidence
-                        interfaces # terminal UI
-                        heph # CLI + SDK</code></pre>
+                        <p class="case-code-label">pyproject.toml: [tool.importlinter]</p>
+                        <pre><code><span class="tok-punctuation">[</span><span class="tok-key">tool.importlinter</span><span class="tok-punctuation">]</span>
+                        <span class="tok-key">root_packages</span> <span class="tok-operator">=</span> <span class="tok-punctuation">[</span><span class="tok-string">&quot;ai&quot;</span><span class="tok-punctuation">,</span> <span class="tok-string">&quot;extensions&quot;</span><span class="tok-punctuation">,</span> <span class="tok-string">&quot;heph&quot;</span><span class="tok-punctuation">,</span> <span class="tok-string">&quot;harness&quot;</span><span class="tok-punctuation">,</span> <span class="tok-string">&quot;interfaces&quot;</span><span class="tok-punctuation">]</span>
+                        <span class="tok-key">exclude_type_checking_imports</span> <span class="tok-operator">=</span> <span class="tok-value">true</span>
+                        <span class="tok-key">include_external_packages</span> <span class="tok-operator">=</span> <span class="tok-value">true</span>
+                        <span class="code-blank"></span>
+                        <span class="tok-punctuation">[</span><span class="tok-punctuation">[</span><span class="tok-key">tool.importlinter.contracts</span><span class="tok-punctuation">]</span><span class="tok-punctuation">]</span>
+                        <span class="tok-key">name</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;AI must stay below Heph, the harness, extensions, and interfaces&quot;</span>
+                        <span class="tok-key">type</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;forbidden&quot;</span>
+                        <span class="tok-key">source_modules</span> <span class="tok-operator">=</span> <span class="tok-punctuation">[</span><span class="tok-string">&quot;ai&quot;</span><span class="tok-punctuation">]</span>
+                        <span class="tok-key">forbidden_modules</span> <span class="tok-operator">=</span> <span class="tok-punctuation">[</span>
+                            <span class="tok-string">&quot;extensions&quot;</span><span class="tok-punctuation">,</span>
+                            <span class="tok-string">&quot;heph&quot;</span><span class="tok-punctuation">,</span>
+                            <span class="tok-string">&quot;harness&quot;</span><span class="tok-punctuation">,</span>
+                            <span class="tok-string">&quot;interfaces&quot;</span><span class="tok-punctuation">,</span>
+                        <span class="tok-punctuation">]</span>
+                        <span class="code-blank"></span>
+                        <span class="tok-punctuation">[</span><span class="tok-punctuation">[</span><span class="tok-key">tool.importlinter.contracts</span><span class="tok-punctuation">]</span><span class="tok-punctuation">]</span>
+                        <span class="tok-key">name</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;harness concerns must not import app or interfaces&quot;</span>
+                        <span class="tok-key">type</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;forbidden&quot;</span>
+                        <span class="tok-key">source_modules</span> <span class="tok-operator">=</span> <span class="tok-punctuation">[</span>
+                            <span class="tok-string">&quot;harness.agent&quot;</span><span class="tok-punctuation">,</span>
+                            <span class="tok-string">&quot;harness.armory&quot;</span><span class="tok-punctuation">,</span>
+                            <span class="tok-string">&quot;harness.chat&quot;</span><span class="tok-punctuation">,</span>
+                            <span class="tok-string">&quot;harness.diagnostics&quot;</span><span class="tok-punctuation">,</span>
+                            <span class="tok-string">&quot;harness.attempts&quot;</span><span class="tok-punctuation">,</span>
+                            <span class="tok-string">&quot;harness.matching&quot;</span><span class="tok-punctuation">,</span>
+                            <span class="tok-string">&quot;harness.materials&quot;</span><span class="tok-punctuation">,</span>
+                            <span class="tok-string">&quot;harness.memory&quot;</span><span class="tok-punctuation">,</span>
+                            <span class="tok-string">&quot;harness.parameters&quot;</span><span class="tok-punctuation">,</span>
+                            <span class="tok-string">&quot;harness.privacy&quot;</span><span class="tok-punctuation">,</span>
+                            <span class="tok-string">&quot;harness.rag&quot;</span><span class="tok-punctuation">,</span>
+                            <span class="tok-string">&quot;harness.safety&quot;</span><span class="tok-punctuation">,</span>
+                            <span class="tok-string">&quot;harness.documents&quot;</span><span class="tok-punctuation">,</span>
+                            <span class="tok-string">&quot;harness.vocab&quot;</span><span class="tok-punctuation">,</span>
+                        <span class="tok-punctuation">]</span>
+                        <span class="tok-key">forbidden_modules</span> <span class="tok-operator">=</span> <span class="tok-punctuation">[</span>
+                            <span class="tok-string">&quot;heph&quot;</span><span class="tok-punctuation">,</span>
+                            <span class="tok-string">&quot;interfaces&quot;</span><span class="tok-punctuation">,</span>
+                        <span class="tok-punctuation">]</span></code></pre>
                         </div>
                             <div class="case-copy">
                                 <p>The contracts make the dependency direction executable. The <code>ai</code> runtime cannot reach up into the app. Retrieval and material code cannot import chat or UI internals. The interface layer cannot import application composition. This is what keeps a codebase of roughly 300 Python source files understandable as a single person's project. When I come back to it after a break, the architecture tells me where things belong instead of making me guess.</p>

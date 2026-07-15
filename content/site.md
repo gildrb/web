@@ -16,7 +16,27 @@ Spacing comes off a 4px scale (4, 8, 12, 16, 24, 32, 48, 64, 80) exposed as name
 
 The spec is enforced in code. The build refuses to ship a page that violates the tokens, the type hierarchy, or the spacing rules, so the written system and the live site can never quietly disagree.
 
-![Design tokens](media:site-design-tokens)
+```css title="src/styles/10-base.css"
+:root {
+    --bg: #000000;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --text-tertiary: #767676;
+    --highlight-bg: #b3b3b3;
+    --highlight-text: #ffffff;
+    --section-gap: 24px;
+    --section-content-gap: 6px;
+    --text-media-gap: 32px;
+    --link-line-height: 24px;
+    --theme-toggle-size: 32px;
+    --footer-stack-bottom-gap: 4px;
+    --footer-title-optical-offset: 4px;
+    --sidebar-column: 240px;
+    --content-column: 760px;
+    --layout-gap: 48px;
+    --media-radius: 22px;
+}
+```
 
 ## I wrote tests for my own portfolio
 

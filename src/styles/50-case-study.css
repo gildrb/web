@@ -240,6 +240,23 @@
     tab-size: 4;
 }
 
+.case-code .tok-key,
+.case-code .tok-keyword {
+    color: var(--text-primary);
+}
+
+.case-code .tok-string,
+.case-code .tok-value,
+.case-code .tok-number {
+    color: var(--text-secondary);
+}
+
+.case-code .tok-comment,
+.case-code .tok-punctuation,
+.case-code .tok-operator {
+    color: var(--text-tertiary);
+}
+
 @media (min-width: 769px) {
     .case-article article > :last-child {
         --case-final-line-height: 24px;
