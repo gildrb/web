@@ -1727,6 +1727,220 @@ body {
 
 }
 
+.site-pipeline,
+.site-tokens,
+.site-verify,
+.site-identity {
+    width: 100%;
+}
+
+.site-pipeline {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.site-pipeline-step {
+    display: block;
+}
+
+.site-pipeline-step strong {
+    color: var(--text-primary);
+    font-weight: 400;
+}
+
+.site-pipeline-arrow {
+    color: var(--text-tertiary);
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.site-tokens {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.site-token-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.site-token-chip {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    column-gap: 12px;
+    row-gap: 2px;
+    align-items: start;
+    color: var(--text-secondary);
+    font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.site-token-swatch {
+    width: 24px;
+    height: 24px;
+    grid-row: 1 / 3;
+    border-radius: 4px;
+    background: var(--token-bg);
+    border: 1px solid color-mix(in srgb, var(--text-primary) 14%, transparent);
+}
+
+.site-token-name {
+    color: var(--text-primary);
+}
+
+.site-token-value {
+    color: var(--text-tertiary);
+}
+
+.site-token-subsection {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.site-token-label {
+    margin: 0;
+    color: var(--text-tertiary);
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.site-type-ramp {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--text-primary);
+}
+
+.site-type-ramp span {
+    display: block;
+}
+
+.site-type-title {
+    font-size: 28px;
+    line-height: 36px;
+}
+
+.site-type-heading {
+    font-size: 24px;
+    line-height: 32px;
+}
+
+.site-type-body {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.site-type-caption {
+    color: var(--text-tertiary);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.site-spacing-scale {
+    display: flex;
+    align-items: end;
+    gap: 8px;
+    height: 64px;
+}
+
+.site-spacing-bar {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    width: 24px;
+    height: var(--bar-height);
+    padding-bottom: 4px;
+    color: var(--text-primary);
+    background: var(--highlight-bg);
+    font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 10px;
+    line-height: 12px;
+}
+
+.site-verify {
+    color: var(--text-secondary);
+    font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.site-verify-command {
+    margin: 0 0 12px;
+    color: var(--text-primary);
+}
+
+.site-verify-command::before {
+    content: "$ ";
+    color: var(--text-tertiary);
+}
+
+.site-verify-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.site-verify-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.site-verify-status {
+    flex-shrink: 0;
+    color: var(--text-tertiary);
+}
+
+.site-identity-list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+    gap: 8px 20px;
+    margin: 0;
+    color: var(--text-secondary);
+    font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.site-identity-list dt {
+    color: var(--text-primary);
+    font-weight: 400;
+}
+
+.site-identity-list dd {
+    margin: 0;
+}
+
+@media (max-width: 560px) {
+    .site-token-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .site-identity-list {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .site-identity-list dd {
+        margin-bottom: 8px;
+    }
+}
+
 @media (max-width: 1400px) {
     :root {
         --layout-gap: 32px;
