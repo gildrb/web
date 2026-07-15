@@ -51,6 +51,18 @@ document.addEventListener("visibilitychange", () => {
 });
 window.addEventListener("pageshow", restoreScrollPosition);
 
+document.querySelectorAll('a[href="#top"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.scrollTo(0, 0);
+        history.replaceState(
+            null,
+            "",
+            window.location.href.replace(/#.*$/, ""),
+        );
+    });
+});
+
 function trackEvent(name, data = {}) {
     if (typeof window.va !== "function") return;
 
