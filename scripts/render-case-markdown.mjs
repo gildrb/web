@@ -109,7 +109,9 @@ function highlightCss(source) {
         const punctuation = source[index];
         if (":;{},().[]".includes(punctuation)) {
             output += token("punctuation", punctuation);
-            if (punctuation === ";" || punctuation === "}") valueContext = false;
+            if (punctuation === ";" || punctuation === "}" || punctuation === "{") {
+                valueContext = false;
+            }
             index += 1;
             continue;
         }
@@ -130,7 +132,10 @@ function highlightCss(source) {
 function highlightToml(source) {
     let output = "";
     let index = 0;
-    let tableContext = false;
+    let tableDepth = 0;
+    let arrayDepth = 0;
+    let valueContext = false;
+    let lineStart = true;
 
     while (index < source.length) {
         if (source[index] === "#") {
@@ -138,6 +143,7 @@ function highlightToml(source) {
             const value = source.slice(index, end === -1 ? source.length : end);
             output += token("comment", value);
             index += value.length;
+            lineStart = false;
             continue;
         }
 
@@ -151,6 +157,7 @@ function highlightToml(source) {
         if (quoted) {
             output += token("string", quoted);
             index += quoted.length;
+            lineStart = false;
             continue;
         }
 
@@ -158,6 +165,7 @@ function highlightToml(source) {
         if (whitespace) {
             output += escapeHtml(whitespace);
             index += whitespace.length;
+            lineStart = lineStart || whitespace.includes("\n");
             continue;
         }
 
@@ -167,35 +175,56 @@ function highlightToml(source) {
         if (number) {
             output += token("number", number);
             index += number.length;
+            lineStart = false;
             continue;
         }
 
         const identifier = source.slice(index).match(/^[a-zA-Z_][\w.-]*/)?.[0];
         if (identifier) {
-            const next = source
-                .slice(index + identifier.length)
-                .match(/^\s*([=.\]])/)?.[1];
-            output += token(tableContext || next === "=" ? "key" : "value", identifier);
+            const next = source.slice(index + identifier.length).match(/^\s*([=.\]])/)?.[1];
+            const kind = tableDepth > 0 || next === "=" ? "key" : "value";
+            output += token(kind, identifier);
             index += identifier.length;
+            lineStart = false;
+            valueContext = false;
             continue;
         }
 
         const punctuation = source[index];
         if ("[]{},.".includes(punctuation)) {
             output += token("punctuation", punctuation);
-            if (punctuation === "[") tableContext = true;
-            if (punctuation === "]") tableContext = false;
+            if (punctuation === "[") {
+                if (arrayDepth > 0 || valueContext) {
+                    arrayDepth += 1;
+                    valueContext = false;
+                } else if (tableDepth > 0 || lineStart) {
+                    tableDepth += 1;
+                } else {
+                    arrayDepth += 1;
+                }
+            }
+            if (punctuation === "]") {
+                if (arrayDepth > 0) {
+                    arrayDepth -= 1;
+                } else if (tableDepth > 0) {
+                    tableDepth -= 1;
+                }
+            }
+            lineStart = false;
             index += 1;
             continue;
         }
 
         if (punctuation === "=") {
             output += token("operator", punctuation);
+            lineStart = false;
+            valueContext = true;
             index += 1;
             continue;
         }
 
         output += escapeHtml(punctuation);
+        lineStart = false;
         index += 1;
     }
 
