@@ -48,6 +48,9 @@ function highlightCss(source) {
             source[index] === '"' || source[index] === "'"
                 ? readQuoted(source, index)
                 : null;
+        if ((source[index] === '"' || source[index] === "'") && !quoted) {
+            return escapeHtml(source);
+        }
         if (quoted) {
             output += token("string", quoted);
             index += quoted.length;
@@ -142,6 +145,9 @@ function highlightToml(source) {
             source[index] === '"' || source[index] === "'"
                 ? readQuoted(source, index)
                 : null;
+        if ((source[index] === '"' || source[index] === "'") && !quoted) {
+            return escapeHtml(source);
+        }
         if (quoted) {
             output += token("string", quoted);
             index += quoted.length;
@@ -227,6 +233,9 @@ function highlightBash(source) {
             source[index] === '"' || source[index] === "'"
                 ? readQuoted(source, index)
                 : null;
+        if ((source[index] === '"' || source[index] === "'") && !quoted) {
+            return escapeHtml(source);
+        }
         if (quoted) {
             output += token("string", quoted);
             index += quoted.length;
