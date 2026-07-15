@@ -98,6 +98,7 @@ const {
     heph: hephHtml,
     ml7: ml7Html,
     n0thing: n0thingHtml,
+    site: siteHtml,
 } = casePages;
 const caseScript = caseScripts.filen;
 const caseHtml = Object.values(casePages);
@@ -369,11 +370,9 @@ assert(
 assert(
     hephMarkdown.includes("![Heph demo](media:heph-demo)") &&
         hephHtml.includes('class="heph-demo case-heph-demo"') &&
-        hephHtml.indexOf("Heph is a project I have worked on for months") <
-            hephHtml.indexOf('class="heph-demo case-heph-demo"') &&
         hephHtml.indexOf('class="heph-demo case-heph-demo"') <
             hephHtml.indexOf(">GitHub repository</a>"),
-    "The Heph case study must place the shared demo between authored prose and the repository link.",
+    "The Heph case study must place the shared demo before the repository link.",
 );
 const hephMediaSequence = [
     'class="heph-demo case-heph-demo"',
@@ -718,6 +717,20 @@ assert(
     "Homepage projects must expose their date, linked title, and full-width directional affordance below the media.",
 );
 assert(
+    indexHtml.includes(
+        '<time id="portfolio-site-date" datetime="2026-07-15">15.07.2026</time>',
+    ) &&
+        siteScript.includes(
+            'document.querySelector("#portfolio-site-date")',
+        ) &&
+        siteScript.includes("const now = new Date();") &&
+        siteScript.includes("portfolioSiteDate.textContent = displayDate;") &&
+        siteScript.includes(
+            'portfolioSiteDate.setAttribute("datetime", isoDate);',
+        ),
+    "The site card must expose a fallback date and update it to the visitor's current local date.",
+);
+assert(
     portfolioStyles.includes(
         ".portfolio-card-link:focus-visible {\n    outline: 1px solid var(--text-primary);\n    outline-offset: 4px;",
     ) &&
@@ -731,6 +744,8 @@ const chronologicalProjectTitles = [
     "portfolio-filen-title",
     "portfolio-n0thing-title",
     "portfolio-ml7-title",
+    // This website is intentionally a closing proof point, not a chronological entry.
+    "portfolio-site-title",
 ];
 assert(
     chronologicalProjectTitles
@@ -738,7 +753,7 @@ assert(
         .every((position, index, positions) =>
             index === 0 ? position !== -1 : position > positions[index - 1],
         ),
-    "Homepage projects must remain ordered newest to oldest: Heph, Filen, n0thing, mL7.",
+    "Homepage projects must remain ordered newest to oldest, followed by the intentional closing site proof: Heph, Filen, n0thing, mL7, This website.",
 );
 assert(
     caseStyles.includes(

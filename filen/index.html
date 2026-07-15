@@ -2035,12 +2035,12 @@ body {
                 <main class="content case-article">
             <article>
                         <header class="case-intro">
-                            <h1 class="case-title">Making privacy and obscurity visible through design</h1>
+                            <h1 class="case-title">A self-initiated brand system for Filen</h1>
                         </header>
                             <div class="case-copy">
-                                <p>I have been a Filen customer for a good while, and although Filen's logo sits outside product design, it was one of my biggest complaints. Seeing it really bothered me, and anyone who knows me well knows that I like to create logos to fix things that bother me personally or as a form of appreciation. I made this logo specifically for that reason.</p>
+                                <p>I have been a Filen customer for years, and their logo was one of my few real complaints about the product. I like to design brands for things I use and care about, so I set myself a brief: build a complete identity for a privacy company, from the mark through the app icon, patterns, and campaign copy. This is a self-initiated concept, and I took it as far as a paying client would expect.</p>
                                 <h3>Trying ideas</h3>
-                                <p>As you can see, the logo did not come out of nowhere. It took many attempts over several weeks.</p>
+                                <p>The mark went through many attempts over several weeks before it earned its place.</p>
                                 <p>I had the idea of creating a mark that is a sort of disappearing block and also shows the letter F with a bit of imagination. The idea was definitely there, but I did not like where it was going or how it ended up looking, so I scrapped it rather quickly.</p>
                                 <p>Next, I explored the idea of creating a minimal 3D folder viewed from an angle that subtly hints at the letter F. I really liked that idea, but I wasn't too happy with the form, so I pushed it aside for a while.</p>
                                 <p>After that, I worked on something that seemed robust and almost architectural, like a set of stairs. The stairs were also meant to subtly hint at the letter F while communicating robustness and reliability, but I quickly realized that, in order to look reliable, it couldn't be an open F or, in this case, an open staircase. Closing the staircase made it more complicated than it needed to be, which hurt its legibility at smaller scales, so I scrapped that too.</p>
@@ -2077,7 +2077,7 @@ body {
                         </figure>
                         </div>
                             <div class="case-copy">
-                                <p>Because Filen is a digital-first company, a legible logo is incredibly important, so the pangolin unfortunately had to go. However, I genuinely believe I was on an incredible creative trip there. From there, I explored shields, forms of protection, folder shapes, hidden messages, and patterns, but nothing had any chance of beating the folder with a particular angle that revealed the subtle F. In hindsight, I think it is the perfect match because of how well it fits the idea of Filen, but I really miss the pangolins (they're so cute).</p>
+                                <p>Because Filen is a digital-first company, legibility wins over cleverness, so the pangolin had to go. I explored shields, forms of protection, folder shapes, hidden messages, and patterns, and nothing beat the folder held at an angle that reveals a subtle F. It is the right answer for Filen: quiet, precise, and unmistakable at any size.</p>
                                 <h3>Making it work</h3>
                                 <p>Once I settled on the Filen mark, I tested it at different scales, designed an app icon using Icon Composer, wrote suitable copy to match the brand, and developed patterns that reflect light in a certain way.</p>
                             </div>
@@ -2149,7 +2149,7 @@ body {
                         </figure>
                         </div>
                             <div class="case-copy">
-                                <p>I had an absolute blast working on all the assets I created and truly wish this mark had gone further than it did. The Filen community liked the branding work a lot, but the team is not looking for a rebrand anytime soon. I still think it was an incredibly creative exercise, and I am more than happy with how it all turned out.</p>
+                                <p>The Filen community responded strongly to the work, and while the team is not planning a rebrand right now, I treated the whole thing as a real engagement: a coherent system with a mark, an icon, patterns, and campaigns that all hold together. It is the kind of end-to-end identity work I want to be doing more of.</p>
                             </div>
                     </article>
                 </main>
@@ -2196,6 +2196,23 @@ const themePreference = window.matchMedia(
 const scrollPositionKey = `gildrb:scroll:${window.location.pathname}${window.location.search}`;
 const navigationType = window.performance
     .getEntriesByType("navigation")[0]?.type;
+
+function updatePortfolioSiteDate() {
+    const portfolioSiteDate = document.querySelector("#portfolio-site-date");
+    if (!portfolioSiteDate) return;
+
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, "0");
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const year = String(now.getFullYear());
+    const displayDate = `${day}.${month}.${year}`;
+    const isoDate = `${year}-${month}-${day}`;
+
+    portfolioSiteDate.textContent = displayDate;
+    portfolioSiteDate.setAttribute("datetime", isoDate);
+}
+
+window.addEventListener("load", updatePortfolioSiteDate);
 
 if ("scrollRestoration" in window.history) {
     window.history.scrollRestoration = "manual";

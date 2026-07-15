@@ -7,6 +7,23 @@ const scrollPositionKey = `gildrb:scroll:${window.location.pathname}${window.loc
 const navigationType = window.performance
     .getEntriesByType("navigation")[0]?.type;
 
+function updatePortfolioSiteDate() {
+    const portfolioSiteDate = document.querySelector("#portfolio-site-date");
+    if (!portfolioSiteDate) return;
+
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, "0");
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const year = String(now.getFullYear());
+    const displayDate = `${day}.${month}.${year}`;
+    const isoDate = `${year}-${month}-${day}`;
+
+    portfolioSiteDate.textContent = displayDate;
+    portfolioSiteDate.setAttribute("datetime", isoDate);
+}
+
+window.addEventListener("load", updatePortfolioSiteDate);
+
 if ("scrollRestoration" in window.history) {
     window.history.scrollRestoration = "manual";
 }

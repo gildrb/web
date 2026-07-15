@@ -3,21 +3,28 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="How Gil Rodrigues developed Jordan “n0thing” Gilbert's pixel wordmark through early concepts, typewriter exploration, final exports, and motion." />
+        <meta
+            name="description"
+            content="The portfolio system behind Gil Rodrigues's site, documented, generated, and verified from source."
+        />
         <meta name="author" content="Gil Rodrigues" />
         <meta name="creator" content="Gil Rodrigues" />
         <meta name="robots" content="index, follow, max-image-preview:large" />
-        <link rel="canonical" href="https://gildrb.com/n0thing" />
+        <link rel="canonical" href="https://gildrb.com/site" />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content="https://gildrb.com/n0thing" />
-        <meta property="og:title" content="n0thing wordmark by Gil Rodrigues" />
-        <meta property="og:description" content="From an early pixel mark and typewriter exploration to final exports and an animated wordmark." />
-        <meta property="og:image" content="https://gildrb.com/images/optimized/gil-rodrigues-n0thing-wordmark-animation-1280.gif" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="n0thing wordmark by Gil Rodrigues" />
-        <meta name="twitter:description" content="From an early pixel mark and typewriter exploration to final exports and an animated wordmark." />
-        <meta name="twitter:image" content="https://gildrb.com/images/optimized/gil-rodrigues-n0thing-wordmark-animation-1280.gif" />
-        <title>n0thing</title>
+        <meta property="og:url" content="https://gildrb.com/site" />
+        <meta property="og:title" content="This website | Gil Rodrigues" />
+        <meta
+            property="og:description"
+            content="The portfolio system behind Gil Rodrigues's site, documented, generated, and verified from source."
+        />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="This website | Gil Rodrigues" />
+        <meta
+            name="twitter:description"
+            content="The portfolio system behind Gil Rodrigues's site, documented, generated, and verified from source."
+        />
+        <title>This website</title>
         <link id="site-favicon" rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <script>
             if (window.location.hostname.endsWith(".vercel.app")) {
@@ -25,7 +32,13 @@
                     "/preview-favicon.svg";
             }
         </script>
-        <link rel="preload" href="/fonts/inter-variable-latin.woff2" as="font" type="font/woff2" crossorigin />
+        <link
+            rel="preload"
+            href="/fonts/inter-variable-latin.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
         <style>
 @font-face{font-family:"Inter";font-style:normal;font-weight:400 600;font-display:swap;src:url("/fonts/inter-variable-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+21A9,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Geist Mono";font-style:normal;font-weight:400 600;font-display:swap;src:url("/fonts/geist-mono-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
@@ -1947,7 +1960,7 @@ body {
                     <p class="name case-location">
                         <a class="case-home-link" href="/">Gil Rodrigues</a>
                         <span class="case-arrow" aria-hidden="true">→</span>
-                        <a class="case-current-link" href="#top">n0thing</a>
+                        <a class="case-current-link" href="#top">This website</a>
                     </p>
                     <div class="case-desktop-links">
                     <nav
@@ -1982,61 +1995,361 @@ body {
                 <main class="content case-article">
                     <article>
                         <header class="case-intro">
-                            <h1 class="case-title">A wordmark for n0thing, still in use</h1>
+                            <h1 class="case-title">The site you are on is the case study</h1>
                         </header>
                             <div class="case-copy">
-                                <p>In late 2019, former professional Counter-Strike player Jordan &quot;n0thing&quot; Gilbert was looking for a logo. The artist VisionOfVIII, whose work I admired and had helped on for a while, recommended me to Jordan for the job. Jordan reached out, commissioned the mark, and the wordmark I designed for him is the one he still uses.</p>
-                                <h3>The first direction</h3>
-                                <p>Jordan had a typewriter-like, slightly '80s madman feel in mind, though I did not know that yet. I worked through my own ideas first and landed on a custom pixel wordmark.</p>
+                                <p>The page you are reading is the work. No framework and no site builder. It compiles from my own source through a build pipeline I wrote, and an automated harness holds every page to one design system. I built it to be the clearest evidence that I can take an idea from an empty repository to something shipped, tested, and maintained.</p>
+                            </div>
+                        <section class="case-section">
+                            <div class="case-copy">
+                                <h2>Built from source through my own pipeline</h2>
+                                <p>The whole site compiles from plain source. I author each page and case study in Markdown, and a Node build step assembles the HTML from partials, renders the case studies, inlines the critical CSS and JavaScript, generates the structured data, and writes out static routes. There is no client-side framework and no runtime dependency. What ships is small, fast, and entirely mine.</p>
                             </div>
                         <div class="case-media">
                         <figure>
-                            <img alt="Early n0thing pixel wordmark with a cyan zero" decoding="async" height="123" loading="lazy" sizes="274px" src="/images/optimized/gil-rodrigues-n0thing-early-pixel-wordmark-274.webp" width="274"/>
-                            <figcaption class="case-caption">Early pixel wordmark</figcaption>
+                            <div class="site-media-panel site-pipeline-panel">
+                            <style>
+                                .site-media-panel {
+                                    box-sizing: border-box;
+                                    width: 100%;
+                                    padding: 24px;
+                                    border: 1px solid color-mix(in srgb, var(--text-primary) 14%, transparent);
+                                    border-radius: var(--media-radius);
+                                    background: color-mix(in srgb, var(--bg) 94%, var(--text-primary));
+                                    color: var(--text-secondary);
+                                    font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                }
+                        
+                                .site-panel-label {
+                                    display: block;
+                                    margin-bottom: 16px;
+                                    color: var(--text-tertiary);
+                                    font-family: "Inter", sans-serif;
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                }
+                        
+                                .site-pipeline-line {
+                                    display: block;
+                                    white-space: pre-wrap;
+                                }
+                        
+                                .site-pipeline-line strong {
+                                    color: var(--text-primary);
+                                    font-weight: 400;
+                                }
+                            </style>
+                            <span class="site-panel-label">BUILD PIPELINE</span>
+                            <span class="site-pipeline-line"><strong>content/*.md</strong> + <strong>src/case-media/*</strong></span>
+                            <span class="site-pipeline-line">        ↓</span>
+                            <span class="site-pipeline-line"><strong>scripts/build-page.mjs</strong></span>
+                            <span class="site-pipeline-line">        ↓</span>
+                            <span class="site-pipeline-line">inline critical CSS + JS + JSON-LD</span>
+                            <span class="site-pipeline-line">        ↓</span>
+                            <span class="site-pipeline-line"><strong>/</strong>  <strong>/heph</strong>  <strong>/filen</strong>  <strong>/n0thing</strong></span>
+                            <span class="site-pipeline-line">        <strong>/ml7</strong>  <strong>/site</strong></span>
+                        </div>
+                            <figcaption class="case-caption">Build pipeline</figcaption>
                         </figure>
                         </div>
+                        </section>
+                        <section class="case-section">
                             <div class="case-copy">
-                                <h3>Exploring type</h3>
-                                <p>He liked it but wanted to see more, so once I understood the typewriter direction he was after, I built it out.</p>
+                                <h2>A design system, documented and enforced</h2>
+                                <p>The whole site runs on one small design system that I wrote down as a spec and then wired into the build so it cannot drift. The palette is deliberately tight: a single background token and a three-step gray text hierarchy (<code>--text-primary</code>, <code>--text-secondary</code>, <code>--text-tertiary</code>) that flips cleanly between light and dark, plus one shared highlight color for selection. There are no accent colors, gradients, or glows anywhere, and that restraint is the whole idea.</p>
+                                <p>Spacing comes off a 4px scale (4, 8, 12, 16, 24, 32, 48, 64, 80) exposed as named tokens, so a 760px content column, a 240px sidebar, and a 48px layout gap are decisions I made once and reuse everywhere. Type is self-hosted Inter Variable with Geist Mono for code, on a fixed ramp: 28/36 for titles, 24/32 for section headings, 16/24 for body, 14/20 for captions, nothing lighter than weight 400, and no fluid font sizing. Interaction is just as strict: links and controls promote from tertiary to primary gray on hover, focus shows a 1px ring at a 4px offset, selection uses the bright-gray highlight, and any motion stays at or below 200ms and yields to reduced-motion.</p>
+                                <p>What makes it real is that the spec is checked by code. The build refuses to ship a page that violates the tokens, the type hierarchy, or the spacing rules, so the written system and the live site can never quietly disagree.</p>
                             </div>
                         <div class="case-media">
                         <figure>
-                            <img alt="Typewriter-inspired n0thing and Jordan Gilbert wordmark" decoding="async" height="982" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-n0thing-typewriter-direction-720.webp" srcset="/images/optimized/gil-rodrigues-n0thing-typewriter-direction-480.webp 480w, /images/optimized/gil-rodrigues-n0thing-typewriter-direction-720.webp 720w, /images/optimized/gil-rodrigues-n0thing-typewriter-direction-960.webp 960w, /images/optimized/gil-rodrigues-n0thing-typewriter-direction-1280.webp 1280w, /images/optimized/gil-rodrigues-n0thing-typewriter-direction-1600.webp 1600w" width="1600"/>
-                            <figcaption class="case-caption">Typewriter direction</figcaption>
+                            <div class="site-media-panel site-tokens-panel">
+                            <style>
+                                .site-tokens-panel {
+                                    box-sizing: border-box;
+                                    width: 100%;
+                                    padding: 24px;
+                                    border: 1px solid color-mix(in srgb, var(--text-primary) 14%, transparent);
+                                    border-radius: var(--media-radius);
+                                    background: color-mix(in srgb, var(--bg) 94%, var(--text-primary));
+                                    color: var(--text-secondary);
+                                }
+                        
+                                .site-token-heading {
+                                    margin: 0 0 16px;
+                                    color: var(--text-tertiary);
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 20px;
+                                }
+                        
+                                .site-token-grid {
+                                    display: grid;
+                                    grid-template-columns: repeat(3, minmax(0, 1fr));
+                                    gap: 12px;
+                                }
+                        
+                                .site-token-swatch {
+                                    min-width: 0;
+                                    min-height: 72px;
+                                    padding: 10px;
+                                    border: 1px solid color-mix(in srgb, var(--text-primary) 14%, transparent);
+                                    border-radius: 8px;
+                                    color: var(--swatch-text, #ffffff);
+                                    background: var(--swatch-bg);
+                                    font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+                                    font-size: 12px;
+                                    line-height: 16px;
+                                }
+                        
+                                .site-token-swatch span {
+                                    display: block;
+                                }
+                        
+                                .site-token-swatch span + span {
+                                    margin-top: 4px;
+                                    opacity: 0.8;
+                                }
+                        
+                                .site-token-subsection {
+                                    margin-top: 24px;
+                                }
+                        
+                                .site-type-ramp {
+                                    display: grid;
+                                    gap: 8px;
+                                    color: var(--text-primary);
+                                }
+                        
+                                .site-type-ramp span {
+                                    display: block;
+                                }
+                        
+                                .site-type-title {
+                                    font-size: 28px;
+                                    line-height: 36px;
+                                }
+                        
+                                .site-type-heading {
+                                    font-size: 24px;
+                                    line-height: 32px;
+                                }
+                        
+                                .site-type-body {
+                                    font-size: 16px;
+                                    line-height: 24px;
+                                }
+                        
+                                .site-type-caption {
+                                    color: var(--text-tertiary);
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                }
+                        
+                                .site-spacing-scale {
+                                    display: flex;
+                                    align-items: end;
+                                    gap: 8px;
+                                    height: 64px;
+                                }
+                        
+                                .site-spacing-bar {
+                                    display: flex;
+                                    align-items: end;
+                                    justify-content: center;
+                                    width: 24px;
+                                    height: var(--bar-height);
+                                    color: var(--text-primary);
+                                    background: var(--highlight-bg);
+                                    font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+                                    font-size: 10px;
+                                    line-height: 12px;
+                                }
+                        
+                                @media (max-width: 560px) {
+                                    .site-token-grid {
+                                        grid-template-columns: repeat(2, minmax(0, 1fr));
+                                    }
+                                }
+                            </style>
+                            <p class="site-token-heading">DESIGN TOKENS</p>
+                            <div class="site-token-grid">
+                                <div class="site-token-swatch" style="--swatch-bg: #000000;">
+                                    <span>--bg</span><span>#000000</span>
+                                </div>
+                                <div class="site-token-swatch" style="--swatch-bg: #ffffff; --swatch-text: #000000;">
+                                    <span>--text-primary</span><span>#ffffff</span>
+                                </div>
+                                <div class="site-token-swatch" style="--swatch-bg: #b3b3b3; --swatch-text: #000000;">
+                                    <span>--text-secondary</span><span>#b3b3b3</span>
+                                </div>
+                                <div class="site-token-swatch" style="--swatch-bg: #767676;">
+                                    <span>--text-tertiary</span><span>#767676</span>
+                                </div>
+                                <div class="site-token-swatch" style="--swatch-bg: #b3b3b3; --swatch-text: #000000;">
+                                    <span>--highlight-bg</span><span>#b3b3b3</span>
+                                </div>
+                                <div class="site-token-swatch" style="--swatch-bg: #ffffff; --swatch-text: #000000;">
+                                    <span>--highlight-text</span><span>#ffffff</span>
+                                </div>
+                            </div>
+                            <div class="site-token-subsection">
+                                <p class="site-token-heading">TYPE RAMP</p>
+                                <div class="site-type-ramp">
+                                    <span class="site-type-title">28/36 title</span>
+                                    <span class="site-type-heading">24/32 heading</span>
+                                    <span class="site-type-body">16/24 body</span>
+                                    <span class="site-type-caption">14/20 caption</span>
+                                </div>
+                            </div>
+                            <div class="site-token-subsection">
+                                <p class="site-token-heading">4PX SCALE</p>
+                                <div class="site-spacing-scale" aria-label="4, 8, 12, 16, 24, 32, 48 pixel spacing scale">
+                                    <span class="site-spacing-bar" style="--bar-height: 8px;">4</span>
+                                    <span class="site-spacing-bar" style="--bar-height: 16px;">8</span>
+                                    <span class="site-spacing-bar" style="--bar-height: 24px;">12</span>
+                                    <span class="site-spacing-bar" style="--bar-height: 32px;">16</span>
+                                    <span class="site-spacing-bar" style="--bar-height: 48px;">24</span>
+                                    <span class="site-spacing-bar" style="--bar-height: 56px;">32</span>
+                                    <span class="site-spacing-bar" style="--bar-height: 64px;">48</span>
+                                </div>
+                            </div>
+                        </div>
+                            <figcaption class="case-caption">Design tokens</figcaption>
                         </figure>
                         </div>
+                        </section>
+                        <section class="case-section">
                             <div class="case-copy">
-                                <p>We agreed the typewriter version felt off-balance. Jordan had a strong instinct there, and given the same brief today I would find a way to make it land.</p>
-                                <h3>Back to pixels</h3>
-                                <p>We returned to the pixel direction he had already responded to, and I developed a full series of variations: different constructions of the zero, small changes to the letterforms and spacing, and monochrome and red-accented treatments.</p>
+                                <h2>I wrote tests for my own portfolio</h2>
+                                <p>This is the part I am proudest of. A verification harness runs on every build and checks more than eighty assertions before anything is allowed to ship. It enforces the design-system colors and spacing, the content rules (caption length, project order, and a hard ban on em dashes), and asset completeness, so there are never missing or unreferenced images. It also rebuilds every page from source and fails if the committed HTML has drifted by even a character. If the site stops matching its own rules, the build breaks.</p>
                             </div>
                         <div class="case-media">
                         <figure>
-                            <img alt="Black, white, and red n0thing pixel wordmark variations" decoding="async" height="1007" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-n0thing-pixel-variations-720.webp" srcset="/images/optimized/gil-rodrigues-n0thing-pixel-variations-480.webp 480w, /images/optimized/gil-rodrigues-n0thing-pixel-variations-720.webp 720w, /images/optimized/gil-rodrigues-n0thing-pixel-variations-960.webp 960w, /images/optimized/gil-rodrigues-n0thing-pixel-variations-1280.webp 1280w, /images/optimized/gil-rodrigues-n0thing-pixel-variations-1600.webp 1600w" width="1600"/>
-                            <figcaption class="case-caption">Pixel wordmark variations</figcaption>
+                            <div class="site-media-panel site-verify-panel">
+                            <style>
+                                .site-verify-panel {
+                                    box-sizing: border-box;
+                                    width: 100%;
+                                    padding: 24px;
+                                    border: 1px solid color-mix(in srgb, var(--text-primary) 14%, transparent);
+                                    border-radius: var(--media-radius);
+                                    background: color-mix(in srgb, var(--bg) 94%, var(--text-primary));
+                                    color: var(--text-secondary);
+                                    font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                }
+                        
+                                .site-verify-title {
+                                    display: block;
+                                    margin-bottom: 16px;
+                                    color: var(--text-tertiary);
+                                }
+                        
+                                .site-verify-line {
+                                    display: block;
+                                }
+                        
+                                .site-verify-line strong {
+                                    color: var(--text-primary);
+                                    font-weight: 400;
+                                }
+                            </style>
+                            <span class="site-verify-title">$ node scripts/verify-page.mjs</span>
+                            <span class="site-verify-line">design-system tokens <strong>ok</strong></span>
+                            <span class="site-verify-line">content rules <strong>ok</strong> (no em dashes)</span>
+                            <span class="site-verify-line">asset completeness <strong>ok</strong></span>
+                            <span class="site-verify-line">rebuild matches source <strong>ok</strong></span>
+                            <span class="site-verify-line">verified generated pages, all assets, all routes <strong>pass</strong></span>
+                        </div>
+                            <figcaption class="case-caption">Verification harness</figcaption>
                         </figure>
                         </div>
+                        </section>
+                        <section class="case-section">
                             <div class="case-copy">
-                                <p>From those, we settled on the final pixel wordmark. This is the export folder from the time, with the AI and PSD sources alongside the six PNGs I delivered.</p>
+                                <h2>Interactive, written from scratch</h2>
+                                <p>The terminal on the homepage is a from-scratch simulation of a Heph session written in vanilla JavaScript. It plays a timed retrieval animation, shows evidence you can open, and exposes the real keyboard model, all while staying accessible and respecting reduced-motion preferences. It is a small, deliberate piece of interaction design that runs without a single dependency.</p>
+                            </div>
+                        </section>
+                        <section class="case-section">
+                            <div class="case-copy">
+                                <h2>Readable by machines, not just people</h2>
+                                <p>I treated discovery as a design surface. The site publishes a Schema.org identity graph as JSON-LD, a WebFinger and host-meta record, an llms.txt profile written for AI agents, an RSS feed, a humans.txt file, and a sitemap. It also serves Content-Signal headers that state plainly how the site may be searched, used as AI input, or used for training. A person, a search engine, and an AI agent all get a clean, deliberate answer to who I am.</p>
                             </div>
                         <div class="case-media">
                         <figure>
-                            <img alt="Windows Explorer showing AI and PSD folders beside six n0thing wordmark PNG exports" decoding="async" height="304" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-n0thing-export-folder-720.webp" srcset="/images/optimized/gil-rodrigues-n0thing-export-folder-480.webp 480w, /images/optimized/gil-rodrigues-n0thing-export-folder-720.webp 720w, /images/optimized/gil-rodrigues-n0thing-export-folder-951.webp 951w" width="951"/>
-                            <figcaption class="case-caption">Original export folder</figcaption>
+                            <div class="site-media-panel site-endpoints-panel">
+                            <style>
+                                .site-endpoints-panel {
+                                    box-sizing: border-box;
+                                    width: 100%;
+                                    padding: 24px;
+                                    border: 1px solid color-mix(in srgb, var(--text-primary) 14%, transparent);
+                                    border-radius: var(--media-radius);
+                                    background: color-mix(in srgb, var(--bg) 94%, var(--text-primary));
+                                    color: var(--text-secondary);
+                                    font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                }
+                        
+                                .site-endpoints-title {
+                                    display: block;
+                                    margin-bottom: 16px;
+                                    color: var(--text-tertiary);
+                                }
+                        
+                                .site-endpoints-list {
+                                    display: grid;
+                                    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+                                    gap: 8px 20px;
+                                }
+                        
+                                .site-endpoint {
+                                    color: var(--text-primary);
+                                }
+                        
+                                .site-endpoint-label {
+                                    color: var(--text-secondary);
+                                }
+                        
+                                @media (max-width: 560px) {
+                                    .site-endpoints-list {
+                                        grid-template-columns: 1fr;
+                                        gap: 4px;
+                                    }
+                        
+                                    .site-endpoint-label {
+                                        margin-bottom: 8px;
+                                    }
+                                }
+                            </style>
+                            <span class="site-endpoints-title">MACHINE-READABLE IDENTITY</span>
+                            <div class="site-endpoints-list">
+                                <span class="site-endpoint">JSON-LD</span><span class="site-endpoint-label">identity graph</span>
+                                <span class="site-endpoint">WebFinger</span><span class="site-endpoint-label">identity discovery</span>
+                                <span class="site-endpoint">host-meta</span><span class="site-endpoint-label">host metadata</span>
+                                <span class="site-endpoint">llms.txt</span><span class="site-endpoint-label">AI-readable profile</span>
+                                <span class="site-endpoint">RSS</span><span class="site-endpoint-label">updates feed</span>
+                                <span class="site-endpoint">humans.txt</span><span class="site-endpoint-label">human authorship</span>
+                                <span class="site-endpoint">sitemap</span><span class="site-endpoint-label">route discovery</span>
+                                <span class="site-endpoint">Content-Signal</span><span class="site-endpoint-label">usage headers</span>
+                            </div>
+                        </div>
+                            <figcaption class="case-caption">Machine-readable identity</figcaption>
                         </figure>
                         </div>
+                        </section>
+                        <section class="case-section">
                             <div class="case-copy">
-                                <p>The final touch was motion. I animated the trailing underscore so the wordmark felt alive while keeping its serious tone.</p>
+                                <h2>Fast and accessible by default</h2>
+                                <p>Performance and accessibility were requirements from the start. Critical CSS and JavaScript are inlined, fonts are preloaded, images are served responsively with the right size for each viewport, and the markup uses real landmarks, live regions for status updates, visible focus rings, and reduced-motion fallbacks. The result loads fast and works for everyone.</p>
+                                <p>Everything here is my design and my code, held to a standard I would defend on any team. This whole page is the work, and you are reading it right now.</p>
                             </div>
-                        <div class="case-media">
-                        <figure>
-                            <img alt="Animated medium-gray n0thing pixel wordmark on black with a blinking underscore" decoding="async" height="720" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-n0thing-wordmark-animation-720.gif" srcset="/images/optimized/gil-rodrigues-n0thing-wordmark-animation-480.gif 480w, /images/optimized/gil-rodrigues-n0thing-wordmark-animation-720.gif 720w, /images/optimized/gil-rodrigues-n0thing-wordmark-animation-960.gif 960w, /images/optimized/gil-rodrigues-n0thing-wordmark-animation-1280.gif 1280w" width="1280"/>
-                            <figcaption class="case-caption">Final wordmark in motion</figcaption>
-                        </figure>
-                        </div>
-                            <div class="case-copy">
-                                <p>The brief was to feel serious and considered, and we hit it. Jordan was an easy collaborator, the mark shipped, and it still represents him today.</p>
-                            </div>
+                        </section>
                     </article>
                 </main>
                 <div class="case-mobile-links">
@@ -2071,7 +2384,7 @@ window.si =
     };
         </script>
         <script defer src="/_vercel/insights/script.js"></script>
-        <script defer src="/_vercel/speed-insights/script.js" data-route="/n0thing" data-path="/n0thing"></script>
+        <script defer src="/_vercel/speed-insights/script.js" data-route="/site" data-path="/site"></script>
         <script>
 const srOnly = document.querySelector(".sr-only");
 const themeToggle = document.querySelector(".theme-toggle");
