@@ -87,7 +87,7 @@
         z-index: 100;
         width: calc(100% + 56px);
         margin-left: -12px;
-        padding: 8px 44px 8px 12px;
+        padding: 24px 44px 8px 12px;
         background: linear-gradient(
             to bottom,
             var(--bg) 60%,
@@ -105,7 +105,7 @@
         z-index: 101;
         justify-self: end;
         align-self: start;
-        margin-top: 0;
+        margin-top: 24px;
         margin-left: 16px;
         margin-bottom: 0;
         background: transparent;
