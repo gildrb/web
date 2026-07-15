@@ -298,7 +298,7 @@ function highlightBash(source) {
 function highlightCode(language, source) {
     const normalizedLanguage = language.toLowerCase();
     if (!["css", "toml", "bash"].includes(normalizedLanguage)) {
-        return escapeHtml(source);
+        return escapeHtml(source).replaceAll("\n", "&#10;");
     }
 
     const highlighted = (() => {
@@ -312,10 +312,7 @@ function highlightCode(language, source) {
         }
     })();
 
-    return highlighted
-        .split("\n")
-        .map((line) => (line === "" ? '<span class="code-blank"></span>' : line))
-        .join("\n");
+    return highlighted.replaceAll("\n", "&#10;");
 }
 
 function renderInline(source) {

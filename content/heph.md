@@ -89,30 +89,6 @@ forbidden_modules = [
     "harness",
     "interfaces",
 ]
-
-[[tool.importlinter.contracts]]
-name = "harness concerns must not import app or interfaces"
-type = "forbidden"
-source_modules = [
-    "harness.agent",
-    "harness.armory",
-    "harness.chat",
-    "harness.diagnostics",
-    "harness.attempts",
-    "harness.matching",
-    "harness.materials",
-    "harness.memory",
-    "harness.parameters",
-    "harness.privacy",
-    "harness.rag",
-    "harness.safety",
-    "harness.documents",
-    "harness.vocab",
-]
-forbidden_modules = [
-    "heph",
-    "interfaces",
-]
 ```
 
 The contracts make the dependency direction executable. The `ai` runtime cannot reach up into the app. Retrieval and material code cannot import chat or UI internals. The interface layer cannot import application composition. This is what keeps a codebase of roughly 300 Python source files understandable as a single person's project. When I come back to it after a break, the architecture tells me where things belong instead of making me guess.
