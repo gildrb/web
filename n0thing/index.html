@@ -1436,16 +1436,23 @@ body {
 
 .case-home-link {
     flex-basis: 100%;
-    color: var(--text-tertiary);
     text-decoration: none;
 }
 
+.case-location .case-home-link,
 .case-arrow {
     color: var(--text-tertiary);
 }
 
-.case-location span:last-child {
+@media (hover: hover) {
+    .case-location .case-home-link:hover {
+        color: var(--text-primary);
+    }
+}
+
+.case-location .case-current-link {
     color: var(--text-primary);
+    text-decoration: none;
 }
 
 .case-desktop-links {
@@ -1932,7 +1939,7 @@ body {
 }
         </style>
     </head>
-    <body class="case-page">
+    <body class="case-page" id="top">
         <div class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
         <div class="wrapper">
             <div class="layout">
@@ -1940,7 +1947,7 @@ body {
                     <p class="name case-location">
                         <a class="case-home-link" href="/">Gil Rodrigues</a>
                         <span class="case-arrow" aria-hidden="true">→</span>
-                        <span>n0thing</span>
+                        <a class="case-current-link" href="#top">n0thing</a>
                     </p>
                     <div class="case-desktop-links">
                     <nav
