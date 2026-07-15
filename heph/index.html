@@ -2269,8 +2269,8 @@ body {
                                 <p>On disk it stays completely inspectable:</p>
                             </div>
                         <div class="case-code">
-                        <p class="case-code-label">docs/armories.md: Armory Structure</p>
-                        <pre><code>~/.armories/my-armory/&#10;├── materials/           # Your materials&#10;│   ├── document1.pdf&#10;│   ├── notes.md&#10;│   └── chapter1.txt&#10;├── .harness/          # Heph state&#10;│   ├── armory.toml     # Armory marker and metadata&#10;│   ├── rag_index.json  # Retrieval index&#10;│   ├── memory.json     # Armory memory&#10;│   ├── chats/          # Chat history&#10;│   ├── traces/         # JSONL traces when enabled&#10;│   ├── usage/          # Token and cost snapshots&#10;│   └── ignore          # File ignore patterns&#10;└── README.md           # Optional description</code></pre>
+                        <p class="case-code-label">docs/index.md: Armory layout</p>
+                        <pre><code>~/.armories/[name]/&#10;├── materials/            # PDFs, Office docs, notes, code to cite&#10;│   ├── [file].pdf&#10;│   └── [file].md&#10;├── .harness/             # Local Heph state&#10;│   ├── armory.toml       # Armory marker&#10;│   ├── rag_index.json    # Retrieval index&#10;│   ├── memory.json       # Armory memory&#10;│   ├── chats/            # Saved sessions&#10;│   ├── traces/           # JSONL traces when enabled&#10;│   ├── usage/            # Token and cost snapshots&#10;│   └── ignore            # Indexing ignore rules&#10;└── README.md             # Armory notes</code></pre>
                         </div>
                             <div class="case-copy">
                                 <p>I kept every armory isolated on purpose. Before I ask anything, I already know exactly which files Heph can and cannot see. There is no shared vector service in the cloud and no ambiguity about scope. Your files stay yours, on your disk, in formats you can open yourself.</p>

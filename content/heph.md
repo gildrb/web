@@ -16,21 +16,20 @@ The core unit in Heph is an armory. An armory is a normal folder for one topic t
 
 On disk it stays completely inspectable:
 
-```text title="docs/armories.md: Armory Structure"
-~/.armories/my-armory/
-├── materials/           # Your materials
-│   ├── document1.pdf
-│   ├── notes.md
-│   └── chapter1.txt
-├── .harness/          # Heph state
-│   ├── armory.toml     # Armory marker and metadata
-│   ├── rag_index.json  # Retrieval index
-│   ├── memory.json     # Armory memory
-│   ├── chats/          # Chat history
-│   ├── traces/         # JSONL traces when enabled
-│   ├── usage/          # Token and cost snapshots
-│   └── ignore          # File ignore patterns
-└── README.md           # Optional description
+```text title="docs/index.md: Armory layout"
+~/.armories/[name]/
+├── materials/            # PDFs, Office docs, notes, code to cite
+│   ├── [file].pdf
+│   └── [file].md
+├── .harness/             # Local Heph state
+│   ├── armory.toml       # Armory marker
+│   ├── rag_index.json    # Retrieval index
+│   ├── memory.json       # Armory memory
+│   ├── chats/            # Saved sessions
+│   ├── traces/           # JSONL traces when enabled
+│   ├── usage/            # Token and cost snapshots
+│   └── ignore            # Indexing ignore rules
+└── README.md             # Armory notes
 ```
 
 I kept every armory isolated on purpose. Before I ask anything, I already know exactly which files Heph can and cannot see. There is no shared vector service in the cloud and no ambiguity about scope. Your files stay yours, on your disk, in formats you can open yourself.
