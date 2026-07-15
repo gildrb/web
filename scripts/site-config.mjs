@@ -32,5 +32,10 @@ export const siteConfig = Object.freeze({
             title: "n0thing",
             scripts: sharedCaseScripts,
         }),
+        Object.freeze({
+            slug: "site",
+            title: "This site",
+            scripts: sharedCaseScripts,
+        }),
     ]),
 });

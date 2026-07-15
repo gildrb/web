@@ -542,6 +542,40 @@ body {
     border-radius: calc(var(--media-radius) - 1px);
 }
 
+.site-card-panel {
+    box-sizing: border-box;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 32px 40px;
+    background: color-mix(in srgb, var(--bg) 94%, var(--text-primary));
+    color: var(--text-primary);
+}
+
+.site-card-kicker {
+    color: var(--text-tertiary);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.site-card-heading {
+    max-width: 16ch;
+    color: var(--text-primary);
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 32px;
+}
+
+.site-card-code {
+    color: var(--text-secondary);
+    font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 14px;
+    line-height: 20px;
+}
+
 .portfolio-card-meta {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
@@ -618,6 +652,12 @@ body {
 .portfolio-card-link:focus-visible {
     outline: 1px solid var(--text-primary);
     outline-offset: 4px;
+}
+
+@media (max-width: 768px) {
+    .site-card-panel {
+        padding: 24px;
+    }
 }
 
 .heph-demo {
@@ -1983,15 +2023,10 @@ body {
                 <main class="content case-article">
                     <article>
                         <header class="case-intro">
-                            <h1 class="case-title">The work that ended up flipping my view on life</h1>
+                            <h1 class="case-title">The logo that mL7 still uses today</h1>
                         </header>
                             <div class="case-copy">
-                                <p>In 2018, when I was still at school, I hated being unable to thank the people who had helped me in life, especially the streamers and content creators who helped me escape the tough time I had at school and distract myself for a bit.</p>
-                                <h3>Designing as a thank you</h3>
-                                <p>I was thinking about many ways to support the people I cared about. Since I had no money to donate at that time, I started using design as a form of appreciation. I got into the habit of making something for anyone I deeply appreciated, anyone who had helped me in some way, or simply anyone I wanted to thank.</p>
-                                <p>I was heavily into video games in 2018, and there was one person in particular who helped me out a lot at that time. I was playing Overwatch competitively and therefore also watched people who were much better at the game than I was to learn a thing or two. The streamer Mihai &quot;mL7&quot; Lupasc was one of those kind-hearted souls who made me the person I am today and whom I designed for.</p>
-                                <p>While I did post a lot of client work and appreciation pieces on Twitter/X at that time, I did not expect any sort of support from anyone. I came home from school and worked on a logo design that encompassed the energy I got from watching him every single day.</p>
-                                <p>I kept iterating to get things right. While the work is objectively not the greatest, I was really proud of it at that time, so I posted it online.</p>
+                                <p>In 2018 I was playing a lot of competitive Overwatch and learning the game by watching people far better than me. One of them was Mihai &quot;mL7&quot; Lupascu. I made a logo for him as a way of saying thanks, posted it, and expected nothing back. His manager reached out privately, and the mark I designed became his identity. He still uses it today.</p>
                             </div>
                         <div class="case-media">
                         <figure>
@@ -2000,11 +2035,10 @@ body {
                         </figure>
                         </div>
                             <div class="case-copy">
-                                <p>To my surprise, mL7 saw the work and his manager contacted me privately.</p>
-                                <h3>What it changed</h3>
-                                <p>I had an extremely pessimistic outlook in 2018 due to my circumstances and what had previously happened in my life. I believed that people didn't want to help others and were generally selfish. Many encounters in real life seemed negative, and people tended not to appreciate the things you did for them. Now I know better: it depends on the environment and the people you talk to; not everyone is this way. Mihai helped me flip that view entirely by seeing my work and thanking me for it.</p>
-                                <p>He wanted to pay me for the work. Although I had neither expected nor asked for payment, he believed that I deserved it. That day changed something in me. I am endlessly thankful for the confidence he gave me, which I carry with me every day.</p>
-                                <p>Nowadays, I am in a much better headspace than I used to be and feel happy every time I see the logo I designed for Mihai. If you see this, Mihai: thank you for everything you have done for your community and for the days you have brightened for me.</p>
+                                <h3>The work</h3>
+                                <p>I wanted the mark to carry the energy I got from watching him every day: fast, sharp, and confident. I built it as a wordmark with a clean geometric <code>mL</code> and an orange streak driving through the seven, so it reads instantly at a stream overlay's size and holds up as a profile mark and a channel banner. I iterated on the letterforms, the angle of the streak, and the balance between the black type and the accent until it felt right at every scale it needed to live at.</p>
+                                <h3>What it led to</h3>
+                                <p>Mihai saw the work, thanked me for it, and insisted on paying me even though I had never asked. That was the first time a creator I looked up to treated my design as something worth commissioning, and it changed how seriously I took the craft. The logo has now represented his channel for years, which is the outcome I am proudest of. A mark that ships, gets adopted, and sticks around is the real test, and this one passed it.</p>
                             </div>
                     </article>
                 </main>

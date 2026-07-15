@@ -1,10 +1,10 @@
-# Making privacy and obscurity visible through design
+# A self-initiated brand system for Filen
 
-I have been a Filen customer for a good while, and although Filen's logo sits outside product design, it was one of my biggest complaints. Seeing it really bothered me, and anyone who knows me well knows that I like to create logos to fix things that bother me personally or as a form of appreciation. I made this logo specifically for that reason.
+I have been a Filen customer for years, and their logo was one of my few real complaints about the product. I like to design brands for things I use and care about, so I set myself a brief: build a complete identity for a privacy company, from the mark through the app icon, patterns, and campaign copy. This is a self-initiated concept, and I took it as far as a paying client would expect.
 
 ### Trying ideas
 
-As you can see, the logo did not come out of nowhere. It took many attempts over several weeks.
+The mark went through many attempts over several weeks before it earned its place.
 
 I had the idea of creating a mark that is a sort of disappearing block and also shows the letter F with a bit of imagination. The idea was definitely there, but I did not like where it was going or how it ended up looking, so I scrapped it rather quickly.
 
@@ -26,7 +26,7 @@ I couldn't fully let go of the pangolins, which is why I continued working on pa
 
 ![Protective scale pattern studies](media:filen-pattern-exploration)
 
-Because Filen is a digital-first company, a legible logo is incredibly important, so the pangolin unfortunately had to go. However, I genuinely believe I was on an incredible creative trip there. From there, I explored shields, forms of protection, folder shapes, hidden messages, and patterns, but nothing had any chance of beating the folder with a particular angle that revealed the subtle F. In hindsight, I think it is the perfect match because of how well it fits the idea of Filen, but I really miss the pangolins (they're so cute).
+Because Filen is a digital-first company, legibility wins over cleverness, so the pangolin had to go. I explored shields, forms of protection, folder shapes, hidden messages, and patterns, and nothing beat the folder held at an angle that reveals a subtle F. It is the right answer for Filen: quiet, precise, and unmistakable at any size.
 
 ### Making it work
 
@@ -55,4 +55,4 @@ I was also working on a red colorway, but ultimately thought it would hurt Filen
 
 ![Monochrome brand system](media:filen-brand-system-board)
 
-I had an absolute blast working on all the assets I created and truly wish this mark had gone further than it did. The Filen community liked the branding work a lot, but the team is not looking for a rebrand anytime soon. I still think it was an incredibly creative exercise, and I am more than happy with how it all turned out.
+The Filen community responded strongly to the work, and while the team is not planning a rebrand right now, I treated the whole thing as a real engagement: a coherent system with a mark, an icon, patterns, and campaigns that all hold together. It is the kind of end-to-end identity work I want to be doing more of.

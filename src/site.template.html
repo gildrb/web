@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="The portfolio system behind Gil Rodrigues's site, documented, generated, and verified from source."
+        />
+        <meta name="author" content="Gil Rodrigues" />
+        <meta name="creator" content="Gil Rodrigues" />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <link rel="canonical" href="https://gildrb.com/site" />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://gildrb.com/site" />
+        <meta property="og:title" content="This site | Gil Rodrigues" />
+        <meta
+            property="og:description"
+            content="The portfolio system behind Gil Rodrigues's site, documented, generated, and verified from source."
+        />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="This site | Gil Rodrigues" />
+        <meta
+            name="twitter:description"
+            content="The portfolio system behind Gil Rodrigues's site, documented, generated, and verified from source."
+        />
+        <title>This site</title>
+        <link id="site-favicon" rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <script>
+            if (window.location.hostname.endsWith(".vercel.app")) {
+                document.getElementById("site-favicon").href =
+                    "/preview-favicon.svg";
+            }
+        </script>
+        <link
+            rel="preload"
+            href="/fonts/inter-variable-latin.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
+        <style>
+<!-- @inline-css:site -->
+        </style>
+    </head>
+    <body class="case-page" id="top">
+        <div class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+        <div class="wrapper">
+            <div class="layout">
+                <aside class="sidebar" aria-label="Case study navigation">
+                    <p class="name case-location">
+                        <a class="case-home-link" href="/">Gil Rodrigues</a>
+                        <span class="case-arrow" aria-hidden="true">→</span>
+                        <a class="case-current-link" href="#top">This site</a>
+                    </p>
+                    <div class="case-desktop-links">
+<!-- @include:partials/sidebar-links.html -->
+                    </div>
+<!-- @include:partials/theme-toggle.html -->
+                </aside>
+                <main class="content case-article">
+                    <article>
+<!-- @case-markdown:site -->
+                    </article>
+                </main>
+                <div class="case-mobile-links">
+<!-- @include:partials/sidebar-links.html -->
+                </div>
+            </div>
+        </div>
+        <script>
+<!-- @inline-js:analytics-bootstrap -->
+        </script>
+        <script defer src="/_vercel/insights/script.js"></script>
+        <script defer src="/_vercel/speed-insights/script.js" data-route="/site" data-path="/site"></script>
+        <script>
+<!-- @inline-js:case -->
+        </script>
+    </body>
+</html>
