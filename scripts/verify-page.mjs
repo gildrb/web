@@ -717,6 +717,20 @@ assert(
     "Homepage projects must expose their date, linked title, and full-width directional affordance below the media.",
 );
 assert(
+    indexHtml.includes(
+        '<time id="portfolio-site-date" datetime="2026-07-15">15.07.2026</time>',
+    ) &&
+        siteScript.includes(
+            'document.querySelector("#portfolio-site-date")',
+        ) &&
+        siteScript.includes("const now = new Date();") &&
+        siteScript.includes("portfolioSiteDate.textContent = displayDate;") &&
+        siteScript.includes(
+            'portfolioSiteDate.setAttribute("datetime", isoDate);',
+        ),
+    "The site card must expose a fallback date and update it to the visitor's current local date.",
+);
+assert(
     portfolioStyles.includes(
         ".portfolio-card-link:focus-visible {\n    outline: 1px solid var(--text-primary);\n    outline-offset: 4px;",
     ) &&
@@ -730,7 +744,7 @@ const chronologicalProjectTitles = [
     "portfolio-filen-title",
     "portfolio-n0thing-title",
     "portfolio-ml7-title",
-    // This site is intentionally a closing proof point, not a chronological entry.
+    // This website is intentionally a closing proof point, not a chronological entry.
     "portfolio-site-title",
 ];
 assert(
@@ -739,7 +753,7 @@ assert(
         .every((position, index, positions) =>
             index === 0 ? position !== -1 : position > positions[index - 1],
         ),
-    "Homepage projects must remain ordered newest to oldest, followed by the intentional closing site proof: Heph, Filen, n0thing, mL7, This site.",
+    "Homepage projects must remain ordered newest to oldest, followed by the intentional closing site proof: Heph, Filen, n0thing, mL7, This website.",
 );
 assert(
     caseStyles.includes(

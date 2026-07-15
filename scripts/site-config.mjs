@@ -34,7 +34,7 @@ export const siteConfig = Object.freeze({
         }),
         Object.freeze({
             slug: "site",
-            title: "This site",
+            title: "This website",
             scripts: sharedCaseScripts,
         }),
     ]),
