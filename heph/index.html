@@ -1627,6 +1627,10 @@ body {
     margin-top: var(--text-media-gap);
 }
 
+.case-code + .case-copy {
+    margin-top: 48px;
+}
+
 .case-code {
     width: min(100%, 880px);
     margin: 48px auto 0;
@@ -1638,14 +1642,32 @@ body {
 
 .case-code pre {
     overflow-x: auto;
-    padding: 24px;
-    border: 1px solid color-mix(in srgb, var(--text-secondary) 32%, transparent);
-    border-radius: 8px;
-    background: color-mix(in srgb, var(--text-primary) 4%, var(--bg));
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
     color: var(--text-primary);
     font: 14px/20px "Geist Mono", monospace;
     letter-spacing: 0;
     tab-size: 4;
+}
+
+.case-code .tok-key,
+.case-code .tok-keyword {
+    color: var(--text-primary);
+}
+
+.case-code .tok-string,
+.case-code .tok-value,
+.case-code .tok-number {
+    color: var(--text-secondary);
+}
+
+.case-code .tok-comment,
+.case-code .tok-punctuation,
+.case-code .tok-operator {
+    color: var(--text-tertiary);
 }
 
 @media (min-width: 769px) {
@@ -1712,12 +1734,16 @@ body {
         margin-top: 32px;
     }
 
+    .case-code + .case-copy {
+        margin-top: 32px;
+    }
+
     .case-media-grid {
         grid-template-columns: 1fr;
     }
 
     .case-code pre {
-        padding: 16px;
+        padding: 0;
         font-size: 14px;
         line-height: 20px;
     }
@@ -2243,15 +2269,8 @@ body {
                                 <p>On disk it stays completely inspectable:</p>
                             </div>
                         <div class="case-code">
-                        <p class="case-code-label">~/.armories/Biology/</p>
-                        <pre><code>materials/            your original files, untouched
-                        .harness/
-                          armory.toml         armory marker and config
-                          rag_index.json      chunked, hashed retrieval index
-                          memory.json         persistent extracted context
-                          chats/              saved sessions
-                          traces/             per-turn diagnostics
-                          usage/              token and cost accounting</code></pre>
+                        <p class="case-code-label">docs/index.md: Armory layout</p>
+                        <pre><code>~/.armories/[name]/&#10;├── materials/            # PDFs, Office docs, notes, code to cite&#10;│   ├── [file].pdf&#10;│   └── [file].md&#10;├── .harness/             # Local Heph state&#10;│   ├── armory.toml       # Armory marker&#10;│   ├── rag_index.json    # Retrieval index&#10;│   ├── memory.json       # Armory memory&#10;│   ├── chats/            # Saved sessions&#10;│   ├── traces/           # JSONL traces when enabled&#10;│   ├── usage/            # Token and cost snapshots&#10;│   └── ignore            # Indexing ignore rules&#10;└── README.md             # Armory notes</code></pre>
                         </div>
                             <div class="case-copy">
                                 <p>I kept every armory isolated on purpose. Before I ask anything, I already know exactly which files Heph can and cannot see. There is no shared vector service in the cloud and no ambiguity about scope. Your files stay yours, on your disk, in formats you can open yourself.</p>
@@ -2259,33 +2278,25 @@ body {
                         </section>
                         <section class="case-section">
                             <div class="case-copy">
-                                <h2>How retrieval actually works</h2>
-                                <p>This is where most of the engineering lives, and where the difference between a weekend script and a real tool shows up. I did not reinvent BM25 or train embeddings. I used solid libraries for those and built the pipeline around them: the fusion, the fallbacks, the query rewriting, and the post-processing that decides what the model actually sees.</p>
-                                <p>When you add a file, Heph imports it into the armory, then extracts and chunks it. Plain text and Markdown are chunked with structure awareness so headings and sections stay intact. Binary formats like PDF, DOCX, PPTX, and XLSX go through a Docling conversion step that runs inside a bounded worker with output limits, timeouts, memory ceilings, and OCR deadlines, so a single pathological file cannot hang or exhaust the process. Every chunk keeps its source path, character offsets, and nearest heading, which is what later lets an answer point back to a precise span of a real document.</p>
-                                <p>Indexing is incremental. Heph hashes document content, reuses unchanged files across rebuilds, and only re-chunks what actually changed. The index is a readable JSON file, and it defends against symlink and path-escape tricks while it builds.</p>
-                                <p>Retrieval itself is hybrid. A question flows through a real pipeline before it reaches the model:</p>
+                                <h2>How retrieval works</h2>
+                                <p>Most of my time on Heph went here. I did not write BM25 or train an embedding model, since good libraries already exist for both. What I wrote is everything around them: how a question gets rewritten, how the results get combined, what happens when a piece is not available, and how the context gets trimmed before the model sees it.</p>
+                                <p>Adding a file imports it into the armory and breaks it into chunks. Text and Markdown split along their own headings so sections stay whole. PDFs and Office files run through Docling first, and I keep that conversion inside a worker with hard limits on time, memory, and output size, because a broken file should fail quietly on its own rather than take the whole process down. Each chunk remembers where it came from, down to the file, the character range, and the heading above it. That is what lets an answer point back to an exact place in a real document later on.</p>
+                                <p>Indexing is incremental. Heph hashes each file, keeps the ones that have not changed, and re-chunks only what moved. The index is plain JSON you can open and read, and while it builds it refuses to follow symlinks or paths that try to climb out of the armory.</p>
+                                <p>Retrieval is hybrid. A question runs through a few steps before it reaches the model:</p>
                             </div>
                         <div class="case-code">
                         <p class="case-code-label">Retrieval pipeline</p>
-                        <pre><code>query
-                          → normalization and expansion (multi-query and HyDE-style rewrites)
-                          → sparse retrieval (BM25)
-                          → dense retrieval (sentence-transformer embeddings)
-                          → reciprocal-rank fusion
-                          → optional pseudo-relevance feedback
-                          → optional cross-encoder reranking
-                          → source, quote, and negation post-processing
-                          → top-k chunks</code></pre>
+                        <pre><code>query&#10;  → normalize + expand&#10;  → sparse retrieval&#10;  → dense retrieval&#10;  → rank fusion&#10;  → feedback (optional)&#10;  → rerank (optional)&#10;  → source + quote + negation checks&#10;  → top-k chunks</code></pre>
                         </div>
                             <div class="case-copy">
-                                <p>Sparse retrieval uses <code>bm25s</code> when it is installed, falls back to a standard-library BM25 implementation when it is not, and falls back again to TF-IDF as a last resort. Dense retrieval embeds each chunk with <code>all-MiniLM-L6-v2</code> and ranks by cosine similarity, with a <code>ms-marco</code> cross-encoder available to rerank the shortlist. The two rankings are fused with reciprocal-rank fusion, and the pipeline I wrote layers pseudo-relevance feedback, quoted-phrase boosts, source-path hints, and a negation penalty on top to keep precision high.</p>
-                                <p>The reason for all those fallbacks is that Heph runs on other people's machines instead of a controlled server. Someone may not have the embedding model downloaded, or may be on a laptop with no GPU. I wanted the answer quality to degrade gracefully instead of the program crashing, so the retrieval layer negotiates whatever is available and still returns something useful.</p>
+                                <p>Sparse retrieval prefers <code>bm25s</code>. If it is not installed, Heph uses a BM25 I wrote against the standard library, and if even that is not workable it drops to TF-IDF. Dense retrieval embeds each chunk with <code>all-MiniLM-L6-v2</code> and compares by cosine similarity, and a <code>ms-marco</code> cross-encoder reranks the shortlist when it is available. I fuse the two rankings with reciprocal-rank fusion, then adjust the result with the things I found actually mattered on real questions: pseudo-relevance feedback, a boost for quoted phrases, a hint from the file path, and a penalty for negated terms.</p>
+                                <p>All of that fallback logic is there because Heph runs on other people's machines, not on a server I control. Someone might not have the embedding model downloaded, or might be on a laptop without a GPU. I would rather the answers get a little weaker than watch the program fall over, so retrieval works with whatever is on the machine and still comes back with something useful.</p>
                             </div>
                         </section>
                         <section class="case-section">
                             <div class="case-copy">
-                                <h2>Evidence you can actually audit</h2>
-                                <p>The part I care about most is that evidence is a first-class, typed object with its own identity and lifecycle inside a turn.</p>
+                                <h2>Evidence you can audit</h2>
+                                <p>The part I care about most is how evidence is handled. It is a real typed object in the code with its own ID and a defined life inside a single turn.</p>
                                 <p>After retrieval, Heph builds the evidence set for a turn. It promotes distinct sources first so a single file cannot dominate the context, applies a token budget, and assigns stable IDs in prompt order (<code>E1</code>, <code>E2</code>, <code>E3</code>, <code>E4</code>). The model is told to cite those IDs, and afterwards a verification pass checks every citation in the reply against the exact evidence objects used for that turn. It can tell the difference between a verified citation, an unknown ID the model invented, an answer that carried evidence but forgot to cite it, and an answer that had no evidence at all. A long, confident answer with no citations gets flagged.</p>
                                 <p>When you open a citation, Heph maps the chunk offsets back to line spans in the original file and shows a highlighted excerpt from the real source. It refuses absolute paths and anything that tries to escape the armory while doing this. That whole chain, from retrieved chunk to typed evidence to verified citation to a highlighted line range in your file, is the feature I started the project for.</p>
                             </div>
@@ -2296,12 +2307,8 @@ body {
                                 <p>Heph is a <code>uv</code> workspace split into five packages, and the boundaries between them are enforced by import-linter contracts rather than good intentions:</p>
                             </div>
                         <div class="case-code">
-                        <p class="case-code-label">Packages</p>
-                        <pre><code>extensions   stable contracts, no runtime dependencies
-                        ai           provider and model runtime, OpenAI-compatible
-                        harness      armories, materials, RAG, evidence, memory, safety
-                        interfaces   terminal and Textual UI adapters
-                        heph         CLI, TUI composition, slash commands, SDK</code></pre>
+                        <p class="case-code-label">pyproject.toml: [tool.importlinter]</p>
+                        <pre><code><span class="tok-punctuation">[</span><span class="tok-key">tool.importlinter</span><span class="tok-punctuation">]</span>&#10;<span class="tok-key">root_packages</span> <span class="tok-operator">=</span> <span class="tok-punctuation">[</span><span class="tok-string">&quot;ai&quot;</span><span class="tok-punctuation">,</span> <span class="tok-string">&quot;extensions&quot;</span><span class="tok-punctuation">,</span> <span class="tok-string">&quot;heph&quot;</span><span class="tok-punctuation">,</span> <span class="tok-string">&quot;harness&quot;</span><span class="tok-punctuation">,</span> <span class="tok-string">&quot;interfaces&quot;</span><span class="tok-punctuation">]</span>&#10;<span class="tok-key">exclude_type_checking_imports</span> <span class="tok-operator">=</span> <span class="tok-value">true</span>&#10;<span class="tok-key">include_external_packages</span> <span class="tok-operator">=</span> <span class="tok-value">true</span>&#10;&#10;<span class="tok-punctuation">[</span><span class="tok-punctuation">[</span><span class="tok-key">tool.importlinter.contracts</span><span class="tok-punctuation">]</span><span class="tok-punctuation">]</span>&#10;<span class="tok-key">name</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;AI must stay below Heph, the harness, extensions, and interfaces&quot;</span>&#10;<span class="tok-key">type</span> <span class="tok-operator">=</span> <span class="tok-string">&quot;forbidden&quot;</span>&#10;<span class="tok-key">source_modules</span> <span class="tok-operator">=</span> <span class="tok-punctuation">[</span><span class="tok-string">&quot;ai&quot;</span><span class="tok-punctuation">]</span>&#10;<span class="tok-key">forbidden_modules</span> <span class="tok-operator">=</span> <span class="tok-punctuation">[</span>&#10;    <span class="tok-string">&quot;extensions&quot;</span><span class="tok-punctuation">,</span>&#10;    <span class="tok-string">&quot;heph&quot;</span><span class="tok-punctuation">,</span>&#10;    <span class="tok-string">&quot;harness&quot;</span><span class="tok-punctuation">,</span>&#10;    <span class="tok-string">&quot;interfaces&quot;</span><span class="tok-punctuation">,</span>&#10;<span class="tok-punctuation">]</span></code></pre>
                         </div>
                             <div class="case-copy">
                                 <p>The contracts make the dependency direction executable. The <code>ai</code> runtime cannot reach up into the app. Retrieval and material code cannot import chat or UI internals. The interface layer cannot import application composition. This is what keeps a codebase of roughly 300 Python source files understandable as a single person's project. When I come back to it after a break, the architecture tells me where things belong instead of making me guess.</p>
@@ -2311,8 +2318,8 @@ body {
                             <div class="case-copy">
                                 <h2>Runs with any model, including local ones</h2>
                                 <p>The <code>ai</code> package is a provider-neutral runtime for OpenAI-compatible APIs. Out of the box it configures Pollinations, OpenRouter, OpenAI, DeepSeek, Z.AI, a managed local <code>llama.cpp</code> server, and a custom endpoint slot. Credentials resolve lazily and are stored as provider references, so keys never get baked into a generic chat config.</p>
-                                <p>The runtime handles the things that only show up in practice: streaming deltas, tool-call normalization, usage accounting, prompt-cache shaping, retries with exponential backoff, and a circuit breaker. My favorite detail is stream recovery. If a provider drops the connection before any output has arrived, the runtime quietly retries. If it drops mid-stream after tokens are already on screen, it raises a <code>StreamRecoveryError</code> that carries the partial response, so the caller can recover gracefully instead of throwing away what the user was already reading.</p>
-                                <p>Local models are a first-class provider. <code>heph local</code> discovers, installs, and validates GGUF models, then manages the <code>llama.cpp</code> server lifecycle and probes it for tool-call support, all behind the same runtime abstraction the remote providers use.</p>
+                                <p>The runtime handles the things that only show up in practice: streaming deltas, tool-call normalization, usage accounting, prompt-cache shaping, retries with exponential backoff, and a circuit breaker. My favorite detail is stream recovery. If a provider drops the connection before any output has arrived, the runtime quietly retries. If it drops mid-stream after tokens are already on screen, it raises a <code>StreamRecoveryError</code> that carries the partial response, so the caller can recover cleanly instead of throwing away what the user was already reading.</p>
+                                <p>Local models get the same treatment as every remote one. <code>heph local</code> discovers, installs, and validates GGUF models, then manages the <code>llama.cpp</code> server lifecycle and probes it for tool-call support, all behind the same runtime abstraction the remote providers use.</p>
                             </div>
                         </section>
                         <section class="case-section">
@@ -2370,7 +2377,7 @@ body {
                             <div class="case-copy">
                                 <h2>Where it is going</h2>
                                 <p>Heph is young and I have a long list of things I want to sharpen: better retrieval on messy corpora, faster indexing, and an even smoother way to inspect evidence without breaking the flow of a conversation. The design is built to age well. The model behind it can improve or be swapped as open-source models get cheaper and stronger, and the core promise holds either way. Your files stay yours, and you can always check what an answer is built on.</p>
-                                <p>I am building the tool I want to exist, holding it to the standard I would expect from a team, and shipping it as one person. There is a lot more coming.</p>
+                                <p>I am building the tool I always wanted to exist and holding it to the standard I would expect from a full team, even though it is only me. There is a lot more coming.</p>
                                 <p><a class="external-link" href="https://github.com/gildrb/heph" target="_blank" rel="noopener noreferrer">GitHub repository</a></p>
                             </div>
                         </section>

@@ -1676,6 +1676,10 @@ body {
     margin-top: var(--text-media-gap);
 }
 
+.case-code + .case-copy {
+    margin-top: 48px;
+}
+
 .case-code {
     width: min(100%, 880px);
     margin: 48px auto 0;
@@ -1687,14 +1691,32 @@ body {
 
 .case-code pre {
     overflow-x: auto;
-    padding: 24px;
-    border: 1px solid color-mix(in srgb, var(--text-secondary) 32%, transparent);
-    border-radius: 8px;
-    background: color-mix(in srgb, var(--text-primary) 4%, var(--bg));
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
     color: var(--text-primary);
     font: 14px/20px "Geist Mono", monospace;
     letter-spacing: 0;
     tab-size: 4;
+}
+
+.case-code .tok-key,
+.case-code .tok-keyword {
+    color: var(--text-primary);
+}
+
+.case-code .tok-string,
+.case-code .tok-value,
+.case-code .tok-number {
+    color: var(--text-secondary);
+}
+
+.case-code .tok-comment,
+.case-code .tok-punctuation,
+.case-code .tok-operator {
+    color: var(--text-tertiary);
 }
 
 @media (min-width: 769px) {
@@ -1761,12 +1783,16 @@ body {
         margin-top: 32px;
     }
 
+    .case-code + .case-copy {
+        margin-top: 32px;
+    }
+
     .case-media-grid {
         grid-template-columns: 1fr;
     }
 
     .case-code pre {
-        padding: 16px;
+        padding: 0;
         font-size: 14px;
         line-height: 20px;
     }
@@ -2043,7 +2069,7 @@ body {
                                 <p>The mark went through many attempts over several weeks before it earned its place.</p>
                                 <p>I had the idea of creating a mark that is a sort of disappearing block and also shows the letter F with a bit of imagination. The idea was definitely there, but I did not like where it was going or how it ended up looking, so I scrapped it rather quickly.</p>
                                 <p>Next, I explored the idea of creating a minimal 3D folder viewed from an angle that subtly hints at the letter F. I really liked that idea, but I wasn't too happy with the form, so I pushed it aside for a while.</p>
-                                <p>After that, I worked on something that seemed robust and almost architectural, like a set of stairs. The stairs were also meant to subtly hint at the letter F while communicating robustness and reliability, but I quickly realized that, in order to look reliable, it couldn't be an open F or, in this case, an open staircase. Closing the staircase made it more complicated than it needed to be, which hurt its legibility at smaller scales, so I scrapped that too.</p>
+                                <p>After that, I worked on something that felt solid and almost architectural, like a set of stairs. The stairs were also meant to hint at the letter F while signalling strength and reliability, but I quickly realized that, in order to look reliable, it couldn't be an open F or, in this case, an open staircase. Closing the staircase made it more complicated than it needed to be, which hurt its legibility at smaller scales, so I scrapped that too.</p>
                                 <p>I also considered blocks with a hidden upper layer, which was another attempt I didn't like.</p>
                             </div>
                         <div class="case-media">

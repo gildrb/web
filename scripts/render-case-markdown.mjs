@@ -9,6 +9,312 @@ function escapeHtml(value) {
         .replaceAll('"', "&quot;");
 }
 
+function token(kind, value) {
+    return `<span class="tok-${kind}">${escapeHtml(value)}</span>`;
+}
+
+function readQuoted(source, start) {
+    const quote = source[start];
+    let index = start + 1;
+    while (index < source.length) {
+        if (source[index] === "\\") {
+            index += 2;
+            continue;
+        }
+        if (source[index] === quote) {
+            return source.slice(start, index + 1);
+        }
+        index += 1;
+    }
+    return null;
+}
+
+function highlightCss(source) {
+    let output = "";
+    let index = 0;
+    let valueContext = false;
+
+    while (index < source.length) {
+        if (source.startsWith("/*", index)) {
+            const end = source.indexOf("*/", index + 2);
+            if (end === -1) return escapeHtml(source);
+            const value = source.slice(index, end + 2);
+            output += token("comment", value);
+            index = end + 2;
+            continue;
+        }
+
+        const quoted =
+            source[index] === '"' || source[index] === "'"
+                ? readQuoted(source, index)
+                : null;
+        if ((source[index] === '"' || source[index] === "'") && !quoted) {
+            return escapeHtml(source);
+        }
+        if (quoted) {
+            output += token("string", quoted);
+            index += quoted.length;
+            continue;
+        }
+
+        const whitespace = source.slice(index).match(/^\s+/)?.[0];
+        if (whitespace) {
+            output += escapeHtml(whitespace);
+            index += whitespace.length;
+            continue;
+        }
+
+        const hex = source.slice(index).match(/^#[0-9a-fA-F]{3,8}\b/)?.[0];
+        if (hex) {
+            output += token("number", hex);
+            index += hex.length;
+            continue;
+        }
+
+        const number = source
+            .slice(index)
+            .match(/^(?:\d+(?:\.\d+)?|\.\d+)(?:%|[a-zA-Z]+)?/)?.[0];
+        if (number) {
+            output += token("number", number);
+            index += number.length;
+            continue;
+        }
+
+        const atRule = source.slice(index).match(/^@[a-z-]+/i)?.[0];
+        if (atRule) {
+            output += token("keyword", atRule);
+            index += atRule.length;
+            continue;
+        }
+
+        const identifier = source
+            .slice(index)
+            .match(/^(?:--)?[a-zA-Z_][\w-]*/)?.[0];
+        if (identifier) {
+            const next = source
+                .slice(index + identifier.length)
+                .match(/^\s*([:{])/)?.[1];
+            const kind =
+                next === ":" && !valueContext
+                    ? "key"
+                    : next === "{" || !valueContext
+                      ? "key"
+                      : "value";
+            output += token(kind, identifier);
+            if (next === ":") valueContext = true;
+            index += identifier.length;
+            continue;
+        }
+
+        const punctuation = source[index];
+        if (":;{},().[]".includes(punctuation)) {
+            output += token("punctuation", punctuation);
+            if (punctuation === ";" || punctuation === "}") valueContext = false;
+            index += 1;
+            continue;
+        }
+
+        if ("+>/=~*".includes(punctuation)) {
+            output += token("operator", punctuation);
+            index += 1;
+            continue;
+        }
+
+        output += escapeHtml(punctuation);
+        index += 1;
+    }
+
+    return output;
+}
+
+function highlightToml(source) {
+    let output = "";
+    let index = 0;
+    let tableContext = false;
+
+    while (index < source.length) {
+        if (source[index] === "#") {
+            const end = source.indexOf("\n", index);
+            const value = source.slice(index, end === -1 ? source.length : end);
+            output += token("comment", value);
+            index += value.length;
+            continue;
+        }
+
+        const quoted =
+            source[index] === '"' || source[index] === "'"
+                ? readQuoted(source, index)
+                : null;
+        if ((source[index] === '"' || source[index] === "'") && !quoted) {
+            return escapeHtml(source);
+        }
+        if (quoted) {
+            output += token("string", quoted);
+            index += quoted.length;
+            continue;
+        }
+
+        const whitespace = source.slice(index).match(/^\s+/)?.[0];
+        if (whitespace) {
+            output += escapeHtml(whitespace);
+            index += whitespace.length;
+            continue;
+        }
+
+        const number = source
+            .slice(index)
+            .match(/^-?(?:\d+(?:\.\d+)?|\.\d+)(?:[a-zA-Z]+)?/)?.[0];
+        if (number) {
+            output += token("number", number);
+            index += number.length;
+            continue;
+        }
+
+        const identifier = source.slice(index).match(/^[a-zA-Z_][\w.-]*/)?.[0];
+        if (identifier) {
+            const next = source
+                .slice(index + identifier.length)
+                .match(/^\s*([=.\]])/)?.[1];
+            output += token(tableContext || next === "=" ? "key" : "value", identifier);
+            index += identifier.length;
+            continue;
+        }
+
+        const punctuation = source[index];
+        if ("[]{},.".includes(punctuation)) {
+            output += token("punctuation", punctuation);
+            if (punctuation === "[") tableContext = true;
+            if (punctuation === "]") tableContext = false;
+            index += 1;
+            continue;
+        }
+
+        if (punctuation === "=") {
+            output += token("operator", punctuation);
+            index += 1;
+            continue;
+        }
+
+        output += escapeHtml(punctuation);
+        index += 1;
+    }
+
+    return output;
+}
+
+function highlightBash(source) {
+    const keywords = new Set([
+        "case",
+        "do",
+        "done",
+        "else",
+        "esac",
+        "fi",
+        "for",
+        "function",
+        "if",
+        "in",
+        "then",
+        "while",
+    ]);
+    let output = "";
+    let index = 0;
+
+    while (index < source.length) {
+        if (source[index] === "#") {
+            const end = source.indexOf("\n", index);
+            const value = source.slice(index, end === -1 ? source.length : end);
+            output += token("comment", value);
+            index += value.length;
+            continue;
+        }
+
+        const quoted =
+            source[index] === '"' || source[index] === "'"
+                ? readQuoted(source, index)
+                : null;
+        if ((source[index] === '"' || source[index] === "'") && !quoted) {
+            return escapeHtml(source);
+        }
+        if (quoted) {
+            output += token("string", quoted);
+            index += quoted.length;
+            continue;
+        }
+
+        const variable = source
+            .slice(index)
+            .match(/^\$[{]?[a-zA-Z_][\w]*[}]?/)?.[0];
+        if (variable) {
+            output += token("value", variable);
+            index += variable.length;
+            continue;
+        }
+
+        const whitespace = source.slice(index).match(/^\s+/)?.[0];
+        if (whitespace) {
+            output += escapeHtml(whitespace);
+            index += whitespace.length;
+            continue;
+        }
+
+        const number = source.slice(index).match(/^\d+(?:\.\d+)?/)?.[0];
+        if (number) {
+            output += token("number", number);
+            index += number.length;
+            continue;
+        }
+
+        const identifier = source.slice(index).match(/^[a-zA-Z_][\w-]*/)?.[0];
+        if (identifier) {
+            output += token(
+                keywords.has(identifier) ? "keyword" : "key",
+                identifier,
+            );
+            index += identifier.length;
+            continue;
+        }
+
+        const punctuation = source[index];
+        if ("(){}[],;".includes(punctuation)) {
+            output += token("punctuation", punctuation);
+            index += 1;
+            continue;
+        }
+
+        if ("|&><=+".includes(punctuation)) {
+            output += token("operator", punctuation);
+            index += 1;
+            continue;
+        }
+
+        output += escapeHtml(punctuation);
+        index += 1;
+    }
+
+    return output;
+}
+
+function highlightCode(language, source) {
+    const normalizedLanguage = language.toLowerCase();
+    if (!["css", "toml", "bash"].includes(normalizedLanguage)) {
+        return escapeHtml(source).replaceAll("\n", "&#10;");
+    }
+
+    const highlighted = (() => {
+        switch (normalizedLanguage) {
+            case "css":
+                return highlightCss(source);
+            case "toml":
+                return highlightToml(source);
+            default:
+                return highlightBash(source);
+        }
+    })();
+
+    return highlighted.replaceAll("\n", "&#10;");
+}
+
 function renderInline(source) {
     let html = escapeHtml(source.trim());
     const code = [];
@@ -80,7 +386,9 @@ function parseMarkdown(markdown) {
             continue;
         }
         if (line.startsWith("```")) {
+            const fence = line.match(/^```([^\s`]*)?/);
             const title = line.match(/title="([^"]+)"/)?.[1] ?? "";
+            const language = fence?.[1] ?? "";
             const code = [];
             index += 1;
             while (index < lines.length && !lines[index].startsWith("```")) {
@@ -88,7 +396,12 @@ function parseMarkdown(markdown) {
                 index += 1;
             }
             if (index === lines.length) throw new Error("Unclosed fenced code block.");
-            blocks.push({ type: "code", title, value: code.join("\n") });
+            blocks.push({
+                type: "code",
+                language,
+                title,
+                value: code.join("\n"),
+            });
             index += 1;
             continue;
         }
@@ -108,7 +421,7 @@ function parseMarkdown(markdown) {
             lines[index] &&
             !lines[index].startsWith("## ") &&
             !lines[index].startsWith("### ") &&
-            !lines[index].startsWith("``` ") &&
+            !lines[index].startsWith("```") &&
             !lines[index].startsWith("- ") &&
             !/^!\[.*\]\(media:[a-z0-9-]+\)$/.test(lines[index])
         ) {
@@ -221,7 +534,7 @@ export async function renderCaseMarkdown({ root, slug, resolveIncludes }) {
                 ? `<p class="case-code-label">${renderInline(block.title)}</p>\n`
                 : "";
             output.push(
-                `<div class="case-code">\n${label}<pre><code>${escapeHtml(block.value)}</code></pre>\n</div>`,
+                `<div class="case-code">\n${label}<pre><code>${highlightCode(block.language, block.value)}</code></pre>\n</div>`,
             );
         }
     }

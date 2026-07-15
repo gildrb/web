@@ -1642,6 +1642,10 @@ body {
     margin-top: var(--text-media-gap);
 }
 
+.case-code + .case-copy {
+    margin-top: 48px;
+}
+
 .case-code {
     width: min(100%, 880px);
     margin: 48px auto 0;
@@ -1653,14 +1657,32 @@ body {
 
 .case-code pre {
     overflow-x: auto;
-    padding: 24px;
-    border: 1px solid color-mix(in srgb, var(--text-secondary) 32%, transparent);
-    border-radius: 8px;
-    background: color-mix(in srgb, var(--text-primary) 4%, var(--bg));
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
     color: var(--text-primary);
     font: 14px/20px "Geist Mono", monospace;
     letter-spacing: 0;
     tab-size: 4;
+}
+
+.case-code .tok-key,
+.case-code .tok-keyword {
+    color: var(--text-primary);
+}
+
+.case-code .tok-string,
+.case-code .tok-value,
+.case-code .tok-number {
+    color: var(--text-secondary);
+}
+
+.case-code .tok-comment,
+.case-code .tok-punctuation,
+.case-code .tok-operator {
+    color: var(--text-tertiary);
 }
 
 @media (min-width: 769px) {
@@ -1727,12 +1749,16 @@ body {
         margin-top: 32px;
     }
 
+    .case-code + .case-copy {
+        margin-top: 32px;
+    }
+
     .case-media-grid {
         grid-template-columns: 1fr;
     }
 
     .case-code pre {
-        padding: 16px;
+        padding: 0;
         font-size: 14px;
         line-height: 20px;
     }
@@ -2007,26 +2033,12 @@ body {
                             </div>
                         <div class="case-media">
                         <figure>
-                            <div class="site-media-panel site-pipeline-panel">
+                            <div class="site-pipeline">
                             <style>
-                                .site-media-panel {
-                                    box-sizing: border-box;
+                                .site-pipeline {
                                     width: 100%;
-                                    padding: 24px;
-                                    border: 1px solid color-mix(in srgb, var(--text-primary) 14%, transparent);
-                                    border-radius: var(--media-radius);
-                                    background: color-mix(in srgb, var(--bg) 94%, var(--text-primary));
                                     color: var(--text-secondary);
                                     font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-                                    font-size: 14px;
-                                    line-height: 20px;
-                                }
-                        
-                                .site-panel-label {
-                                    display: block;
-                                    margin-bottom: 16px;
-                                    color: var(--text-tertiary);
-                                    font-family: "Inter", sans-serif;
                                     font-size: 14px;
                                     line-height: 20px;
                                 }
@@ -2041,7 +2053,6 @@ body {
                                     font-weight: 400;
                                 }
                             </style>
-                            <span class="site-panel-label">BUILD PIPELINE</span>
                             <span class="site-pipeline-line"><strong>content/*.md</strong> + <strong>src/case-media/*</strong></span>
                             <span class="site-pipeline-line">        ↓</span>
                             <span class="site-pipeline-line"><strong>scripts/build-page.mjs</strong></span>
@@ -2060,164 +2071,11 @@ body {
                                 <h2>A design system, documented and enforced</h2>
                                 <p>The whole site runs on one small design system that I wrote down as a spec and then wired into the build so it cannot drift. The palette is deliberately tight: a single background token and a three-step gray text hierarchy (<code>--text-primary</code>, <code>--text-secondary</code>, <code>--text-tertiary</code>) that flips cleanly between light and dark, plus one shared highlight color for selection. There are no accent colors, gradients, or glows anywhere, and that restraint is the whole idea.</p>
                                 <p>Spacing comes off a 4px scale (4, 8, 12, 16, 24, 32, 48, 64, 80) exposed as named tokens, so a 760px content column, a 240px sidebar, and a 48px layout gap are decisions I made once and reuse everywhere. Type is self-hosted Inter Variable with Geist Mono for code, on a fixed ramp: 28/36 for titles, 24/32 for section headings, 16/24 for body, 14/20 for captions, nothing lighter than weight 400, and no fluid font sizing. Interaction is just as strict: links and controls promote from tertiary to primary gray on hover, focus shows a 1px ring at a 4px offset, selection uses the bright-gray highlight, and any motion stays at or below 200ms and yields to reduced-motion.</p>
-                                <p>What makes it real is that the spec is checked by code. The build refuses to ship a page that violates the tokens, the type hierarchy, or the spacing rules, so the written system and the live site can never quietly disagree.</p>
+                                <p>The spec is enforced in code. The build refuses to ship a page that violates the tokens, the type hierarchy, or the spacing rules, so the written system and the live site can never quietly disagree.</p>
                             </div>
-                        <div class="case-media">
-                        <figure>
-                            <div class="site-media-panel site-tokens-panel">
-                            <style>
-                                .site-tokens-panel {
-                                    box-sizing: border-box;
-                                    width: 100%;
-                                    padding: 24px;
-                                    border: 1px solid color-mix(in srgb, var(--text-primary) 14%, transparent);
-                                    border-radius: var(--media-radius);
-                                    background: color-mix(in srgb, var(--bg) 94%, var(--text-primary));
-                                    color: var(--text-secondary);
-                                }
-                        
-                                .site-token-heading {
-                                    margin: 0 0 16px;
-                                    color: var(--text-tertiary);
-                                    font-size: 14px;
-                                    font-weight: 400;
-                                    line-height: 20px;
-                                }
-                        
-                                .site-token-grid {
-                                    display: grid;
-                                    grid-template-columns: repeat(3, minmax(0, 1fr));
-                                    gap: 12px;
-                                }
-                        
-                                .site-token-swatch {
-                                    min-width: 0;
-                                    min-height: 72px;
-                                    padding: 10px;
-                                    border: 1px solid color-mix(in srgb, var(--text-primary) 14%, transparent);
-                                    border-radius: 8px;
-                                    color: var(--swatch-text, #ffffff);
-                                    background: var(--swatch-bg);
-                                    font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-                                    font-size: 12px;
-                                    line-height: 16px;
-                                }
-                        
-                                .site-token-swatch span {
-                                    display: block;
-                                }
-                        
-                                .site-token-swatch span + span {
-                                    margin-top: 4px;
-                                    opacity: 0.8;
-                                }
-                        
-                                .site-token-subsection {
-                                    margin-top: 24px;
-                                }
-                        
-                                .site-type-ramp {
-                                    display: grid;
-                                    gap: 8px;
-                                    color: var(--text-primary);
-                                }
-                        
-                                .site-type-ramp span {
-                                    display: block;
-                                }
-                        
-                                .site-type-title {
-                                    font-size: 28px;
-                                    line-height: 36px;
-                                }
-                        
-                                .site-type-heading {
-                                    font-size: 24px;
-                                    line-height: 32px;
-                                }
-                        
-                                .site-type-body {
-                                    font-size: 16px;
-                                    line-height: 24px;
-                                }
-                        
-                                .site-type-caption {
-                                    color: var(--text-tertiary);
-                                    font-size: 14px;
-                                    line-height: 20px;
-                                }
-                        
-                                .site-spacing-scale {
-                                    display: flex;
-                                    align-items: end;
-                                    gap: 8px;
-                                    height: 64px;
-                                }
-                        
-                                .site-spacing-bar {
-                                    display: flex;
-                                    align-items: end;
-                                    justify-content: center;
-                                    width: 24px;
-                                    height: var(--bar-height);
-                                    color: var(--text-primary);
-                                    background: var(--highlight-bg);
-                                    font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-                                    font-size: 10px;
-                                    line-height: 12px;
-                                }
-                        
-                                @media (max-width: 560px) {
-                                    .site-token-grid {
-                                        grid-template-columns: repeat(2, minmax(0, 1fr));
-                                    }
-                                }
-                            </style>
-                            <p class="site-token-heading">DESIGN TOKENS</p>
-                            <div class="site-token-grid">
-                                <div class="site-token-swatch" style="--swatch-bg: #000000;">
-                                    <span>--bg</span><span>#000000</span>
-                                </div>
-                                <div class="site-token-swatch" style="--swatch-bg: #ffffff; --swatch-text: #000000;">
-                                    <span>--text-primary</span><span>#ffffff</span>
-                                </div>
-                                <div class="site-token-swatch" style="--swatch-bg: #b3b3b3; --swatch-text: #000000;">
-                                    <span>--text-secondary</span><span>#b3b3b3</span>
-                                </div>
-                                <div class="site-token-swatch" style="--swatch-bg: #767676;">
-                                    <span>--text-tertiary</span><span>#767676</span>
-                                </div>
-                                <div class="site-token-swatch" style="--swatch-bg: #b3b3b3; --swatch-text: #000000;">
-                                    <span>--highlight-bg</span><span>#b3b3b3</span>
-                                </div>
-                                <div class="site-token-swatch" style="--swatch-bg: #ffffff; --swatch-text: #000000;">
-                                    <span>--highlight-text</span><span>#ffffff</span>
-                                </div>
-                            </div>
-                            <div class="site-token-subsection">
-                                <p class="site-token-heading">TYPE RAMP</p>
-                                <div class="site-type-ramp">
-                                    <span class="site-type-title">28/36 title</span>
-                                    <span class="site-type-heading">24/32 heading</span>
-                                    <span class="site-type-body">16/24 body</span>
-                                    <span class="site-type-caption">14/20 caption</span>
-                                </div>
-                            </div>
-                            <div class="site-token-subsection">
-                                <p class="site-token-heading">4PX SCALE</p>
-                                <div class="site-spacing-scale" aria-label="4, 8, 12, 16, 24, 32, 48 pixel spacing scale">
-                                    <span class="site-spacing-bar" style="--bar-height: 8px;">4</span>
-                                    <span class="site-spacing-bar" style="--bar-height: 16px;">8</span>
-                                    <span class="site-spacing-bar" style="--bar-height: 24px;">12</span>
-                                    <span class="site-spacing-bar" style="--bar-height: 32px;">16</span>
-                                    <span class="site-spacing-bar" style="--bar-height: 48px;">24</span>
-                                    <span class="site-spacing-bar" style="--bar-height: 56px;">32</span>
-                                    <span class="site-spacing-bar" style="--bar-height: 64px;">48</span>
-                                </div>
-                            </div>
-                        </div>
-                            <figcaption class="case-caption">Design tokens</figcaption>
-                        </figure>
+                        <div class="case-code">
+                        <p class="case-code-label">src/styles/10-base.css</p>
+                        <pre><code><span class="tok-punctuation">:</span><span class="tok-key">root</span> <span class="tok-punctuation">{</span>&#10;    <span class="tok-key">--bg</span><span class="tok-punctuation">:</span> <span class="tok-number">#000000</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--text-primary</span><span class="tok-punctuation">:</span> <span class="tok-number">#ffffff</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--text-secondary</span><span class="tok-punctuation">:</span> <span class="tok-number">#b3b3b3</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--text-tertiary</span><span class="tok-punctuation">:</span> <span class="tok-number">#767676</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--highlight-bg</span><span class="tok-punctuation">:</span> <span class="tok-number">#b3b3b3</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--highlight-text</span><span class="tok-punctuation">:</span> <span class="tok-number">#ffffff</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--section-gap</span><span class="tok-punctuation">:</span> <span class="tok-number">24px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--section-content-gap</span><span class="tok-punctuation">:</span> <span class="tok-number">6px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--text-media-gap</span><span class="tok-punctuation">:</span> <span class="tok-number">32px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--link-line-height</span><span class="tok-punctuation">:</span> <span class="tok-number">24px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--theme-toggle-size</span><span class="tok-punctuation">:</span> <span class="tok-number">32px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--footer-stack-bottom-gap</span><span class="tok-punctuation">:</span> <span class="tok-number">4px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--footer-title-optical-offset</span><span class="tok-punctuation">:</span> <span class="tok-number">4px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--sidebar-column</span><span class="tok-punctuation">:</span> <span class="tok-number">240px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--content-column</span><span class="tok-punctuation">:</span> <span class="tok-number">760px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--layout-gap</span><span class="tok-punctuation">:</span> <span class="tok-number">48px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--media-radius</span><span class="tok-punctuation">:</span> <span class="tok-number">22px</span><span class="tok-punctuation">;</span>&#10;<span class="tok-punctuation">}</span></code></pre>
                         </div>
                         </section>
                         <section class="case-section">
@@ -2227,29 +2085,23 @@ body {
                             </div>
                         <div class="case-media">
                         <figure>
-                            <div class="site-media-panel site-verify-panel">
+                            <div class="site-verify">
                             <style>
-                                .site-verify-panel {
-                                    box-sizing: border-box;
+                                .site-verify {
                                     width: 100%;
-                                    padding: 24px;
-                                    border: 1px solid color-mix(in srgb, var(--text-primary) 14%, transparent);
-                                    border-radius: var(--media-radius);
-                                    background: color-mix(in srgb, var(--bg) 94%, var(--text-primary));
                                     color: var(--text-secondary);
                                     font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
                                     font-size: 14px;
                                     line-height: 20px;
                                 }
                         
-                                .site-verify-title {
-                                    display: block;
-                                    margin-bottom: 16px;
-                                    color: var(--text-tertiary);
-                                }
-                        
                                 .site-verify-line {
                                     display: block;
+                                }
+                        
+                                .site-verify-prompt {
+                                    margin-bottom: 16px;
+                                    color: var(--text-tertiary);
                                 }
                         
                                 .site-verify-line strong {
@@ -2257,7 +2109,7 @@ body {
                                     font-weight: 400;
                                 }
                             </style>
-                            <span class="site-verify-title">$ node scripts/verify-page.mjs</span>
+                            <span class="site-verify-line site-verify-prompt">$ node scripts/verify-page.mjs</span>
                             <span class="site-verify-line">design-system tokens <strong>ok</strong></span>
                             <span class="site-verify-line">content rules <strong>ok</strong> (no em dashes)</span>
                             <span class="site-verify-line">asset completeness <strong>ok</strong></span>
@@ -2276,77 +2128,14 @@ body {
                         </section>
                         <section class="case-section">
                             <div class="case-copy">
-                                <h2>Readable by machines, not just people</h2>
-                                <p>I treated discovery as a design surface. The site publishes a Schema.org identity graph as JSON-LD, a WebFinger and host-meta record, an llms.txt profile written for AI agents, an RSS feed, a humans.txt file, and a sitemap. It also serves Content-Signal headers that state plainly how the site may be searched, used as AI input, or used for training. A person, a search engine, and an AI agent all get a clean, deliberate answer to who I am.</p>
+                                <h2>Readable by machines</h2>
+                                <p>I treated discovery as a design surface. The site publishes a Schema.org identity graph as JSON-LD, a WebFinger and host-meta record, an llms.txt profile written for AI agents, an RSS feed, a humans.txt file, and a sitemap. It also serves Content-Signal headers that state plainly how the site may be searched, used as AI input, or used for training. A person, a search engine, and an AI agent all get the same clear answer about who I am.</p>
                             </div>
-                        <div class="case-media">
-                        <figure>
-                            <div class="site-media-panel site-endpoints-panel">
-                            <style>
-                                .site-endpoints-panel {
-                                    box-sizing: border-box;
-                                    width: 100%;
-                                    padding: 24px;
-                                    border: 1px solid color-mix(in srgb, var(--text-primary) 14%, transparent);
-                                    border-radius: var(--media-radius);
-                                    background: color-mix(in srgb, var(--bg) 94%, var(--text-primary));
-                                    color: var(--text-secondary);
-                                    font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-                                    font-size: 14px;
-                                    line-height: 20px;
-                                }
-                        
-                                .site-endpoints-title {
-                                    display: block;
-                                    margin-bottom: 16px;
-                                    color: var(--text-tertiary);
-                                }
-                        
-                                .site-endpoints-list {
-                                    display: grid;
-                                    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
-                                    gap: 8px 20px;
-                                }
-                        
-                                .site-endpoint {
-                                    color: var(--text-primary);
-                                }
-                        
-                                .site-endpoint-label {
-                                    color: var(--text-secondary);
-                                }
-                        
-                                @media (max-width: 560px) {
-                                    .site-endpoints-list {
-                                        grid-template-columns: 1fr;
-                                        gap: 4px;
-                                    }
-                        
-                                    .site-endpoint-label {
-                                        margin-bottom: 8px;
-                                    }
-                                }
-                            </style>
-                            <span class="site-endpoints-title">MACHINE-READABLE IDENTITY</span>
-                            <div class="site-endpoints-list">
-                                <span class="site-endpoint">JSON-LD</span><span class="site-endpoint-label">identity graph</span>
-                                <span class="site-endpoint">WebFinger</span><span class="site-endpoint-label">identity discovery</span>
-                                <span class="site-endpoint">host-meta</span><span class="site-endpoint-label">host metadata</span>
-                                <span class="site-endpoint">llms.txt</span><span class="site-endpoint-label">AI-readable profile</span>
-                                <span class="site-endpoint">RSS</span><span class="site-endpoint-label">updates feed</span>
-                                <span class="site-endpoint">humans.txt</span><span class="site-endpoint-label">human authorship</span>
-                                <span class="site-endpoint">sitemap</span><span class="site-endpoint-label">route discovery</span>
-                                <span class="site-endpoint">Content-Signal</span><span class="site-endpoint-label">usage headers</span>
-                            </div>
-                        </div>
-                            <figcaption class="case-caption">Machine-readable identity</figcaption>
-                        </figure>
-                        </div>
                         </section>
                         <section class="case-section">
                             <div class="case-copy">
                                 <h2>Fast and accessible by default</h2>
-                                <p>Performance and accessibility were requirements from the start. Critical CSS and JavaScript are inlined, fonts are preloaded, images are served responsively with the right size for each viewport, and the markup uses real landmarks, live regions for status updates, visible focus rings, and reduced-motion fallbacks. The result loads fast and works for everyone.</p>
+                                <p>Performance and accessibility were requirements from the start. Critical CSS and JavaScript are inlined, fonts are preloaded, images are served responsively with the right size for each viewport, and the markup uses real landmarks, live regions for status updates, visible focus rings, and reduced-motion fallbacks. It loads fast and holds up whether you are on a phone, using a keyboard, or reading with a screen reader.</p>
                                 <p>Everything here is my design and my code, held to a standard I would defend on any team. This whole page is the work, and you are reading it right now.</p>
                             </div>
                         </section>

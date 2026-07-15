@@ -16,48 +16,53 @@ The core unit in Heph is an armory. An armory is a normal folder for one topic t
 
 On disk it stays completely inspectable:
 
-```text title="~/.armories/Biology/"
-materials/            your original files, untouched
-.harness/
-  armory.toml         armory marker and config
-  rag_index.json      chunked, hashed retrieval index
-  memory.json         persistent extracted context
-  chats/              saved sessions
-  traces/             per-turn diagnostics
-  usage/              token and cost accounting
+```text title="docs/index.md: Armory layout"
+~/.armories/[name]/
+├── materials/            # PDFs, Office docs, notes, code to cite
+│   ├── [file].pdf
+│   └── [file].md
+├── .harness/             # Local Heph state
+│   ├── armory.toml       # Armory marker
+│   ├── rag_index.json    # Retrieval index
+│   ├── memory.json       # Armory memory
+│   ├── chats/            # Saved sessions
+│   ├── traces/           # JSONL traces when enabled
+│   ├── usage/            # Token and cost snapshots
+│   └── ignore            # Indexing ignore rules
+└── README.md             # Armory notes
 ```
 
 I kept every armory isolated on purpose. Before I ask anything, I already know exactly which files Heph can and cannot see. There is no shared vector service in the cloud and no ambiguity about scope. Your files stay yours, on your disk, in formats you can open yourself.
 
-## How retrieval actually works
+## How retrieval works
 
-This is where most of the engineering lives, and where the difference between a weekend script and a real tool shows up. I did not reinvent BM25 or train embeddings. I used solid libraries for those and built the pipeline around them: the fusion, the fallbacks, the query rewriting, and the post-processing that decides what the model actually sees.
+Most of my time on Heph went here. I did not write BM25 or train an embedding model, since good libraries already exist for both. What I wrote is everything around them: how a question gets rewritten, how the results get combined, what happens when a piece is not available, and how the context gets trimmed before the model sees it.
 
-When you add a file, Heph imports it into the armory, then extracts and chunks it. Plain text and Markdown are chunked with structure awareness so headings and sections stay intact. Binary formats like PDF, DOCX, PPTX, and XLSX go through a Docling conversion step that runs inside a bounded worker with output limits, timeouts, memory ceilings, and OCR deadlines, so a single pathological file cannot hang or exhaust the process. Every chunk keeps its source path, character offsets, and nearest heading, which is what later lets an answer point back to a precise span of a real document.
+Adding a file imports it into the armory and breaks it into chunks. Text and Markdown split along their own headings so sections stay whole. PDFs and Office files run through Docling first, and I keep that conversion inside a worker with hard limits on time, memory, and output size, because a broken file should fail quietly on its own rather than take the whole process down. Each chunk remembers where it came from, down to the file, the character range, and the heading above it. That is what lets an answer point back to an exact place in a real document later on.
 
-Indexing is incremental. Heph hashes document content, reuses unchanged files across rebuilds, and only re-chunks what actually changed. The index is a readable JSON file, and it defends against symlink and path-escape tricks while it builds.
+Indexing is incremental. Heph hashes each file, keeps the ones that have not changed, and re-chunks only what moved. The index is plain JSON you can open and read, and while it builds it refuses to follow symlinks or paths that try to climb out of the armory.
 
-Retrieval itself is hybrid. A question flows through a real pipeline before it reaches the model:
+Retrieval is hybrid. A question runs through a few steps before it reaches the model:
 
 ```text title="Retrieval pipeline"
 query
-  → normalization and expansion (multi-query and HyDE-style rewrites)
-  → sparse retrieval (BM25)
-  → dense retrieval (sentence-transformer embeddings)
-  → reciprocal-rank fusion
-  → optional pseudo-relevance feedback
-  → optional cross-encoder reranking
-  → source, quote, and negation post-processing
+  → normalize + expand
+  → sparse retrieval
+  → dense retrieval
+  → rank fusion
+  → feedback (optional)
+  → rerank (optional)
+  → source + quote + negation checks
   → top-k chunks
 ```
 
-Sparse retrieval uses `bm25s` when it is installed, falls back to a standard-library BM25 implementation when it is not, and falls back again to TF-IDF as a last resort. Dense retrieval embeds each chunk with `all-MiniLM-L6-v2` and ranks by cosine similarity, with a `ms-marco` cross-encoder available to rerank the shortlist. The two rankings are fused with reciprocal-rank fusion, and the pipeline I wrote layers pseudo-relevance feedback, quoted-phrase boosts, source-path hints, and a negation penalty on top to keep precision high.
+Sparse retrieval prefers `bm25s`. If it is not installed, Heph uses a BM25 I wrote against the standard library, and if even that is not workable it drops to TF-IDF. Dense retrieval embeds each chunk with `all-MiniLM-L6-v2` and compares by cosine similarity, and a `ms-marco` cross-encoder reranks the shortlist when it is available. I fuse the two rankings with reciprocal-rank fusion, then adjust the result with the things I found actually mattered on real questions: pseudo-relevance feedback, a boost for quoted phrases, a hint from the file path, and a penalty for negated terms.
 
-The reason for all those fallbacks is that Heph runs on other people's machines instead of a controlled server. Someone may not have the embedding model downloaded, or may be on a laptop with no GPU. I wanted the answer quality to degrade gracefully instead of the program crashing, so the retrieval layer negotiates whatever is available and still returns something useful.
+All of that fallback logic is there because Heph runs on other people's machines, not on a server I control. Someone might not have the embedding model downloaded, or might be on a laptop without a GPU. I would rather the answers get a little weaker than watch the program fall over, so retrieval works with whatever is on the machine and still comes back with something useful.
 
-## Evidence you can actually audit
+## Evidence you can audit
 
-The part I care about most is that evidence is a first-class, typed object with its own identity and lifecycle inside a turn.
+The part I care about most is how evidence is handled. It is a real typed object in the code with its own ID and a defined life inside a single turn.
 
 After retrieval, Heph builds the evidence set for a turn. It promotes distinct sources first so a single file cannot dominate the context, applies a token budget, and assigns stable IDs in prompt order (`E1`, `E2`, `E3`, `E4`). The model is told to cite those IDs, and afterwards a verification pass checks every citation in the reply against the exact evidence objects used for that turn. It can tell the difference between a verified citation, an unknown ID the model invented, an answer that carried evidence but forgot to cite it, and an answer that had no evidence at all. A long, confident answer with no citations gets flagged.
 
@@ -67,12 +72,22 @@ When you open a citation, Heph maps the chunk offsets back to line spans in the 
 
 Heph is a `uv` workspace split into five packages, and the boundaries between them are enforced by import-linter contracts rather than good intentions:
 
-```text title="Packages"
-extensions   stable contracts, no runtime dependencies
-ai           provider and model runtime, OpenAI-compatible
-harness      armories, materials, RAG, evidence, memory, safety
-interfaces   terminal and Textual UI adapters
-heph         CLI, TUI composition, slash commands, SDK
+```toml title="pyproject.toml: [tool.importlinter]"
+[tool.importlinter]
+root_packages = ["ai", "extensions", "heph", "harness", "interfaces"]
+exclude_type_checking_imports = true
+include_external_packages = true
+
+[[tool.importlinter.contracts]]
+name = "AI must stay below Heph, the harness, extensions, and interfaces"
+type = "forbidden"
+source_modules = ["ai"]
+forbidden_modules = [
+    "extensions",
+    "heph",
+    "harness",
+    "interfaces",
+]
 ```
 
 The contracts make the dependency direction executable. The `ai` runtime cannot reach up into the app. Retrieval and material code cannot import chat or UI internals. The interface layer cannot import application composition. This is what keeps a codebase of roughly 300 Python source files understandable as a single person's project. When I come back to it after a break, the architecture tells me where things belong instead of making me guess.
@@ -81,9 +96,9 @@ The contracts make the dependency direction executable. The `ai` runtime cannot 
 
 The `ai` package is a provider-neutral runtime for OpenAI-compatible APIs. Out of the box it configures Pollinations, OpenRouter, OpenAI, DeepSeek, Z.AI, a managed local `llama.cpp` server, and a custom endpoint slot. Credentials resolve lazily and are stored as provider references, so keys never get baked into a generic chat config.
 
-The runtime handles the things that only show up in practice: streaming deltas, tool-call normalization, usage accounting, prompt-cache shaping, retries with exponential backoff, and a circuit breaker. My favorite detail is stream recovery. If a provider drops the connection before any output has arrived, the runtime quietly retries. If it drops mid-stream after tokens are already on screen, it raises a `StreamRecoveryError` that carries the partial response, so the caller can recover gracefully instead of throwing away what the user was already reading.
+The runtime handles the things that only show up in practice: streaming deltas, tool-call normalization, usage accounting, prompt-cache shaping, retries with exponential backoff, and a circuit breaker. My favorite detail is stream recovery. If a provider drops the connection before any output has arrived, the runtime quietly retries. If it drops mid-stream after tokens are already on screen, it raises a `StreamRecoveryError` that carries the partial response, so the caller can recover cleanly instead of throwing away what the user was already reading.
 
-Local models are a first-class provider. `heph local` discovers, installs, and validates GGUF models, then manages the `llama.cpp` server lifecycle and probes it for tool-call support, all behind the same runtime abstraction the remote providers use.
+Local models get the same treatment as every remote one. `heph local` discovers, installs, and validates GGUF models, then manages the `llama.cpp` server lifecycle and probes it for tool-call support, all behind the same runtime abstraction the remote providers use.
 
 ## The interface I had to fight for
 
@@ -121,6 +136,6 @@ That work fed a new Heph lockup and gave the product a clearer visual identity a
 
 Heph is young and I have a long list of things I want to sharpen: better retrieval on messy corpora, faster indexing, and an even smoother way to inspect evidence without breaking the flow of a conversation. The design is built to age well. The model behind it can improve or be swapped as open-source models get cheaper and stronger, and the core promise holds either way. Your files stay yours, and you can always check what an answer is built on.
 
-I am building the tool I want to exist, holding it to the standard I would expect from a team, and shipping it as one person. There is a lot more coming.
+I am building the tool I always wanted to exist and holding it to the standard I would expect from a full team, even though it is only me. There is a lot more coming.
 
 [GitHub repository](https://github.com/gildrb/heph)
