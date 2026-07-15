@@ -1648,9 +1648,13 @@ body {
     border-radius: 0;
     background: transparent;
     color: var(--text-primary);
-    font: 14px/20px "Geist Mono", "Inter", monospace;
+    font: 14px/20px "Geist Mono", monospace;
     letter-spacing: 0;
     tab-size: 4;
+}
+
+.case-code .case-code-arrow {
+    font-family: "Inter", sans-serif;
 }
 
 .case-code .tok-key,
@@ -2281,7 +2285,7 @@ body {
                             </div>
                         <div class="case-code">
                         <p class="case-code-label">Retrieval pipeline</p>
-                        <pre><code>query&#10;  → normalize + expand&#10;  → sparse retrieval&#10;  → dense retrieval&#10;  → rank fusion&#10;  → feedback (optional)&#10;  → rerank (optional)&#10;  → source + quote + negation checks&#10;  → top-k chunks</code></pre>
+                        <pre><code>query&#10;  <span class="case-code-arrow">→</span> normalize + expand&#10;  <span class="case-code-arrow">→</span> sparse retrieval&#10;  <span class="case-code-arrow">→</span> dense retrieval&#10;  <span class="case-code-arrow">→</span> rank fusion&#10;  <span class="case-code-arrow">→</span> feedback (optional)&#10;  <span class="case-code-arrow">→</span> rerank (optional)&#10;  <span class="case-code-arrow">→</span> source + quote + negation checks&#10;  <span class="case-code-arrow">→</span> top-k chunks</code></pre>
                         </div>
                             <div class="case-copy">
                                 <p>Sparse retrieval prefers <code>bm25s</code>. If it is not installed, Heph uses a BM25 I wrote against the standard library, and if even that is not workable it drops to TF-IDF. Dense retrieval embeds each chunk with <code>all-MiniLM-L6-v2</code> and compares by cosine similarity, and a <code>ms-marco</code> cross-encoder reranks the shortlist when it is available. I fuse the two rankings with reciprocal-rank fusion, then adjust the result with the things I found actually mattered on real questions: pseudo-relevance feedback, a boost for quoted phrases, a hint from the file path, and a penalty for negated terms.</p>
