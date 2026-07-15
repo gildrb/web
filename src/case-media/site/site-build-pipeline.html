@@ -1,23 +1,9 @@
-<div class="site-media-panel site-pipeline-panel">
+<div class="site-pipeline">
     <style>
-        .site-media-panel {
-            box-sizing: border-box;
+        .site-pipeline {
             width: 100%;
-            padding: 24px;
-            border: 1px solid color-mix(in srgb, var(--text-primary) 14%, transparent);
-            border-radius: var(--media-radius);
-            background: color-mix(in srgb, var(--bg) 94%, var(--text-primary));
             color: var(--text-secondary);
             font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-            font-size: 14px;
-            line-height: 20px;
-        }
-
-        .site-panel-label {
-            display: block;
-            margin-bottom: 16px;
-            color: var(--text-tertiary);
-            font-family: "Inter", sans-serif;
             font-size: 14px;
             line-height: 20px;
         }
@@ -32,7 +18,6 @@
             font-weight: 400;
         }
     </style>
-    <span class="site-panel-label">BUILD PIPELINE</span>
     <span class="site-pipeline-line"><strong>content/*.md</strong> + <strong>src/case-media/*</strong></span>
     <span class="site-pipeline-line">        ↓</span>
     <span class="site-pipeline-line"><strong>scripts/build-page.mjs</strong></span>
