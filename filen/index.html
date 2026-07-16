@@ -747,7 +747,7 @@ body {
 
 @media (max-width: 768px) {
     .portfolio-section {
-        grid-template-columns: max-content minmax(0, 1fr) max-content auto;
+        grid-template-columns: max-content max-content minmax(0, 1fr) auto;
         column-gap: clamp(8px, 3vw, 16px);
     }
 
@@ -757,18 +757,18 @@ body {
     }
 
     .portfolio-card-field {
-        grid-column: 2 / 4;
-        grid-row: 2;
-    }
-
-    .portfolio-card-arrow {
-        grid-row: 1 / 3;
-        align-self: center;
+        grid-column: 3;
+        grid-row: 1;
+        min-width: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 
     .portfolio-card-view {
         display: none;
     }
+
     .portfolio-date-full {
         display: none;
     }

@@ -871,16 +871,13 @@ assert(
             ".portfolio-card-link + .portfolio-card-link {\n    margin-top: 0;\n    border-top: 1px solid\n        color-mix(in srgb, var(--text-primary) 12%, transparent);",
         ) &&
         portfolioStyles.includes(
-            "@media (max-width: 768px) {\n    .portfolio-section {\n        grid-template-columns: max-content minmax(0, 1fr) max-content auto;\n        column-gap: clamp(8px, 3vw, 16px);",
+            "@media (max-width: 768px) {\n    .portfolio-section {\n        grid-template-columns: max-content max-content minmax(0, 1fr) auto;\n        column-gap: clamp(8px, 3vw, 16px);",
         ) &&
         portfolioStyles.includes(
             ".portfolio-link-heading,\n    .portfolio-card-arrow {\n        grid-column: 4;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-card-field {\n        grid-column: 2 / 4;\n        grid-row: 2;",
-        ) &&
-        portfolioStyles.includes(
-            ".portfolio-card-arrow {\n        grid-row: 1 / 3;\n        align-self: center;",
+            ".portfolio-card-field {\n        grid-column: 3;\n        grid-row: 1;\n        min-width: 0;\n        overflow: hidden;\n        white-space: nowrap;\n        text-overflow: ellipsis;",
         ) &&
         portfolioStyles.includes(
             ".portfolio-card-view {\n        display: none;",
