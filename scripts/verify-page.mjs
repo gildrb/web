@@ -256,8 +256,8 @@ assert(
         baseStyles.includes("background: var(--highlight-bg);") &&
         portfolioStyles.includes(".portfolio-card-link:hover {") &&
         portfolioStyles.includes(
-            "background: color-mix(\n            in srgb,\n            var(--text-primary) 6%,\n            transparent\n        );",
-        ) &&
+            "background: color-mix(\n            in srgb,\n            var(--text-primary) 8%,\n            transparent\n        );",
+    ) &&
         !portfolioStyles.includes(".portfolio-card-image::after") &&
         !hephDemoStyles.includes(".heph-demo-frame::after") &&
         !portfolioStyles.includes("mix-blend-mode:") &&
@@ -677,19 +677,19 @@ assert(
             indexHtml.includes(`>${title}</span`),
     ) &&
         portfolioStyles.includes(
-            ".portfolio-card-link {\n    display: grid;\n    grid-template-columns: minmax(0, 1fr) auto;",
+            ".portfolio-card-link {\n    display: grid;\n    grid-template-columns: auto minmax(0, 1fr) auto;",
         ) &&
         portfolioStyles.includes("width: calc(100% + 20px);") &&
         portfolioStyles.includes(
-            ".portfolio-card-title {\n    grid-column: 1;\n    grid-row: 1;\n    color: var(--text-primary);\n    font-size: 19px;\n    font-weight: 400;\n    line-height: 24px;\n    letter-spacing: -0.02em;",
+            ".portfolio-card-title {\n    grid-column: 2;\n    grid-row: 1;\n    color: var(--text-primary);\n    font-size: 19px;\n    font-weight: 400;\n    line-height: 24px;\n    letter-spacing: -0.02em;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 2;\n    display: block;\n    color: var(--text-tertiary);",
+            ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 1;\n    display: block;\n    color: var(--text-tertiary);\n    font-size: 15px;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
-            '.portfolio-card-link::after {\n    content: "→";\n    grid-column: 2;\n    grid-row: 1;',
+            '.portfolio-card-link::after {\n    content: "→";\n    grid-column: 3;\n    grid-row: 1;',
         ),
-    "Homepage projects must expose full-width text-only click targets with matching name typography, ISO dates, and aligned static arrows.",
+    "Homepage projects must expose full-width single-line table rows with aligned ISO dates, titles, and static arrows.",
 );
 assert(
     indexHtml.includes(
