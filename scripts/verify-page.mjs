@@ -830,7 +830,7 @@ assert(
             'links.style.setProperty(\n        "--mobile-contact-start",',
         ) &&
         siteScript.includes(
-            'window.addEventListener("resize", updateMobileLayout);',
+            'window.addEventListener("resize", () => updateMobileLayout(true));',
         ) &&
         siteScript.includes("new ResizeObserver") &&
         siteScript.includes("mobileLayoutTargets.forEach") &&
@@ -842,6 +842,15 @@ assert(
         ) &&
         siteScript.includes(
             'let homepageUnlockedContentBottom = 0;',
+        ) &&
+        siteScript.includes(
+            'let homepageViewportWidth = window.innerWidth;',
+        ) &&
+        siteScript.includes(
+            'function updateHomepageLock(preserveMobileState = false)',
+        ) &&
+        siteScript.includes(
+            'preserveMobileState &&\n        isMobile &&\n        !viewportWidthChanged',
         ) &&
         siteScript.includes(
             'root.classList.remove("homepage-scroll-locked");',
