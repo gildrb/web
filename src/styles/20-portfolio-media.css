@@ -197,7 +197,7 @@
 }
 
 .portfolio-card-title {
-    grid-column: 2;
+    grid-column: 1;
     grid-row: 1;
     color: var(--text-primary);
     font-size: 19px;
@@ -231,6 +231,7 @@
 
 .portfolio-group .section-title {
     margin-bottom: 14px;
+    color: var(--text-primary);
 }
 
 .portfolio-group + .portfolio-group {
@@ -238,7 +239,9 @@
 }
 
 .portfolio-card-link + .portfolio-card-link {
-    margin-top: 16px;
+    margin-top: 0;
+    border-top: 1px solid
+        color-mix(in srgb, var(--text-primary) 12%, transparent);
 }
 
 @media (hover: hover) {

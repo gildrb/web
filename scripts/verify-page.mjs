@@ -681,15 +681,18 @@ assert(
         ) &&
         portfolioStyles.includes("width: calc(100% + 20px);") &&
         portfolioStyles.includes(
-            ".portfolio-card-title {\n    grid-column: 2;\n    grid-row: 1;\n    color: var(--text-primary);\n    font-size: 19px;\n    font-weight: 400;\n    line-height: 24px;\n    letter-spacing: -0.02em;",
+            ".portfolio-card-title {\n    grid-column: 1;\n    grid-row: 1;\n    color: var(--text-primary);\n    font-size: 19px;\n    font-weight: 400;\n    line-height: 24px;\n    letter-spacing: -0.02em;",
         ) &&
         portfolioStyles.includes(
             ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 1;\n    display: block;\n    color: var(--text-tertiary);\n    font-size: 15px;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
             '.portfolio-card-link::after {\n    content: "→";\n    grid-column: 3;\n    grid-row: 1;',
+        ) &&
+        portfolioStyles.includes(
+            ".portfolio-card-link + .portfolio-card-link {\n    margin-top: 0;\n    border-top: 1px solid\n        color-mix(in srgb, var(--text-primary) 12%, transparent);",
         ),
-    "Homepage projects must expose full-width single-line table rows with aligned ISO dates, titles, and static arrows.",
+    "Homepage projects must expose single-line rows with aligned ISO dates, titles, static arrows, and faint separators.",
 );
 assert(
     indexHtml.includes(
@@ -742,8 +745,11 @@ assert(
         indexHtml.indexOf('id="portfolio-group-engineering-title"') <
             indexHtml.indexOf('id="portfolio-site-title"') &&
         indexHtml.indexOf('id="portfolio-group-design-title"') <
-            indexHtml.indexOf('id="portfolio-filen-title"'),
-    "Homepage must split projects into an Engineering group then a Design group with bright-gray section labels.",
+            indexHtml.indexOf('id="portfolio-filen-title"') &&
+        portfolioStyles.includes(
+            ".portfolio-group .section-title {\n    margin-bottom: 14px;\n    color: var(--text-primary);",
+        ),
+    "Homepage must split projects into Engineering and Design groups with white section labels.",
 );
 assert(
     !indexHtml.includes("<img") &&
