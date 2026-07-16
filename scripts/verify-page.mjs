@@ -254,9 +254,9 @@ assert(
         baseStyles.includes("--highlight-text: #ffffff;") &&
         baseStyles.includes("color: var(--highlight-text);") &&
         baseStyles.includes("background: var(--highlight-bg);") &&
-        portfolioStyles.includes(".portfolio-card-link:hover .portfolio-card-title") &&
+        portfolioStyles.includes(".portfolio-card-link:hover {") &&
         portfolioStyles.includes(
-            ".portfolio-card-link:hover .portfolio-card-title::after",
+            "background: color-mix(\n            in srgb,\n            var(--text-primary) 6%,\n            transparent\n        );",
         ) &&
         !portfolioStyles.includes(".portfolio-card-image::after") &&
         !hephDemoStyles.includes(".heph-demo-frame::after") &&
@@ -677,21 +677,19 @@ assert(
             indexHtml.includes(`>${title}</span`),
     ) &&
         portfolioStyles.includes(
-            ".portfolio-card-link {\n    display: block;",
+            ".portfolio-card-link {\n    display: grid;\n    grid-template-columns: minmax(0, 1fr) auto;",
+        ) &&
+        portfolioStyles.includes("width: calc(100% + 20px);") &&
+        portfolioStyles.includes(
+            ".portfolio-card-title {\n    grid-column: 1;\n    grid-row: 1;\n    color: var(--text-primary);\n    font-size: 19px;\n    font-weight: 400;\n    line-height: 24px;\n    letter-spacing: -0.02em;",
         ) &&
         portfolioStyles.includes(
-            "width: fit-content;",
+            ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 2;\n    display: block;\n    color: var(--text-tertiary);",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-card-title {\n    color: var(--text-primary);\n    font-size: 19px;\n    font-weight: 400;\n    line-height: 24px;\n    letter-spacing: -0.02em;",
-        ) &&
-        portfolioStyles.includes(
-            ".portfolio-card-title::after {\n    content: \"→\";\n    display: inline-block;\n    margin-left: 10px;",
-        ) &&
-        portfolioStyles.includes(
-            ".portfolio-card-link time {\n    display: block;\n    color: var(--text-tertiary);",
+            '.portfolio-card-link::after {\n    content: "→";\n    grid-column: 2;\n    grid-row: 1;',
         ),
-    "Homepage projects must expose tight text-only click targets with matching name typography, ISO dates, and an adjacent static arrow.",
+    "Homepage projects must expose full-width text-only click targets with matching name typography, ISO dates, and aligned static arrows.",
 );
 assert(
     indexHtml.includes(
