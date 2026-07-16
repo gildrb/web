@@ -1160,6 +1160,16 @@ body {
     z-index: 100;
 }
 
+.content {
+    min-width: 0;
+    width: 100%;
+    max-width: var(--content-column);
+    padding: 48px 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .external-link,
 .reference-link {
     color: var(--text-tertiary);
@@ -1304,16 +1314,6 @@ body {
 .theme-toggle:focus-visible {
     outline: none;
     box-shadow: 0 0 0 1px var(--text-primary);
-}
-
-.content {
-    min-width: 0;
-    width: 100%;
-    max-width: var(--content-column);
-    padding: 48px 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
 .portfolio-section {

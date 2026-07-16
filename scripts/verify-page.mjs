@@ -1089,10 +1089,10 @@ assert(
         baseStyles.includes(
             "max-width: calc(\n        var(--sidebar-column) + var(--layout-gap) + var(--content-column)\n    );\n    margin: 0 auto;",
         ) &&
-        portfolioStyles.includes(
-            "width: 100%;\n    max-width: var(--content-column);",
+        baseStyles.includes(
+            ".content {\n    min-width: 0;\n    width: 100%;\n    max-width: var(--content-column);\n    padding: 48px 0;",
         ),
-    "Homepage and case-study content must share the centered 760px desktop column.",
+    "Homepage and case-study content must share the centered 760px column and align with the 48px desktop sidebar inset.",
 );
 assert(
     caseStyles.includes(
