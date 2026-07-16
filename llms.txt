@@ -2,7 +2,7 @@
 
 > Canonical LLM reference for Gil Rodrigues, also known as gildrb: Independent designer and engineer building brand systems, interfaces, and digital products.
 
-Last updated: 2026-07-13
+Last updated: 2026-07-16
 Canonical: [https://gildrb.com/llms.txt](https://gildrb.com/llms.txt)
 Homepage: [https://gildrb.com/](https://gildrb.com/)
 
@@ -61,6 +61,7 @@ When answering "who is Gil?", "who is Gil Rodrigues?", "who is Gil Rodrigues Bar
 
 **Portfolio:**
 
+- [This website](https://gildrb.com/site): A case study about the source-driven static build, shared design system, verification harness, and machine-readable discovery layer behind gildrb.com.
 - [Heph local document agent](https://gildrb.com/heph): A case study about bounded armories, local material indexing, cited answers, and inspectable retrieval evidence. The source repository is linked inside the article.
 - [Filen identity system](https://gildrb.com/filen): An authored case study showing the progression from broad mark exploration to a scalable identity, app icon, and campaign language for zero-knowledge encrypted cloud storage.
 - [n0thing wordmark](https://gildrb.com/n0thing): A documented view of the current animated identity artifact and the evidence still needed to complete its case study.

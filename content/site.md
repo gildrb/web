@@ -4,7 +4,7 @@ The page you are reading is the work. No framework and no site builder. It compi
 
 ### Built from source through my own pipeline
 
-The whole site compiles from plain source. I author each page and case study in Markdown, and a Node build step assembles the HTML from partials, renders the case studies, inlines the critical CSS and JavaScript, generates the structured data, and writes out static routes. There is no client-side framework and no runtime dependency. What ships is small, fast, and entirely mine.
+The whole site compiles from plain source. I author the case-study prose in Markdown and the shared page structure in HTML partials, then a Node build step renders the case studies, assembles the templates, inlines the critical CSS, JavaScript, and structured data, and writes out static routes. There is no client-side framework and no runtime dependency. What ships is small, fast, and entirely mine.
 
 ![Build pipeline](media:site-build-pipeline)
 
@@ -46,7 +46,7 @@ This is the part I am proudest of. A verification harness runs on every build an
 
 ### Interactive, written from scratch
 
-The terminal on the homepage is a from-scratch simulation of a Heph session written in vanilla JavaScript. It plays a timed retrieval animation, shows evidence you can open, and exposes the real keyboard model, all while staying accessible and respecting reduced-motion preferences. It is a small, deliberate piece of interaction design that runs without a single dependency.
+The terminal on the Heph case study is a from-scratch simulation of a Heph session written in vanilla JavaScript. It plays a timed retrieval animation, shows evidence you can open, and exposes the real keyboard model, all while staying accessible and respecting reduced-motion preferences. It is a small, deliberate piece of interaction design that runs without a single dependency.
 
 ### Readable by machines
 

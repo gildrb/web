@@ -4,8 +4,9 @@ Each case study is authored in one Markdown file:
 
 - `filen.md`
 - `heph.md`
-- `n0thing.md`
 - `ml7.md`
+- `n0thing.md`
+- `site.md`
 
 Edit these files instead of the generated `<project>/index.html` pages or the HTML templates.
 

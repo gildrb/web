@@ -115,6 +115,11 @@ const currentCasePages = Object.fromEntries(
 const currentProfile = await readText("profile.json");
 const llmsText = await readText("llms.txt");
 const wellKnownLlmsText = await readText(".well-known/llms.txt");
+const contentGuide = await readText("content/README.md");
+const homepageMarkdown = await readText("index.html.md");
+const humansText = await readText("humans.txt");
+const sitemapText = await readText("sitemap.xml");
+const feedText = await readText("feed.xml");
 const identityTexts = await Promise.all(
     [
         ".well-known/llms.txt",
@@ -353,6 +358,54 @@ assert(
             text.includes("SOURCE // github.com/gildrb/heph"),
     ),
     "Both LLM references must carry the authored Heph ASCII brandmark.",
+);
+const documentedPortfolioTexts = [
+    llmsText,
+    wellKnownLlmsText,
+    homepageMarkdown,
+    humansText,
+];
+assert(
+    siteConfig.caseStudies.every(({ slug }) =>
+        documentedPortfolioTexts.every((text) =>
+            text.includes(`https://gildrb.com/${slug}`),
+        ),
+    ) &&
+        siteConfig.caseStudies.every(({ slug }) =>
+            sitemapText.includes(`<loc>https://gildrb.com/${slug}</loc>`),
+        ) &&
+        siteConfig.caseStudies.every(({ slug }) =>
+            feedText.includes(`<link>https://gildrb.com/${slug}</link>`),
+        ),
+    "Public agent references, the sitemap, and the feed must enumerate every configured case-study route.",
+);
+const profileGraph = JSON.parse(profileJson)["@graph"];
+const websiteProfile = profileGraph.find(
+    (entry) => entry["@id"] === "https://gildrb.com/#website",
+);
+assert(
+    siteConfig.caseStudies.every(({ slug }) =>
+        profileGraph.some(
+            (entry) =>
+                entry["@id"] ===
+                `https://gildrb.com/${slug}#case-study`,
+        ),
+    ) &&
+        websiteProfile &&
+        siteConfig.caseStudies.every(({ slug }) =>
+            websiteProfile.hasPart.some(
+                (entry) =>
+                    entry["@id"] ===
+                    `https://gildrb.com/${slug}#case-study`,
+            ),
+        ),
+    "The structured profile must expose every configured case study as part of the website.",
+);
+assert(
+    siteConfig.caseStudies.every(({ slug }) =>
+        contentGuide.includes(`- \`${slug}.md\``),
+    ),
+    "The tracked content guide must enumerate every configured case study.",
 );
 assert(
     (await readText("src/styles/30-heph-demo.css")).includes(
@@ -818,14 +871,27 @@ assert(
             ".portfolio-card-link + .portfolio-card-link {\n    margin-top: 0;\n    border-top: 1px solid\n        color-mix(in srgb, var(--text-primary) 12%, transparent);",
         ) &&
         portfolioStyles.includes(
-            "@media (max-width: 768px) {\n    .portfolio-card-view {\n        display: none;",
+            "@media (max-width: 768px) {\n    .portfolio-section {\n        grid-template-columns: max-content minmax(0, 1fr) max-content auto;\n        column-gap: clamp(8px, 3vw, 16px);",
+        ) &&
+        portfolioStyles.includes(
+            ".portfolio-link-heading,\n    .portfolio-card-arrow {\n        grid-column: 4;",
+        ) &&
+        portfolioStyles.includes(
+            ".portfolio-card-field {\n        grid-column: 2 / 4;\n        grid-row: 2;",
+        ) &&
+        portfolioStyles.includes(
+            ".portfolio-card-arrow {\n        grid-row: 1 / 3;\n        align-self: center;",
+        ) &&
+        portfolioStyles.includes(
+            ".portfolio-card-view {\n        display: none;",
         ) &&
         portfolioStyles.includes(
             ".portfolio-date-full {\n        display: none;",
         ) &&
         portfolioStyles.includes(
             ".portfolio-date-year {\n        display: inline;",
-        ),
+        ) &&
+        !portfolioStyles.includes("@media (max-width: 360px)"),
     "Homepage projects must expose single-line rows with aligned ISO dates, mobile-only years, titles, field tags, native Inter arrows, hover View labels, and faint separators.",
 );
 assert(

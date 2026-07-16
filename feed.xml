@@ -7,8 +7,18 @@
     <language>en</language>
     <managingEditor>hi@gildrb.com (Gil Rodrigues)</managingEditor>
     <webMaster>hi@gildrb.com (Gil Rodrigues)</webMaster>
-    <lastBuildDate>Mon, 13 Jul 2026 18:25:46 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 16 Jul 2026 14:14:43 +0000</lastBuildDate>
     <atom:link href="https://gildrb.com/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>This website</title>
+      <link>https://gildrb.com/site</link>
+      <guid isPermaLink="true">https://gildrb.com/site</guid>
+      <pubDate>Thu, 16 Jul 2026 14:14:43 +0000</pubDate>
+      <author>hi@gildrb.com (Gil Rodrigues)</author>
+      <category>Design engineering</category>
+      <category>Web development</category>
+      <description>How the portfolio is authored, generated, verified, and published as a static site.</description>
+    </item>
     <item>
       <title>Heph local document agent</title>
       <link>https://gildrb.com/heph</link>

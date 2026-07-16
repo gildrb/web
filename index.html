@@ -205,6 +205,9 @@
                   },
                   "hasPart": [
                     {
+                      "@id": "https://gildrb.com/site#case-study"
+                    },
+                    {
                       "@id": "https://gildrb.com/heph#case-study"
                     },
                     {
@@ -280,7 +283,7 @@
                     "design systems"
                   ],
                   "dateCreated": "2026-06-14T18:42:48Z",
-                  "dateModified": "2026-07-13T18:25:46Z",
+                  "dateModified": "2026-07-16T14:14:43Z",
                   "inLanguage": "en",
                   "author": {
                     "@id": "https://gildrb.com/#person"
@@ -549,6 +552,30 @@
                     "Article",
                     "CreativeWork"
                   ],
+                  "@id": "https://gildrb.com/site#case-study",
+                  "url": "https://gildrb.com/site",
+                  "name": "This website",
+                  "headline": "The site you are on is the case study",
+                  "description": "The portfolio system behind Gil Rodrigues's site, documented, generated, and verified from source.",
+                  "inLanguage": "en",
+                  "creator": {
+                    "@id": "https://gildrb.com/#person"
+                  },
+                  "author": {
+                    "@id": "https://gildrb.com/#person"
+                  },
+                  "publisher": {
+                    "@id": "https://gildrb.com/#person"
+                  },
+                  "isPartOf": {
+                    "@id": "https://gildrb.com/#website"
+                  }
+                },
+                {
+                  "@type": [
+                    "Article",
+                    "CreativeWork"
+                  ],
                   "@id": "https://gildrb.com/filen#case-study",
                   "url": "https://gildrb.com/filen",
                   "name": "Filen identity system",
@@ -626,7 +653,7 @@
                   "name": "LLM reference for Gil Rodrigues",
                   "sameAs": "https://gildrb.com/.well-known/llms.txt",
                   "encodingFormat": "text/markdown",
-                  "dateModified": "2026-07-13T18:25:46Z",
+                  "dateModified": "2026-07-16T14:14:43Z",
                   "creator": {
                     "@id": "https://gildrb.com/#person"
                   },
@@ -735,7 +762,7 @@
                   "name": "Well-known LLM discovery for Gil Rodrigues",
                   "description": "Direct well-known discovery file for agents and crawlers looking for the LLM reference for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
                   "encodingFormat": "text/markdown",
-                  "dateModified": "2026-07-13T18:25:46Z",
+                  "dateModified": "2026-07-16T14:14:43Z",
                   "creator": {
                     "@id": "https://gildrb.com/#person"
                   },
@@ -762,7 +789,7 @@
                   "name": "Markdown homepage for Gil Rodrigues / Gil Rodrigues Barbosa / Gil Domingos Rodrigues Barbosa",
                   "description": "Markdown version of the homepage for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
                   "encodingFormat": "text/markdown",
-                  "dateModified": "2026-07-13T18:25:46Z",
+                  "dateModified": "2026-07-16T14:14:43Z",
                   "creator": {
                     "@id": "https://gildrb.com/#person"
                   },
@@ -863,7 +890,7 @@
                   "url": "https://gildrb.com/profile.json",
                   "name": "Structured profile for Gil Rodrigues",
                   "encodingFormat": "application/ld+json",
-                  "dateModified": "2026-07-13T18:25:46Z",
+                  "dateModified": "2026-07-16T14:14:43Z",
                   "creator": {
                     "@id": "https://gildrb.com/#person"
                   },
@@ -886,7 +913,7 @@
                   "url": "https://gildrb.com/feed.xml",
                   "name": "Gil Rodrigues feed",
                   "encodingFormat": "application/rss+xml",
-                  "dateModified": "2026-07-13T18:25:46Z",
+                  "dateModified": "2026-07-16T14:14:43Z",
                   "creator": {
                     "@id": "https://gildrb.com/#person"
                   },
@@ -909,7 +936,7 @@
                   "url": "https://gildrb.com/humans.txt",
                   "name": "Humans file for Gil Rodrigues",
                   "encodingFormat": "text/plain",
-                  "dateModified": "2026-07-13T18:25:46Z",
+                  "dateModified": "2026-07-16T14:14:43Z",
                   "creator": {
                     "@id": "https://gildrb.com/#person"
                   },
@@ -1616,33 +1643,35 @@ body {
 }
 
 @media (max-width: 768px) {
+    .portfolio-section {
+        grid-template-columns: max-content minmax(0, 1fr) max-content auto;
+        column-gap: clamp(8px, 3vw, 16px);
+    }
+
+    .portfolio-link-heading,
+    .portfolio-card-arrow {
+        grid-column: 4;
+    }
+
+    .portfolio-card-field {
+        grid-column: 2 / 4;
+        grid-row: 2;
+    }
+
+    .portfolio-card-arrow {
+        grid-row: 1 / 3;
+        align-self: center;
+    }
+
     .portfolio-card-view {
         display: none;
     }
-
     .portfolio-date-full {
         display: none;
     }
 
     .portfolio-date-year {
         display: inline;
-    }
-}
-
-@media (max-width: 360px) {
-    .portfolio-section {
-        grid-template-columns: auto max-content max-content minmax(0, 1fr) auto;
-        column-gap: 8px;
-    }
-
-    .portfolio-table-header,
-    .portfolio-sort-button,
-    .portfolio-card-title,
-    .portfolio-card-field,
-    .portfolio-card-link time,
-    .portfolio-card-arrow {
-        font-size: 12px;
-        line-height: 18px;
     }
 }
 
