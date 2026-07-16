@@ -13,10 +13,8 @@ function updateHomepageDates() {
     const month = String(now.getMonth() + 1).padStart(2, "0");
     const year = String(now.getFullYear());
     const isoDate = `${year}-${month}-${day}`;
-    const copyrightYear = document.querySelector("#copyright-year");
     const portfolioSiteDate = document.querySelector("#portfolio-site-date");
 
-    if (copyrightYear) copyrightYear.textContent = year;
     if (!portfolioSiteDate) return;
 
     portfolioSiteDate.querySelector(".portfolio-date-full").textContent =
@@ -28,10 +26,14 @@ function updateHomepageDates() {
 
 window.addEventListener("load", updateHomepageDates);
 
+const mobileLinks = document.querySelector(
+    ".case-page .case-mobile-links .links, body:not(.case-page) .links",
+);
+
 function updateMobileLinksLayout() {
-    const links = document.querySelector(".links");
+    const links = mobileLinks;
     const portfolioField = document.querySelector(".portfolio-sort-field");
-    if (!links || !portfolioField) return;
+    if (!links) return;
 
     if (!window.matchMedia("(max-width: 767px)").matches) {
         links.classList.remove("mobile-links-grid");
@@ -39,10 +41,12 @@ function updateMobileLinksLayout() {
         return;
     }
 
+    links.classList.add("mobile-links-grid");
+    if (!portfolioField) return;
+
     const start =
         portfolioField.getBoundingClientRect().left -
         links.getBoundingClientRect().left;
-    links.classList.add("mobile-links-grid");
     links.style.setProperty(
         "--mobile-contact-start",
         `${Math.max(0, start)}px`,
@@ -87,8 +91,7 @@ function updateHomepageLock(preserveMobileState = false) {
         ),
         0,
     );
-    const minimumInset = isMobile ? 32 : 0;
-    const fits = contentBottom + minimumInset * 2 <= window.innerHeight;
+    const fits = contentBottom <= window.innerHeight;
     const atTop = window.scrollY === 0;
 
     if (homepageLockState === "locked") {
@@ -149,7 +152,7 @@ const mobileLayoutTargets = [
     portfolioSection,
     portfolioSiteDate,
     document.querySelector(".profile-summary"),
-    document.querySelector(".links"),
+    mobileLinks,
 ].filter(Boolean);
 if ("ResizeObserver" in window) {
     const updateOnResize = new ResizeObserver(() => {

@@ -337,16 +337,15 @@ assert(
     indexHtml.includes('<footer class="site-footer">') &&
         indexHtml.includes('aria-label="Metadata"') &&
         indexHtml.includes('<p class="links-label">Metadata</p>') &&
-        indexHtml.includes('<p class="copyright">') &&
-        indexHtml.includes(
-            '© <span id="copyright-year">2026</span> Gil Rodrigues',
+        allHtml.every(
+            (html) =>
+                !html.includes('class="copyright"') &&
+                !html.includes('id="copyright-year"'),
         ) &&
         caseHtml.every(
-            (html) =>
-                !html.includes('class="site-footer"') &&
-                !html.includes('id="copyright-year"'),
+            (html) => !html.includes('class="site-footer"'),
         ),
-    "The homepage-only footer must group Metadata with the copyright fallback.",
+    "The homepage-only footer must expose Metadata without a copyright label.",
 );
 const hephAsciiSignature =
     "HEPH // BRANDMARK RASTER 64x22 // GIL RODRIGUES / GILDRB";
@@ -494,21 +493,19 @@ assert(
 );
 assert(
     previewContentStyles.includes(
-        ".site-footer {\n    display: grid;\n    grid-template-columns: minmax(0, 1fr) auto;\n    align-items: end;\n    margin-top: 0;",
+        ".site-footer {\n    margin-top: 0;",
     ) &&
         previewContentStyles.includes(
             ".references-links {\n    display: flex;\n    flex-direction: column;\n    row-gap: var(--section-content-gap);\n    margin-top: 0;",
         ) &&
-        previewContentStyles.includes(
-            '.copyright {\n    color: var(--text-tertiary);\n    font-family: "Inter", sans-serif;\n    font-size: 16px;\n    font-weight: 400;\n    line-height: var(--link-line-height);\n    white-space: nowrap;\n    text-align: right;\n    margin-bottom: var(--footer-stack-bottom-gap);',
-        ) &&
+        !previewContentStyles.includes(".copyright") &&
         previewContentStyles.includes(
             "@media (min-width: 769px) {\n    .site-footer {\n        margin-top: auto;",
         ) &&
         responsiveStyles.includes(
             ".site-footer {\n        display: none;",
         ),
-    "The footer must align a dark-gray Inter copyright with profile.json at the far-right edge on desktop and mobile.",
+    "The Metadata footer must remain desktop-only without copyright styling.",
 );
 
 assert(
@@ -816,6 +813,9 @@ assert(
         responsiveStyles.includes(
             ".mobile-links-grid > .contact-label ~ .external-link {\n        grid-column: 2;\n        grid-row: 3;",
         ) &&
+        responsiveStyles.includes(
+            ".case-page .links.mobile-links-grid {\n        grid-template-columns: 3fr 4fr;",
+        ) &&
         responsiveStyles.includes("row-gap: var(--section-content-gap);") &&
         responsiveStyles.includes(
             ".profile-summary {\n        grid-column: 1 / -1;\n        order: 2;\n        margin-bottom: var(--section-gap);",
@@ -828,6 +828,12 @@ assert(
         ) &&
         siteScript.includes(
             'links.style.setProperty(\n        "--mobile-contact-start",',
+        ) &&
+        siteScript.includes(
+            'const mobileLinks = document.querySelector(\n    ".case-page .case-mobile-links .links, body:not(.case-page) .links",',
+        ) &&
+        siteScript.includes(
+            'links.classList.add("mobile-links-grid");\n    if (!portfolioField) return;',
         ) &&
         siteScript.includes(
             'window.addEventListener("resize", () => updateMobileLayout(true));',
@@ -858,14 +864,14 @@ assert(
         siteScript.includes(
             'const isMobile = window.matchMedia("(max-width: 767px)").matches;',
         ) &&
-        siteScript.includes(
-            "const minimumInset = isMobile ? 32 : 0;",
+        indexHtml.startsWith(
+            '<!doctype html>\n<html lang="en" class="homepage-scroll-locked">',
         ) &&
         siteScript.includes(
             "document.querySelectorAll(\n                \".profile-summary, .portfolio-section, .links, .site-footer\",",
         ) &&
         siteScript.includes(
-            "contentBottom + minimumInset * 2 <= window.innerHeight",
+            "const fits = contentBottom <= window.innerHeight;",
         ) &&
         siteScript.includes("const atTop = window.scrollY === 0;") &&
         siteScript.includes(
@@ -1052,12 +1058,11 @@ assert(
 );
 assert(
     siteScript.includes("function updateHomepageDates()") &&
-        siteScript.includes('document.querySelector("#copyright-year")') &&
-        siteScript.includes("copyrightYear.textContent = year;") &&
+        !siteScript.includes("copyrightYear") &&
         siteScript.includes(
             'window.addEventListener("load", updateHomepageDates);',
         ),
-    "The copyright must replace its 2026 fallback with the visitor's current local year on load.",
+    "Homepage date updates must not retain removed copyright behavior.",
 );
 assert(
     portfolioStyles.includes(

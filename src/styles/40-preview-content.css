@@ -33,9 +33,6 @@
 }
 
 .site-footer {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: end;
     margin-top: 0;
 }
 
@@ -54,20 +51,6 @@
 
 .references-links .reference-link {
     margin-bottom: 0;
-}
-
-.copyright {
-    color: var(--text-tertiary);
-    font-family: "Inter", sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: var(--link-line-height);
-    white-space: nowrap;
-    text-align: right;
-    margin-bottom: var(--footer-stack-bottom-gap);
-    -webkit-font-smoothing: antialiased;
-    -webkit-text-size-adjust: 100%;
-    text-rendering: optimizeLegibility;
 }
 
 @media (min-width: 769px) {

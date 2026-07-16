@@ -252,6 +252,10 @@ html.homepage-scroll-locked body .layout {
         margin-bottom: 0;
     }
 
+    .case-page .links.mobile-links-grid {
+        grid-template-columns: 3fr 4fr;
+    }
+
     .case-desktop-links {
         display: none;
     }
