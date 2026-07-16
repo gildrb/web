@@ -301,8 +301,8 @@ assert(
         hephHtml.includes("EVIDENCE <b>ctrl+g</b>") &&
         hephHtml.includes("SCOPE <b>4/4</b>") &&
         hephHtml.includes("EXCERPTS <b>4</b>") &&
-        siteScript.includes('hephDemoEvidenceOpen.innerHTML = "EVIDENCE <b>ctrl+g</b>"') &&
-        siteScript.includes('hephDemoEvidenceMeta.innerHTML = "EXCERPTS <b>4</b>"'),
+        caseScripts.heph.includes('hephDemoEvidenceOpen.innerHTML = "EVIDENCE <b>ctrl+g</b>"') &&
+        caseScripts.heph.includes('hephDemoEvidenceMeta.innerHTML = "EXCERPTS <b>4</b>"'),
     "Heph must theme its surface and use shared primary, label, and value colors plus the macOS lights.",
 );
 
@@ -426,6 +426,21 @@ assert(
     "The interactive Heph demo must live only on the Heph case study, keeping its mobile chrome there and off the homepage.",
 );
 assert(
+    !indexHtml.includes(".heph-demo {") &&
+        !siteScript.includes("const hephDemoEvidenceOpen") &&
+        Object.entries(casePages).every(
+            ([slug, html]) =>
+                slug === "heph" ||
+                (!html.includes(".heph-demo {") &&
+                    !html.includes("const hephDemoEvidenceOpen") &&
+                    !html.includes(".heph-lockup")),
+        ) &&
+        hephHtml.includes(".heph-demo {") &&
+        hephHtml.includes("const hephDemoEvidenceOpen") &&
+        hephHtml.includes(".heph-lockup"),
+    "Heph component styles and behavior must be bundled only into the Heph case study.",
+);
+assert(
     hephMarkdown.includes("![Heph demo](media:heph-demo)") &&
         hephHtml.includes('class="heph-demo case-heph-demo"') &&
         hephHtml.indexOf('class="heph-demo case-heph-demo"') <
@@ -450,14 +465,14 @@ assert(
 );
 assert(
     hephHtml.includes('class="heph-lockup"') &&
-        caseStyles.includes(
+        hephDemoStyles.includes(
             ".case-media .heph-lockup {\n    width: 88%;\n    border-radius: 0;",
         ) &&
-        caseStyles.includes(':root:not([data-theme]) .heph-lockup') &&
-        caseStyles.includes(':root[data-theme="light"] .heph-lockup') &&
-        caseStyles.includes("filter: brightness(0);") &&
-        caseStyles.includes(':root[data-theme="dark"] .heph-lockup') &&
-        caseStyles.includes("filter: none;"),
+        hephDemoStyles.includes(':root:not([data-theme]) .heph-lockup') &&
+        hephDemoStyles.includes(':root[data-theme="light"] .heph-lockup') &&
+        hephDemoStyles.includes("filter: brightness(0);") &&
+        hephDemoStyles.includes(':root[data-theme="dark"] .heph-lockup') &&
+        hephDemoStyles.includes("filter: none;"),
     "The Heph lockup must stay square, render below full width, and follow the active theme.",
 );
 assert(

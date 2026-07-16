@@ -1,4 +1,4 @@
-import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { renderCaseMarkdown } from "./render-case-markdown.mjs";
@@ -10,17 +10,14 @@ async function readText(relativePath) {
     return readFile(path.join(root, relativePath), "utf8");
 }
 
-async function readSortedFiles(relativeDir, predicate = () => true) {
-    const dir = path.join(root, relativeDir);
-    const entries = await readdir(dir);
-    const files = entries.filter(predicate).sort();
-
-    return Promise.all(
-        files.map(async (file) => ({
-            file,
-            text: (await readFile(path.join(dir, file), "utf8")).trimEnd(),
-        })),
-    );
+async function readBundle(relativeDir, files) {
+    return (
+        await Promise.all(
+            files.map((file) => readText(`${relativeDir}/${file}`)),
+        )
+    )
+        .map((text) => text.trimEnd())
+        .join("\n\n");
 }
 
 function indentBlock(text, spaces) {
@@ -77,42 +74,45 @@ async function resolveIncludes(template) {
 export async function buildPage({ write = true } = {}) {
     const profile = JSON.parse(await readText(siteConfig.profileSource));
     const profileJson = `${JSON.stringify(profile, null, 2)}\n`;
-    const styles = (await readSortedFiles("src/styles", (file) =>
-        file.endsWith(".css"),
-    ))
-        .map(({ text }) => text)
-        .join("\n\n");
+    const homepageStyles = await readBundle(
+        "src/styles",
+        siteConfig.homepage.styles,
+    );
     const analyticsBootstrap = (
         await readText(`src/scripts/${siteConfig.analyticsScript}`)
     ).trimEnd();
-    const siteScript = (
-        await readSortedFiles(
-            "src/scripts",
-            (file) =>
-                file.endsWith(".js") &&
-                file !== siteConfig.analyticsScript,
-        )
-    )
-        .map(({ text }) => text)
-        .join("\n\n");
+    const siteScript = await readBundle(
+        "src/scripts",
+        siteConfig.homepage.scripts,
+    );
+    const styleBundles = new Map();
     const scriptBundles = new Map();
 
-    for (const { scripts } of siteConfig.caseStudies) {
+    for (const { scripts, styles } of siteConfig.caseStudies) {
+        const styleBundleKey = styles.join("\0");
         const bundleKey = scripts.join("\0");
 
-        if (!scriptBundles.has(bundleKey)) {
-            const bundle = (
-                await Promise.all(
-                    scripts.map((file) => readText(`src/scripts/${file}`)),
-                )
-            )
-                .map((text) => text.trimEnd())
-                .join("\n\n");
+        if (!styleBundles.has(styleBundleKey)) {
+            styleBundles.set(
+                styleBundleKey,
+                await readBundle("src/styles", styles),
+            );
+        }
 
-            scriptBundles.set(bundleKey, bundle);
+        if (!scriptBundles.has(bundleKey)) {
+            scriptBundles.set(
+                bundleKey,
+                await readBundle("src/scripts", scripts),
+            );
         }
     }
 
+    const caseStyles = Object.fromEntries(
+        siteConfig.caseStudies.map(({ slug, styles }) => [
+            slug,
+            styleBundles.get(styles.join("\0")),
+        ]),
+    );
     const caseScripts = Object.fromEntries(
         siteConfig.caseStudies.map(({ scripts, slug }) => [
             slug,
@@ -131,7 +131,7 @@ export async function buildPage({ write = true } = {}) {
     indexHtml = replaceToken(
         indexHtml,
         "<!-- @inline-css:site -->",
-        styles,
+        homepageStyles,
     );
     indexHtml = replaceToken(
         indexHtml,
@@ -159,7 +159,11 @@ export async function buildPage({ write = true } = {}) {
                 24,
             ),
         );
-        html = replaceToken(html, "<!-- @inline-css:site -->", styles);
+        html = replaceToken(
+            html,
+            "<!-- @inline-css:site -->",
+            caseStyles[slug],
+        );
         html = replaceToken(
             html,
             "<!-- @inline-js:analytics-bootstrap -->",
@@ -204,6 +208,8 @@ export async function buildPage({ write = true } = {}) {
     return {
         casePages,
         caseScripts,
+        caseStyles,
+        homepageStyles,
         indexHtml,
         profileJson,
         siteScript,
