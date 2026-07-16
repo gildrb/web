@@ -943,24 +943,6 @@
             type="font/woff2"
             crossorigin
         />
-        <link
-            rel="preload"
-            as="image"
-            href="images/optimized/gil-rodrigues-filen-wordmark-1280.webp"
-            imagesrcset="images/optimized/gil-rodrigues-filen-wordmark-480.webp 480w, images/optimized/gil-rodrigues-filen-wordmark-720.webp 720w, images/optimized/gil-rodrigues-filen-wordmark-960.webp 960w, images/optimized/gil-rodrigues-filen-wordmark-1280.webp 1280w, images/optimized/gil-rodrigues-filen-wordmark-1600.webp 1600w"
-            imagesizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px"
-            media="(min-width: 769px)"
-            fetchpriority="high"
-        />
-        <link
-            rel="preload"
-            as="image"
-            href="images/optimized/gil-rodrigues-filen-wordmark-480.webp"
-            imagesrcset="images/optimized/gil-rodrigues-filen-wordmark-480.webp 480w, images/optimized/gil-rodrigues-filen-wordmark-720.webp 720w, images/optimized/gil-rodrigues-filen-wordmark-960.webp 960w, images/optimized/gil-rodrigues-filen-wordmark-1280.webp 1280w, images/optimized/gil-rodrigues-filen-wordmark-1600.webp 1600w"
-            imagesizes="calc(100vw - 24px)"
-            media="(max-width: 768px)"
-            fetchpriority="high"
-        />
         <style>
 @font-face{font-family:"Inter";font-style:normal;font-weight:400 600;font-display:swap;src:url("/fonts/inter-variable-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+21A9,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Geist Mono";font-style:normal;font-weight:400 600;font-display:swap;src:url("/fonts/geist-mono-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
@@ -1035,7 +1017,10 @@
     letter-spacing: -0.02em;
     color: var(--text-primary);
     min-height: calc(var(--link-line-height) * 2);
-    margin-bottom: var(--section-gap);
+    margin-bottom: calc(
+        var(--section-gap) + var(--section-content-gap) +
+            var(--text-media-gap) - var(--link-line-height)
+    );
     white-space: nowrap;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -1299,6 +1284,9 @@ body {
     width: 100%;
     max-width: var(--content-column);
     padding: 48px 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .portfolio-section {
@@ -1476,82 +1464,85 @@ body {
     border-radius: calc(var(--media-radius) - 1px);
 }
 
-.portfolio-card-meta {
+.portfolio-card-link {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    column-gap: 16px;
-    row-gap: 4px;
-    width: 100%;
-    margin-top: 12px;
-}
-
-.portfolio-card-meta time {
     grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: baseline;
+    width: 100%;
+    padding: 8px 0;
     color: var(--text-tertiary);
-    font-size: 14px;
-    line-height: 20px;
+    text-decoration: none;
+    border-radius: 4px;
 }
 
 .portfolio-card-title {
-    grid-column: 1;
-    grid-row: 2;
-    color: var(--text-secondary);
-    font-size: 16px;
-    line-height: 24px;
-}
-
-.portfolio-card-meta::after {
-    content: "→";
     grid-column: 2;
-    grid-row: 2;
-    color: var(--text-secondary);
-    font-family: "Inter", sans-serif;
+    grid-row: 1;
+    color: var(--text-primary);
     font-size: 16px;
+    font-weight: 400;
     line-height: 24px;
-    min-width: 64px;
-    text-align: right;
 }
 
-.portfolio-card-link {
-    width: 100%;
+.portfolio-card-link time {
+    grid-column: 1;
+    grid-row: 1;
+    display: block;
     color: inherit;
-    text-decoration: none;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.portfolio-card-arrow {
+    grid-column: 3;
+    grid-row: 1;
+    align-self: baseline;
+    color: inherit;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.portfolio-section {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    column-gap: 16px;
+    margin-bottom: 32px;
+}
+
+.portfolio-group {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+}
+
+.portfolio-group .section-title {
+    grid-column: 1 / -1;
+    margin-bottom: var(--section-content-gap);
+    color: var(--text-secondary);
+}
+
+.portfolio-group + .portfolio-group {
+    margin-top: 28px;
+}
+
+.portfolio-card-link + .portfolio-card-link {
+    margin-top: 0;
+    border-top: 1px solid
+        color-mix(in srgb, var(--text-primary) 12%, transparent);
 }
 
 @media (hover: hover) {
-    .portfolio-card:hover .portfolio-card-title,
-    .portfolio-card-link:hover .portfolio-card-title {
+    .portfolio-card-link:hover {
         color: var(--text-primary);
     }
-
-    .portfolio-card:hover .portfolio-card-meta::after,
-    .portfolio-card-link:hover::after {
-        color: var(--text-primary);
-    }
-
-    .portfolio-card:hover .portfolio-card-meta::after {
-        content: "Read →";
-    }
-
-    .portfolio-card-link:hover::after {
-        content: "Read →";
-    }
-
-}
-
-.portfolio-card:focus-visible .portfolio-card-meta::after {
-    color: var(--text-primary);
-    content: "Read →";
-}
-
-.portfolio-card-link:focus-visible::after {
-    color: var(--text-primary);
-    content: "Read →";
 }
 
 .portfolio-card-link:focus-visible {
+    color: var(--text-primary);
     outline: 1px solid var(--text-primary);
-    outline-offset: 4px;
+    outline-offset: 6px;
+    border-radius: 2px;
 }
 
 .heph-demo {
@@ -2336,6 +2327,12 @@ body {
     margin-bottom: 0;
 }
 
+@media (min-width: 769px) {
+    .references-links {
+        margin-top: auto;
+    }
+}
+
 .sr-only {
     position: absolute;
     width: 1px;
@@ -3026,408 +3023,85 @@ body {
                         class="portfolio-section"
                         aria-label="Portfolio"
                     >
-                        <section
-                            class="heph-demo"
-                            aria-labelledby="portfolio-heph-title"
-                        >
-                            <div class="heph-demo-frame">
-                                <a
-                                    class="heph-demo-zoom-link"
-                                    href="/heph"
-                                    aria-label="Open the Heph case study"
-                                ></a>
-                                <a
-                                    class="heph-demo-close-link"
-                                    href="/"
-                                    aria-label="Return to the portfolio"
-                                ></a>
-                                <div
-                                    class="heph-demo-shell"
-                                    aria-hidden="true"
-                                >
-                                <div
-                                    class="heph-demo-titlebar"
-                                    aria-hidden="true"
-                                >
-                                    <span class="heph-demo-window-controls">
-                                        <span
-                                            class="heph-demo-window-control close"
-                                        ></span>
-                                        <span
-                                            class="heph-demo-window-control minimize"
-                                        ></span>
-                                        <span
-                                            class="heph-demo-window-control zoom"
-                                        ></span>
-                                    </span>
-                                </div>
-                                <div class="heph-demo-terminal">
-                                    <div
-                                        class="heph-demo-status"
-                                        data-heph-demo-status
-                                    >
-                                        <strong>Heph</strong>
-                                        <span>ARMORY <b>classics</b></span>
-                                        <span>MODEL <b>gpt-5.5</b></span>
-                                        <span data-heph-demo-status-optional
-                                            >REASONING <b>low</b></span
-                                        >
-                                    </div>
-                                    <div class="heph-demo-body">
-                                        <div class="heph-demo-transcript">
-                                            <div
-                                                class="heph-demo-output"
-                                                aria-live="polite"
-                                                data-heph-demo-log
-                                            >
-                                                <div
-                                                    class="heph-demo-output-rail"
-                                                    data-heph-demo-rail
-                                                >
-                                                    <div class="heph-demo-prompt">
-                                                        What are these materials about?
-                                                    </div>
-                                                    <p
-                                                        class="heph-demo-line muted materials-summary"
-                                                    >
-                                                        armory: classics; materials: 4 enabled book files.
-                                                    </p>
-                                                    <p class="heph-demo-line">
-                                                        This armory has four classics. Alice is a dreamlike trip through rules that keep changing
-                                                        <button
-                                                            class="heph-demo-citation-button"
-                                                            type="button"
-                                                            tabindex="-1"
-                                                            data-evidence-id="E1"
-                                                            data-evidence-title="@alice-adventures-wonderland.epub"
-                                                            data-evidence-detail="PAGE 2, Chapter I | RECEIPT: &quot;she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it&quot;"
-                                                        >
-                                                            [E1]</button
-                                                        >. Frankenstein is ambition turning into responsibility after Victor brings the Creature to life and rejects him
-                                                        <button
-                                                            class="heph-demo-citation-button"
-                                                            type="button"
-                                                            tabindex="-1"
-                                                            data-evidence-id="E2"
-                                                            data-evidence-title="@frankenstein.pdf"
-                                                            data-evidence-detail="PAGE 43, Chapter V | RECEIPT: &quot;I saw the dull yellow eye of the creature open;&quot;"
-                                                        >
-                                                            [E2]</button
-                                                        >. Sherlock Holmes follows a method: observe the small detail, test it, then explain the case
-                                                        <button
-                                                            class="heph-demo-citation-button"
-                                                            type="button"
-                                                            tabindex="-1"
-                                                            data-evidence-id="E3"
-                                                            data-evidence-title="@sherlock-holmes-adventures.epub"
-                                                            data-evidence-detail="PAGE 6, A Scandal in Bohemia | RECEIPT: &quot;You see, but you do not observe.&quot;"
-                                                        >
-                                                            [E3]</button
-                                                        >. Dracula is built from diaries, letters, and records as people compare notes and hunt the Count
-                                                        <button
-                                                            class="heph-demo-citation-button"
-                                                            type="button"
-                                                            tabindex="-1"
-                                                            data-evidence-id="E4"
-                                                            data-evidence-title="@dracula.pdf"
-                                                            data-evidence-detail="PAGE 1, Chapter I | RECEIPT: &quot;not able to light on any map or work giving the exact locality of the Castle Dracula&quot;"
-                                                        >
-                                                            [E4]</button
-                                                        >.
-                                                    </p>
-                                                    <p
-                                                        class="heph-demo-line sources"
-                                                    >
-                                                        materials: E1 @alice-adventures-wonderland.epub; E2 @frankenstein.pdf; E3 @sherlock-holmes-adventures.epub; E4 @dracula.pdf. Details: /evidence.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <aside
-                                            class="heph-demo-evidence"
-                                            aria-label="Demo scope and evidence materials"
-                                        >
-                                            <p
-                                                class="heph-demo-evidence-open"
-                                                data-heph-demo-evidence-open
-                                            >
-                                                EVIDENCE <b>ctrl+g</b>
-                                            </p>
-                                            <p class="heph-demo-scope-heading">
-                                                SCOPE <b>4/4</b>
-                                            </p>
-                                            <p class="heph-demo-evidence-meta">
-                                                EXCERPTS <b>4</b>
-                                            </p>
-                                            <div class="heph-demo-evidence-list">
-                                                <button
-                                                    class="heph-demo-evidence-item is-active"
-                                                    type="button"
-                                                    tabindex="-1"
-                                                    data-evidence-id="E1"
-                                                    data-evidence-title="@alice-adventures-wonderland.epub"
-                                                    data-evidence-detail="PAGE 2, Chapter I | RECEIPT: &quot;she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it&quot;"
-                                                >
-                                                    @alice-adventures-wonderland.epub
-                                                </button>
-                                                <button
-                                                    class="heph-demo-evidence-item"
-                                                    type="button"
-                                                    tabindex="-1"
-                                                    data-evidence-id="E2"
-                                                    data-evidence-title="@frankenstein.pdf"
-                                                    data-evidence-detail="PAGE 43, Chapter V | RECEIPT: &quot;I saw the dull yellow eye of the creature open;&quot;"
-                                                >
-                                                    @frankenstein.pdf
-                                                </button>
-                                                <button
-                                                    class="heph-demo-evidence-item"
-                                                    type="button"
-                                                    tabindex="-1"
-                                                    data-evidence-id="E3"
-                                                    data-evidence-title="@sherlock-holmes-adventures.epub"
-                                                    data-evidence-detail="PAGE 6, A Scandal in Bohemia | RECEIPT: &quot;You see, but you do not observe.&quot;"
-                                                >
-                                                    @sherlock-holmes-adventures.epub
-                                                </button>
-                                                <button
-                                                    class="heph-demo-evidence-item"
-                                                    type="button"
-                                                    tabindex="-1"
-                                                    data-evidence-id="E4"
-                                                    data-evidence-title="@dracula.pdf"
-                                                    data-evidence-detail="PAGE 1, Chapter I | RECEIPT: &quot;not able to light on any map or work giving the exact locality of the Castle Dracula&quot;"
-                                                >
-                                                    @dracula.pdf
-                                                </button>
-                                            </div>
-                                        </aside>
-                                    </div>
-                                    <form
-                                        class="heph-demo-composer is-empty"
-                                        aria-label="Ask the simulated Heph demo"
-                                        data-heph-demo-form
-                                    >
-                                        <span
-                                            class="heph-demo-composer-label"
-                                            aria-hidden="true"
-                                            ><span
-                                                class="heph-demo-composer-arrow"
-                                                >→</span
-                                            ></span
-                                        >
-                                        <span
-                                            class="heph-demo-cursor"
-                                            aria-hidden="true"
-                                        ></span>
-                                        <span
-                                            class="heph-demo-input-overflow"
-                                            aria-hidden="true"
-                                            >...</span
-                                        >
-                                        <input
-                                            class="heph-demo-input"
-                                            type="text"
-                                            autocomplete="off"
-                                            spellcheck="false"
-                                            tabindex="-1"
-                                            placeholder="Ask Heph about these materials"
-                                            data-heph-demo-input
-                                        />
-                                        <button
-                                            class="heph-demo-submit"
-                                            type="submit"
-                                            tabindex="-1"
-                                            aria-label="Submit Heph prompt"
-                                            data-heph-demo-submit
-                                        >
-                                            <span
-                                                class="heph-demo-submit-symbol"
-                                                aria-hidden="true"
-                                                >↩</span
-                                            >
-                                        </button>
-                                    </form>
-                                    <div
-                                        class="heph-demo-command-row"
-                                        aria-hidden="true"
-                                    >
-                                        <span>ARMORY <b>ctrl+a</b></span>
-                                        <span>MATERIALS <b>ctrl+o</b></span>
-                                        <span data-heph-demo-command-optional
-                                            >COMMANDS <b>ctrl+p</b></span
-                                        >
-                                        <span data-heph-demo-command-optional
-                                            >REASONING <b>shift+tab</b></span
-                                        >
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                            <a
-                                class="portfolio-card-meta portfolio-card-link"
-                                href="/heph"
-                                aria-label="Read the Heph local document agent case study"
-                            >
-                                <time datetime="2026-04-21">21.04.2026</time>
-                                <span
-                                    class="portfolio-card-title"
-                                    id="portfolio-heph-title"
-                                    >Heph</span
-                                >
-                            </a>
-                        </section>
-                        <section
-                            class="showcase showcase-full"
-                            aria-labelledby="portfolio-filen-title"
-                        >
-                            <div class="showcase-featured">
-                                <a
-                                    class="image-wrapper case-study-entry portfolio-card"
-                                    href="/filen"
-                                    aria-label="Read the Filen identity system case study"
-                                >
-                                    <span class="portfolio-card-image">
-                                    <img
-                                        src="images/optimized/gil-rodrigues-filen-wordmark-960.webp"
-                                        srcset="
-                                            images/optimized/gil-rodrigues-filen-wordmark-480.webp   480w,
-                                            images/optimized/gil-rodrigues-filen-wordmark-720.webp   720w,
-                                            images/optimized/gil-rodrigues-filen-wordmark-960.webp   960w,
-                                            images/optimized/gil-rodrigues-filen-wordmark-1280.webp 1280w,
-                                            images/optimized/gil-rodrigues-filen-wordmark-1600.webp 1600w
-                                        "
-                                        sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px"
-                                        data-preview-src="images/optimized/gil-rodrigues-filen-wordmark-1600.webp"
-                                        width="3940"
-                                        height="2260"
-                                        alt="Filen wordmark on a black background"
-                                        loading="eager"
-                                        fetchpriority="high"
-                                        decoding="async"
-                                    />
-                                    </span>
-                                    <span class="portfolio-card-meta">
-                                        <time datetime="2026-01-14">14.01.2026</time>
-                                        <span
-                                            class="portfolio-card-title"
-                                            id="portfolio-filen-title"
-                                            >Filen</span
-                                        >
-                                    </span>
-                                </a>
-                            </div>
-                    </section>
-                    <section
-                        class="gallery"
-                        aria-labelledby="portfolio-n0thing-title"
+                    <div
+                        class="portfolio-group"
+                        role="group"
+                        aria-labelledby="portfolio-group-engineering-title"
                     >
+                        <h2 class="section-title" id="portfolio-group-engineering-title">Engineering</h2>
                         <a
-                            class="gallery-item full case-study-entry portfolio-card"
-                            href="/n0thing"
-                            aria-label="Read the n0thing case study"
-                        >
-                            <span class="portfolio-card-image">
-                            <img
-                                src="images/optimized/gil-rodrigues-n0thing-wordmark-animation-960.gif"
-                                srcset="
-                                    images/optimized/gil-rodrigues-n0thing-wordmark-animation-480.gif   480w,
-                                    images/optimized/gil-rodrigues-n0thing-wordmark-animation-720.gif   720w,
-                                    images/optimized/gil-rodrigues-n0thing-wordmark-animation-960.gif   960w,
-                                    images/optimized/gil-rodrigues-n0thing-wordmark-animation-1280.gif 1280w
-                                "
-                                sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px"
-                                width="1280"
-                                height="720"
-                                alt="Animated n0thing wordmark on a black background"
-                                loading="lazy"
-                                decoding="async"
-                            />
-                            </span>
-                            <span class="portfolio-card-meta">
-                                <time datetime="2019-11-15">15.11.2019</time>
-                                <span
-                                    class="portfolio-card-title"
-                                    id="portfolio-n0thing-title"
-                                    >n0thing</span
-                                >
-                            </span>
-                        </a>
-                    </section>
-                    <section
-                        class="gallery"
-                        aria-labelledby="portfolio-ml7-title"
-                    >
-                        <a
-                            class="gallery-item full case-study-entry portfolio-card"
-                            href="/ml7"
-                            aria-label="Read the mL7 case study"
-                        >
-                            <span class="portfolio-card-image">
-                            <img
-                                src="images/optimized/gil-rodrigues-ml7-logo-system-960.webp"
-                                srcset="
-                                    images/optimized/gil-rodrigues-ml7-logo-system-480.webp   480w,
-                                    images/optimized/gil-rodrigues-ml7-logo-system-720.webp   720w,
-                                    images/optimized/gil-rodrigues-ml7-logo-system-960.webp   960w,
-                                    images/optimized/gil-rodrigues-ml7-logo-system-1280.webp 1280w,
-                                    images/optimized/gil-rodrigues-ml7-logo-system-1600.webp 1600w
-                                "
-                                sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px"
-                                width="3473"
-                                height="2263"
-                                alt="mL7 logo with black lettering and an orange streak on a white background"
-                                loading="lazy"
-                                decoding="async"
-                            />
-                            </span>
-                            <span class="portfolio-card-meta">
-                                <time datetime="2018-11-13">13.11.2018</time>
-                                <span
-                                    class="portfolio-card-title"
-                                    id="portfolio-ml7-title"
-                                    >mL7</span
-                                >
-                            </span>
-                        </a>
-                    </section>
-                    <section
-                        class="gallery"
-                        aria-labelledby="portfolio-site-title"
-                    >
-                        <a
-                            class="gallery-item full case-study-entry portfolio-card"
+                            class="portfolio-card-link"
                             href="/site"
                             aria-label="Read the This website case study"
                         >
-                            <span class="portfolio-card-image">
-                            <img
-                                src="images/optimized/gil-rodrigues-portfolio-site-960-v3.webp"
-                                srcset="
-                                    images/optimized/gil-rodrigues-portfolio-site-480-v3.webp   480w,
-                                    images/optimized/gil-rodrigues-portfolio-site-720-v3.webp   720w,
-                                    images/optimized/gil-rodrigues-portfolio-site-960-v3.webp   960w,
-                                    images/optimized/gil-rodrigues-portfolio-site-1280-v3.webp 1280w,
-                                    images/optimized/gil-rodrigues-portfolio-site-1600-v3.webp 1600w
-                                "
-                                sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px"
-                                width="3022"
-                                height="1400"
-                                alt="The portfolio homepage in dark mode with the About line and the interactive Heph terminal demo"
-                                loading="lazy"
-                                decoding="async"
-                            />
-                            </span>
-                            <span class="portfolio-card-meta">
-                                <time id="portfolio-site-date" datetime="2026-07-15">15.07.2026</time>
-                                <span
-                                    class="portfolio-card-title"
-                                    id="portfolio-site-title"
-                                    >This website</span
-                                >
-                            </span>
+                            <time id="portfolio-site-date" datetime="2026-07-15">2026-07-15</time>
+                            <span
+                                class="portfolio-card-title"
+                                id="portfolio-site-title"
+                                >This website</span
+                            >
+                            <span class="portfolio-card-arrow" aria-hidden="true">→</span>
                         </a>
-                    </section>
+                        <a
+                            class="portfolio-card-link"
+                            href="/heph"
+                            aria-label="Read the Heph local document agent case study"
+                        >
+                            <time datetime="2026-04-21">2026-04-21</time>
+                            <span
+                                class="portfolio-card-title"
+                                id="portfolio-heph-title"
+                                >Heph</span
+                            >
+                            <span class="portfolio-card-arrow" aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                    <div
+                        class="portfolio-group"
+                        role="group"
+                        aria-labelledby="portfolio-group-design-title"
+                    >
+                        <h2 class="section-title" id="portfolio-group-design-title">Design</h2>
+                        <a
+                            class="portfolio-card-link"
+                            href="/filen"
+                            aria-label="Read the Filen identity system case study"
+                        >
+                            <time datetime="2026-01-14">2026-01-14</time>
+                            <span
+                                class="portfolio-card-title"
+                                id="portfolio-filen-title"
+                                >Filen</span
+                            >
+                            <span class="portfolio-card-arrow" aria-hidden="true">→</span>
+                        </a>
+                        <a
+                            class="portfolio-card-link"
+                            href="/n0thing"
+                            aria-label="Read the n0thing case study"
+                        >
+                            <time datetime="2019-11-15">2019-11-15</time>
+                            <span
+                                class="portfolio-card-title"
+                                id="portfolio-n0thing-title"
+                                >n0thing</span
+                            >
+                            <span class="portfolio-card-arrow" aria-hidden="true">→</span>
+                        </a>
+                        <a
+                            class="portfolio-card-link"
+                            href="/ml7"
+                            aria-label="Read the mL7 case study"
+                        >
+                            <time datetime="2018-11-13">2018-11-13</time>
+                            <span
+                                class="portfolio-card-title"
+                                id="portfolio-ml7-title"
+                                >mL7</span
+                            >
+                            <span class="portfolio-card-arrow" aria-hidden="true">→</span>
+                        </a>
+                    </div>
                     </section>
                     <nav
                         class="references-links"
@@ -3499,8 +3173,8 @@ function updatePortfolioSiteDate() {
     const day = String(now.getDate()).padStart(2, "0");
     const month = String(now.getMonth() + 1).padStart(2, "0");
     const year = String(now.getFullYear());
-    const displayDate = `${day}.${month}.${year}`;
     const isoDate = `${year}-${month}-${day}`;
+    const displayDate = isoDate;
 
     portfolioSiteDate.textContent = displayDate;
     portfolioSiteDate.setAttribute("datetime", isoDate);

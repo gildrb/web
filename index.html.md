@@ -2,7 +2,7 @@
 
 > Canonical Markdown version of the homepage at [gildrb.com](https://gildrb.com/) for crawlers, search agents, and language models.
 
-Last updated: 2026-07-11
+Last updated: 2026-07-16
 Canonical: [https://gildrb.com/index.html.md](https://gildrb.com/index.html.md)
 Homepage: [https://gildrb.com/](https://gildrb.com/)
 
@@ -39,19 +39,27 @@ Designing brands, interfaces, and the systems that connect them.
 
 ## Portfolio
 
-### Heph
+### Engineering
+
+#### This website
+
+[This website](https://gildrb.com/site) documents how the portfolio is built and verified as a static, hand-authored site.
+
+#### Heph
 
 [Heph local document agent](https://gildrb.com/heph) documents how bounded armories, explicit indexing, cited answers, and `/evidence` keep local document work inspectable. The source repository is linked inside the article.
 
-### Filen
+### Design
+
+#### Filen
 
 [Filen identity system](https://gildrb.com/filen) documents how the work moved from broad mark exploration into a scalable identity, app icon, and campaign language for zero-knowledge encrypted cloud storage.
 
-### n0thing
+#### n0thing
 
 [n0thing wordmark](https://gildrb.com/n0thing) documents the current animated identity artifact and the evidence still needed to complete its case study.
 
-### mL7
+#### mL7
 
 [mL7 identity](https://gildrb.com/ml7) documents the current identity artifact and the evidence still needed to complete its case study.
 

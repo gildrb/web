@@ -49,6 +49,12 @@
     margin-bottom: 0;
 }
 
+@media (min-width: 769px) {
+    .references-links {
+        margin-top: auto;
+    }
+}
+
 .sr-only {
     position: absolute;
     width: 1px;

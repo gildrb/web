@@ -254,14 +254,18 @@ assert(
         baseStyles.includes("--highlight-text: #ffffff;") &&
         baseStyles.includes("color: var(--highlight-text);") &&
         baseStyles.includes("background: var(--highlight-bg);") &&
-        portfolioStyles.includes(".portfolio-card:hover .portfolio-card-meta::after") &&
-        portfolioStyles.includes('content: "Read →";') &&
-        portfolioStyles.includes(".portfolio-card-link:hover::after") &&
+        portfolioStyles.includes(
+            "@media (hover: hover) {\n    .portfolio-card-link:hover {\n        color: var(--text-primary);",
+        ) &&
+        !portfolioStyles.includes(
+            ".portfolio-card-link:hover time,\n    .portfolio-card-link:hover .portfolio-card-arrow",
+        ) &&
+        !portfolioStyles.includes("background: color-mix(") &&
         !portfolioStyles.includes(".portfolio-card-image::after") &&
         !hephDemoStyles.includes(".heph-demo-frame::after") &&
         !portfolioStyles.includes("mix-blend-mode:") &&
         !caseStyles.includes(".case-study-entry:hover img"),
-    "Clickable project media must use only the Read arrow treatment without a hover overlay or image dimming.",
+    "Clickable project rows must brighten their date and arrow to white on hover without a hover background or image dimming.",
 );
 
 const hephDemoHexColors = new Set(
@@ -286,9 +290,9 @@ assert(
         [...hephDemoHexColors].every((color) =>
             ["#f96664", "#face2e", "#3bc55d"].includes(color),
         ) &&
-        indexHtml.includes("EVIDENCE <b>ctrl+g</b>") &&
-        indexHtml.includes("SCOPE <b>4/4</b>") &&
-        indexHtml.includes("EXCERPTS <b>4</b>") &&
+        hephHtml.includes("EVIDENCE <b>ctrl+g</b>") &&
+        hephHtml.includes("SCOPE <b>4/4</b>") &&
+        hephHtml.includes("EXCERPTS <b>4</b>") &&
         siteScript.includes('hephDemoEvidenceOpen.innerHTML = "EVIDENCE <b>ctrl+g</b>"') &&
         siteScript.includes('hephDemoEvidenceMeta.innerHTML = "EXCERPTS <b>4</b>"'),
     "Heph must theme its surface and use shared primary, label, and value colors plus the macOS lights.",
@@ -347,25 +351,13 @@ assert(
     "The Heph-to-Filen gap must use the optically compensated 32px project rhythm.",
 );
 assert(
-    indexHtml.includes('<div class="heph-demo-frame">') &&
-        indexHtml.includes(
-            'class="heph-demo-shell"\n                                    aria-hidden="true"',
-        ) &&
-        !indexHtml.includes(
-            'aria-labelledby="portfolio-heph-title"\n                            aria-hidden="true"',
-        ) &&
-        indexHtml.indexOf(
-            '<div class="heph-demo-frame">',
-        ) <
-            indexHtml.indexOf('class="heph-demo-shell"') &&
-        indexHtml.indexOf('class="portfolio-card-meta portfolio-card-link"') >
-            indexHtml.indexOf(
-                '<div class="heph-demo-frame">',
-            ) &&
+    !indexHtml.includes('<div class="heph-demo-frame">') &&
+        !indexHtml.includes('class="heph-demo-shell"') &&
+        hephHtml.includes('<div class="heph-demo-frame">') &&
         (await readText("src/styles/30-heph-demo.css")).includes(
             ".heph-demo-frame {\n        padding: 34px 14px;\n        border-radius: 24px;\n        background: var(--heph-demo-mobile-bg);",
         ),
-    "Mobile Heph chrome must wrap only the terminal, leaving its date and title below the panel.",
+    "The interactive Heph demo must live only on the Heph case study, keeping its mobile chrome there and off the homepage.",
 );
 assert(
     hephMarkdown.includes("![Heph demo](media:heph-demo)") &&
@@ -434,12 +426,10 @@ assert(
     "Homepage does not link to the Filen case study.",
 );
 assert(
-    (indexHtml.match(/href="\/heph"/g) || []).length === 2 &&
-        /<a\s+class="heph-demo-zoom-link"\s+href="\/heph"\s+aria-label="Open the Heph case study"/.test(
-            indexHtml,
-        ) &&
+    (indexHtml.match(/href="\/heph"/g) || []).length === 1 &&
+        !indexHtml.includes('class="heph-demo-zoom-link"') &&
         !indexHtml.includes('href="https://github.com/gildrb/heph"'),
-    "Homepage Heph metadata and green window control must link only to the local case study.",
+    "Homepage must link to the Heph case study exactly once through its card and never to the repository.",
 );
 assert(
     hephDemoStyles.includes(
@@ -482,13 +472,6 @@ assert(
 assert(
     (indexHtml.match(/href="\/filen"/g) || []).length === 1,
     "Only the featured Filen image may link to the case study.",
-);
-assert(
-    indexHtml.includes('class="showcase showcase-full"') &&
-        indexHtml.includes(
-            '(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px',
-        ),
-    "The clickable Filen media must use the optimized 760px content width.",
 );
 assert(
     (indexHtml.match(/href="\/ml7"/g) || []).length === 1,
@@ -685,10 +668,10 @@ assert(
     "The first solid project media must use the 32px optical gap from the adjacent text block at every viewport.",
 );
 const portfolioDates = [
-    ["2026-04-21", "21.04.2026", "Heph"],
-    ["2026-01-14", "14.01.2026", "Filen"],
-    ["2019-11-15", "15.11.2019", "n0thing"],
-    ["2018-11-13", "13.11.2018", "mL7"],
+    ["2026-04-21", "2026-04-21", "Heph"],
+    ["2026-01-14", "2026-01-14", "Filen"],
+    ["2019-11-15", "2019-11-15", "n0thing"],
+    ["2018-11-13", "2018-11-13", "mL7"],
 ];
 assert(
     portfolioDates.every(
@@ -697,28 +680,47 @@ assert(
             indexHtml.includes(`>${title}</span`),
     ) &&
         portfolioStyles.includes(
-            ".portfolio-card-meta time {\n    grid-column: 1 / -1;\n    color: var(--text-tertiary);",
+            ".portfolio-section {\n    display: grid;\n    grid-template-columns: auto minmax(0, 1fr) auto;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-card-title {\n    grid-column: 1;\n    grid-row: 2;\n    color: var(--text-secondary);",
+            ".portfolio-group {\n    display: grid;\n    grid-column: 1 / -1;\n    grid-template-columns: subgrid;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-card,\n.showcase-featured .portfolio-card {\n    overflow: visible;\n    border-radius: 0;",
+            ".portfolio-card-link {\n    display: grid;\n    grid-column: 1 / -1;\n    grid-template-columns: subgrid;",
+        ) &&
+        portfolioStyles.includes("width: 100%;") &&
+        !portfolioStyles.includes("width: calc(100% + 20px);") &&
+        !portfolioStyles.includes("margin-inline: -10px;") &&
+        portfolioStyles.includes(
+            ".portfolio-card-title {\n    grid-column: 2;\n    grid-row: 1;\n    color: var(--text-primary);\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
-            "border: 1px solid\n        color-mix(in srgb, var(--text-primary) 14%, transparent);",
+            ".portfolio-card-link {\n    display: grid;\n    grid-column: 1 / -1;\n    grid-template-columns: subgrid;\n    align-items: baseline;\n    width: 100%;\n    padding: 8px 0;\n    color: var(--text-tertiary);",
+        ) &&
+        !portfolioStyles.includes(
+            ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 1;\n    display: block;\n    color: var(--text-tertiary);\n    font-size: 16px;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
-            '.portfolio-card-meta::after {\n    content: "→";\n    grid-column: 2;\n    grid-row: 2;',
+            ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 1;\n    display: block;\n    color: inherit;\n    font-size: 16px;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-card-link {\n    width: 100%;",
+            ".portfolio-card-arrow {\n    grid-column: 3;\n    grid-row: 1;\n    align-self: baseline;\n    color: inherit;",
+        ) &&
+        !portfolioStyles.includes(".portfolio-card-link::after") &&
+        (indexHtml.match(/class="portfolio-card-arrow"/g) || []).length === 5 &&
+        (
+            indexHtml.match(
+                /class="portfolio-card-arrow" aria-hidden="true">→<\/span>/g,
+            ) || []
+        ).length === 5 &&
+        portfolioStyles.includes(
+            ".portfolio-card-link + .portfolio-card-link {\n    margin-top: 0;\n    border-top: 1px solid\n        color-mix(in srgb, var(--text-primary) 12%, transparent);",
         ),
-    "Homepage projects must expose their date, linked title, and full-width directional affordance below the media.",
+    "Homepage projects must expose single-line rows with aligned ISO dates, titles, static arrows, and faint separators.",
 );
 assert(
     indexHtml.includes(
-        '<time id="portfolio-site-date" datetime="2026-07-15">15.07.2026</time>',
+        '<time id="portfolio-site-date" datetime="2026-07-15">2026-07-15</time>',
     ) &&
         siteScript.includes(
             'document.querySelector("#portfolio-site-date")',
@@ -732,20 +734,26 @@ assert(
 );
 assert(
     portfolioStyles.includes(
-        ".portfolio-card-link:focus-visible {\n    outline: 1px solid var(--text-primary);\n    outline-offset: 4px;",
+        ".portfolio-card-link:focus-visible {\n    color: var(--text-primary);\n    outline: 1px solid var(--text-primary);\n    outline-offset: 6px;",
     ) &&
         (await readText("src/styles/30-heph-demo.css")).includes(
             "margin-bottom: 32px;\n    overflow: visible;",
         ),
     "Heph metadata focus must use the shared offset ring without an ancestor clipping it.",
 );
+assert(
+    baseStyles.includes(
+        ".name {\n    font-size: 19px;\n    font-weight: 400;\n    line-height: var(--link-line-height);\n    letter-spacing: -0.02em;\n    color: var(--text-primary);\n    min-height: calc(var(--link-line-height) * 2);\n    margin-bottom: calc(\n        var(--section-gap) + var(--section-content-gap) +\n            var(--text-media-gap) - var(--link-line-height)\n    );",
+    ),
+    "The sidebar Links block must align with the homepage Engineering label through token-based name spacing.",
+);
 const chronologicalProjectTitles = [
+    // Engineering group first, then Design group.
+    "portfolio-site-title",
     "portfolio-heph-title",
     "portfolio-filen-title",
     "portfolio-n0thing-title",
     "portfolio-ml7-title",
-    // This website is intentionally a closing proof point, not a chronological entry.
-    "portfolio-site-title",
 ];
 assert(
     chronologicalProjectTitles
@@ -753,7 +761,33 @@ assert(
         .every((position, index, positions) =>
             index === 0 ? position !== -1 : position > positions[index - 1],
         ),
-    "Homepage projects must remain ordered newest to oldest, followed by the intentional closing site proof: Heph, Filen, n0thing, mL7, This website.",
+    "Homepage projects must follow the grouped order: Engineering (This website, Heph) then Design (Filen, n0thing, mL7).",
+);
+assert(
+    indexHtml.includes(
+        '<h2 class="section-title" id="portfolio-group-engineering-title">Engineering</h2>',
+    ) &&
+        indexHtml.includes(
+            '<h2 class="section-title" id="portfolio-group-design-title">Design</h2>',
+        ) &&
+        indexHtml.indexOf('id="portfolio-group-engineering-title"') <
+            indexHtml.indexOf('id="portfolio-group-design-title"') &&
+        indexHtml.indexOf('id="portfolio-group-engineering-title"') <
+            indexHtml.indexOf('id="portfolio-site-title"') &&
+        indexHtml.indexOf('id="portfolio-group-design-title"') <
+            indexHtml.indexOf('id="portfolio-filen-title"') &&
+        portfolioStyles.includes(
+            ".portfolio-group .section-title {\n    grid-column: 1 / -1;\n    margin-bottom: var(--section-content-gap);\n    color: var(--text-secondary);",
+        ) &&
+        !portfolioStyles.includes(":first-of-type"),
+    "Homepage must split projects into Engineering and Design groups with bright-gray section labels.",
+);
+assert(
+    !indexHtml.includes("<img") &&
+        !indexHtml.includes('class="portfolio-card-image"') &&
+        !indexHtml.includes('class="showcase') &&
+        !indexHtml.includes('class="gallery'),
+    "The homepage must present projects as text-only date/title cards without media.",
 );
 assert(
     caseStyles.includes(

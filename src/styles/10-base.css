@@ -68,7 +68,10 @@
     letter-spacing: -0.02em;
     color: var(--text-primary);
     min-height: calc(var(--link-line-height) * 2);
-    margin-bottom: var(--section-gap);
+    margin-bottom: calc(
+        var(--section-gap) + var(--section-content-gap) +
+            var(--text-media-gap) - var(--link-line-height)
+    );
     white-space: nowrap;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
