@@ -730,7 +730,13 @@ assert(
     "The portfolio section must retain an accessible name without a visible label.",
 );
 assert(
-    baseStyles.includes("--text-media-gap: 32px;") &&
+    responsiveStyles.includes(
+        "html:has(body:not(.case-page)),\n    body:not(.case-page) {\n        height: 100svh;\n        overflow: hidden;\n        overscroll-behavior: none;",
+    ) &&
+        responsiveStyles.includes(
+            "body:not(.case-page) .layout {\n        height: 100svh;\n        min-height: 100svh;\n        overflow: hidden;\n        overscroll-behavior: none;",
+        ) &&
+        baseStyles.includes("--text-media-gap: 32px;") &&
         previewContentStyles.includes(
             ".profile-summary {\n    max-width: 760px;\n    margin-bottom: var(--text-media-gap);",
         ) &&

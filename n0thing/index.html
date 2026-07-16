@@ -1968,6 +1968,20 @@ body {
 }
 
 @media (max-width: 768px) {
+    html:has(body:not(.case-page)),
+    body:not(.case-page) {
+        height: 100svh;
+        overflow: hidden;
+        overscroll-behavior: none;
+    }
+
+    body:not(.case-page) .layout {
+        height: 100svh;
+        min-height: 100svh;
+        overflow: hidden;
+        overscroll-behavior: none;
+    }
+
     .wrapper {
         padding: 0 12px;
     }
