@@ -12,7 +12,9 @@ function getPortfolioRowValue(row, key) {
         return row.querySelector("time").getAttribute("datetime");
     }
 
-    return row.querySelector(".portfolio-card-title").textContent.trim();
+    return row
+        .querySelector(`.portfolio-card-${key}`)
+        .textContent.trim();
 }
 
 function sortPortfolioRows(key, direction) {
@@ -38,6 +40,12 @@ function sortPortfolioRows(key, direction) {
 function getSortDescription(key, direction) {
     if (key === "date") {
         return direction === "ascending" ? "oldest first" : "newest first";
+    }
+
+    if (key === "field") {
+        return direction === "ascending"
+            ? "Design then Engineering"
+            : "Engineering then Design";
     }
 
     return direction === "ascending" ? "A to Z" : "Z to A";

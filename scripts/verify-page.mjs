@@ -697,8 +697,10 @@ assert(
         indexHtml.includes('aria-label="Project columns"') &&
         indexHtml.includes('data-sort-key="date"') &&
         indexHtml.includes('data-sort-key="title"') &&
+        indexHtml.includes('data-sort-key="field"') &&
         indexHtml.includes(">\n                                Date\n") &&
         indexHtml.includes(">\n                                Title\n") &&
+        indexHtml.includes(">\n                                Field\n") &&
         indexHtml.includes(
             '<span class="portfolio-link-heading">Link</span>',
         ) &&
@@ -717,7 +719,10 @@ assert(
             ".portfolio-sort-title {\n    grid-column: 2;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-link-heading {\n    grid-column: 3;",
+            ".portfolio-sort-field {\n    grid-column: 3;",
+        ) &&
+        portfolioStyles.includes(
+            ".portfolio-link-heading {\n    grid-column: 5;",
         ) &&
         portfolioStyles.includes(
             "@media (min-width: 769px) {\n    .portfolio-table-header {\n        padding-top: 0;",
@@ -727,6 +732,7 @@ assert(
         siteScript.includes('".portfolio-sort-button"') &&
         siteScript.includes('document.querySelector(".portfolio-list")') &&
         siteScript.includes("titleCollator.compare(leftValue, rightValue)") &&
+        siteScript.includes('querySelector(`.portfolio-card-${key}`)') &&
         siteScript.includes('getAttribute("datetime")') &&
         siteScript.includes("leftValue.localeCompare(rightValue)") &&
         siteScript.includes(
@@ -735,9 +741,11 @@ assert(
         siteScript.includes(
             "announce(`Projects sorted by ${key}, ${description}.`)",
         ) &&
+        siteScript.includes('"Design then Engineering"') &&
+        siteScript.includes('"Engineering then Design"') &&
         siteScript.includes("if (event.detail !== 0) button.blur();") &&
         !caseScript.includes("portfolioSortButtons"),
-    "The homepage must show white Date, Title, and Link column headings and provide homepage-only accessible global project sorting.",
+    "The homepage must show white Date, Title, Field, and Link column headings and provide homepage-only accessible global project sorting.",
 );
 const portfolioDates = [
     ["2026-04-21", "2026-04-21", "Heph"],
@@ -752,10 +760,10 @@ assert(
             indexHtml.includes(`>${title}</span`),
     ) &&
         portfolioStyles.includes(
-            ".portfolio-section {\n    display: grid;\n    grid-template-columns: auto minmax(0, 1fr) auto;",
+            ".portfolio-section {\n    display: grid;\n    grid-template-columns: auto max-content max-content minmax(0, 1fr) auto;\n    column-gap: 16px;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-list {\n    display: grid;\n    grid-column: 1 / -1;\n    grid-template-columns: subgrid;\n    margin-top: 28px;",
+            ".portfolio-list {\n    display: grid;\n    grid-column: 1 / -1;\n    grid-template-columns: subgrid;\n    margin-top: 0;",
         ) &&
         portfolioStyles.includes(
             ".portfolio-card-link {\n    display: grid;\n    grid-column: 1 / -1;\n    grid-template-columns: subgrid;",
@@ -767,6 +775,9 @@ assert(
             ".portfolio-card-title {\n    grid-column: 2;\n    grid-row: 1;\n    color: var(--text-primary);\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
+            ".portfolio-card-field {\n    grid-column: 3;\n    grid-row: 1;\n    color: var(--text-tertiary);\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 24px;",
+        ) &&
+        portfolioStyles.includes(
             ".portfolio-card-link {\n    display: grid;\n    grid-column: 1 / -1;\n    grid-template-columns: subgrid;\n    align-items: baseline;\n    width: 100%;\n    padding: 8px 0;\n    color: var(--text-tertiary);",
         ) &&
         !portfolioStyles.includes(
@@ -776,7 +787,7 @@ assert(
             ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 1;\n    display: block;\n    color: inherit;\n    font-size: 16px;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-card-arrow {\n    grid-column: 3;\n    grid-row: 1;\n    align-self: baseline;\n    display: inline-flex;",
+            ".portfolio-card-arrow {\n    grid-column: 5;\n    grid-row: 1;\n    align-self: baseline;\n    display: inline-flex;",
         ) &&
         portfolioStyles.includes(
             ".portfolio-card-view {\n    visibility: hidden;",
@@ -785,14 +796,21 @@ assert(
         !portfolioStyles.includes(".portfolio-card-arrow svg") &&
         !portfolioStyles.includes(".portfolio-card-link::after") &&
         (indexHtml.match(/class="portfolio-card-arrow"/g) || []).length === 5 &&
+        (indexHtml.match(/class="portfolio-card-field">Engineering/g) || [])
+            .length === 2 &&
+        (indexHtml.match(/class="portfolio-card-field">Design/g) || [])
+            .length === 3 &&
         (indexHtml.match(/class="portfolio-card-view">View<\/span>/g) || [])
             .length === 5 &&
         (indexHtml.match(/<span class="portfolio-card-view">View<\/span>\s+→/g) || [])
             .length === 5 &&
         portfolioStyles.includes(
             ".portfolio-card-link + .portfolio-card-link {\n    margin-top: 0;\n    border-top: 1px solid\n        color-mix(in srgb, var(--text-primary) 12%, transparent);",
+        ) &&
+        portfolioStyles.includes(
+            "@media (max-width: 768px) {\n    .portfolio-card-view {\n        display: none;",
         ),
-    "Homepage projects must expose single-line rows with aligned ISO dates, titles, native Inter arrows, hover View labels, and faint separators.",
+    "Homepage projects must expose single-line rows with aligned ISO dates, titles, field tags, native Inter arrows, hover View labels, and faint separators.",
 );
 assert(
     indexHtml.includes(
