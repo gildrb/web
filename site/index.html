@@ -594,9 +594,28 @@ body {
     grid-column: 3;
     grid-row: 1;
     align-self: baseline;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
     color: inherit;
     font-size: 16px;
     line-height: 24px;
+}
+
+.portfolio-card-view {
+    visibility: hidden;
+}
+
+.portfolio-card-arrow svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: square;
+    stroke-linejoin: miter;
 }
 
 .portfolio-section {
@@ -632,6 +651,10 @@ body {
     .portfolio-card-link:hover {
         color: var(--text-primary);
     }
+
+    .portfolio-card-link:hover .portfolio-card-view {
+        visibility: visible;
+    }
 }
 
 .portfolio-card-link:focus-visible {
@@ -639,6 +662,10 @@ body {
     outline: 1px solid var(--text-primary);
     outline-offset: 6px;
     border-radius: 2px;
+}
+
+.portfolio-card-link:focus-visible .portfolio-card-view {
+    visibility: visible;
 }
 
 .heph-demo {

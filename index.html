@@ -1498,9 +1498,28 @@ body {
     grid-column: 3;
     grid-row: 1;
     align-self: baseline;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
     color: inherit;
     font-size: 16px;
     line-height: 24px;
+}
+
+.portfolio-card-view {
+    visibility: hidden;
+}
+
+.portfolio-card-arrow svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: square;
+    stroke-linejoin: miter;
 }
 
 .portfolio-section {
@@ -1536,6 +1555,10 @@ body {
     .portfolio-card-link:hover {
         color: var(--text-primary);
     }
+
+    .portfolio-card-link:hover .portfolio-card-view {
+        visibility: visible;
+    }
 }
 
 .portfolio-card-link:focus-visible {
@@ -1543,6 +1566,10 @@ body {
     outline: 1px solid var(--text-primary);
     outline-offset: 6px;
     border-radius: 2px;
+}
+
+.portfolio-card-link:focus-visible .portfolio-card-view {
+    visibility: visible;
 }
 
 .heph-demo {
@@ -3040,7 +3067,12 @@ body {
                                 id="portfolio-site-title"
                                 >This website</span
                             >
-                            <span class="portfolio-card-arrow" aria-hidden="true">→</span>
+                            <span class="portfolio-card-arrow" aria-hidden="true">
+                                <span class="portfolio-card-view">View</span>
+                                <svg viewBox="0 0 20 20" focusable="false">
+                                    <path d="M3 10h14m-5-5 5 5-5 5" />
+                                </svg>
+                            </span>
                         </a>
                         <a
                             class="portfolio-card-link"
@@ -3053,7 +3085,12 @@ body {
                                 id="portfolio-heph-title"
                                 >Heph</span
                             >
-                            <span class="portfolio-card-arrow" aria-hidden="true">→</span>
+                            <span class="portfolio-card-arrow" aria-hidden="true">
+                                <span class="portfolio-card-view">View</span>
+                                <svg viewBox="0 0 20 20" focusable="false">
+                                    <path d="M3 10h14m-5-5 5 5-5 5" />
+                                </svg>
+                            </span>
                         </a>
                     </div>
                     <div
@@ -3073,7 +3110,12 @@ body {
                                 id="portfolio-filen-title"
                                 >Filen</span
                             >
-                            <span class="portfolio-card-arrow" aria-hidden="true">→</span>
+                            <span class="portfolio-card-arrow" aria-hidden="true">
+                                <span class="portfolio-card-view">View</span>
+                                <svg viewBox="0 0 20 20" focusable="false">
+                                    <path d="M3 10h14m-5-5 5 5-5 5" />
+                                </svg>
+                            </span>
                         </a>
                         <a
                             class="portfolio-card-link"
@@ -3086,7 +3128,12 @@ body {
                                 id="portfolio-n0thing-title"
                                 >n0thing</span
                             >
-                            <span class="portfolio-card-arrow" aria-hidden="true">→</span>
+                            <span class="portfolio-card-arrow" aria-hidden="true">
+                                <span class="portfolio-card-view">View</span>
+                                <svg viewBox="0 0 20 20" focusable="false">
+                                    <path d="M3 10h14m-5-5 5 5-5 5" />
+                                </svg>
+                            </span>
                         </a>
                         <a
                             class="portfolio-card-link"
@@ -3099,7 +3146,12 @@ body {
                                 id="portfolio-ml7-title"
                                 >mL7</span
                             >
-                            <span class="portfolio-card-arrow" aria-hidden="true">→</span>
+                            <span class="portfolio-card-arrow" aria-hidden="true">
+                                <span class="portfolio-card-view">View</span>
+                                <svg viewBox="0 0 20 20" focusable="false">
+                                    <path d="M3 10h14m-5-5 5 5-5 5" />
+                                </svg>
+                            </span>
                         </a>
                     </div>
                     </section>

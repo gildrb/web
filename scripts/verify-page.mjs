@@ -257,6 +257,9 @@ assert(
         portfolioStyles.includes(
             "@media (hover: hover) {\n    .portfolio-card-link:hover {\n        color: var(--text-primary);",
         ) &&
+        portfolioStyles.includes(
+            ".portfolio-card-link:hover .portfolio-card-view {\n        visibility: visible;",
+        ) &&
         !portfolioStyles.includes(
             ".portfolio-card-link:hover time,\n    .portfolio-card-link:hover .portfolio-card-arrow",
         ) &&
@@ -704,19 +707,26 @@ assert(
             ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 1;\n    display: block;\n    color: inherit;\n    font-size: 16px;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-card-arrow {\n    grid-column: 3;\n    grid-row: 1;\n    align-self: baseline;\n    color: inherit;",
+            ".portfolio-card-arrow {\n    grid-column: 3;\n    grid-row: 1;\n    align-self: baseline;\n    display: inline-flex;",
+        ) &&
+        portfolioStyles.includes(
+            ".portfolio-card-view {\n    visibility: hidden;",
+        ) &&
+        portfolioStyles.includes(
+            ".portfolio-card-arrow svg {\n    width: 20px;\n    height: 20px;\n    display: block;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.5;",
         ) &&
         !portfolioStyles.includes(".portfolio-card-link::after") &&
         (indexHtml.match(/class="portfolio-card-arrow"/g) || []).length === 5 &&
-        (
-            indexHtml.match(
-                /class="portfolio-card-arrow" aria-hidden="true">→<\/span>/g,
-            ) || []
-        ).length === 5 &&
+        (indexHtml.match(/class="portfolio-card-view">View<\/span>/g) || [])
+            .length === 5 &&
+        (indexHtml.match(/<svg viewBox="0 0 20 20" focusable="false">/g) || [])
+            .length === 5 &&
+        (indexHtml.match(/<path d="M3 10h14m-5-5 5 5-5 5" \/>/g) || [])
+            .length === 5 &&
         portfolioStyles.includes(
             ".portfolio-card-link + .portfolio-card-link {\n    margin-top: 0;\n    border-top: 1px solid\n        color-mix(in srgb, var(--text-primary) 12%, transparent);",
         ),
-    "Homepage projects must expose single-line rows with aligned ISO dates, titles, static arrows, and faint separators.",
+    "Homepage projects must expose single-line rows with aligned ISO dates, titles, antialiased-safe SVG arrows, hover View labels, and faint separators.",
 );
 assert(
     indexHtml.includes(
