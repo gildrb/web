@@ -1976,7 +1976,7 @@ body {
         grid-template-columns: minmax(0, 1fr) 32px;
         gap: 0;
         min-height: auto;
-        padding: 0 0 32px;
+        padding: 0;
     }
 
     .sidebar {
@@ -2046,10 +2046,20 @@ body {
         order: 5;
     }
 
+    .portfolio-section {
+        order: 3;
+        margin-bottom: 0;
+    }
+
     .links {
         grid-column: 1 / -1;
         order: 4;
-        margin-bottom: var(--text-media-gap);
+        margin-bottom: 0;
+        row-gap: 4px;
+    }
+
+    .contact-label {
+        margin-top: var(--section-content-gap);
     }
 
     .case-page .links {
@@ -2074,7 +2084,11 @@ body {
     .profile-summary {
         grid-column: 1 / -1;
         order: 2;
-        margin-bottom: var(--section-gap);
+        margin-bottom: var(--section-content-gap);
+    }
+
+    .portfolio-card-link {
+        padding: 3.5px 0;
     }
 
     .gallery {
@@ -2088,11 +2102,13 @@ body {
     .site-footer {
         grid-template-columns: minmax(0, 1fr) auto;
         align-items: end;
-        margin-bottom: 32px;
+        order: 5;
+        margin-bottom: 0;
     }
 
     .copyright {
         align-self: end;
+        margin-bottom: 0;
     }
 }
 

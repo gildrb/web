@@ -491,10 +491,10 @@ assert(
             "@media (min-width: 769px) {\n    .site-footer {\n        margin-top: auto;",
         ) &&
         responsiveStyles.includes(
-            ".site-footer {\n        grid-template-columns: minmax(0, 1fr) auto;\n        align-items: end;\n        margin-bottom: 32px;",
+            ".site-footer {\n        grid-template-columns: minmax(0, 1fr) auto;\n        align-items: end;\n        order: 5;\n        margin-bottom: 0;",
         ) &&
         responsiveStyles.includes(
-            ".copyright {\n        align-self: end;",
+            ".copyright {\n        align-self: end;\n        margin-bottom: 0;",
         ),
     "The footer must align a dark-gray Inter copyright with profile.json at the far-right edge on desktop and mobile.",
 );
@@ -738,12 +738,25 @@ assert(
             ".profile-summary {\n    max-width: 760px;\n    margin-bottom: var(--text-media-gap);",
         ) &&
         responsiveStyles.includes(
-            ".links {\n        grid-column: 1 / -1;\n        order: 4;\n        margin-bottom: var(--text-media-gap);",
+            ".portfolio-section {\n        order: 3;",
         ) &&
         responsiveStyles.includes(
-            ".profile-summary {\n        grid-column: 1 / -1;\n        order: 2;\n        margin-bottom: var(--section-gap);",
+            ".portfolio-section {\n        order: 3;\n        margin-bottom: 0;",
+        ) &&
+        responsiveStyles.includes(
+            ".links {\n        grid-column: 1 / -1;\n        order: 4;\n        margin-bottom: 0;",
+        ) &&
+        responsiveStyles.includes("row-gap: 4px;") &&
+        responsiveStyles.includes(
+            ".contact-label {\n        margin-top: var(--section-content-gap);",
+        ) &&
+        responsiveStyles.includes(
+            ".profile-summary {\n        grid-column: 1 / -1;\n        order: 2;\n        margin-bottom: var(--section-content-gap);",
+        ) &&
+        responsiveStyles.includes(
+            ".portfolio-card-link {\n        padding: 3.5px 0;",
         ),
-    "The first solid project media must use the 32px optical gap from the adjacent text block at every viewport.",
+    "Mobile homepage sections must preserve the requested order and compact spacing.",
 );
 assert(
     indexHtml.includes('class="portfolio-table-header"') &&
