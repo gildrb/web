@@ -930,8 +930,7 @@ html.homepage-scroll-locked body .layout {
     body:not(.case-page) .name {
         grid-column: 1;
         order: 1;
-        position: sticky;
-        top: 0;
+        position: relative;
         z-index: 100;
         width: calc(100% + 56px);
         margin-left: -12px;
@@ -976,6 +975,11 @@ html.homepage-scroll-locked body .layout {
         margin-left: 16px;
         margin-bottom: 0;
         background: transparent;
+    }
+
+    body:not(.case-page) .theme-toggle {
+        position: relative;
+        top: auto;
     }
 
     .name {
