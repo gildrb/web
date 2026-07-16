@@ -1981,6 +1981,21 @@ body {
 }
 
 @media (max-width: 768px) {
+    html:has(body:not(.case-page)),
+    body:not(.case-page) {
+        height: 100svh;
+        overflow: hidden;
+        overscroll-behavior: none;
+    }
+
+    body:not(.case-page) .layout {
+        height: 100svh;
+        min-height: 100svh;
+        align-content: center;
+        overflow: hidden;
+        overscroll-behavior: none;
+    }
+
     .wrapper {
         padding: 0 12px;
     }
@@ -1989,7 +2004,7 @@ body {
         grid-template-columns: minmax(0, 1fr) 32px;
         gap: 0;
         min-height: auto;
-        padding: 0 0 32px;
+        padding: 0;
     }
 
     .sidebar {
@@ -2004,7 +2019,21 @@ body {
         padding: 0;
     }
 
-    .name {
+    body:not(.case-page) .name {
+        grid-column: 1;
+        order: 1;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        width: calc(100% + 56px);
+        margin-left: -12px;
+        padding: 24px 44px 8px 12px;
+        background: var(--bg);
+        min-height: 0;
+        margin-bottom: var(--section-gap);
+    }
+
+    body.case-page .name {
         grid-column: 1;
         order: 1;
         position: sticky;
@@ -2059,10 +2088,44 @@ body {
         order: 5;
     }
 
+    .portfolio-section {
+        order: 3;
+        margin-bottom: var(--section-gap);
+    }
+
     .links {
         grid-column: 1 / -1;
         order: 4;
-        margin-bottom: var(--text-media-gap);
+        margin-bottom: 0;
+        row-gap: var(--section-content-gap);
+    }
+
+    .links.mobile-links-grid {
+        display: grid;
+        grid-template-columns:
+            var(--mobile-contact-start) minmax(0, 1fr);
+        column-gap: 0;
+    }
+
+    .mobile-links-grid > .links-label:not(.contact-label),
+    .mobile-links-grid > .external-link {
+        grid-column: 1;
+    }
+
+    .mobile-links-grid > .contact-label {
+        grid-column: 2;
+        grid-row: 1;
+        margin-top: 0;
+    }
+
+    .mobile-links-grid > .contact-label ~ .email {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .mobile-links-grid > .contact-label ~ .external-link {
+        grid-column: 2;
+        grid-row: 3;
     }
 
     .case-page .links {
@@ -2090,6 +2153,10 @@ body {
         margin-bottom: var(--section-gap);
     }
 
+    .portfolio-card-link {
+        padding: 7px 0;
+    }
+
     .gallery {
         grid-template-columns: 1fr;
     }
@@ -2099,13 +2166,7 @@ body {
     }
 
     .site-footer {
-        grid-template-columns: minmax(0, 1fr) auto;
-        align-items: end;
-        margin-bottom: 32px;
-    }
-
-    .copyright {
-        align-self: end;
+        display: none;
     }
 }
 
@@ -2350,6 +2411,40 @@ function updateHomepageDates() {
 }
 
 window.addEventListener("load", updateHomepageDates);
+
+function updateMobileLinksLayout() {
+    const links = document.querySelector(".links");
+    const portfolioField = document.querySelector(".portfolio-sort-field");
+    if (!links || !portfolioField) return;
+
+    if (!window.matchMedia("(max-width: 768px)").matches) {
+        links.classList.remove("mobile-links-grid");
+        links.style.removeProperty("--mobile-contact-start");
+        return;
+    }
+
+    const start =
+        portfolioField.getBoundingClientRect().left -
+        links.getBoundingClientRect().left;
+    links.classList.add("mobile-links-grid");
+    links.style.setProperty(
+        "--mobile-contact-start",
+        `${Math.max(0, start)}px`,
+    );
+}
+
+window.addEventListener("load", updateMobileLinksLayout);
+window.addEventListener("resize", updateMobileLinksLayout);
+
+const portfolioSection = document.querySelector(".portfolio-section");
+const portfolioSiteDate = document.querySelector("#portfolio-site-date");
+if ("ResizeObserver" in window) {
+    const updateOnResize = new ResizeObserver(() => {
+        window.setTimeout(updateMobileLinksLayout, 0);
+    });
+    if (portfolioSection) updateOnResize.observe(portfolioSection);
+    if (portfolioSiteDate) updateOnResize.observe(portfolioSiteDate);
+}
 
 if ("scrollRestoration" in window.history) {
     window.history.scrollRestoration = "manual";

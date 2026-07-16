@@ -491,10 +491,7 @@ assert(
             "@media (min-width: 769px) {\n    .site-footer {\n        margin-top: auto;",
         ) &&
         responsiveStyles.includes(
-            ".site-footer {\n        grid-template-columns: minmax(0, 1fr) auto;\n        align-items: end;\n        margin-bottom: 32px;",
-        ) &&
-        responsiveStyles.includes(
-            ".copyright {\n        align-self: end;",
+            ".site-footer {\n        display: none;",
         ),
     "The footer must align a dark-gray Inter copyright with profile.json at the far-right edge on desktop and mobile.",
 );
@@ -733,17 +730,62 @@ assert(
     "The portfolio section must retain an accessible name without a visible label.",
 );
 assert(
-    baseStyles.includes("--text-media-gap: 32px;") &&
+    responsiveStyles.includes(
+        "html:has(body:not(.case-page)),\n    body:not(.case-page) {\n        height: 100svh;\n        overflow: hidden;\n        overscroll-behavior: none;",
+    ) &&
+        responsiveStyles.includes(
+            "body:not(.case-page) .layout {\n        height: 100svh;\n        min-height: 100svh;\n        align-content: center;\n        overflow: hidden;\n        overscroll-behavior: none;",
+        ) &&
+        responsiveStyles.includes(
+            "body:not(.case-page) .name {\n        grid-column: 1;\n        order: 1;\n        position: sticky;\n        top: 0;\n        z-index: 100;\n        width: calc(100% + 56px);\n        margin-left: -12px;\n        padding: 24px 44px 8px 12px;\n        background: var(--bg);",
+        ) &&
+        responsiveStyles.includes(
+            "body.case-page .name {\n        grid-column: 1;\n        order: 1;\n        position: sticky;\n        top: 0;\n        z-index: 100;\n        width: calc(100% + 56px);\n        margin-left: -12px;\n        padding: 24px 44px 8px 12px;\n        background: linear-gradient(\n            to bottom,\n            var(--bg) 60%,\n            transparent\n        );",
+        ) &&
+        baseStyles.includes("--text-media-gap: 32px;") &&
         previewContentStyles.includes(
             ".profile-summary {\n    max-width: 760px;\n    margin-bottom: var(--text-media-gap);",
         ) &&
         responsiveStyles.includes(
-            ".links {\n        grid-column: 1 / -1;\n        order: 4;\n        margin-bottom: var(--text-media-gap);",
+            ".portfolio-section {\n        order: 3;",
         ) &&
         responsiveStyles.includes(
+            ".portfolio-section {\n        order: 3;\n        margin-bottom: var(--section-gap);",
+        ) &&
+        responsiveStyles.includes(
+            ".links {\n        grid-column: 1 / -1;\n        order: 4;\n        margin-bottom: 0;",
+        ) &&
+        responsiveStyles.includes(
+            ".links.mobile-links-grid {\n        display: grid;\n        grid-template-columns:\n            var(--mobile-contact-start) minmax(0, 1fr);\n        column-gap: 0;",
+        ) &&
+        responsiveStyles.includes(
+            ".mobile-links-grid > .contact-label {\n        grid-column: 2;\n        grid-row: 1;\n        margin-top: 0;",
+        ) &&
+        responsiveStyles.includes(
+            ".mobile-links-grid > .contact-label ~ .email {\n        grid-column: 2;\n        grid-row: 2;",
+        ) &&
+        responsiveStyles.includes(
+            ".mobile-links-grid > .contact-label ~ .external-link {\n        grid-column: 2;\n        grid-row: 3;",
+        ) &&
+        responsiveStyles.includes("row-gap: var(--section-content-gap);") &&
+        responsiveStyles.includes(
             ".profile-summary {\n        grid-column: 1 / -1;\n        order: 2;\n        margin-bottom: var(--section-gap);",
-        ),
-    "The first solid project media must use the 32px optical gap from the adjacent text block at every viewport.",
+        ) &&
+        responsiveStyles.includes(
+            ".portfolio-card-link {\n        padding: 7px 0;",
+        ) &&
+        siteScript.includes(
+            "portfolioField.getBoundingClientRect().left -",
+        ) &&
+        siteScript.includes(
+            'links.style.setProperty(\n        "--mobile-contact-start",',
+        ) &&
+        siteScript.includes(
+            'window.addEventListener("resize", updateMobileLinksLayout);',
+        ) &&
+        siteScript.includes("new ResizeObserver") &&
+        siteScript.includes("updateOnResize.observe(portfolioSiteDate);"),
+    "Mobile homepage sections must preserve the requested order and compact spacing.",
 );
 assert(
     indexHtml.includes('class="portfolio-table-header"') &&
