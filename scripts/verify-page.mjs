@@ -746,6 +746,27 @@ assert(
 );
 assert(
     responsiveStyles.includes(
+        "body:not(.case-page) {\n    min-height: 100dvh;",
+    ) &&
+        responsiveStyles.includes(
+            "body:not(.case-page) .layout {\n    min-height: 100dvh;",
+        ) &&
+        responsiveStyles.includes(
+            "body:not(.case-page) .sidebar {\n    height: 100dvh;",
+        ) &&
+        responsiveStyles.includes(
+            "body:not(.case-page) .content {\n    min-height: 100dvh;",
+        ) &&
+        responsiveStyles.includes(
+            "html.homepage-scroll-locked,\nhtml.homepage-scroll-locked body {\n    height: 100dvh;\n    overflow: hidden;\n    overscroll-behavior: none;",
+        ) &&
+        responsiveStyles.includes(
+            "html.homepage-scroll-locked body .layout {\n    height: 100dvh;\n    min-height: 100dvh;\n    overflow: hidden;",
+        ),
+    "The homepage must use dynamic viewport sizing and a non-reflowing scroll lock at larger widths.",
+);
+assert(
+    responsiveStyles.includes(
         "body:not(.case-page) {\n        min-height: 100svh;\n        height: auto;\n        overflow: visible;\n        overscroll-behavior: auto;",
     ) &&
         responsiveStyles.includes(
@@ -755,13 +776,13 @@ assert(
             "body:not(.case-page) .layout {\n        min-height: 100svh;\n        height: auto;\n        align-content: start;\n        overflow: visible;\n        overscroll-behavior: auto;\n        padding-bottom: 64px;",
         ) &&
         responsiveStyles.includes(
-            "html.mobile-homepage-locked,\n    html.mobile-homepage-locked body {\n        height: 100svh;\n        overflow: hidden;\n        overscroll-behavior: none;",
+            "html.homepage-scroll-locked,\n    html.homepage-scroll-locked body {\n        height: 100svh;\n        overflow: hidden;\n        overscroll-behavior: none;",
         ) &&
         responsiveStyles.includes(
-            "html.mobile-homepage-locked body .layout {\n        height: 100svh;\n        min-height: 100svh;\n        align-content: center;\n        overflow: hidden;\n        overscroll-behavior: none;",
+            "html.homepage-scroll-locked body .layout {\n        height: 100svh;\n        min-height: 100svh;\n        align-content: center;\n        overflow: hidden;\n        overscroll-behavior: none;",
         ) &&
         responsiveStyles.includes(
-            "html.mobile-homepage-locked body .layout {\n        height: 100svh;\n        min-height: 100svh;\n        align-content: center;\n        overflow: hidden;\n        overscroll-behavior: none;\n        padding-bottom: 0;",
+            "html.homepage-scroll-locked body .layout {\n        height: 100svh;\n        min-height: 100svh;\n        align-content: center;\n        overflow: hidden;\n        overscroll-behavior: none;\n        padding-bottom: 0;",
         ) &&
         responsiveStyles.includes(
             "body:not(.case-page) .name {\n        grid-column: 1;\n        order: 1;\n        position: sticky;\n        top: 0;\n        z-index: 100;\n        width: calc(100% + 56px);\n        margin-left: -12px;\n        padding: 24px 44px 8px 12px;\n        background: var(--bg);",
@@ -813,36 +834,41 @@ assert(
         siteScript.includes("new ResizeObserver") &&
         siteScript.includes("mobileLayoutTargets.forEach") &&
         siteScript.includes(
-            'let mobileHomepageLockState = "uninitialized";',
+            'let homepageLockState = "uninitialized";',
         ) &&
         siteScript.includes(
-            'let mobileHomepageUnlockedHeight = 0;',
+            'let homepageUnlockedHeight = 0;',
         ) &&
         siteScript.includes(
-            'let mobileHomepageUnlockedContentBottom = 0;',
+            'let homepageUnlockedContentBottom = 0;',
         ) &&
         siteScript.includes(
-            'root.classList.remove("mobile-homepage-locked");',
+            'root.classList.remove("homepage-scroll-locked");',
         ) &&
-        siteScript.includes("const minimumInset = 32;") &&
         siteScript.includes(
-            "(links?.getBoundingClientRect().bottom ?? 0) + window.scrollY",
+            'const isMobile = window.matchMedia("(max-width: 767px)").matches;',
+        ) &&
+        siteScript.includes(
+            "const minimumInset = isMobile ? 32 : 0;",
+        ) &&
+        siteScript.includes(
+            "document.querySelectorAll(\n                \".profile-summary, .portfolio-section, .links, .site-footer\",",
         ) &&
         siteScript.includes(
             "contentBottom + minimumInset * 2 <= window.innerHeight",
         ) &&
         siteScript.includes("const atTop = window.scrollY === 0;") &&
         siteScript.includes(
-            "Math.abs(\n                window.innerHeight - mobileHomepageUnlockedHeight,\n            ) >= 32",
+            "Math.abs(\n                window.innerHeight - homepageUnlockedHeight,\n            ) >= 32",
         ) &&
         siteScript.includes(
-            "mobileHomepageUnlockedContentBottom - contentBottom >= 32",
+            "homepageUnlockedContentBottom - contentBottom >= 32",
         ) &&
         !siteScript.includes(
             "window.scrollTo(0, 0);\n        root.classList.add",
         ) &&
         siteScript.includes(
-            'root.classList.add("mobile-homepage-locked");',
+            'root.classList.add("homepage-scroll-locked");',
         ) &&
         siteScript.includes(
             'window.addEventListener("load", updateMobileLayout);',
@@ -882,7 +908,7 @@ assert(
             ".portfolio-link-heading {\n    grid-column: 5;",
         ) &&
         portfolioStyles.includes(
-            "@media (min-width: 769px) {\n    .portfolio-table-header {\n        padding-top: 0;",
+            "@media (min-width: 768px) {\n    .portfolio-table-header {\n        padding-top: 0;",
         ) &&
         !portfolioStyles.includes(".portfolio-sort-button:hover") &&
         !portfolioStyles.includes("text-decoration: underline") &&
@@ -975,7 +1001,7 @@ assert(
             ".portfolio-card-link + .portfolio-card-link {\n    margin-top: 0;\n    border-top: 1px solid\n        color-mix(in srgb, var(--text-primary) 12%, transparent);",
         ) &&
         portfolioStyles.includes(
-            "@media (max-width: 768px) {\n    .portfolio-section {\n        grid-template-columns: max-content max-content minmax(0, 1fr) auto;\n        column-gap: clamp(8px, 3vw, 16px);",
+            "@media (max-width: 767px) {\n    .portfolio-section {\n        grid-template-columns: max-content max-content minmax(0, 1fr) auto;\n        column-gap: clamp(8px, 3vw, 16px);",
         ) &&
         portfolioStyles.includes(
             ".portfolio-link-heading,\n    .portfolio-card-arrow {\n        grid-column: 4;",

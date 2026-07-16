@@ -318,13 +318,13 @@
     outline-offset: 4px;
 }
 
-@media (min-width: 769px) {
+@media (min-width: 768px) {
     .portfolio-table-header {
         padding-top: 0;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .portfolio-section {
         grid-template-columns: max-content max-content minmax(0, 1fr) auto;
         column-gap: clamp(8px, 3vw, 16px);
