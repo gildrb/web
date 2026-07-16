@@ -242,20 +242,10 @@
 }
 
 @media (hover: hover) {
-    .portfolio-card-link:hover .portfolio-card-title {
-        color: var(--text-primary);
-    }
-
-    .portfolio-card-link:hover {
-        background: color-mix(
-            in srgb,
-            var(--text-primary) 8%,
-            transparent
-        );
-    }
-
+    .portfolio-card-link:hover .portfolio-card-title,
+    .portfolio-card-link:hover time,
     .portfolio-card-link:hover::after {
-        color: var(--text-primary);
+        color: var(--text-tertiary);
     }
 }
 

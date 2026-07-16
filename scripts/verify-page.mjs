@@ -254,15 +254,15 @@ assert(
         baseStyles.includes("--highlight-text: #ffffff;") &&
         baseStyles.includes("color: var(--highlight-text);") &&
         baseStyles.includes("background: var(--highlight-bg);") &&
-        portfolioStyles.includes(".portfolio-card-link:hover {") &&
         portfolioStyles.includes(
-            "background: color-mix(\n            in srgb,\n            var(--text-primary) 8%,\n            transparent\n        );",
+            ".portfolio-card-link:hover .portfolio-card-title,\n    .portfolio-card-link:hover time,\n    .portfolio-card-link:hover::after {\n        color: var(--text-tertiary);",
     ) &&
+        !portfolioStyles.includes("background: color-mix(") &&
         !portfolioStyles.includes(".portfolio-card-image::after") &&
         !hephDemoStyles.includes(".heph-demo-frame::after") &&
         !portfolioStyles.includes("mix-blend-mode:") &&
         !caseStyles.includes(".case-study-entry:hover img"),
-    "Clickable project media must use only the Read arrow treatment without a hover overlay or image dimming.",
+    "Clickable project rows must dim their text to tertiary gray without a hover background or image dimming.",
 );
 
 const hephDemoHexColors = new Set(
