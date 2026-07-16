@@ -675,7 +675,7 @@ assert(
             indexHtml.includes(`>${title}</span`),
     ) &&
         portfolioStyles.includes(
-            ".portfolio-card-link {\n    display: inline-grid;",
+            ".portfolio-card-link {\n    display: grid;",
         ) &&
         portfolioStyles.includes(
             "width: fit-content;",
