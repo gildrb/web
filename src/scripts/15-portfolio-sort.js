@@ -44,8 +44,8 @@ function getSortDescription(key, direction) {
 
     if (key === "field") {
         return direction === "ascending"
-            ? "Design then Engineering"
-            : "Engineering then Design";
+            ? "A to Z"
+            : "Z to A";
     }
 
     return direction === "ascending" ? "A to Z" : "Z to A";

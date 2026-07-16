@@ -741,8 +741,8 @@ assert(
         siteScript.includes(
             "announce(`Projects sorted by ${key}, ${description}.`)",
         ) &&
-        siteScript.includes('"Design then Engineering"') &&
-        siteScript.includes('"Engineering then Design"') &&
+        siteScript.includes('"A to Z"') &&
+        siteScript.includes('"Z to A"') &&
         siteScript.includes("if (event.detail !== 0) button.blur();") &&
         !caseScript.includes("portfolioSortButtons"),
     "The homepage must show white Date, Title, Field, and Link column headings and provide homepage-only accessible global project sorting.",
@@ -796,10 +796,14 @@ assert(
         !portfolioStyles.includes(".portfolio-card-arrow svg") &&
         !portfolioStyles.includes(".portfolio-card-link::after") &&
         (indexHtml.match(/class="portfolio-card-arrow"/g) || []).length === 5 &&
-        (indexHtml.match(/class="portfolio-card-field">Engineering/g) || [])
+        (indexHtml.match(/class="portfolio-card-field">Brand identity/g) || [])
+            .length === 1 &&
+        (indexHtml.match(/class="portfolio-card-field">Wordmark/g) || [])
             .length === 2 &&
-        (indexHtml.match(/class="portfolio-card-field">Design/g) || [])
-            .length === 3 &&
+        (indexHtml.match(/class="portfolio-card-field">Web engineering/g) || [])
+            .length === 1 &&
+        (indexHtml.match(/class="portfolio-card-field">Product engineering/g) || [])
+            .length === 1 &&
         (indexHtml.match(/class="portfolio-card-view">View<\/span>/g) || [])
             .length === 5 &&
         (indexHtml.match(/<span class="portfolio-card-view">View<\/span>\s+→/g) || [])
