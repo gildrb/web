@@ -603,19 +603,51 @@ body {
     margin-bottom: 32px;
 }
 
-.portfolio-group {
+.portfolio-table-header {
     display: grid;
     grid-column: 1 / -1;
     grid-template-columns: subgrid;
+    align-items: baseline;
+    padding: 8px 0;
+    color: var(--text-primary);
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    border-bottom: 1px solid
+        color-mix(in srgb, var(--text-primary) 12%, transparent);
 }
 
-.portfolio-group .section-title {
+.portfolio-sort-button {
+    appearance: none;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--text-primary);
+    font: inherit;
+    line-height: 24px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.portfolio-sort-date {
+    grid-column: 1;
+}
+
+.portfolio-sort-title {
+    grid-column: 2;
+}
+
+.portfolio-link-heading {
+    grid-column: 3;
+    line-height: 24px;
+    text-align: right;
+}
+
+.portfolio-list {
+    display: grid;
     grid-column: 1 / -1;
-    margin-bottom: var(--section-content-gap);
-    color: var(--text-secondary);
-}
-
-.portfolio-group + .portfolio-group {
+    grid-template-columns: subgrid;
     margin-top: 28px;
 }
 
@@ -636,6 +668,17 @@ body {
 
     .portfolio-card-link:hover .portfolio-card-view {
         visibility: visible;
+    }
+}
+
+.portfolio-sort-button:focus-visible {
+    outline: 1px solid var(--text-primary);
+    outline-offset: 4px;
+}
+
+@media (min-width: 769px) {
+    .portfolio-table-header {
+        padding-top: 0;
     }
 }
 
@@ -1419,6 +1462,13 @@ body {
     margin-bottom: 0;
 }
 
+.site-footer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    margin-top: 0;
+}
+
 .references-links {
     display: flex;
     flex-direction: column;
@@ -1436,8 +1486,22 @@ body {
     margin-bottom: 0;
 }
 
+.copyright {
+    color: var(--text-tertiary);
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: var(--link-line-height);
+    white-space: nowrap;
+    text-align: right;
+    margin-bottom: var(--footer-stack-bottom-gap);
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+}
+
 @media (min-width: 769px) {
-    .references-links {
+    .site-footer {
         margin-top: auto;
     }
 }
@@ -1972,8 +2036,14 @@ body {
         grid-column: span 1;
     }
 
-    .references-links {
+    .site-footer {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: end;
         margin-bottom: 32px;
+    }
+
+    .copyright {
+        align-self: end;
     }
 }
 
@@ -2115,22 +2185,24 @@ const scrollPositionKey = `gildrb:scroll:${window.location.pathname}${window.loc
 const navigationType = window.performance
     .getEntriesByType("navigation")[0]?.type;
 
-function updatePortfolioSiteDate() {
-    const portfolioSiteDate = document.querySelector("#portfolio-site-date");
-    if (!portfolioSiteDate) return;
-
+function updateHomepageDates() {
     const now = new Date();
     const day = String(now.getDate()).padStart(2, "0");
     const month = String(now.getMonth() + 1).padStart(2, "0");
     const year = String(now.getFullYear());
     const isoDate = `${year}-${month}-${day}`;
     const displayDate = isoDate;
+    const copyrightYear = document.querySelector("#copyright-year");
+    const portfolioSiteDate = document.querySelector("#portfolio-site-date");
+
+    if (copyrightYear) copyrightYear.textContent = year;
+    if (!portfolioSiteDate) return;
 
     portfolioSiteDate.textContent = displayDate;
     portfolioSiteDate.setAttribute("datetime", isoDate);
 }
 
-window.addEventListener("load", updatePortfolioSiteDate);
+window.addEventListener("load", updateHomepageDates);
 
 if ("scrollRestoration" in window.history) {
     window.history.scrollRestoration = "manual";

@@ -255,7 +255,7 @@ assert(
         baseStyles.includes("color: var(--highlight-text);") &&
         baseStyles.includes("background: var(--highlight-bg);") &&
         portfolioStyles.includes(
-            "@media (hover: hover) {\n    .portfolio-card-link:hover {\n        color: var(--text-primary);",
+            ".portfolio-card-link:hover {\n        color: var(--text-primary);",
         ) &&
         portfolioStyles.includes(
             ".portfolio-card-link:hover .portfolio-card-view {\n        visibility: visible;",
@@ -329,9 +329,19 @@ assert(
     "Removed Personal media and its preview machinery must stay absent, and arrow navigation must omit hidden controls.",
 );
 assert(
-    indexHtml.includes('aria-label="Metadata"') &&
-        indexHtml.includes('<p class="links-label">Metadata</p>'),
-    "The footer must group humans.txt, llms.txt, and profile.json as metadata.",
+    indexHtml.includes('<footer class="site-footer">') &&
+        indexHtml.includes('aria-label="Metadata"') &&
+        indexHtml.includes('<p class="links-label">Metadata</p>') &&
+        indexHtml.includes('<p class="copyright">') &&
+        indexHtml.includes(
+            '© <span id="copyright-year">2026</span> Gil Rodrigues',
+        ) &&
+        caseHtml.every(
+            (html) =>
+                !html.includes('class="site-footer"') &&
+                !html.includes('id="copyright-year"'),
+        ),
+    "The homepage-only footer must group Metadata with the copyright fallback.",
 );
 const hephAsciiSignature =
     "HEPH // BRANDMARK RASTER 64x22 // GIL RODRIGUES / GILDRB";
@@ -416,12 +426,24 @@ assert(
 );
 assert(
     previewContentStyles.includes(
-        ".references-links {\n    display: flex;\n    flex-direction: column;\n    row-gap: var(--section-content-gap);\n    margin-top: 0;",
+        ".site-footer {\n    display: grid;\n    grid-template-columns: minmax(0, 1fr) auto;\n    align-items: end;\n    margin-top: 0;",
     ) &&
-        !responsiveStyles.includes(
-            ".references-links {\n        margin-top:",
+        previewContentStyles.includes(
+            ".references-links {\n    display: flex;\n    flex-direction: column;\n    row-gap: var(--section-content-gap);\n    margin-top: 0;",
+        ) &&
+        previewContentStyles.includes(
+            '.copyright {\n    color: var(--text-tertiary);\n    font-family: "Inter", sans-serif;\n    font-size: 16px;\n    font-weight: 400;\n    line-height: var(--link-line-height);\n    white-space: nowrap;\n    text-align: right;\n    margin-bottom: var(--footer-stack-bottom-gap);',
+        ) &&
+        previewContentStyles.includes(
+            "@media (min-width: 769px) {\n    .site-footer {\n        margin-top: auto;",
+        ) &&
+        responsiveStyles.includes(
+            ".site-footer {\n        grid-template-columns: minmax(0, 1fr) auto;\n        align-items: end;\n        margin-bottom: 32px;",
+        ) &&
+        responsiveStyles.includes(
+            ".copyright {\n        align-self: end;",
         ),
-    "Metadata must follow n0thing by the same positive 32px project gap without legacy negative offsets.",
+    "The footer must align a dark-gray Inter copyright with profile.json at the far-right edge on desktop and mobile.",
 );
 
 assert(
@@ -670,6 +692,53 @@ assert(
         ),
     "The first solid project media must use the 32px optical gap from the adjacent text block at every viewport.",
 );
+assert(
+    indexHtml.includes('class="portfolio-table-header"') &&
+        indexHtml.includes('aria-label="Project columns"') &&
+        indexHtml.includes('data-sort-key="date"') &&
+        indexHtml.includes('data-sort-key="title"') &&
+        indexHtml.includes(">\n                                Date\n") &&
+        indexHtml.includes(">\n                                Title\n") &&
+        indexHtml.includes(
+            '<span class="portfolio-link-heading">Link</span>',
+        ) &&
+        indexHtml.indexOf('class="portfolio-table-header"') <
+            indexHtml.indexOf('class="portfolio-list"') &&
+        portfolioStyles.includes(
+            ".portfolio-table-header {\n    display: grid;\n    grid-column: 1 / -1;\n    grid-template-columns: subgrid;",
+        ) &&
+        portfolioStyles.includes(
+            'font-family: "Inter", sans-serif;\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 24px;',
+        ) &&
+        portfolioStyles.includes(
+            ".portfolio-sort-date {\n    grid-column: 1;",
+        ) &&
+        portfolioStyles.includes(
+            ".portfolio-sort-title {\n    grid-column: 2;",
+        ) &&
+        portfolioStyles.includes(
+            ".portfolio-link-heading {\n    grid-column: 3;",
+        ) &&
+        portfolioStyles.includes(
+            "@media (min-width: 769px) {\n    .portfolio-table-header {\n        padding-top: 0;",
+        ) &&
+        !portfolioStyles.includes(".portfolio-sort-button:hover") &&
+        !portfolioStyles.includes("text-decoration: underline") &&
+        siteScript.includes('".portfolio-sort-button"') &&
+        siteScript.includes('document.querySelector(".portfolio-list")') &&
+        siteScript.includes("titleCollator.compare(leftValue, rightValue)") &&
+        siteScript.includes('getAttribute("datetime")') &&
+        siteScript.includes("leftValue.localeCompare(rightValue)") &&
+        siteScript.includes(
+            "rows.forEach((row) => portfolioList.append(row));",
+        ) &&
+        siteScript.includes(
+            "announce(`Projects sorted by ${key}, ${description}.`)",
+        ) &&
+        siteScript.includes("if (event.detail !== 0) button.blur();") &&
+        !caseScript.includes("portfolioSortButtons"),
+    "The homepage must show white Date, Title, and Link column headings and provide homepage-only accessible global project sorting.",
+);
 const portfolioDates = [
     ["2026-04-21", "2026-04-21", "Heph"],
     ["2026-01-14", "2026-01-14", "Filen"],
@@ -686,7 +755,7 @@ assert(
             ".portfolio-section {\n    display: grid;\n    grid-template-columns: auto minmax(0, 1fr) auto;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-group {\n    display: grid;\n    grid-column: 1 / -1;\n    grid-template-columns: subgrid;",
+            ".portfolio-list {\n    display: grid;\n    grid-column: 1 / -1;\n    grid-template-columns: subgrid;\n    margin-top: 28px;",
         ) &&
         portfolioStyles.includes(
             ".portfolio-card-link {\n    display: grid;\n    grid-column: 1 / -1;\n    grid-template-columns: subgrid;",
@@ -740,6 +809,15 @@ assert(
     "The site card must expose a fallback date and update it to the visitor's current local date.",
 );
 assert(
+    siteScript.includes("function updateHomepageDates()") &&
+        siteScript.includes('document.querySelector("#copyright-year")') &&
+        siteScript.includes("copyrightYear.textContent = year;") &&
+        siteScript.includes(
+            'window.addEventListener("load", updateHomepageDates);',
+        ),
+    "The copyright must replace its 2026 fallback with the visitor's current local year on load.",
+);
+assert(
     portfolioStyles.includes(
         ".portfolio-card-link:focus-visible {\n    color: var(--text-primary);\n    outline: 1px solid var(--text-primary);\n    outline-offset: 6px;",
     ) &&
@@ -752,10 +830,9 @@ assert(
     baseStyles.includes(
         ".name {\n    font-size: 19px;\n    font-weight: 400;\n    line-height: var(--link-line-height);\n    letter-spacing: -0.02em;\n    color: var(--text-primary);\n    min-height: calc(var(--link-line-height) * 2);\n    margin-bottom: calc(\n        var(--section-gap) + var(--section-content-gap) +\n            var(--text-media-gap) - var(--link-line-height)\n    );",
     ),
-    "The sidebar Links block must align with the homepage Engineering label through token-based name spacing.",
+    "The sidebar Links block must align with the homepage column header through token-based name spacing.",
 );
 const chronologicalProjectTitles = [
-    // Engineering group first, then Design group.
     "portfolio-site-title",
     "portfolio-heph-title",
     "portfolio-filen-title",
@@ -768,26 +845,15 @@ assert(
         .every((position, index, positions) =>
             index === 0 ? position !== -1 : position > positions[index - 1],
         ),
-    "Homepage projects must follow the grouped order: Engineering (This website, Heph) then Design (Filen, n0thing, mL7).",
+    "Homepage projects must default to one global newest-first order: This website, Heph, Filen, n0thing, mL7.",
 );
 assert(
-    indexHtml.includes(
-        '<h2 class="section-title" id="portfolio-group-engineering-title">Engineering</h2>',
-    ) &&
-        indexHtml.includes(
-            '<h2 class="section-title" id="portfolio-group-design-title">Design</h2>',
-        ) &&
-        indexHtml.indexOf('id="portfolio-group-engineering-title"') <
-            indexHtml.indexOf('id="portfolio-group-design-title"') &&
-        indexHtml.indexOf('id="portfolio-group-engineering-title"') <
-            indexHtml.indexOf('id="portfolio-site-title"') &&
-        indexHtml.indexOf('id="portfolio-group-design-title"') <
-            indexHtml.indexOf('id="portfolio-filen-title"') &&
-        portfolioStyles.includes(
-            ".portfolio-group .section-title {\n    grid-column: 1 / -1;\n    margin-bottom: var(--section-content-gap);\n    color: var(--text-secondary);",
-        ) &&
-        !portfolioStyles.includes(":first-of-type"),
-    "Homepage must split projects into Engineering and Design groups with bright-gray section labels.",
+    indexHtml.includes('class="portfolio-list"') &&
+        !indexHtml.includes("portfolio-group-engineering-title") &&
+        !indexHtml.includes("portfolio-group-design-title") &&
+        !portfolioStyles.includes(".portfolio-group") &&
+        (indexHtml.match(/class="portfolio-card-link"/g) || []).length === 5,
+    "Homepage projects must live in one globally sortable list without category dividers.",
 );
 assert(
     !indexHtml.includes("<img") &&

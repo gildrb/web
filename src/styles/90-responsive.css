@@ -173,8 +173,14 @@
         grid-column: span 1;
     }
 
-    .references-links {
+    .site-footer {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: end;
         margin-bottom: 32px;
+    }
+
+    .copyright {
+        align-self: end;
     }
 }
 

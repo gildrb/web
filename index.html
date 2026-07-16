@@ -1519,19 +1519,51 @@ body {
     margin-bottom: 32px;
 }
 
-.portfolio-group {
+.portfolio-table-header {
     display: grid;
     grid-column: 1 / -1;
     grid-template-columns: subgrid;
+    align-items: baseline;
+    padding: 8px 0;
+    color: var(--text-primary);
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    border-bottom: 1px solid
+        color-mix(in srgb, var(--text-primary) 12%, transparent);
 }
 
-.portfolio-group .section-title {
+.portfolio-sort-button {
+    appearance: none;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--text-primary);
+    font: inherit;
+    line-height: 24px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.portfolio-sort-date {
+    grid-column: 1;
+}
+
+.portfolio-sort-title {
+    grid-column: 2;
+}
+
+.portfolio-link-heading {
+    grid-column: 3;
+    line-height: 24px;
+    text-align: right;
+}
+
+.portfolio-list {
+    display: grid;
     grid-column: 1 / -1;
-    margin-bottom: var(--section-content-gap);
-    color: var(--text-secondary);
-}
-
-.portfolio-group + .portfolio-group {
+    grid-template-columns: subgrid;
     margin-top: 28px;
 }
 
@@ -1552,6 +1584,17 @@ body {
 
     .portfolio-card-link:hover .portfolio-card-view {
         visibility: visible;
+    }
+}
+
+.portfolio-sort-button:focus-visible {
+    outline: 1px solid var(--text-primary);
+    outline-offset: 4px;
+}
+
+@media (min-width: 769px) {
+    .portfolio-table-header {
+        padding-top: 0;
     }
 }
 
@@ -2335,6 +2378,13 @@ body {
     margin-bottom: 0;
 }
 
+.site-footer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    margin-top: 0;
+}
+
 .references-links {
     display: flex;
     flex-direction: column;
@@ -2352,8 +2402,22 @@ body {
     margin-bottom: 0;
 }
 
+.copyright {
+    color: var(--text-tertiary);
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: var(--link-line-height);
+    white-space: nowrap;
+    text-align: right;
+    margin-bottom: var(--footer-stack-bottom-gap);
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+}
+
 @media (min-width: 769px) {
-    .references-links {
+    .site-footer {
         margin-top: auto;
     }
 }
@@ -2888,8 +2952,14 @@ body {
         grid-column: span 1;
     }
 
-    .references-links {
+    .site-footer {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: end;
         margin-bottom: 32px;
+    }
+
+    .copyright {
+        align-self: end;
     }
 }
 
@@ -3048,12 +3118,32 @@ body {
                         class="portfolio-section"
                         aria-label="Portfolio"
                     >
-                    <div
-                        class="portfolio-group"
-                        role="group"
-                        aria-labelledby="portfolio-group-engineering-title"
-                    >
-                        <h2 class="section-title" id="portfolio-group-engineering-title">Engineering</h2>
+                        <div
+                            class="portfolio-table-header"
+                            aria-label="Project columns"
+                        >
+                            <button
+                                class="portfolio-sort-button portfolio-sort-date"
+                                type="button"
+                                data-sort-key="date"
+                                data-sort-direction="descending"
+                                aria-pressed="true"
+                                aria-label="Sort projects by date, currently newest first"
+                            >
+                                Date
+                            </button>
+                            <button
+                                class="portfolio-sort-button portfolio-sort-title"
+                                type="button"
+                                data-sort-key="title"
+                                aria-pressed="false"
+                                aria-label="Sort projects by title"
+                            >
+                                Title
+                            </button>
+                            <span class="portfolio-link-heading">Link</span>
+                        </div>
+                        <div class="portfolio-list">
                         <a
                             class="portfolio-card-link"
                             href="/site"
@@ -3086,13 +3176,6 @@ body {
                                 →
                             </span>
                         </a>
-                    </div>
-                    <div
-                        class="portfolio-group"
-                        role="group"
-                        aria-labelledby="portfolio-group-design-title"
-                    >
-                        <h2 class="section-title" id="portfolio-group-design-title">Design</h2>
                         <a
                             class="portfolio-card-link"
                             href="/filen"
@@ -3141,35 +3224,40 @@ body {
                                 →
                             </span>
                         </a>
-                    </div>
+                        </div>
                     </section>
-                    <nav
-                        class="references-links"
-                        aria-label="Metadata"
-                    >
-                        <p class="links-label">Metadata</p>
-                        <a
-                            class="reference-link"
-                            href="humans.txt"
-                            rel="author"
-                            type="text/plain"
-                            >humans.txt</a
+                    <footer class="site-footer">
+                        <nav
+                            class="references-links"
+                            aria-label="Metadata"
                         >
-                        <a
-                            class="reference-link"
-                            href="llms.txt"
-                            rel="alternate"
-                            type="text/markdown"
-                            >llms.txt</a
-                        >
-                        <a
-                            class="reference-link"
-                            href="profile.json"
-                            rel="alternate"
-                            type="application/ld+json"
-                            >profile.json</a
-                        >
-                    </nav>
+                            <p class="links-label">Metadata</p>
+                            <a
+                                class="reference-link"
+                                href="humans.txt"
+                                rel="author"
+                                type="text/plain"
+                                >humans.txt</a
+                            >
+                            <a
+                                class="reference-link"
+                                href="llms.txt"
+                                rel="alternate"
+                                type="text/markdown"
+                                >llms.txt</a
+                            >
+                            <a
+                                class="reference-link"
+                                href="profile.json"
+                                rel="alternate"
+                                type="application/ld+json"
+                                >profile.json</a
+                            >
+                        </nav>
+                        <p class="copyright">
+                            © <span id="copyright-year">2026</span> Gil Rodrigues
+                        </p>
+                    </footer>
 
                 </main>
             </div>
@@ -3205,22 +3293,24 @@ const scrollPositionKey = `gildrb:scroll:${window.location.pathname}${window.loc
 const navigationType = window.performance
     .getEntriesByType("navigation")[0]?.type;
 
-function updatePortfolioSiteDate() {
-    const portfolioSiteDate = document.querySelector("#portfolio-site-date");
-    if (!portfolioSiteDate) return;
-
+function updateHomepageDates() {
     const now = new Date();
     const day = String(now.getDate()).padStart(2, "0");
     const month = String(now.getMonth() + 1).padStart(2, "0");
     const year = String(now.getFullYear());
     const isoDate = `${year}-${month}-${day}`;
     const displayDate = isoDate;
+    const copyrightYear = document.querySelector("#copyright-year");
+    const portfolioSiteDate = document.querySelector("#portfolio-site-date");
+
+    if (copyrightYear) copyrightYear.textContent = year;
+    if (!portfolioSiteDate) return;
 
     portfolioSiteDate.textContent = displayDate;
     portfolioSiteDate.setAttribute("datetime", isoDate);
 }
 
-window.addEventListener("load", updatePortfolioSiteDate);
+window.addEventListener("load", updateHomepageDates);
 
 if ("scrollRestoration" in window.history) {
     window.history.scrollRestoration = "manual";
@@ -3297,6 +3387,90 @@ function announce(message) {
         srOnly.textContent = "";
     }, 1000);
 }
+
+const portfolioSortButtons = document.querySelectorAll(
+    ".portfolio-sort-button",
+);
+const portfolioList = document.querySelector(".portfolio-list");
+const titleCollator = new Intl.Collator("en", {
+    numeric: true,
+    sensitivity: "base",
+});
+
+function getPortfolioRowValue(row, key) {
+    if (key === "date") {
+        return row.querySelector("time").getAttribute("datetime");
+    }
+
+    return row.querySelector(".portfolio-card-title").textContent.trim();
+}
+
+function sortPortfolioRows(key, direction) {
+    const directionFactor = direction === "ascending" ? 1 : -1;
+    const rows = [
+        ...portfolioList.querySelectorAll(".portfolio-card-link"),
+    ];
+
+    rows.sort((left, right) => {
+        const leftValue = getPortfolioRowValue(left, key);
+        const rightValue = getPortfolioRowValue(right, key);
+        const comparison =
+            key === "date"
+                ? leftValue.localeCompare(rightValue)
+                : titleCollator.compare(leftValue, rightValue);
+
+        return comparison * directionFactor;
+    });
+
+    rows.forEach((row) => portfolioList.append(row));
+}
+
+function getSortDescription(key, direction) {
+    if (key === "date") {
+        return direction === "ascending" ? "oldest first" : "newest first";
+    }
+
+    return direction === "ascending" ? "A to Z" : "Z to A";
+}
+
+portfolioSortButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+        const key = button.dataset.sortKey;
+        const currentDirection = button.dataset.sortDirection;
+        const isActive = button.getAttribute("aria-pressed") === "true";
+        let direction;
+
+        if (isActive) {
+            direction =
+                currentDirection === "ascending"
+                    ? "descending"
+                    : "ascending";
+        } else {
+            direction = key === "date" ? "descending" : "ascending";
+        }
+
+        const description = getSortDescription(key, direction);
+
+        portfolioSortButtons.forEach((sortButton) => {
+            sortButton.setAttribute("aria-pressed", "false");
+            sortButton.removeAttribute("data-sort-direction");
+            sortButton.setAttribute(
+                "aria-label",
+                `Sort projects by ${sortButton.dataset.sortKey}`,
+            );
+        });
+
+        button.setAttribute("aria-pressed", "true");
+        button.dataset.sortDirection = direction;
+        button.setAttribute(
+            "aria-label",
+            `Sort projects by ${key}, currently ${description}`,
+        );
+        sortPortfolioRows(key, direction);
+        announce(`Projects sorted by ${key}, ${description}.`);
+        if (event.detail !== 0) button.blur();
+    });
+});
 
 function getTheme() {
     const selectedTheme = document.documentElement.dataset.theme;
