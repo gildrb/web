@@ -2912,19 +2912,36 @@ body {
 }
 
 @media (max-width: 768px) {
-    html:has(body:not(.case-page)),
     body:not(.case-page) {
+        min-height: 100svh;
+        height: auto;
+        overflow: visible;
+        overscroll-behavior: auto;
+    }
+
+    body:not(.case-page) .layout {
+        min-height: 100svh;
+        height: auto;
+        align-content: start;
+        overflow: visible;
+        overscroll-behavior: auto;
+        padding-bottom: 64px;
+    }
+
+    html.mobile-homepage-locked,
+    html.mobile-homepage-locked body {
         height: 100svh;
         overflow: hidden;
         overscroll-behavior: none;
     }
 
-    body:not(.case-page) .layout {
+    html.mobile-homepage-locked body .layout {
         height: 100svh;
         min-height: 100svh;
         align-content: center;
         overflow: hidden;
         overscroll-behavior: none;
+        padding-bottom: 0;
     }
 
     .wrapper {
@@ -3502,17 +3519,47 @@ function updateMobileLinksLayout() {
     );
 }
 
-window.addEventListener("load", updateMobileLinksLayout);
-window.addEventListener("resize", updateMobileLinksLayout);
+function updateMobileHomepageLock() {
+    const root = document.documentElement;
+    const body = document.body;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+    root.classList.remove("mobile-homepage-locked");
+    if (!body || body.classList.contains("case-page") || !isMobile) return;
+
+    const links = document.querySelector(".links");
+    const contentBottom =
+        (links?.getBoundingClientRect().bottom ?? 0) + window.scrollY;
+    const minimumInset = 32;
+    const fits = contentBottom + minimumInset * 2 <= window.innerHeight;
+
+    if (fits) {
+        window.scrollTo(0, 0);
+        root.classList.add("mobile-homepage-locked");
+    }
+}
+
+function updateMobileLayout() {
+    updateMobileLinksLayout();
+    updateMobileHomepageLock();
+}
+
+window.addEventListener("load", updateMobileLayout);
+window.addEventListener("resize", updateMobileLayout);
 
 const portfolioSection = document.querySelector(".portfolio-section");
 const portfolioSiteDate = document.querySelector("#portfolio-site-date");
+const mobileLayoutTargets = [
+    portfolioSection,
+    portfolioSiteDate,
+    document.querySelector(".profile-summary"),
+    document.querySelector(".links"),
+].filter(Boolean);
 if ("ResizeObserver" in window) {
     const updateOnResize = new ResizeObserver(() => {
-        window.setTimeout(updateMobileLinksLayout, 0);
+        window.setTimeout(updateMobileLayout, 0);
     });
-    if (portfolioSection) updateOnResize.observe(portfolioSection);
-    if (portfolioSiteDate) updateOnResize.observe(portfolioSiteDate);
+    mobileLayoutTargets.forEach((target) => updateOnResize.observe(target));
 }
 
 if ("scrollRestoration" in window.history) {

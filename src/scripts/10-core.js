@@ -49,17 +49,47 @@ function updateMobileLinksLayout() {
     );
 }
 
-window.addEventListener("load", updateMobileLinksLayout);
-window.addEventListener("resize", updateMobileLinksLayout);
+function updateMobileHomepageLock() {
+    const root = document.documentElement;
+    const body = document.body;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+    root.classList.remove("mobile-homepage-locked");
+    if (!body || body.classList.contains("case-page") || !isMobile) return;
+
+    const links = document.querySelector(".links");
+    const contentBottom =
+        (links?.getBoundingClientRect().bottom ?? 0) + window.scrollY;
+    const minimumInset = 32;
+    const fits = contentBottom + minimumInset * 2 <= window.innerHeight;
+
+    if (fits) {
+        window.scrollTo(0, 0);
+        root.classList.add("mobile-homepage-locked");
+    }
+}
+
+function updateMobileLayout() {
+    updateMobileLinksLayout();
+    updateMobileHomepageLock();
+}
+
+window.addEventListener("load", updateMobileLayout);
+window.addEventListener("resize", updateMobileLayout);
 
 const portfolioSection = document.querySelector(".portfolio-section");
 const portfolioSiteDate = document.querySelector("#portfolio-site-date");
+const mobileLayoutTargets = [
+    portfolioSection,
+    portfolioSiteDate,
+    document.querySelector(".profile-summary"),
+    document.querySelector(".links"),
+].filter(Boolean);
 if ("ResizeObserver" in window) {
     const updateOnResize = new ResizeObserver(() => {
-        window.setTimeout(updateMobileLinksLayout, 0);
+        window.setTimeout(updateMobileLayout, 0);
     });
-    if (portfolioSection) updateOnResize.observe(portfolioSection);
-    if (portfolioSiteDate) updateOnResize.observe(portfolioSiteDate);
+    mobileLayoutTargets.forEach((target) => updateOnResize.observe(target));
 }
 
 if ("scrollRestoration" in window.history) {
