@@ -286,9 +286,9 @@ assert(
         [...hephDemoHexColors].every((color) =>
             ["#f96664", "#face2e", "#3bc55d"].includes(color),
         ) &&
-        indexHtml.includes("EVIDENCE <b>ctrl+g</b>") &&
-        indexHtml.includes("SCOPE <b>4/4</b>") &&
-        indexHtml.includes("EXCERPTS <b>4</b>") &&
+        hephHtml.includes("EVIDENCE <b>ctrl+g</b>") &&
+        hephHtml.includes("SCOPE <b>4/4</b>") &&
+        hephHtml.includes("EXCERPTS <b>4</b>") &&
         siteScript.includes('hephDemoEvidenceOpen.innerHTML = "EVIDENCE <b>ctrl+g</b>"') &&
         siteScript.includes('hephDemoEvidenceMeta.innerHTML = "EXCERPTS <b>4</b>"'),
     "Heph must theme its surface and use shared primary, label, and value colors plus the macOS lights.",
@@ -347,25 +347,13 @@ assert(
     "The Heph-to-Filen gap must use the optically compensated 32px project rhythm.",
 );
 assert(
-    indexHtml.includes('<div class="heph-demo-frame">') &&
-        indexHtml.includes(
-            'class="heph-demo-shell"\n                                    aria-hidden="true"',
-        ) &&
-        !indexHtml.includes(
-            'aria-labelledby="portfolio-heph-title"\n                            aria-hidden="true"',
-        ) &&
-        indexHtml.indexOf(
-            '<div class="heph-demo-frame">',
-        ) <
-            indexHtml.indexOf('class="heph-demo-shell"') &&
-        indexHtml.indexOf('class="portfolio-card-meta portfolio-card-link"') >
-            indexHtml.indexOf(
-                '<div class="heph-demo-frame">',
-            ) &&
+    !indexHtml.includes('<div class="heph-demo-frame">') &&
+        !indexHtml.includes('class="heph-demo-shell"') &&
+        hephHtml.includes('<div class="heph-demo-frame">') &&
         (await readText("src/styles/30-heph-demo.css")).includes(
             ".heph-demo-frame {\n        padding: 34px 14px;\n        border-radius: 24px;\n        background: var(--heph-demo-mobile-bg);",
         ),
-    "Mobile Heph chrome must wrap only the terminal, leaving its date and title below the panel.",
+    "The interactive Heph demo must live only on the Heph case study, keeping its mobile chrome there and off the homepage.",
 );
 assert(
     hephMarkdown.includes("![Heph demo](media:heph-demo)") &&
@@ -434,12 +422,10 @@ assert(
     "Homepage does not link to the Filen case study.",
 );
 assert(
-    (indexHtml.match(/href="\/heph"/g) || []).length === 2 &&
-        /<a\s+class="heph-demo-zoom-link"\s+href="\/heph"\s+aria-label="Open the Heph case study"/.test(
-            indexHtml,
-        ) &&
+    (indexHtml.match(/href="\/heph"/g) || []).length === 1 &&
+        !indexHtml.includes('class="heph-demo-zoom-link"') &&
         !indexHtml.includes('href="https://github.com/gildrb/heph"'),
-    "Homepage Heph metadata and green window control must link only to the local case study.",
+    "Homepage must link to the Heph case study exactly once through its card and never to the repository.",
 );
 assert(
     hephDemoStyles.includes(
@@ -482,13 +468,6 @@ assert(
 assert(
     (indexHtml.match(/href="\/filen"/g) || []).length === 1,
     "Only the featured Filen image may link to the case study.",
-);
-assert(
-    indexHtml.includes('class="showcase showcase-full"') &&
-        indexHtml.includes(
-            '(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px',
-        ),
-    "The clickable Filen media must use the optimized 760px content width.",
 );
 assert(
     (indexHtml.match(/href="\/ml7"/g) || []).length === 1,
@@ -740,12 +719,12 @@ assert(
     "Heph metadata focus must use the shared offset ring without an ancestor clipping it.",
 );
 const chronologicalProjectTitles = [
+    // Engineering group first, then Design group.
+    "portfolio-site-title",
     "portfolio-heph-title",
     "portfolio-filen-title",
     "portfolio-n0thing-title",
     "portfolio-ml7-title",
-    // This website is intentionally a closing proof point, not a chronological entry.
-    "portfolio-site-title",
 ];
 assert(
     chronologicalProjectTitles
@@ -753,7 +732,29 @@ assert(
         .every((position, index, positions) =>
             index === 0 ? position !== -1 : position > positions[index - 1],
         ),
-    "Homepage projects must remain ordered newest to oldest, followed by the intentional closing site proof: Heph, Filen, n0thing, mL7, This website.",
+    "Homepage projects must follow the grouped order: Engineering (This website, Heph) then Design (Filen, n0thing, mL7).",
+);
+assert(
+    indexHtml.includes(
+        '<h2 class="section-title" id="portfolio-group-engineering-title">Engineering</h2>',
+    ) &&
+        indexHtml.includes(
+            '<h2 class="section-title" id="portfolio-group-design-title">Design</h2>',
+        ) &&
+        indexHtml.indexOf('id="portfolio-group-engineering-title"') <
+            indexHtml.indexOf('id="portfolio-group-design-title"') &&
+        indexHtml.indexOf('id="portfolio-group-engineering-title"') <
+            indexHtml.indexOf('id="portfolio-site-title"') &&
+        indexHtml.indexOf('id="portfolio-group-design-title"') <
+            indexHtml.indexOf('id="portfolio-filen-title"'),
+    "Homepage must split projects into an Engineering group then a Design group with bright-gray section labels.",
+);
+assert(
+    !indexHtml.includes("<img") &&
+        !indexHtml.includes('class="portfolio-card-image"') &&
+        !indexHtml.includes('class="showcase') &&
+        !indexHtml.includes('class="gallery'),
+    "The homepage must present projects as text-only date/title cards without media.",
 );
 assert(
     caseStyles.includes(
