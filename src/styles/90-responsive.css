@@ -146,6 +146,34 @@
         row-gap: var(--section-content-gap);
     }
 
+    .links.mobile-links-grid {
+        display: grid;
+        grid-template-columns:
+            var(--mobile-contact-start) minmax(0, 1fr);
+        column-gap: 0;
+    }
+
+    .mobile-links-grid > .links-label:not(.contact-label),
+    .mobile-links-grid > .external-link {
+        grid-column: 1;
+    }
+
+    .mobile-links-grid > .contact-label {
+        grid-column: 2;
+        grid-row: 1;
+        margin-top: 0;
+    }
+
+    .mobile-links-grid > .contact-label ~ .email {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .mobile-links-grid > .contact-label ~ .external-link {
+        grid-column: 2;
+        grid-row: 3;
+    }
+
     .case-page .links {
         order: 6;
         margin-top: 80px;

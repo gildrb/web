@@ -28,6 +28,40 @@ function updateHomepageDates() {
 
 window.addEventListener("load", updateHomepageDates);
 
+function updateMobileLinksLayout() {
+    const links = document.querySelector(".links");
+    const portfolioField = document.querySelector(".portfolio-sort-field");
+    if (!links || !portfolioField) return;
+
+    if (!window.matchMedia("(max-width: 768px)").matches) {
+        links.classList.remove("mobile-links-grid");
+        links.style.removeProperty("--mobile-contact-start");
+        return;
+    }
+
+    const start =
+        portfolioField.getBoundingClientRect().left -
+        links.getBoundingClientRect().left;
+    links.classList.add("mobile-links-grid");
+    links.style.setProperty(
+        "--mobile-contact-start",
+        `${Math.max(0, start)}px`,
+    );
+}
+
+window.addEventListener("load", updateMobileLinksLayout);
+window.addEventListener("resize", updateMobileLinksLayout);
+
+const portfolioSection = document.querySelector(".portfolio-section");
+const portfolioSiteDate = document.querySelector("#portfolio-site-date");
+if ("ResizeObserver" in window) {
+    const updateOnResize = new ResizeObserver(() => {
+        window.setTimeout(updateMobileLinksLayout, 0);
+    });
+    if (portfolioSection) updateOnResize.observe(portfolioSection);
+    if (portfolioSiteDate) updateOnResize.observe(portfolioSiteDate);
+}
+
 if ("scrollRestoration" in window.history) {
     window.history.scrollRestoration = "manual";
 }

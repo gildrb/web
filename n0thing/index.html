@@ -2058,6 +2058,34 @@ body {
         row-gap: var(--section-content-gap);
     }
 
+    .links.mobile-links-grid {
+        display: grid;
+        grid-template-columns:
+            var(--mobile-contact-start) minmax(0, 1fr);
+        column-gap: 0;
+    }
+
+    .mobile-links-grid > .links-label:not(.contact-label),
+    .mobile-links-grid > .external-link {
+        grid-column: 1;
+    }
+
+    .mobile-links-grid > .contact-label {
+        grid-column: 2;
+        grid-row: 1;
+        margin-top: 0;
+    }
+
+    .mobile-links-grid > .contact-label ~ .email {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .mobile-links-grid > .contact-label ~ .external-link {
+        grid-column: 2;
+        grid-row: 3;
+    }
+
     .case-page .links {
         order: 6;
         margin-top: 80px;
@@ -2296,6 +2324,40 @@ function updateHomepageDates() {
 }
 
 window.addEventListener("load", updateHomepageDates);
+
+function updateMobileLinksLayout() {
+    const links = document.querySelector(".links");
+    const portfolioField = document.querySelector(".portfolio-sort-field");
+    if (!links || !portfolioField) return;
+
+    if (!window.matchMedia("(max-width: 768px)").matches) {
+        links.classList.remove("mobile-links-grid");
+        links.style.removeProperty("--mobile-contact-start");
+        return;
+    }
+
+    const start =
+        portfolioField.getBoundingClientRect().left -
+        links.getBoundingClientRect().left;
+    links.classList.add("mobile-links-grid");
+    links.style.setProperty(
+        "--mobile-contact-start",
+        `${Math.max(0, start)}px`,
+    );
+}
+
+window.addEventListener("load", updateMobileLinksLayout);
+window.addEventListener("resize", updateMobileLinksLayout);
+
+const portfolioSection = document.querySelector(".portfolio-section");
+const portfolioSiteDate = document.querySelector("#portfolio-site-date");
+if ("ResizeObserver" in window) {
+    const updateOnResize = new ResizeObserver(() => {
+        window.setTimeout(updateMobileLinksLayout, 0);
+    });
+    if (portfolioSection) updateOnResize.observe(portfolioSection);
+    if (portfolioSiteDate) updateOnResize.observe(portfolioSiteDate);
+}
 
 if ("scrollRestoration" in window.history) {
     window.history.scrollRestoration = "manual";

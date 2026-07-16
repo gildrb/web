@@ -743,13 +743,36 @@ assert(
         responsiveStyles.includes(
             ".links {\n        grid-column: 1 / -1;\n        order: 4;\n        margin-bottom: 0;",
         ) &&
+        responsiveStyles.includes(
+            ".links.mobile-links-grid {\n        display: grid;\n        grid-template-columns:\n            var(--mobile-contact-start) minmax(0, 1fr);\n        column-gap: 0;",
+        ) &&
+        responsiveStyles.includes(
+            ".mobile-links-grid > .contact-label {\n        grid-column: 2;\n        grid-row: 1;\n        margin-top: 0;",
+        ) &&
+        responsiveStyles.includes(
+            ".mobile-links-grid > .contact-label ~ .email {\n        grid-column: 2;\n        grid-row: 2;",
+        ) &&
+        responsiveStyles.includes(
+            ".mobile-links-grid > .contact-label ~ .external-link {\n        grid-column: 2;\n        grid-row: 3;",
+        ) &&
         responsiveStyles.includes("row-gap: var(--section-content-gap);") &&
         responsiveStyles.includes(
             ".profile-summary {\n        grid-column: 1 / -1;\n        order: 2;\n        margin-bottom: 16px;",
         ) &&
         responsiveStyles.includes(
             ".portfolio-card-link {\n        padding: 7px 0;",
-        ),
+        ) &&
+        siteScript.includes(
+            "portfolioField.getBoundingClientRect().left -",
+        ) &&
+        siteScript.includes(
+            'links.style.setProperty(\n        "--mobile-contact-start",',
+        ) &&
+        siteScript.includes(
+            'window.addEventListener("resize", updateMobileLinksLayout);',
+        ) &&
+        siteScript.includes("new ResizeObserver") &&
+        siteScript.includes("updateOnResize.observe(portfolioSiteDate);"),
     "Mobile homepage sections must preserve the requested order and compact spacing.",
 );
 assert(
