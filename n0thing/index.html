@@ -2006,7 +2006,7 @@ body {
         padding: 0;
     }
 
-    .name {
+    body:not(.case-page) .name {
         grid-column: 1;
         order: 1;
         position: sticky;
@@ -2016,6 +2016,24 @@ body {
         margin-left: -12px;
         padding: 24px 44px 8px 12px;
         background: var(--bg);
+        min-height: 0;
+        margin-bottom: var(--section-gap);
+    }
+
+    body.case-page .name {
+        grid-column: 1;
+        order: 1;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        width: calc(100% + 56px);
+        margin-left: -12px;
+        padding: 24px 44px 8px 12px;
+        background: linear-gradient(
+            to bottom,
+            var(--bg) 60%,
+            transparent
+        );
         min-height: 0;
         margin-bottom: var(--section-gap);
     }

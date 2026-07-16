@@ -737,7 +737,10 @@ assert(
             "body:not(.case-page) .layout {\n        height: 100svh;\n        min-height: 100svh;\n        align-content: center;\n        overflow: hidden;\n        overscroll-behavior: none;",
         ) &&
         responsiveStyles.includes(
-            ".name {\n        grid-column: 1;\n        order: 1;\n        position: sticky;\n        top: 0;\n        z-index: 100;\n        width: calc(100% + 56px);\n        margin-left: -12px;\n        padding: 24px 44px 8px 12px;\n        background: var(--bg);",
+            "body:not(.case-page) .name {\n        grid-column: 1;\n        order: 1;\n        position: sticky;\n        top: 0;\n        z-index: 100;\n        width: calc(100% + 56px);\n        margin-left: -12px;\n        padding: 24px 44px 8px 12px;\n        background: var(--bg);",
+        ) &&
+        responsiveStyles.includes(
+            "body.case-page .name {\n        grid-column: 1;\n        order: 1;\n        position: sticky;\n        top: 0;\n        z-index: 100;\n        width: calc(100% + 56px);\n        margin-left: -12px;\n        padding: 24px 44px 8px 12px;\n        background: linear-gradient(\n            to bottom,\n            var(--bg) 60%,\n            transparent\n        );",
         ) &&
         baseStyles.includes("--text-media-gap: 32px;") &&
         previewContentStyles.includes(
