@@ -260,8 +260,8 @@ assert(
         portfolioStyles.includes(
             ".portfolio-card-link:hover .portfolio-card-view {\n        visibility: visible;",
         ) &&
-        !portfolioStyles.includes(
-            ".portfolio-card-link:hover time,\n    .portfolio-card-link:hover .portfolio-card-arrow",
+        portfolioStyles.includes(
+            ".portfolio-card-link:hover .portfolio-card-arrow {\n        color: var(--text-primary);",
         ) &&
         !portfolioStyles.includes("background: color-mix(") &&
         !portfolioStyles.includes(".portfolio-card-image::after") &&
@@ -712,21 +712,18 @@ assert(
         portfolioStyles.includes(
             ".portfolio-card-view {\n    visibility: hidden;",
         ) &&
-        portfolioStyles.includes(
-            ".portfolio-card-arrow svg {\n    width: 20px;\n    height: 20px;\n    display: block;\n    fill: none;\n    stroke: currentColor;\n    stroke-width: 1.5;",
-        ) &&
+        portfolioStyles.includes('font-family: "Inter", sans-serif;') &&
+        !portfolioStyles.includes(".portfolio-card-arrow svg") &&
         !portfolioStyles.includes(".portfolio-card-link::after") &&
         (indexHtml.match(/class="portfolio-card-arrow"/g) || []).length === 5 &&
         (indexHtml.match(/class="portfolio-card-view">View<\/span>/g) || [])
             .length === 5 &&
-        (indexHtml.match(/<svg viewBox="0 0 20 20" focusable="false">/g) || [])
-            .length === 5 &&
-        (indexHtml.match(/<path d="M3 10h14m-5-5 5 5-5 5" \/>/g) || [])
+        (indexHtml.match(/<span class="portfolio-card-view">View<\/span>\s+→/g) || [])
             .length === 5 &&
         portfolioStyles.includes(
             ".portfolio-card-link + .portfolio-card-link {\n    margin-top: 0;\n    border-top: 1px solid\n        color-mix(in srgb, var(--text-primary) 12%, transparent);",
         ),
-    "Homepage projects must expose single-line rows with aligned ISO dates, titles, antialiased-safe SVG arrows, hover View labels, and faint separators.",
+    "Homepage projects must expose single-line rows with aligned ISO dates, titles, native Inter arrows, hover View labels, and faint separators.",
 );
 assert(
     indexHtml.includes(
