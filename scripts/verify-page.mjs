@@ -758,12 +758,13 @@ assert(
             "body:not(.case-page) .content {\n    min-height: 100dvh;",
         ) &&
         responsiveStyles.includes(
-            "html.homepage-scroll-locked,\nhtml.homepage-scroll-locked body {\n    height: 100dvh;\n    overflow: hidden;\n    overscroll-behavior: none;",
+            "html.homepage-scroll-locked,\nhtml.homepage-scroll-locked body {\n    height: 100dvh;\n}",
         ) &&
         responsiveStyles.includes(
-            "html.homepage-scroll-locked body .layout {\n    height: 100dvh;\n    min-height: 100dvh;\n    overflow: hidden;",
-        ),
-    "The homepage must use dynamic viewport sizing and a non-reflowing scroll lock at larger widths.",
+            "html.homepage-scroll-locked body .layout {\n    height: 100dvh;\n    min-height: 100dvh;\n}",
+        ) &&
+        !responsiveStyles.includes("overscroll-behavior: none;"),
+    "The homepage must use dynamic viewport sizing without suppressing native overscroll.",
 );
 assert(
     responsiveStyles.includes(
@@ -776,13 +777,10 @@ assert(
             "body:not(.case-page) .layout {\n        min-height: 100svh;\n        height: auto;\n        align-content: start;\n        overflow: visible;\n        overscroll-behavior: auto;\n        padding-bottom: 64px;",
         ) &&
         responsiveStyles.includes(
-            "html.homepage-scroll-locked,\n    html.homepage-scroll-locked body {\n        height: 100svh;\n        overflow: hidden;\n        overscroll-behavior: none;",
+            "html.homepage-scroll-locked,\n    html.homepage-scroll-locked body {\n        height: 100svh;\n    }",
         ) &&
         responsiveStyles.includes(
-            "html.homepage-scroll-locked body .layout {\n        height: 100svh;\n        min-height: 100svh;\n        align-content: center;\n        overflow: hidden;\n        overscroll-behavior: none;",
-        ) &&
-        responsiveStyles.includes(
-            "html.homepage-scroll-locked body .layout {\n        height: 100svh;\n        min-height: 100svh;\n        align-content: center;\n        overflow: hidden;\n        overscroll-behavior: none;\n        padding-bottom: 0;",
+            "html.homepage-scroll-locked body .layout {\n        height: 100svh;\n        min-height: 100svh;\n        align-content: center;\n        padding-bottom: 0;",
         ) &&
         responsiveStyles.includes(
             "body:not(.case-page) .name {\n        grid-column: 1;\n        order: 1;\n        position: relative;\n        z-index: 100;\n        width: calc(100% + 56px);\n        margin-left: -12px;\n        padding: 24px 44px 8px 12px;\n        background: var(--bg);",
