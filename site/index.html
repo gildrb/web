@@ -1143,7 +1143,7 @@ body {
                             <div class="case-copy">
                                 <p>The page you are reading is the work. No framework and no site builder. It compiles from my own source through a build pipeline I wrote, and an automated harness holds every page to one design system. I built it to be the clearest evidence that I can take an idea from an empty repository to something shipped, tested, and maintained.</p>
                                 <h3>Built from source through my own pipeline</h3>
-                                <p>The whole site compiles from plain source. I author the case-study prose in Markdown and the shared page structure in HTML partials, then a Node build step renders the case studies, assembles the templates, inlines the critical CSS, JavaScript, and structured data, and writes out static routes. There is no client-side framework and no runtime dependency. What ships is small, fast, and entirely mine.</p>
+                                <p>The whole site compiles from plain source. I author the case-study prose in Markdown and the shared page structure in HTML partials, then a Node build step renders the case studies, assembles page-specific CSS and JavaScript bundles, inlines them with the structured data, and writes out static routes. There is no client-side framework and no runtime dependency. What ships is small, fast, and entirely mine.</p>
                             </div>
                         <div class="case-media">
                         <figure>
@@ -1171,7 +1171,7 @@ body {
                             <span class="site-pipeline-line">        ↓</span>
                             <span class="site-pipeline-line"><strong>scripts/build-page.mjs</strong></span>
                             <span class="site-pipeline-line">        ↓</span>
-                            <span class="site-pipeline-line">inline critical CSS + JS + JSON-LD</span>
+                            <span class="site-pipeline-line">page-specific inline CSS + JS + JSON-LD</span>
                             <span class="site-pipeline-line">        ↓</span>
                             <span class="site-pipeline-line"><strong>/</strong>  <strong>/heph</strong>  <strong>/filen</strong>  <strong>/n0thing</strong></span>
                             <span class="site-pipeline-line">        <strong>/ml7</strong>  <strong>/site</strong></span>

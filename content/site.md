@@ -4,7 +4,7 @@ The page you are reading is the work. No framework and no site builder. It compi
 
 ### Built from source through my own pipeline
 
-The whole site compiles from plain source. I author the case-study prose in Markdown and the shared page structure in HTML partials, then a Node build step renders the case studies, assembles the templates, inlines the critical CSS, JavaScript, and structured data, and writes out static routes. There is no client-side framework and no runtime dependency. What ships is small, fast, and entirely mine.
+The whole site compiles from plain source. I author the case-study prose in Markdown and the shared page structure in HTML partials, then a Node build step renders the case studies, assembles page-specific CSS and JavaScript bundles, inlines them with the structured data, and writes out static routes. There is no client-side framework and no runtime dependency. What ships is small, fast, and entirely mine.
 
 ![Build pipeline](media:site-build-pipeline)
 
