@@ -56,19 +56,36 @@
 }
 
 @media (max-width: 768px) {
-    html:has(body:not(.case-page)),
     body:not(.case-page) {
+        min-height: 100svh;
+        height: auto;
+        overflow: visible;
+        overscroll-behavior: auto;
+    }
+
+    body:not(.case-page) .layout {
+        min-height: 100svh;
+        height: auto;
+        align-content: start;
+        overflow: visible;
+        overscroll-behavior: auto;
+        padding-bottom: 64px;
+    }
+
+    html.mobile-homepage-locked,
+    html.mobile-homepage-locked body {
         height: 100svh;
         overflow: hidden;
         overscroll-behavior: none;
     }
 
-    body:not(.case-page) .layout {
+    html.mobile-homepage-locked body .layout {
         height: 100svh;
         min-height: 100svh;
         align-content: center;
         overflow: hidden;
         overscroll-behavior: none;
+        padding-bottom: 0;
     }
 
     .wrapper {

@@ -731,10 +731,22 @@ assert(
 );
 assert(
     responsiveStyles.includes(
-        "html:has(body:not(.case-page)),\n    body:not(.case-page) {\n        height: 100svh;\n        overflow: hidden;\n        overscroll-behavior: none;",
+        "body:not(.case-page) {\n        min-height: 100svh;\n        height: auto;\n        overflow: visible;\n        overscroll-behavior: auto;",
     ) &&
         responsiveStyles.includes(
-            "body:not(.case-page) .layout {\n        height: 100svh;\n        min-height: 100svh;\n        align-content: center;\n        overflow: hidden;\n        overscroll-behavior: none;",
+            "body:not(.case-page) .layout {\n        min-height: 100svh;\n        height: auto;\n        align-content: start;\n        overflow: visible;\n        overscroll-behavior: auto;",
+        ) &&
+        responsiveStyles.includes(
+            "body:not(.case-page) .layout {\n        min-height: 100svh;\n        height: auto;\n        align-content: start;\n        overflow: visible;\n        overscroll-behavior: auto;\n        padding-bottom: 64px;",
+        ) &&
+        responsiveStyles.includes(
+            "html.mobile-homepage-locked,\n    html.mobile-homepage-locked body {\n        height: 100svh;\n        overflow: hidden;\n        overscroll-behavior: none;",
+        ) &&
+        responsiveStyles.includes(
+            "html.mobile-homepage-locked body .layout {\n        height: 100svh;\n        min-height: 100svh;\n        align-content: center;\n        overflow: hidden;\n        overscroll-behavior: none;",
+        ) &&
+        responsiveStyles.includes(
+            "html.mobile-homepage-locked body .layout {\n        height: 100svh;\n        min-height: 100svh;\n        align-content: center;\n        overflow: hidden;\n        overscroll-behavior: none;\n        padding-bottom: 0;",
         ) &&
         responsiveStyles.includes(
             "body:not(.case-page) .name {\n        grid-column: 1;\n        order: 1;\n        position: sticky;\n        top: 0;\n        z-index: 100;\n        width: calc(100% + 56px);\n        margin-left: -12px;\n        padding: 24px 44px 8px 12px;\n        background: var(--bg);",
@@ -781,10 +793,27 @@ assert(
             'links.style.setProperty(\n        "--mobile-contact-start",',
         ) &&
         siteScript.includes(
-            'window.addEventListener("resize", updateMobileLinksLayout);',
+            'window.addEventListener("resize", updateMobileLayout);',
         ) &&
         siteScript.includes("new ResizeObserver") &&
-        siteScript.includes("updateOnResize.observe(portfolioSiteDate);"),
+        siteScript.includes("mobileLayoutTargets.forEach") &&
+        siteScript.includes(
+            'root.classList.remove("mobile-homepage-locked");',
+        ) &&
+        siteScript.includes("const minimumInset = 32;") &&
+        siteScript.includes(
+            "(links?.getBoundingClientRect().bottom ?? 0) + window.scrollY",
+        ) &&
+        siteScript.includes(
+            "contentBottom + minimumInset * 2 <= window.innerHeight",
+        ) &&
+        siteScript.includes("window.scrollTo(0, 0);") &&
+        siteScript.includes(
+            'root.classList.add("mobile-homepage-locked");',
+        ) &&
+        siteScript.includes(
+            'window.addEventListener("load", updateMobileLayout);',
+        ),
     "Mobile homepage sections must preserve the requested order and compact spacing.",
 );
 assert(
