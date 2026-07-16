@@ -255,7 +255,10 @@ assert(
         baseStyles.includes("color: var(--highlight-text);") &&
         baseStyles.includes("background: var(--highlight-bg);") &&
         portfolioStyles.includes(
-            ".portfolio-card-link:hover time,\n    .portfolio-card-link:hover .portfolio-card-arrow {\n        color: var(--text-primary);",
+            "@media (hover: hover) {\n    .portfolio-card-link:hover {\n        color: var(--text-primary);",
+        ) &&
+        !portfolioStyles.includes(
+            ".portfolio-card-link:hover time,\n    .portfolio-card-link:hover .portfolio-card-arrow",
         ) &&
         !portfolioStyles.includes("background: color-mix(") &&
         !portfolioStyles.includes(".portfolio-card-image::after") &&
@@ -692,10 +695,16 @@ assert(
             ".portfolio-card-title {\n    grid-column: 2;\n    grid-row: 1;\n    color: var(--text-primary);\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
+            ".portfolio-card-link {\n    display: grid;\n    grid-column: 1 / -1;\n    grid-template-columns: subgrid;\n    align-items: baseline;\n    width: 100%;\n    padding: 8px 0;\n    color: var(--text-tertiary);",
+        ) &&
+        !portfolioStyles.includes(
             ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 1;\n    display: block;\n    color: var(--text-tertiary);\n    font-size: 16px;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-card-arrow {\n    grid-column: 3;\n    grid-row: 1;",
+            ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 1;\n    display: block;\n    color: inherit;\n    font-size: 16px;\n    line-height: 24px;",
+        ) &&
+        portfolioStyles.includes(
+            ".portfolio-card-arrow {\n    grid-column: 3;\n    grid-row: 1;\n    align-self: baseline;\n    color: inherit;",
         ) &&
         !portfolioStyles.includes(".portfolio-card-link::after") &&
         (indexHtml.match(/class="portfolio-card-arrow"/g) || []).length === 5 &&
@@ -725,12 +734,18 @@ assert(
 );
 assert(
     portfolioStyles.includes(
-        ".portfolio-card-link:focus-visible {\n    outline: 1px solid var(--text-primary);\n    outline-offset: 6px;",
+        ".portfolio-card-link:focus-visible {\n    color: var(--text-primary);\n    outline: 1px solid var(--text-primary);\n    outline-offset: 6px;",
     ) &&
         (await readText("src/styles/30-heph-demo.css")).includes(
             "margin-bottom: 32px;\n    overflow: visible;",
         ),
     "Heph metadata focus must use the shared offset ring without an ancestor clipping it.",
+);
+assert(
+    baseStyles.includes(
+        ".name {\n    font-size: 19px;\n    font-weight: 400;\n    line-height: var(--link-line-height);\n    letter-spacing: -0.02em;\n    color: var(--text-primary);\n    min-height: calc(var(--link-line-height) * 2);\n    margin-bottom: calc(\n        var(--section-gap) + var(--section-content-gap) +\n            var(--text-media-gap) - var(--link-line-height)\n    );",
+    ),
+    "The sidebar Links block must align with the homepage Engineering label through token-based name spacing.",
 );
 const chronologicalProjectTitles = [
     // Engineering group first, then Design group.
