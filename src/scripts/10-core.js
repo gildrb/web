@@ -15,8 +15,8 @@ function updatePortfolioSiteDate() {
     const day = String(now.getDate()).padStart(2, "0");
     const month = String(now.getMonth() + 1).padStart(2, "0");
     const year = String(now.getFullYear());
-    const displayDate = `${day}.${month}.${year}`;
     const isoDate = `${year}-${month}-${day}`;
+    const displayDate = isoDate;
 
     portfolioSiteDate.textContent = displayDate;
     portfolioSiteDate.setAttribute("datetime", isoDate);

@@ -255,7 +255,9 @@ assert(
         baseStyles.includes("color: var(--highlight-text);") &&
         baseStyles.includes("background: var(--highlight-bg);") &&
         portfolioStyles.includes(".portfolio-card-link:hover .portfolio-card-title") &&
-        portfolioStyles.includes("transform: translateX(4px);") &&
+        portfolioStyles.includes(
+            ".portfolio-card-link:hover .portfolio-card-title::after",
+        ) &&
         !portfolioStyles.includes(".portfolio-card-image::after") &&
         !hephDemoStyles.includes(".heph-demo-frame::after") &&
         !portfolioStyles.includes("mix-blend-mode:") &&
@@ -663,10 +665,10 @@ assert(
     "The first solid project media must use the 32px optical gap from the adjacent text block at every viewport.",
 );
 const portfolioDates = [
-    ["2026-04-21", "21.04.2026", "Heph"],
-    ["2026-01-14", "14.01.2026", "Filen"],
-    ["2019-11-15", "15.11.2019", "n0thing"],
-    ["2018-11-13", "13.11.2018", "mL7"],
+    ["2026-04-21", "2026-04-21", "Heph"],
+    ["2026-01-14", "2026-01-14", "Filen"],
+    ["2019-11-15", "2019-11-15", "n0thing"],
+    ["2018-11-13", "2018-11-13", "mL7"],
 ];
 assert(
     portfolioDates.every(
@@ -675,25 +677,25 @@ assert(
             indexHtml.includes(`>${title}</span`),
     ) &&
         portfolioStyles.includes(
-            ".portfolio-card-link {\n    display: grid;",
+            ".portfolio-card-link {\n    display: inline-block;",
         ) &&
         portfolioStyles.includes(
             "width: fit-content;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-card-title {\n    grid-column: 1;\n    grid-row: 1;\n    color: var(--text-primary);",
+            ".portfolio-card-title {\n    color: var(--text-primary);\n    font-size: 19px;\n    font-weight: 400;\n    line-height: 24px;\n    letter-spacing: -0.02em;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 2;\n    color: var(--text-tertiary);",
+            ".portfolio-card-title::after {\n    content: \"→\";\n    display: inline-block;\n    margin-left: 10px;",
         ) &&
         portfolioStyles.includes(
-            '.portfolio-card-link::after {\n    content: "→";\n    grid-column: 2;\n    grid-row: 1;',
+            ".portfolio-card-link time {\n    display: block;\n    color: var(--text-tertiary);",
         ),
-    "Homepage projects must expose tight text-only click targets with a prominent title, date, and adjacent arrow.",
+    "Homepage projects must expose tight text-only click targets with matching name typography, ISO dates, and an adjacent static arrow.",
 );
 assert(
     indexHtml.includes(
-        '<time id="portfolio-site-date" datetime="2026-07-15">15.07.2026</time>',
+        '<time id="portfolio-site-date" datetime="2026-07-15">2026-07-15</time>',
     ) &&
         siteScript.includes(
             'document.querySelector("#portfolio-site-date")',

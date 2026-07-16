@@ -543,47 +543,34 @@ body {
 }
 
 .portfolio-card-link {
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: start;
-    align-items: baseline;
-    column-gap: 10px;
-    row-gap: 2px;
+    display: inline-block;
     width: fit-content;
     color: inherit;
     text-decoration: none;
 }
 
 .portfolio-card-title {
-    grid-column: 1;
-    grid-row: 1;
     color: var(--text-primary);
-    font-size: 18px;
-    line-height: 26px;
-    letter-spacing: -0.01em;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.02em;
+}
+
+.portfolio-card-title::after {
+    content: "→";
+    display: inline-block;
+    margin-left: 10px;
+    color: var(--text-tertiary);
+    font-size: inherit;
+    line-height: inherit;
 }
 
 .portfolio-card-link time {
-    grid-column: 1;
-    grid-row: 2;
+    display: block;
     color: var(--text-tertiary);
     font-size: 13px;
     line-height: 18px;
-    font-variant-numeric: tabular-nums;
-}
-
-.portfolio-card-link::after {
-    content: "→";
-    grid-column: 2;
-    grid-row: 1;
-    align-self: baseline;
-    color: var(--text-tertiary);
-    font-family: "Inter", sans-serif;
-    font-size: 16px;
-    line-height: 26px;
-    transition:
-        transform 0.18s ease,
-        color 0.18s ease;
 }
 
 .portfolio-section {
@@ -610,9 +597,8 @@ body {
         text-decoration-thickness: 1px;
     }
 
-    .portfolio-card-link:hover::after {
+    .portfolio-card-link:hover .portfolio-card-title::after {
         color: var(--text-primary);
-        transform: translateX(4px);
     }
 }
 
@@ -626,7 +612,7 @@ body {
     color: var(--text-primary);
 }
 
-.portfolio-card-link:focus-visible::after {
+.portfolio-card-link:focus-visible .portfolio-card-title::after {
     color: var(--text-primary);
 }
 
@@ -2093,8 +2079,8 @@ function updatePortfolioSiteDate() {
     const day = String(now.getDate()).padStart(2, "0");
     const month = String(now.getMonth() + 1).padStart(2, "0");
     const year = String(now.getFullYear());
-    const displayDate = `${day}.${month}.${year}`;
     const isoDate = `${year}-${month}-${day}`;
+    const displayDate = isoDate;
 
     portfolioSiteDate.textContent = displayDate;
     portfolioSiteDate.setAttribute("datetime", isoDate);
