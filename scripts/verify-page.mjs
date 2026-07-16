@@ -813,6 +813,15 @@ assert(
         siteScript.includes("new ResizeObserver") &&
         siteScript.includes("mobileLayoutTargets.forEach") &&
         siteScript.includes(
+            'let mobileHomepageLockState = "uninitialized";',
+        ) &&
+        siteScript.includes(
+            'let mobileHomepageUnlockedHeight = 0;',
+        ) &&
+        siteScript.includes(
+            'let mobileHomepageUnlockedContentBottom = 0;',
+        ) &&
+        siteScript.includes(
             'root.classList.remove("mobile-homepage-locked");',
         ) &&
         siteScript.includes("const minimumInset = 32;") &&
@@ -822,7 +831,16 @@ assert(
         siteScript.includes(
             "contentBottom + minimumInset * 2 <= window.innerHeight",
         ) &&
-        siteScript.includes("window.scrollTo(0, 0);") &&
+        siteScript.includes("const atTop = window.scrollY === 0;") &&
+        siteScript.includes(
+            "Math.abs(\n                window.innerHeight - mobileHomepageUnlockedHeight,\n            ) >= 32",
+        ) &&
+        siteScript.includes(
+            "mobileHomepageUnlockedContentBottom - contentBottom >= 32",
+        ) &&
+        !siteScript.includes(
+            "window.scrollTo(0, 0);\n        root.classList.add",
+        ) &&
         siteScript.includes(
             'root.classList.add("mobile-homepage-locked");',
         ) &&

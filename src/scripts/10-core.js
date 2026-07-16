@@ -49,24 +49,71 @@ function updateMobileLinksLayout() {
     );
 }
 
+let mobileHomepageLockState = "uninitialized";
+let mobileHomepageUnlockedHeight = 0;
+let mobileHomepageUnlockedContentBottom = 0;
+
 function updateMobileHomepageLock() {
     const root = document.documentElement;
     const body = document.body;
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-    root.classList.remove("mobile-homepage-locked");
-    if (!body || body.classList.contains("case-page") || !isMobile) return;
+    if (!body || body.classList.contains("case-page") || !isMobile) {
+        root.classList.remove("mobile-homepage-locked");
+        mobileHomepageLockState = "uninitialized";
+        return;
+    }
 
+    root.classList.remove("mobile-homepage-locked");
     const links = document.querySelector(".links");
     const contentBottom =
         (links?.getBoundingClientRect().bottom ?? 0) + window.scrollY;
     const minimumInset = 32;
     const fits = contentBottom + minimumInset * 2 <= window.innerHeight;
+    const atTop = window.scrollY === 0;
 
-    if (fits) {
-        window.scrollTo(0, 0);
-        root.classList.add("mobile-homepage-locked");
+    if (mobileHomepageLockState === "locked") {
+        if (atTop && fits) {
+            root.classList.add("mobile-homepage-locked");
+            return;
+        }
+
+        mobileHomepageLockState = "unlocked";
+        mobileHomepageUnlockedHeight = window.innerHeight;
+        mobileHomepageUnlockedContentBottom = contentBottom;
+        return;
     }
+
+    if (mobileHomepageLockState === "unlocked") {
+        const viewportChanged =
+            Math.abs(
+                window.innerHeight - mobileHomepageUnlockedHeight,
+            ) >= 32;
+        const contentShrank =
+            mobileHomepageUnlockedContentBottom - contentBottom >= 32;
+
+        if (
+            !atTop ||
+            (!viewportChanged && !contentShrank) ||
+            !fits
+        ) {
+            return;
+        }
+
+        mobileHomepageLockState = "locked";
+        root.classList.add("mobile-homepage-locked");
+        return;
+    }
+
+    if (atTop && fits) {
+        mobileHomepageLockState = "locked";
+        root.classList.add("mobile-homepage-locked");
+        return;
+    }
+
+    mobileHomepageLockState = "unlocked";
+    mobileHomepageUnlockedHeight = window.innerHeight;
+    mobileHomepageUnlockedContentBottom = contentBottom;
 }
 
 function updateMobileLayout() {
