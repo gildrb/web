@@ -254,9 +254,8 @@ assert(
         baseStyles.includes("--highlight-text: #ffffff;") &&
         baseStyles.includes("color: var(--highlight-text);") &&
         baseStyles.includes("background: var(--highlight-bg);") &&
-        portfolioStyles.includes(".portfolio-card:hover .portfolio-card-meta::after") &&
-        portfolioStyles.includes('content: "Read →";') &&
-        portfolioStyles.includes(".portfolio-card-link:hover::after") &&
+        portfolioStyles.includes(".portfolio-card-link:hover .portfolio-card-title") &&
+        portfolioStyles.includes("transform: translateX(4px);") &&
         !portfolioStyles.includes(".portfolio-card-image::after") &&
         !hephDemoStyles.includes(".heph-demo-frame::after") &&
         !portfolioStyles.includes("mix-blend-mode:") &&
@@ -676,24 +675,21 @@ assert(
             indexHtml.includes(`>${title}</span`),
     ) &&
         portfolioStyles.includes(
-            ".portfolio-card-meta time {\n    grid-column: 1 / -1;\n    color: var(--text-tertiary);",
+            ".portfolio-card-link {\n    display: inline-grid;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-card-title {\n    grid-column: 1;\n    grid-row: 2;\n    color: var(--text-secondary);",
+            "width: fit-content;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-card,\n.showcase-featured .portfolio-card {\n    overflow: visible;\n    border-radius: 0;",
+            ".portfolio-card-title {\n    grid-column: 1;\n    grid-row: 1;\n    color: var(--text-primary);",
         ) &&
         portfolioStyles.includes(
-            "border: 1px solid\n        color-mix(in srgb, var(--text-primary) 14%, transparent);",
+            ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 2;\n    color: var(--text-tertiary);",
         ) &&
         portfolioStyles.includes(
-            '.portfolio-card-meta::after {\n    content: "→";\n    grid-column: 2;\n    grid-row: 2;',
-        ) &&
-        portfolioStyles.includes(
-            ".portfolio-card-link {\n    width: 100%;",
+            '.portfolio-card-link::after {\n    content: "→";\n    grid-column: 2;\n    grid-row: 1;',
         ),
-    "Homepage projects must expose their date, linked title, and full-width directional affordance below the media.",
+    "Homepage projects must expose tight text-only click targets with a prominent title, date, and adjacent arrow.",
 );
 assert(
     indexHtml.includes(
@@ -711,7 +707,7 @@ assert(
 );
 assert(
     portfolioStyles.includes(
-        ".portfolio-card-link:focus-visible {\n    outline: 1px solid var(--text-primary);\n    outline-offset: 4px;",
+        ".portfolio-card-link:focus-visible {\n    outline: 1px solid var(--text-primary);\n    outline-offset: 6px;",
     ) &&
         (await readText("src/styles/30-heph-demo.css")).includes(
             "margin-bottom: 32px;\n    overflow: visible;",
