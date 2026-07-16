@@ -1979,6 +1979,7 @@ body {
     body:not(.case-page) .layout {
         height: 100svh;
         min-height: 100svh;
+        align-content: center;
         overflow: hidden;
         overscroll-behavior: none;
     }
@@ -1991,7 +1992,7 @@ body {
         grid-template-columns: minmax(0, 1fr) 32px;
         gap: 0;
         min-height: auto;
-        padding: 0 0 24px;
+        padding: 0;
     }
 
     .sidebar {
@@ -2015,11 +2016,7 @@ body {
         width: calc(100% + 56px);
         margin-left: -12px;
         padding: 24px 44px 8px 12px;
-        background: linear-gradient(
-            to bottom,
-            var(--bg) 60%,
-            transparent
-        );
+        background: var(--bg);
         min-height: 0;
         margin-bottom: var(--section-gap);
     }
@@ -2123,7 +2120,7 @@ body {
     .profile-summary {
         grid-column: 1 / -1;
         order: 2;
-        margin-bottom: 16px;
+        margin-bottom: var(--section-gap);
     }
 
     .portfolio-card-link {

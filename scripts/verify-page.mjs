@@ -734,7 +734,10 @@ assert(
         "html:has(body:not(.case-page)),\n    body:not(.case-page) {\n        height: 100svh;\n        overflow: hidden;\n        overscroll-behavior: none;",
     ) &&
         responsiveStyles.includes(
-            "body:not(.case-page) .layout {\n        height: 100svh;\n        min-height: 100svh;\n        overflow: hidden;\n        overscroll-behavior: none;",
+            "body:not(.case-page) .layout {\n        height: 100svh;\n        min-height: 100svh;\n        align-content: center;\n        overflow: hidden;\n        overscroll-behavior: none;",
+        ) &&
+        responsiveStyles.includes(
+            ".name {\n        grid-column: 1;\n        order: 1;\n        position: sticky;\n        top: 0;\n        z-index: 100;\n        width: calc(100% + 56px);\n        margin-left: -12px;\n        padding: 24px 44px 8px 12px;\n        background: var(--bg);",
         ) &&
         baseStyles.includes("--text-media-gap: 32px;") &&
         previewContentStyles.includes(
@@ -763,7 +766,7 @@ assert(
         ) &&
         responsiveStyles.includes("row-gap: var(--section-content-gap);") &&
         responsiveStyles.includes(
-            ".profile-summary {\n        grid-column: 1 / -1;\n        order: 2;\n        margin-bottom: 16px;",
+            ".profile-summary {\n        grid-column: 1 / -1;\n        order: 2;\n        margin-bottom: var(--section-gap);",
         ) &&
         responsiveStyles.includes(
             ".portfolio-card-link {\n        padding: 7px 0;",
