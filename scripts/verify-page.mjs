@@ -764,9 +764,7 @@ assert(
         portfolioStyles.includes(
             ".portfolio-group .section-title {\n    grid-column: 1 / -1;\n    margin-bottom: var(--section-content-gap);\n    color: var(--text-secondary);",
         ) &&
-        portfolioStyles.includes(
-            ".portfolio-group .portfolio-card-link:first-of-type {\n    padding-top: 0;",
-        ),
+        !portfolioStyles.includes(":first-of-type"),
     "Homepage must split projects into Engineering and Design groups with bright-gray section labels.",
 );
 assert(
