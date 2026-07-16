@@ -13,14 +13,16 @@ function updateHomepageDates() {
     const month = String(now.getMonth() + 1).padStart(2, "0");
     const year = String(now.getFullYear());
     const isoDate = `${year}-${month}-${day}`;
-    const displayDate = isoDate;
     const copyrightYear = document.querySelector("#copyright-year");
     const portfolioSiteDate = document.querySelector("#portfolio-site-date");
 
     if (copyrightYear) copyrightYear.textContent = year;
     if (!portfolioSiteDate) return;
 
-    portfolioSiteDate.textContent = displayDate;
+    portfolioSiteDate.querySelector(".portfolio-date-full").textContent =
+        isoDate;
+    portfolioSiteDate.querySelector(".portfolio-date-year").textContent =
+        year;
     portfolioSiteDate.setAttribute("datetime", isoDate);
 }
 

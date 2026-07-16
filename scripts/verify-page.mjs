@@ -756,7 +756,13 @@ const portfolioDates = [
 assert(
     portfolioDates.every(
         ([datetime, date, title]) =>
-            indexHtml.includes(`<time datetime="${datetime}">${date}</time>`) &&
+            indexHtml.includes(`<time datetime="${datetime}">`) &&
+            indexHtml.includes(
+                `<span class="portfolio-date-full">${date}</span>`,
+            ) &&
+            indexHtml.includes(
+                `<span class="portfolio-date-year">${date.slice(0, 4)}</span>`,
+            ) &&
             indexHtml.includes(`>${title}</span`),
     ) &&
         portfolioStyles.includes(
@@ -802,7 +808,7 @@ assert(
             .length === 2 &&
         (indexHtml.match(/class="portfolio-card-field">Design engineering/g) || [])
             .length === 1 &&
-        (indexHtml.match(/class="portfolio-card-field">Product design &amp; engineering/g) || [])
+        (indexHtml.match(/class="portfolio-card-field">Product design and engineering/g) || [])
             .length === 1 &&
         (indexHtml.match(/class="portfolio-card-view">View<\/span>/g) || [])
             .length === 5 &&
@@ -813,18 +819,29 @@ assert(
         ) &&
         portfolioStyles.includes(
             "@media (max-width: 768px) {\n    .portfolio-card-view {\n        display: none;",
+        ) &&
+        portfolioStyles.includes(
+            ".portfolio-date-full {\n        display: none;",
+        ) &&
+        portfolioStyles.includes(
+            ".portfolio-date-year {\n        display: inline;",
         ),
-    "Homepage projects must expose single-line rows with aligned ISO dates, titles, field tags, native Inter arrows, hover View labels, and faint separators.",
+    "Homepage projects must expose single-line rows with aligned ISO dates, mobile-only years, titles, field tags, native Inter arrows, hover View labels, and faint separators.",
 );
 assert(
     indexHtml.includes(
-        '<time id="portfolio-site-date" datetime="2026-07-15">2026-07-15</time>',
+        '<time id="portfolio-site-date" datetime="2026-07-15">',
     ) &&
         siteScript.includes(
             'document.querySelector("#portfolio-site-date")',
         ) &&
         siteScript.includes("const now = new Date();") &&
-        siteScript.includes("portfolioSiteDate.textContent = displayDate;") &&
+        siteScript.includes(
+            'portfolioSiteDate.querySelector(".portfolio-date-full").textContent',
+        ) &&
+        siteScript.includes(
+            'portfolioSiteDate.querySelector(".portfolio-date-year").textContent',
+        ) &&
         siteScript.includes(
             'portfolioSiteDate.setAttribute("datetime", isoDate);',
         ),

@@ -222,6 +222,10 @@
     line-height: 24px;
 }
 
+.portfolio-date-year {
+    display: none;
+}
+
 .portfolio-card-arrow {
     grid-column: 5;
     grid-row: 1;
@@ -333,6 +337,14 @@
 @media (max-width: 768px) {
     .portfolio-card-view {
         display: none;
+    }
+
+    .portfolio-date-full {
+        display: none;
+    }
+
+    .portfolio-date-year {
+        display: inline;
     }
 }
 

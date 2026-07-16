@@ -1503,6 +1503,10 @@ body {
     line-height: 24px;
 }
 
+.portfolio-date-year {
+    display: none;
+}
+
 .portfolio-card-arrow {
     grid-column: 5;
     grid-row: 1;
@@ -1614,6 +1618,14 @@ body {
 @media (max-width: 768px) {
     .portfolio-card-view {
         display: none;
+    }
+
+    .portfolio-date-full {
+        display: none;
+    }
+
+    .portfolio-date-year {
+        display: inline;
     }
 }
 
@@ -3194,7 +3206,10 @@ body {
                             href="/site"
                             aria-label="Read the This website case study"
                         >
-                            <time id="portfolio-site-date" datetime="2026-07-15">2026-07-15</time>
+                            <time id="portfolio-site-date" datetime="2026-07-15">
+                                <span class="portfolio-date-full">2026-07-15</span>
+                                <span class="portfolio-date-year">2026</span>
+                            </time>
                             <span
                                 class="portfolio-card-title"
                                 id="portfolio-site-title"
@@ -3211,13 +3226,16 @@ body {
                             href="/heph"
                             aria-label="Read the Heph local document agent case study"
                         >
-                            <time datetime="2026-04-21">2026-04-21</time>
+                            <time datetime="2026-04-21">
+                                <span class="portfolio-date-full">2026-04-21</span>
+                                <span class="portfolio-date-year">2026</span>
+                            </time>
                             <span
                                 class="portfolio-card-title"
                                 id="portfolio-heph-title"
                                 >Heph</span
                             >
-                            <span class="portfolio-card-field">Product design &amp; engineering</span>
+                            <span class="portfolio-card-field">Product design and engineering</span>
                             <span class="portfolio-card-arrow" aria-hidden="true">
                                 <span class="portfolio-card-view">View</span>
                                 →
@@ -3228,7 +3246,10 @@ body {
                             href="/filen"
                             aria-label="Read the Filen identity system case study"
                         >
-                            <time datetime="2026-01-14">2026-01-14</time>
+                            <time datetime="2026-01-14">
+                                <span class="portfolio-date-full">2026-01-14</span>
+                                <span class="portfolio-date-year">2026</span>
+                            </time>
                             <span
                                 class="portfolio-card-title"
                                 id="portfolio-filen-title"
@@ -3245,7 +3266,10 @@ body {
                             href="/n0thing"
                             aria-label="Read the n0thing case study"
                         >
-                            <time datetime="2019-11-15">2019-11-15</time>
+                            <time datetime="2019-11-15">
+                                <span class="portfolio-date-full">2019-11-15</span>
+                                <span class="portfolio-date-year">2019</span>
+                            </time>
                             <span
                                 class="portfolio-card-title"
                                 id="portfolio-n0thing-title"
@@ -3262,7 +3286,10 @@ body {
                             href="/ml7"
                             aria-label="Read the mL7 case study"
                         >
-                            <time datetime="2018-11-13">2018-11-13</time>
+                            <time datetime="2018-11-13">
+                                <span class="portfolio-date-full">2018-11-13</span>
+                                <span class="portfolio-date-year">2018</span>
+                            </time>
                             <span
                                 class="portfolio-card-title"
                                 id="portfolio-ml7-title"
@@ -3349,14 +3376,16 @@ function updateHomepageDates() {
     const month = String(now.getMonth() + 1).padStart(2, "0");
     const year = String(now.getFullYear());
     const isoDate = `${year}-${month}-${day}`;
-    const displayDate = isoDate;
     const copyrightYear = document.querySelector("#copyright-year");
     const portfolioSiteDate = document.querySelector("#portfolio-site-date");
 
     if (copyrightYear) copyrightYear.textContent = year;
     if (!portfolioSiteDate) return;
 
-    portfolioSiteDate.textContent = displayDate;
+    portfolioSiteDate.querySelector(".portfolio-date-full").textContent =
+        isoDate;
+    portfolioSiteDate.querySelector(".portfolio-date-year").textContent =
+        year;
     portfolioSiteDate.setAttribute("datetime", isoDate);
 }
 
