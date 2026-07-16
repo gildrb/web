@@ -39,11 +39,11 @@ Independent designer and engineer building brand systems, interfaces, and digita
 
 ## Portfolio
 
-#### This website (Web engineering)
+#### This website (Design engineering)
 
 [This website](https://gildrb.com/site) documents how the portfolio is built and verified as a static, hand-authored site.
 
-#### Heph (Product engineering)
+#### Heph (Product design & engineering)
 
 [Heph local document agent](https://gildrb.com/heph) documents how bounded armories, explicit indexing, cited answers, and `/evidence` keep local document work inspectable. The source repository is linked inside the article.
 

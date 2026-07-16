@@ -800,9 +800,9 @@ assert(
             .length === 1 &&
         (indexHtml.match(/class="portfolio-card-field">Wordmark/g) || [])
             .length === 2 &&
-        (indexHtml.match(/class="portfolio-card-field">Web engineering/g) || [])
+        (indexHtml.match(/class="portfolio-card-field">Design engineering/g) || [])
             .length === 1 &&
-        (indexHtml.match(/class="portfolio-card-field">Product engineering/g) || [])
+        (indexHtml.match(/class="portfolio-card-field">Product design &amp; engineering/g) || [])
             .length === 1 &&
         (indexHtml.match(/class="portfolio-card-view">View<\/span>/g) || [])
             .length === 5 &&
