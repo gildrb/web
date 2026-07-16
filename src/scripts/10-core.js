@@ -71,7 +71,7 @@ function updateHomepageLock(preserveMobileState = false) {
         preserveMobileState &&
         isMobile &&
         !viewportWidthChanged &&
-        homepageLockState !== "uninitialized"
+        homepageLockState === "locked"
     ) {
         return;
     }

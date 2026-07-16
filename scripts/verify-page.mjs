@@ -850,7 +850,7 @@ assert(
             'function updateHomepageLock(preserveMobileState = false)',
         ) &&
         siteScript.includes(
-            'preserveMobileState &&\n        isMobile &&\n        !viewportWidthChanged',
+            'preserveMobileState &&\n        isMobile &&\n        !viewportWidthChanged &&\n        homepageLockState === "locked"',
         ) &&
         siteScript.includes(
             'root.classList.remove("homepage-scroll-locked");',
