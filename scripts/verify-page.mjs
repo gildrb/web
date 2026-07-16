@@ -692,7 +692,7 @@ assert(
             ".portfolio-card-title {\n    grid-column: 2;\n    grid-row: 1;\n    color: var(--text-primary);\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 1;\n    display: block;\n    color: var(--text-tertiary);\n    font-size: 15px;\n    line-height: 24px;",
+            ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 1;\n    display: block;\n    color: var(--text-tertiary);\n    font-size: 16px;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
             ".portfolio-card-arrow {\n    grid-column: 3;\n    grid-row: 1;",
