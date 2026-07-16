@@ -255,8 +255,8 @@ assert(
         baseStyles.includes("color: var(--highlight-text);") &&
         baseStyles.includes("background: var(--highlight-bg);") &&
         portfolioStyles.includes(
-            ".portfolio-card-link:hover time,\n    .portfolio-card-link:hover::after {\n        color: var(--text-primary);",
-    ) &&
+            ".portfolio-card-link:hover time,\n    .portfolio-card-link:hover .portfolio-card-arrow {\n        color: var(--text-primary);",
+        ) &&
         !portfolioStyles.includes("background: color-mix(") &&
         !portfolioStyles.includes(".portfolio-card-image::after") &&
         !hephDemoStyles.includes(".heph-demo-frame::after") &&
@@ -695,8 +695,15 @@ assert(
             ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 1;\n    display: block;\n    color: var(--text-tertiary);\n    font-size: 15px;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
-            '.portfolio-card-link::after {\n    content: "→";\n    grid-column: 3;\n    grid-row: 1;',
+            ".portfolio-card-arrow {\n    grid-column: 3;\n    grid-row: 1;",
         ) &&
+        !portfolioStyles.includes(".portfolio-card-link::after") &&
+        (indexHtml.match(/class="portfolio-card-arrow"/g) || []).length === 5 &&
+        (
+            indexHtml.match(
+                /class="portfolio-card-arrow" aria-hidden="true">→<\/span>/g,
+            ) || []
+        ).length === 5 &&
         portfolioStyles.includes(
             ".portfolio-card-link + .portfolio-card-link {\n    margin-top: 0;\n    border-top: 1px solid\n        color-mix(in srgb, var(--text-primary) 12%, transparent);",
         ),
@@ -755,7 +762,10 @@ assert(
         indexHtml.indexOf('id="portfolio-group-design-title"') <
             indexHtml.indexOf('id="portfolio-filen-title"') &&
         portfolioStyles.includes(
-            ".portfolio-group .section-title {\n    grid-column: 1 / -1;\n    margin-bottom: 14px;\n    color: var(--text-secondary);",
+            ".portfolio-group .section-title {\n    grid-column: 1 / -1;\n    margin-bottom: var(--section-content-gap);\n    color: var(--text-secondary);",
+        ) &&
+        portfolioStyles.includes(
+            ".portfolio-group .portfolio-card-link:first-of-type {\n    padding-top: 0;",
         ),
     "Homepage must split projects into Engineering and Design groups with bright-gray section labels.",
 );

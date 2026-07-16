@@ -1491,8 +1491,7 @@ body {
     line-height: 24px;
 }
 
-.portfolio-card-link::after {
-    content: "→";
+.portfolio-card-arrow {
     grid-column: 3;
     grid-row: 1;
     align-self: baseline;
@@ -1516,7 +1515,7 @@ body {
 
 .portfolio-group .section-title {
     grid-column: 1 / -1;
-    margin-bottom: 14px;
+    margin-bottom: var(--section-content-gap);
     color: var(--text-secondary);
 }
 
@@ -1530,9 +1529,13 @@ body {
         color-mix(in srgb, var(--text-primary) 12%, transparent);
 }
 
+.portfolio-group .portfolio-card-link:first-of-type {
+    padding-top: 0;
+}
+
 @media (hover: hover) {
     .portfolio-card-link:hover time,
-    .portfolio-card-link:hover::after {
+    .portfolio-card-link:hover .portfolio-card-arrow {
         color: var(--text-primary);
     }
 }
@@ -1547,7 +1550,7 @@ body {
     color: var(--text-primary);
 }
 
-.portfolio-card-link:focus-visible::after {
+.portfolio-card-link:focus-visible .portfolio-card-arrow {
     color: var(--text-primary);
 }
 
@@ -3046,6 +3049,7 @@ body {
                                 id="portfolio-site-title"
                                 >This website</span
                             >
+                            <span class="portfolio-card-arrow" aria-hidden="true">→</span>
                         </a>
                         <a
                             class="portfolio-card-link"
@@ -3058,6 +3062,7 @@ body {
                                 id="portfolio-heph-title"
                                 >Heph</span
                             >
+                            <span class="portfolio-card-arrow" aria-hidden="true">→</span>
                         </a>
                     </div>
                     <div
@@ -3077,6 +3082,7 @@ body {
                                 id="portfolio-filen-title"
                                 >Filen</span
                             >
+                            <span class="portfolio-card-arrow" aria-hidden="true">→</span>
                         </a>
                         <a
                             class="portfolio-card-link"
@@ -3089,6 +3095,7 @@ body {
                                 id="portfolio-n0thing-title"
                                 >n0thing</span
                             >
+                            <span class="portfolio-card-arrow" aria-hidden="true">→</span>
                         </a>
                         <a
                             class="portfolio-card-link"
@@ -3101,6 +3108,7 @@ body {
                                 id="portfolio-ml7-title"
                                 >mL7</span
                             >
+                            <span class="portfolio-card-arrow" aria-hidden="true">→</span>
                         </a>
                     </div>
                     </section>
