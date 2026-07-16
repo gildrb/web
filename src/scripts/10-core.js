@@ -33,7 +33,7 @@ function updateMobileLinksLayout() {
     const portfolioField = document.querySelector(".portfolio-sort-field");
     if (!links || !portfolioField) return;
 
-    if (!window.matchMedia("(max-width: 768px)").matches) {
+    if (!window.matchMedia("(max-width: 767px)").matches) {
         links.classList.remove("mobile-links-grid");
         links.style.removeProperty("--mobile-contact-start");
         return;
@@ -49,29 +49,83 @@ function updateMobileLinksLayout() {
     );
 }
 
-function updateMobileHomepageLock() {
+let homepageLockState = "uninitialized";
+let homepageUnlockedHeight = 0;
+let homepageUnlockedContentBottom = 0;
+
+function updateHomepageLock() {
     const root = document.documentElement;
     const body = document.body;
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-    root.classList.remove("mobile-homepage-locked");
-    if (!body || body.classList.contains("case-page") || !isMobile) return;
-
-    const links = document.querySelector(".links");
-    const contentBottom =
-        (links?.getBoundingClientRect().bottom ?? 0) + window.scrollY;
-    const minimumInset = 32;
-    const fits = contentBottom + minimumInset * 2 <= window.innerHeight;
-
-    if (fits) {
-        window.scrollTo(0, 0);
-        root.classList.add("mobile-homepage-locked");
+    if (!body || body.classList.contains("case-page")) {
+        root.classList.remove("homepage-scroll-locked");
+        homepageLockState = "uninitialized";
+        return;
     }
+
+    root.classList.remove("homepage-scroll-locked");
+    const contentBottom = Math.max(
+        ...Array.from(
+            document.querySelectorAll(
+                ".profile-summary, .portfolio-section, .links, .site-footer",
+            ),
+            (element) =>
+                element.getBoundingClientRect().bottom + window.scrollY,
+        ),
+        0,
+    );
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    const minimumInset = isMobile ? 32 : 0;
+    const fits = contentBottom + minimumInset * 2 <= window.innerHeight;
+    const atTop = window.scrollY === 0;
+
+    if (homepageLockState === "locked") {
+        if (atTop && fits) {
+            root.classList.add("homepage-scroll-locked");
+            return;
+        }
+
+        homepageLockState = "unlocked";
+        homepageUnlockedHeight = window.innerHeight;
+        homepageUnlockedContentBottom = contentBottom;
+        return;
+    }
+
+    if (homepageLockState === "unlocked") {
+        const viewportChanged =
+            Math.abs(
+                window.innerHeight - homepageUnlockedHeight,
+            ) >= 32;
+        const contentShrank =
+            homepageUnlockedContentBottom - contentBottom >= 32;
+
+        if (
+            !atTop ||
+            (!viewportChanged && !contentShrank) ||
+            !fits
+        ) {
+            return;
+        }
+
+        homepageLockState = "locked";
+        root.classList.add("homepage-scroll-locked");
+        return;
+    }
+
+    if (atTop && fits) {
+        homepageLockState = "locked";
+        root.classList.add("homepage-scroll-locked");
+        return;
+    }
+
+    homepageLockState = "unlocked";
+    homepageUnlockedHeight = window.innerHeight;
+    homepageUnlockedContentBottom = contentBottom;
 }
 
 function updateMobileLayout() {
     updateMobileLinksLayout();
-    updateMobileHomepageLock();
+    updateHomepageLock();
 }
 
 window.addEventListener("load", updateMobileLayout);

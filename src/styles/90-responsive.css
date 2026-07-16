@@ -1,3 +1,32 @@
+body:not(.case-page) {
+    min-height: 100dvh;
+}
+
+body:not(.case-page) .layout {
+    min-height: 100dvh;
+}
+
+body:not(.case-page) .sidebar {
+    height: 100dvh;
+}
+
+body:not(.case-page) .content {
+    min-height: 100dvh;
+}
+
+html.homepage-scroll-locked,
+html.homepage-scroll-locked body {
+    height: 100dvh;
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
+html.homepage-scroll-locked body .layout {
+    height: 100dvh;
+    min-height: 100dvh;
+    overflow: hidden;
+}
+
 @media (max-width: 1400px) {
     :root {
         --layout-gap: 32px;
@@ -55,7 +84,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     body:not(.case-page) {
         min-height: 100svh;
         height: auto;
@@ -72,14 +101,14 @@
         padding-bottom: 64px;
     }
 
-    html.mobile-homepage-locked,
-    html.mobile-homepage-locked body {
+    html.homepage-scroll-locked,
+    html.homepage-scroll-locked body {
         height: 100svh;
         overflow: hidden;
         overscroll-behavior: none;
     }
 
-    html.mobile-homepage-locked body .layout {
+    html.homepage-scroll-locked body .layout {
         height: 100svh;
         min-height: 100svh;
         align-content: center;
