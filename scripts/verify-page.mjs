@@ -677,9 +677,17 @@ assert(
             indexHtml.includes(`>${title}</span`),
     ) &&
         portfolioStyles.includes(
-            ".portfolio-card-link {\n    display: grid;\n    grid-template-columns: auto minmax(0, 1fr) auto;",
+            ".portfolio-section {\n    display: grid;\n    grid-template-columns: auto minmax(0, 1fr) auto;",
         ) &&
-        portfolioStyles.includes("width: calc(100% + 20px);") &&
+        portfolioStyles.includes(
+            ".portfolio-group {\n    display: grid;\n    grid-column: 1 / -1;\n    grid-template-columns: subgrid;",
+        ) &&
+        portfolioStyles.includes(
+            ".portfolio-card-link {\n    display: grid;\n    grid-column: 1 / -1;\n    grid-template-columns: subgrid;",
+        ) &&
+        portfolioStyles.includes("width: 100%;") &&
+        !portfolioStyles.includes("width: calc(100% + 20px);") &&
+        !portfolioStyles.includes("margin-inline: -10px;") &&
         portfolioStyles.includes(
             ".portfolio-card-title {\n    grid-column: 2;\n    grid-row: 1;\n    color: var(--text-primary);\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 24px;",
         ) &&
@@ -747,9 +755,9 @@ assert(
         indexHtml.indexOf('id="portfolio-group-design-title"') <
             indexHtml.indexOf('id="portfolio-filen-title"') &&
         portfolioStyles.includes(
-            ".portfolio-group .section-title {\n    margin-bottom: 14px;\n    color: var(--text-secondary);",
+            ".portfolio-group .section-title {\n    grid-column: 1 / -1;\n    margin-bottom: 14px;\n    color: var(--text-secondary);",
         ),
-    "Homepage must split projects into Engineering and Design groups with white section labels.",
+    "Homepage must split projects into Engineering and Design groups with bright-gray section labels.",
 );
 assert(
     !indexHtml.includes("<img") &&
