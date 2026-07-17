@@ -1506,6 +1506,7 @@ body {
 .portfolio-card-title {
     grid-column: 2;
     grid-row: 1;
+    white-space: nowrap;
     color: var(--text-primary);
     font-size: 16px;
     font-weight: 400;
@@ -1515,6 +1516,10 @@ body {
 .portfolio-card-field {
     grid-column: 3;
     grid-row: 1;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     color: var(--text-tertiary);
     font-size: 16px;
     font-weight: 400;
@@ -1525,6 +1530,7 @@ body {
     grid-column: 1;
     grid-row: 1;
     display: block;
+    white-space: nowrap;
     color: inherit;
     font-size: 16px;
     line-height: 24px;
@@ -1535,7 +1541,7 @@ body {
 }
 
 .portfolio-card-arrow {
-    grid-column: 5;
+    grid-column: 4;
     grid-row: 1;
     align-self: baseline;
     display: inline-flex;
@@ -1554,8 +1560,9 @@ body {
 
 .portfolio-section {
     display: grid;
-    grid-template-columns: auto max-content max-content minmax(0, 1fr) auto;
+    grid-template-columns: max-content max-content minmax(0, 1fr) auto;
     column-gap: 16px;
+    container-type: inline-size;
     margin-bottom: 32px;
 }
 
@@ -1599,7 +1606,7 @@ body {
 }
 
 .portfolio-link-heading {
-    grid-column: 5;
+    grid-column: 4;
     line-height: 24px;
     text-align: right;
 }
@@ -1648,24 +1655,20 @@ body {
         column-gap: clamp(8px, 3vw, 16px);
     }
 
-    .portfolio-link-heading,
-    .portfolio-card-arrow {
-        grid-column: 4;
-    }
-
-    .portfolio-card-field {
-        grid-column: 3;
-        grid-row: 1;
-        min-width: 0;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-
     .portfolio-card-view {
         display: none;
     }
 
+    .portfolio-date-full {
+        display: none;
+    }
+
+    .portfolio-date-year {
+        display: inline;
+    }
+}
+
+@container (max-width: 400px) {
     .portfolio-date-full {
         display: none;
     }
@@ -2080,6 +2083,7 @@ html.homepage-scroll-locked body .layout {
         align-self: start;
         justify-self: end;
         margin-top: 0;
+        margin-bottom: 0;
     }
 
     .links,

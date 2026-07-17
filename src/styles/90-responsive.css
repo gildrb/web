@@ -315,6 +315,7 @@ html.homepage-scroll-locked body .layout {
         align-self: start;
         justify-self: end;
         margin-top: 0;
+        margin-bottom: 0;
     }
 
     .links,

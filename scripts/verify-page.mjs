@@ -921,7 +921,7 @@ assert(
             ".portfolio-sort-field {\n    grid-column: 3;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-link-heading {\n    grid-column: 5;",
+            ".portfolio-link-heading {\n    grid-column: 4;",
         ) &&
         portfolioStyles.includes(
             "@media (min-width: 768px) {\n    .portfolio-table-header {\n        padding-top: 0;",
@@ -965,7 +965,7 @@ assert(
             indexHtml.includes(`>${title}</span`),
     ) &&
         portfolioStyles.includes(
-            ".portfolio-section {\n    display: grid;\n    grid-template-columns: auto max-content max-content minmax(0, 1fr) auto;\n    column-gap: 16px;",
+            ".portfolio-section {\n    display: grid;\n    grid-template-columns: max-content max-content minmax(0, 1fr) auto;\n    column-gap: 16px;\n    container-type: inline-size;",
         ) &&
         portfolioStyles.includes(
             ".portfolio-list {\n    display: grid;\n    grid-column: 1 / -1;\n    grid-template-columns: subgrid;\n    margin-top: 0;",
@@ -977,10 +977,10 @@ assert(
         !portfolioStyles.includes("width: calc(100% + 20px);") &&
         !portfolioStyles.includes("margin-inline: -10px;") &&
         portfolioStyles.includes(
-            ".portfolio-card-title {\n    grid-column: 2;\n    grid-row: 1;\n    color: var(--text-primary);\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 24px;",
+            ".portfolio-card-title {\n    grid-column: 2;\n    grid-row: 1;\n    white-space: nowrap;\n    color: var(--text-primary);\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-card-field {\n    grid-column: 3;\n    grid-row: 1;\n    color: var(--text-tertiary);\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 24px;",
+            ".portfolio-card-field {\n    grid-column: 3;\n    grid-row: 1;\n    min-width: 0;\n    overflow: hidden;\n    white-space: nowrap;\n    text-overflow: ellipsis;\n    color: var(--text-tertiary);\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
             ".portfolio-card-link {\n    display: grid;\n    grid-column: 1 / -1;\n    grid-template-columns: subgrid;\n    align-items: baseline;\n    width: 100%;\n    padding: 8px 0;\n    color: var(--text-tertiary);",
@@ -989,10 +989,10 @@ assert(
             ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 1;\n    display: block;\n    color: var(--text-tertiary);\n    font-size: 16px;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 1;\n    display: block;\n    color: inherit;\n    font-size: 16px;\n    line-height: 24px;",
+            ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 1;\n    display: block;\n    white-space: nowrap;\n    color: inherit;\n    font-size: 16px;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-card-arrow {\n    grid-column: 5;\n    grid-row: 1;\n    align-self: baseline;\n    display: inline-flex;",
+            ".portfolio-card-arrow {\n    grid-column: 4;\n    grid-row: 1;\n    align-self: baseline;\n    display: inline-flex;",
         ) &&
         portfolioStyles.includes(
             ".portfolio-card-view {\n    visibility: hidden;",
@@ -1020,12 +1020,6 @@ assert(
             "@media (max-width: 767px) {\n    .portfolio-section {\n        grid-template-columns: max-content max-content minmax(0, 1fr) auto;\n        column-gap: clamp(8px, 3vw, 16px);",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-link-heading,\n    .portfolio-card-arrow {\n        grid-column: 4;",
-        ) &&
-        portfolioStyles.includes(
-            ".portfolio-card-field {\n        grid-column: 3;\n        grid-row: 1;\n        min-width: 0;\n        overflow: hidden;\n        white-space: nowrap;\n        text-overflow: ellipsis;",
-        ) &&
-        portfolioStyles.includes(
             ".portfolio-card-view {\n        display: none;",
         ) &&
         portfolioStyles.includes(
@@ -1034,8 +1028,11 @@ assert(
         portfolioStyles.includes(
             ".portfolio-date-year {\n        display: inline;",
         ) &&
+        portfolioStyles.includes(
+            "@container (max-width: 400px) {\n    .portfolio-date-full {\n        display: none;",
+        ) &&
         !portfolioStyles.includes("@media (max-width: 360px)"),
-    "Homepage projects must expose single-line rows with aligned ISO dates, mobile-only years, titles, field tags, native Inter arrows, hover View labels, and faint separators.",
+    "Homepage projects must expose single-line rows with aligned ISO dates, space-preserving years, titles, ellipsized field tags, native Inter arrows, hover View labels, and faint separators.",
 );
 assert(
     indexHtml.includes(
@@ -1188,6 +1185,15 @@ assert(
         ".case-intro,\n.case-copy {\n    width: min(100%, 760px);\n    margin-right: auto;\n    margin-left: auto;",
     ),
     "Case intro and prose columns must be centered inside the wider media container.",
+);
+assert(
+    responsiveStyles.includes(
+        "@media (min-width: 769px) and (max-height: 720px)",
+    ) &&
+        responsiveStyles.includes(
+            ".theme-toggle {\n        grid-column: 2;\n        grid-row: 1;\n        align-self: start;\n        justify-self: end;\n        margin-top: 0;\n        margin-bottom: 0;",
+        ),
+    "Short desktop windows must not let the theme toggle footer margin stretch the location row.",
 );
 assert(
     caseStyles.includes("@media (min-width: 769px)") &&
