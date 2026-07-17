@@ -274,6 +274,7 @@ body {
 }
 
 .external-link,
+.internal-link,
 .reference-link {
     color: var(--text-tertiary);
     text-decoration: none;
@@ -293,6 +294,7 @@ body {
 
 @media (hover: hover) {
     .external-link:hover,
+    .internal-link:hover,
     .reference-link:hover {
         color: var(--text-primary);
     }
@@ -328,12 +330,14 @@ body {
 }
 
 .external-link:focus:not(:focus-visible),
+.internal-link:focus:not(:focus-visible),
 .reference-link:focus:not(:focus-visible),
 .email:focus:not(:focus-visible) {
     outline: none;
 }
 
 .external-link:focus-visible,
+.internal-link:focus-visible,
 .reference-link:focus-visible,
 .email:focus-visible {
     color: var(--text-primary);

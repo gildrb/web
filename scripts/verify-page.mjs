@@ -18,6 +18,37 @@ function assert(condition, message) {
     }
 }
 
+function getCssDeclarations(css, selector) {
+    const declarations = {};
+
+    for (const match of css.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+        const selectors = match[1]
+            .split(",")
+            .map((value) => value.trim())
+            .filter(Boolean);
+        if (!selectors.includes(selector)) continue;
+
+        for (const declaration of match[2].split(";")) {
+            const separator = declaration.indexOf(":");
+            if (separator === -1) continue;
+            declarations[declaration.slice(0, separator).trim()] = declaration
+                .slice(separator + 1)
+                .trim();
+        }
+    }
+
+    return declarations;
+}
+
+function getAttributes(source) {
+    return Object.fromEntries(
+        [...source.matchAll(/([a-z-]+)="([^"]*)"/g)].map((match) => [
+            match[1],
+            match[2],
+        ]),
+    );
+}
+
 function getGeneratedJsonLd(html) {
     const match = html.match(
         /<script type="application\/ld\+json">\n([\s\S]*?)\n        <\/script>/,
@@ -200,6 +231,49 @@ for (const { slug, title, markdown, template } of caseSources) {
     assert(
         authoredBody || markdown.trimEnd().endsWith("## MORE SOON"),
         `content/${slug}.md must contain authored prose or end with ## MORE SOON.`,
+    );
+}
+
+const proseLinks = caseHtml.flatMap((html) =>
+    [...html.matchAll(/<div class="case-copy">([\s\S]*?)<\/div>/g)].flatMap(
+        (copy) =>
+            [...copy[1].matchAll(/<a\s+([^>]+)>/g)].map((link) =>
+                getAttributes(link[1]),
+            ),
+    ),
+);
+assert(
+    proseLinks.every(({ class: className = "", href, target, rel }) => {
+        const classes = new Set(className.split(/\s+/).filter(Boolean));
+        const isInternal = classes.has("internal-link");
+        const isExternal = classes.has("external-link");
+
+        if (isInternal === isExternal) return false;
+        if (isInternal) {
+            return href?.startsWith("/") && !target && !rel;
+        }
+
+        return (
+            /^https:\/\//.test(href ?? "") &&
+            target === "_blank" &&
+            new Set((rel ?? "").split(/\s+/)).has("noopener") &&
+            new Set((rel ?? "").split(/\s+/)).has("noreferrer")
+        );
+    }),
+    "Every case-study prose link must declare a valid internal or external link role; bare anchors are forbidden.",
+);
+
+for (const linkRole of ["internal-link", "external-link"]) {
+    const resting = getCssDeclarations(baseStyles, `.${linkRole}`);
+    const hover = getCssDeclarations(baseStyles, `.${linkRole}:hover`);
+    const focus = getCssDeclarations(baseStyles, `.${linkRole}:focus-visible`);
+    assert(
+        resting.color === "var(--text-tertiary)" &&
+            resting["text-decoration"] === "none" &&
+            hover.color === "var(--text-primary)" &&
+            focus.color === "var(--text-primary)" &&
+            (focus.outline || focus["box-shadow"]),
+        `.${linkRole} must define token-based resting, hover, and keyboard-focus states without browser-default styling.`,
     );
 }
 
@@ -591,7 +665,9 @@ assert(
     "Heph must use the shared case-study shell and link to its repository inside the article.",
 );
 assert(
-    siteHtml.includes('<a href="/heph">Heph</a> case study'),
+    /<a\s+class="internal-link"\s+href="\/heph">Heph<\/a> case study/.test(
+        siteHtml,
+    ),
     "Cross-study references must link readers directly to the referenced case study.",
 );
 assert(
@@ -735,12 +811,6 @@ assert(
     baseStyles.includes(
         ".links-label {\n    color: var(--text-secondary);",
     ) &&
-        baseStyles.includes(
-            ".external-link,\n.reference-link {\n    color: var(--text-tertiary);",
-        ) &&
-        baseStyles.includes(
-            ".external-link:hover,\n    .reference-link:hover {\n        color: var(--text-primary);",
-        ) &&
         baseStyles.includes(
             ".email {\n    font-size: 16px;\n    font-weight: 400;\n    line-height: var(--link-line-height);\n    color: var(--text-tertiary);",
         ),

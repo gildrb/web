@@ -360,7 +360,7 @@ function renderInline(source) {
     );
     html = html.replace(
         /\[([^\]]+)\]\((\/[a-z0-9/-]*)\)/g,
-        '<a href="$2">$1</a>',
+        '<a class="internal-link" href="$2">$1</a>',
     );
     html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
     html = html.replace(/\*([^*]+)\*/g, "<em>$1</em>");
