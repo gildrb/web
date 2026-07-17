@@ -513,6 +513,12 @@ assert(
     "Homepage does not link to the Filen case study.",
 );
 assert(
+    /<h1 class="name" id="site-title" itemprop="name">\s*Gil Rodrigues\s*<\/h1>/.test(
+        indexHtml,
+    ),
+    "The homepage name must remain plain text rather than linking to itself.",
+);
+assert(
     (indexHtml.match(/href="\/heph"/g) || []).length === 1 &&
         !indexHtml.includes('class="heph-demo-zoom-link"') &&
         !indexHtml.includes('href="https://github.com/gildrb/heph"'),
@@ -583,6 +589,10 @@ assert(
         hephHtml.includes("GitHub repository") &&
         !hephHtml.includes("case-kicker"),
     "Heph must use the shared case-study shell and link to its repository inside the article.",
+);
+assert(
+    siteHtml.includes('<a href="/heph">Heph</a> case study'),
+    "Cross-study references must link readers directly to the referenced case study.",
 );
 assert(
     filenHtml.includes('rel="canonical" href="https://gildrb.com/filen"'),

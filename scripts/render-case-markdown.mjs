@@ -358,6 +358,10 @@ function renderInline(source) {
         /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
         '<a class="external-link" href="$2" target="_blank" rel="noopener noreferrer">$1</a>',
     );
+    html = html.replace(
+        /\[([^\]]+)\]\((\/[a-z0-9/-]*)\)/g,
+        '<a href="$2">$1</a>',
+    );
     html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
     html = html.replace(/\*([^*]+)\*/g, "<em>$1</em>");
     html = html.replace(/\u0000CODE(\d+)\u0000/g, (_, index) => code[index]);

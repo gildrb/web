@@ -46,7 +46,7 @@ This is the part I am proudest of. A verification harness runs on every build an
 
 ### Interactive, written from scratch
 
-The terminal on the Heph case study is a from-scratch simulation of a Heph session written in vanilla JavaScript. It plays a timed retrieval animation, shows evidence you can open, and exposes the real keyboard model, all while staying accessible and respecting reduced-motion preferences. It is a small, deliberate piece of interaction design that runs without a single dependency.
+The terminal on the [Heph](/heph) case study is a from-scratch simulation of a Heph session written in vanilla JavaScript. It plays a timed retrieval animation, shows evidence you can open, and exposes the real keyboard model, all while staying accessible and respecting reduced-motion preferences. It is a small, deliberate piece of interaction design that runs without a single dependency.
 
 ### Readable by machines
 
