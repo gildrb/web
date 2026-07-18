@@ -2,9 +2,9 @@
 
 In late 2019, former professional Counter-Strike player Jordan "n0thing" Gilbert was looking for a logo. The artist VisionOfVIII, whose work I admired and had helped on for a while, recommended me to Jordan for the job. Jordan reached out and commissioned me to design a custom wordmark, which he still uses today.
 
-### Exploring type
+### Exploring directions
 
-Jordan had a typewriter-like, slightly '80s madman feel in mind, though I did not know that when I began. After I shared my first ideas, he clarified the direction and I built out a typewriter-inspired wordmark.
+Jordan had not specified a visual direction when we began, so I started with my own interpretation: a custom pixel wordmark. He liked the concept but wanted to see another approach, then explained that he had a typewriter-like, slightly '80s madman feel in mind. I used that feedback to develop a typewriter-inspired wordmark.
 
 ![Typewriter direction](media:n0thing-typewriter-direction)
 
@@ -12,7 +12,7 @@ We agreed the typewriter version felt off-balance. Jordan had a strong instinct 
 
 ### Back to pixels
 
-We returned to the pixel direction he had already responded to, and I developed a full series of variations: different constructions of the zero, small changes to the letterforms and spacing, and monochrome and red-accented treatments.
+After comparing both approaches, we returned to the initial pixel concept. I developed a full series of variations: different constructions of the zero, small changes to the letterforms and spacing, and monochrome and red-accented treatments.
 
 ![Pixel wordmark variations](media:n0thing-pixel-variations)
 
