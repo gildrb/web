@@ -868,6 +868,13 @@ assert(
         responsiveStyles.includes(
             "body:not(.case-page) .theme-toggle {\n        position: relative;\n        top: auto;",
         ) &&
+        baseStyles.includes("--theme-toggle-optical-offset: 2px;") &&
+        responsiveStyles.includes(
+            "height: calc(24px + var(--link-line-height) + 8px);\n        min-height: var(--theme-toggle-size);\n        padding:\n            calc(24px + var(--theme-toggle-optical-offset)) 0\n            calc(8px - var(--theme-toggle-optical-offset));\n        align-items: center;",
+        ) &&
+        caseHtml.every((html) =>
+            html.includes("--theme-toggle-optical-offset: 2px;"),
+        ) &&
         baseStyles.includes("--text-media-gap: 32px;") &&
         previewContentStyles.includes(
             ".profile-summary {\n    max-width: 760px;\n    margin-bottom: var(--text-media-gap);",

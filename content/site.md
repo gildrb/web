@@ -29,6 +29,7 @@ The spec is enforced in code. The build refuses to ship a page that violates the
     --text-media-gap: 32px;
     --link-line-height: 24px;
     --theme-toggle-size: 32px;
+    --theme-toggle-optical-offset: 2px;
     --footer-stack-bottom-gap: 4px;
     --footer-title-optical-offset: 4px;
     --sidebar-column: 240px;
