@@ -985,8 +985,8 @@ assert(
         indexHtml.includes('data-sort-key="title"') &&
         indexHtml.includes('data-sort-key="field"') &&
         indexHtml.includes(">\n                                Date\n") &&
-        indexHtml.includes(">\n                                Title\n") &&
-        indexHtml.includes(">\n                                Field\n") &&
+        indexHtml.includes(">\n                                Project\n") &&
+        indexHtml.includes(">\n                                Scope\n") &&
         indexHtml.includes(
             '<span class="portfolio-link-heading">Link</span>',
         ) &&
@@ -1031,7 +1031,7 @@ assert(
         siteScript.includes('"Z to A"') &&
         siteScript.includes("if (event.detail !== 0) button.blur();") &&
         !caseScript.includes("portfolioSortButtons"),
-    "The homepage must show white Date, Title, Field, and Link column headings and provide homepage-only accessible global project sorting.",
+    "The homepage must show white Date, Project, Scope, and Link column headings and provide homepage-only accessible global project sorting.",
 );
 const portfolioDates = [
     ["2026-04-21", "2026-04-21", "Heph"],
@@ -1091,7 +1091,10 @@ assert(
         (indexHtml.match(/class="portfolio-card-field">Brand identity/g) || [])
             .length === 1 &&
         (indexHtml.match(/class="portfolio-card-field">Wordmark/g) || [])
-            .length === 2 &&
+            .length === 1 &&
+        /class="portfolio-card-field"\s*>Commissioned custom wordmark/.test(
+            indexHtml,
+        ) &&
         (indexHtml.match(/class="portfolio-card-field">Design engineering/g) || [])
             .length === 1 &&
         (indexHtml.match(/class="portfolio-card-field">Product design and engineering/g) || [])
