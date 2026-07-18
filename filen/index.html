@@ -89,6 +89,7 @@
     --text-media-gap: 32px;
     --link-line-height: 24px;
     --theme-toggle-size: 32px;
+    --theme-toggle-optical-offset: 2px;
     --footer-stack-bottom-gap: 4px;
     --footer-title-optical-offset: 4px;
     --footer-title-center-offset: calc(
@@ -993,10 +994,12 @@ html.homepage-scroll-locked body .layout {
         z-index: 101;
         justify-self: end;
         align-self: start;
-        height: auto;
+        height: calc(24px + var(--link-line-height) + 8px);
         min-height: var(--theme-toggle-size);
-        padding: 24px 0 8px;
-        align-items: flex-start;
+        padding:
+            calc(24px + var(--theme-toggle-optical-offset)) 0
+            calc(8px - var(--theme-toggle-optical-offset));
+        align-items: center;
         justify-content: center;
         margin-top: 0;
         margin-left: 16px;
