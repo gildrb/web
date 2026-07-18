@@ -189,6 +189,17 @@ assert(
     indexHtml.includes("<title>Gil Rodrigues</title>"),
     "The homepage browser title must be only Gil Rodrigues.",
 );
+assert(
+    indexHtml.includes(
+        '<meta\n            name="description"\n            content="Designer and engineer based in Germany, building brand systems, interfaces, and software."',
+    ) &&
+        indexHtml.includes("<span data-nosnippet>Links</span>") &&
+        indexHtml.includes("<span data-nosnippet>About</span>") &&
+        indexHtml.includes(
+            "Designer and engineer based in Germany, building\n                            brand systems, interfaces, and software.",
+        ),
+    "The homepage must keep its canonical description eligible for search snippets and exclude navigation labels.",
+);
 for (const { slug, title, markdown, template } of caseSources) {
     assert(
         markdown.startsWith("# ") &&
@@ -587,7 +598,7 @@ assert(
     "Homepage does not link to the Filen case study.",
 );
 assert(
-    /<h1 class="name" id="site-title" itemprop="name">\s*Gil Rodrigues\s*<\/h1>/.test(
+    /<h1 class="name" id="site-title" itemprop="name">\s*<span data-nosnippet>Gil Rodrigues<\/span>\s*<\/h1>/.test(
         indexHtml,
     ),
     "The homepage name must remain plain text rather than linking to itself.",
