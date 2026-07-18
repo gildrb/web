@@ -762,19 +762,22 @@ assert(
     "n0thing must preserve complete images and omit dot dividers.",
 );
 const n0thingMediaSequence = [
-    "gil-rodrigues-n0thing-early-pixel-wordmark-274.webp",
     "gil-rodrigues-n0thing-typewriter-direction-720.webp",
     "gil-rodrigues-n0thing-pixel-variations-720.webp",
     "gil-rodrigues-n0thing-export-folder-720.webp",
     "gil-rodrigues-n0thing-wordmark-animation-720.gif",
 ];
 assert(
-    n0thingMediaSequence.every((asset, index) => {
-        const position = n0thingHtml.indexOf(asset);
-        const previousPosition =
-            index === 0 ? -1 : n0thingHtml.indexOf(n0thingMediaSequence[index - 1]);
-        return position > previousPosition;
-    }),
+    !n0thingHtml.includes("gil-rodrigues-n0thing-early-pixel-wordmark") &&
+        !n0thingHtml.includes("The first direction") &&
+        n0thingMediaSequence.every((asset, index) => {
+            const position = n0thingHtml.indexOf(asset);
+            const previousPosition =
+                index === 0
+                    ? -1
+                    : n0thingHtml.indexOf(n0thingMediaSequence[index - 1]);
+            return position > previousPosition;
+        }),
     "n0thing media must follow the documented design process.",
 );
 assert(
