@@ -1200,7 +1200,7 @@ assert(
 );
 assert(
     caseStyles.includes(
-        ".case-title {\n    max-width: 760px;\n    margin: 0 0 24px;\n    font-size: 28px;\n    font-weight: 500;\n    line-height: 36px;",
+        ".case-title {\n    max-width: 760px;\n    margin: 0 0 24px;\n    font-size: 28px;\n    font-weight: 500;\n    line-height: 36px;\n    letter-spacing: -0.02em;",
     ) &&
         caseStyles.includes(
             ".case-copy h2 {\n    margin-bottom: 24px;\n    font-size: 24px;\n    font-weight: 500;\n    line-height: 32px;",
@@ -1211,7 +1211,7 @@ assert(
         caseStyles.includes(
             ".case-title {\n        font-size: 24px;\n        line-height: 32px;",
         ),
-    "Case-study headings must use the calm 19/24/28px hierarchy and align the page title to the article top.",
+    "Case-study headings must use the calm 19/24/28px hierarchy, tighten the page title, and align it to the article top.",
 );
 assert(
     caseStyles.includes(
