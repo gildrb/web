@@ -39,9 +39,9 @@ Independent designer and engineer building brand systems, interfaces, and digita
 
 ## Portfolio
 
-#### This website (Design engineering)
+#### gildrb.com (Design engineering)
 
-[This website](https://gildrb.com/site) documents how the portfolio is built and verified as a static, hand-authored site.
+[gildrb.com](https://gildrb.com/site) documents how the portfolio is built and verified as a static, hand-authored site.
 
 #### Heph (Product design & engineering)
 

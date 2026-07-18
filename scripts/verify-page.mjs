@@ -1169,7 +1169,7 @@ assert(
         .every((position, index, positions) =>
             index === 0 ? position !== -1 : position > positions[index - 1],
         ),
-    "Homepage projects must default to one global newest-first order: This website, Heph, Filen, n0thing, mL7.",
+    "Homepage projects must default to one global newest-first order: gildrb.com, Heph, Filen, n0thing, mL7.",
 );
 assert(
     indexHtml.includes('class="portfolio-list"') &&
