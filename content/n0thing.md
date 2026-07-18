@@ -1,10 +1,10 @@
 # A wordmark for n0thing, still in use
 
-In late 2019, former professional Counter-Strike player Jordan "n0thing" Gilbert was looking for a logo. The artist VisionOfVIII, whose work I admired and had helped on for a while, recommended me to Jordan for the job. Jordan reached out and commissioned me to design a custom wordmark, which he still uses today.
+In late 2019, former professional Counter-Strike player Jordan "n0thing" Gilbert was looking for a logo. The artist VisionOfVIII, whose work I admired and had helped on for a while, recommended me to Jordan for the job. Jordan reached out and commissioned me to design a custom wordmark. He wanted it to feel serious and considered but left the visual direction open. The wordmark I designed is the one he still uses today.
 
 ### Exploring directions
 
-Jordan had not specified a visual direction when we began, so I started with my own interpretation: a custom pixel wordmark. He liked the concept but wanted to see another approach, then explained that he had a typewriter-like, slightly '80s madman feel in mind. I used that feedback to develop a typewriter-inspired wordmark.
+With the visual direction open, I started with my own interpretation: a custom pixel wordmark. Jordan liked the concept but wanted to see another approach, then explained that he had a typewriter-like, slightly '80s madman feel in mind. I used that feedback to develop a typewriter-inspired wordmark.
 
 ![Typewriter direction](media:n0thing-typewriter-direction)
 
