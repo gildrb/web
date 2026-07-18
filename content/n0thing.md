@@ -1,27 +1,27 @@
-# A wordmark for n0thing, still in use
+# A wordmark for n0thing
 
-In late 2019, former professional Counter-Strike player Jordan "n0thing" Gilbert was looking for a logo. The artist VisionOfVIII, whose work I admired and had helped on for a while, recommended me to Jordan for the job. Jordan reached out and commissioned me to design a custom wordmark. He wanted it to feel serious and considered but left the visual direction open. The wordmark I designed is the one he still uses today.
+In late 2019, former professional Counter-Strike player Jordan "n0thing" Gilbert was looking for a logo. VisionOfVIII, an artist whose work I admired and had helped with, recommended me. Jordan commissioned a custom wordmark and asked for something serious, but left the visual direction open.
 
 ### Exploring directions
 
-With the visual direction open, I started with my own interpretation: a custom pixel wordmark. Jordan liked the concept but wanted to see another approach, then explained that he had a typewriter-like, slightly '80s madman feel in mind. I used that feedback to develop a typewriter-inspired wordmark.
+My first proposal was a pixel wordmark. Jordan liked it but wanted to compare it with a typewriter-like direction influenced by the 1980s. I used that feedback to draw a second wordmark.
 
 ![Typewriter direction](media:n0thing-typewriter-direction)
 
-We agreed the typewriter version felt off-balance. Jordan had a strong instinct there, and given the same brief today I would find a way to make it land.
+We agreed that the typewriter version felt off-balance. Its letter widths pulled the name apart instead of holding it together.
 
 ### Back to pixels
 
-After comparing both approaches, we returned to the initial pixel concept. I developed a full series of variations: different constructions of the zero, small changes to the letterforms and spacing, and monochrome and red-accented treatments.
+We returned to the pixel concept. I varied the construction of the zero, adjusted the letter spacing, and tested monochrome versions against a red-accented set.
 
 ![Pixel wordmark variations](media:n0thing-pixel-variations)
 
-From those, we settled on the final pixel wordmark. This is the export folder from the time, with the AI and PSD sources alongside the six PNGs I delivered.
+From those studies, we chose the final pixel wordmark. The original delivery folder shown below contains the AI and PSD source folders beside the six exported PNG files.
 
 ![Original export folder](media:n0thing-export-folder)
 
-The final touch was motion. I animated the trailing underscore so the wordmark felt alive while keeping its serious tone.
+I finished the identity by animating the trailing underscore. The movement is limited to the cursor, so the wordmark keeps the weight and spacing of the static version.
 
 ![Final wordmark in motion](media:n0thing-wordmark-animation)
 
-The brief was to feel serious and considered, and we hit it. Jordan was an easy collaborator, the mark shipped, and it still represents him today.
+Jordan approved the mark and I delivered it in 2019. The route from the rejected typewriter study back to the first pixel idea produced a stronger final wordmark and a useful motion rule.

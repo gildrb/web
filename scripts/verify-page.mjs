@@ -780,11 +780,22 @@ assert(
         }),
     "n0thing media must follow the documented design process.",
 );
+const publicCopy = [
+    ...allHtml,
+    profileJson,
+    ...identityTexts.map(({ text }) => text),
+]
+    .join("\n")
+    .replace(/<[^>]+>/g, " ");
+const stockAiPhrasePattern =
+    /\b(?:delve|tapestry)\b|in today['’]s fast-paced world|crucial to note|ever-evolving landscape|certainly[!,].{0,20}here['’]s|sure[!,].{0,20}here['’]s|i['’]d be happy to/i;
+const stockContrastPattern =
+    /\bnot (?:just|only)\b[^.!?]{0,160}\bbut(?: also)?\b/i;
 assert(
-    allHtml.every(
-        (html) => !html.includes("\u2014"),
-    ),
-    "Public copy and metadata must omit em dashes on every page.",
+    !publicCopy.includes("\u2014") &&
+        !stockAiPhrasePattern.test(publicCopy) &&
+        !stockContrastPattern.test(publicCopy),
+    "Public copy and metadata must omit em dashes and stock AI phrasing.",
 );
 assert(
     allHtml.every(

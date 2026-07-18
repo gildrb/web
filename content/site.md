@@ -1,20 +1,22 @@
 # The site you are on is the case study
 
-The page you are reading is the work. No framework and no site builder. It compiles from my own source through a build pipeline I wrote, and an automated harness holds every page to one design system. I built it to be the clearest evidence that I can take an idea from an empty repository to something shipped, tested, and maintained.
+This page documents the portfolio itself. I started with an empty repository, wrote the design and build system, then prepared the static files for deployment. The repository contains both the authored source and the generated pages. Its verification script is there too.
 
-### Built from source through my own pipeline
+### Built from source
 
-The whole site compiles from plain source. I author the case-study prose in Markdown and the shared page structure in HTML partials, then a Node build step renders the case studies, assembles page-specific CSS and JavaScript bundles, inlines them with the structured data, and writes out static routes. There is no client-side framework and no runtime dependency. What ships is small, fast, and entirely mine.
+Case-study prose lives in Markdown and shared page structure lives in HTML partials. A dependency-free Node script renders the Markdown, assembles the CSS and JavaScript needed by each route, inlines the structured data, and writes the static pages.
+
+The pages do not depend on a client-side framework. Vercel Insights and Speed Insights are loaded separately for analytics; the portfolio remains functional if those scripts are unavailable.
 
 ![Build pipeline](media:site-build-pipeline)
 
-### A design system, documented and enforced
+### The design rules
 
-The whole site runs on one small design system that I wrote down as a spec and then wired into the build so it cannot drift. The palette is deliberately tight: a single background token and a three-step gray text hierarchy (`--text-primary`, `--text-secondary`, `--text-tertiary`) that flips cleanly between light and dark, plus one shared highlight color for selection. There are no accent colors, gradients, or glows anywhere, and that restraint is the whole idea.
+The palette has one background token and three text colors. A separate pair controls selected text. Light and dark themes change those token values without introducing another palette.
 
-Spacing comes off a 4px scale (4, 8, 12, 16, 24, 32, 48, 64, 80) exposed as named tokens, so a 760px content column, a 240px sidebar, and a 48px layout gap are decisions I made once and reuse everywhere. Type is self-hosted Inter Variable with Geist Mono for code, on a fixed ramp: 28/36 for titles, 24/32 for section headings, 16/24 for body, 14/20 for captions, nothing lighter than weight 400, and no fluid font sizing. Interaction is just as strict: links and controls promote from tertiary to primary gray on hover, focus shows a 1px ring at a 4px offset, selection uses the bright-gray highlight, and any motion stays at or below 200ms and yields to reduced-motion.
+Layout values are named in CSS. The main article column is 760px wide on desktop. It sits beside a 240px sidebar with a 48px gap. A 6px token handles compact link stacks; larger separations use 24px, 32px, 48px, or 80px according to the relationship between elements. Case titles are 28/36 on desktop and 24/32 on mobile. Body copy is 16/24, while captions and code labels use 14/20. Inter Variable is self-hosted for text and Geist Mono is used for code.
 
-The spec is enforced in code. The build refuses to ship a page that violates the tokens, the type hierarchy, or the spacing rules, so the written system and the live site can never quietly disagree.
+Links and controls use the gray text tokens at rest and move to the primary text color on direct hover. Keyboard focus uses a visible ring. The Heph demo has a reduced-motion mode; routine controls change state without decorative animation.
 
 ```css title="src/styles/10-base.css"
 :root {
@@ -39,22 +41,24 @@ The spec is enforced in code. The build refuses to ship a page that violates the
 }
 ```
 
-### I wrote tests for my own portfolio
+### Verification
 
-This is the part I am proudest of. A verification harness runs on every build and checks more than eighty assertions before anything is allowed to ship. It enforces the design-system colors and spacing, the content rules (caption length, project order, and a hard ban on em dashes), and asset completeness, so there are never missing or unreferenced images. It also rebuilds every page from source and fails if the committed HTML has drifted by even a character. If the site stops matching its own rules, the build breaks.
+The verification script currently runs 85 assertions. It checks the design tokens, responsive rules, content constraints, route order, and asset references. Missing images and files that are no longer referenced are both reported.
+
+The same script rebuilds every page in memory and compares the result with the committed HTML. A source edit followed by a missed rebuild therefore fails verification instead of leaving stale output unnoticed.
 
 ![Verification harness](media:site-verify-harness)
 
-### Interactive, written from scratch
+### The Heph demo
 
-The terminal on the [Heph](/heph) case study is a from-scratch simulation of a Heph session written in vanilla JavaScript. It plays a timed retrieval animation, shows evidence you can open, and exposes the real keyboard model, all while staying accessible and respecting reduced-motion preferences. It is a small, deliberate piece of interaction design that runs without a single dependency.
+The terminal on the [Heph](/heph) case study is a simulation written in vanilla JavaScript. It plays one retrieval sequence and opens cited evidence. The keyboard controls shown in the interface also work. Reduced-motion users receive the completed state without the timed playback.
 
-### Readable by machines
+### Machine-readable routes
 
-I treated discovery as a design surface. The site publishes a Schema.org identity graph as JSON-LD, a WebFinger and host-meta record, an llms.txt profile written for AI agents, an RSS feed, a humans.txt file, and a sitemap. It also serves Content-Signal headers that state plainly how the site may be searched, used as AI input, or used for training. A person, a search engine, and an AI agent all get the same clear answer about who I am.
+The site publishes a Schema.org identity graph, WebFinger records, host metadata, an llms.txt reference, an RSS feed, a humans.txt file, and a sitemap. Its `Content-Signal` header permits search, AI input, and AI training. These files identify Gil Rodrigues and link back to the same canonical homepage.
 
-### Fast and accessible by default
+### Delivery and access
 
-Performance and accessibility were requirements from the start. Critical CSS and JavaScript are inlined, fonts are preloaded, images are served responsively with the right size for each viewport, and the markup uses real landmarks, live regions for status updates, visible focus rings, and reduced-motion fallbacks. It loads fast and holds up whether you are on a phone, using a keyboard, or reading with a screen reader.
+The functional CSS and JavaScript are inlined by route. Fonts are preloaded, and responsive image sets let the browser choose an appropriate file for the viewport. The HTML uses landmarks, live regions, visible keyboard focus, and reduced-motion handling.
 
-Everything here is my design and my code, held to a standard I would defend on any team. This whole page is the work, and you are reading it right now.
+I designed and wrote the portfolio along with its build and verification scripts. The page above is generated by the same system it describes.

@@ -10,7 +10,7 @@ Focus: Visual systems, brand identity, interfaces, and implementation
 Contact: [hi@gildrb.com](mailto:hi@gildrb.com)
 Canonical: [https://gildrb.com/humans.txt](https://gildrb.com/humans.txt)
 Homepage: [https://gildrb.com/](https://gildrb.com/)
-Last updated: 2026-07-16
+Last updated: 2026-07-18
 
 ## Profiles
 
@@ -30,9 +30,9 @@ Gil, Gil Rodrigues, Gil Rodrigues Barbosa, Gil Domingos Rodrigues Barbosa, and g
 
 - gildrb.com: Case study about the source-driven static build, shared design system, verification harness, and machine-readable discovery layer behind gildrb.com. Case study: https://gildrb.com/site
 - Heph local document agent: Case study about bounded armories, local material indexing, cited answers, and inspectable evidence. Case study: https://gildrb.com/heph Source: https://github.com/gildrb/heph
-- Filen identity system: Authored case study showing the progression from broad mark exploration to a scalable identity, app icon, and campaign language. Case study: https://gildrb.com/filen
-- n0thing wordmark: Documented view of the current animated identity artifact and the evidence still needed to complete its case study. Case study: https://gildrb.com/n0thing
-- mL7 identity: Documented view of the current identity artifact and the evidence still needed to complete its case study. Case study: https://gildrb.com/ml7
+- Filen identity system: Self-initiated identity concept developed from rejected marks into an app icon and privacy-focused campaign system. Case study: https://gildrb.com/filen
+- n0thing wordmark: Case study following a rejected typewriter study through the final pixel wordmark, delivery files, and animated cursor. Case study: https://gildrb.com/n0thing
+- mL7 identity: Compact channel logo designed for mL7 in 2018 and still used in a different colorway as of July 2026. Case study: https://gildrb.com/ml7
 
 ## References
 
