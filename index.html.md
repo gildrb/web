@@ -35,7 +35,7 @@ Gil Rodrigues, also known as gildrb, designs identity systems and builds softwar
 
 ## About
 
-Designer and engineer based in Germany, building brand systems, interfaces, and software.
+Product designer based in Germany, building identity systems, interfaces, and software.
 
 ## Portfolio
 

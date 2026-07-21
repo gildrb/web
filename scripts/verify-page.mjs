@@ -191,12 +191,12 @@ assert(
 );
 assert(
     indexHtml.includes(
-        '<meta\n            name="description"\n            content="Designer and engineer based in Germany, building brand systems, interfaces, and software."',
+        '<meta\n            name="description"\n            content="Product designer based in Germany, building identity systems, interfaces, and software."',
     ) &&
         indexHtml.includes("<span data-nosnippet>Links</span>") &&
         indexHtml.includes("<span data-nosnippet>About</span>") &&
         indexHtml.includes(
-            "Designer and engineer based in Germany, building\n                            brand systems, interfaces, and software.",
+            "Product designer based in Germany, building\n                            identity systems, interfaces, and software.",
         ),
     "The homepage must keep its canonical description eligible for search snippets and exclude navigation labels.",
 );
