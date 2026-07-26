@@ -2,7 +2,7 @@
 
 > Canonical Markdown version of the homepage at [gildrb.com](https://gildrb.com/) for crawlers, search agents, and language models.
 
-Last updated: 2026-07-18
+Last updated: 2026-07-26
 Canonical: [https://gildrb.com/index.html.md](https://gildrb.com/index.html.md)
 Homepage: [https://gildrb.com/](https://gildrb.com/)
 
@@ -35,7 +35,7 @@ Gil Rodrigues, also known as gildrb, designs identity systems and builds softwar
 
 ## About
 
-Product designer based in Germany, building identity systems for software.
+Brand designer based in Germany, building identity systems for software.
 
 ## Portfolio
 

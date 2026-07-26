@@ -10,7 +10,7 @@ Focus: Visual systems, brand identity, interfaces, and implementation
 Contact: [hi@gildrb.com](mailto:hi@gildrb.com)
 Canonical: [https://gildrb.com/humans.txt](https://gildrb.com/humans.txt)
 Homepage: [https://gildrb.com/](https://gildrb.com/)
-Last updated: 2026-07-18
+Last updated: 2026-07-26
 
 ## Profiles
 
@@ -22,7 +22,7 @@ Last updated: 2026-07-18
 
 ## Summary
 
-Product designer based in Germany, building identity systems for software.
+Brand designer based in Germany, building identity systems for software.
 
 Gil, Gil Rodrigues, Gil Rodrigues Barbosa, Gil Domingos Rodrigues Barbosa, and gildrb all refer to the same person represented by this website.
 

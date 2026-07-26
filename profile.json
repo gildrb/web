@@ -12,7 +12,7 @@
         "Gil Rodrigues Barbosa",
         "Gil Domingos Rodrigues Barbosa"
       ],
-      "description": "Product designer based in Germany, building identity systems for software.",
+      "description": "Brand designer based in Germany, building identity systems for software.",
       "keywords": [
         "Gil",
         "gildrb",
@@ -104,7 +104,7 @@
         "Gil Domingos Rodrigues Barbosa"
       ],
       "headline": "Gil Rodrigues",
-      "description": "Product designer based in Germany, building identity systems for software.",
+      "description": "Brand designer based in Germany, building identity systems for software.",
       "keywords": [
         "Gil",
         "gildrb",
@@ -121,7 +121,7 @@
         "design systems"
       ],
       "dateCreated": "2026-06-14T18:42:48Z",
-      "dateModified": "2026-07-18T10:55:01Z",
+      "dateModified": "2026-07-26T10:38:25Z",
       "inLanguage": "en",
       "author": {
         "@id": "https://gildrb.com/#person"
@@ -153,7 +153,7 @@
         "Gil Rodrigues Barbosa",
         "Gil Domingos Rodrigues Barbosa"
       ],
-      "description": "Product designer based in Germany, building identity systems for software.",
+      "description": "Brand designer based in Germany, building identity systems for software.",
       "disambiguatingDescription": "Canonical source for Gil Rodrigues at gildrb.com, the design engineer using the handle gildrb and the legal name Gil Domingos Rodrigues Barbosa.",
       "url": "https://gildrb.com/",
       "email": "mailto:hi@gildrb.com",
@@ -161,7 +161,7 @@
       "hasOccupation": {
         "@type": "Occupation",
         "name": "Design Engineer",
-        "description": "Product designer based in Germany, building identity systems for software.",
+        "description": "Brand designer based in Germany, building identity systems for software.",
         "skills": [
           "Software",
           "Interfaces",
@@ -491,7 +491,7 @@
       "name": "LLM reference for Gil Rodrigues",
       "sameAs": "https://gildrb.com/.well-known/llms.txt",
       "encodingFormat": "text/markdown",
-      "dateModified": "2026-07-18T10:55:01Z",
+      "dateModified": "2026-07-26T10:38:25Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -600,7 +600,7 @@
       "name": "Well-known LLM discovery for Gil Rodrigues",
       "description": "Direct well-known discovery file for agents and crawlers looking for the LLM reference for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
       "encodingFormat": "text/markdown",
-      "dateModified": "2026-07-18T10:55:01Z",
+      "dateModified": "2026-07-26T10:38:25Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -627,7 +627,7 @@
       "name": "Markdown homepage for Gil Rodrigues / Gil Rodrigues Barbosa / Gil Domingos Rodrigues Barbosa",
       "description": "Markdown version of the homepage for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
       "encodingFormat": "text/markdown",
-      "dateModified": "2026-07-18T10:55:01Z",
+      "dateModified": "2026-07-26T10:38:25Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -651,7 +651,7 @@
       "name": "WebFinger identity for Gil Rodrigues",
       "description": "JRD identity discovery document for Gil Rodrigues, also known as gildrb, Gil Rodrigues Barbosa, and Gil Domingos Rodrigues Barbosa.",
       "encodingFormat": "application/jrd+json",
-      "dateModified": "2026-07-13T18:25:46Z",
+      "dateModified": "2026-07-26T10:38:25Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -728,7 +728,7 @@
       "url": "https://gildrb.com/profile.json",
       "name": "Structured profile for Gil Rodrigues",
       "encodingFormat": "application/ld+json",
-      "dateModified": "2026-07-18T10:55:01Z",
+      "dateModified": "2026-07-26T10:38:25Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -751,7 +751,7 @@
       "url": "https://gildrb.com/feed.xml",
       "name": "Gil Rodrigues feed",
       "encodingFormat": "application/rss+xml",
-      "dateModified": "2026-07-18T10:55:01Z",
+      "dateModified": "2026-07-26T10:38:25Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },
@@ -774,7 +774,7 @@
       "url": "https://gildrb.com/humans.txt",
       "name": "Humans file for Gil Rodrigues",
       "encodingFormat": "text/plain",
-      "dateModified": "2026-07-18T10:55:01Z",
+      "dateModified": "2026-07-26T10:38:25Z",
       "creator": {
         "@id": "https://gildrb.com/#person"
       },

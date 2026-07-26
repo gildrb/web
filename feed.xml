@@ -3,11 +3,11 @@
   <channel>
     <title>Gil Rodrigues - Gil Rodrigues Barbosa - Gil Domingos Rodrigues Barbosa (gildrb)</title>
     <link>https://gildrb.com/</link>
-    <description>Product designer based in Germany, building identity systems for software.</description>
+    <description>Brand designer based in Germany, building identity systems for software.</description>
     <language>en</language>
     <managingEditor>hi@gildrb.com (Gil Rodrigues)</managingEditor>
     <webMaster>hi@gildrb.com (Gil Rodrigues)</webMaster>
-    <lastBuildDate>Sat, 18 Jul 2026 10:55:01 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 26 Jul 2026 10:38:25 +0000</lastBuildDate>
     <atom:link href="https://gildrb.com/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>gildrb.com</title>
@@ -70,7 +70,7 @@
       <category>Gil Rodrigues Barbosa</category>
       <category>Gil Domingos Rodrigues Barbosa</category>
       <category>gildrb</category>
-      <description>Product designer based in Germany, building identity systems for software.</description>
+      <description>Brand designer based in Germany, building identity systems for software.</description>
     </item>
   </channel>
 </rss>
