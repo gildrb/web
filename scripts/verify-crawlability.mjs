@@ -307,7 +307,11 @@ function assertRobotsPolicy(text) {
 }
 
 function assertSitemap(text) {
-    for (const route of expectedRoutes) {
+    const sitemapListedRoutes = expectedRoutes.filter(
+        (value) => !["/robots.txt", "/sitemap.xml"].includes(value),
+    );
+
+    for (const route of sitemapListedRoutes) {
         assert(
             text.includes(`<loc>${canonicalOrigin}${route}</loc>`),
             `sitemap.xml must include ${canonicalOrigin}${route}.`,
