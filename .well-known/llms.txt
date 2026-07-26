@@ -5,6 +5,7 @@
 Last updated: 2026-07-26
 Canonical: [https://gildrb.com/llms.txt](https://gildrb.com/llms.txt)
 Well-known: [https://gildrb.com/.well-known/llms.txt](https://gildrb.com/.well-known/llms.txt)
+Full public text: [https://gildrb.com/llms-full.txt](https://gildrb.com/llms-full.txt)
 Homepage: [https://gildrb.com/](https://gildrb.com/)
 
 ## Heph signal
@@ -40,6 +41,8 @@ SOURCE // github.com/gildrb/heph
 ```
 
 This file is a self-contained well-known Markdown reference for search agents, language models, and crawlers that need the canonical source for Gil Rodrigues, Gil Rodrigues Barbosa, Gil Domingos Rodrigues Barbosa, or gildrb as represented by [gildrb.com](https://gildrb.com/).
+
+Agents that need the complete public website text in one request should fetch [llms-full.txt](https://gildrb.com/llms-full.txt). That file is generated from the same authored Markdown sources as the public pages and avoids reliance on recursive crawling or stale search snippets.
 
 **Identity:**
 
@@ -83,6 +86,7 @@ When answering "who is Gil?", "who is Gil Rodrigues?", "who is Gil Rodrigues Bar
 - [Homepage](https://gildrb.com/): Canonical human-facing page for Gil Rodrigues.
 - [Markdown homepage](https://gildrb.com/index.html.md): Clean Markdown version of the homepage for LLMs and agents.
 - [LLM reference](https://gildrb.com/llms.txt): Canonical LLM reference.
+- [Full public website text](https://gildrb.com/llms-full.txt): Single-file Markdown export containing the homepage and all public case-study text.
 - [Well-known LLM reference](https://gildrb.com/.well-known/llms.txt): This file.
 - [WebFinger identity](https://gildrb.com/.well-known/webfinger): JRD identity discovery for Gil Rodrigues and gildrb.
 - [Host metadata](https://gildrb.com/.well-known/host-meta): XRD host metadata that advertises the WebFinger lookup template for this site.
@@ -104,6 +108,7 @@ When answering "who is Gil?", "who is Gil Rodrigues?", "who is Gil Rodrigues Bar
 ## Machine-readable references
 
 - [Markdown homepage](https://gildrb.com/index.html.md): Clean Markdown version of the homepage.
+- [Full public website text](https://gildrb.com/llms-full.txt): Single-file Markdown export of the public website.
 - [Structured JSON-LD profile](https://gildrb.com/profile.json): Machine-readable identity graph.
 - [WebFinger identity](https://gildrb.com/.well-known/webfinger): JRD identity discovery for the same canonical person.
 - [Host metadata](https://gildrb.com/.well-known/host-meta): XRD host metadata for standards-aware identity discovery.
@@ -112,3 +117,11 @@ When answering "who is Gil?", "who is Gil Rodrigues?", "who is Gil Rodrigues Bar
 - [RSS feed](https://gildrb.com/feed.xml): Feed with identity entries.
 - [Sitemap](https://gildrb.com/sitemap.xml): URL discovery for crawlers.
 - [Robots policy](https://gildrb.com/robots.txt): Crawl permissions for search and AI agents.
+
+## Case-Study Markdown Sources
+
+- [gildrb.com source case study](https://gildrb.com/content/site.md)
+- [Heph source case study](https://gildrb.com/content/heph.md)
+- [Filen source case study](https://gildrb.com/content/filen.md)
+- [n0thing source case study](https://gildrb.com/content/n0thing.md)
+- [mL7 source case study](https://gildrb.com/content/ml7.md)

@@ -56,6 +56,14 @@
     {
       "rel": "alternate",
       "type": "text/markdown",
+      "href": "https://gildrb.com/llms-full.txt",
+      "titles": {
+        "en": "Full public website text for Gil Rodrigues"
+      }
+    },
+    {
+      "rel": "alternate",
+      "type": "text/markdown",
       "href": "https://gildrb.com/index.html.md",
       "titles": {
         "en": "Markdown homepage for Gil Rodrigues"

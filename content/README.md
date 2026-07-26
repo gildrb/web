@@ -70,4 +70,12 @@ node scripts/build-page.mjs
 node scripts/verify-page.mjs
 ```
 
-The build converts Markdown into the existing static HTML and preserves the current layout, responsive images, typography, navigation, and accessibility behavior.
+The build converts Markdown into the existing static HTML and `llms-full.txt`, preserving the current layout, responsive images, typography, navigation, accessibility behavior, and LLM-facing full-site text export.
+
+After deploying, run:
+
+```sh
+node scripts/verify-crawlability.mjs
+```
+
+The live crawlability check confirms production routes, raw Markdown sources, `llms-full.txt`, headers, robots, and sitemap discovery are reachable to LLM-style user agents.

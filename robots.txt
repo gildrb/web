@@ -1,6 +1,7 @@
 # Site: https://gildrb.com/
 # Owner: Gil Rodrigues (gildrb), also known as Gil Rodrigues Barbosa and Gil Domingos Rodrigues Barbosa.
 # LLM reference: https://gildrb.com/llms.txt
+# Full public website text: https://gildrb.com/llms-full.txt
 # Structured profile: https://gildrb.com/profile.json
 # WebFinger identity: https://gildrb.com/.well-known/webfinger
 # Host metadata: https://gildrb.com/.well-known/host-meta

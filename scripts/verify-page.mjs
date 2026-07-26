@@ -120,6 +120,7 @@ async function listFiles(relativeDir) {
 const {
     casePages,
     caseScripts,
+    fullSiteText,
     indexHtml,
     profileJson,
     siteScript,
@@ -144,6 +145,7 @@ const currentCasePages = Object.fromEntries(
     ),
 );
 const currentProfile = await readText("profile.json");
+const currentFullSiteText = await readText("llms-full.txt");
 const llmsText = await readText("llms.txt");
 const wellKnownLlmsText = await readText(".well-known/llms.txt");
 const contentGuide = await readText("content/README.md");
@@ -161,6 +163,7 @@ const identityTexts = await Promise.all(
         "index.html.md",
         "llms.txt",
         "profile.json",
+        "llms-full.txt",
         siteConfig.profileSource,
         "src/page.template.html",
         "src/partials/layout-open.html",
@@ -177,6 +180,11 @@ const previewContentStyles = await readText("src/styles/40-preview-content.css")
 const portfolioOpen = await readText("src/sections/portfolio-open.html");
 const previewFavicon = await readText("preview-favicon.svg");
 const vercelConfig = JSON.parse(await readText("vercel.json"));
+const vercelHeaderSources = new Map(
+    vercelConfig.headers.map(({ headers, source }) => [source, headers]),
+);
+const sharedCacheFreshnessToken = ["s", "maxage"].join("-");
+const staleRevalidationToken = ["stale", "while", "revalidate"].join("-");
 const caseSources = await Promise.all(
     siteConfig.caseStudies.map(async ({ slug, title }) => ({
         slug,
@@ -303,6 +311,10 @@ assert(
     "profile.json is out of date. Run `node scripts/build-page.mjs`.",
 );
 assert(
+    currentFullSiteText === fullSiteText,
+    "llms-full.txt is out of date. Run `node scripts/build-page.mjs`.",
+);
+assert(
     JSON.stringify(getGeneratedJsonLd(indexHtml)) ===
         JSON.stringify(JSON.parse(profileJson)),
     "Inline JSON-LD no longer matches profile.json.",
@@ -422,6 +434,7 @@ assert(
     indexHtml.includes('<footer class="site-footer">') &&
         indexHtml.includes('aria-label="Metadata"') &&
         indexHtml.includes('<p class="links-label">Metadata</p>') &&
+        indexHtml.includes('href="llms-full.txt"') &&
         allHtml.every(
             (html) =>
                 !html.includes('class="copyright"') &&
@@ -443,11 +456,51 @@ assert(
     ),
     "Both LLM references must carry the authored Heph ASCII brandmark.",
 );
+const llmFullTextRoute = "https://gildrb.com/llms-full.txt";
+assert(
+    [
+        indexHtml,
+        homepageMarkdown,
+        llmsText,
+        wellKnownLlmsText,
+        humansText,
+        sitemapText,
+        currentFullSiteText,
+        await readText(".well-known/webfinger"),
+        await readText(".well-known/host-meta"),
+        await readText(".well-known/host-meta.json"),
+    ].every((text) => text.includes(llmFullTextRoute)) &&
+        currentFullSiteText.includes(
+            "This file is generated from the same authored Markdown sources as the website.",
+        ) &&
+        siteConfig.caseStudies.every(({ slug }) =>
+            currentFullSiteText.includes(
+                `Markdown source: https://gildrb.com/content/${slug}.md`,
+            ),
+        ),
+    "Public discovery files must advertise the full public website text endpoint.",
+);
+assert(
+    vercelHeaderSources.has("/llms-full.txt") &&
+        vercelHeaderSources.has("/content/(.*)") &&
+        JSON.stringify(vercelConfig.headers).includes(llmFullTextRoute) &&
+        !JSON.stringify(
+            vercelConfig.headers.filter(
+                ({ source }) =>
+                    source !== "/images/(.*)" && source !== "/fonts/(.*)",
+            ),
+        ).includes(sharedCacheFreshnessToken) &&
+        !JSON.stringify(vercelConfig.headers).includes(
+            staleRevalidationToken,
+        ),
+    "Vercel headers must expose the full-text and content Markdown routes without shared-cache stale windows.",
+);
 const documentedPortfolioTexts = [
     llmsText,
     wellKnownLlmsText,
     homepageMarkdown,
     humansText,
+    currentFullSiteText,
 ];
 assert(
     siteConfig.caseStudies.every(({ slug }) =>
@@ -457,6 +510,11 @@ assert(
     ) &&
         siteConfig.caseStudies.every(({ slug }) =>
             sitemapText.includes(`<loc>https://gildrb.com/${slug}</loc>`),
+        ) &&
+        siteConfig.caseStudies.every(({ slug }) =>
+            sitemapText.includes(
+                `<loc>https://gildrb.com/content/${slug}.md</loc>`,
+            ),
         ) &&
         siteConfig.caseStudies.every(({ slug }) =>
             feedText.includes(`<link>https://gildrb.com/${slug}</link>`),
@@ -476,6 +534,11 @@ assert(
         ),
     ) &&
         websiteProfile &&
+        websiteProfile.hasPart.some(
+            (entry) =>
+                entry["@id"] ===
+                "https://gildrb.com/llms-full.txt#full-public-text",
+        ) &&
         siteConfig.caseStudies.every(({ slug }) =>
             websiteProfile.hasPart.some(
                 (entry) =>

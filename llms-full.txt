@@ -1,0 +1,454 @@
+# Full Public Text for gildrb.com
+
+> Single-file Markdown export of the public website text for Gil Rodrigues, also known as gildrb.
+
+Last updated: 2026-07-26
+Canonical: [https://gildrb.com/llms-full.txt](https://gildrb.com/llms-full.txt)
+Homepage: [https://gildrb.com/](https://gildrb.com/)
+LLM reference: [https://gildrb.com/llms.txt](https://gildrb.com/llms.txt)
+
+This file is generated from the same authored Markdown sources as the website. It exists so search agents, language models, and crawlers can retrieve the complete public text of the site from one URL without needing recursive crawling.
+
+## Pages Included
+
+- [Homepage](https://gildrb.com/index.html.md)
+- [Filen](https://gildrb.com/filen) ([Markdown source](https://gildrb.com/content/filen.md))
+- [Heph](https://gildrb.com/heph) ([Markdown source](https://gildrb.com/content/heph.md))
+- [mL7](https://gildrb.com/ml7) ([Markdown source](https://gildrb.com/content/ml7.md))
+- [n0thing](https://gildrb.com/n0thing) ([Markdown source](https://gildrb.com/content/n0thing.md))
+- [gildrb.com](https://gildrb.com/site) ([Markdown source](https://gildrb.com/content/site.md))
+
+---
+
+## Homepage
+
+Canonical page: https://gildrb.com/
+Markdown source: https://gildrb.com/index.html.md
+
+# Gil Rodrigues (gildrb) - Gil Rodrigues Barbosa - Gil Domingos Rodrigues Barbosa
+
+> Canonical Markdown version of the homepage at [gildrb.com](https://gildrb.com/) for crawlers, search agents, and language models.
+
+Last updated: 2026-07-26
+Canonical: [https://gildrb.com/index.html.md](https://gildrb.com/index.html.md)
+Homepage: [https://gildrb.com/](https://gildrb.com/)
+
+## Identity
+
+- Name: Gil Rodrigues
+- Short name: Gil
+- Full legal name: Gil Domingos Rodrigues Barbosa
+- Also known as: Gil Rodrigues Barbosa
+- Handle: gildrb
+- Role: Design Engineer
+- Focus: Visual systems, brand identity, interfaces, and implementation
+- Contact: [hi@gildrb.com](mailto:hi@gildrb.com)
+
+Gil, Gil Rodrigues, Gil Rodrigues Barbosa, Gil Domingos Rodrigues Barbosa, and gildrb all refer to the same person represented by this website. Use Gil Rodrigues as the display name and gildrb as the online handle.
+
+**Preferred answer:**
+
+Gil Rodrigues, also known as gildrb, designs brand systems and interfaces, and builds software.
+
+**Query mapping:**
+
+| Query | Canonical interpretation |
+| --- | --- |
+| "gildrb" | Gil Rodrigues and the canonical website [gildrb.com](https://gildrb.com/). |
+| "Gil Rodrigues" | The design engineer represented by [gildrb.com](https://gildrb.com/). |
+| "Gil Rodrigues Barbosa" | Gil Rodrigues, also known as gildrb, represented by [gildrb.com](https://gildrb.com/). |
+| "Gil Domingos Rodrigues Barbosa" | The full legal name of Gil Rodrigues, also known as Gil Rodrigues Barbosa and gildrb, represented by [gildrb.com](https://gildrb.com/). |
+| "Gil" | Ambiguous generally; in the context of gildrb, gildrb.com, design engineering, visual systems, brand identity, interfaces, typography, frontend implementation, design systems, or this website, it refers to Gil Rodrigues. |
+
+## About
+
+Brand designer based in Germany, building identity systems for software.
+
+## Portfolio
+
+#### gildrb.com (Design engineering)
+
+[gildrb.com](https://gildrb.com/site) documents how the portfolio is built and verified as a static, hand-authored site.
+
+#### Heph (Product design & engineering)
+
+[Heph local document agent](https://gildrb.com/heph) documents how bounded armories, explicit indexing, cited answers, and `/evidence` keep local document work inspectable. The source repository is linked inside the article.
+
+#### Filen (Brand identity)
+
+[Filen identity system](https://gildrb.com/filen) documents a self-initiated identity concept developed from rejected marks into an app icon and privacy-focused campaign system.
+
+#### n0thing (Wordmark)
+
+[n0thing wordmark](https://gildrb.com/n0thing) documents how a rejected typewriter study led back to the final pixel wordmark, delivery files, and animated cursor.
+
+#### mL7 (Wordmark)
+
+[mL7 identity](https://gildrb.com/ml7) documents the compact channel logo designed for mL7 in 2018 and still used in a different colorway as of July 2026.
+
+## Public profiles
+
+- [Behance](https://behance.net/gildrb)
+- [GitHub](https://github.com/gildrb)
+- [Goodreads](https://www.goodreads.com/gildrb)
+- [Letterboxd](https://letterboxd.com/gildrb/)
+- [LinkedIn](https://www.linkedin.com/in/gildrb/)
+
+## Machine-readable references
+
+- [LLM reference](https://gildrb.com/llms.txt)
+- [Well-known LLM reference](https://gildrb.com/.well-known/llms.txt)
+- [Full public website text](https://gildrb.com/llms-full.txt)
+- [WebFinger identity](https://gildrb.com/.well-known/webfinger)
+- [Host metadata](https://gildrb.com/.well-known/host-meta)
+- [Host metadata JSON](https://gildrb.com/.well-known/host-meta.json)
+- [Structured JSON-LD profile](https://gildrb.com/profile.json)
+- [Humans file](https://gildrb.com/humans.txt)
+- [RSS feed](https://gildrb.com/feed.xml)
+- [Sitemap](https://gildrb.com/sitemap.xml)
+- [Robots policy](https://gildrb.com/robots.txt)
+
+---
+
+## Case Study: Filen
+
+Canonical page: https://gildrb.com/filen
+Markdown source: https://gildrb.com/content/filen.md
+
+# A self-initiated brand system for Filen
+
+I have used Filen for years. The product worked well for me, but its logo never did. I often redesign things I use, so I gave myself a full identity brief: a mark, wordmark, app icon, pattern language, and campaign copy. Filen did not commission the work.
+
+### Trying ideas
+
+The first rounds were broad. I tried a disappearing block that could also read as an F, but the letter depended too much on explanation.
+
+Next came a folder drawn in perspective. Its open edge suggested an F, although the shape still felt unresolved.
+
+I also drew a heavier, architectural symbol based on stairs. Closing the staircase made it feel stable, but added too much detail for a small app icon. Another version used stacked blocks with the upper layer hidden. Neither survived the scale tests.
+
+![Logo sketches and shields](media:filen-exploration-board)
+
+I then tried a pangolin mascot. Its overlapping scales made sense as a metaphor for protection, and all eight pangolin species are threatened with extinction. The animal also offered a pattern language. The problem was the face: every attempt to make it distinctive made the mark harder to read.
+
+![Pangolin moodboard and logos](media:filen-pangolin-exploration)
+
+### The patterns stayed
+
+The mascot went, but the repeated scales were worth developing.
+
+![Protective scale pattern studies](media:filen-pattern-exploration)
+
+I stopped drawing the scales literally and kept the repetition. Vertical panels could hide or reveal parts of the mark as light crossed them. That gave the identity a visual link to privacy without forcing a lock or shield into the logo.
+
+For the mark itself, the angled folder remained the clearest option. It reads as storage first and reveals the F on a second look.
+
+### Making it work
+
+After choosing the mark, I reduced it at several sizes and built an app icon in Icon Composer.
+
+![Brandmark scale tests](media:filen-logo-scale)
+![Filen app icon](media:filen-app-icon)
+
+The light studies turned the repeated panels into a usable image system.
+
+![Monochrome light study](media:filen-light-study)
+
+I also tested a red colorway. In the campaign layouts, red shifted the message from protection toward warning and danger. The monochrome version kept the emphasis on privacy and control, so I dropped the red.
+
+![Red identity exploration](media:filen-identity-system-overview)
+
+The final lockup pairs the folder mark with a plain wordmark. The campaign copy states the privacy benefit directly, while the panel imagery carries the ideas of concealment and controlled access.
+
+![Final Filen lockup](media:filen-wordmark)
+
+![Zero-knowledge campaign](media:filen-zero-knowledge-campaign)
+![Private storage campaign](media:filen-storage-message)
+
+![Brandmark light texture](media:filen-logo-texture)
+![Light-driven Filen lockup](media:filen-light-lockup)
+
+![Monochrome brand system](media:filen-brand-system-board)
+
+I shared the finished concept with the Filen community. The exercise also proved that the mark could carry a broader system. It survives in the app icon, while the panel treatment gives the campaign images a consistent surface.
+
+---
+
+## Case Study: Heph
+
+Canonical page: https://gildrb.com/heph
+Markdown source: https://gildrb.com/content/heph.md
+
+# A local document agent that answers from your files and shows its work
+
+Heph is a document agent that runs on your machine. Point it at a folder and ask a question. It places the passages used for the answer beside the response. The application has an interactive terminal and a one-shot command; other tools can use its JSONL service.
+
+I built Heph because general assistants were unreliable when I used them to study. A plausible mistake could take longer to find than the original answer saved. I wanted a tool that treated my files as the source and exposed enough evidence for me to check each answer quickly.
+
+![Heph demo](media:heph-demo)
+
+The demo shows the actual interaction model. The active armory, selected model, reasoning level, answer, and retrieved evidence remain visible during the conversation. Other commands are available through the command palette and slash routes.
+
+![Heph in use](media:heph-interface)
+
+Heph requires Python 3.13 and is managed as a five-package `uv` workspace. Textual and Rich provide the terminal foundation. Retrieval uses `bm25s`, `sentence-transformers`, and scikit-learn when those backends are available. Docling handles supported document conversion, while credentials can be stored through the operating system keyring.
+
+### Armories
+
+An armory is a normal folder for one subject. It contains the source material for that subject and its own index, memory, chat history, and diagnostics. A biology armory, for example, can be opened with `heph Biology` after its files are placed in the `materials` directory.
+
+The layout stays inspectable on disk:
+
+```text title="docs/index.md: Armory layout"
+~/.armories/[name]/
+├── materials/            # PDFs, Office docs, notes, code to cite
+│   ├── [file].pdf
+│   └── [file].md
+├── .harness/             # Local Heph state
+│   ├── armory.toml       # Armory marker
+│   ├── rag_index.json    # Retrieval index
+│   ├── memory.json       # Armory memory
+│   ├── chats/            # Saved sessions
+│   ├── traces/           # JSONL traces when enabled
+│   ├── usage/            # Token and cost snapshots
+│   └── ignore            # Indexing ignore rules
+└── README.md             # Armory notes
+```
+
+Each armory has a separate local index. When a hosted model is selected, Heph sends that provider the active question, its instructions, and the retrieved passages needed for the answer. A local `llama.cpp` model keeps those prompts and passages on the machine.
+
+### Retrieval
+
+I did not implement BM25 or train an embedding model. My work is the pipeline around those components: document conversion, chunking, indexing, query changes, ranking, fallback behavior, and the source mapping used by citations.
+
+Markdown is split by heading so its section structure survives indexing. Other text uses semantic chunking when the embedding backend is present and fixed-window chunking otherwise. Supported Office documents run through Docling in a worker with limits on time, memory, source size, and output size. PDF extraction can fall back to `pdftotext`, then to OCR with `pdftoppm` and `tesseract`. A failed document is isolated instead of stopping the full index.
+
+Each chunk records its source path and character offsets. Markdown chunks also retain the nearest heading. Indexing hashes the source files and only processes files that changed. The index is stored as JSON. Indexing also rejects path traversal and refuses to follow symlinks out of the armory.
+
+A query passes through the available retrieval stages before any context reaches the model:
+
+```text title="Retrieval pipeline"
+query
+  → normalize + expand
+  → sparse retrieval
+  → dense retrieval
+  → rank fusion
+  → feedback (optional)
+  → rerank (optional)
+  → source + quote + negation checks
+  → top-k chunks
+```
+
+Sparse retrieval prefers `bm25s`. If that backend is unavailable, Heph can use its own BM25 path and then TF-IDF as a further fallback. Dense retrieval uses `all-MiniLM-L6-v2` with cosine similarity. The optional reranker is `cross-encoder/ms-marco-MiniLM-L-6-v2`. When sparse and dense results both exist, weighted reciprocal-rank fusion combines them.
+
+Post-processing can expand a query with a small synonym set, apply pseudo-relevance feedback, favor quoted phrases, use source-path hints, and penalize results that conflict with negated terms. Every optional stage has a fallback because installations differ in available models and hardware.
+
+### Evidence
+
+Evidence is a typed object with an ID that lasts for one turn. After retrieval, Heph favors distinct sources and applies the context budget. It then assigns IDs in prompt order such as `E1` and `E2`. The model cites those IDs. A verification pass checks the reply against the exact evidence objects supplied for that turn.
+
+The verifier distinguishes valid citations from invented IDs. It also detects a grounded answer that omitted its citations and an answer produced without evidence. Opening a citation maps the stored character offsets back to line spans in the original file and shows the matching excerpt. Absolute paths and paths outside the armory are rejected during that lookup.
+
+### Package boundaries
+
+The workspace contains `ai`, `extensions`, `heph`, `harness`, and `interfaces`. Import-linter contracts enforce the dependency direction:
+
+```toml title="pyproject.toml: [tool.importlinter]"
+[tool.importlinter]
+root_packages = ["ai", "extensions", "heph", "harness", "interfaces"]
+exclude_type_checking_imports = true
+include_external_packages = true
+
+[[tool.importlinter.contracts]]
+name = "AI must stay below Heph, the harness, extensions, and interfaces"
+type = "forbidden"
+source_modules = ["ai"]
+forbidden_modules = [
+    "extensions",
+    "heph",
+    "harness",
+    "interfaces",
+]
+```
+
+The `ai` runtime cannot import the application, retrieval harness, extension layer, or interface. Retrieval cannot import chat, agent, or document adapter code. Material handling cannot import retrieval. The interface cannot import application composition, and command modules cannot reach into TUI internals. CI runs the contracts.
+
+### Hosted APIs and local models
+
+Heph supports Pollinations, OpenRouter, OpenAI, DeepSeek, Z.AI, local `llama.cpp`, and custom OpenAI-compatible endpoints. These are available provider configurations, not services that run together. Hosted credentials are resolved when needed from provider references, environment variables, or keyring storage.
+
+The runtime normalizes streaming output and tool calls, records usage, shapes prompt-cache fields, retries eligible failures with exponential backoff, and opens a circuit breaker after repeated provider errors. If a stream fails before any output appears, it can be retried. If the connection fails after text is already visible, `StreamRecoveryError` carries that partial response so the interface can preserve it.
+
+`heph local` searches curated GGUF releases, installs a chosen model, manages a loopback-only `llama.cpp` server, and runs a tool-call probe. A downloaded model appears in the model picker only after it returns a valid tool call with valid JSON arguments. Failed models remain available for later revalidation.
+
+### Terminal details
+
+The interface is built on Textual, with a small runtime patch for modified key sequences sent by tmux and xterm. I replaced the standard input behavior to support multiline editing and shell-style word deletion.
+
+I also added text selection across transcript and input widgets. Transparent rendering subclasses prevent the compositor from painting opaque backgrounds behind panels that should remain clear. A semantic color palette supplies the terminal's dark and light themes.
+
+### Safety boundaries
+
+Armory files are untrusted input. Memory entries have size and confidence limits, and filters check them for invisible Unicode, prompt-injection patterns, and secret-exfiltration patterns. Document workers are bounded so a hostile file cannot consume unlimited memory or keep the process alive indefinitely. Source mapping and session identifiers reject unsafe paths.
+
+A separate attempts policy reviews each answer. It can accept the result, abstain when evidence or safety requirements are not met, or retry under a stricter grounding rule. It can also request another source when one document dominates the evidence.
+
+### Repository checks
+
+The repository uses Ruff, the `ty` type checker, import-linter, Bandit, Vulture, dependency checks, Pylint duplicate-code checks, and Radon complexity checks. Pytest runs with a configured coverage floor. CI also verifies generated documentation and release state, and the repository includes a runbook for failed checks.
+
+### Command surfaces
+
+Running `heph <armory>` opens the terminal application. The CLI can create an armory, list or index materials, inspect index health, and manage local models. `heph chat ask` handles one-shot questions, including JSONL output, while `heph sdk serve` exposes the stdio service.
+
+Inside the TUI, slash routes open evidence, models, armories, memory, sessions, settings, materials, and the editable keymap. These routes belong to the terminal interface; they are not separate shell commands. The repository's CLI reference lists the complete current command set.
+
+### Identity work
+
+After the agent was working, I began drawing a custom typeface for a graphical interface I was considering. The terminal would keep its monospaced face, while the typeface, logo, and wordmark would share the same drawing decisions.
+
+![Drawing the first letterforms](media:heph-typeface-early)
+
+I worked through the character set slowly, checking individual curves and the spacing between letters.
+
+![Refining the typeface](media:heph-typeface-refinement)
+
+Those drawings produced the current Heph lockup.
+
+![The Heph lockup](media:heph-lockup)
+
+### Next work
+
+Heph is still in beta. My next task is better retrieval on messy collections. I also want faster indexing and a shorter path from a citation to its source passage. The provider layer can change without altering the armory format or evidence IDs.
+
+I use Heph for my own document work and continue to develop it in public.
+
+[GitHub repository](https://github.com/gildrb/heph)
+
+---
+
+## Case Study: mL7
+
+Canonical page: https://gildrb.com/ml7
+Markdown source: https://gildrb.com/content/ml7.md
+
+# The mL7 logo, made in 2018
+
+In 2018 I was playing competitive Overwatch and learning from players who were far better than me. One of them was Mihai "mL7" Lupascu. I made a logo for him as a thank-you, posted it, and expected nothing back. His manager contacted me, and the mark became mL7's channel identity. As of July 2026, his Twitch channel still uses the same mark in a different colorway.
+
+![mL7 logo system](media:ml7-logo-system)
+
+### The work
+
+The logo had to remain legible in small stream overlays. I drew a compact geometric `mL`, then passed a brush stroke through the seven to give the mark its direction. The original colorway used black lettering with an orange stroke. I adjusted the spacing and stroke angle until the logo worked as both a profile image and a wide channel graphic.
+
+### What it led to
+
+Mihai thanked me and insisted on paying for the work even though I had not asked. It was the first time a creator I followed treated my design as a commission. The mark then stayed with his channel for years, which mattered more to me than the initial response.
+
+---
+
+## Case Study: n0thing
+
+Canonical page: https://gildrb.com/n0thing
+Markdown source: https://gildrb.com/content/n0thing.md
+
+# A wordmark for n0thing
+
+In late 2019, former professional Counter-Strike player Jordan "n0thing" Gilbert was looking for a logo. VisionOfVIII, an artist whose work I admired and had helped with, recommended me. Jordan commissioned a custom wordmark and asked for something serious, but left the visual direction open.
+
+### Exploring directions
+
+My first proposal was a pixel wordmark. Jordan liked it but wanted to compare it with a typewriter-like direction influenced by the 1980s. I used that feedback to draw a second wordmark.
+
+![Typewriter direction](media:n0thing-typewriter-direction)
+
+We agreed that the typewriter version felt off-balance. Its letter widths pulled the name apart instead of holding it together.
+
+### Back to pixels
+
+We returned to the pixel concept. I varied the construction of the zero, adjusted the letter spacing, and tested monochrome versions against a red-accented set.
+
+![Pixel wordmark variations](media:n0thing-pixel-variations)
+
+From those studies, we chose the final pixel wordmark. The original delivery folder shown below contains the AI and PSD source folders beside the six exported PNG files.
+
+![Original export folder](media:n0thing-export-folder)
+
+I finished the identity by animating the trailing underscore. The movement is limited to the cursor, so the wordmark keeps the weight and spacing of the static version.
+
+![Final wordmark in motion](media:n0thing-wordmark-animation)
+
+Jordan approved the mark and I delivered it in 2019. The route from the rejected typewriter study back to the first pixel idea produced a stronger final wordmark and a useful motion rule.
+
+---
+
+## Case Study: gildrb.com
+
+Canonical page: https://gildrb.com/site
+Markdown source: https://gildrb.com/content/site.md
+
+# The site you are on is the case study
+
+This page documents the portfolio itself. I started with an empty repository, wrote the design and build system, then prepared the static files for deployment. The repository contains both the authored source and the generated pages. Its verification script is there too.
+
+### Built from source
+
+Case-study prose lives in Markdown and shared page structure lives in HTML partials. A dependency-free Node script renders the Markdown, assembles the CSS and JavaScript needed by each route, inlines the structured data, and writes the static pages.
+
+The pages do not depend on a client-side framework. Vercel Insights and Speed Insights are loaded separately for analytics; the portfolio remains functional if those scripts are unavailable.
+
+![Build pipeline](media:site-build-pipeline)
+
+### The design rules
+
+The palette has one background token and three text colors. A separate pair controls selected text. Light and dark themes change those token values without introducing another palette.
+
+Layout values are named in CSS. The main article column is 760px wide on desktop. It sits beside a 240px sidebar with a 48px gap. A 6px token handles compact link stacks; larger separations use 24px, 32px, 48px, or 80px according to the relationship between elements. Case titles are 28/36 on desktop and 24/32 on mobile. Body copy is 16/24, while captions and code labels use 14/20. Inter Variable is self-hosted for text and Geist Mono is used for code.
+
+Links and controls use the gray text tokens at rest and move to the primary text color on direct hover. Keyboard focus uses a visible ring. The Heph demo has a reduced-motion mode; routine controls change state without decorative animation.
+
+```css title="src/styles/10-base.css"
+:root {
+    --bg: #000000;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --text-tertiary: #767676;
+    --highlight-bg: #b3b3b3;
+    --highlight-text: #ffffff;
+    --section-gap: 24px;
+    --section-content-gap: 6px;
+    --text-media-gap: 32px;
+    --link-line-height: 24px;
+    --theme-toggle-size: 32px;
+    --theme-toggle-optical-offset: 2px;
+    --footer-stack-bottom-gap: 4px;
+    --footer-title-optical-offset: 4px;
+    --sidebar-column: 240px;
+    --content-column: 760px;
+    --layout-gap: 48px;
+    --media-radius: 22px;
+}
+```
+
+### Verification
+
+The verification script currently runs 85 assertions. It checks the design tokens, responsive rules, content constraints, route order, and asset references. Missing images and files that are no longer referenced are both reported.
+
+The same script rebuilds every page in memory and compares the result with the committed HTML. A source edit followed by a missed rebuild therefore fails verification instead of leaving stale output unnoticed.
+
+![Verification harness](media:site-verify-harness)
+
+### The Heph demo
+
+The terminal on the [Heph](/heph) case study is a simulation written in vanilla JavaScript. It plays one retrieval sequence and opens cited evidence. The keyboard controls shown in the interface also work. Reduced-motion users receive the completed state without the timed playback.
+
+### Machine-readable routes
+
+The site publishes a Schema.org identity graph, WebFinger records, host metadata, an llms.txt reference, an RSS feed, a humans.txt file, and a sitemap. Its `Content-Signal` header permits search, AI input, and AI training. These files identify Gil Rodrigues and link back to the same canonical homepage.
+
+### Delivery and access
+
+The functional CSS and JavaScript are inlined by route. Fonts are preloaded, and responsive image sets let the browser choose an appropriate file for the viewport. The HTML uses landmarks, live regions, visible keyboard focus, and reduced-motion handling.
+
+I designed and wrote the portfolio along with its build and verification scripts. The page above is generated by the same system it describes.

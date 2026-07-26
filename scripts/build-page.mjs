@@ -71,9 +71,77 @@ async function resolveIncludes(template) {
     return html;
 }
 
+function extractHomepageUpdatedDate(homepageMarkdown) {
+    return (
+        homepageMarkdown.match(/^Last updated:\s*(.+)$/m)?.[1]?.trim() ??
+        new Date().toISOString().slice(0, 10)
+    );
+}
+
+async function buildFullSiteText() {
+    const homepageMarkdown = await readText("index.html.md");
+    const lastUpdated = extractHomepageUpdatedDate(homepageMarkdown);
+    const caseMarkdown = await Promise.all(
+        siteConfig.caseStudies.map(async ({ slug, title }) => ({
+            markdown: await readText(`content/${slug}.md`),
+            slug,
+            title,
+        })),
+    );
+    const pages = [
+        "- [Homepage](https://gildrb.com/index.html.md)",
+        ...caseMarkdown.map(
+            ({ slug, title }) =>
+                `- [${title}](https://gildrb.com/${slug}) ([Markdown source](https://gildrb.com/content/${slug}.md))`,
+        ),
+    ].join("\n");
+    const sections = [
+        [
+            "## Homepage",
+            "",
+            "Canonical page: https://gildrb.com/",
+            "Markdown source: https://gildrb.com/index.html.md",
+            "",
+            homepageMarkdown.trim(),
+        ].join("\n"),
+        ...caseMarkdown.map(({ markdown, slug, title }) =>
+            [
+                `## Case Study: ${title}`,
+                "",
+                `Canonical page: https://gildrb.com/${slug}`,
+                `Markdown source: https://gildrb.com/content/${slug}.md`,
+                "",
+                markdown.trim(),
+            ].join("\n"),
+        ),
+    ].join("\n\n---\n\n");
+
+    return `${[
+        "# Full Public Text for gildrb.com",
+        "",
+        "> Single-file Markdown export of the public website text for Gil Rodrigues, also known as gildrb.",
+        "",
+        `Last updated: ${lastUpdated}`,
+        "Canonical: [https://gildrb.com/llms-full.txt](https://gildrb.com/llms-full.txt)",
+        "Homepage: [https://gildrb.com/](https://gildrb.com/)",
+        "LLM reference: [https://gildrb.com/llms.txt](https://gildrb.com/llms.txt)",
+        "",
+        "This file is generated from the same authored Markdown sources as the website. It exists so search agents, language models, and crawlers can retrieve the complete public text of the site from one URL without needing recursive crawling.",
+        "",
+        "## Pages Included",
+        "",
+        pages,
+        "",
+        "---",
+        "",
+        sections,
+    ].join("\n")}\n`;
+}
+
 export async function buildPage({ write = true } = {}) {
     const profile = JSON.parse(await readText(siteConfig.profileSource));
     const profileJson = `${JSON.stringify(profile, null, 2)}\n`;
+    const fullSiteText = await buildFullSiteText();
     const homepageStyles = await readBundle(
         "src/styles",
         siteConfig.homepage.styles,
@@ -195,6 +263,7 @@ export async function buildPage({ write = true } = {}) {
 
     if (write) {
         await writeFile(path.join(root, "index.html"), indexHtml);
+        await writeFile(path.join(root, "llms-full.txt"), fullSiteText);
         await writeFile(path.join(root, "profile.json"), profileJson);
 
         await Promise.all(
@@ -211,6 +280,7 @@ export async function buildPage({ write = true } = {}) {
         caseStyles,
         homepageStyles,
         indexHtml,
+        fullSiteText,
         profileJson,
         siteScript,
     };

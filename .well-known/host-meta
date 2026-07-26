@@ -34,5 +34,10 @@
     type="text/markdown"
     href="https://gildrb.com/llms.txt"
   />
+  <Link
+    rel="alternate"
+    type="text/markdown"
+    href="https://gildrb.com/llms-full.txt"
+  />
   <Link rel="author" type="text/plain" href="https://gildrb.com/humans.txt" />
 </XRD>
