@@ -4,7 +4,10 @@ const baseUrl = new URL(process.env.CRAWL_BASE_URL ?? "https://gildrb.com");
 const canonicalOrigin = "https://gildrb.com";
 const brandDescription =
     "Brand designer based in Germany, building identity systems for software.";
-const staleRolePattern = new RegExp(["Product", "designer"].join("\\s+"), "i");
+const staleRolePatterns = [
+    new RegExp(["Product", "designer"].join("\\s+"), "i"),
+    new RegExp(`${["design", "engineer"].join("\\s+")}\\b`, "i"),
+];
 const sharedCacheFreshnessToken = ["s", "maxage"].join("-");
 const crawlerUserAgents = Object.freeze([
     "ChatGPT-User",
@@ -290,7 +293,7 @@ function assertRoute(route, response, text, expectation) {
     }
 
     assert(
-        !staleRolePattern.test(text),
+        staleRolePatterns.every((pattern) => !pattern.test(text)),
         `${route} still contains stale role copy.`,
     );
 }

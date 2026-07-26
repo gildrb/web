@@ -43,7 +43,7 @@ Links and controls use the gray text tokens at rest and move to the primary text
 
 ### Verification
 
-The verification script currently runs 85 assertions. It checks the design tokens, responsive rules, content constraints, route order, and asset references. Missing images and files that are no longer referenced are both reported.
+The verification scripts check the design tokens, responsive rules, content constraints, route order, asset references, and live crawler access. Missing images and files that are no longer referenced are both reported.
 
 The same script rebuilds every page in memory and compares the result with the committed HTML. A source edit followed by a missed rebuild therefore fails verification instead of leaving stale output unnoticed.
 

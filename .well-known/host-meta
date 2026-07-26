@@ -16,7 +16,7 @@
   <Property type="http://schema.org/givenName">Gil</Property>
   <Property type="http://schema.org/additionalName">Domingos</Property>
   <Property type="http://schema.org/familyName">Rodrigues Barbosa</Property>
-  <Property type="http://schema.org/jobTitle">Designer</Property>
+  <Property type="http://schema.org/jobTitle">Brand Designer</Property>
   <Property type="http://schema.org/email">hi@gildrb.com</Property>
   <Link
     rel="lrdd"

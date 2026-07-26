@@ -16,6 +16,7 @@
     "http://schema.org/givenName": "Gil",
     "http://schema.org/additionalName": "Domingos",
     "http://schema.org/familyName": "Rodrigues Barbosa",
+    "http://schema.org/jobTitle": "Brand Designer",
     "http://schema.org/email": "hi@gildrb.com"
   },
   "links": [

@@ -326,10 +326,17 @@ assert(
         JSON.stringify(JSON.parse(profileJson)),
     "Inline JSON-LD no longer matches profile.json.",
 );
+const staleRolePattern = new RegExp(
+    `${["design", "engineer"].join("\\s+")}\\b`,
+    "i",
+);
 const staleIdentityPattern =
-    /student(?: and (?:design engineer|designer))?|Julius-Maximilians|Würzburg/i;
+    /student(?: and designer)?|Julius-Maximilians|Würzburg/i;
 const staleIdentityFiles = identityTexts
-    .filter(({ text }) => staleIdentityPattern.test(text))
+    .filter(
+        ({ text }) =>
+            staleIdentityPattern.test(text) || staleRolePattern.test(text),
+    )
     .map(({ file }) => file);
 assert(
     staleIdentityFiles.length === 0,
@@ -437,11 +444,17 @@ assert(
         !imageFiles.some((file) => file.includes("personal-")),
     "Removed Personal media and its preview machinery must stay absent, and arrow navigation must omit hidden controls.",
 );
+const homepageFooter =
+    indexHtml.match(/<footer class="site-footer">[\s\S]*?<\/footer>/)?.[0] ??
+    "";
 assert(
-    indexHtml.includes('<footer class="site-footer">') &&
-        indexHtml.includes('aria-label="Metadata"') &&
-        indexHtml.includes('<p class="links-label">Metadata</p>') &&
-        indexHtml.includes('href="llms-full.txt"') &&
+    homepageFooter.includes('aria-label="Metadata"') &&
+        homepageFooter.includes('<p class="links-label">Metadata</p>') &&
+        homepageFooter.includes('href="humans.txt"') &&
+        homepageFooter.includes('href="llms.txt"') &&
+        homepageFooter.includes('href="profile.json"') &&
+        !homepageFooter.includes("llms-full.txt") &&
+        (homepageFooter.match(/class="reference-link"/g) || []).length === 3 &&
         allHtml.every(
             (html) =>
                 !html.includes('class="copyright"') &&
@@ -450,7 +463,7 @@ assert(
         caseHtml.every(
             (html) => !html.includes('class="site-footer"'),
         ),
-    "The homepage-only footer must expose Metadata without a copyright label.",
+    "The homepage-only footer must keep the three visible Metadata links without a copyright label.",
 );
 const hephAsciiSignature =
     "HEPH // BRANDMARK RASTER 64x22 // GIL RODRIGUES / GILDRB";
