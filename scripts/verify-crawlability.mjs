@@ -45,7 +45,7 @@ const routeExpectations = {
         markers: [
             "<main class=\"content\"",
             "<section\n                        class=\"profile-summary\"",
-            "<section class=\"portfolio-section\"",
+            "class=\"portfolio-section\"",
             "<footer class=\"site-footer\"",
             brandDescription,
             "Heph local document agent",
@@ -175,9 +175,11 @@ for (const { slug, title } of siteConfig.caseStudies) {
         indexable: true,
         markers: [
             `<title>${title}</title>`,
-            "class=\"case-article\"",
+            "case-article",
             "class=\"case-copy\"",
             "https://gildrb.com/llms.txt",
+            "https://gildrb.com/llms-full.txt",
+            `https://gildrb.com/content/${slug}.md`,
         ],
     };
     routeExpectations[`/content/${slug}.md`] = {

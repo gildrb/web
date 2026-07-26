@@ -226,6 +226,13 @@ for (const { slug, title, markdown, template } of caseSources) {
         template.includes(`<title>${title}</title>`),
         `src/${slug}.template.html must use only the project name as its browser title.`,
     );
+    assert(
+        template.includes("https://gildrb.com/llms.txt") &&
+            template.includes("https://gildrb.com/llms-full.txt") &&
+            template.includes(`https://gildrb.com/content/${slug}.md`) &&
+            template.includes("https://gildrb.com/profile.json"),
+        `src/${slug}.template.html must expose LLM, full-text, Markdown source, and structured profile discovery links.`,
+    );
     const mediaCaptions = [
         ...markdown.matchAll(/^!\[(.*)\]\(media:[a-z0-9-]+\)$/gm),
     ].map(([, caption]) => caption.trim());
