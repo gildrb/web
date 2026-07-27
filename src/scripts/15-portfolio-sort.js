@@ -49,12 +49,6 @@ function getSortDescription(key, direction) {
         return direction === "ascending" ? "oldest first" : "newest first";
     }
 
-    if (key === "field") {
-        return direction === "ascending"
-            ? "A to Z"
-            : "Z to A";
-    }
-
     return direction === "ascending" ? "A to Z" : "Z to A";
 }
 

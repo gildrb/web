@@ -1021,7 +1021,7 @@ assert(
             ".portfolio-card-link {\n        padding: 7px 0;",
         ) &&
         siteScript.includes(
-            "portfolioField.getBoundingClientRect().left -",
+            "portfolioScope.getBoundingClientRect().left -",
         ) &&
         siteScript.includes(
             'links.style.setProperty(\n        "--mobile-contact-start",',
@@ -1030,7 +1030,7 @@ assert(
             'const mobileLinks = document.querySelector(\n    ".case-page .case-mobile-links .links, body:not(.case-page) .links",',
         ) &&
         siteScript.includes(
-            'links.classList.add("mobile-links-grid");\n    if (!portfolioField) return;',
+            'links.classList.add("mobile-links-grid");\n    if (!portfolioScope) return;',
         ) &&
         siteScript.includes(
             'window.addEventListener("resize", () => updateMobileLayout(true));',
@@ -1093,7 +1093,7 @@ assert(
         indexHtml.includes('aria-label="Project columns"') &&
         indexHtml.includes('data-sort-key="date"') &&
         indexHtml.includes('data-sort-key="title"') &&
-        indexHtml.includes('data-sort-key="field"') &&
+        indexHtml.includes('data-sort-key="scope"') &&
         indexHtml.includes(">\n                                Date\n") &&
         indexHtml.includes(">\n                                Project\n") &&
         indexHtml.includes(">\n                                Scope\n") &&
@@ -1115,7 +1115,7 @@ assert(
             ".portfolio-sort-title {\n    grid-column: 2;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-sort-field {\n    grid-column: 3;",
+            ".portfolio-sort-scope {\n    grid-column: 3;",
         ) &&
         portfolioStyles.includes(
             ".portfolio-link-heading {\n    grid-column: 4;",
@@ -1139,7 +1139,7 @@ assert(
         ) &&
         allPage.includes('class="all-cases"') &&
         (allPage.match(/class="all-case"/g) || []).length === 5 &&
-        allPage.includes('data-date="2026-07-15" data-field="Design engineering" data-title="gildrb.com"') &&
+        allPage.includes('data-date="2026-07-15" data-scope="Design engineering" data-title="gildrb.com"') &&
         allScript.includes('new URLSearchParams(window.location.search)') &&
         allScript.includes('cases.forEach((caseStudy) => allCases.append(caseStudy));') &&
         siteScript.includes(
@@ -1185,7 +1185,7 @@ assert(
             ".portfolio-card-title {\n    grid-column: 2;\n    grid-row: 1;\n    white-space: nowrap;\n    color: var(--text-primary);\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-card-field {\n    grid-column: 3;\n    grid-row: 1;\n    min-width: 0;\n    overflow: hidden;\n    white-space: nowrap;\n    text-overflow: ellipsis;\n    color: var(--text-tertiary);\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 24px;",
+            ".portfolio-card-scope {\n    grid-column: 3;\n    grid-row: 1;\n    min-width: 0;\n    overflow: hidden;\n    white-space: nowrap;\n    text-overflow: ellipsis;\n    color: var(--text-tertiary);\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
             ".portfolio-card-link {\n    display: grid;\n    grid-column: 1 / -1;\n    grid-template-columns: subgrid;\n    align-items: baseline;\n    width: 100%;\n    padding: 8px 0;\n    color: var(--text-tertiary);",
@@ -1206,13 +1206,13 @@ assert(
         !portfolioStyles.includes(".portfolio-card-arrow svg") &&
         !portfolioStyles.includes(".portfolio-card-link::after") &&
         (indexHtml.match(/class="portfolio-card-arrow"/g) || []).length === 5 &&
-        (indexHtml.match(/class="portfolio-card-field">Brand identity/g) || [])
+        (indexHtml.match(/class="portfolio-card-scope">Brand identity/g) || [])
             .length === 1 &&
-        (indexHtml.match(/class="portfolio-card-field">Wordmark/g) || [])
+        (indexHtml.match(/class="portfolio-card-scope">Wordmark/g) || [])
             .length === 2 &&
-        (indexHtml.match(/class="portfolio-card-field">Design engineering/g) || [])
+        (indexHtml.match(/class="portfolio-card-scope">Design engineering/g) || [])
             .length === 1 &&
-        (indexHtml.match(/class="portfolio-card-field">Product design and engineering/g) || [])
+        (indexHtml.match(/class="portfolio-card-scope">Product design and engineering/g) || [])
             .length === 1 &&
         (indexHtml.match(/class="portfolio-card-view">View<\/span>/g) || [])
             .length === 5 &&

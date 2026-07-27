@@ -1574,7 +1574,7 @@ body {
     line-height: 24px;
 }
 
-.portfolio-card-field {
+.portfolio-card-scope {
     grid-column: 3;
     grid-row: 1;
     min-width: 0;
@@ -1662,7 +1662,7 @@ body {
     grid-column: 2;
 }
 
-.portfolio-sort-field {
+.portfolio-sort-scope {
     grid-column: 3;
 }
 
@@ -1692,7 +1692,7 @@ body {
         color: var(--text-primary);
     }
 
-    .portfolio-card-link:hover .portfolio-card-field,
+    .portfolio-card-link:hover .portfolio-card-scope,
     .portfolio-card-link:hover .portfolio-card-arrow {
         color: var(--text-primary);
     }
@@ -2306,11 +2306,11 @@ html.homepage-scroll-locked body .layout {
                                 Project
                             </button>
                             <button
-                                class="portfolio-sort-button portfolio-sort-field"
+                                class="portfolio-sort-button portfolio-sort-scope"
                                 type="button"
-                                data-sort-key="field"
+                                data-sort-key="scope"
                                 aria-pressed="false"
-                                aria-label="Sort projects by field"
+                                aria-label="Sort projects by scope"
                             >
                                 Scope
                             </button>
@@ -2334,7 +2334,7 @@ html.homepage-scroll-locked body .layout {
                                 id="portfolio-site-title"
                                 >gildrb.com</span
                             >
-                            <span class="portfolio-card-field">Design engineering</span>
+                            <span class="portfolio-card-scope">Design engineering</span>
                             <span class="portfolio-card-arrow" aria-hidden="true">
                                 <span class="portfolio-card-view">View</span>
                                 →
@@ -2354,7 +2354,7 @@ html.homepage-scroll-locked body .layout {
                                 id="portfolio-heph-title"
                                 >Heph</span
                             >
-                            <span class="portfolio-card-field">Product design and engineering</span>
+                            <span class="portfolio-card-scope">Product design and engineering</span>
                             <span class="portfolio-card-arrow" aria-hidden="true">
                                 <span class="portfolio-card-view">View</span>
                                 →
@@ -2374,7 +2374,7 @@ html.homepage-scroll-locked body .layout {
                                 id="portfolio-filen-title"
                                 >Filen</span
                             >
-                            <span class="portfolio-card-field">Brand identity</span>
+                            <span class="portfolio-card-scope">Brand identity</span>
                             <span class="portfolio-card-arrow" aria-hidden="true">
                                 <span class="portfolio-card-view">View</span>
                                 →
@@ -2394,7 +2394,7 @@ html.homepage-scroll-locked body .layout {
                                 id="portfolio-n0thing-title"
                                 >n0thing</span
                             >
-                            <span class="portfolio-card-field">Wordmark</span>
+                            <span class="portfolio-card-scope">Wordmark</span>
                             <span class="portfolio-card-arrow" aria-hidden="true">
                                 <span class="portfolio-card-view">View</span>
                                 →
@@ -2414,7 +2414,7 @@ html.homepage-scroll-locked body .layout {
                                 id="portfolio-ml7-title"
                                 >mL7</span
                             >
-                            <span class="portfolio-card-field">Wordmark</span>
+                            <span class="portfolio-card-scope">Wordmark</span>
                             <span class="portfolio-card-arrow" aria-hidden="true">
                                 <span class="portfolio-card-view">View</span>
                                 →
@@ -2511,7 +2511,7 @@ const mobileLinks = document.querySelector(
 
 function updateMobileLinksLayout() {
     const links = mobileLinks;
-    const portfolioField = document.querySelector(".portfolio-sort-field");
+    const portfolioScope = document.querySelector(".portfolio-sort-scope");
     if (!links) return;
 
     if (!window.matchMedia("(max-width: 767px)").matches) {
@@ -2521,10 +2521,10 @@ function updateMobileLinksLayout() {
     }
 
     links.classList.add("mobile-links-grid");
-    if (!portfolioField) return;
+    if (!portfolioScope) return;
 
     const start =
-        portfolioField.getBoundingClientRect().left -
+        portfolioScope.getBoundingClientRect().left -
         links.getBoundingClientRect().left;
     links.style.setProperty(
         "--mobile-contact-start",
@@ -2765,12 +2765,6 @@ function updatePortfolioAllLink(key, direction) {
 function getSortDescription(key, direction) {
     if (key === "date") {
         return direction === "ascending" ? "oldest first" : "newest first";
-    }
-
-    if (key === "field") {
-        return direction === "ascending"
-            ? "A to Z"
-            : "Z to A";
     }
 
     return direction === "ascending" ? "A to Z" : "Z to A";

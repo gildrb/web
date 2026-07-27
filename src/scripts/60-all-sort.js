@@ -1,6 +1,7 @@
 const allCases = document.querySelector(".all-cases");
 const allSortParams = new URLSearchParams(window.location.search);
-const allSortKey = allSortParams.get("sort");
+const requestedAllSortKey = allSortParams.get("sort");
+const allSortKey = requestedAllSortKey === "field" ? "scope" : requestedAllSortKey;
 const allSortDirection = allSortParams.get("direction");
 const allTitleCollator = new Intl.Collator("en", {
     numeric: true,
@@ -9,7 +10,7 @@ const allTitleCollator = new Intl.Collator("en", {
 
 if (
     allCases &&
-    ["date", "title", "field"].includes(allSortKey) &&
+    ["date", "title", "scope"].includes(allSortKey) &&
     ["ascending", "descending"].includes(allSortDirection)
 ) {
     const directionFactor = allSortDirection === "ascending" ? 1 : -1;

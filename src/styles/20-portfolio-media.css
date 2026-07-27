@@ -195,7 +195,7 @@
     line-height: 24px;
 }
 
-.portfolio-card-field {
+.portfolio-card-scope {
     grid-column: 3;
     grid-row: 1;
     min-width: 0;
@@ -283,7 +283,7 @@
     grid-column: 2;
 }
 
-.portfolio-sort-field {
+.portfolio-sort-scope {
     grid-column: 3;
 }
 
@@ -313,7 +313,7 @@
         color: var(--text-primary);
     }
 
-    .portfolio-card-link:hover .portfolio-card-field,
+    .portfolio-card-link:hover .portfolio-card-scope,
     .portfolio-card-link:hover .portfolio-card-arrow {
         color: var(--text-primary);
     }

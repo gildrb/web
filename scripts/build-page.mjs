@@ -264,11 +264,11 @@ export async function buildPage({ write = true } = {}) {
     const allScript = await readBundle("src/scripts", siteConfig.allPage.scripts);
     const portfolioCases = [
         ...indexHtml.matchAll(
-            /<a\s+class="portfolio-card-link"\s+href="\/([^"?]+)"[\s\S]*?<time[^>]+datetime="([^"]+)"[\s\S]*?<span\s+class="portfolio-card-title"[^>]*>([^<]+)<\/span\s*>[\s\S]*?<span\s+class="portfolio-card-field">([^<]+)<\/span>/g,
+            /<a\s+class="portfolio-card-link"\s+href="\/([^"?]+)"[\s\S]*?<time[^>]+datetime="([^"]+)"[\s\S]*?<span\s+class="portfolio-card-title"[^>]*>([^<]+)<\/span\s*>[\s\S]*?<span\s+class="portfolio-card-scope">([^<]+)<\/span>/g,
         ),
-    ].map(([, slug, date, title, field]) => ({
+    ].map(([, slug, date, title, scope]) => ({
         date,
-        field,
+        scope,
         slug,
         title,
     }));
@@ -279,9 +279,9 @@ export async function buildPage({ write = true } = {}) {
     const allCases = await Promise.all(
         portfolioCases
             .sort((left, right) => right.date.localeCompare(left.date))
-            .map(async ({ date, field, slug, title }) =>
+            .map(async ({ date, scope, slug, title }) =>
                 [
-                    `                        <article class="all-case" data-date="${date}" data-field="${field}" data-title="${title}">`,
+                    `                        <article class="all-case" data-date="${date}" data-scope="${scope}" data-title="${title}">`,
                     indentBlock(
                         await renderCaseMarkdown({ root, slug, resolveIncludes }),
                         28,
