@@ -1146,8 +1146,12 @@ assert(
         ) &&
         allPage.includes('class="all-cases"') &&
         (allPage.match(/class="all-case"/g) || []).length === 5 &&
-        allPage.includes('data-date="2026-07-15" data-scope="Design engineering" data-title="gildrb.com"') &&
+        allPage.includes('data-date="2026-07-15" data-scope="Design engineering" data-slug="site" data-title="gildrb.com"') &&
+        allPage.lastIndexOf('data-slug="site"') >
+            allPage.indexOf('data-slug="ml7"') &&
         allScript.includes('new URLSearchParams(window.location.search)') &&
+        allScript.includes('if (left.dataset.slug === "site") return 1;') &&
+        allScript.includes('if (right.dataset.slug === "site") return -1;') &&
         allScript.includes('cases.forEach((caseStudy) => allCases.append(caseStudy));') &&
         siteScript.includes(
             "announce(`Projects sorted by ${key}, ${description}.`)",

@@ -16,6 +16,9 @@ if (
     const cases = [...allCases.querySelectorAll(".all-case")];
 
     cases.sort((left, right) => {
+        if (left.dataset.slug === "site") return 1;
+        if (right.dataset.slug === "site") return -1;
+
         const leftValue = left.dataset[allSortKey];
         const rightValue = right.dataset[allSortKey];
         const comparison =

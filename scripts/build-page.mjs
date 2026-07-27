@@ -278,14 +278,18 @@ export async function buildPage({ write = true } = {}) {
     let allPage = await resolveIncludes(await readText("src/all.template.html"));
     const allCases = await Promise.all(
         portfolioCases
-            .sort((left, right) => right.date.localeCompare(left.date))
+            .sort((left, right) => {
+                if (left.slug === "site") return 1;
+                if (right.slug === "site") return -1;
+                return right.date.localeCompare(left.date);
+            })
             .map(async ({ date, scope, slug, title }) =>
                 [
-                    `                        <article class="all-case" data-date="${date}" data-scope="${scope}" data-title="${title}">`,
+                    `                        <article class="all-case" data-date="${date}" data-scope="${scope}" data-slug="${slug}" data-title="${title}">`,
                     indentBlock(
                         await renderCaseMarkdown({ root, slug, resolveIncludes }),
                         28,
-                    ),
+                    ).replace(/[ \t]+$/gm, ""),
                     "                        </article>",
                 ].join("\n"),
             ),

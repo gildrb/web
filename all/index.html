@@ -1918,112 +1918,7 @@ html.homepage-scroll-locked body .layout {
                 </aside>
                 <main class="content case-article">
                     <div class="all-cases">
-                        <article class="all-case" data-date="2026-07-15" data-scope="Design engineering" data-title="gildrb.com">
-                            <header class="case-intro">
-                                <h1 class="case-title">The site you are on is the case study</h1>
-                            </header>
-                                <div class="case-copy">
-                                    <p>This page documents the portfolio itself. I started with an empty repository, wrote the design and build system, then prepared the static files for deployment. The repository contains both the authored source and the generated pages. Its verification script is there too.</p>
-                                    <h3>Built from source</h3>
-                                    <p>Case-study prose lives in Markdown and shared page structure lives in HTML partials. A dependency-free Node script renders the Markdown, assembles the CSS and JavaScript needed by each route, inlines the structured data, and writes the static pages.</p>
-                                    <p>The pages do not depend on a client-side framework. Vercel Insights and Speed Insights are loaded separately for analytics; the portfolio remains functional if those scripts are unavailable.</p>
-                                </div>
-                            <div class="case-media">
-                            <figure>
-                                <div class="site-pipeline">
-                                <style>
-                                    .site-pipeline {
-                                        width: 100%;
-                                        color: var(--text-secondary);
-                                        font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-                                        font-size: 14px;
-                                        line-height: 20px;
-                                    }
-                            
-                                    .site-pipeline-line {
-                                        display: block;
-                                        white-space: pre-wrap;
-                                    }
-                            
-                                    .site-pipeline-line strong {
-                                        color: var(--text-primary);
-                                        font-weight: 400;
-                                    }
-                                </style>
-                                <span class="site-pipeline-line"><strong>content/*.md</strong> + <strong>src/case-media/*</strong></span>
-                                <span class="site-pipeline-line">        ↓</span>
-                                <span class="site-pipeline-line"><strong>scripts/build-page.mjs</strong></span>
-                                <span class="site-pipeline-line">        ↓</span>
-                                <span class="site-pipeline-line">page-specific inline CSS + JS + JSON-LD</span>
-                                <span class="site-pipeline-line">        ↓</span>
-                                <span class="site-pipeline-line"><strong>/</strong>  <strong>/heph</strong>  <strong>/filen</strong>  <strong>/n0thing</strong></span>
-                                <span class="site-pipeline-line">        <strong>/ml7</strong>  <strong>/site</strong></span>
-                            </div>
-                                <figcaption class="case-caption">Build pipeline</figcaption>
-                            </figure>
-                            </div>
-                                <div class="case-copy">
-                                    <h3>The design rules</h3>
-                                    <p>The palette has one background token and three text colors. A separate pair controls selected text. Light and dark themes change those token values without introducing another palette.</p>
-                                    <p>Layout values are named in CSS. The main article column is 760px wide on desktop. It sits beside a 240px sidebar with a 48px gap. A 6px token handles compact link stacks; larger separations use 24px, 32px, 48px, or 80px according to the relationship between elements. Case titles are 28/36 on desktop and 24/32 on mobile. Body copy is 16/24, while captions and code labels use 14/20. Inter Variable is self-hosted for text and Geist Mono is used for code.</p>
-                                    <p>Links and controls use the gray text tokens at rest and move to the primary text color on direct hover. Keyboard focus uses a visible ring. The Heph demo has a reduced-motion mode; routine controls change state without decorative animation.</p>
-                                </div>
-                            <div class="case-code">
-                            <p class="case-code-label">src/styles/10-base.css</p>
-                            <pre><code><span class="tok-punctuation">:</span><span class="tok-key">root</span> <span class="tok-punctuation">{</span>&#10;    <span class="tok-key">--bg</span><span class="tok-punctuation">:</span> <span class="tok-number">#000000</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--text-primary</span><span class="tok-punctuation">:</span> <span class="tok-number">#ffffff</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--text-secondary</span><span class="tok-punctuation">:</span> <span class="tok-number">#b3b3b3</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--text-tertiary</span><span class="tok-punctuation">:</span> <span class="tok-number">#767676</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--highlight-bg</span><span class="tok-punctuation">:</span> <span class="tok-number">#b3b3b3</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--highlight-text</span><span class="tok-punctuation">:</span> <span class="tok-number">#ffffff</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--section-gap</span><span class="tok-punctuation">:</span> <span class="tok-number">24px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--section-content-gap</span><span class="tok-punctuation">:</span> <span class="tok-number">6px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--text-media-gap</span><span class="tok-punctuation">:</span> <span class="tok-number">32px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--link-line-height</span><span class="tok-punctuation">:</span> <span class="tok-number">24px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--theme-toggle-size</span><span class="tok-punctuation">:</span> <span class="tok-number">32px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--theme-toggle-optical-offset</span><span class="tok-punctuation">:</span> <span class="tok-number">2px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--footer-stack-bottom-gap</span><span class="tok-punctuation">:</span> <span class="tok-number">4px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--footer-title-optical-offset</span><span class="tok-punctuation">:</span> <span class="tok-number">4px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--sidebar-column</span><span class="tok-punctuation">:</span> <span class="tok-number">240px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--content-column</span><span class="tok-punctuation">:</span> <span class="tok-number">760px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--layout-gap</span><span class="tok-punctuation">:</span> <span class="tok-number">48px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--media-radius</span><span class="tok-punctuation">:</span> <span class="tok-number">22px</span><span class="tok-punctuation">;</span>&#10;<span class="tok-punctuation">}</span></code></pre>
-                            </div>
-                                <div class="case-copy">
-                                    <h3>Verification</h3>
-                                    <p>The verification scripts check the design tokens, responsive rules, content constraints, route order, asset references, and live crawler access. Missing images and files that are no longer referenced are both reported.</p>
-                                    <p>The same script rebuilds every page in memory and compares the result with the committed HTML. A source edit followed by a missed rebuild therefore fails verification instead of leaving stale output unnoticed.</p>
-                                </div>
-                            <div class="case-media">
-                            <figure>
-                                <div class="site-verify">
-                                <style>
-                                    .site-verify {
-                                        width: 100%;
-                                        color: var(--text-secondary);
-                                        font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-                                        font-size: 14px;
-                                        line-height: 20px;
-                                    }
-                            
-                                    .site-verify-line {
-                                        display: block;
-                                    }
-                            
-                                    .site-verify-prompt {
-                                        margin-bottom: 16px;
-                                        color: var(--text-tertiary);
-                                    }
-                            
-                                    .site-verify-line strong {
-                                        color: var(--text-primary);
-                                        font-weight: 400;
-                                    }
-                                </style>
-                                <span class="site-verify-line site-verify-prompt">$ node scripts/verify-page.mjs</span>
-                                <span class="site-verify-line">design-system tokens <strong>ok</strong></span>
-                                <span class="site-verify-line">content rules <strong>ok</strong> (no em dashes)</span>
-                                <span class="site-verify-line">asset completeness <strong>ok</strong></span>
-                                <span class="site-verify-line">rebuild matches source <strong>ok</strong></span>
-                                <span class="site-verify-line">verified generated pages, all assets, all routes <strong>pass</strong></span>
-                            </div>
-                                <figcaption class="case-caption">Verification harness</figcaption>
-                            </figure>
-                            </div>
-                                <div class="case-copy">
-                                    <h3>The Heph demo</h3>
-                                    <p>The terminal on the <a class="internal-link" href="/heph">Heph</a> case study is a simulation written in vanilla JavaScript. It plays one retrieval sequence and opens cited evidence. The keyboard controls shown in the interface also work. Reduced-motion users receive the completed state without the timed playback.</p>
-                                    <h3>Machine-readable routes</h3>
-                                    <p>The site publishes a Schema.org identity graph, WebFinger records, host metadata, an llms.txt reference, an RSS feed, a humans.txt file, and a sitemap. Its <code>Content-Signal</code> header permits search, AI input, and AI training. These files identify Gil Rodrigues and link back to the same canonical homepage.</p>
-                                    <h3>Delivery and access</h3>
-                                    <p>The functional CSS and JavaScript are inlined by route. Fonts are preloaded, and responsive image sets let the browser choose an appropriate file for the viewport. The HTML uses landmarks, live regions, visible keyboard focus, and reduced-motion handling.</p>
-                                    <p>I designed and wrote the portfolio along with its build and verification scripts. The page above is generated by the same system it describes.</p>
-                                </div>
-                        </article>
-                        <article class="all-case" data-date="2026-04-21" data-scope="Product design and engineering" data-title="Heph">
+                        <article class="all-case" data-date="2026-04-21" data-scope="Product design and engineering" data-slug="heph" data-title="Heph">
                             <header class="case-intro">
                                 <h1 class="case-title">A local document agent that answers from your files and shows its work</h1>
                             </header>
@@ -2367,7 +2262,7 @@ html.homepage-scroll-locked body .layout {
                                     <p><a class="external-link" href="https://github.com/gildrb/heph" target="_blank" rel="noopener noreferrer">GitHub repository</a></p>
                                 </div>
                         </article>
-                        <article class="all-case" data-date="2026-01-14" data-scope="Brand identity" data-title="Filen">
+                        <article class="all-case" data-date="2026-01-14" data-scope="Brand identity" data-slug="filen" data-title="Filen">
                             <header class="case-intro">
                                 <h1 class="case-title">A self-initiated brand system for Filen</h1>
                             </header>
@@ -2487,7 +2382,7 @@ html.homepage-scroll-locked body .layout {
                                     <p>I shared the finished concept with the Filen community. The exercise also proved that the mark could carry a broader system. It survives in the app icon, while the panel treatment gives the campaign images a consistent surface.</p>
                                 </div>
                         </article>
-                        <article class="all-case" data-date="2019-11-15" data-scope="Wordmark" data-title="n0thing">
+                        <article class="all-case" data-date="2019-11-15" data-scope="Wordmark" data-slug="n0thing" data-title="n0thing">
                             <header class="case-intro">
                                 <h1 class="case-title">A wordmark for n0thing</h1>
                             </header>
@@ -2535,7 +2430,7 @@ html.homepage-scroll-locked body .layout {
                                     <p>Jordan approved the mark and I delivered it in 2019. The route from the rejected typewriter study back to the first pixel idea produced a stronger final wordmark and a useful motion rule.</p>
                                 </div>
                         </article>
-                        <article class="all-case" data-date="2018-11-13" data-scope="Wordmark" data-title="mL7">
+                        <article class="all-case" data-date="2018-11-13" data-scope="Wordmark" data-slug="ml7" data-title="mL7">
                             <header class="case-intro">
                                 <h1 class="case-title">The mL7 logo, made in 2018</h1>
                             </header>
@@ -2553,6 +2448,111 @@ html.homepage-scroll-locked body .layout {
                                     <p>The logo had to remain legible in small stream overlays. I drew a compact geometric <code>mL</code>, then passed a brush stroke through the seven to give the mark its direction. The original colorway used black lettering with an orange stroke. I adjusted the spacing and stroke angle until the logo worked as both a profile image and a wide channel graphic.</p>
                                     <h3>What it led to</h3>
                                     <p>Mihai thanked me and insisted on paying for the work even though I had not asked. It was the first time a creator I followed treated my design as a commission. The mark then stayed with his channel for years, which mattered more to me than the initial response.</p>
+                                </div>
+                        </article>
+                        <article class="all-case" data-date="2026-07-15" data-scope="Design engineering" data-slug="site" data-title="gildrb.com">
+                            <header class="case-intro">
+                                <h1 class="case-title">The site you are on is the case study</h1>
+                            </header>
+                                <div class="case-copy">
+                                    <p>This page documents the portfolio itself. I started with an empty repository, wrote the design and build system, then prepared the static files for deployment. The repository contains both the authored source and the generated pages. Its verification script is there too.</p>
+                                    <h3>Built from source</h3>
+                                    <p>Case-study prose lives in Markdown and shared page structure lives in HTML partials. A dependency-free Node script renders the Markdown, assembles the CSS and JavaScript needed by each route, inlines the structured data, and writes the static pages.</p>
+                                    <p>The pages do not depend on a client-side framework. Vercel Insights and Speed Insights are loaded separately for analytics; the portfolio remains functional if those scripts are unavailable.</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <div class="site-pipeline">
+                                <style>
+                                    .site-pipeline {
+                                        width: 100%;
+                                        color: var(--text-secondary);
+                                        font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+                                        font-size: 14px;
+                                        line-height: 20px;
+                                    }
+
+                                    .site-pipeline-line {
+                                        display: block;
+                                        white-space: pre-wrap;
+                                    }
+
+                                    .site-pipeline-line strong {
+                                        color: var(--text-primary);
+                                        font-weight: 400;
+                                    }
+                                </style>
+                                <span class="site-pipeline-line"><strong>content/*.md</strong> + <strong>src/case-media/*</strong></span>
+                                <span class="site-pipeline-line">        ↓</span>
+                                <span class="site-pipeline-line"><strong>scripts/build-page.mjs</strong></span>
+                                <span class="site-pipeline-line">        ↓</span>
+                                <span class="site-pipeline-line">page-specific inline CSS + JS + JSON-LD</span>
+                                <span class="site-pipeline-line">        ↓</span>
+                                <span class="site-pipeline-line"><strong>/</strong>  <strong>/heph</strong>  <strong>/filen</strong>  <strong>/n0thing</strong></span>
+                                <span class="site-pipeline-line">        <strong>/ml7</strong>  <strong>/site</strong></span>
+                            </div>
+                                <figcaption class="case-caption">Build pipeline</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <h3>The design rules</h3>
+                                    <p>The palette has one background token and three text colors. A separate pair controls selected text. Light and dark themes change those token values without introducing another palette.</p>
+                                    <p>Layout values are named in CSS. The main article column is 760px wide on desktop. It sits beside a 240px sidebar with a 48px gap. A 6px token handles compact link stacks; larger separations use 24px, 32px, 48px, or 80px according to the relationship between elements. Case titles are 28/36 on desktop and 24/32 on mobile. Body copy is 16/24, while captions and code labels use 14/20. Inter Variable is self-hosted for text and Geist Mono is used for code.</p>
+                                    <p>Links and controls use the gray text tokens at rest and move to the primary text color on direct hover. Keyboard focus uses a visible ring. The Heph demo has a reduced-motion mode; routine controls change state without decorative animation.</p>
+                                </div>
+                            <div class="case-code">
+                            <p class="case-code-label">src/styles/10-base.css</p>
+                            <pre><code><span class="tok-punctuation">:</span><span class="tok-key">root</span> <span class="tok-punctuation">{</span>&#10;    <span class="tok-key">--bg</span><span class="tok-punctuation">:</span> <span class="tok-number">#000000</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--text-primary</span><span class="tok-punctuation">:</span> <span class="tok-number">#ffffff</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--text-secondary</span><span class="tok-punctuation">:</span> <span class="tok-number">#b3b3b3</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--text-tertiary</span><span class="tok-punctuation">:</span> <span class="tok-number">#767676</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--highlight-bg</span><span class="tok-punctuation">:</span> <span class="tok-number">#b3b3b3</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--highlight-text</span><span class="tok-punctuation">:</span> <span class="tok-number">#ffffff</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--section-gap</span><span class="tok-punctuation">:</span> <span class="tok-number">24px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--section-content-gap</span><span class="tok-punctuation">:</span> <span class="tok-number">6px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--text-media-gap</span><span class="tok-punctuation">:</span> <span class="tok-number">32px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--link-line-height</span><span class="tok-punctuation">:</span> <span class="tok-number">24px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--theme-toggle-size</span><span class="tok-punctuation">:</span> <span class="tok-number">32px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--theme-toggle-optical-offset</span><span class="tok-punctuation">:</span> <span class="tok-number">2px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--footer-stack-bottom-gap</span><span class="tok-punctuation">:</span> <span class="tok-number">4px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--footer-title-optical-offset</span><span class="tok-punctuation">:</span> <span class="tok-number">4px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--sidebar-column</span><span class="tok-punctuation">:</span> <span class="tok-number">240px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--content-column</span><span class="tok-punctuation">:</span> <span class="tok-number">760px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--layout-gap</span><span class="tok-punctuation">:</span> <span class="tok-number">48px</span><span class="tok-punctuation">;</span>&#10;    <span class="tok-key">--media-radius</span><span class="tok-punctuation">:</span> <span class="tok-number">22px</span><span class="tok-punctuation">;</span>&#10;<span class="tok-punctuation">}</span></code></pre>
+                            </div>
+                                <div class="case-copy">
+                                    <h3>Verification</h3>
+                                    <p>The verification scripts check the design tokens, responsive rules, content constraints, route order, asset references, and live crawler access. Missing images and files that are no longer referenced are both reported.</p>
+                                    <p>The same script rebuilds every page in memory and compares the result with the committed HTML. A source edit followed by a missed rebuild therefore fails verification instead of leaving stale output unnoticed.</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <div class="site-verify">
+                                <style>
+                                    .site-verify {
+                                        width: 100%;
+                                        color: var(--text-secondary);
+                                        font-family: "Geist Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+                                        font-size: 14px;
+                                        line-height: 20px;
+                                    }
+
+                                    .site-verify-line {
+                                        display: block;
+                                    }
+
+                                    .site-verify-prompt {
+                                        margin-bottom: 16px;
+                                        color: var(--text-tertiary);
+                                    }
+
+                                    .site-verify-line strong {
+                                        color: var(--text-primary);
+                                        font-weight: 400;
+                                    }
+                                </style>
+                                <span class="site-verify-line site-verify-prompt">$ node scripts/verify-page.mjs</span>
+                                <span class="site-verify-line">design-system tokens <strong>ok</strong></span>
+                                <span class="site-verify-line">content rules <strong>ok</strong> (no em dashes)</span>
+                                <span class="site-verify-line">asset completeness <strong>ok</strong></span>
+                                <span class="site-verify-line">rebuild matches source <strong>ok</strong></span>
+                                <span class="site-verify-line">verified generated pages, all assets, all routes <strong>pass</strong></span>
+                            </div>
+                                <figcaption class="case-caption">Verification harness</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <h3>The Heph demo</h3>
+                                    <p>The terminal on the <a class="internal-link" href="/heph">Heph</a> case study is a simulation written in vanilla JavaScript. It plays one retrieval sequence and opens cited evidence. The keyboard controls shown in the interface also work. Reduced-motion users receive the completed state without the timed playback.</p>
+                                    <h3>Machine-readable routes</h3>
+                                    <p>The site publishes a Schema.org identity graph, WebFinger records, host metadata, an llms.txt reference, an RSS feed, a humans.txt file, and a sitemap. Its <code>Content-Signal</code> header permits search, AI input, and AI training. These files identify Gil Rodrigues and link back to the same canonical homepage.</p>
+                                    <h3>Delivery and access</h3>
+                                    <p>The functional CSS and JavaScript are inlined by route. Fonts are preloaded, and responsive image sets let the browser choose an appropriate file for the viewport. The HTML uses landmarks, live regions, visible keyboard focus, and reduced-motion handling.</p>
+                                    <p>I designed and wrote the portfolio along with its build and verification scripts. The page above is generated by the same system it describes.</p>
                                 </div>
                         </article>
                     </div>
@@ -3849,6 +3849,9 @@ if (
     const cases = [...allCases.querySelectorAll(".all-case")];
 
     cases.sort((left, right) => {
+        if (left.dataset.slug === "site") return 1;
+        if (right.dataset.slug === "site") return -1;
+
         const leftValue = left.dataset[allSortKey];
         const rightValue = right.dataset[allSortKey];
         const comparison =
