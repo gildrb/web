@@ -1137,7 +1137,10 @@ assert(
         siteScript.includes(
             "portfolioAllLink.href = `/all?sort=${key}&direction=${direction}`;",
         ) &&
-        baseStyles.includes("--all-case-gap: 120px;") &&
+        baseStyles.includes("--case-title-text-gap: 24px;") &&
+        baseStyles.includes(
+            "--all-case-gap: calc(var(--case-title-text-gap) * 1.618);",
+        ) &&
         caseStyles.includes(
             ".all-case + .all-case {\n    margin-top: var(--all-case-gap);",
         ) &&
@@ -1329,7 +1332,7 @@ assert(
 );
 assert(
     caseStyles.includes(
-        ".case-title {\n    max-width: 760px;\n    margin: 0 0 24px;\n    font-size: 28px;\n    font-weight: 500;\n    line-height: 36px;\n    letter-spacing: -0.02em;",
+        ".case-title {\n    max-width: 760px;\n    margin: 0 0 var(--case-title-text-gap);\n    font-size: 28px;\n    font-weight: 500;\n    line-height: 36px;\n    letter-spacing: -0.02em;",
     ) &&
         caseStyles.includes(
             ".case-copy h2 {\n    margin-bottom: 24px;\n    font-size: 24px;\n    font-weight: 500;\n    line-height: 32px;",

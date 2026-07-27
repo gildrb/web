@@ -82,7 +82,7 @@
 
 .case-title {
     max-width: 760px;
-    margin: 0 0 24px;
+    margin: 0 0 var(--case-title-text-gap);
     font-size: 28px;
     font-weight: 500;
     line-height: 36px;

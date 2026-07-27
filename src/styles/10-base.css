@@ -8,7 +8,8 @@
     --section-gap: 24px;
     --section-content-gap: 6px;
     --text-media-gap: 32px;
-    --all-case-gap: 120px;
+    --case-title-text-gap: 24px;
+    --all-case-gap: calc(var(--case-title-text-gap) * 1.618);
     --link-line-height: 24px;
     --theme-toggle-size: 32px;
     --theme-toggle-optical-offset: 2px;
