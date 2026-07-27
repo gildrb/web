@@ -1,7 +1,6 @@
 const allCases = document.querySelector(".all-cases");
 const allSortParams = new URLSearchParams(window.location.search);
-const requestedAllSortKey = allSortParams.get("sort");
-const allSortKey = requestedAllSortKey === "field" ? "scope" : requestedAllSortKey;
+const allSortKey = allSortParams.get("sort");
 const allSortDirection = allSortParams.get("direction");
 const allTitleCollator = new Intl.Collator("en", {
     numeric: true,
