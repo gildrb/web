@@ -74,4 +74,20 @@ export const siteConfig = Object.freeze({
             scripts: sharedCaseScripts,
         }),
     ]),
+    allPage: Object.freeze({
+        styles: Object.freeze([
+            "00-fonts.css",
+            "10-base.css",
+            "30-heph-demo.css",
+            "40-preview-content.css",
+            "50-case-study.css",
+            "90-responsive.css",
+        ]),
+        scripts: Object.freeze([
+            ...sharedCaseScripts,
+            "40-heph-data.js",
+            "50-heph-demo.js",
+            "60-all-sort.js",
+        ]),
+    }),
 });

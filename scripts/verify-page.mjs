@@ -118,6 +118,8 @@ async function listFiles(relativeDir) {
 }
 
 const {
+    allPage,
+    allScript,
     casePages,
     caseScripts,
     fullSiteText,
@@ -1096,7 +1098,7 @@ assert(
         indexHtml.includes(">\n                                Project\n") &&
         indexHtml.includes(">\n                                Scope\n") &&
         indexHtml.includes(
-            '<span class="portfolio-link-heading">Link</span>',
+            'class="portfolio-link-heading"\n                                href="/all?sort=date&direction=descending"\n                            >All</a>',
         ) &&
         indexHtml.indexOf('class="portfolio-table-header"') <
             indexHtml.indexOf('class="portfolio-list"') &&
@@ -1133,13 +1135,21 @@ assert(
             "rows.forEach((row) => portfolioList.append(row));",
         ) &&
         siteScript.includes(
+            "portfolioAllLink.href = `/all?sort=${key}&direction=${direction}`;",
+        ) &&
+        allPage.includes('class="all-cases"') &&
+        (allPage.match(/class="all-case"/g) || []).length === 5 &&
+        allPage.includes('data-date="2026-07-15" data-field="Design engineering" data-title="gildrb.com"') &&
+        allScript.includes('new URLSearchParams(window.location.search)') &&
+        allScript.includes('cases.forEach((caseStudy) => allCases.append(caseStudy));') &&
+        siteScript.includes(
             "announce(`Projects sorted by ${key}, ${description}.`)",
         ) &&
         siteScript.includes('"A to Z"') &&
         siteScript.includes('"Z to A"') &&
         siteScript.includes("if (event.detail !== 0) button.blur();") &&
         !caseScript.includes("portfolioSortButtons"),
-    "The homepage must show white Date, Project, Scope, and Link column headings and provide homepage-only accessible global project sorting.",
+    "The homepage must use secondary-tone Date, Project, Scope, and All headings, with All preserving the active sort for the continuous projects page.",
 );
 const portfolioDates = [
     ["2026-04-21", "2026-04-21", "Heph"],

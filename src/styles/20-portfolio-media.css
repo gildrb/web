@@ -289,8 +289,10 @@
 
 .portfolio-link-heading {
     grid-column: 4;
+    color: inherit;
     line-height: 24px;
     text-align: right;
+    text-decoration: none;
 }
 
 .portfolio-list {

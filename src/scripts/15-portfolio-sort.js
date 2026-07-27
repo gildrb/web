@@ -2,6 +2,7 @@ const portfolioSortButtons = document.querySelectorAll(
     ".portfolio-sort-button",
 );
 const portfolioList = document.querySelector(".portfolio-list");
+const portfolioAllLink = document.querySelector(".portfolio-link-heading");
 const titleCollator = new Intl.Collator("en", {
     numeric: true,
     sensitivity: "base",
@@ -35,6 +36,12 @@ function sortPortfolioRows(key, direction) {
     });
 
     rows.forEach((row) => portfolioList.append(row));
+}
+
+function updatePortfolioAllLink(key, direction) {
+    if (!portfolioAllLink) return;
+
+    portfolioAllLink.href = `/all?sort=${key}&direction=${direction}`;
 }
 
 function getSortDescription(key, direction) {
@@ -85,6 +92,7 @@ portfolioSortButtons.forEach((button) => {
             `Sort projects by ${key}, currently ${description}`,
         );
         sortPortfolioRows(key, direction);
+        updatePortfolioAllLink(key, direction);
         announce(`Projects sorted by ${key}, ${description}.`);
         if (event.detail !== 0) button.blur();
     });

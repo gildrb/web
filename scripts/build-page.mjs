@@ -260,11 +260,59 @@ export async function buildPage({ write = true } = {}) {
             ]),
         ),
     );
+    const allStyles = await readBundle("src/styles", siteConfig.allPage.styles);
+    const allScript = await readBundle("src/scripts", siteConfig.allPage.scripts);
+    const portfolioCases = [
+        ...indexHtml.matchAll(
+            /<a\s+class="portfolio-card-link"\s+href="\/([^"?]+)"[\s\S]*?<time[^>]+datetime="([^"]+)"[\s\S]*?<span\s+class="portfolio-card-title"[^>]*>([^<]+)<\/span\s*>[\s\S]*?<span\s+class="portfolio-card-field">([^<]+)<\/span>/g,
+        ),
+    ].map(([, slug, date, title, field]) => ({
+        date,
+        field,
+        slug,
+        title,
+    }));
+    if (portfolioCases.length !== siteConfig.caseStudies.length) {
+        throw new Error("Could not derive every all-projects entry from the homepage.");
+    }
+    let allPage = await resolveIncludes(await readText("src/all.template.html"));
+    const allCases = await Promise.all(
+        portfolioCases
+            .sort((left, right) => right.date.localeCompare(left.date))
+            .map(async ({ date, field, slug, title }) =>
+                [
+                    `                        <article class="all-case" data-date="${date}" data-field="${field}" data-title="${title}">`,
+                    indentBlock(
+                        await renderCaseMarkdown({ root, slug, resolveIncludes }),
+                        28,
+                    ),
+                    "                        </article>",
+                ].join("\n"),
+            ),
+    );
+    allPage = replaceToken(
+        allPage,
+        "<!-- @all-cases -->",
+        allCases.join("\n"),
+    );
+    allPage = replaceToken(allPage, "<!-- @inline-css:all -->", allStyles);
+    allPage = replaceToken(
+        allPage,
+        "<!-- @inline-js:analytics-bootstrap -->",
+        analyticsBootstrap,
+    );
+    allPage = replaceToken(allPage, "<!-- @inline-js:all -->", allScript);
+
+    if (allPage.includes("<!-- @inline-") || allPage.includes("<!-- @all-")) {
+        throw new Error("Generated all-projects page still contains build tokens.");
+    }
 
     if (write) {
         await writeFile(path.join(root, "index.html"), indexHtml);
         await writeFile(path.join(root, "llms-full.txt"), fullSiteText);
         await writeFile(path.join(root, "profile.json"), profileJson);
+        await mkdir(path.join(root, "all"), { recursive: true });
+        await writeFile(path.join(root, "all", "index.html"), allPage);
 
         await Promise.all(
             Object.entries(casePages).map(async ([slug, html]) => {
@@ -275,9 +323,12 @@ export async function buildPage({ write = true } = {}) {
     }
 
     return {
+        allPage,
+        allScript,
         casePages,
         caseScripts,
         caseStyles,
+        allStyles,
         homepageStyles,
         indexHtml,
         fullSiteText,
