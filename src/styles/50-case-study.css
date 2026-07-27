@@ -61,7 +61,7 @@
 }
 
 .all-case + .all-case {
-    margin-top: 160px;
+    margin-top: var(--all-case-gap);
 }
 
 .case-intro,

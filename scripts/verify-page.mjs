@@ -1137,6 +1137,10 @@ assert(
         siteScript.includes(
             "portfolioAllLink.href = `/all?sort=${key}&direction=${direction}`;",
         ) &&
+        baseStyles.includes("--all-case-gap: 120px;") &&
+        caseStyles.includes(
+            ".all-case + .all-case {\n    margin-top: var(--all-case-gap);",
+        ) &&
         allPage.includes('class="all-cases"') &&
         (allPage.match(/class="all-case"/g) || []).length === 5 &&
         allPage.includes('data-date="2026-07-15" data-scope="Design engineering" data-title="gildrb.com"') &&
