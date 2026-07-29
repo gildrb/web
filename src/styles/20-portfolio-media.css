@@ -264,6 +264,11 @@
 }
 
 .portfolio-sort-button {
+    display: inline-grid;
+    grid-template-columns: auto 1ch;
+    column-gap: 4px;
+    align-items: baseline;
+    justify-self: start;
     appearance: none;
     padding: 0;
     border: 0;
@@ -273,6 +278,17 @@
     line-height: 24px;
     text-align: left;
     cursor: pointer;
+}
+
+.portfolio-sort-indicator {
+    visibility: hidden;
+    font-family: "Inter", sans-serif;
+    text-align: center;
+}
+
+.portfolio-sort-button[data-sort-direction]
+    .portfolio-sort-indicator {
+    visibility: visible;
 }
 
 .portfolio-sort-date {

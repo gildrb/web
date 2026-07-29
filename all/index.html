@@ -3845,13 +3845,18 @@ if (
     ["date", "title", "scope"].includes(allSortKey) &&
     ["ascending", "descending"].includes(allSortDirection)
 ) {
-    const directionFactor = allSortDirection === "ascending" ? 1 : -1;
+    const isDescending = allSortDirection === "descending";
+    const directionFactor =
+        allSortKey === "date"
+            ? isDescending
+                ? -1
+                : 1
+            : isDescending
+              ? 1
+              : -1;
     const cases = [...allCases.querySelectorAll(".all-case")];
 
     cases.sort((left, right) => {
-        if (left.dataset.slug === "site") return 1;
-        if (right.dataset.slug === "site") return -1;
-
         const leftValue = left.dataset[allSortKey];
         const rightValue = right.dataset[allSortKey];
         const comparison =
@@ -3859,7 +3864,16 @@ if (
                 ? leftValue.localeCompare(rightValue)
                 : allTitleCollator.compare(leftValue, rightValue);
 
-        return comparison * directionFactor;
+        if (comparison !== 0 || allSortKey !== "scope") {
+            return comparison * directionFactor;
+        }
+
+        return (
+            allTitleCollator.compare(
+                left.dataset.title,
+                right.dataset.title,
+            ) * directionFactor
+        );
     });
 
     cases.forEach((caseStudy) => allCases.append(caseStudy));

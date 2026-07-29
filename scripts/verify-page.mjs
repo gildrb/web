@@ -1094,6 +1094,8 @@ assert(
         indexHtml.includes('data-sort-key="date"') &&
         indexHtml.includes('data-sort-key="title"') &&
         indexHtml.includes('data-sort-key="scope"') &&
+        indexHtml.match(/class="portfolio-sort-indicator"/g)?.length === 3 &&
+        indexHtml.includes('aria-hidden="true"') &&
         indexHtml.includes(">\n                                Date\n") &&
         indexHtml.includes(">\n                                Project\n") &&
         indexHtml.includes(">\n                                Scope\n") &&
@@ -1118,6 +1120,12 @@ assert(
             ".portfolio-sort-scope {\n    grid-column: 3;",
         ) &&
         portfolioStyles.includes(
+            ".portfolio-sort-indicator {\n    visibility: hidden;\n    font-family: \"Inter\", sans-serif;",
+        ) &&
+        portfolioStyles.includes(
+            ".portfolio-sort-button[data-sort-direction]\n    .portfolio-sort-indicator {\n    visibility: visible;",
+        ) &&
+        portfolioStyles.includes(
             ".portfolio-link-heading {\n    grid-column: 4;",
         ) &&
         portfolioStyles.includes(
@@ -1131,6 +1139,22 @@ assert(
         siteScript.includes('querySelector(`.portfolio-card-${key}`)') &&
         siteScript.includes('getAttribute("datetime")') &&
         siteScript.includes("leftValue.localeCompare(rightValue)") &&
+        siteScript.includes(
+            'function getSortDirectionFactor(key, direction)',
+        ) &&
+        siteScript.includes('return isDescending ? -1 : 1;') &&
+        siteScript.includes('return isDescending ? 1 : -1;') &&
+        siteScript.includes('key !== "scope"') &&
+        siteScript.includes(
+            'titleCollator.compare(leftTitle, rightTitle)',
+        ) &&
+        siteScript.includes('direction = "descending";') &&
+        siteScript.includes(
+            'direction === "ascending" ? "↑" : "↓"',
+        ) &&
+        siteScript.includes(
+            'return direction === "descending" ? "A to Z" : "Z to A";',
+        ) &&
         siteScript.includes(
             "rows.forEach((row) => portfolioList.append(row));",
         ) &&
@@ -1150,8 +1174,14 @@ assert(
         allPage.lastIndexOf('data-slug="site"') >
             allPage.indexOf('data-slug="ml7"') &&
         allScript.includes('new URLSearchParams(window.location.search)') &&
-        allScript.includes('if (left.dataset.slug === "site") return 1;') &&
-        allScript.includes('if (right.dataset.slug === "site") return -1;') &&
+        !allScript.includes('left.dataset.slug === "site"') &&
+        !allScript.includes('right.dataset.slug === "site"') &&
+        allScript.includes(
+            'allSortKey === "date"\n            ? isDescending',
+        ) &&
+        allScript.includes('allSortKey !== "scope"') &&
+        allScript.includes("left.dataset.title") &&
+        allScript.includes("right.dataset.title") &&
         allScript.includes('cases.forEach((caseStudy) => allCases.append(caseStudy));') &&
         siteScript.includes(
             "announce(`Projects sorted by ${key}, ${description}.`)",

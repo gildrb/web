@@ -18,8 +18,18 @@ function getPortfolioRowValue(row, key) {
         .textContent.trim();
 }
 
+function getSortDirectionFactor(key, direction) {
+    const isDescending = direction === "descending";
+
+    if (key === "date") {
+        return isDescending ? -1 : 1;
+    }
+
+    return isDescending ? 1 : -1;
+}
+
 function sortPortfolioRows(key, direction) {
-    const directionFactor = direction === "ascending" ? 1 : -1;
+    const directionFactor = getSortDirectionFactor(key, direction);
     const rows = [
         ...portfolioList.querySelectorAll(".portfolio-card-link"),
     ];
@@ -32,7 +42,17 @@ function sortPortfolioRows(key, direction) {
                 ? leftValue.localeCompare(rightValue)
                 : titleCollator.compare(leftValue, rightValue);
 
-        return comparison * directionFactor;
+        if (comparison !== 0 || key !== "scope") {
+            return comparison * directionFactor;
+        }
+
+        const leftTitle = getPortfolioRowValue(left, "title");
+        const rightTitle = getPortfolioRowValue(right, "title");
+
+        return (
+            titleCollator.compare(leftTitle, rightTitle) *
+            directionFactor
+        );
     });
 
     rows.forEach((row) => portfolioList.append(row));
@@ -49,7 +69,7 @@ function getSortDescription(key, direction) {
         return direction === "ascending" ? "oldest first" : "newest first";
     }
 
-    return direction === "ascending" ? "A to Z" : "Z to A";
+    return direction === "descending" ? "A to Z" : "Z to A";
 }
 
 portfolioSortButtons.forEach((button) => {
@@ -65,7 +85,7 @@ portfolioSortButtons.forEach((button) => {
                     ? "descending"
                     : "ascending";
         } else {
-            direction = key === "date" ? "descending" : "ascending";
+            direction = "descending";
         }
 
         const description = getSortDescription(key, direction);
@@ -81,6 +101,8 @@ portfolioSortButtons.forEach((button) => {
 
         button.setAttribute("aria-pressed", "true");
         button.dataset.sortDirection = direction;
+        button.querySelector(".portfolio-sort-indicator").textContent =
+            direction === "ascending" ? "↑" : "↓";
         button.setAttribute(
             "aria-label",
             `Sort projects by ${key}, currently ${description}`,
