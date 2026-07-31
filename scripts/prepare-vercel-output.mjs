@@ -28,9 +28,23 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
 }
 
 const homepage = await readFile(path.join(output, "index.html"), "utf8");
+const requiredFragments = [
+    "@keyframes homepage-enter",
+    "data-homepage-entry-complete",
+    "window.setTimeout(finishHomepageEntry, 4400)",
+    'document.documentElement.dataset.homepageEntryComplete = "true"',
+    "animation-delay: 2200ms",
+];
+const missingFragments = requiredFragments.filter(
+    (fragment) => !homepage.includes(fragment),
+);
 
-if (!homepage.includes("@keyframes homepage-enter")) {
-    throw new Error("Exported homepage is missing the entry-animation CSS.");
+if (missingFragments.length > 0) {
+    throw new Error(
+        `Exported homepage is missing one-time entry behavior:\n${missingFragments.join("\n")}`,
+    );
 }
 
-console.log("Prepared Vercel output in public/ with homepage animation included.");
+console.log(
+    "Prepared Vercel output in public/ with one-time homepage entry behavior.",
+);
