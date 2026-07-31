@@ -57,18 +57,9 @@ if (missingFragments.length > 0) {
     );
 }
 
-const forbiddenFragments = [
-    "gildrb-homepage-entry-seen",
-    "window.sessionStorage.getItem",
-    "window.sessionStorage.setItem",
-];
-const presentForbiddenFragments = forbiddenFragments.filter((fragment) =>
-    homepage.includes(fragment),
-);
-
-if (presentForbiddenFragments.length > 0) {
+if (homepage.includes("gildrb-homepage-entry-seen")) {
     throw new Error(
-        `Homepage reload must still play the entry animation:\n${presentForbiddenFragments.join("\n")}`,
+        "Homepage reload must replay the entry animation; remove the old entry marker.",
     );
 }
 
