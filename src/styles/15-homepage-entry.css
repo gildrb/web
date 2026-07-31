@@ -18,6 +18,22 @@
 }
 
 /*
+ * A reload intercepted through the Navigation API is held for two animation
+ * frames in this exact state before the real network reload begins. Safari
+ * therefore snapshots the same frame that the replacement document starts on.
+ */
+html[data-homepage-reload-preparing] .links > *,
+html[data-homepage-reload-preparing] .portfolio-table-header > *,
+html[data-homepage-reload-preparing]
+    .portfolio-list
+    > .portfolio-card-link
+    > * {
+    animation: none !important;
+    opacity: 0 !important;
+    transform: translateY(-4px) !important;
+}
+
+/*
  * Animate only until the page marks its initial entry sequence complete.
  * Links begins when the final table cell starts. Contact begins when the final
  * profile link starts, and each contact method follows one stagger at a time.
