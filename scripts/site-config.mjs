@@ -26,6 +26,7 @@ export const siteConfig = Object.freeze({
         ]),
         scripts: Object.freeze([
             "10-core.js",
+            "12-homepage-entry.js",
             "15-portfolio-sort.js",
             "20-theme.js",
             "30-email.js",
