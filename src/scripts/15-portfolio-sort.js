@@ -108,7 +108,7 @@ portfolioSortButtons.forEach((button) => {
             `Sort projects by ${key}, currently ${description}`,
         );
 
-        document.documentElement.classList.remove("homepage-entry");
+        document.documentElement.dataset.homepageEntryComplete = "true";
         sortPortfolioRows(key, direction);
         updatePortfolioAllLink(key, direction);
         announce(`Projects sorted by ${key}, ${description}.`);
