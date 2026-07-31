@@ -9,6 +9,24 @@ function finishHomepageEntry() {
     window.clearTimeout(homepageEntryFallback);
 }
 
+function prepareHomepageExit() {
+    homepageEntryRoot.dataset.homepageEntryExiting = "true";
+}
+
+function restoreHomepagePage() {
+    delete homepageEntryRoot.dataset.homepageEntryExiting;
+}
+
+window.addEventListener("beforeunload", prepareHomepageExit, {
+    capture: true,
+});
+window.addEventListener("pagehide", prepareHomepageExit, {
+    capture: true,
+});
+window.addEventListener("pageshow", restoreHomepagePage, {
+    capture: true,
+});
+
 if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     finishHomepageEntry();
 } else {
