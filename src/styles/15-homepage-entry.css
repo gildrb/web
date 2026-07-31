@@ -18,6 +18,22 @@
 }
 
 /*
+ * Before a reload replaces the document, match the outgoing page to the first
+ * frame of the incoming entry animation. This prevents Safari from showing a
+ * completed table immediately before the replacement document starts hidden.
+ */
+html[data-homepage-entry-exiting] .links > *,
+html[data-homepage-entry-exiting] .portfolio-table-header > *,
+html[data-homepage-entry-exiting]
+    .portfolio-list
+    > .portfolio-card-link
+    > * {
+    animation: none !important;
+    opacity: 0 !important;
+    transform: translateY(-4px) !important;
+}
+
+/*
  * Animate only until the page marks its initial entry sequence complete.
  * Links begins when the final table cell starts. Contact begins when the final
  * profile link starts, and each contact method follows one stagger at a time.
