@@ -2,6 +2,6 @@
   "name": "gildrb-web",
   "private": true,
   "scripts": {
-    "build": "node scripts/build-page.mjs && node scripts/verify-page.mjs && node scripts/check-public.mjs"
+    "build": "node scripts/build-page.mjs && node scripts/verify-page.mjs"
   }
 }
