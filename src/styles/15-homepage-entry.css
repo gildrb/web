@@ -17,53 +17,56 @@
     transform: none;
 }
 
-/* Reveal Links, each link over a longer stagger, then Contact and its group. */
-.links > * {
+/*
+ * Animate only while the document carries the one-time entry class. The
+ * sidebar begins after the longest possible table wave has completed.
+ */
+.homepage-entry .links > * {
     animation: homepage-enter 1s ease-out both;
 }
 
-.links > .links-label:first-child {
-    animation-delay: 0ms;
+.homepage-entry .links > .links-label:first-child {
+    animation-delay: 2200ms;
 }
 
-.links > .external-link:nth-child(2) {
-    animation-delay: 100ms;
+.homepage-entry .links > .external-link:nth-child(2) {
+    animation-delay: 2320ms;
 }
 
-.links > .external-link:nth-child(3) {
-    animation-delay: 180ms;
+.homepage-entry .links > .external-link:nth-child(3) {
+    animation-delay: 2440ms;
 }
 
-.links > .external-link:nth-child(4) {
-    animation-delay: 260ms;
+.homepage-entry .links > .external-link:nth-child(4) {
+    animation-delay: 2560ms;
 }
 
-.links > .external-link:nth-child(5) {
-    animation-delay: 340ms;
+.homepage-entry .links > .external-link:nth-child(5) {
+    animation-delay: 2680ms;
 }
 
-.links > .external-link:nth-child(6) {
-    animation-delay: 420ms;
+.homepage-entry .links > .external-link:nth-child(6) {
+    animation-delay: 2800ms;
 }
 
-.links > .contact-label {
-    animation-delay: 600ms;
+.homepage-entry .links > .contact-label {
+    animation-delay: 3000ms;
 }
 
-.links > .email {
-    animation-delay: 700ms;
+.homepage-entry .links > .email {
+    animation-delay: 3120ms;
 }
 
-.links > .contact-label ~ .external-link {
-    animation-delay: 800ms;
+.homepage-entry .links > .contact-label ~ .external-link {
+    animation-delay: 3240ms;
 }
 
 /*
  * Reveal the table as a diagonal wave. Moving one column right or one row
  * down adds the same 80ms delay, so the words travel toward the bottom right.
  */
-.portfolio-table-header > *,
-.portfolio-list > .portfolio-card-link > * {
+.homepage-entry .portfolio-table-header > *,
+.homepage-entry .portfolio-list > .portfolio-card-link > * {
     animation: homepage-enter 1s ease-out both;
     animation-delay: calc(var(--row-delay, 80ms) + var(--column-delay, 0ms));
 }
@@ -129,9 +132,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .links > *,
-    .portfolio-table-header > *,
-    .portfolio-list > .portfolio-card-link > * {
+    .homepage-entry .links > *,
+    .homepage-entry .portfolio-table-header > *,
+    .homepage-entry .portfolio-list > .portfolio-card-link > * {
         animation: none;
         opacity: 1;
         transform: none;
