@@ -34,6 +34,13 @@ const requiredFragments = [
     'document.documentElement.dataset.homepageEntryComplete = "true"',
     'event.animationName === "homepage-enter"',
     "window.setTimeout(finishHomepageEntry, 2800)",
+    "data-homepage-entry-exiting",
+    'window.addEventListener("beforeunload", prepareHomepageExit',
+    'window.addEventListener("pagehide", prepareHomepageExit',
+    'window.addEventListener("pageshow", restoreHomepagePage',
+    "animation: none !important",
+    "opacity: 0 !important",
+    "transform: translateY(-4px) !important",
     "animation: homepage-enter 700ms ease-out both",
     "animation-delay: 720ms",
     "animation-delay: 1320ms",
@@ -46,10 +53,25 @@ const missingFragments = requiredFragments.filter(
 
 if (missingFragments.length > 0) {
     throw new Error(
-        `Exported homepage is missing one-time entry behavior:\n${missingFragments.join("\n")}`,
+        `Exported homepage is missing reload handoff behavior:\n${missingFragments.join("\n")}`,
+    );
+}
+
+const forbiddenFragments = [
+    "gildrb-homepage-entry-seen",
+    "window.sessionStorage.getItem",
+    "window.sessionStorage.setItem",
+];
+const presentForbiddenFragments = forbiddenFragments.filter((fragment) =>
+    homepage.includes(fragment),
+);
+
+if (presentForbiddenFragments.length > 0) {
+    throw new Error(
+        `Homepage reload must still play the entry animation:\n${presentForbiddenFragments.join("\n")}`,
     );
 }
 
 console.log(
-    "Prepared Vercel output in public/ with one-time homepage entry behavior.",
+    "Prepared Vercel output with a continuous reload-to-entry handoff.",
 );
