@@ -18,8 +18,9 @@
 }
 
 /*
- * Animate only until the page marks its initial entry sequence complete. The
- * sidebar begins after the longest possible table wave has completed.
+ * Animate only until the page marks its initial entry sequence complete.
+ * Links begins one table stagger before the final table cell finishes. The
+ * Contact label begins when the final profile link starts.
  */
 html:not([data-homepage-entry-complete]) .links > * {
     animation: homepage-enter 1s ease-out both;
@@ -28,52 +29,52 @@ html:not([data-homepage-entry-complete]) .links > * {
 html:not([data-homepage-entry-complete])
     .links
     > .links-label:first-child {
-    animation-delay: 2200ms;
+    animation-delay: 1640ms;
 }
 
 html:not([data-homepage-entry-complete])
     .links
     > .external-link:nth-child(2) {
-    animation-delay: 2320ms;
+    animation-delay: 1760ms;
 }
 
 html:not([data-homepage-entry-complete])
     .links
     > .external-link:nth-child(3) {
-    animation-delay: 2440ms;
+    animation-delay: 1880ms;
 }
 
 html:not([data-homepage-entry-complete])
     .links
     > .external-link:nth-child(4) {
-    animation-delay: 2560ms;
+    animation-delay: 2000ms;
 }
 
 html:not([data-homepage-entry-complete])
     .links
     > .external-link:nth-child(5) {
-    animation-delay: 2680ms;
+    animation-delay: 2120ms;
 }
 
 html:not([data-homepage-entry-complete])
     .links
     > .external-link:nth-child(6) {
-    animation-delay: 2800ms;
+    animation-delay: 2240ms;
 }
 
 html:not([data-homepage-entry-complete]) .links > .contact-label {
-    animation-delay: 3000ms;
+    animation-delay: 2240ms;
 }
 
 html:not([data-homepage-entry-complete]) .links > .email {
-    animation-delay: 3120ms;
+    animation-delay: 2360ms;
 }
 
 html:not([data-homepage-entry-complete])
     .links
     > .contact-label
     ~ .external-link {
-    animation-delay: 3240ms;
+    animation-delay: 2480ms;
 }
 
 /*
