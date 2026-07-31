@@ -18,46 +18,61 @@
 }
 
 /*
- * Animate only while the document carries the one-time entry class. The
+ * Animate only until the page marks its initial entry sequence complete. The
  * sidebar begins after the longest possible table wave has completed.
  */
-.homepage-entry .links > * {
+html:not([data-homepage-entry-complete]) .links > * {
     animation: homepage-enter 1s ease-out both;
 }
 
-.homepage-entry .links > .links-label:first-child {
+html:not([data-homepage-entry-complete])
+    .links
+    > .links-label:first-child {
     animation-delay: 2200ms;
 }
 
-.homepage-entry .links > .external-link:nth-child(2) {
+html:not([data-homepage-entry-complete])
+    .links
+    > .external-link:nth-child(2) {
     animation-delay: 2320ms;
 }
 
-.homepage-entry .links > .external-link:nth-child(3) {
+html:not([data-homepage-entry-complete])
+    .links
+    > .external-link:nth-child(3) {
     animation-delay: 2440ms;
 }
 
-.homepage-entry .links > .external-link:nth-child(4) {
+html:not([data-homepage-entry-complete])
+    .links
+    > .external-link:nth-child(4) {
     animation-delay: 2560ms;
 }
 
-.homepage-entry .links > .external-link:nth-child(5) {
+html:not([data-homepage-entry-complete])
+    .links
+    > .external-link:nth-child(5) {
     animation-delay: 2680ms;
 }
 
-.homepage-entry .links > .external-link:nth-child(6) {
+html:not([data-homepage-entry-complete])
+    .links
+    > .external-link:nth-child(6) {
     animation-delay: 2800ms;
 }
 
-.homepage-entry .links > .contact-label {
+html:not([data-homepage-entry-complete]) .links > .contact-label {
     animation-delay: 3000ms;
 }
 
-.homepage-entry .links > .email {
+html:not([data-homepage-entry-complete]) .links > .email {
     animation-delay: 3120ms;
 }
 
-.homepage-entry .links > .contact-label ~ .external-link {
+html:not([data-homepage-entry-complete])
+    .links
+    > .contact-label
+    ~ .external-link {
     animation-delay: 3240ms;
 }
 
@@ -65,8 +80,11 @@
  * Reveal the table as a diagonal wave. Moving one column right or one row
  * down adds the same 80ms delay, so the words travel toward the bottom right.
  */
-.homepage-entry .portfolio-table-header > *,
-.homepage-entry .portfolio-list > .portfolio-card-link > * {
+html:not([data-homepage-entry-complete]) .portfolio-table-header > *,
+html:not([data-homepage-entry-complete])
+    .portfolio-list
+    > .portfolio-card-link
+    > * {
     animation: homepage-enter 1s ease-out both;
     animation-delay: calc(var(--row-delay, 80ms) + var(--column-delay, 0ms));
 }
@@ -132,9 +150,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .homepage-entry .links > *,
-    .homepage-entry .portfolio-table-header > *,
-    .homepage-entry .portfolio-list > .portfolio-card-link > * {
+    html:not([data-homepage-entry-complete]) .links > *,
+    html:not([data-homepage-entry-complete]) .portfolio-table-header > *,
+    html:not([data-homepage-entry-complete])
+        .portfolio-list
+        > .portfolio-card-link
+        > * {
         animation: none;
         opacity: 1;
         transform: none;
