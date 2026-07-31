@@ -2,6 +2,6 @@
   "name": "gildrb-web",
   "private": true,
   "scripts": {
-    "build": "node scripts/build-page.mjs && node scripts/verify-homepage-animation.mjs"
+    "build": "node scripts/build-page.mjs && node scripts/prepare-vercel-output.mjs"
   }
 }
