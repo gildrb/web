@@ -34,6 +34,15 @@ const requiredFragments = [
     'document.documentElement.dataset.homepageEntryComplete = "true"',
     'event.animationName === "homepage-enter"',
     "window.setTimeout(finishHomepageEntry, 2800)",
+    'event.navigationType !== "reload"',
+    "event.intercept({",
+    "await waitForHomepageReloadPaint()",
+    "homepageReloadBypass = true",
+    "window.location.reload()",
+    "data-homepage-reload-preparing",
+    "animation: none !important",
+    "opacity: 0 !important",
+    "transform: translateY(-4px) !important",
     "animation: homepage-enter 700ms ease-out both",
     "animation-delay: 720ms",
     "animation-delay: 1320ms",
@@ -46,10 +55,25 @@ const missingFragments = requiredFragments.filter(
 
 if (missingFragments.length > 0) {
     throw new Error(
-        `Exported homepage is missing one-time entry behavior:\n${missingFragments.join("\n")}`,
+        `Exported homepage is missing pre-reload paint behavior:\n${missingFragments.join("\n")}`,
+    );
+}
+
+const rejectedFragments = [
+    "gildrb-homepage-entry-seen",
+    'window.addEventListener("beforeunload", prepareHomepageExit',
+    'window.addEventListener("pagehide", prepareHomepageExit',
+];
+const presentRejectedFragments = rejectedFragments.filter((fragment) =>
+    homepage.includes(fragment),
+);
+
+if (presentRejectedFragments.length > 0) {
+    throw new Error(
+        `Exported homepage contains superseded reload behavior:\n${presentRejectedFragments.join("\n")}`,
     );
 }
 
 console.log(
-    "Prepared Vercel output in public/ with one-time homepage entry behavior.",
+    "Prepared Vercel output with a painted entry state before hard reload.",
 );
