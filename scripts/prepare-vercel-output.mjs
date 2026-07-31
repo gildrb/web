@@ -31,9 +31,12 @@ const homepage = await readFile(path.join(output, "index.html"), "utf8");
 const requiredFragments = [
     "@keyframes homepage-enter",
     "data-homepage-entry-complete",
-    "window.setTimeout(finishHomepageEntry, 4400)",
     'document.documentElement.dataset.homepageEntryComplete = "true"',
-    "animation-delay: 2200ms",
+    'event.animationName === "homepage-enter"',
+    "window.setTimeout(finishHomepageEntry, 3600)",
+    "animation-delay: 1640ms",
+    "animation-delay: 2240ms",
+    "animation-delay: 2480ms",
 ];
 const missingFragments = requiredFragments.filter(
     (fragment) => !homepage.includes(fragment),
