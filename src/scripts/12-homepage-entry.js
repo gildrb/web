@@ -21,5 +21,5 @@ if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         },
         { once: true },
     );
-    homepageEntryFallback = window.setTimeout(finishHomepageEntry, 3600);
+    homepageEntryFallback = window.setTimeout(finishHomepageEntry, 2800);
 }
