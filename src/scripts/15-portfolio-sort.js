@@ -107,6 +107,8 @@ portfolioSortButtons.forEach((button) => {
             "aria-label",
             `Sort projects by ${key}, currently ${description}`,
         );
+
+        document.documentElement.classList.remove("homepage-entry");
         sortPortfolioRows(key, direction);
         updatePortfolioAllLink(key, direction);
         announce(`Projects sorted by ${key}, ${description}.`);
