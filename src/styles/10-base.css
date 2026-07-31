@@ -51,6 +51,7 @@
   box-sizing: border-box;
 }
 
+
 :is(a[href],
   button,
   input:not([type="hidden"]),
@@ -60,7 +61,8 @@
   [role="button"],
   [role="link"],
   [tabindex]:not([tabindex="-1"])):active {
-  translate: 0 1px;
+  position: relative;
+  top: 1px;
 }
 
 ::selection {
