@@ -33,10 +33,12 @@ const requiredFragments = [
     "data-homepage-entry-complete",
     'document.documentElement.dataset.homepageEntryComplete = "true"',
     'event.animationName === "homepage-enter"',
-    "window.setTimeout(finishHomepageEntry, 3600)",
-    "animation-delay: 1640ms",
-    "animation-delay: 2240ms",
-    "animation-delay: 2480ms",
+    "window.setTimeout(finishHomepageEntry, 2800)",
+    "animation: homepage-enter 700ms ease-out both",
+    "animation-delay: 720ms",
+    "animation-delay: 1320ms",
+    "animation-delay: 1440ms",
+    "animation-delay: 1560ms",
 ];
 const missingFragments = requiredFragments.filter(
     (fragment) => !homepage.includes(fragment),
