@@ -30,6 +30,7 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
 const homepage = await readFile(path.join(output, "index.html"), "utf8");
 const requiredFragments = [
     "@keyframes homepage-enter",
+    "@keyframes homepage-wave-enter",
     "homepage-first-paint-pending",
     "data-homepage-first-paint-ready",
     "data-homepage-entry-complete",
@@ -42,6 +43,10 @@ const requiredFragments = [
     'event.animationName === "homepage-enter"',
     "window.setTimeout(finishHomepageEntry, 2800)",
     "animation: homepage-enter 700ms ease-out both",
+    "animation: homepage-wave-enter 680ms cubic-bezier(0.16, 1, 0.3, 1) both",
+    "translate3d(0, -18px, 0) scale(0.97)",
+    "--column-delay: 120ms",
+    "--row-delay: 120ms",
     "animation-delay: 720ms",
     "animation-delay: 1320ms",
     "animation-delay: 1440ms",
@@ -53,7 +58,7 @@ const missingFragments = requiredFragments.filter(
 
 if (missingFragments.length > 0) {
     throw new Error(
-        `Exported homepage is missing first-paint stabilization:\n${missingFragments.join("\n")}`,
+        `Exported homepage is missing first-paint stabilization or pronounced wave motion:\n${missingFragments.join("\n")}`,
     );
 }
 
@@ -91,5 +96,5 @@ if (presentRejectedFragments.length > 0) {
 }
 
 console.log(
-    "Prepared Vercel output with theme, font, and layout stabilized before entry motion.",
+    "Prepared Vercel output with stable first paint and a pronounced diagonal table wave.",
 );
