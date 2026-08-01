@@ -24,8 +24,6 @@ function updateHomepageDates() {
     portfolioSiteDate.setAttribute("datetime", isoDate);
 }
 
-window.addEventListener("load", updateHomepageDates);
-
 const mobileLinks = document.querySelector(
     ".case-page .case-mobile-links .links, body:not(.case-page) .links",
 );
@@ -143,9 +141,6 @@ function updateMobileLayout(preserveHomepageLock = false) {
     updateHomepageLock(preserveHomepageLock);
 }
 
-window.addEventListener("load", updateMobileLayout);
-window.addEventListener("resize", () => updateMobileLayout(true));
-
 const portfolioSection = document.querySelector(".portfolio-section");
 const portfolioSiteDate = document.querySelector("#portfolio-site-date");
 const mobileLayoutTargets = [
@@ -160,6 +155,38 @@ if ("ResizeObserver" in window) {
     });
     mobileLayoutTargets.forEach((target) => updateOnResize.observe(target));
 }
+
+async function prepareHomepageFirstPaint() {
+    const root = document.documentElement;
+    const body = document.body;
+
+    if (!body || body.classList.contains("case-page")) {
+        root.classList.remove("homepage-first-paint-pending");
+        return;
+    }
+
+    updateHomepageDates();
+    updateMobileLayout();
+
+    if (document.fonts?.load) {
+        try {
+            await document.fonts.load('400 16px "Inter"');
+        } catch {
+            // Continue with the metric-compatible system fallback.
+        }
+    }
+
+    updateHomepageDates();
+    updateMobileLayout();
+}
+
+window.homepageFirstPaintReady = prepareHomepageFirstPaint();
+
+window.addEventListener("load", () => {
+    updateHomepageDates();
+    updateMobileLayout();
+});
+window.addEventListener("resize", () => updateMobileLayout(true));
 
 if ("scrollRestoration" in window.history) {
     window.history.scrollRestoration = "manual";
