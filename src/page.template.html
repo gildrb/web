@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="homepage-scroll-locked">
+<html lang="en" class="homepage-scroll-locked homepage-first-paint-pending">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -164,6 +164,15 @@
                 document.getElementById("site-favicon").href =
                     "/preview-favicon.svg";
             }
+
+            try {
+                const savedTheme = window.localStorage.getItem("theme");
+                if (savedTheme === "dark" || savedTheme === "light") {
+                    document.documentElement.dataset.theme = savedTheme;
+                }
+            } catch {
+                // Preserve the system theme when storage is unavailable.
+            }
         </script>
         <script type="application/ld+json">
 <!-- @inline-json:profile-schema -->
@@ -185,6 +194,13 @@
         <style>
 <!-- @inline-css:site -->
         </style>
+        <noscript>
+            <style>
+                html.homepage-first-paint-pending body:not(.case-page) {
+                    visibility: visible;
+                }
+            </style>
+        </noscript>
     </head>
     <body id="top">
 <!-- @template-only:start -->

@@ -30,7 +30,14 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
 const homepage = await readFile(path.join(output, "index.html"), "utf8");
 const requiredFragments = [
     "@keyframes homepage-enter",
+    "homepage-first-paint-pending",
+    "data-homepage-first-paint-ready",
     "data-homepage-entry-complete",
+    'window.localStorage.getItem("theme")',
+    "font-display:optional",
+    "window.homepageFirstPaintReady = prepareHomepageFirstPaint()",
+    'document.fonts.load(\'400 16px "Inter"\')',
+    "Promise.resolve(window.homepageFirstPaintReady)",
     'document.documentElement.dataset.homepageEntryComplete = "true"',
     'event.animationName === "homepage-enter"',
     "window.setTimeout(finishHomepageEntry, 2800)",
@@ -46,10 +53,43 @@ const missingFragments = requiredFragments.filter(
 
 if (missingFragments.length > 0) {
     throw new Error(
-        `Exported homepage is missing one-time entry behavior:\n${missingFragments.join("\n")}`,
+        `Exported homepage is missing first-paint stabilization:\n${missingFragments.join("\n")}`,
+    );
+}
+
+const themeBootstrapIndex = homepage.indexOf(
+    'window.localStorage.getItem("theme")',
+);
+const inlineStyleIndex = homepage.indexOf("<style>");
+
+if (
+    themeBootstrapIndex < 0 ||
+    inlineStyleIndex < 0 ||
+    themeBootstrapIndex > inlineStyleIndex
+) {
+    throw new Error(
+        "Saved theme must be resolved before the homepage CSS is parsed.",
+    );
+}
+
+const rejectedFragments = [
+    "font-display:swap",
+    "gildrb-homepage-entry-seen",
+    'window.addEventListener("beforeunload", prepareHomepageExit',
+    'window.addEventListener("pagehide", prepareHomepageExit',
+    'event.navigationType !== "reload"',
+    "event.intercept({",
+];
+const presentRejectedFragments = rejectedFragments.filter((fragment) =>
+    homepage.includes(fragment),
+);
+
+if (presentRejectedFragments.length > 0) {
+    throw new Error(
+        `Exported homepage contains superseded first-paint behavior:\n${presentRejectedFragments.join("\n")}`,
     );
 }
 
 console.log(
-    "Prepared Vercel output in public/ with one-time homepage entry behavior.",
+    "Prepared Vercel output with theme, font, and layout stabilized before entry motion.",
 );
