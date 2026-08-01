@@ -10,6 +10,26 @@
     }
 }
 
+@keyframes homepage-wave-enter {
+    0% {
+        opacity: 0;
+        filter: blur(4px);
+        transform: translate3d(0, -18px, 0) scale(0.97);
+    }
+
+    72% {
+        opacity: 1;
+        filter: blur(0);
+        transform: translate3d(0, 2px, 0) scale(1.01);
+    }
+
+    100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+}
+
 html.homepage-first-paint-pending body:not(.case-page) {
     visibility: hidden;
 }
@@ -89,8 +109,9 @@ html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
 }
 
 /*
- * Reveal the table as a diagonal wave. Moving one column right or one row
- * down adds the same 80ms delay, so the words travel toward the bottom right.
+ * Reveal the table as a pronounced diagonal wave. The first header cell moves
+ * immediately, while every step right or down adds 120ms. A larger vertical
+ * throw, brief blur, and restrained overshoot make the direction unmistakable.
  */
 html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
     .portfolio-table-header
@@ -99,8 +120,9 @@ html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
     .portfolio-list
     > .portfolio-card-link
     > * {
-    animation: homepage-enter 1s ease-out both;
-    animation-delay: calc(var(--row-delay, 80ms) + var(--column-delay, 0ms));
+    animation: homepage-wave-enter 680ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(var(--row-delay, 0ms) + var(--column-delay, 0ms));
+    transform-origin: left center;
 }
 
 .portfolio-table-header > :nth-child(1),
@@ -110,21 +132,21 @@ html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
 
 .portfolio-table-header > :nth-child(2),
 .portfolio-list > .portfolio-card-link > :nth-child(2) {
-    --column-delay: 80ms;
+    --column-delay: 120ms;
 }
 
 .portfolio-table-header > :nth-child(3),
 .portfolio-list > .portfolio-card-link > :nth-child(3) {
-    --column-delay: 160ms;
+    --column-delay: 240ms;
 }
 
 .portfolio-table-header > :nth-child(4),
 .portfolio-list > .portfolio-card-link > :nth-child(4) {
-    --column-delay: 240ms;
+    --column-delay: 360ms;
 }
 
 .portfolio-list > .portfolio-card-link:nth-child(1) {
-    --row-delay: 160ms;
+    --row-delay: 120ms;
 }
 
 .portfolio-list > .portfolio-card-link:nth-child(2) {
@@ -132,35 +154,35 @@ html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
 }
 
 .portfolio-list > .portfolio-card-link:nth-child(3) {
-    --row-delay: 320ms;
+    --row-delay: 360ms;
 }
 
 .portfolio-list > .portfolio-card-link:nth-child(4) {
-    --row-delay: 400ms;
-}
-
-.portfolio-list > .portfolio-card-link:nth-child(5) {
     --row-delay: 480ms;
 }
 
+.portfolio-list > .portfolio-card-link:nth-child(5) {
+    --row-delay: 600ms;
+}
+
 .portfolio-list > .portfolio-card-link:nth-child(6) {
-    --row-delay: 560ms;
-}
-
-.portfolio-list > .portfolio-card-link:nth-child(7) {
-    --row-delay: 640ms;
-}
-
-.portfolio-list > .portfolio-card-link:nth-child(8) {
     --row-delay: 720ms;
 }
 
+.portfolio-list > .portfolio-card-link:nth-child(7) {
+    --row-delay: 840ms;
+}
+
+.portfolio-list > .portfolio-card-link:nth-child(8) {
+    --row-delay: 960ms;
+}
+
 .portfolio-list > .portfolio-card-link:nth-child(9) {
-    --row-delay: 800ms;
+    --row-delay: 1080ms;
 }
 
 .portfolio-list > .portfolio-card-link:nth-child(10) {
-    --row-delay: 880ms;
+    --row-delay: 1200ms;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -176,6 +198,7 @@ html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
         > * {
         animation: none;
         opacity: 1;
+        filter: none;
         transform: none;
     }
 }
