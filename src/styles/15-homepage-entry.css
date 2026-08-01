@@ -10,6 +10,10 @@
     }
 }
 
+html.homepage-first-paint-pending body:not(.case-page) {
+    visibility: hidden;
+}
+
 /* Keep identity and positioning content immediately visible. */
 .name,
 .profile-summary {
@@ -18,59 +22,66 @@
 }
 
 /*
- * Animate only until the page marks its initial entry sequence complete.
- * Links begins when the final table cell starts. Contact begins when the final
- * profile link starts, and each contact method follows one stagger at a time.
+ * Animate only after fonts, mobile columns, theme, and viewport locking have
+ * been resolved. Links begins when the final table cell starts. Contact begins
+ * when the final profile link starts, and each contact method follows one
+ * stagger at a time.
  */
-html:not([data-homepage-entry-complete]) .links > * {
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > * {
     animation: homepage-enter 700ms ease-out both;
 }
 
-html:not([data-homepage-entry-complete])
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
     .links
     > .links-label:first-child {
     animation-delay: 720ms;
 }
 
-html:not([data-homepage-entry-complete])
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
     .links
     > .external-link:nth-child(2) {
     animation-delay: 840ms;
 }
 
-html:not([data-homepage-entry-complete])
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
     .links
     > .external-link:nth-child(3) {
     animation-delay: 960ms;
 }
 
-html:not([data-homepage-entry-complete])
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
     .links
     > .external-link:nth-child(4) {
     animation-delay: 1080ms;
 }
 
-html:not([data-homepage-entry-complete])
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
     .links
     > .external-link:nth-child(5) {
     animation-delay: 1200ms;
 }
 
-html:not([data-homepage-entry-complete])
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
     .links
     > .external-link:nth-child(6) {
     animation-delay: 1320ms;
 }
 
-html:not([data-homepage-entry-complete]) .links > .contact-label {
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > .contact-label {
     animation-delay: 1320ms;
 }
 
-html:not([data-homepage-entry-complete]) .links > .email {
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > .email {
     animation-delay: 1440ms;
 }
 
-html:not([data-homepage-entry-complete])
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
     .links
     > .contact-label
     ~ .external-link {
@@ -81,8 +92,10 @@ html:not([data-homepage-entry-complete])
  * Reveal the table as a diagonal wave. Moving one column right or one row
  * down adds the same 80ms delay, so the words travel toward the bottom right.
  */
-html:not([data-homepage-entry-complete]) .portfolio-table-header > *,
-html:not([data-homepage-entry-complete])
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .portfolio-table-header
+    > *,
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
     .portfolio-list
     > .portfolio-card-link
     > * {
@@ -151,9 +164,13 @@ html:not([data-homepage-entry-complete])
 }
 
 @media (prefers-reduced-motion: reduce) {
-    html:not([data-homepage-entry-complete]) .links > *,
-    html:not([data-homepage-entry-complete]) .portfolio-table-header > *,
-    html:not([data-homepage-entry-complete])
+    html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+        .links
+        > *,
+    html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+        .portfolio-table-header
+        > *,
+    html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
         .portfolio-list
         > .portfolio-card-link
         > * {
