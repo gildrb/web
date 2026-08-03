@@ -392,6 +392,10 @@ The T and the 3 want to be one figure instead of two characters standing next to
 
 ### Feedback in the open
 
+The first thing I posted was the system board: a mark that ships across a family has to be drawn where it gets used, so I built the cases out: the two logotypes, the iOS icon on its grid, the favicon ladder down to sixteen pixels, and the lockup on its clear-space frame. The angular version below is the one the server started calling the meat grinder.
+
+![Logotypes, icons, favicons, and lockup](media:t3-system-board)
+
 On 19 March 2026 I posted the application board in the T3 Discord and asked for thoughts.
 
 ![The application board posted for feedback](media:t3-feedback-board)
@@ -403,6 +407,8 @@ markr came back with the note that set up the next two months: "It still feels l
 A week later I brought the mark back heavier, on a brighter palette. markr: "Feels very heavy now, which compared to the rest of the products, feels out of place. I do like the idea with the sloping 3 though to get rid of that bug dead space." Someone else said it reminded them of a racing car logo.
 
 ![The repainted board](media:t3-feedback-repainted)
+
+![Product applications](media:t3-product-board)
 
 I posted a thinner version the same evening and asked whether that killed the racing car. It moved the problem instead of solving it: pushing the 3 away reintroduced the gap, and not connecting the two made the mark look heavily unproportional. markr relayed what Theo had said about the iteration: not sold on the weights, or on the shape of the 3.
 
@@ -437,15 +443,6 @@ The last pass is invisible at a glance. I thinned the joint between the crossbar
 On 13 May I posted the two curves side by side. markr: "I feel insane but those changes made a difference to my perception...."
 
 ![The pinched curve against the smoothed one](media:t3-feedback-curves)
-
-### Scaling across products
-
-A mark that ships across a family has to be drawn where it gets used, so I built the cases out: the two logotypes, the iOS icon on its grid, the favicon ladder down to sixteen pixels, and the lockup on its clear-space frame. The angular version below is the one the server started calling the meat grinder.
-
-![Logotypes, icons, favicons, and lockup](media:t3-system-board)
-
-![Product applications](media:t3-product-board)
-![Brand applications in T3 pink](media:t3-brand-board)
 
 ![The mark rendered in light](media:t3-render)
 

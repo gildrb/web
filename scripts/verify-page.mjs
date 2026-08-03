@@ -1070,9 +1070,11 @@ const t3MediaSequence = [
     "gil-rodrigues-t3-canvas-overview-480.webp",
     "gil-rodrigues-t3-canvas-sketches-720.webp",
     "gil-rodrigues-t3-frame-grid-720.webp",
+    "gil-rodrigues-t3-system-board-720.webp",
     "gil-rodrigues-t3-feedback-board-720.webp",
     "gil-rodrigues-t3-feedback-spacing-720.webp",
     "gil-rodrigues-t3-feedback-repainted-720.webp",
+    "gil-rodrigues-t3-product-board-720.webp",
     "gil-rodrigues-t3-feedback-thinner-720.webp",
     "gil-rodrigues-t3-feedback-frames-720.webp",
     "gil-rodrigues-t3-feedback-angled-3-720.webp",
@@ -1082,9 +1084,6 @@ const t3MediaSequence = [
     "gil-rodrigues-t3-color-tests-720.webp",
     "gil-rodrigues-t3-before-after-720.webp",
     "gil-rodrigues-t3-feedback-curves-720.webp",
-    "gil-rodrigues-t3-system-board-720.webp",
-    "gil-rodrigues-t3-product-board-720.webp",
-    "gil-rodrigues-t3-brand-board-720.webp",
     "gil-rodrigues-t3-render-720.webp",
 ];
 assert(
