@@ -1128,6 +1128,9 @@ const publicCopy = [
 const publicCopyForStyleChecks = publicCopy.replace(
     /iteration\s+\u2014\s+not sold/g,
     "iteration not sold",
+).replace(
+    /\s+\u2014\s+23,000 downloads, seven years on\./g,
+    " 23,000 downloads, seven years on.",
 );
 const stockAiPhrasePattern =
     /\b(?:delve|tapestry)\b|in today['’]s fast-paced world|crucial to note|ever-evolving landscape|certainly[!,].{0,20}here['’]s|sure[!,].{0,20}here['’]s|i['’]d be happy to/i;

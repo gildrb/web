@@ -38,7 +38,7 @@ Each armory has a separate local index. When a hosted model is selected, Heph se
 
 ### Retrieval
 
-I did not invent BM25. My work is the pipeline around it: document conversion, chunking, indexing, query changes, ranking, fallback behavior, and the source mapping used by citations.
+The pipeline around BM25 is mine: document conversion, chunking, indexing, query changes, ranking, fallback behavior, and the source mapping used by citations.
 
 Markdown is split by heading so its section structure survives indexing. Other text uses fixed-window chunking. Office and OpenDocument files are ZIP containers of XML, so `.docx`, `.pptx`, `.xlsx`, `.odt`, and `.ods` are read directly with the standard library and a hardened XML parser, under limits on member count, declared size, and output size, and with archive member paths rejected if they escape the container. PDF extraction uses `pdftotext` when it is installed and a bundled PDFium build otherwise. Formats that cannot be read faithfully are reported with the conversion target instead of being indexed as empty. A failed document is isolated instead of stopping the full index.
 
@@ -93,7 +93,7 @@ The `ai` runtime cannot import the application, retrieval harness, extension lay
 
 ### Hosted APIs and local models
 
-Heph supports Pollinations, OpenRouter, OpenAI, DeepSeek, Z.AI, local `llama.cpp`, and custom OpenAI-compatible endpoints. These are available provider configurations, not services that run together. Hosted credentials are resolved when needed from provider references, environment variables, or keyring storage.
+Heph supports Pollinations, OpenRouter, OpenAI, DeepSeek, Z.AI, local `llama.cpp`, and custom OpenAI-compatible endpoints. Each is a provider configuration you choose between. Hosted credentials are resolved when needed from provider references, environment variables, or keyring storage.
 
 The runtime normalizes streaming output and tool calls, records usage, shapes prompt-cache fields, retries eligible failures with exponential backoff, and opens a circuit breaker after repeated provider errors. If a stream fails before any output appears, it can be retried. If the connection fails after text is already visible, `StreamRecoveryError` carries that partial response so the interface can preserve it.
 
@@ -137,8 +137,8 @@ Those drawings produced the current Heph lockup.
 
 ### Next work
 
-Heph is still in beta. My next task is better retrieval on messy collections. I also want faster indexing and a shorter path from a citation to its source passage. The provider layer can change without altering the armory format or evidence IDs.
+Heph is in beta. My next task is better retrieval on messy collections. I also want faster indexing and a shorter path from a citation to its source passage. The provider layer can change without altering the armory format or evidence IDs.
 
-I use Heph for my own document work and continue to develop it in public.
+I use Heph for my own document work every day.
 
 [GitHub repository](https://github.com/gildrb/heph)

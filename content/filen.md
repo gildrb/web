@@ -6,7 +6,7 @@ I have used [Filen](https://filen.io/) for years. The product worked well for me
 
 The first rounds were broad. I tried a disappearing block that could also read as an F, but the letter depended too much on explanation.
 
-Next came a folder drawn in perspective. Its open edge suggested an F, although the shape still felt unresolved.
+Next came a folder drawn in perspective. Its open edge suggested an F as the shape carried through the board.
 
 I also drew a heavier, architectural symbol based on stairs. Closing the staircase made it feel stable, but added too much detail for a small app icon. Another version used stacked blocks with the upper layer hidden. Neither survived the scale tests.
 
@@ -53,4 +53,4 @@ The final lockup pairs the folder mark with a plain wordmark. The campaign copy 
 
 ![Monochrome brand system](media:filen-brand-system-board)
 
-I [posted the concept](https://x.com/gilrdb/status/2021242178727452998) and shared it with the Filen community in February 2026. The whole identity is built around concealment: forms only surface when the user brings the light.
+I [posted the concept](https://x.com/gilrdb/status/2021242178727452998) and shared it with the Filen community in February 2026. Forms only surface when the light crosses them.

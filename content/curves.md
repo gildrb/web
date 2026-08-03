@@ -12,7 +12,7 @@ Each glyph is assembled from flat stems and quarter turns drawn at a single radi
 
 ### Unicase by design
 
-The alphabet is unicase. Uppercase and lowercase both call the same drawing, so a headline holds one texture regardless of how it was typed. Consistency was the point of the exercise, and this removed the decision from the person setting the type.
+The alphabet is unicase. Uppercase and lowercase both call the same drawing, so a headline holds one texture regardless of how it was typed. Whoever sets the type does not get to break the texture.
 
 ![Unicase alphabet](media:curves-uppercase)
 
@@ -30,4 +30,4 @@ I released CURVES in early 2019 on [DaFont](https://www.dafont.com/curves.font),
 
 ![Specimen setting](media:curves-specimen)
 
-CURVES is a display face and it behaves like one. The rule that keeps a headline consistent closes the counters too far at text sizes, so it falls apart in a paragraph. Kept above that size it still does the job I drew it for, seven years later.
+The rule that holds a headline together closes the counters too far at text sizes. It is a display face and it is used as one — 23,000 downloads, seven years on.

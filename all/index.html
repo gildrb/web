@@ -2174,8 +2174,7 @@ body:not(.case-page) .content {
                             </div>
                                 <div class="case-copy">
                                     <h3>Hundreds of versions, in public</h3>
-                                    <p>There are hundreds of drawings behind this mark. Almost all of them were posted the day I made them, and almost all of them are wrong. Drawing the wrong shape is how I find the right one, and doing that in a channel full of people means someone tells me within the hour.</p>
-                                    <p>The boards here are where the versions ended up, not where the work happened.</p>
+                                    <p>There are hundreds of drawings behind this mark. Most went up the day I drew them. Most are wrong. Drawing the wrong shape is how I find the right one, and doing that in a channel full of people means someone tells me within the hour.</p>
                                 </div>
                             <div class="case-media">
                             <figure>
@@ -2243,7 +2242,7 @@ body:not(.case-page) .content {
                             </figure>
                             </div>
                                 <div class="case-copy">
-                                    <p>On 5 May the angled 3 got its verdict, secondhand as usual: &quot;I also like the angled 3, but Theo didn't 😭&quot;</p>
+                                    <p>On 5 May the angled 3 got its verdict, secondhand: &quot;I also like the angled 3, but Theo didn't 😭&quot;</p>
                                 </div>
                             <div class="case-media">
                             <figure>
@@ -2299,7 +2298,7 @@ body:not(.case-page) .content {
                             </div>
                                 <div class="case-copy">
                                     <h3>Scaling across products</h3>
-                                    <p>A logomark for one product is a drawing. A logomark for a family has to be built out, so I drew the cases where it actually gets used: the two logotypes, the iOS icon on its grid, the favicon ladder down to sixteen pixels, and the lockup on its clear-space frame. The angular version below is the one the server started calling the meat grinder.</p>
+                                    <p>A mark that ships across a family has to be drawn where it gets used, so I built the cases out: the two logotypes, the iOS icon on its grid, the favicon ladder down to sixteen pixels, and the lockup on its clear-space frame. The angular version below is the one the server started calling the meat grinder.</p>
                                 </div>
                             <div class="case-media">
                             <figure>
@@ -2324,7 +2323,7 @@ body:not(.case-page) .content {
                             </figure>
                             </div>
                                 <div class="case-copy">
-                                    <p>T3 has not adopted any of this. I posted the whole pile anyway, because the rejected drawings are the part other designers can learn something from.</p>
+                                    <p>T3 has not adopted any of this. Every version is still public.</p>
                                 </div>
                         </article>
                         <article class="all-case" data-date="2026-07-07" data-scope="Logomark" data-slug="ben-davis" data-title="Ben Davis">
@@ -2332,7 +2331,7 @@ body:not(.case-page) .content {
                                 <h1 class="case-title">A redesigned mark for Ben Davis</h1>
                             </header>
                                 <div class="case-copy">
-                                    <p>Ben Davis builds software in San Francisco and co-hosts the Nerd Snipe podcast. Nobody asked for this one. In July 2026 I redrew his personal mark for my own practice, posted it on <a class="external-link" href="https://x.com/gilrdb/status/2074468837781639301" target="_blank" rel="noopener noreferrer">X</a>, and left it with him.</p>
+                                    <p>Ben Davis builds software in San Francisco and co-hosts the Nerd Snipe podcast. I redraw marks I keep looking at. In July 2026 I redrew his personal mark for my own practice, posted it on <a class="external-link" href="https://x.com/gilrdb/status/2074468837781639301" target="_blank" rel="noopener noreferrer">X</a>, and sent it to him.</p>
                                     <h3>Two letters, one figure</h3>
                                     <p>The mark on <a class="external-link" href="https://www.davis7.sh/" target="_blank" rel="noopener noreferrer">davis7.sh</a> already used the same two letters. It sets a slab-sided d against a b built from a full circle, so the two halves never agree on a weight or a curve.</p>
                                 </div>
@@ -2623,7 +2622,7 @@ body:not(.case-page) .content {
                             </figure>
                             </div>
                                 <div class="case-copy">
-                                    <p>Heph requires Python 3.13 and is managed as a five-package <code>uv</code> workspace. Textual and Rich provide the terminal foundation. Retrieval uses <code>bm25s</code>, <code>sentence-transformers</code>, and scikit-learn when those backends are available. Docling handles supported document conversion, while credentials can be stored through the operating system keyring.</p>
+                                    <p>Heph requires Python 3.13 and is managed as a five-package <code>uv</code> workspace. Textual and Rich provide the terminal foundation. There is one install and no optional extras: retrieval is lexical, document conversion is written against the file formats directly, and credentials can be stored through the operating system keyring. The full install is 43 packages and about 46 MB, with no machine-learning runtime, no CUDA, and no model downloads. A local <code>llama.cpp</code> model runs through a managed binary rather than a Python ML stack, so choosing local inference does not change the dependency graph.</p>
                                     <h3>Armories</h3>
                                     <p>An armory is a normal folder for one subject. It contains the source material for that subject and its own index, memory, chat history, and diagnostics. A biology armory, for example, can be opened with <code>heph Biology</code> after its files are placed in the <code>materials</code> directory.</p>
                                     <p>The layout stays inspectable on disk:</p>
@@ -2635,18 +2634,18 @@ body:not(.case-page) .content {
                                 <div class="case-copy">
                                     <p>Each armory has a separate local index. When a hosted model is selected, Heph sends that provider the active question, its instructions, and the retrieved passages needed for the answer. A local <code>llama.cpp</code> model keeps those prompts and passages on the machine.</p>
                                     <h3>Retrieval</h3>
-                                    <p>I did not implement BM25 or train an embedding model. My work is the pipeline around those components: document conversion, chunking, indexing, query changes, ranking, fallback behavior, and the source mapping used by citations.</p>
-                                    <p>Markdown is split by heading so its section structure survives indexing. Other text uses semantic chunking when the embedding backend is present and fixed-window chunking otherwise. Supported Office documents run through Docling in a worker with limits on time, memory, source size, and output size. PDF extraction can fall back to <code>pdftotext</code>, then to OCR with <code>pdftoppm</code> and <code>tesseract</code>. A failed document is isolated instead of stopping the full index.</p>
+                                    <p>The pipeline around BM25 is mine: document conversion, chunking, indexing, query changes, ranking, fallback behavior, and the source mapping used by citations.</p>
+                                    <p>Markdown is split by heading so its section structure survives indexing. Other text uses fixed-window chunking. Office and OpenDocument files are ZIP containers of XML, so <code>.docx</code>, <code>.pptx</code>, <code>.xlsx</code>, <code>.odt</code>, and <code>.ods</code> are read directly with the standard library and a hardened XML parser, under limits on member count, declared size, and output size, and with archive member paths rejected if they escape the container. PDF extraction uses <code>pdftotext</code> when it is installed and a bundled PDFium build otherwise. Formats that cannot be read faithfully are reported with the conversion target instead of being indexed as empty. A failed document is isolated instead of stopping the full index.</p>
                                     <p>Each chunk records its source path and character offsets. Markdown chunks also retain the nearest heading. Indexing hashes the source files and only processes files that changed. The index is stored as JSON. Indexing also rejects path traversal and refuses to follow symlinks out of the armory.</p>
                                     <p>A query passes through the available retrieval stages before any context reaches the model:</p>
                                 </div>
                             <div class="case-code">
                             <p class="case-code-label">Retrieval pipeline</p>
-                            <pre><code>query&#10;  <span class="case-code-arrow">→</span> normalize + expand&#10;  <span class="case-code-arrow">→</span> sparse retrieval&#10;  <span class="case-code-arrow">→</span> dense retrieval&#10;  <span class="case-code-arrow">→</span> rank fusion&#10;  <span class="case-code-arrow">→</span> feedback (optional)&#10;  <span class="case-code-arrow">→</span> rerank (optional)&#10;  <span class="case-code-arrow">→</span> source + quote + negation checks&#10;  <span class="case-code-arrow">→</span> top-k chunks</code></pre>
+                            <pre><code>query&#10;  <span class="case-code-arrow">→</span> normalize + expand&#10;  <span class="case-code-arrow">→</span> BM25&#10;  <span class="case-code-arrow">→</span> TF-IDF&#10;  <span class="case-code-arrow">→</span> rank fusion&#10;  <span class="case-code-arrow">→</span> feedback (optional)&#10;  <span class="case-code-arrow">→</span> source + quote + negation checks&#10;  <span class="case-code-arrow">→</span> top-k chunks</code></pre>
                             </div>
                                 <div class="case-copy">
-                                    <p>Sparse retrieval prefers <code>bm25s</code>. If that backend is unavailable, Heph can use its own BM25 path and then TF-IDF as a further fallback. Dense retrieval uses <code>all-MiniLM-L6-v2</code> with cosine similarity. The optional reranker is <code>cross-encoder/ms-marco-MiniLM-L-6-v2</code>. When sparse and dense results both exist, weighted reciprocal-rank fusion combines them.</p>
-                                    <p>Post-processing can expand a query with a small synonym set, apply pseudo-relevance feedback, favor quoted phrases, use source-path hints, and penalize results that conflict with negated terms. Every optional stage has a fallback because installations differ in available models and hardware.</p>
+                                    <p>Retrieval is lexical. BM25 and TF-IDF are both implemented against the standard library, and weighted reciprocal-rank fusion combines them. Earlier versions reached dense retrieval and cross-encoder reranking through <code>sentence-transformers</code>, which pulled Torch, CUDA, and a set of native document dependencies into every install. That cost was not proportionate for a tool meant to sit on a personal machine, so those stages were removed rather than made optional. A request for a stage that no longer exists fails with that reason instead of silently returning lexical results.</p>
+                                    <p>Post-processing can expand a query with a small synonym set, apply pseudo-relevance feedback, favor quoted phrases, use source-path hints, and penalize results that conflict with negated terms.</p>
                                     <h3>Evidence</h3>
                                     <p>Evidence is a typed object with an ID that lasts for one turn. After retrieval, Heph favors distinct sources and applies the context budget. It then assigns IDs in prompt order such as <code>E1</code> and <code>E2</code>. The model cites those IDs. A verification pass checks the reply against the exact evidence objects supplied for that turn.</p>
                                     <p>The verifier distinguishes valid citations from invented IDs. It also detects a grounded answer that omitted its citations and an answer produced without evidence. Opening a citation maps the stored character offsets back to line spans in the original file and shows the matching excerpt. Absolute paths and paths outside the armory are rejected during that lookup.</p>
@@ -2660,7 +2659,7 @@ body:not(.case-page) .content {
                                 <div class="case-copy">
                                     <p>The <code>ai</code> runtime cannot import the application, retrieval harness, extension layer, or interface. Retrieval cannot import chat, agent, or document adapter code. Material handling cannot import retrieval. The interface cannot import application composition, and command modules cannot reach into TUI internals. CI runs the contracts.</p>
                                     <h3>Hosted APIs and local models</h3>
-                                    <p>Heph supports Pollinations, OpenRouter, OpenAI, DeepSeek, Z.AI, local <code>llama.cpp</code>, and custom OpenAI-compatible endpoints. These are available provider configurations, not services that run together. Hosted credentials are resolved when needed from provider references, environment variables, or keyring storage.</p>
+                                    <p>Heph supports Pollinations, OpenRouter, OpenAI, DeepSeek, Z.AI, local <code>llama.cpp</code>, and custom OpenAI-compatible endpoints. Each is a provider configuration you choose between. Hosted credentials are resolved when needed from provider references, environment variables, or keyring storage.</p>
                                     <p>The runtime normalizes streaming output and tool calls, records usage, shapes prompt-cache fields, retries eligible failures with exponential backoff, and opens a circuit breaker after repeated provider errors. If a stream fails before any output appears, it can be retried. If the connection fails after text is already visible, <code>StreamRecoveryError</code> carries that partial response so the interface can preserve it.</p>
                                     <p><code>heph local</code> searches curated GGUF releases, installs a chosen model, manages a loopback-only <code>llama.cpp</code> server, and runs a tool-call probe. A downloaded model appears in the model picker only after it returns a valid tool call with valid JSON arguments. Failed models remain available for later revalidation.</p>
                                     <h3>Terminal details</h3>
@@ -2703,8 +2702,8 @@ body:not(.case-page) .content {
                             </div>
                                 <div class="case-copy">
                                     <h3>Next work</h3>
-                                    <p>Heph is still in beta. My next task is better retrieval on messy collections. I also want faster indexing and a shorter path from a citation to its source passage. The provider layer can change without altering the armory format or evidence IDs.</p>
-                                    <p>I use Heph for my own document work and continue to develop it in public.</p>
+                                    <p>Heph is in beta. My next task is better retrieval on messy collections. I also want faster indexing and a shorter path from a citation to its source passage. The provider layer can change without altering the armory format or evidence IDs.</p>
+                                    <p>I use Heph for my own document work every day.</p>
                                     <p><a class="external-link" href="https://github.com/gildrb/heph" target="_blank" rel="noopener noreferrer">GitHub repository</a></p>
                                 </div>
                         </article>
@@ -2716,7 +2715,7 @@ body:not(.case-page) .content {
                                     <p>I have used <a class="external-link" href="https://filen.io/" target="_blank" rel="noopener noreferrer">Filen</a> for years. The product worked well for me, but its logo never did. I often redesign things I use, so I gave myself a full identity brief: a mark, wordmark, app icon, pattern language, and campaign copy. Filen did not commission the work.</p>
                                     <h3>Trying ideas</h3>
                                     <p>The first rounds were broad. I tried a disappearing block that could also read as an F, but the letter depended too much on explanation.</p>
-                                    <p>Next came a folder drawn in perspective. Its open edge suggested an F, although the shape still felt unresolved.</p>
+                                    <p>Next came a folder drawn in perspective. Its open edge suggested an F as the shape carried through the board.</p>
                                     <p>I also drew a heavier, architectural symbol based on stairs. Closing the staircase made it feel stable, but added too much detail for a small app icon. Another version used stacked blocks with the upper layer hidden. Neither survived the scale tests.</p>
                                 </div>
                             <div class="case-media">
@@ -2825,7 +2824,7 @@ body:not(.case-page) .content {
                             </figure>
                             </div>
                                 <div class="case-copy">
-                                    <p>I <a class="external-link" href="https://x.com/gilrdb/status/2021242178727452998" target="_blank" rel="noopener noreferrer">posted the concept</a> and shared it with the Filen community in February 2026. The whole identity is built around concealment: forms only surface when the user brings the light.</p>
+                                    <p>I <a class="external-link" href="https://x.com/gilrdb/status/2021242178727452998" target="_blank" rel="noopener noreferrer">posted the concept</a> and shared it with the Filen community in February 2026. Forms only surface when the light crosses them.</p>
                                 </div>
                         </article>
                         <article class="all-case" data-date="2019-11-15" data-scope="Wordmark" data-slug="n0thing" data-title="n0thing">
@@ -2833,7 +2832,7 @@ body:not(.case-page) .content {
                                 <h1 class="case-title">A wordmark for n0thing</h1>
                             </header>
                                 <div class="case-copy">
-                                    <p>In late 2019, former professional Counter-Strike player <a class="external-link" href="https://www.n0thing.gg/" target="_blank" rel="noopener noreferrer">Jordan &quot;n0thing&quot; Gilbert</a> was looking for a logo. VisionOfVIII, an artist whose work I admired and had helped with, recommended me. Jordan commissioned a custom wordmark and asked for something serious, but left the visual direction open.</p>
+                                    <p>In late 2019, former professional Counter-Strike player <a class="external-link" href="https://www.n0thing.gg/" target="_blank" rel="noopener noreferrer">Jordan &quot;n0thing&quot; Gilbert</a> was looking for a logo. VisionOfVIII, an artist I had worked with, recommended me. Jordan commissioned a custom wordmark and asked for something serious, but left the visual direction open.</p>
                                     <h3>Exploring directions</h3>
                                     <p>My first proposal was a pixel wordmark. Jordan liked it but wanted to compare it with a typewriter-like direction influenced by the 1980s. I used that feedback to draw a second wordmark.</p>
                                 </div>
@@ -2873,7 +2872,7 @@ body:not(.case-page) .content {
                             </figure>
                             </div>
                                 <div class="case-copy">
-                                    <p>Jordan approved the mark and I delivered it in 2019. The typewriter study was a detour, and drawing it is what settled the argument for the pixel version.</p>
+                                    <p>Jordan approved the mark and I delivered it in 2019. The typewriter study is what settled the argument for the pixel version.</p>
                                 </div>
                         </article>
                         <article class="all-case" data-date="2019-01-25" data-scope="Typeface" data-slug="curves" data-title="CURVES">
@@ -2901,7 +2900,7 @@ body:not(.case-page) .content {
                             </div>
                                 <div class="case-copy">
                                     <h3>Unicase by design</h3>
-                                    <p>The alphabet is unicase. Uppercase and lowercase both call the same drawing, so a headline holds one texture regardless of how it was typed. Consistency was the point of the exercise, and this removed the decision from the person setting the type.</p>
+                                    <p>The alphabet is unicase. Uppercase and lowercase both call the same drawing, so a headline holds one texture regardless of how it was typed. Whoever sets the type does not get to break the texture.</p>
                                 </div>
                             <div class="case-media">
                             <figure>
@@ -2938,7 +2937,7 @@ body:not(.case-page) .content {
                             </figure>
                             </div>
                                 <div class="case-copy">
-                                    <p>CURVES is a display face and it behaves like one. The rule that keeps a headline consistent closes the counters too far at text sizes, so it falls apart in a paragraph. Kept above that size it still does the job I drew it for, seven years later.</p>
+                                    <p>The rule that holds a headline together closes the counters too far at text sizes. It is a display face and it is used as one — 23,000 downloads, seven years on.</p>
                                 </div>
                         </article>
                         <article class="all-case" data-date="2018-11-13" data-scope="Wordmark" data-slug="ml7" data-title="mL7">
@@ -2946,7 +2945,7 @@ body:not(.case-page) .content {
                                 <h1 class="case-title">The mL7 logo, made in 2018</h1>
                             </header>
                                 <div class="case-copy">
-                                    <p>In 2018 I was playing competitive Overwatch and learning from players who were far better than me. One of them was <a class="external-link" href="https://www.twitch.tv/ml7support" target="_blank" rel="noopener noreferrer">Mihai &quot;mL7&quot; Lupascu</a>. I made a logo for him as a thank-you, posted it, and expected nothing back. His manager contacted me, and the mark became mL7's channel identity. As of July 2026, his Twitch channel still uses the same mark in a different colorway.</p>
+                                    <p>In 2018 I was playing competitive Overwatch and learning from players who were far better than me. One of them was <a class="external-link" href="https://www.twitch.tv/ml7support" target="_blank" rel="noopener noreferrer">Mihai &quot;mL7&quot; Lupascu</a>. I made a logo for him as a thank-you and posted it. His manager contacted me, and the mark became mL7's channel identity. As of July 2026, his Twitch channel still uses the same mark in a different colorway.</p>
                                 </div>
                             <div class="case-media">
                             <figure>
@@ -2958,7 +2957,7 @@ body:not(.case-page) .content {
                                     <h3>The work</h3>
                                     <p>The logo had to remain legible in small stream overlays. I drew a compact geometric <code>mL</code>, then passed a brush stroke through the seven to give the mark its direction. The original colorway used black lettering with an orange stroke. I adjusted the spacing and stroke angle until the logo worked as both a profile image and a wide channel graphic.</p>
                                     <h3>What it led to</h3>
-                                    <p>Mihai insisted on paying for the work even though I had not asked. It was the first time a creator I followed treated my design as a commission. The mark is still on the channel eight years later, in a different colorway.</p>
+                                    <p>Mihai insisted on paying for work I had not billed for. It was the first time a creator I followed treated my design as a commission.</p>
                                 </div>
                         </article>
                         <article class="all-case" data-date="2026-07-15" data-scope="Design Engineering" data-slug="site" data-title="gildrb.com">
@@ -2966,10 +2965,10 @@ body:not(.case-page) .content {
                                 <h1 class="case-title">The site you are on is the case study</h1>
                             </header>
                                 <div class="case-copy">
-                                    <p>This page documents the portfolio itself. I started with an empty repository, wrote the design and build system, then prepared the static files for deployment. The repository contains both the authored source and the generated pages. Its verification script is there too.</p>
+                                    <p>I started with an empty repository and wrote the design system, the build script and the verification harness. Authored source and generated pages both live in the repo.</p>
                                     <h3>Built from source</h3>
                                     <p>Case-study prose lives in Markdown and shared page structure lives in HTML partials. A dependency-free Node script renders the Markdown, assembles the CSS and JavaScript needed by each route, inlines the structured data, and writes the static pages.</p>
-                                    <p>The pages do not depend on a client-side framework. Vercel Insights and Speed Insights are loaded separately for analytics; the portfolio remains functional if those scripts are unavailable.</p>
+                                    <p>The pages are static HTML, CSS and vanilla JavaScript. Vercel Insights and Speed Insights are loaded separately for analytics; the portfolio remains functional if those scripts are unavailable.</p>
                                 </div>
                             <div class="case-media">
                             <figure>
@@ -3018,7 +3017,7 @@ body:not(.case-page) .content {
                                 <div class="case-copy">
                                     <h3>Verification</h3>
                                     <p>The verification scripts check the design tokens, responsive rules, content constraints, route order, asset references, and live crawler access. Missing images and files that are no longer referenced are both reported.</p>
-                                    <p>The same script rebuilds every page in memory and compares the result with the committed HTML. A source edit followed by a missed rebuild therefore fails verification instead of leaving stale output unnoticed.</p>
+                                    <p>The same script rebuilds every page in memory and compares the result with the committed HTML. A source edit without a rebuild fails verification.</p>
                                 </div>
                             <div class="case-media">
                             <figure>
@@ -3060,10 +3059,10 @@ body:not(.case-page) .content {
                                     <h3>The Heph demo</h3>
                                     <p>The terminal on the <a class="internal-link" href="/heph">Heph</a> case study is a simulation written in vanilla JavaScript. It plays one retrieval sequence and opens cited evidence. The keyboard controls shown in the interface also work. Reduced-motion users receive the completed state without the timed playback.</p>
                                     <h3>Machine-readable routes</h3>
-                                    <p>The site publishes a Schema.org identity graph, WebFinger records, host metadata, an llms.txt reference, an RSS feed, a humans.txt file, and a sitemap. Its <code>Content-Signal</code> header permits search, AI input, and AI training. These files identify Gil Rodrigues and link back to the same canonical homepage.</p>
+                                    <p>The site publishes a Schema.org identity graph, WebFinger records, host metadata, an llms.txt reference, an RSS feed, a humans.txt file, and a sitemap. Its <code>Content-Signal</code> header permits search, AI input, and AI training.</p>
                                     <h3>Delivery and access</h3>
                                     <p>The functional CSS and JavaScript are inlined by route. Fonts are preloaded, and responsive image sets let the browser choose an appropriate file for the viewport. The HTML uses landmarks, live regions, visible keyboard focus, and reduced-motion handling.</p>
-                                    <p>I designed and wrote the portfolio along with its build and verification scripts. The page above is generated by the same system it describes.</p>
+                                    <p>The page above is generated by the same system it describes.</p>
                                 </div>
                         </article>
                     </div>
