@@ -117,7 +117,6 @@ function getSuggestionTier(current, candidate) {
         "Typeface",
         "Wordmark",
         "Logomark",
-        "Logomark",
     ]);
     const product = new Set([
         "Product/Design Engineering",
@@ -197,9 +196,9 @@ const configuredCaseSlugs = new Set(
     siteConfig.caseStudies.map(({ slug }) => slug),
 );
 const suggestionBlockPattern =
-    /<nav class="case-next" aria-label="Suggested projects">([\s\S]*?)<\/nav>/g;
+    /<nav class="case-next" aria-label="Suggested projects" data-case-slug="([^"]+)">([\s\S]*?)<\/nav>/g;
 const suggestionLinkPattern =
-    /<a class="case-next-link" href="\/([^"]+)">[\s\S]*?<time datetime="([^"]+)">[\s\S]*?<span class="case-next-project">([^<]+)<\/span>[\s\S]*?<span class="case-next-scope">([^<]+)<\/span>/g;
+    /<a class="case-next-link"( hidden)? href="\/([^"]+)">[\s\S]*?<time datetime="([^"]+)">[\s\S]*?<span class="case-next-project">([^<]+)<\/span>[\s\S]*?<span class="case-next-scope">([^<]+)<\/span>/g;
 for (const [slug, html] of Object.entries(casePages)) {
     const blocks = [...html.matchAll(suggestionBlockPattern)];
     assert(
@@ -207,16 +206,22 @@ for (const [slug, html] of Object.entries(casePages)) {
         `${slug} must contain exactly one suggested-projects navigation block.`,
     );
     const suggestions = [
-        ...blocks[0][1].matchAll(suggestionLinkPattern),
-    ].map(([, targetSlug, date, title, scope]) => ({
+        ...blocks[0][2].matchAll(suggestionLinkPattern),
+    ].map(([, hidden, targetSlug, date, title, scope]) => ({
         date,
         scope,
         slug: targetSlug,
         title,
+        hidden: Boolean(hidden),
     }));
+    assert(
+        blocks[0][1] === slug,
+        `${slug} suggestion navigation must identify its current route.`,
+    );
     const expected = expectedSuggestions(portfolioCases, slug);
     assert(
-        suggestions.length === 3 &&
+        suggestions.length === portfolioCases.length - 1 &&
+            suggestions.filter(({ hidden }) => !hidden).length === 3 &&
             suggestions.every(
                 ({ slug: targetSlug, date, title, scope }, index) => {
                     const target = portfolioCases.find(
@@ -227,16 +232,25 @@ for (const [slug, html] of Object.entries(casePages)) {
                         targetSlug !== slug &&
                         configuredCaseSlugs.has(targetSlug) &&
                         target !== undefined &&
-                        expectedTarget?.slug === targetSlug &&
+                        (index < 3 ? expectedTarget?.slug === targetSlug : true) &&
                         target.date === date &&
                         target.title === title &&
                         target.scope === scope
                     );
                 },
             ),
-        `${slug} must expose three valid, correctly ranked suggested projects.`,
+        `${slug} must expose every valid candidate with three visible, correctly ranked default projects.`,
     );
 }
+assert(
+    Object.values(caseScripts).every(
+        (script) =>
+            script.includes('const visitedKey = "gildrb:visited-cases";') &&
+            script.includes("const prioritizeUnvisited = true;") &&
+            script.includes("link.hidden = !visible.has(link);"),
+    ),
+    "Every case route must include guarded, visited-aware dynamic suggestion selection.",
+);
 assert(
     (allPage.match(/class="case-next"/g) || []).length === 0,
     "The all-projects page must not contain suggested-projects navigation.",

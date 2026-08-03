@@ -237,7 +237,6 @@ export async function buildPage({ write = true } = {}) {
         "Typeface",
         "Wordmark",
         "Logomark",
-        "Logomark",
     ]);
     const productFamily = new Set([
         "Product/Design Engineering",
@@ -250,7 +249,7 @@ export async function buildPage({ write = true } = {}) {
         return null;
     }
 
-    function getCaseSuggestions(slug) {
+    function getCaseCandidates(slug) {
         const current = portfolioCaseBySlug.get(slug);
         const candidates = portfolioCases.filter(
             (portfolioCase) => portfolioCase.slug !== slug,
@@ -272,19 +271,18 @@ export async function buildPage({ write = true } = {}) {
                 const tierDifference = tier(left) - tier(right);
                 if (tierDifference !== 0) return tierDifference;
                 return right.date.localeCompare(left.date);
-            })
-            .slice(0, 3);
+            });
     }
 
     function renderCaseSuggestions(slug) {
-        const suggestions = getCaseSuggestions(slug);
+        const candidates = getCaseCandidates(slug);
         return [
-            '                    <nav class="case-next" aria-label="Suggested projects">',
+            `                    <nav class="case-next" aria-label="Suggested projects" data-case-slug="${slug}">`,
             '                        <h2 class="case-next-heading">Read next</h2>',
             '                        <div class="case-next-list">',
-            ...suggestions.flatMap(
-                ({ date, scope, slug: suggestionSlug, title }) => [
-                    `                            <a class="case-next-link" href="/${suggestionSlug}">`,
+            ...candidates.flatMap(
+                ({ date, scope, slug: suggestionSlug, title }, index) => [
+                    `                            <a class="case-next-link"${index >= 3 ? " hidden" : ""} href="/${suggestionSlug}">`,
                     `                                <time datetime="${date}">`,
                     `                                    <span class="case-next-date-full">${date}</span>`,
                     `                                    <span class="case-next-date-year">${date.slice(0, 4)}</span>`,

@@ -1,6 +1,7 @@
 const sharedCaseScripts = Object.freeze([
     "10-core.js",
     "20-theme.js",
+    "25-case-next.js",
     "30-email.js",
 ]);
 

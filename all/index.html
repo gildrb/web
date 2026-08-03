@@ -2590,7 +2590,7 @@ html.homepage-scroll-locked body .layout {
                             <div class="case-media-grid">
                             <figure>
                                 <img alt="Filen mark tested at four decreasing sizes" decoding="async" height="2260" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px" src="/images/optimized/gil-rodrigues-filen-logo-scale-960.webp" srcset="/images/optimized/gil-rodrigues-filen-logo-scale-480.webp 480w, /images/optimized/gil-rodrigues-filen-logo-scale-720.webp 720w, /images/optimized/gil-rodrigues-filen-logo-scale-960.webp 960w, /images/optimized/gil-rodrigues-filen-logo-scale-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-logo-scale-1600.webp 1600w" width="3940"/>
-                                <figcaption class="case-caption">Logo scale tests</figcaption>
+                                <figcaption class="case-caption">Brandmark scale tests</figcaption>
                             </figure>
                             <figure>
                                 <img alt="Filen app icon using a dimensional rendering of the identity mark" decoding="async" height="2260" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px" src="/images/optimized/gil-rodrigues-filen-app-icon-960.webp" srcset="/images/optimized/gil-rodrigues-filen-app-icon-480.webp 480w, /images/optimized/gil-rodrigues-filen-app-icon-720.webp 720w, /images/optimized/gil-rodrigues-filen-app-icon-960.webp 960w, /images/optimized/gil-rodrigues-filen-app-icon-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-app-icon-1600.webp 1600w" width="3940"/>
@@ -2643,7 +2643,7 @@ html.homepage-scroll-locked body .layout {
                             <div class="case-media-grid">
                             <figure>
                                 <img alt="Filen mark over a streaked monochrome visual texture" decoding="async" height="2260" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-filen-logo-texture-960.webp" srcset="/images/optimized/gil-rodrigues-filen-logo-texture-480.webp 480w, /images/optimized/gil-rodrigues-filen-logo-texture-720.webp 720w, /images/optimized/gil-rodrigues-filen-logo-texture-960.webp 960w, /images/optimized/gil-rodrigues-filen-logo-texture-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-logo-texture-1600.webp 1600w" width="3940"/>
-                                <figcaption class="case-caption">Logo light texture</figcaption>
+                                <figcaption class="case-caption">Brandmark light texture</figcaption>
                             </figure>
                             <figure>
                                 <img alt="Metallic Filen lockup across vertical light panels" decoding="async" height="921" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-filen-light-lockup-720.webp" srcset="/images/optimized/gil-rodrigues-filen-light-lockup-480.webp 480w, /images/optimized/gil-rodrigues-filen-light-lockup-720.webp 720w, /images/optimized/gil-rodrigues-filen-light-lockup-960.webp 960w, /images/optimized/gil-rodrigues-filen-light-lockup-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-light-lockup-1600.webp 1600w" width="1600"/>
@@ -3279,6 +3279,65 @@ themeToggle.addEventListener("click", () => {
     themeToggleUsedPointer = false;
     announce(`Switched to ${nextTheme} mode`);
 });
+
+const caseNext = document.querySelector(".case-next");
+
+if (caseNext) {
+    const links = [...caseNext.querySelectorAll(".case-next-link")];
+    const currentSlug = caseNext.dataset.caseSlug;
+    const visitedKey = "gildrb:visited-cases";
+    let visited = [];
+
+    try {
+        const saved = JSON.parse(localStorage.getItem(visitedKey) || "[]");
+        if (Array.isArray(saved)) {
+            visited = saved.filter((slug) => typeof slug === "string");
+        }
+    } catch {
+        visited = [];
+    }
+
+    if (currentSlug && !visited.includes(currentSlug)) {
+        visited.push(currentSlug);
+    }
+
+    try {
+        localStorage.setItem(visitedKey, JSON.stringify(visited));
+    } catch {
+        visited = [];
+    }
+
+    const candidates = links.filter(
+        (link) => link.getAttribute("href") !== `/${currentSlug}`,
+    );
+    const unvisited = candidates.filter(
+        (link) => !visited.includes(link.getAttribute("href").slice(1)),
+    );
+    const alreadyVisited = candidates.filter((link) =>
+        visited.includes(link.getAttribute("href").slice(1)),
+    );
+    const prioritizeUnvisited = true;
+    const groups = prioritizeUnvisited
+        ? [unvisited, alreadyVisited]
+        : [alreadyVisited, unvisited];
+    const selected = [];
+
+    for (const group of groups) {
+        for (let index = group.length - 1; index > 0; index -= 1) {
+            const randomIndex = Math.floor(Math.random() * (index + 1));
+            [group[index], group[randomIndex]] = [
+                group[randomIndex],
+                group[index],
+            ];
+        }
+        selected.push(...group);
+    }
+
+    const visible = new Set(selected.slice(0, 3));
+    for (const link of links) {
+        link.hidden = !visible.has(link);
+    }
+}
 
 // Email copy functionality
 document.querySelectorAll(".email").forEach((email) => {
