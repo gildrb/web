@@ -1,6 +1,6 @@
 # A wordmark for n0thing
 
-In late 2019, former professional Counter-Strike player Jordan "n0thing" Gilbert was looking for a logo. VisionOfVIII, an artist whose work I admired and had helped with, recommended me. Jordan commissioned a custom wordmark and asked for something serious, but left the visual direction open.
+In late 2019, former professional Counter-Strike player [Jordan "n0thing" Gilbert](https://www.n0thing.gg/) was looking for a logo. VisionOfVIII, an artist I had worked with, recommended me. Jordan commissioned a custom wordmark and asked for something serious, but left the visual direction open.
 
 ### Exploring directions
 
@@ -24,4 +24,4 @@ I finished the identity by animating the trailing underscore. The movement is li
 
 ![Final wordmark in motion](media:n0thing-wordmark-animation)
 
-Jordan approved the mark and I delivered it in 2019. The route from the rejected typewriter study back to the first pixel idea produced a stronger final wordmark and a useful motion rule.
+Jordan approved the mark and I delivered it in 2019. The typewriter study is what settled the argument for the pixel version.

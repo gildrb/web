@@ -43,8 +43,8 @@
             crossorigin
         />
         <style>
-@font-face{font-family:"Inter";font-style:normal;font-weight:400 600;font-display:swap;src:url("/fonts/inter-variable-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+21A9,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:"Geist Mono";font-style:normal;font-weight:400 600;font-display:swap;src:url("/fonts/geist-mono-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Inter";font-style:normal;font-weight:400 600;font-display:optional;src:url("/fonts/inter-variable-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+21A9,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Geist Mono";font-style:normal;font-weight:400 600;font-display:optional;src:url("/fonts/geist-mono-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 
 :root {
   --bg: #000000;
@@ -99,6 +99,7 @@
   box-sizing: border-box;
 }
 
+
 :is(a[href],
   button,
   input:not([type="hidden"]),
@@ -108,7 +109,8 @@
   [role="button"],
   [role="link"],
   [tabindex]:not([tabindex="-1"])):active {
-  translate: 0 1px;
+  position: relative;
+  top: 1px;
 }
 
 ::selection {
@@ -1279,6 +1281,141 @@ body {
     margin-left: auto;
 }
 
+.case-next {
+    width: min(100%, 760px);
+    margin: 48px auto 0;
+}
+
+.case-next-heading {
+    margin: 0 0 8px;
+    color: var(--text-tertiary);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.case-next-list {
+    display: grid;
+    grid-template-columns: max-content max-content minmax(0, 1fr) auto;
+    column-gap: 16px;
+}
+
+.case-next-row {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: baseline;
+    width: 100%;
+    padding: 8px 0;
+    color: var(--text-tertiary);
+}
+
+.case-next-link {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: baseline;
+    width: 100%;
+    padding: 8px 0;
+    color: var(--text-tertiary);
+    text-decoration: none;
+}
+
+.case-next-row + .case-next-row,
+.case-next-row + .case-next-link,
+.case-next-link + .case-next-row,
+.case-next-link + .case-next-link {
+    border-top: 1px solid
+        color-mix(in srgb, var(--text-primary) 12%, transparent);
+}
+
+.case-next-row .case-next-project {
+    color: var(--text-primary);
+}
+
+.case-next-row time {
+    grid-column: 1;
+    grid-row: 1;
+    display: block;
+    white-space: nowrap;
+    color: inherit;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.case-next-row .case-next-project {
+    grid-column: 2;
+    grid-row: 1;
+    white-space: nowrap;
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.case-next-row .case-next-scope {
+    grid-column: 3;
+    grid-row: 1;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--text-tertiary);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.case-next-row .case-next-arrow {
+    grid-column: 4;
+    grid-row: 1;
+    align-self: baseline;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    color: inherit;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.case-next-view {
+    visibility: hidden;
+}
+
+@media (hover: hover) {
+    .case-next-link:hover {
+        color: var(--text-primary);
+    }
+
+    .case-next-link:hover .case-next-scope,
+    .case-next-link:hover .case-next-arrow {
+        color: var(--text-primary);
+    }
+
+    .case-next-link:hover .case-next-view {
+        visibility: visible;
+    }
+}
+
+.case-next-link:focus-visible {
+    color: var(--text-primary);
+    outline: 1px solid var(--text-primary);
+    outline-offset: 4px;
+}
+
+.case-next-link:focus-visible .case-next-scope,
+.case-next-link:focus-visible .case-next-arrow,
+.case-next-link:focus-visible .case-next-view {
+    color: var(--text-primary);
+    visibility: visible;
+}
+
+.case-next-date-year {
+    display: none;
+}
+
 .all-case + .all-case {
     margin-top: var(--all-case-gap);
 }
@@ -1465,6 +1602,23 @@ body {
 }
 
 @media (min-width: 769px) {
+    .case-next {
+        padding-bottom: calc(
+            var(--footer-title-center-offset) +
+                (var(--theme-toggle-size) / 2) -
+                (24px / 2) -
+                var(--footer-title-optical-offset)
+        );
+    }
+
+    .case-next-row:last-child {
+        padding-bottom: 0;
+    }
+
+    .case-article article:has(+ .case-next) > :last-child {
+        padding-bottom: 0;
+    }
+
     .case-article article > :last-child {
         --case-final-line-height: 24px;
         padding-bottom: calc(
@@ -1542,6 +1696,26 @@ body {
         line-height: 20px;
     }
 
+    .case-next {
+        margin-top: 48px;
+    }
+
+    .case-next-list {
+        column-gap: clamp(8px, 3vw, 16px);
+    }
+
+    .case-next-view {
+        display: none;
+    }
+
+    .case-next-date-full {
+        display: none;
+    }
+
+    .case-next-date-year {
+        display: inline;
+    }
+
 }
 
 body:not(.case-page) {
@@ -1557,16 +1731,6 @@ body:not(.case-page) .sidebar {
 }
 
 body:not(.case-page) .content {
-    min-height: 100dvh;
-}
-
-html.homepage-scroll-locked,
-html.homepage-scroll-locked body {
-    height: 100dvh;
-}
-
-html.homepage-scroll-locked body .layout {
-    height: 100dvh;
     min-height: 100dvh;
 }
 
@@ -1628,6 +1792,18 @@ html.homepage-scroll-locked body .layout {
 }
 
 @media (max-width: 767px) {
+    .portfolio-scroll-frame {
+        display: grid;
+        grid-template-columns: max-content max-content minmax(0, 1fr) auto;
+        column-gap: clamp(8px, 3vw, 16px);
+        order: 3;
+    }
+
+    .portfolio-table-header,
+    .portfolio-section {
+        grid-column: 1 / -1;
+    }
+
     body:not(.case-page) {
         min-height: 100svh;
         height: auto;
@@ -1646,14 +1822,103 @@ html.homepage-scroll-locked body .layout {
 
     html.homepage-scroll-locked,
     html.homepage-scroll-locked body {
-        height: 100svh;
+        height: 100dvh;
+        min-height: 100dvh;
+        overflow: hidden;
     }
 
     html.homepage-scroll-locked body .layout {
-        height: 100svh;
-        min-height: 100svh;
-        align-content: center;
+        height: 100dvh;
+        min-height: 100dvh;
+        display: grid;
+        align-content: start;
+        grid-template-rows: auto auto minmax(0, 1fr) auto;
         padding-bottom: 0;
+    }
+
+    html.homepage-scroll-locked body .name,
+    html.homepage-scroll-locked body .theme-toggle {
+        grid-row: 1;
+    }
+
+    html.homepage-scroll-locked body .profile-summary {
+        grid-row: 2;
+    }
+
+    html.homepage-scroll-locked body .portfolio-scroll-frame {
+        grid-row: 3;
+        grid-template-rows: auto minmax(0, 1fr);
+        height: auto;
+        min-height: 0;
+        margin-bottom: var(--section-gap);
+        position: relative;
+    }
+
+    html.homepage-scroll-locked body .portfolio-section {
+        grid-row: 2;
+        height: auto;
+        min-height: 0;
+        margin-bottom: 0;
+        align-content: start;
+        overflow-y: auto;
+        overscroll-behavior: auto;
+        scrollbar-width: none;
+        padding-bottom: 8px;
+    }
+
+    html.homepage-scroll-locked body .portfolio-section::-webkit-scrollbar {
+        display: none;
+    }
+
+    html.homepage-scroll-locked body .portfolio-table-header {
+        grid-row: 1;
+        position: relative;
+        z-index: 3;
+        background: var(--bg);
+    }
+
+    html.homepage-scroll-locked body .portfolio-scroll-frame::before,
+    html.homepage-scroll-locked body .portfolio-scroll-frame::after {
+        position: absolute;
+        right: 0;
+        left: 0;
+        z-index: 3;
+        height: 56px;
+        content: "";
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 160ms ease-out;
+    }
+
+    html.homepage-scroll-locked body .portfolio-scroll-frame::before {
+        top: 41px;
+        z-index: 2;
+        background: linear-gradient(
+            to bottom,
+            var(--bg),
+            transparent
+        );
+    }
+
+    html.homepage-scroll-locked body .portfolio-scroll-frame::after {
+        bottom: 0;
+        z-index: 2;
+        background: linear-gradient(
+            to top,
+            var(--bg),
+            transparent
+        );
+    }
+
+    html.homepage-scroll-locked body .portfolio-scroll-frame:has(.portfolio-section.has-scroll-top)::before,
+    html.homepage-scroll-locked body .portfolio-scroll-frame:has(.portfolio-section.has-scroll-bottom)::after {
+        opacity: 1;
+    }
+
+    html.homepage-scroll-locked body .links {
+        grid-row: 4;
+        align-self: end;
+        padding-bottom: 24px;
     }
 
     .wrapper {
@@ -1679,20 +1944,7 @@ html.homepage-scroll-locked body .layout {
         padding: 0;
     }
 
-    body:not(.case-page) .name {
-        grid-column: 1;
-        order: 1;
-        position: relative;
-        z-index: 100;
-        width: calc(100% + 56px);
-        margin-left: -12px;
-        padding: 24px 44px 8px 12px;
-        background: var(--bg);
-        min-height: 0;
-        margin-bottom: var(--section-gap);
-    }
-
-    body.case-page .name {
+    .name {
         grid-column: 1;
         order: 1;
         position: sticky;
@@ -1729,11 +1981,6 @@ html.homepage-scroll-locked body .layout {
         margin-left: 16px;
         margin-bottom: 0;
         background: transparent;
-    }
-
-    body:not(.case-page) .theme-toggle {
-        position: relative;
-        top: auto;
     }
 
     .name {
@@ -1916,7 +2163,196 @@ html.homepage-scroll-locked body .layout {
                 </aside>
                 <main class="content case-article">
                     <div class="all-cases">
-                        <article class="all-case" data-date="2026-04-21" data-scope="Product design and engineering" data-slug="heph" data-title="Heph">
+                        <article class="all-case" data-date="2026-07-25" data-scope="Logomark" data-slug="t3" data-title="T3">
+                            <header class="case-intro">
+                                <h1 class="case-title">A logomark system for T3</h1>
+                            </header>
+                                <div class="case-copy">
+                                    <p>T3 ships more than one product, so the mark had to hold as <a class="external-link" href="https://t3.chat/" target="_blank" rel="noopener noreferrer"><code>T3.chat</code></a>, as <a class="external-link" href="https://t3.codes/" target="_blank" rel="noopener noreferrer"><code>T3.code</code></a>, and on its own in a favicon or an app grid. Nobody commissioned it. I drew it between March and May 2026 and posted the versions as they came, first in the T3 Discord and then as a <a class="external-link" href="https://x.com/gilrdb/status/2080990301208952994" target="_blank" rel="noopener noreferrer">thread on X</a>. The community, <a class="external-link" href="https://x.com/r_marked" target="_blank" rel="noopener noreferrer">@r_marked</a>, and <a class="external-link" href="https://x.com/theo" target="_blank" rel="noopener noreferrer">@theo</a> told me which ones were working.</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <img alt="T3 logomark exploration shown as a compact black and white symbol" decoding="async" fetchpriority="high" height="1200" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-t3-mark-720.webp" srcset="/images/optimized/gil-rodrigues-t3-mark-480.webp 480w, /images/optimized/gil-rodrigues-t3-mark-720.webp 720w, /images/optimized/gil-rodrigues-t3-mark-960.webp 960w, /images/optimized/gil-rodrigues-t3-mark-1200.webp 1200w" width="1200"/>
+                                <figcaption class="case-caption">The T3 logomark</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <h3>Hundreds of versions, in public</h3>
+                                    <p>There are hundreds of drawings behind this mark. Most went up the day I drew them. Most are wrong. Drawing the wrong shape is how I find the right one, and doing that in a channel full of people means someone tells me within the hour.</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <img alt="Tall T3 exploration canvas filled with logomark studies and rejected directions" decoding="async" height="1199" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-t3-canvas-overview-480.webp" srcset="/images/optimized/gil-rodrigues-t3-canvas-overview-480.webp 480w" width="540"/>
+                                <figcaption class="case-caption">The exploration canvas</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <p>The T and the 3 want to be one figure instead of two characters standing next to each other. The crossbar of the T carries into the 3, so the pair shares a spine. Finding that meant testing how far the 3 could open, how much the terminals could shear, and how much of the T could go missing before the mark stopped reading as T3.</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <img alt="T3 logomark sketch passes arranged across the exploration canvas" decoding="async" height="834" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px" src="/images/optimized/gil-rodrigues-t3-canvas-sketches-720.webp" srcset="/images/optimized/gil-rodrigues-t3-canvas-sketches-480.webp 480w, /images/optimized/gil-rodrigues-t3-canvas-sketches-720.webp 720w, /images/optimized/gil-rodrigues-t3-canvas-sketches-960.webp 960w, /images/optimized/gil-rodrigues-t3-canvas-sketches-1200.webp 1200w" width="1200"/>
+                                <figcaption class="case-caption">Sketch passes on the canvas</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <h3>Feedback in the open</h3>
+                                    <p>The first thing I posted was the system board. A mark that ships across a family has to be drawn where it gets used, so I built the cases out: the two logotypes, the iOS icon on its grid, the favicon ladder down to sixteen pixels, and the lockup on its clear-space frame. The angular version below is the one the server started calling the meat grinder.</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <img alt="T3 identity system board with logotypes, icons, favicons, and clear-space lockup" decoding="async" height="1853" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-t3-system-board-720.webp" srcset="/images/optimized/gil-rodrigues-t3-system-board-480.webp 480w, /images/optimized/gil-rodrigues-t3-system-board-720.webp 720w, /images/optimized/gil-rodrigues-t3-system-board-960.webp 960w, /images/optimized/gil-rodrigues-t3-system-board-1280.webp 1280w, /images/optimized/gil-rodrigues-t3-system-board-1600.webp 1600w" width="2048"/>
+                                <figcaption class="case-caption">Logotypes, icons, favicons, and lockup</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <p>On 19 March 2026 I posted the application board in the T3 Discord and asked for thoughts.</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <img alt="T3 application board posted for feedback in the T3 Discord" decoding="async" loading="lazy" height="886" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-t3-feedback-board-720.webp" srcset="/images/optimized/gil-rodrigues-t3-feedback-board-480.webp 480w, /images/optimized/gil-rodrigues-t3-feedback-board-720.webp 720w, /images/optimized/gil-rodrigues-t3-feedback-board-960.webp 960w, /images/optimized/gil-rodrigues-t3-feedback-board-1200.webp 1200w" width="1200"/>
+                                <figcaption class="case-caption">The application board posted for feedback</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <p>markr came back with the note that set up the next two months: &quot;It still feels like there is a bit of excess space between the glyphs, I can't quite put my finger on why though.&quot; I asked whether he meant the mark or the type. The mark, he said, the t and the 3.</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <img alt="T3 Discord feedback on the spacing between the logomark glyphs" decoding="async" loading="lazy" height="851" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-t3-feedback-spacing-720.webp" srcset="/images/optimized/gil-rodrigues-t3-feedback-spacing-480.webp 480w, /images/optimized/gil-rodrigues-t3-feedback-spacing-720.webp 720w, /images/optimized/gil-rodrigues-t3-feedback-spacing-960.webp 960w, /images/optimized/gil-rodrigues-t3-feedback-spacing-1200.webp 1200w" width="1200"/>
+                                <figcaption class="case-caption">Feedback on the spacing between the glyphs</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <p>A week later I brought the mark back heavier, on a brighter palette. markr: &quot;Feels very heavy now, which compared to the rest of the products, feels out of place. I do like the idea with the sloping 3 though to get rid of that bug dead space.&quot; Someone else said it reminded them of a racing car logo.</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <img alt="Repainted T3 board with feedback on its weight and direction" decoding="async" loading="lazy" height="815" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-t3-feedback-repainted-720.webp" srcset="/images/optimized/gil-rodrigues-t3-feedback-repainted-480.webp 480w, /images/optimized/gil-rodrigues-t3-feedback-repainted-720.webp 720w, /images/optimized/gil-rodrigues-t3-feedback-repainted-960.webp 960w, /images/optimized/gil-rodrigues-t3-feedback-repainted-1200.webp 1200w" width="1200"/>
+                                <figcaption class="case-caption">The repainted board</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <p>I posted a thinner version the same evening and asked whether that killed the racing car. It moved the problem instead of solving it: pushing the 3 away reintroduced the gap, and not connecting the two made the mark look heavily unproportional. markr relayed what Theo had said about the iteration: not sold on the weights, or on the shape of the 3.</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <img alt="Thinner T3 mark test and feedback on the direction" decoding="async" loading="lazy" height="382" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-t3-feedback-thinner-720.webp" srcset="/images/optimized/gil-rodrigues-t3-feedback-thinner-480.webp 480w, /images/optimized/gil-rodrigues-t3-feedback-thinner-720.webp 720w, /images/optimized/gil-rodrigues-t3-feedback-thinner-960.webp 960w, /images/optimized/gil-rodrigues-t3-feedback-thinner-1200.webp 1200w" width="1200"/>
+                                <figcaption class="case-caption">The thinner test and the reply</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <p>By 31 March I was posting frames nine at a time. One reply read the fourth and the last as Ws, which is what happens when the crossbar shears too far. markr thought the direction was closer to right, since Theo had not liked the angles in the old logo, so the fix for one problem kept reopening another. &quot;Mixed feedback on lots of them makes me go into all kinds of directions,&quot; I wrote. markr: &quot;design by committee&quot;.</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <img alt="Nine T3 logo frames and the Discord replies they drew" decoding="async" loading="lazy" height="1127" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-t3-feedback-frames-720.webp" srcset="/images/optimized/gil-rodrigues-t3-feedback-frames-480.webp 480w, /images/optimized/gil-rodrigues-t3-feedback-frames-720.webp 720w, /images/optimized/gil-rodrigues-t3-feedback-frames-960.webp 960w, /images/optimized/gil-rodrigues-t3-feedback-frames-1200.webp 1200w" width="1200"/>
+                                <figcaption class="case-caption">Nine frames and the replies they drew</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <p>On 5 May the angled 3 got its verdict, secondhand: &quot;I also like the angled 3, but Theo didn't 😭&quot;</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <img alt="Angled T3 3 and the verdict on its direction" decoding="async" loading="lazy" height="48" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-t3-feedback-angled-3-720.webp" srcset="/images/optimized/gil-rodrigues-t3-feedback-angled-3-480.webp 480w, /images/optimized/gil-rodrigues-t3-feedback-angled-3-720.webp 720w, /images/optimized/gil-rodrigues-t3-feedback-angled-3-960.webp 960w, /images/optimized/gil-rodrigues-t3-feedback-angled-3-1200.webp 1200w" width="1200"/>
+                                <figcaption class="case-caption">The angled 3, and the verdict on it</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <p>Some passes went angular and mechanical, with the bowl of the 3 squared off into facets.</p>
+                                </div>
+                            <div class="case-media-grid">
+                            <figure>
+                                <img alt="T3 logomark weight and angle tests comparing heavier and lighter constructions" decoding="async" loading="lazy" height="642" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px" src="/images/optimized/gil-rodrigues-t3-weight-tests-720.webp" srcset="/images/optimized/gil-rodrigues-t3-weight-tests-480.webp 480w, /images/optimized/gil-rodrigues-t3-weight-tests-720.webp 720w, /images/optimized/gil-rodrigues-t3-weight-tests-960.webp 960w, /images/optimized/gil-rodrigues-t3-weight-tests-1200.webp 1200w" width="1200"/>
+                                <figcaption class="case-caption">Weight and angle tests</figcaption>
+                            </figure>
+                            <figure>
+                                <img alt="Ghosted T3 comparison grid showing overlapping logomark proportions" decoding="async" height="744" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px" src="/images/optimized/gil-rodrigues-t3-ghost-grid-720.webp" srcset="/images/optimized/gil-rodrigues-t3-ghost-grid-480.webp 480w, /images/optimized/gil-rodrigues-t3-ghost-grid-720.webp 720w, /images/optimized/gil-rodrigues-t3-ghost-grid-960.webp 960w, /images/optimized/gil-rodrigues-t3-ghost-grid-1200.webp 1200w" width="1200"/>
+                                <figcaption class="case-caption">Ghosted comparison grid</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <h3>Color came last</h3>
+                                    <p>Pink belongs to T3, but the mark had to survive without it. Every candidate was judged in white on black first and only then given the palette.</p>
+                                </div>
+                            <div class="case-media-grid">
+                            <figure>
+                                <img alt="T3 logomark color passes arranged across the exploration canvas" decoding="async" height="834" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px" src="/images/optimized/gil-rodrigues-t3-canvas-color-720.webp" srcset="/images/optimized/gil-rodrigues-t3-canvas-color-480.webp 480w, /images/optimized/gil-rodrigues-t3-canvas-color-720.webp 720w, /images/optimized/gil-rodrigues-t3-canvas-color-960.webp 960w, /images/optimized/gil-rodrigues-t3-canvas-color-1200.webp 1200w" width="1200"/>
+                                <figcaption class="case-caption">Color passes on the canvas</figcaption>
+                            </figure>
+                            <figure>
+                                <img alt="T3 pink and monochrome colorway tests for the logomark" decoding="async" height="899" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px" src="/images/optimized/gil-rodrigues-t3-color-tests-720.webp" srcset="/images/optimized/gil-rodrigues-t3-color-tests-480.webp 480w, /images/optimized/gil-rodrigues-t3-color-tests-720.webp 720w, /images/optimized/gil-rodrigues-t3-color-tests-960.webp 960w" width="1199"/>
+                                <figcaption class="case-caption">Colorway tests</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <h3>Refining the drawing</h3>
+                                    <p>The last pass is invisible at a glance. I thinned the joint between the crossbar and the bowl, pulled the bowl tighter, and squared the terminals so the mark keeps its rhythm at favicon size.</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <img alt="T3 logomark before and after comparison showing the final refined joint and terminals" decoding="async" height="2520" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-t3-before-after-720.webp" srcset="/images/optimized/gil-rodrigues-t3-before-after-480.webp 480w, /images/optimized/gil-rodrigues-t3-before-after-720.webp 720w, /images/optimized/gil-rodrigues-t3-before-after-960.webp 960w, /images/optimized/gil-rodrigues-t3-before-after-1280.webp 1280w, /images/optimized/gil-rodrigues-t3-before-after-1600.webp 1600w" width="3446"/>
+                                <figcaption class="case-caption">Before and after refinement</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <p>On 13 May I posted the two curves side by side. markr: &quot;I feel insane but those changes made a difference to my perception....&quot;</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <img alt="T3 curve comparison and feedback on the smoothed version" decoding="async" loading="lazy" height="1266" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-t3-feedback-curves-720.webp" srcset="/images/optimized/gil-rodrigues-t3-feedback-curves-480.webp 480w, /images/optimized/gil-rodrigues-t3-feedback-curves-720.webp 720w, /images/optimized/gil-rodrigues-t3-feedback-curves-960.webp 960w, /images/optimized/gil-rodrigues-t3-feedback-curves-1200.webp 1200w" width="1200"/>
+                                <figcaption class="case-caption">The pinched curve against the smoothed one</figcaption>
+                            </figure>
+                            </div>
+                            <div class="case-media">
+                            <figure>
+                                <img alt="T3 logomark rendered in a light application setting" decoding="async" height="675" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-t3-render-720.webp" srcset="/images/optimized/gil-rodrigues-t3-render-480.webp 480w, /images/optimized/gil-rodrigues-t3-render-720.webp 720w, /images/optimized/gil-rodrigues-t3-render-960.webp 960w, /images/optimized/gil-rodrigues-t3-render-1200.webp 1200w" width="1200"/>
+                                <figcaption class="case-caption">The mark rendered in light</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <p>T3 has not adopted any of this. Every version is still public.</p>
+                                </div>
+                        </article>
+                        <article class="all-case" data-date="2026-07-07" data-scope="Logomark" data-slug="ben-davis" data-title="Ben Davis">
+                            <header class="case-intro">
+                                <h1 class="case-title">A redesigned mark for Ben Davis</h1>
+                            </header>
+                                <div class="case-copy">
+                                    <p>Ben Davis builds software in San Francisco and co-hosts the Nerd Snipe podcast. In July 2026 I redrew his personal mark for my own practice, posted it on <a class="external-link" href="https://x.com/gilrdb/status/2074468837781639301" target="_blank" rel="noopener noreferrer">X</a>, and sent it to him.</p>
+                                    <h3>Two letters, one figure</h3>
+                                    <p>The mark on <a class="external-link" href="https://www.davis7.sh/" target="_blank" rel="noopener noreferrer">davis7.sh</a> already used the same two letters. It sets a slab-sided d against a b built from a full circle, so the two halves never agree on a weight or a curve.</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <img class="ben-davis-brandmark" alt="Ben Davis's previous db logo built from a slab-sided d and circular b" decoding="async" height="443" loading="lazy" src="/images/optimized/gil-rodrigues-ben-davis-original.svg" width="700"/>
+                                <figcaption class="case-caption">The previous davis7.sh mark</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <p>A d and a b are mirror images, so the pair already wants to be symmetrical. I kept that symmetry in the bowls and broke it once. A single diagonal runs through the middle of the mark, carries the stem of the d down into the bowl of the b, and leaves both letters with a sheared terminal. At a glance it is a loop, and the initials arrive a moment later.</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <img class="ben-davis-brandmark" alt="White db monogram with a central diagonal joining mirrored letterforms" decoding="async" fetchpriority="high" height="1112" src="/images/optimized/gil-rodrigues-ben-davis-brandmark.svg" width="2000"/>
+                                <figcaption class="case-caption">The redesigned mark</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <p>Stems and bowls hold one weight and one corner radius, so the mark keeps its rhythm when it shrinks. The whole thing is one path with few enough anchor points to redraw by hand, which is what the point view on the left shows.</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <img alt="Ben Davis db monogram shown with construction points and the finished mark" decoding="async" height="2304" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-ben-davis-construction-720.webp" srcset="/images/optimized/gil-rodrigues-ben-davis-construction-480.webp 480w, /images/optimized/gil-rodrigues-ben-davis-construction-720.webp 720w, /images/optimized/gil-rodrigues-ben-davis-construction-960.webp 960w, /images/optimized/gil-rodrigues-ben-davis-construction-1280.webp 1280w, /images/optimized/gil-rodrigues-ben-davis-construction-1600.webp 1600w" width="4096"/>
+                                <figcaption class="case-caption">Construction points and final mark</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <p>Ben replied to the post, then messaged me and we talked it through. The mark is his to use.</p>
+                                </div>
+                        </article>
+                        <article class="all-case" data-date="2026-04-21" data-scope="Product/Design Engineering" data-slug="heph" data-title="Heph">
                             <header class="case-intro">
                                 <h1 class="case-title">A local document agent that answers from your files and shows its work</h1>
                             </header>
@@ -2175,7 +2611,7 @@ html.homepage-scroll-locked body .layout {
                             </figure>
                             </div>
                                 <div class="case-copy">
-                                    <p>Heph requires Python 3.13 and is managed as a five-package <code>uv</code> workspace. Textual and Rich provide the terminal foundation. Retrieval uses <code>bm25s</code>, <code>sentence-transformers</code>, and scikit-learn when those backends are available. Docling handles supported document conversion, while credentials can be stored through the operating system keyring.</p>
+                                    <p>Heph requires Python 3.13 and is managed as a five-package <code>uv</code> workspace. Textual and Rich provide the terminal foundation. There is one install and no optional extras: retrieval is lexical, document conversion is written against the file formats directly, and credentials can be stored through the operating system keyring. The full install is 43 packages and about 46 MB, with no machine-learning runtime, no CUDA, and no model downloads. A local <code>llama.cpp</code> model runs through a managed binary rather than a Python ML stack, so choosing local inference does not change the dependency graph.</p>
                                     <h3>Armories</h3>
                                     <p>An armory is a normal folder for one subject. It contains the source material for that subject and its own index, memory, chat history, and diagnostics. A biology armory, for example, can be opened with <code>heph Biology</code> after its files are placed in the <code>materials</code> directory.</p>
                                     <p>The layout stays inspectable on disk:</p>
@@ -2187,18 +2623,18 @@ html.homepage-scroll-locked body .layout {
                                 <div class="case-copy">
                                     <p>Each armory has a separate local index. When a hosted model is selected, Heph sends that provider the active question, its instructions, and the retrieved passages needed for the answer. A local <code>llama.cpp</code> model keeps those prompts and passages on the machine.</p>
                                     <h3>Retrieval</h3>
-                                    <p>I did not implement BM25 or train an embedding model. My work is the pipeline around those components: document conversion, chunking, indexing, query changes, ranking, fallback behavior, and the source mapping used by citations.</p>
-                                    <p>Markdown is split by heading so its section structure survives indexing. Other text uses semantic chunking when the embedding backend is present and fixed-window chunking otherwise. Supported Office documents run through Docling in a worker with limits on time, memory, source size, and output size. PDF extraction can fall back to <code>pdftotext</code>, then to OCR with <code>pdftoppm</code> and <code>tesseract</code>. A failed document is isolated instead of stopping the full index.</p>
+                                    <p>The pipeline around BM25 is mine: document conversion, chunking, indexing, query changes, ranking, fallback behavior, and the source mapping used by citations.</p>
+                                    <p>Markdown is split by heading so its section structure survives indexing. Other text uses fixed-window chunking. Office and OpenDocument files are ZIP containers of XML, so <code>.docx</code>, <code>.pptx</code>, <code>.xlsx</code>, <code>.odt</code>, and <code>.ods</code> are read directly with the standard library and a hardened XML parser, under limits on member count, declared size, and output size, and with archive member paths rejected if they escape the container. PDF extraction uses <code>pdftotext</code> when it is installed and a bundled PDFium build otherwise. Formats that cannot be read faithfully are reported with the conversion target instead of being indexed as empty. A failed document is isolated instead of stopping the full index.</p>
                                     <p>Each chunk records its source path and character offsets. Markdown chunks also retain the nearest heading. Indexing hashes the source files and only processes files that changed. The index is stored as JSON. Indexing also rejects path traversal and refuses to follow symlinks out of the armory.</p>
                                     <p>A query passes through the available retrieval stages before any context reaches the model:</p>
                                 </div>
                             <div class="case-code">
                             <p class="case-code-label">Retrieval pipeline</p>
-                            <pre><code>query&#10;  <span class="case-code-arrow">→</span> normalize + expand&#10;  <span class="case-code-arrow">→</span> sparse retrieval&#10;  <span class="case-code-arrow">→</span> dense retrieval&#10;  <span class="case-code-arrow">→</span> rank fusion&#10;  <span class="case-code-arrow">→</span> feedback (optional)&#10;  <span class="case-code-arrow">→</span> rerank (optional)&#10;  <span class="case-code-arrow">→</span> source + quote + negation checks&#10;  <span class="case-code-arrow">→</span> top-k chunks</code></pre>
+                            <pre><code>query&#10;  <span class="case-code-arrow">→</span> normalize + expand&#10;  <span class="case-code-arrow">→</span> BM25&#10;  <span class="case-code-arrow">→</span> TF-IDF&#10;  <span class="case-code-arrow">→</span> rank fusion&#10;  <span class="case-code-arrow">→</span> feedback (optional)&#10;  <span class="case-code-arrow">→</span> source + quote + negation checks&#10;  <span class="case-code-arrow">→</span> top-k chunks</code></pre>
                             </div>
                                 <div class="case-copy">
-                                    <p>Sparse retrieval prefers <code>bm25s</code>. If that backend is unavailable, Heph can use its own BM25 path and then TF-IDF as a further fallback. Dense retrieval uses <code>all-MiniLM-L6-v2</code> with cosine similarity. The optional reranker is <code>cross-encoder/ms-marco-MiniLM-L-6-v2</code>. When sparse and dense results both exist, weighted reciprocal-rank fusion combines them.</p>
-                                    <p>Post-processing can expand a query with a small synonym set, apply pseudo-relevance feedback, favor quoted phrases, use source-path hints, and penalize results that conflict with negated terms. Every optional stage has a fallback because installations differ in available models and hardware.</p>
+                                    <p>Retrieval is lexical. BM25 and TF-IDF are both implemented against the standard library, and weighted reciprocal-rank fusion combines them. Earlier versions reached dense retrieval and cross-encoder reranking through <code>sentence-transformers</code>, which pulled Torch, CUDA, and a set of native document dependencies into every install. That cost was not proportionate for a tool meant to sit on a personal machine, so those stages were removed rather than made optional. A request for a stage that no longer exists fails with that reason instead of silently returning lexical results.</p>
+                                    <p>Post-processing can expand a query with a small synonym set, apply pseudo-relevance feedback, favor quoted phrases, use source-path hints, and penalize results that conflict with negated terms.</p>
                                     <h3>Evidence</h3>
                                     <p>Evidence is a typed object with an ID that lasts for one turn. After retrieval, Heph favors distinct sources and applies the context budget. It then assigns IDs in prompt order such as <code>E1</code> and <code>E2</code>. The model cites those IDs. A verification pass checks the reply against the exact evidence objects supplied for that turn.</p>
                                     <p>The verifier distinguishes valid citations from invented IDs. It also detects a grounded answer that omitted its citations and an answer produced without evidence. Opening a citation maps the stored character offsets back to line spans in the original file and shows the matching excerpt. Absolute paths and paths outside the armory are rejected during that lookup.</p>
@@ -2212,7 +2648,7 @@ html.homepage-scroll-locked body .layout {
                                 <div class="case-copy">
                                     <p>The <code>ai</code> runtime cannot import the application, retrieval harness, extension layer, or interface. Retrieval cannot import chat, agent, or document adapter code. Material handling cannot import retrieval. The interface cannot import application composition, and command modules cannot reach into TUI internals. CI runs the contracts.</p>
                                     <h3>Hosted APIs and local models</h3>
-                                    <p>Heph supports Pollinations, OpenRouter, OpenAI, DeepSeek, Z.AI, local <code>llama.cpp</code>, and custom OpenAI-compatible endpoints. These are available provider configurations, not services that run together. Hosted credentials are resolved when needed from provider references, environment variables, or keyring storage.</p>
+                                    <p>Heph supports Pollinations, OpenRouter, OpenAI, DeepSeek, Z.AI, local <code>llama.cpp</code>, and custom OpenAI-compatible endpoints. Each is a provider configuration you choose between. Hosted credentials are resolved when needed from provider references, environment variables, or keyring storage.</p>
                                     <p>The runtime normalizes streaming output and tool calls, records usage, shapes prompt-cache fields, retries eligible failures with exponential backoff, and opens a circuit breaker after repeated provider errors. If a stream fails before any output appears, it can be retried. If the connection fails after text is already visible, <code>StreamRecoveryError</code> carries that partial response so the interface can preserve it.</p>
                                     <p><code>heph local</code> searches curated GGUF releases, installs a chosen model, manages a loopback-only <code>llama.cpp</code> server, and runs a tool-call probe. A downloaded model appears in the model picker only after it returns a valid tool call with valid JSON arguments. Failed models remain available for later revalidation.</p>
                                     <h3>Terminal details</h3>
@@ -2255,20 +2691,20 @@ html.homepage-scroll-locked body .layout {
                             </div>
                                 <div class="case-copy">
                                     <h3>Next work</h3>
-                                    <p>Heph is still in beta. My next task is better retrieval on messy collections. I also want faster indexing and a shorter path from a citation to its source passage. The provider layer can change without altering the armory format or evidence IDs.</p>
-                                    <p>I use Heph for my own document work and continue to develop it in public.</p>
+                                    <p>Heph is in beta. My next task is better retrieval on messy collections. I also want faster indexing and a shorter path from a citation to its source passage. The provider layer can change without altering the armory format or evidence IDs.</p>
+                                    <p>I use Heph for my own document work every day.</p>
                                     <p><a class="external-link" href="https://github.com/gildrb/heph" target="_blank" rel="noopener noreferrer">GitHub repository</a></p>
                                 </div>
                         </article>
-                        <article class="all-case" data-date="2026-01-14" data-scope="Brand identity" data-slug="filen" data-title="Filen">
+                        <article class="all-case" data-date="2026-01-14" data-scope="Brand Identity" data-slug="filen" data-title="Filen">
                             <header class="case-intro">
                                 <h1 class="case-title">A self-initiated brand system for Filen</h1>
                             </header>
                                 <div class="case-copy">
-                                    <p>I have used Filen for years. The product worked well for me, but its logo never did. I often redesign things I use, so I gave myself a full identity brief: a mark, wordmark, app icon, pattern language, and campaign copy. Filen did not commission the work.</p>
+                                    <p>I have used <a class="external-link" href="https://filen.io/" target="_blank" rel="noopener noreferrer">Filen</a> for years. The product worked well for me, but its logo never did. I often redesign things I use, so I gave myself a full identity brief: a mark, wordmark, app icon, pattern language, and campaign copy. Filen did not commission the work.</p>
                                     <h3>Trying ideas</h3>
                                     <p>The first rounds were broad. I tried a disappearing block that could also read as an F, but the letter depended too much on explanation.</p>
-                                    <p>Next came a folder drawn in perspective. Its open edge suggested an F, although the shape still felt unresolved.</p>
+                                    <p>Next came a folder drawn in perspective, its open edge doing the work of an F.</p>
                                     <p>I also drew a heavier, architectural symbol based on stairs. Closing the staircase made it feel stable, but added too much detail for a small app icon. Another version used stacked blocks with the upper layer hidden. Neither survived the scale tests.</p>
                                 </div>
                             <div class="case-media">
@@ -2377,7 +2813,7 @@ html.homepage-scroll-locked body .layout {
                             </figure>
                             </div>
                                 <div class="case-copy">
-                                    <p>I shared the finished concept with the Filen community. The exercise also proved that the mark could carry a broader system. It survives in the app icon, while the panel treatment gives the campaign images a consistent surface.</p>
+                                    <p>I <a class="external-link" href="https://x.com/gilrdb/status/2021242178727452998" target="_blank" rel="noopener noreferrer">posted the concept</a> and shared it with the Filen community in February 2026. Forms only surface when the light crosses them.</p>
                                 </div>
                         </article>
                         <article class="all-case" data-date="2019-11-15" data-scope="Wordmark" data-slug="n0thing" data-title="n0thing">
@@ -2385,7 +2821,7 @@ html.homepage-scroll-locked body .layout {
                                 <h1 class="case-title">A wordmark for n0thing</h1>
                             </header>
                                 <div class="case-copy">
-                                    <p>In late 2019, former professional Counter-Strike player Jordan &quot;n0thing&quot; Gilbert was looking for a logo. VisionOfVIII, an artist whose work I admired and had helped with, recommended me. Jordan commissioned a custom wordmark and asked for something serious, but left the visual direction open.</p>
+                                    <p>In late 2019, former professional Counter-Strike player <a class="external-link" href="https://www.n0thing.gg/" target="_blank" rel="noopener noreferrer">Jordan &quot;n0thing&quot; Gilbert</a> was looking for a logo. VisionOfVIII, an artist I had worked with, recommended me. Jordan commissioned a custom wordmark and asked for something serious, but left the visual direction open.</p>
                                     <h3>Exploring directions</h3>
                                     <p>My first proposal was a pixel wordmark. Jordan liked it but wanted to compare it with a typewriter-like direction influenced by the 1980s. I used that feedback to draw a second wordmark.</p>
                                 </div>
@@ -2425,7 +2861,72 @@ html.homepage-scroll-locked body .layout {
                             </figure>
                             </div>
                                 <div class="case-copy">
-                                    <p>Jordan approved the mark and I delivered it in 2019. The route from the rejected typewriter study back to the first pixel idea produced a stronger final wordmark and a useful motion rule.</p>
+                                    <p>Jordan approved the mark and I delivered it in 2019. The typewriter study is what settled the argument for the pixel version.</p>
+                                </div>
+                        </article>
+                        <article class="all-case" data-date="2019-01-25" data-scope="Typeface" data-slug="curves" data-title="CURVES">
+                            <header class="case-intro">
+                                <h1 class="case-title">CURVES, a free display typeface</h1>
+                            </header>
+                                <div class="case-copy">
+                                    <p>In January 2019 I was drawing logos out of geometric shapes and wanted to know whether I could carry one construction rule across a whole character set instead of a single word. I gave myself a narrow brief: one weight, one case, and letters built from the same parts.</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <img alt="Geometric CURVES glyphs arranged as a black and white letterform study" decoding="async" fetchpriority="high" height="2093" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-curves-letterforms-720.webp" srcset="/images/optimized/gil-rodrigues-curves-letterforms-480.webp 480w, /images/optimized/gil-rodrigues-curves-letterforms-720.webp 720w, /images/optimized/gil-rodrigues-curves-letterforms-960.webp 960w, /images/optimized/gil-rodrigues-curves-letterforms-1280.webp 1280w, /images/optimized/gil-rodrigues-curves-letterforms-1600.webp 1600w" width="2973"/>
+                                <figcaption class="case-caption">CURVES display letterforms</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <h3>One rule for every letter</h3>
+                                    <p>Each glyph is assembled from flat stems and quarter turns drawn at a single radius. Where the rule leaves a gap, the gap stays. That is why the R breaks at the shoulder and the Q keeps an open corner instead of a tail. I drew the outlines in Illustrator and compiled the font with Fontself.</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <img alt="CURVES wordmark set in the geometric display typeface" decoding="async" height="850" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-curves-wordmark-720.webp" srcset="/images/optimized/gil-rodrigues-curves-wordmark-480.webp 480w, /images/optimized/gil-rodrigues-curves-wordmark-720.webp 720w, /images/optimized/gil-rodrigues-curves-wordmark-960.webp 960w, /images/optimized/gil-rodrigues-curves-wordmark-1280.webp 1280w, /images/optimized/gil-rodrigues-curves-wordmark-1600.webp 1600w" width="2973"/>
+                                <figcaption class="case-caption">CURVES wordmark</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <h3>Unicase by design</h3>
+                                    <p>The alphabet is unicase. Uppercase and lowercase both call the same drawing, so a headline holds one texture regardless of how it was typed. Whoever sets the type does not get to break the texture.</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <img alt="Full unicase CURVES alphabet showing repeated geometric letter construction" decoding="async" height="4010" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-curves-uppercase-720.webp" srcset="/images/optimized/gil-rodrigues-curves-uppercase-480.webp 480w, /images/optimized/gil-rodrigues-curves-uppercase-720.webp 720w, /images/optimized/gil-rodrigues-curves-uppercase-960.webp 960w, /images/optimized/gil-rodrigues-curves-uppercase-1280.webp 1280w, /images/optimized/gil-rodrigues-curves-uppercase-1600.webp 1600w" width="2973"/>
+                                <figcaption class="case-caption">Unicase alphabet</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <p>The numerals were the harder half. Digits carry more diagonal and more open counters than this alphabet wanted, so the 2 and the 7 use a diagonal the letters avoid, and the zero takes a slash to keep it apart from the O.</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <img alt="CURVES numerals with diagonal forms and a slashed zero" decoding="async" height="2000" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-curves-numerals-720.webp" srcset="/images/optimized/gil-rodrigues-curves-numerals-480.webp 480w, /images/optimized/gil-rodrigues-curves-numerals-720.webp 720w, /images/optimized/gil-rodrigues-curves-numerals-960.webp 960w, /images/optimized/gil-rodrigues-curves-numerals-1280.webp 1280w, /images/optimized/gil-rodrigues-curves-numerals-1600.webp 1600w" width="2973"/>
+                                <figcaption class="case-caption">Numerals</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <p>Punctuation, math signs, currency, and accented Latin bring the font to 96 glyphs, which is enough to set languages beyond English.</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <img alt="CURVES punctuation math signs currency symbols and accented characters" decoding="async" height="3100" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-curves-punctuation-720.webp" srcset="/images/optimized/gil-rodrigues-curves-punctuation-480.webp 480w, /images/optimized/gil-rodrigues-curves-punctuation-720.webp 720w, /images/optimized/gil-rodrigues-curves-punctuation-960.webp 960w, /images/optimized/gil-rodrigues-curves-punctuation-1280.webp 1280w, /images/optimized/gil-rodrigues-curves-punctuation-1600.webp 1600w" width="2973"/>
+                                <figcaption class="case-caption">Punctuation and symbols</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <h3>Release</h3>
+                                    <p>I released CURVES in early 2019 on <a class="external-link" href="https://www.dafont.com/curves.font" target="_blank" rel="noopener noreferrer">DaFont</a>, free for personal and commercial use, and posted the specimen on <a class="external-link" href="https://www.behance.net/gallery/75409663/CURVES-Free-Font" target="_blank" rel="noopener noreferrer">Behance</a>. As of August 2026 it has passed 23,000 downloads.</p>
+                                </div>
+                            <div class="case-media">
+                            <figure>
+                                <img alt="CURVES type specimen showing the display face in a large editorial setting" decoding="async" height="1583" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-curves-specimen-720.webp" srcset="/images/optimized/gil-rodrigues-curves-specimen-480.webp 480w, /images/optimized/gil-rodrigues-curves-specimen-720.webp 720w, /images/optimized/gil-rodrigues-curves-specimen-960.webp 960w, /images/optimized/gil-rodrigues-curves-specimen-1280.webp 1280w, /images/optimized/gil-rodrigues-curves-specimen-1600.webp 1600w" width="2973"/>
+                                <figcaption class="case-caption">Specimen setting</figcaption>
+                            </figure>
+                            </div>
+                                <div class="case-copy">
+                                    <p>The rule that holds a headline together closes the counters too far at text sizes. It is a display face and it is used as one: 23,000 downloads, seven years on.</p>
                                 </div>
                         </article>
                         <article class="all-case" data-date="2018-11-13" data-scope="Wordmark" data-slug="ml7" data-title="mL7">
@@ -2433,7 +2934,7 @@ html.homepage-scroll-locked body .layout {
                                 <h1 class="case-title">The mL7 logo, made in 2018</h1>
                             </header>
                                 <div class="case-copy">
-                                    <p>In 2018 I was playing competitive Overwatch and learning from players who were far better than me. One of them was Mihai &quot;mL7&quot; Lupascu. I made a logo for him as a thank-you, posted it, and expected nothing back. His manager contacted me, and the mark became mL7's channel identity. As of July 2026, his Twitch channel still uses the same mark in a different colorway.</p>
+                                    <p>In 2018 I was playing competitive Overwatch and learning from players who were far better than me. One of them was <a class="external-link" href="https://www.twitch.tv/ml7support" target="_blank" rel="noopener noreferrer">Mihai &quot;mL7&quot; Lupascu</a>. I made a logo for him as a thank-you and posted it. His manager contacted me, and the mark became mL7's channel identity. As of July 2026, his Twitch channel still uses the same mark in a different colorway.</p>
                                 </div>
                             <div class="case-media">
                             <figure>
@@ -2445,18 +2946,18 @@ html.homepage-scroll-locked body .layout {
                                     <h3>The work</h3>
                                     <p>The logo had to remain legible in small stream overlays. I drew a compact geometric <code>mL</code>, then passed a brush stroke through the seven to give the mark its direction. The original colorway used black lettering with an orange stroke. I adjusted the spacing and stroke angle until the logo worked as both a profile image and a wide channel graphic.</p>
                                     <h3>What it led to</h3>
-                                    <p>Mihai thanked me and insisted on paying for the work even though I had not asked. It was the first time a creator I followed treated my design as a commission. The mark then stayed with his channel for years, which mattered more to me than the initial response.</p>
+                                    <p>Mihai insisted on paying for work I had not billed for. It was the first time a creator I followed treated my design as a commission.</p>
                                 </div>
                         </article>
-                        <article class="all-case" data-date="2026-07-15" data-scope="Design engineering" data-slug="site" data-title="gildrb.com">
+                        <article class="all-case" data-date="2026-07-15" data-scope="Design Engineering" data-slug="site" data-title="gildrb.com">
                             <header class="case-intro">
                                 <h1 class="case-title">The site you are on is the case study</h1>
                             </header>
                                 <div class="case-copy">
-                                    <p>This page documents the portfolio itself. I started with an empty repository, wrote the design and build system, then prepared the static files for deployment. The repository contains both the authored source and the generated pages. Its verification script is there too.</p>
+                                    <p>I started with an empty repository and wrote the design system, the build script and the verification harness. Authored source and generated pages both live in the repo.</p>
                                     <h3>Built from source</h3>
                                     <p>Case-study prose lives in Markdown and shared page structure lives in HTML partials. A dependency-free Node script renders the Markdown, assembles the CSS and JavaScript needed by each route, inlines the structured data, and writes the static pages.</p>
-                                    <p>The pages do not depend on a client-side framework. Vercel Insights and Speed Insights are loaded separately for analytics; the portfolio remains functional if those scripts are unavailable.</p>
+                                    <p>The pages are static HTML, CSS and vanilla JavaScript. Vercel Insights and Speed Insights are loaded separately for analytics; the portfolio remains functional if those scripts are unavailable.</p>
                                 </div>
                             <div class="case-media">
                             <figure>
@@ -2505,7 +3006,7 @@ html.homepage-scroll-locked body .layout {
                                 <div class="case-copy">
                                     <h3>Verification</h3>
                                     <p>The verification scripts check the design tokens, responsive rules, content constraints, route order, asset references, and live crawler access. Missing images and files that are no longer referenced are both reported.</p>
-                                    <p>The same script rebuilds every page in memory and compares the result with the committed HTML. A source edit followed by a missed rebuild therefore fails verification instead of leaving stale output unnoticed.</p>
+                                    <p>The same script rebuilds every page in memory and compares the result with the committed HTML. A source edit without a rebuild fails verification.</p>
                                 </div>
                             <div class="case-media">
                             <figure>
@@ -2547,10 +3048,10 @@ html.homepage-scroll-locked body .layout {
                                     <h3>The Heph demo</h3>
                                     <p>The terminal on the <a class="internal-link" href="/heph">Heph</a> case study is a simulation written in vanilla JavaScript. It plays one retrieval sequence and opens cited evidence. The keyboard controls shown in the interface also work. Reduced-motion users receive the completed state without the timed playback.</p>
                                     <h3>Machine-readable routes</h3>
-                                    <p>The site publishes a Schema.org identity graph, WebFinger records, host metadata, an llms.txt reference, an RSS feed, a humans.txt file, and a sitemap. Its <code>Content-Signal</code> header permits search, AI input, and AI training. These files identify Gil Rodrigues and link back to the same canonical homepage.</p>
+                                    <p>The site publishes a Schema.org identity graph, WebFinger records, host metadata, an llms.txt reference, an RSS feed, a humans.txt file, and a sitemap. Its <code>Content-Signal</code> header permits search, AI input, and AI training.</p>
                                     <h3>Delivery and access</h3>
                                     <p>The functional CSS and JavaScript are inlined by route. Fonts are preloaded, and responsive image sets let the browser choose an appropriate file for the viewport. The HTML uses landmarks, live regions, visible keyboard focus, and reduced-motion handling.</p>
-                                    <p>I designed and wrote the portfolio along with its build and verification scripts. The page above is generated by the same system it describes.</p>
+                                    <p>The page above is generated by the same system it describes.</p>
                                 </div>
                         </article>
                     </div>
@@ -2615,8 +3116,6 @@ function updateHomepageDates() {
     portfolioSiteDate.setAttribute("datetime", isoDate);
 }
 
-window.addEventListener("load", updateHomepageDates);
-
 const mobileLinks = document.querySelector(
     ".case-page .case-mobile-links .links, body:not(.case-page) .links",
 );
@@ -2659,6 +3158,12 @@ function updateHomepageLock(preserveMobileState = false) {
     if (!body || body.classList.contains("case-page")) {
         root.classList.remove("homepage-scroll-locked");
         homepageLockState = "uninitialized";
+        return;
+    }
+
+    if (isMobile) {
+        root.classList.add("homepage-scroll-locked");
+        homepageLockState = "locked";
         return;
     }
 
@@ -2734,23 +3239,75 @@ function updateMobileLayout(preserveHomepageLock = false) {
     updateHomepageLock(preserveHomepageLock);
 }
 
-window.addEventListener("load", updateMobileLayout);
-window.addEventListener("resize", () => updateMobileLayout(true));
-
 const portfolioSection = document.querySelector(".portfolio-section");
 const portfolioSiteDate = document.querySelector("#portfolio-site-date");
+function updatePortfolioScrollIndicators() {
+    if (!portfolioSection) return;
+
+    portfolioSection.classList.toggle(
+        "has-scroll-top",
+        portfolioSection.scrollTop > 1,
+    );
+    portfolioSection.classList.toggle(
+        "has-scroll-bottom",
+        portfolioSection.scrollHeight -
+            portfolioSection.clientHeight -
+            portfolioSection.scrollTop >
+            1,
+    );
+}
+
+portfolioSection?.addEventListener(
+    "scroll",
+    updatePortfolioScrollIndicators,
+    { passive: true },
+);
 const mobileLayoutTargets = [
     portfolioSection,
     portfolioSiteDate,
     document.querySelector(".profile-summary"),
     mobileLinks,
 ].filter(Boolean);
+updatePortfolioScrollIndicators();
 if ("ResizeObserver" in window) {
     const updateOnResize = new ResizeObserver(() => {
         window.setTimeout(updateMobileLayout, 0);
+        window.setTimeout(updatePortfolioScrollIndicators, 0);
     });
     mobileLayoutTargets.forEach((target) => updateOnResize.observe(target));
 }
+
+async function prepareHomepageFirstPaint() {
+    const root = document.documentElement;
+    const body = document.body;
+
+    if (!body || body.classList.contains("case-page")) {
+        root.classList.remove("homepage-first-paint-pending");
+        return;
+    }
+
+    updateHomepageDates();
+    updateMobileLayout();
+
+    if (document.fonts?.load) {
+        try {
+            await document.fonts.load('400 16px "Inter"');
+        } catch {
+            // Continue with the metric-compatible system fallback.
+        }
+    }
+
+    updateHomepageDates();
+    updateMobileLayout();
+}
+
+window.homepageFirstPaintReady = prepareHomepageFirstPaint();
+
+window.addEventListener("load", () => {
+    updateHomepageDates();
+    updateMobileLayout();
+});
+window.addEventListener("resize", () => updateMobileLayout(true));
 
 if ("scrollRestoration" in window.history) {
     window.history.scrollRestoration = "manual";

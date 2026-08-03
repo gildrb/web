@@ -58,6 +58,15 @@
           "@id": "https://gildrb.com/ml7#case-study"
         },
         {
+          "@id": "https://gildrb.com/curves#case-study"
+        },
+        {
+          "@id": "https://gildrb.com/ben-davis#case-study"
+        },
+        {
+          "@id": "https://gildrb.com/t3#case-study"
+        },
+        {
           "@id": "https://gildrb.com/#heph"
         },
         {
@@ -173,7 +182,7 @@
           "Identity systems",
           "Artificial intelligence",
           "Data science",
-          "Brand identity",
+          "Brand Identity",
           "Identity design",
           "Type-led design",
           "Wordmarks",
@@ -189,7 +198,7 @@
         "Identity systems",
         "Artificial intelligence",
         "Data science",
-        "Brand identity",
+        "Brand Identity",
         "Identity design",
         "Type-led design",
         "Wordmarks",
@@ -274,7 +283,7 @@
         "Data science",
         "Software",
         "Interfaces",
-        "Brand identity",
+        "Brand Identity",
         "Typography",
         "Type",
         "Visual systems",
@@ -476,6 +485,81 @@
       "headline": "A compact channel identity designed for mL7 in 2018.",
       "description": "How Gil Rodrigues designed the mL7 logo for small stream overlays, profile images, and channel graphics.",
       "image": "https://gildrb.com/images/optimized/gil-rodrigues-ml7-logo-system-1600.webp",
+      "inLanguage": "en",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "author": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "publisher": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "isPartOf": {
+        "@id": "https://gildrb.com/#website"
+      }
+    },
+    {
+      "@type": [
+        "Article",
+        "CreativeWork"
+      ],
+      "@id": "https://gildrb.com/curves#case-study",
+      "url": "https://gildrb.com/curves",
+      "name": "CURVES free display typeface",
+      "headline": "A free display typeface built from one geometric construction rule.",
+      "description": "How Gil Rodrigues designed CURVES as a 96-glyph unicase display typeface, then released it for personal and commercial use.",
+      "image": "https://gildrb.com/images/optimized/gil-rodrigues-curves-letterforms-1280.webp",
+      "inLanguage": "en",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "author": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "publisher": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "isPartOf": {
+        "@id": "https://gildrb.com/#website"
+      }
+    },
+    {
+      "@type": [
+        "Article",
+        "CreativeWork"
+      ],
+      "@id": "https://gildrb.com/ben-davis#case-study",
+      "url": "https://gildrb.com/ben-davis",
+      "name": "Ben Davis brandmark redesign",
+      "headline": "An unsolicited db monogram redesign for developer Ben Davis.",
+      "description": "How Gil Rodrigues redrew Ben Davis's personal mark from mirrored letterforms and one central diagonal.",
+      "image": "https://gildrb.com/images/optimized/gil-rodrigues-ben-davis-construction-1280.webp",
+      "inLanguage": "en",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "author": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "publisher": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "isPartOf": {
+        "@id": "https://gildrb.com/#website"
+      }
+    },
+    {
+      "@type": [
+        "Article",
+        "CreativeWork"
+      ],
+      "@id": "https://gildrb.com/t3#case-study",
+      "url": "https://gildrb.com/t3",
+      "name": "T3 logomark exploration",
+      "headline": "A logomark system for T3.",
+      "description": "A self-initiated T3 logomark exploration developed across products, icons, and a family of rejected directions.",
+      "image": "https://gildrb.com/images/optimized/gil-rodrigues-t3-mark-1200.webp",
       "inLanguage": "en",
       "creator": {
         "@id": "https://gildrb.com/#person"

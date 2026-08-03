@@ -1,12 +1,12 @@
 # A self-initiated brand system for Filen
 
-I have used Filen for years. The product worked well for me, but its logo never did. I often redesign things I use, so I gave myself a full identity brief: a mark, wordmark, app icon, pattern language, and campaign copy. Filen did not commission the work.
+I have used [Filen](https://filen.io/) for years. The product worked well for me, but its logo never did. I often redesign things I use, so I gave myself a full identity brief: a mark, wordmark, app icon, pattern language, and campaign copy. Filen did not commission the work.
 
 ### Trying ideas
 
 The first rounds were broad. I tried a disappearing block that could also read as an F, but the letter depended too much on explanation.
 
-Next came a folder drawn in perspective. Its open edge suggested an F, although the shape still felt unresolved.
+Next came a folder drawn in perspective, its open edge doing the work of an F.
 
 I also drew a heavier, architectural symbol based on stairs. Closing the staircase made it feel stable, but added too much detail for a small app icon. Another version used stacked blocks with the upper layer hidden. Neither survived the scale tests.
 
@@ -53,4 +53,4 @@ The final lockup pairs the folder mark with a plain wordmark. The campaign copy 
 
 ![Monochrome brand system](media:filen-brand-system-board)
 
-I shared the finished concept with the Filen community. The exercise also proved that the mark could carry a broader system. It survives in the app icon, while the panel treatment gives the campaign images a consistent surface.
+I [posted the concept](https://x.com/gilrdb/status/2021242178727452998) and shared it with the Filen community in February 2026. Forms only surface when the light crosses them.

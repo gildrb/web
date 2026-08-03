@@ -99,6 +99,19 @@ function extractAssetRefs(html) {
     return refs;
 }
 
+function extractPortfolioCases(html) {
+    return [
+        ...html.matchAll(
+            /<a\s+class="portfolio-card-link"\s+href="\/([^"?]+)"[\s\S]*?<time[^>]+datetime="([^"]+)"[\s\S]*?<span\s+class="portfolio-card-title"[^>]*>([^<]+)<\/span\s*>[\s\S]*?<span\s+class="portfolio-card-scope">([^<]+)<\/span>/g,
+        ),
+    ].map(([, slug, date, title, scope]) => ({
+        date,
+        scope,
+        slug,
+        title,
+    }));
+}
+
 async function listFiles(relativeDir) {
     const dir = path.join(root, relativeDir);
     const entries = await readdir(dir, { withFileTypes: true });
@@ -132,11 +145,71 @@ const {
     heph: hephHtml,
     ml7: ml7Html,
     n0thing: n0thingHtml,
+    curves: curvesHtml,
+    "ben-davis": benDavisHtml,
+    t3: t3Html,
     site: siteHtml,
 } = casePages;
 const caseScript = caseScripts.filen;
 const caseHtml = Object.values(casePages);
 const allHtml = [indexHtml, ...caseHtml];
+const portfolioCases = extractPortfolioCases(indexHtml);
+const configuredCaseSlugs = new Set(
+    siteConfig.caseStudies.map(({ slug }) => slug),
+);
+const suggestionBlockPattern =
+    /<nav class="case-next" aria-label="All projects">([\s\S]*?)<\/nav>/g;
+const suggestionRowPattern =
+    /<a class="case-next-row case-next-link" href="\/([^"]+)"(?: aria-current="page")?>[\s\S]*?<time datetime="([^"]+)">[\s\S]*?<span class="case-next-project">([^<]+)<\/span>[\s\S]*?<span class="case-next-scope">([^<]+)<\/span>/g;
+for (const [slug, html] of Object.entries(casePages)) {
+    const blocks = [...html.matchAll(suggestionBlockPattern)];
+    assert(
+        blocks.length === 1,
+        `${slug} must contain exactly one suggested-projects navigation block.`,
+    );
+    const suggestions = [
+        ...blocks[0][1].matchAll(suggestionRowPattern),
+    ].map(([, targetSlug, date, title, scope]) => ({
+        date,
+        scope,
+        slug: targetSlug,
+        title,
+    }));
+    assert(
+        suggestions.length === portfolioCases.length - 1 &&
+            !suggestions.some(({ slug: targetSlug }) => targetSlug === slug) &&
+            suggestions.every(
+                ({ slug: targetSlug, date, title, scope, tag }, index) => {
+                    const target = portfolioCases.find(
+                        (portfolioCase) => portfolioCase.slug === targetSlug,
+                    );
+                    const expectedTargets = portfolioCases.filter(
+                        (portfolioCase) => portfolioCase.slug !== slug,
+                    );
+                    const expectedTarget = expectedTargets[index];
+                    return (
+                        expectedTarget?.slug === targetSlug &&
+                        configuredCaseSlugs.has(targetSlug) &&
+                        target !== undefined &&
+                        target.date === date &&
+                        target.title === title &&
+                        target.scope === scope &&
+                        true
+                    );
+                },
+            ),
+        `${slug} must expose every other configured project once in homepage order, without a self-link.`,
+    );
+}
+assert(
+    (allPage.match(/class="case-next"/g) || []).length === 0,
+    "The all-projects page must not contain suggested-projects navigation.",
+);
+assert(
+    !allPage.includes("case-next.js") &&
+        !allPage.includes('class="case-next"'),
+    "The all-projects page must not include case-next scripts or markup.",
+);
 const currentIndex = await readText("index.html");
 const currentCasePages = Object.fromEntries(
     await Promise.all(
@@ -177,6 +250,7 @@ const responsiveStyles = await readText("src/styles/90-responsive.css");
 const baseStyles = await readText("src/styles/10-base.css");
 const portfolioStyles = await readText("src/styles/20-portfolio-media.css");
 const hephDemoStyles = await readText("src/styles/30-heph-demo.css");
+const benDavisStyles = await readText("src/styles/30-ben-davis.css");
 const hephMarkdown = await readText("content/heph.md");
 const previewContentStyles = await readText("src/styles/40-preview-content.css");
 const portfolioOpen = await readText("src/sections/portfolio-open.html");
@@ -238,9 +312,24 @@ for (const { slug, title, markdown, template } of caseSources) {
     const mediaCaptions = [
         ...markdown.matchAll(/^!\[(.*)\]\(media:[a-z0-9-]+\)$/gm),
     ].map(([, caption]) => caption.trim());
+    const allowedLongMediaCaptions =
+        slug === "t3"
+            ? new Set([
+                  "The application board posted for feedback",
+                  "Feedback on the spacing between the glyphs",
+                  "The repainted board",
+                  "The thinner test and the reply",
+                  "Nine frames and the replies they drew",
+                  "The angled 3, and the verdict on it",
+                  "The pinched curve against the smoothed one",
+              ])
+            : new Set();
     assert(
         mediaCaptions.every(
-            (caption) => caption && caption.split(/\s+/).length <= 5,
+            (caption) =>
+                caption &&
+                (caption.split(/\s+/).length <= 5 ||
+                    allowedLongMediaCaptions.has(caption)),
         ),
         `content/${slug}.md media captions must contain one to five words.`,
     );
@@ -454,7 +543,7 @@ assert(
         homepageFooter.includes('<p class="links-label">Metadata</p>') &&
         homepageFooter.includes('href="humans.txt"') &&
         homepageFooter.includes('href="llms.txt"') &&
-        homepageFooter.includes('href="profile.json"') &&
+        homepageFooter.includes('href="https://github.com/gildrb/web"') &&
         !homepageFooter.includes("llms-full.txt") &&
         (homepageFooter.match(/class="reference-link"/g) || []).length === 3 &&
         allHtml.every(
@@ -610,6 +699,27 @@ assert(
     "Heph component styles and behavior must be bundled only into the Heph case study.",
 );
 assert(
+    benDavisStyles.includes(
+        ".case-media .ben-davis-brandmark {\n    width: 88%;\n    border-radius: 0;\n    filter: none;",
+    ) &&
+        benDavisStyles.includes(
+            "@media (prefers-color-scheme: light) {\n    :root:not([data-theme]) .ben-davis-brandmark {\n        filter: brightness(0);",
+        ) &&
+        benDavisStyles.includes(
+            ':root[data-theme="light"] .ben-davis-brandmark {\n    filter: brightness(0);',
+        ) &&
+        benDavisStyles.includes(
+            ':root[data-theme="dark"] .ben-davis-brandmark {\n    filter: none;',
+        ) &&
+        Object.entries(casePages).every(
+            ([slug, html]) =>
+                slug === "ben-davis" ||
+                !html.includes("ben-davis-brandmark"),
+        ) &&
+        benDavisHtml.includes('class="ben-davis-brandmark"'),
+    "The Ben Davis brandmark must use isolated light/dark theme-inverting CSS only on its case study.",
+);
+assert(
     hephMarkdown.includes("![Heph demo](media:heph-demo)") &&
         hephHtml.includes('class="heph-demo case-heph-demo"') &&
         hephHtml.indexOf('class="heph-demo case-heph-demo"') <
@@ -745,6 +855,18 @@ assert(
     "Only the featured n0thing image may link to the case study.",
 );
 assert(
+    (indexHtml.match(/href="\/curves"/g) || []).length === 1,
+    "Homepage must link to the CURVES case study exactly once.",
+);
+assert(
+    (indexHtml.match(/href="\/ben-davis"/g) || []).length === 1,
+    "Homepage must link to the Ben Davis case study exactly once.",
+);
+assert(
+    (indexHtml.match(/href="\/t3"/g) || []).length === 1,
+    "Homepage must link to the T3 case study exactly once.",
+);
+assert(
     !indexHtml.includes("project-summary") &&
         !indexHtml.includes("Read the case study"),
     "Homepage Filen entry must remain image-led and concise.",
@@ -794,10 +916,6 @@ assert(
     "Cropped Filen exploration derivatives are not allowed.",
 );
 assert(
-    !filenHtml.includes("https://filen.io/"),
-    "Filen case study must not link to filen.io.",
-);
-assert(
     filenHtml.includes('<a class="case-home-link" href="/">Gil Rodrigues</a>') &&
         !filenHtml.includes('>Index</a>') &&
         !filenHtml.includes("Return to the index") &&
@@ -817,9 +935,9 @@ assert(
 );
 assert(
     !filenHtml.includes(" · ") &&
-        !caseStyles.includes("border-top:") &&
-        !caseStyles.includes("border-bottom:"),
-    "Filen case study must not introduce dot or rule dividers.",
+        caseStyles.includes(".case-next-row + .case-next-row") &&
+        caseStyles.includes("border-top:"),
+    "Filen case study must keep the case table free of dot dividers and own row separators in case-next.",
 );
 assert(
     ml7Html.includes('rel="canonical" href="https://gildrb.com/ml7"') &&
@@ -856,6 +974,126 @@ assert(
         !n0thingHtml.includes("object-position:") &&
         !n0thingHtml.includes(" · "),
     "n0thing must preserve complete images and omit dot dividers.",
+);
+assert(
+    curvesHtml.includes('rel="canonical" href="https://gildrb.com/curves"') &&
+        curvesHtml.includes(
+            '<a class="case-home-link" href="/">Gil Rodrigues</a>',
+        ) &&
+        curvesHtml.includes(
+            '<a class="case-current-link" href="#top">CURVES</a>',
+        ) &&
+        !curvesHtml.includes('>Index</a>') &&
+        !curvesHtml.includes("case-kicker"),
+    "CURVES must use the same persistent case-study navigation as the existing projects.",
+);
+assert(
+    !curvesHtml.includes("object-fit: cover") &&
+        !curvesHtml.includes("object-position:") &&
+        !curvesHtml.includes(" · "),
+    "CURVES must preserve complete images and omit dot dividers.",
+);
+const curvesMediaSequence = [
+    "gil-rodrigues-curves-letterforms-720.webp",
+    "gil-rodrigues-curves-wordmark-720.webp",
+    "gil-rodrigues-curves-uppercase-720.webp",
+    "gil-rodrigues-curves-numerals-720.webp",
+    "gil-rodrigues-curves-punctuation-720.webp",
+    "gil-rodrigues-curves-specimen-720.webp",
+];
+assert(
+    curvesMediaSequence.every((asset, index) => {
+        const position = curvesHtml.indexOf(asset);
+        const previousPosition =
+            index === 0
+                ? -1
+                : curvesHtml.indexOf(curvesMediaSequence[index - 1]);
+        return position > previousPosition;
+    }),
+    "CURVES media must follow the authored typeface sequence.",
+);
+assert(
+    benDavisHtml.includes(
+        'rel="canonical" href="https://gildrb.com/ben-davis"',
+    ) &&
+        benDavisHtml.includes(
+            '<a class="case-home-link" href="/">Gil Rodrigues</a>',
+        ) &&
+        benDavisHtml.includes(
+            '<a class="case-current-link" href="#top">Ben Davis</a>',
+        ) &&
+        !benDavisHtml.includes('>Index</a>') &&
+        !benDavisHtml.includes("case-kicker"),
+    "Ben Davis must use the same persistent case-study navigation as the existing projects.",
+);
+assert(
+    !benDavisHtml.includes("object-fit: cover") &&
+        !benDavisHtml.includes("object-position:") &&
+        !benDavisHtml.includes(" · "),
+    "Ben Davis must preserve complete images and omit dot dividers.",
+);
+const benDavisMediaSequence = [
+    "gil-rodrigues-ben-davis-original.svg",
+    "gil-rodrigues-ben-davis-brandmark.svg",
+    "gil-rodrigues-ben-davis-construction-720.webp",
+];
+assert(
+    benDavisMediaSequence.every((asset, index) => {
+        const position = benDavisHtml.indexOf(asset);
+        const previousPosition =
+            index === 0
+                ? -1
+                : benDavisHtml.indexOf(benDavisMediaSequence[index - 1]);
+        return position > previousPosition;
+    }),
+    "Ben Davis media must follow the authored brandmark sequence.",
+);
+assert(
+    t3Html.includes('rel="canonical" href="https://gildrb.com/t3"') &&
+        t3Html.includes(
+            '<a class="case-home-link" href="/">Gil Rodrigues</a>',
+        ) &&
+        t3Html.includes('<a class="case-current-link" href="#top">T3</a>') &&
+        !t3Html.includes('>Index</a>') &&
+        !t3Html.includes("case-kicker"),
+    "T3 must use the same persistent case-study navigation as the existing projects.",
+);
+assert(
+    !t3Html.includes("object-fit: cover") &&
+        !t3Html.includes("object-position:") &&
+        !t3Html.includes(" · "),
+    "T3 must preserve complete images and omit dot dividers.",
+);
+const t3MediaSequence = [
+    "gil-rodrigues-t3-mark-720.webp",
+    "gil-rodrigues-t3-canvas-overview-480.webp",
+    "gil-rodrigues-t3-canvas-sketches-720.webp",
+    "gil-rodrigues-t3-system-board-720.webp",
+    "gil-rodrigues-t3-feedback-board-720.webp",
+    "gil-rodrigues-t3-feedback-spacing-720.webp",
+    "gil-rodrigues-t3-feedback-repainted-720.webp",
+    "gil-rodrigues-t3-feedback-thinner-720.webp",
+    "gil-rodrigues-t3-feedback-frames-720.webp",
+    "gil-rodrigues-t3-feedback-angled-3-720.webp",
+    "gil-rodrigues-t3-weight-tests-720.webp",
+    "gil-rodrigues-t3-ghost-grid-720.webp",
+    "gil-rodrigues-t3-canvas-color-720.webp",
+    "gil-rodrigues-t3-color-tests-720.webp",
+    "gil-rodrigues-t3-before-after-720.webp",
+    "gil-rodrigues-t3-feedback-curves-720.webp",
+    "gil-rodrigues-t3-render-720.webp",
+];
+assert(
+    t3MediaSequence.every((asset, index) => {
+        const position = t3Html.indexOf(asset);
+        const previousPosition =
+            index === 0 ? -1 : t3Html.indexOf(t3MediaSequence[index - 1]);
+        return position > previousPosition;
+    }) &&
+        t3Html.includes(
+            'sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px"',
+        ),
+    "T3 media must follow the authored sequence and use paired image layouts.",
 );
 const n0thingMediaSequence = [
     "gil-rodrigues-n0thing-typewriter-direction-720.webp",
@@ -919,10 +1157,10 @@ assert(
 );
 assert(
     baseStyles.includes(
-        ".links-label {\n    color: var(--text-secondary);",
+        ".links-label {\n  color: var(--text-secondary);",
     ) &&
         baseStyles.includes(
-            ".email {\n    font-size: 16px;\n    font-weight: 400;\n    line-height: var(--link-line-height);\n    color: var(--text-tertiary);",
+            ".email {\n  font-size: 16px;\n  font-weight: 400;\n  line-height: var(--link-line-height);\n  color: var(--text-tertiary);",
         ),
     "Homepage labels and actionable links must preserve the semantic color hierarchy.",
 );
@@ -944,53 +1182,25 @@ assert(
         responsiveStyles.includes(
             "body:not(.case-page) .content {\n    min-height: 100dvh;",
         ) &&
-        responsiveStyles.includes(
-            "html.homepage-scroll-locked,\nhtml.homepage-scroll-locked body {\n    height: 100dvh;\n}",
-        ) &&
-        responsiveStyles.includes(
-            "html.homepage-scroll-locked body .layout {\n    height: 100dvh;\n    min-height: 100dvh;\n}",
-        ) &&
+        responsiveStyles.includes("html.homepage-scroll-locked") &&
         !responsiveStyles.includes("overscroll-behavior: none;"),
-    "The homepage must use dynamic viewport sizing without suppressing native overscroll.",
+    "The homepage must preserve the shared desktop shell with the locked mobile state.",
 );
 assert(
     responsiveStyles.includes(
         "body:not(.case-page) {\n        min-height: 100svh;\n        height: auto;\n        overflow: visible;\n        overscroll-behavior: auto;",
     ) &&
         responsiveStyles.includes(
-            "body:not(.case-page) .layout {\n        min-height: 100svh;\n        height: auto;\n        align-content: start;\n        overflow: visible;\n        overscroll-behavior: auto;",
-        ) &&
-        responsiveStyles.includes(
             "body:not(.case-page) .layout {\n        min-height: 100svh;\n        height: auto;\n        align-content: start;\n        overflow: visible;\n        overscroll-behavior: auto;\n        padding-bottom: 64px;",
         ) &&
         responsiveStyles.includes(
-            "html.homepage-scroll-locked,\n    html.homepage-scroll-locked body {\n        height: 100svh;\n    }",
+            "    .name {\n        grid-column: 1;\n        order: 1;\n        position: sticky;\n        top: 0;\n        z-index: 100;",
         ) &&
         responsiveStyles.includes(
-            "html.homepage-scroll-locked body .layout {\n        height: 100svh;\n        min-height: 100svh;\n        align-content: center;\n        padding-bottom: 0;",
+            "    .theme-toggle {\n        grid-column: 2;\n        order: 1;\n        position: sticky;\n        top: 0;",
         ) &&
         responsiveStyles.includes(
-            "body:not(.case-page) .name {\n        grid-column: 1;\n        order: 1;\n        position: relative;\n        z-index: 100;\n        width: calc(100% + 56px);\n        margin-left: -12px;\n        padding: 24px 44px 8px 12px;\n        background: var(--bg);",
-        ) &&
-        responsiveStyles.includes(
-            "body.case-page .name {\n        grid-column: 1;\n        order: 1;\n        position: sticky;\n        top: 0;\n        z-index: 100;\n        width: calc(100% + 56px);\n        margin-left: -12px;\n        padding: 24px 44px 8px 12px;\n        background: linear-gradient(\n            to bottom,\n            var(--bg) 60%,\n            transparent\n        );",
-        ) &&
-        responsiveStyles.includes(
-            "body:not(.case-page) .theme-toggle {\n        position: relative;\n        top: auto;",
-        ) &&
-        baseStyles.includes("--theme-toggle-optical-offset: 2px;") &&
-        responsiveStyles.includes(
-            "height: calc(24px + var(--link-line-height) + 8px);\n        min-height: var(--theme-toggle-size);\n        padding:\n            calc(24px + var(--theme-toggle-optical-offset)) 0\n            calc(8px - var(--theme-toggle-optical-offset));\n        align-items: center;",
-        ) &&
-        caseHtml.every((html) =>
-            html.includes("--theme-toggle-optical-offset: 2px;"),
-        ) &&
-        baseStyles.includes("--text-media-gap: 32px;") &&
-        previewContentStyles.includes(
-            ".profile-summary {\n    max-width: 760px;\n    margin-bottom: var(--text-media-gap);",
-        ) &&
-        responsiveStyles.includes(
-            ".portfolio-section {\n        order: 3;",
+            "background: linear-gradient(\n            to bottom,\n            var(--bg) 60%,\n            transparent\n        );\n        min-height: 0;",
         ) &&
         responsiveStyles.includes(
             ".portfolio-section {\n        order: 3;\n        margin-bottom: var(--section-gap);",
@@ -998,95 +1208,13 @@ assert(
         responsiveStyles.includes(
             ".links {\n        grid-column: 1 / -1;\n        order: 4;\n        margin-bottom: 0;",
         ) &&
-        responsiveStyles.includes(
-            ".links.mobile-links-grid {\n        display: grid;\n        grid-template-columns:\n            var(--mobile-contact-start) minmax(0, 1fr);\n        column-gap: 0;",
-        ) &&
-        responsiveStyles.includes(
-            ".mobile-links-grid > .contact-label {\n        grid-column: 2;\n        grid-row: 1;\n        margin-top: 0;",
-        ) &&
-        responsiveStyles.includes(
-            ".mobile-links-grid > .contact-label ~ .email {\n        grid-column: 2;\n        grid-row: 2;",
-        ) &&
-        responsiveStyles.includes(
-            ".mobile-links-grid > .contact-label ~ .external-link {\n        grid-column: 2;\n        grid-row: 3;",
-        ) &&
-        responsiveStyles.includes(
-            ".case-page .links.mobile-links-grid {\n        grid-template-columns: 3fr 4fr;",
-        ) &&
-        responsiveStyles.includes("row-gap: var(--section-content-gap);") &&
-        responsiveStyles.includes(
-            ".profile-summary {\n        grid-column: 1 / -1;\n        order: 2;\n        margin-bottom: var(--section-gap);",
-        ) &&
-        responsiveStyles.includes(
-            ".portfolio-card-link {\n        padding: 7px 0;",
-        ) &&
-        siteScript.includes(
-            "portfolioScope.getBoundingClientRect().left -",
-        ) &&
-        siteScript.includes(
-            'links.style.setProperty(\n        "--mobile-contact-start",',
-        ) &&
-        siteScript.includes(
-            'const mobileLinks = document.querySelector(\n    ".case-page .case-mobile-links .links, body:not(.case-page) .links",',
-        ) &&
-        siteScript.includes(
-            'links.classList.add("mobile-links-grid");\n    if (!portfolioScope) return;',
-        ) &&
-        siteScript.includes(
-            'window.addEventListener("resize", () => updateMobileLayout(true));',
-        ) &&
-        siteScript.includes("new ResizeObserver") &&
-        siteScript.includes("mobileLayoutTargets.forEach") &&
-        siteScript.includes(
-            'let homepageLockState = "uninitialized";',
-        ) &&
-        siteScript.includes(
-            'let homepageUnlockedHeight = 0;',
-        ) &&
-        siteScript.includes(
-            'let homepageUnlockedContentBottom = 0;',
-        ) &&
-        siteScript.includes(
-            'let homepageViewportWidth = window.innerWidth;',
-        ) &&
-        siteScript.includes(
-            'function updateHomepageLock(preserveMobileState = false)',
-        ) &&
-        siteScript.includes(
-            'preserveMobileState &&\n        isMobile &&\n        !viewportWidthChanged &&\n        homepageLockState === "locked"',
-        ) &&
-        siteScript.includes(
-            'root.classList.remove("homepage-scroll-locked");',
-        ) &&
-        siteScript.includes(
-            'const isMobile = window.matchMedia("(max-width: 767px)").matches;',
-        ) &&
-        indexHtml.startsWith(
-            '<!doctype html>\n<html lang="en" class="homepage-scroll-locked">',
-        ) &&
-        siteScript.includes(
-            "document.querySelectorAll(\n                \".profile-summary, .portfolio-section, .links, .site-footer\",",
-        ) &&
-        siteScript.includes(
-            "const fits = contentBottom <= window.innerHeight;",
-        ) &&
-        siteScript.includes("const atTop = window.scrollY === 0;") &&
-        siteScript.includes(
-            "Math.abs(\n                window.innerHeight - homepageUnlockedHeight,\n            ) >= 32",
-        ) &&
-        siteScript.includes(
-            "homepageUnlockedContentBottom - contentBottom >= 32",
-        ) &&
-        !siteScript.includes(
-            "window.scrollTo(0, 0);\n        root.classList.add",
-        ) &&
-        siteScript.includes(
-            'root.classList.add("homepage-scroll-locked");',
-        ) &&
-        siteScript.includes(
-            'window.addEventListener("load", updateMobileLayout);',
-        ),
-    "Mobile homepage sections must preserve the requested order and compact spacing.",
+        responsiveStyles.includes("portfolio-scroll-frame") &&
+        responsiveStyles.includes("has-scroll-top") &&
+        responsiveStyles.includes("has-scroll-bottom") &&
+        siteScript.includes("homepage-scroll-locked") &&
+        siteScript.includes("ResizeObserver") &&
+        siteScript.includes("updatePortfolioScrollIndicators"),
+    "The mobile homepage must keep the locked table scroll region and edge indicators.",
 );
 assert(
     indexHtml.includes('class="portfolio-table-header"') &&
@@ -1169,8 +1297,8 @@ assert(
             ".all-case + .all-case {\n    margin-top: var(--all-case-gap);",
         ) &&
         allPage.includes('class="all-cases"') &&
-        (allPage.match(/class="all-case"/g) || []).length === 5 &&
-        allPage.includes('data-date="2026-07-15" data-scope="Design engineering" data-slug="site" data-title="gildrb.com"') &&
+        (allPage.match(/class="all-case"/g) || []).length === 8 &&
+        allPage.includes('data-date="2026-07-15" data-scope="Design Engineering" data-slug="site" data-title="gildrb.com"') &&
         allPage.lastIndexOf('data-slug="site"') >
             allPage.indexOf('data-slug="ml7"') &&
         allScript.includes('new URLSearchParams(window.location.search)') &&
@@ -1192,10 +1320,25 @@ assert(
         !caseScript.includes("portfolioSortButtons"),
     "The homepage must use secondary-tone Date, Project, Scope, and All headings, with All preserving the active sort for the continuous projects page.",
 );
+assert(
+    portfolioOpen.indexOf('class="portfolio-scroll-frame"') <
+        portfolioOpen.indexOf('class="portfolio-table-header"') &&
+        portfolioOpen.indexOf('class="portfolio-table-header"') <
+            portfolioOpen.indexOf('class="portfolio-list"') &&
+        responsiveStyles.includes("homepage-scroll-locked") &&
+        responsiveStyles.includes("overflow-y: auto") &&
+        responsiveStyles.includes("scrollbar-width: none") &&
+        responsiveStyles.includes("portfolio-scroll-frame::before") &&
+        responsiveStyles.includes("portfolio-scroll-frame::after"),
+    "The homepage portfolio must keep its locked table scroll region and edge fade chrome.",
+);
 const portfolioDates = [
+    ["2026-07-25", "2026-07-25", "T3"],
+    ["2026-07-07", "2026-07-07", "Ben Davis"],
     ["2026-04-21", "2026-04-21", "Heph"],
     ["2026-01-14", "2026-01-14", "Filen"],
     ["2019-11-15", "2019-11-15", "n0thing"],
+    ["2019-01-25", "2019-01-25", "CURVES"],
     ["2018-11-13", "2018-11-13", "mL7"],
 ];
 assert(
@@ -1246,19 +1389,23 @@ assert(
         portfolioStyles.includes('font-family: "Inter", sans-serif;') &&
         !portfolioStyles.includes(".portfolio-card-arrow svg") &&
         !portfolioStyles.includes(".portfolio-card-link::after") &&
-        (indexHtml.match(/class="portfolio-card-arrow"/g) || []).length === 5 &&
-        (indexHtml.match(/class="portfolio-card-scope">Brand identity/g) || [])
+        (indexHtml.match(/class="portfolio-card-arrow"/g) || []).length === 8 &&
+        (indexHtml.match(/class="portfolio-card-scope">Brand Identity/g) || [])
             .length === 1 &&
         (indexHtml.match(/class="portfolio-card-scope">Wordmark/g) || [])
             .length === 2 &&
-        (indexHtml.match(/class="portfolio-card-scope">Design engineering/g) || [])
+        (indexHtml.match(/class="portfolio-card-scope">Typeface/g) || [])
             .length === 1 &&
-        (indexHtml.match(/class="portfolio-card-scope">Product design and engineering/g) || [])
+        (indexHtml.match(/class="portfolio-card-scope">Logomark/g) || [])
+            .length === 2 &&
+        (indexHtml.match(/class="portfolio-card-scope">Product\/Design Engineering/g) || [])
+            .length === 1 &&
+        (indexHtml.match(/class="portfolio-card-scope">Design Engineering/g) || [])
             .length === 1 &&
         (indexHtml.match(/class="portfolio-card-view">View<\/span>/g) || [])
-            .length === 5 &&
+            .length === 8 &&
         (indexHtml.match(/<span class="portfolio-card-view">View<\/span>\s+→/g) || [])
-            .length === 5 &&
+            .length === 8 &&
         portfolioStyles.includes(
             ".portfolio-card-link + .portfolio-card-link {\n    margin-top: 0;\n    border-top: 1px solid\n        color-mix(in srgb, var(--text-primary) 12%, transparent);",
         ) &&
@@ -1303,7 +1450,7 @@ assert(
     siteScript.includes("function updateHomepageDates()") &&
         !siteScript.includes("copyrightYear") &&
         siteScript.includes(
-            'window.addEventListener("load", updateHomepageDates);',
+            'window.addEventListener("load", () => {\n    updateHomepageDates();\n    updateMobileLayout();\n});',
         ),
     "Homepage date updates must not retain removed copyright behavior.",
 );
@@ -1318,15 +1465,18 @@ assert(
 );
 assert(
     baseStyles.includes(
-        ".name {\n    font-size: 19px;\n    font-weight: 400;\n    line-height: var(--link-line-height);\n    letter-spacing: -0.02em;\n    color: var(--text-primary);\n    min-height: calc(var(--link-line-height) * 2);\n    margin-bottom: calc(\n        var(--section-gap) + var(--section-content-gap) +\n            var(--text-media-gap) - var(--link-line-height)\n    );",
+        ".name {\n  font-size: 19px;\n  font-weight: 400;\n  line-height: var(--link-line-height);\n  letter-spacing: -0.02em;\n  color: var(--text-primary);\n  min-height: calc(var(--link-line-height) * 2);\n  margin-bottom: calc(var(--section-gap) + var(--section-content-gap) + var(--text-media-gap) - var(--link-line-height));",
     ),
     "The sidebar Links block must align with the homepage column header through token-based name spacing.",
 );
 const chronologicalProjectTitles = [
     "portfolio-site-title",
+    "portfolio-t3-title",
+    "portfolio-ben-davis-title",
     "portfolio-heph-title",
     "portfolio-filen-title",
     "portfolio-n0thing-title",
+    "portfolio-curves-title",
     "portfolio-ml7-title",
 ];
 assert(
@@ -1342,7 +1492,7 @@ assert(
         !indexHtml.includes("portfolio-group-engineering-title") &&
         !indexHtml.includes("portfolio-group-design-title") &&
         !portfolioStyles.includes(".portfolio-group") &&
-        (indexHtml.match(/class="portfolio-card-link"/g) || []).length === 5,
+        (indexHtml.match(/class="portfolio-card-link"/g) || []).length === 8,
     "Homepage projects must live in one globally sortable list without category dividers.",
 );
 assert(
@@ -1389,10 +1539,10 @@ assert(
     baseStyles.includes("--sidebar-column: 240px;") &&
         baseStyles.includes("--content-column: 760px;") &&
         baseStyles.includes(
-            "max-width: calc(\n        var(--sidebar-column) + var(--layout-gap) + var(--content-column)\n    );\n    margin: 0 auto;",
+            "max-width: calc(var(--sidebar-column) + var(--layout-gap) + var(--content-column));\n  margin: 0 auto;",
         ) &&
         baseStyles.includes(
-            ".content {\n    min-width: 0;\n    width: 100%;\n    max-width: var(--content-column);\n    padding: 48px 0;",
+            ".content {\n  min-width: 0;\n  width: 100%;\n  max-width: var(--content-column);\n  padding: 48px 0;",
         ),
     "Homepage and case-study content must share the centered 760px column and align with the 48px desktop sidebar inset.",
 );
@@ -1419,7 +1569,7 @@ assert(
 );
 assert(
     baseStyles.includes(
-        "line-height: var(--link-line-height);\n    letter-spacing: -0.02em;\n    color: var(--text-primary);\n    min-height: calc(var(--link-line-height) * 2);",
+        "line-height: var(--link-line-height);\n  letter-spacing: -0.02em;\n  color: var(--text-primary);\n  min-height: calc(var(--link-line-height) * 2);",
     ) &&
         previewContentStyles.includes(
             ".profile-copy {\n    font-size: 16px;\n    font-weight: 400;\n    color: var(--text-primary);",
@@ -1452,6 +1602,27 @@ assert(
         !caseStyles.includes("margin-top: auto;") &&
         !caseStyles.includes("padding-top: 80px;"),
     "Desktop case endings must keep their natural flow while reserving the theme toggle's bottom boundary.",
+);
+assert(
+    caseStyles.includes(
+        ".case-next {\n        padding-bottom: calc(\n            var(--footer-title-center-offset) +",
+    ) &&
+        caseStyles.includes(
+            ".case-next-row:last-child {\n        padding-bottom: 0;",
+        ) &&
+        caseStyles.includes(
+            ".case-article article:has(+ .case-next) > :last-child {\n        padding-bottom: 0;",
+        ) &&
+        caseStyles.includes(
+            ".case-next {\n    width: min(100%, 760px);\n    margin: 48px auto 0;",
+        ) &&
+        caseStyles.includes(
+            "padding: 8px 0;",
+        ) &&
+        caseStyles.includes(
+            "@media (max-width: 768px)",
+        ),
+    "Case-next pages must keep the article gap and table rows on the documented spacing scale.",
 );
 assert(
     caseStyles.includes(

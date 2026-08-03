@@ -14,8 +14,11 @@ This file is generated from the same authored Markdown sources as the website. I
 - [Homepage](https://gildrb.com/index.html.md)
 - [Filen](https://gildrb.com/filen) ([Markdown source](https://gildrb.com/content/filen.md))
 - [Heph](https://gildrb.com/heph) ([Markdown source](https://gildrb.com/content/heph.md))
+- [Ben Davis](https://gildrb.com/ben-davis) ([Markdown source](https://gildrb.com/content/ben-davis.md))
+- [T3](https://gildrb.com/t3) ([Markdown source](https://gildrb.com/content/t3.md))
 - [mL7](https://gildrb.com/ml7) ([Markdown source](https://gildrb.com/content/ml7.md))
 - [n0thing](https://gildrb.com/n0thing) ([Markdown source](https://gildrb.com/content/n0thing.md))
+- [CURVES](https://gildrb.com/curves) ([Markdown source](https://gildrb.com/content/curves.md))
 - [gildrb.com](https://gildrb.com/site) ([Markdown source](https://gildrb.com/content/site.md))
 
 ---
@@ -66,21 +69,33 @@ Brand designer based in Germany, building identity systems for software.
 
 ## Portfolio
 
-#### gildrb.com (Design engineering)
+#### gildrb.com (Product/Design Engineering)
 
 [gildrb.com](https://gildrb.com/site) documents how the portfolio is built and verified as a static, hand-authored site.
+
+#### T3 (Logomark)
+
+[T3 logomark exploration](https://gildrb.com/t3) documents a self-initiated system developed across products, icons, and a family of rejected directions.
+
+#### Ben Davis (Logomark)
+
+[Ben Davis brandmark](https://gildrb.com/ben-davis) documents an unsolicited db monogram redesign built from mirrored letterforms and one central diagonal.
 
 #### Heph (Product design & engineering)
 
 [Heph local document agent](https://gildrb.com/heph) documents how bounded armories, explicit indexing, cited answers, and `/evidence` keep local document work inspectable. The source repository is linked inside the article.
 
-#### Filen (Brand identity)
+#### Filen (Brand Identity)
 
 [Filen identity system](https://gildrb.com/filen) documents a self-initiated identity concept developed from rejected marks into an app icon and privacy-focused campaign system.
 
 #### n0thing (Wordmark)
 
 [n0thing wordmark](https://gildrb.com/n0thing) documents how a rejected typewriter study led back to the final pixel wordmark, delivery files, and animated cursor.
+
+#### CURVES (Typeface)
+
+[CURVES display typeface](https://gildrb.com/curves) documents a free 96-glyph unicase display face built from one geometric construction rule.
 
 #### mL7 (Wordmark)
 
@@ -117,13 +132,13 @@ Markdown source: https://gildrb.com/content/filen.md
 
 # A self-initiated brand system for Filen
 
-I have used Filen for years. The product worked well for me, but its logo never did. I often redesign things I use, so I gave myself a full identity brief: a mark, wordmark, app icon, pattern language, and campaign copy. Filen did not commission the work.
+I have used [Filen](https://filen.io/) for years. The product worked well for me, but its logo never did. I often redesign things I use, so I gave myself a full identity brief: a mark, wordmark, app icon, pattern language, and campaign copy. Filen did not commission the work.
 
 ### Trying ideas
 
 The first rounds were broad. I tried a disappearing block that could also read as an F, but the letter depended too much on explanation.
 
-Next came a folder drawn in perspective. Its open edge suggested an F, although the shape still felt unresolved.
+Next came a folder drawn in perspective, its open edge doing the work of an F.
 
 I also drew a heavier, architectural symbol based on stairs. Closing the staircase made it feel stable, but added too much detail for a small app icon. Another version used stacked blocks with the upper layer hidden. Neither survived the scale tests.
 
@@ -170,7 +185,7 @@ The final lockup pairs the folder mark with a plain wordmark. The campaign copy 
 
 ![Monochrome brand system](media:filen-brand-system-board)
 
-I shared the finished concept with the Filen community. The exercise also proved that the mark could carry a broader system. It survives in the app icon, while the panel treatment gives the campaign images a consistent surface.
+I [posted the concept](https://x.com/gilrdb/status/2021242178727452998) and shared it with the Filen community in February 2026. Forms only surface when the light crosses them.
 
 ---
 
@@ -191,7 +206,7 @@ The demo shows the actual interaction model. The active armory, selected model, 
 
 ![Heph in use](media:heph-interface)
 
-Heph requires Python 3.13 and is managed as a five-package `uv` workspace. Textual and Rich provide the terminal foundation. Retrieval uses `bm25s`, `sentence-transformers`, and scikit-learn when those backends are available. Docling handles supported document conversion, while credentials can be stored through the operating system keyring.
+Heph requires Python 3.13 and is managed as a five-package `uv` workspace. Textual and Rich provide the terminal foundation. There is one install and no optional extras: retrieval is lexical, document conversion is written against the file formats directly, and credentials can be stored through the operating system keyring. The full install is 43 packages and about 46 MB, with no machine-learning runtime, no CUDA, and no model downloads. A local `llama.cpp` model runs through a managed binary rather than a Python ML stack, so choosing local inference does not change the dependency graph.
 
 ### Armories
 
@@ -219,9 +234,9 @@ Each armory has a separate local index. When a hosted model is selected, Heph se
 
 ### Retrieval
 
-I did not implement BM25 or train an embedding model. My work is the pipeline around those components: document conversion, chunking, indexing, query changes, ranking, fallback behavior, and the source mapping used by citations.
+The pipeline around BM25 is mine: document conversion, chunking, indexing, query changes, ranking, fallback behavior, and the source mapping used by citations.
 
-Markdown is split by heading so its section structure survives indexing. Other text uses semantic chunking when the embedding backend is present and fixed-window chunking otherwise. Supported Office documents run through Docling in a worker with limits on time, memory, source size, and output size. PDF extraction can fall back to `pdftotext`, then to OCR with `pdftoppm` and `tesseract`. A failed document is isolated instead of stopping the full index.
+Markdown is split by heading so its section structure survives indexing. Other text uses fixed-window chunking. Office and OpenDocument files are ZIP containers of XML, so `.docx`, `.pptx`, `.xlsx`, `.odt`, and `.ods` are read directly with the standard library and a hardened XML parser, under limits on member count, declared size, and output size, and with archive member paths rejected if they escape the container. PDF extraction uses `pdftotext` when it is installed and a bundled PDFium build otherwise. Formats that cannot be read faithfully are reported with the conversion target instead of being indexed as empty. A failed document is isolated instead of stopping the full index.
 
 Each chunk records its source path and character offsets. Markdown chunks also retain the nearest heading. Indexing hashes the source files and only processes files that changed. The index is stored as JSON. Indexing also rejects path traversal and refuses to follow symlinks out of the armory.
 
@@ -230,18 +245,17 @@ A query passes through the available retrieval stages before any context reaches
 ```text title="Retrieval pipeline"
 query
   → normalize + expand
-  → sparse retrieval
-  → dense retrieval
+  → BM25
+  → TF-IDF
   → rank fusion
   → feedback (optional)
-  → rerank (optional)
   → source + quote + negation checks
   → top-k chunks
 ```
 
-Sparse retrieval prefers `bm25s`. If that backend is unavailable, Heph can use its own BM25 path and then TF-IDF as a further fallback. Dense retrieval uses `all-MiniLM-L6-v2` with cosine similarity. The optional reranker is `cross-encoder/ms-marco-MiniLM-L-6-v2`. When sparse and dense results both exist, weighted reciprocal-rank fusion combines them.
+Retrieval is lexical. BM25 and TF-IDF are both implemented against the standard library, and weighted reciprocal-rank fusion combines them. Earlier versions reached dense retrieval and cross-encoder reranking through `sentence-transformers`, which pulled Torch, CUDA, and a set of native document dependencies into every install. That cost was not proportionate for a tool meant to sit on a personal machine, so those stages were removed rather than made optional. A request for a stage that no longer exists fails with that reason instead of silently returning lexical results.
 
-Post-processing can expand a query with a small synonym set, apply pseudo-relevance feedback, favor quoted phrases, use source-path hints, and penalize results that conflict with negated terms. Every optional stage has a fallback because installations differ in available models and hardware.
+Post-processing can expand a query with a small synonym set, apply pseudo-relevance feedback, favor quoted phrases, use source-path hints, and penalize results that conflict with negated terms.
 
 ### Evidence
 
@@ -275,7 +289,7 @@ The `ai` runtime cannot import the application, retrieval harness, extension lay
 
 ### Hosted APIs and local models
 
-Heph supports Pollinations, OpenRouter, OpenAI, DeepSeek, Z.AI, local `llama.cpp`, and custom OpenAI-compatible endpoints. These are available provider configurations, not services that run together. Hosted credentials are resolved when needed from provider references, environment variables, or keyring storage.
+Heph supports Pollinations, OpenRouter, OpenAI, DeepSeek, Z.AI, local `llama.cpp`, and custom OpenAI-compatible endpoints. Each is a provider configuration you choose between. Hosted credentials are resolved when needed from provider references, environment variables, or keyring storage.
 
 The runtime normalizes streaming output and tool calls, records usage, shapes prompt-cache fields, retries eligible failures with exponential backoff, and opens a circuit breaker after repeated provider errors. If a stream fails before any output appears, it can be retried. If the connection fails after text is already visible, `StreamRecoveryError` carries that partial response so the interface can preserve it.
 
@@ -319,11 +333,116 @@ Those drawings produced the current Heph lockup.
 
 ### Next work
 
-Heph is still in beta. My next task is better retrieval on messy collections. I also want faster indexing and a shorter path from a citation to its source passage. The provider layer can change without altering the armory format or evidence IDs.
+Heph is in beta. My next task is better retrieval on messy collections. I also want faster indexing and a shorter path from a citation to its source passage. The provider layer can change without altering the armory format or evidence IDs.
 
-I use Heph for my own document work and continue to develop it in public.
+I use Heph for my own document work every day.
 
 [GitHub repository](https://github.com/gildrb/heph)
+
+---
+
+## Case Study: Ben Davis
+
+Canonical page: https://gildrb.com/ben-davis
+Markdown source: https://gildrb.com/content/ben-davis.md
+
+# A redesigned mark for Ben Davis
+
+Ben Davis builds software in San Francisco and co-hosts the Nerd Snipe podcast. In July 2026 I redrew his personal mark for my own practice, posted it on [X](https://x.com/gilrdb/status/2074468837781639301), and sent it to him.
+
+### Two letters, one figure
+
+The mark on [davis7.sh](https://www.davis7.sh/) already used the same two letters. It sets a slab-sided d against a b built from a full circle, so the two halves never agree on a weight or a curve.
+
+![The previous davis7.sh mark](media:ben-davis-original)
+
+A d and a b are mirror images, so the pair already wants to be symmetrical. I kept that symmetry in the bowls and broke it once. A single diagonal runs through the middle of the mark, carries the stem of the d down into the bowl of the b, and leaves both letters with a sheared terminal. At a glance it is a loop, and the initials arrive a moment later.
+
+![The redesigned mark](media:ben-davis-brandmark)
+
+Stems and bowls hold one weight and one corner radius, so the mark keeps its rhythm when it shrinks. The whole thing is one path with few enough anchor points to redraw by hand, which is what the point view on the left shows.
+
+![Construction points and final mark](media:ben-davis-construction)
+
+Ben replied to the post, then messaged me and we talked it through. The mark is his to use.
+
+---
+
+## Case Study: T3
+
+Canonical page: https://gildrb.com/t3
+Markdown source: https://gildrb.com/content/t3.md
+
+# A logomark system for T3
+
+T3 ships more than one product, so the mark had to hold as [`T3.chat`](https://t3.chat/), as [`T3.code`](https://t3.codes/), and on its own in a favicon or an app grid. Nobody commissioned it. I drew it between March and May 2026 and posted the versions as they came, first in the T3 Discord and then as a [thread on X](https://x.com/gilrdb/status/2080990301208952994). The community, [@r_marked](https://x.com/r_marked), and [@theo](https://x.com/theo) told me which ones were working.
+
+![The T3 logomark](media:t3-mark)
+
+### Hundreds of versions, in public
+
+There are hundreds of drawings behind this mark. Most went up the day I drew them. Most are wrong. Drawing the wrong shape is how I find the right one, and doing that in a channel full of people means someone tells me within the hour.
+
+![The exploration canvas](media:t3-canvas-overview)
+
+The T and the 3 want to be one figure instead of two characters standing next to each other. The crossbar of the T carries into the 3, so the pair shares a spine. Finding that meant testing how far the 3 could open, how much the terminals could shear, and how much of the T could go missing before the mark stopped reading as T3.
+
+![Sketch passes on the canvas](media:t3-canvas-sketches)
+### Feedback in the open
+
+The first thing I posted was the system board. A mark that ships across a family has to be drawn where it gets used, so I built the cases out: the two logotypes, the iOS icon on its grid, the favicon ladder down to sixteen pixels, and the lockup on its clear-space frame. The angular version below is the one the server started calling the meat grinder.
+
+![Logotypes, icons, favicons, and lockup](media:t3-system-board)
+
+On 19 March 2026 I posted the application board in the T3 Discord and asked for thoughts.
+
+![The application board posted for feedback](media:t3-feedback-board)
+
+markr came back with the note that set up the next two months: "It still feels like there is a bit of excess space between the glyphs, I can't quite put my finger on why though." I asked whether he meant the mark or the type. The mark, he said, the t and the 3.
+
+![Feedback on the spacing between the glyphs](media:t3-feedback-spacing)
+
+A week later I brought the mark back heavier, on a brighter palette. markr: "Feels very heavy now, which compared to the rest of the products, feels out of place. I do like the idea with the sloping 3 though to get rid of that bug dead space." Someone else said it reminded them of a racing car logo.
+
+![The repainted board](media:t3-feedback-repainted)
+
+I posted a thinner version the same evening and asked whether that killed the racing car. It moved the problem instead of solving it: pushing the 3 away reintroduced the gap, and not connecting the two made the mark look heavily unproportional. markr relayed what Theo had said about the iteration: not sold on the weights, or on the shape of the 3.
+
+![The thinner test and the reply](media:t3-feedback-thinner)
+
+By 31 March I was posting frames nine at a time. One reply read the fourth and the last as Ws, which is what happens when the crossbar shears too far. markr thought the direction was closer to right, since Theo had not liked the angles in the old logo, so the fix for one problem kept reopening another. "Mixed feedback on lots of them makes me go into all kinds of directions," I wrote. markr: "design by committee".
+
+![Nine frames and the replies they drew](media:t3-feedback-frames)
+
+On 5 May the angled 3 got its verdict, secondhand: "I also like the angled 3, but Theo didn't 😭"
+
+![The angled 3, and the verdict on it](media:t3-feedback-angled-3)
+
+Some passes went angular and mechanical, with the bowl of the 3 squared off into facets.
+
+![Weight and angle tests](media:t3-weight-tests)
+![Ghosted comparison grid](media:t3-ghost-grid)
+
+### Color came last
+
+Pink belongs to T3, but the mark had to survive without it. Every candidate was judged in white on black first and only then given the palette.
+
+![Color passes on the canvas](media:t3-canvas-color)
+![Colorway tests](media:t3-color-tests)
+
+### Refining the drawing
+
+The last pass is invisible at a glance. I thinned the joint between the crossbar and the bowl, pulled the bowl tighter, and squared the terminals so the mark keeps its rhythm at favicon size.
+
+![Before and after refinement](media:t3-before-after)
+
+On 13 May I posted the two curves side by side. markr: "I feel insane but those changes made a difference to my perception...."
+
+![The pinched curve against the smoothed one](media:t3-feedback-curves)
+
+![The mark rendered in light](media:t3-render)
+
+T3 has not adopted any of this. Every version is still public.
 
 ---
 
@@ -334,7 +453,7 @@ Markdown source: https://gildrb.com/content/ml7.md
 
 # The mL7 logo, made in 2018
 
-In 2018 I was playing competitive Overwatch and learning from players who were far better than me. One of them was Mihai "mL7" Lupascu. I made a logo for him as a thank-you, posted it, and expected nothing back. His manager contacted me, and the mark became mL7's channel identity. As of July 2026, his Twitch channel still uses the same mark in a different colorway.
+In 2018 I was playing competitive Overwatch and learning from players who were far better than me. One of them was [Mihai "mL7" Lupascu](https://www.twitch.tv/ml7support). I made a logo for him as a thank-you and posted it. His manager contacted me, and the mark became mL7's channel identity. As of July 2026, his Twitch channel still uses the same mark in a different colorway.
 
 ![mL7 logo system](media:ml7-logo-system)
 
@@ -344,7 +463,7 @@ The logo had to remain legible in small stream overlays. I drew a compact geomet
 
 ### What it led to
 
-Mihai thanked me and insisted on paying for the work even though I had not asked. It was the first time a creator I followed treated my design as a commission. The mark then stayed with his channel for years, which mattered more to me than the initial response.
+Mihai insisted on paying for work I had not billed for. It was the first time a creator I followed treated my design as a commission.
 
 ---
 
@@ -355,7 +474,7 @@ Markdown source: https://gildrb.com/content/n0thing.md
 
 # A wordmark for n0thing
 
-In late 2019, former professional Counter-Strike player Jordan "n0thing" Gilbert was looking for a logo. VisionOfVIII, an artist whose work I admired and had helped with, recommended me. Jordan commissioned a custom wordmark and asked for something serious, but left the visual direction open.
+In late 2019, former professional Counter-Strike player [Jordan "n0thing" Gilbert](https://www.n0thing.gg/) was looking for a logo. VisionOfVIII, an artist I had worked with, recommended me. Jordan commissioned a custom wordmark and asked for something serious, but left the visual direction open.
 
 ### Exploring directions
 
@@ -379,7 +498,48 @@ I finished the identity by animating the trailing underscore. The movement is li
 
 ![Final wordmark in motion](media:n0thing-wordmark-animation)
 
-Jordan approved the mark and I delivered it in 2019. The route from the rejected typewriter study back to the first pixel idea produced a stronger final wordmark and a useful motion rule.
+Jordan approved the mark and I delivered it in 2019. The typewriter study is what settled the argument for the pixel version.
+
+---
+
+## Case Study: CURVES
+
+Canonical page: https://gildrb.com/curves
+Markdown source: https://gildrb.com/content/curves.md
+
+# CURVES, a free display typeface
+
+In January 2019 I was drawing logos out of geometric shapes and wanted to know whether I could carry one construction rule across a whole character set instead of a single word. I gave myself a narrow brief: one weight, one case, and letters built from the same parts.
+
+![CURVES display letterforms](media:curves-letterforms)
+
+### One rule for every letter
+
+Each glyph is assembled from flat stems and quarter turns drawn at a single radius. Where the rule leaves a gap, the gap stays. That is why the R breaks at the shoulder and the Q keeps an open corner instead of a tail. I drew the outlines in Illustrator and compiled the font with Fontself.
+
+![CURVES wordmark](media:curves-wordmark)
+
+### Unicase by design
+
+The alphabet is unicase. Uppercase and lowercase both call the same drawing, so a headline holds one texture regardless of how it was typed. Whoever sets the type does not get to break the texture.
+
+![Unicase alphabet](media:curves-uppercase)
+
+The numerals were the harder half. Digits carry more diagonal and more open counters than this alphabet wanted, so the 2 and the 7 use a diagonal the letters avoid, and the zero takes a slash to keep it apart from the O.
+
+![Numerals](media:curves-numerals)
+
+Punctuation, math signs, currency, and accented Latin bring the font to 96 glyphs, which is enough to set languages beyond English.
+
+![Punctuation and symbols](media:curves-punctuation)
+
+### Release
+
+I released CURVES in early 2019 on [DaFont](https://www.dafont.com/curves.font), free for personal and commercial use, and posted the specimen on [Behance](https://www.behance.net/gallery/75409663/CURVES-Free-Font). As of August 2026 it has passed 23,000 downloads.
+
+![Specimen setting](media:curves-specimen)
+
+The rule that holds a headline together closes the counters too far at text sizes. It is a display face and it is used as one: 23,000 downloads, seven years on.
 
 ---
 
@@ -390,13 +550,13 @@ Markdown source: https://gildrb.com/content/site.md
 
 # The site you are on is the case study
 
-This page documents the portfolio itself. I started with an empty repository, wrote the design and build system, then prepared the static files for deployment. The repository contains both the authored source and the generated pages. Its verification script is there too.
+I started with an empty repository and wrote the design system, the build script and the verification harness. Authored source and generated pages both live in the repo.
 
 ### Built from source
 
 Case-study prose lives in Markdown and shared page structure lives in HTML partials. A dependency-free Node script renders the Markdown, assembles the CSS and JavaScript needed by each route, inlines the structured data, and writes the static pages.
 
-The pages do not depend on a client-side framework. Vercel Insights and Speed Insights are loaded separately for analytics; the portfolio remains functional if those scripts are unavailable.
+The pages are static HTML, CSS and vanilla JavaScript. Vercel Insights and Speed Insights are loaded separately for analytics; the portfolio remains functional if those scripts are unavailable.
 
 ![Build pipeline](media:site-build-pipeline)
 
@@ -435,7 +595,7 @@ Links and controls use the gray text tokens at rest and move to the primary text
 
 The verification scripts check the design tokens, responsive rules, content constraints, route order, asset references, and live crawler access. Missing images and files that are no longer referenced are both reported.
 
-The same script rebuilds every page in memory and compares the result with the committed HTML. A source edit followed by a missed rebuild therefore fails verification instead of leaving stale output unnoticed.
+The same script rebuilds every page in memory and compares the result with the committed HTML. A source edit without a rebuild fails verification.
 
 ![Verification harness](media:site-verify-harness)
 
@@ -445,10 +605,10 @@ The terminal on the [Heph](/heph) case study is a simulation written in vanilla 
 
 ### Machine-readable routes
 
-The site publishes a Schema.org identity graph, WebFinger records, host metadata, an llms.txt reference, an RSS feed, a humans.txt file, and a sitemap. Its `Content-Signal` header permits search, AI input, and AI training. These files identify Gil Rodrigues and link back to the same canonical homepage.
+The site publishes a Schema.org identity graph, WebFinger records, host metadata, an llms.txt reference, an RSS feed, a humans.txt file, and a sitemap. Its `Content-Signal` header permits search, AI input, and AI training.
 
 ### Delivery and access
 
 The functional CSS and JavaScript are inlined by route. Fonts are preloaded, and responsive image sets let the browser choose an appropriate file for the viewport. The HTML uses landmarks, live regions, visible keyboard focus, and reduced-motion handling.
 
-I designed and wrote the portfolio along with its build and verification scripts. The page above is generated by the same system it describes.
+The page above is generated by the same system it describes.

@@ -44,8 +44,8 @@
             crossorigin
         />
         <style>
-@font-face{font-family:"Inter";font-style:normal;font-weight:400 600;font-display:swap;src:url("/fonts/inter-variable-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+21A9,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:"Geist Mono";font-style:normal;font-weight:400 600;font-display:swap;src:url("/fonts/geist-mono-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Inter";font-style:normal;font-weight:400 600;font-display:optional;src:url("/fonts/inter-variable-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+21A9,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Geist Mono";font-style:normal;font-weight:400 600;font-display:optional;src:url("/fonts/geist-mono-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 
 :root {
   --bg: #000000;
@@ -100,6 +100,7 @@
   box-sizing: border-box;
 }
 
+
 :is(a[href],
   button,
   input:not([type="hidden"]),
@@ -109,7 +110,8 @@
   [role="button"],
   [role="link"],
   [tabindex]:not([tabindex="-1"])):active {
-  translate: 0 1px;
+  position: relative;
+  top: 1px;
 }
 
 ::selection {
@@ -529,6 +531,141 @@ body {
     margin-left: auto;
 }
 
+.case-next {
+    width: min(100%, 760px);
+    margin: 48px auto 0;
+}
+
+.case-next-heading {
+    margin: 0 0 8px;
+    color: var(--text-tertiary);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.case-next-list {
+    display: grid;
+    grid-template-columns: max-content max-content minmax(0, 1fr) auto;
+    column-gap: 16px;
+}
+
+.case-next-row {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: baseline;
+    width: 100%;
+    padding: 8px 0;
+    color: var(--text-tertiary);
+}
+
+.case-next-link {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: baseline;
+    width: 100%;
+    padding: 8px 0;
+    color: var(--text-tertiary);
+    text-decoration: none;
+}
+
+.case-next-row + .case-next-row,
+.case-next-row + .case-next-link,
+.case-next-link + .case-next-row,
+.case-next-link + .case-next-link {
+    border-top: 1px solid
+        color-mix(in srgb, var(--text-primary) 12%, transparent);
+}
+
+.case-next-row .case-next-project {
+    color: var(--text-primary);
+}
+
+.case-next-row time {
+    grid-column: 1;
+    grid-row: 1;
+    display: block;
+    white-space: nowrap;
+    color: inherit;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.case-next-row .case-next-project {
+    grid-column: 2;
+    grid-row: 1;
+    white-space: nowrap;
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.case-next-row .case-next-scope {
+    grid-column: 3;
+    grid-row: 1;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--text-tertiary);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.case-next-row .case-next-arrow {
+    grid-column: 4;
+    grid-row: 1;
+    align-self: baseline;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    color: inherit;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.case-next-view {
+    visibility: hidden;
+}
+
+@media (hover: hover) {
+    .case-next-link:hover {
+        color: var(--text-primary);
+    }
+
+    .case-next-link:hover .case-next-scope,
+    .case-next-link:hover .case-next-arrow {
+        color: var(--text-primary);
+    }
+
+    .case-next-link:hover .case-next-view {
+        visibility: visible;
+    }
+}
+
+.case-next-link:focus-visible {
+    color: var(--text-primary);
+    outline: 1px solid var(--text-primary);
+    outline-offset: 4px;
+}
+
+.case-next-link:focus-visible .case-next-scope,
+.case-next-link:focus-visible .case-next-arrow,
+.case-next-link:focus-visible .case-next-view {
+    color: var(--text-primary);
+    visibility: visible;
+}
+
+.case-next-date-year {
+    display: none;
+}
+
 .all-case + .all-case {
     margin-top: var(--all-case-gap);
 }
@@ -715,6 +852,23 @@ body {
 }
 
 @media (min-width: 769px) {
+    .case-next {
+        padding-bottom: calc(
+            var(--footer-title-center-offset) +
+                (var(--theme-toggle-size) / 2) -
+                (24px / 2) -
+                var(--footer-title-optical-offset)
+        );
+    }
+
+    .case-next-row:last-child {
+        padding-bottom: 0;
+    }
+
+    .case-article article:has(+ .case-next) > :last-child {
+        padding-bottom: 0;
+    }
+
     .case-article article > :last-child {
         --case-final-line-height: 24px;
         padding-bottom: calc(
@@ -792,6 +946,26 @@ body {
         line-height: 20px;
     }
 
+    .case-next {
+        margin-top: 48px;
+    }
+
+    .case-next-list {
+        column-gap: clamp(8px, 3vw, 16px);
+    }
+
+    .case-next-view {
+        display: none;
+    }
+
+    .case-next-date-full {
+        display: none;
+    }
+
+    .case-next-date-year {
+        display: inline;
+    }
+
 }
 
 body:not(.case-page) {
@@ -807,16 +981,6 @@ body:not(.case-page) .sidebar {
 }
 
 body:not(.case-page) .content {
-    min-height: 100dvh;
-}
-
-html.homepage-scroll-locked,
-html.homepage-scroll-locked body {
-    height: 100dvh;
-}
-
-html.homepage-scroll-locked body .layout {
-    height: 100dvh;
     min-height: 100dvh;
 }
 
@@ -878,6 +1042,18 @@ html.homepage-scroll-locked body .layout {
 }
 
 @media (max-width: 767px) {
+    .portfolio-scroll-frame {
+        display: grid;
+        grid-template-columns: max-content max-content minmax(0, 1fr) auto;
+        column-gap: clamp(8px, 3vw, 16px);
+        order: 3;
+    }
+
+    .portfolio-table-header,
+    .portfolio-section {
+        grid-column: 1 / -1;
+    }
+
     body:not(.case-page) {
         min-height: 100svh;
         height: auto;
@@ -896,14 +1072,103 @@ html.homepage-scroll-locked body .layout {
 
     html.homepage-scroll-locked,
     html.homepage-scroll-locked body {
-        height: 100svh;
+        height: 100dvh;
+        min-height: 100dvh;
+        overflow: hidden;
     }
 
     html.homepage-scroll-locked body .layout {
-        height: 100svh;
-        min-height: 100svh;
-        align-content: center;
+        height: 100dvh;
+        min-height: 100dvh;
+        display: grid;
+        align-content: start;
+        grid-template-rows: auto auto minmax(0, 1fr) auto;
         padding-bottom: 0;
+    }
+
+    html.homepage-scroll-locked body .name,
+    html.homepage-scroll-locked body .theme-toggle {
+        grid-row: 1;
+    }
+
+    html.homepage-scroll-locked body .profile-summary {
+        grid-row: 2;
+    }
+
+    html.homepage-scroll-locked body .portfolio-scroll-frame {
+        grid-row: 3;
+        grid-template-rows: auto minmax(0, 1fr);
+        height: auto;
+        min-height: 0;
+        margin-bottom: var(--section-gap);
+        position: relative;
+    }
+
+    html.homepage-scroll-locked body .portfolio-section {
+        grid-row: 2;
+        height: auto;
+        min-height: 0;
+        margin-bottom: 0;
+        align-content: start;
+        overflow-y: auto;
+        overscroll-behavior: auto;
+        scrollbar-width: none;
+        padding-bottom: 8px;
+    }
+
+    html.homepage-scroll-locked body .portfolio-section::-webkit-scrollbar {
+        display: none;
+    }
+
+    html.homepage-scroll-locked body .portfolio-table-header {
+        grid-row: 1;
+        position: relative;
+        z-index: 3;
+        background: var(--bg);
+    }
+
+    html.homepage-scroll-locked body .portfolio-scroll-frame::before,
+    html.homepage-scroll-locked body .portfolio-scroll-frame::after {
+        position: absolute;
+        right: 0;
+        left: 0;
+        z-index: 3;
+        height: 56px;
+        content: "";
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 160ms ease-out;
+    }
+
+    html.homepage-scroll-locked body .portfolio-scroll-frame::before {
+        top: 41px;
+        z-index: 2;
+        background: linear-gradient(
+            to bottom,
+            var(--bg),
+            transparent
+        );
+    }
+
+    html.homepage-scroll-locked body .portfolio-scroll-frame::after {
+        bottom: 0;
+        z-index: 2;
+        background: linear-gradient(
+            to top,
+            var(--bg),
+            transparent
+        );
+    }
+
+    html.homepage-scroll-locked body .portfolio-scroll-frame:has(.portfolio-section.has-scroll-top)::before,
+    html.homepage-scroll-locked body .portfolio-scroll-frame:has(.portfolio-section.has-scroll-bottom)::after {
+        opacity: 1;
+    }
+
+    html.homepage-scroll-locked body .links {
+        grid-row: 4;
+        align-self: end;
+        padding-bottom: 24px;
     }
 
     .wrapper {
@@ -929,20 +1194,7 @@ html.homepage-scroll-locked body .layout {
         padding: 0;
     }
 
-    body:not(.case-page) .name {
-        grid-column: 1;
-        order: 1;
-        position: relative;
-        z-index: 100;
-        width: calc(100% + 56px);
-        margin-left: -12px;
-        padding: 24px 44px 8px 12px;
-        background: var(--bg);
-        min-height: 0;
-        margin-bottom: var(--section-gap);
-    }
-
-    body.case-page .name {
+    .name {
         grid-column: 1;
         order: 1;
         position: sticky;
@@ -979,11 +1231,6 @@ html.homepage-scroll-locked body .layout {
         margin-left: 16px;
         margin-bottom: 0;
         background: transparent;
-    }
-
-    body:not(.case-page) .theme-toggle {
-        position: relative;
-        top: auto;
     }
 
     .name {
@@ -1170,10 +1417,10 @@ html.homepage-scroll-locked body .layout {
                             <h1 class="case-title">The site you are on is the case study</h1>
                         </header>
                             <div class="case-copy">
-                                <p>This page documents the portfolio itself. I started with an empty repository, wrote the design and build system, then prepared the static files for deployment. The repository contains both the authored source and the generated pages. Its verification script is there too.</p>
+                                <p>I started with an empty repository and wrote the design system, the build script and the verification harness. Authored source and generated pages both live in the repo.</p>
                                 <h3>Built from source</h3>
                                 <p>Case-study prose lives in Markdown and shared page structure lives in HTML partials. A dependency-free Node script renders the Markdown, assembles the CSS and JavaScript needed by each route, inlines the structured data, and writes the static pages.</p>
-                                <p>The pages do not depend on a client-side framework. Vercel Insights and Speed Insights are loaded separately for analytics; the portfolio remains functional if those scripts are unavailable.</p>
+                                <p>The pages are static HTML, CSS and vanilla JavaScript. Vercel Insights and Speed Insights are loaded separately for analytics; the portfolio remains functional if those scripts are unavailable.</p>
                             </div>
                         <div class="case-media">
                         <figure>
@@ -1222,7 +1469,7 @@ html.homepage-scroll-locked body .layout {
                             <div class="case-copy">
                                 <h3>Verification</h3>
                                 <p>The verification scripts check the design tokens, responsive rules, content constraints, route order, asset references, and live crawler access. Missing images and files that are no longer referenced are both reported.</p>
-                                <p>The same script rebuilds every page in memory and compares the result with the committed HTML. A source edit followed by a missed rebuild therefore fails verification instead of leaving stale output unnoticed.</p>
+                                <p>The same script rebuilds every page in memory and compares the result with the committed HTML. A source edit without a rebuild fails verification.</p>
                             </div>
                         <div class="case-media">
                         <figure>
@@ -1264,12 +1511,101 @@ html.homepage-scroll-locked body .layout {
                                 <h3>The Heph demo</h3>
                                 <p>The terminal on the <a class="internal-link" href="/heph">Heph</a> case study is a simulation written in vanilla JavaScript. It plays one retrieval sequence and opens cited evidence. The keyboard controls shown in the interface also work. Reduced-motion users receive the completed state without the timed playback.</p>
                                 <h3>Machine-readable routes</h3>
-                                <p>The site publishes a Schema.org identity graph, WebFinger records, host metadata, an llms.txt reference, an RSS feed, a humans.txt file, and a sitemap. Its <code>Content-Signal</code> header permits search, AI input, and AI training. These files identify Gil Rodrigues and link back to the same canonical homepage.</p>
+                                <p>The site publishes a Schema.org identity graph, WebFinger records, host metadata, an llms.txt reference, an RSS feed, a humans.txt file, and a sitemap. Its <code>Content-Signal</code> header permits search, AI input, and AI training.</p>
                                 <h3>Delivery and access</h3>
                                 <p>The functional CSS and JavaScript are inlined by route. Fonts are preloaded, and responsive image sets let the browser choose an appropriate file for the viewport. The HTML uses landmarks, live regions, visible keyboard focus, and reduced-motion handling.</p>
-                                <p>I designed and wrote the portfolio along with its build and verification scripts. The page above is generated by the same system it describes.</p>
+                                <p>The page above is generated by the same system it describes.</p>
                             </div>
                     </article>
+                    <nav class="case-next" aria-label="All projects">
+                        <h2 class="case-next-heading">View next</h2>
+                        <div class="case-next-list">
+                            <a class="case-next-row case-next-link" href="/t3">
+                                <time datetime="2026-07-25">
+                                    <span class="case-next-date-full">2026-07-25</span>
+                                    <span class="case-next-date-year">2026</span>
+                                </time>
+                                <span class="case-next-project">T3</span>
+                                <span class="case-next-scope">Logomark</span>
+                                <span class="case-next-arrow" aria-hidden="true">
+                                    <span class="case-next-view">View</span>
+                                    →
+                                </span>
+                            </a>
+                            <a class="case-next-row case-next-link" href="/ben-davis">
+                                <time datetime="2026-07-07">
+                                    <span class="case-next-date-full">2026-07-07</span>
+                                    <span class="case-next-date-year">2026</span>
+                                </time>
+                                <span class="case-next-project">Ben Davis</span>
+                                <span class="case-next-scope">Logomark</span>
+                                <span class="case-next-arrow" aria-hidden="true">
+                                    <span class="case-next-view">View</span>
+                                    →
+                                </span>
+                            </a>
+                            <a class="case-next-row case-next-link" href="/heph">
+                                <time datetime="2026-04-21">
+                                    <span class="case-next-date-full">2026-04-21</span>
+                                    <span class="case-next-date-year">2026</span>
+                                </time>
+                                <span class="case-next-project">Heph</span>
+                                <span class="case-next-scope">Product/Design Engineering</span>
+                                <span class="case-next-arrow" aria-hidden="true">
+                                    <span class="case-next-view">View</span>
+                                    →
+                                </span>
+                            </a>
+                            <a class="case-next-row case-next-link" href="/filen">
+                                <time datetime="2026-01-14">
+                                    <span class="case-next-date-full">2026-01-14</span>
+                                    <span class="case-next-date-year">2026</span>
+                                </time>
+                                <span class="case-next-project">Filen</span>
+                                <span class="case-next-scope">Brand Identity</span>
+                                <span class="case-next-arrow" aria-hidden="true">
+                                    <span class="case-next-view">View</span>
+                                    →
+                                </span>
+                            </a>
+                            <a class="case-next-row case-next-link" href="/n0thing">
+                                <time datetime="2019-11-15">
+                                    <span class="case-next-date-full">2019-11-15</span>
+                                    <span class="case-next-date-year">2019</span>
+                                </time>
+                                <span class="case-next-project">n0thing</span>
+                                <span class="case-next-scope">Wordmark</span>
+                                <span class="case-next-arrow" aria-hidden="true">
+                                    <span class="case-next-view">View</span>
+                                    →
+                                </span>
+                            </a>
+                            <a class="case-next-row case-next-link" href="/curves">
+                                <time datetime="2019-01-25">
+                                    <span class="case-next-date-full">2019-01-25</span>
+                                    <span class="case-next-date-year">2019</span>
+                                </time>
+                                <span class="case-next-project">CURVES</span>
+                                <span class="case-next-scope">Typeface</span>
+                                <span class="case-next-arrow" aria-hidden="true">
+                                    <span class="case-next-view">View</span>
+                                    →
+                                </span>
+                            </a>
+                            <a class="case-next-row case-next-link" href="/ml7">
+                                <time datetime="2018-11-13">
+                                    <span class="case-next-date-full">2018-11-13</span>
+                                    <span class="case-next-date-year">2018</span>
+                                </time>
+                                <span class="case-next-project">mL7</span>
+                                <span class="case-next-scope">Wordmark</span>
+                                <span class="case-next-arrow" aria-hidden="true">
+                                    <span class="case-next-view">View</span>
+                                    →
+                                </span>
+                            </a>
+                        </div>
+                    </nav>
                 </main>
                 <div class="case-mobile-links">
                     <nav
@@ -1331,8 +1667,6 @@ function updateHomepageDates() {
     portfolioSiteDate.setAttribute("datetime", isoDate);
 }
 
-window.addEventListener("load", updateHomepageDates);
-
 const mobileLinks = document.querySelector(
     ".case-page .case-mobile-links .links, body:not(.case-page) .links",
 );
@@ -1375,6 +1709,12 @@ function updateHomepageLock(preserveMobileState = false) {
     if (!body || body.classList.contains("case-page")) {
         root.classList.remove("homepage-scroll-locked");
         homepageLockState = "uninitialized";
+        return;
+    }
+
+    if (isMobile) {
+        root.classList.add("homepage-scroll-locked");
+        homepageLockState = "locked";
         return;
     }
 
@@ -1450,23 +1790,75 @@ function updateMobileLayout(preserveHomepageLock = false) {
     updateHomepageLock(preserveHomepageLock);
 }
 
-window.addEventListener("load", updateMobileLayout);
-window.addEventListener("resize", () => updateMobileLayout(true));
-
 const portfolioSection = document.querySelector(".portfolio-section");
 const portfolioSiteDate = document.querySelector("#portfolio-site-date");
+function updatePortfolioScrollIndicators() {
+    if (!portfolioSection) return;
+
+    portfolioSection.classList.toggle(
+        "has-scroll-top",
+        portfolioSection.scrollTop > 1,
+    );
+    portfolioSection.classList.toggle(
+        "has-scroll-bottom",
+        portfolioSection.scrollHeight -
+            portfolioSection.clientHeight -
+            portfolioSection.scrollTop >
+            1,
+    );
+}
+
+portfolioSection?.addEventListener(
+    "scroll",
+    updatePortfolioScrollIndicators,
+    { passive: true },
+);
 const mobileLayoutTargets = [
     portfolioSection,
     portfolioSiteDate,
     document.querySelector(".profile-summary"),
     mobileLinks,
 ].filter(Boolean);
+updatePortfolioScrollIndicators();
 if ("ResizeObserver" in window) {
     const updateOnResize = new ResizeObserver(() => {
         window.setTimeout(updateMobileLayout, 0);
+        window.setTimeout(updatePortfolioScrollIndicators, 0);
     });
     mobileLayoutTargets.forEach((target) => updateOnResize.observe(target));
 }
+
+async function prepareHomepageFirstPaint() {
+    const root = document.documentElement;
+    const body = document.body;
+
+    if (!body || body.classList.contains("case-page")) {
+        root.classList.remove("homepage-first-paint-pending");
+        return;
+    }
+
+    updateHomepageDates();
+    updateMobileLayout();
+
+    if (document.fonts?.load) {
+        try {
+            await document.fonts.load('400 16px "Inter"');
+        } catch {
+            // Continue with the metric-compatible system fallback.
+        }
+    }
+
+    updateHomepageDates();
+    updateMobileLayout();
+}
+
+window.homepageFirstPaintReady = prepareHomepageFirstPaint();
+
+window.addEventListener("load", () => {
+    updateHomepageDates();
+    updateMobileLayout();
+});
+window.addEventListener("resize", () => updateMobileLayout(true));
 
 if ("scrollRestoration" in window.history) {
     window.history.scrollRestoration = "manual";

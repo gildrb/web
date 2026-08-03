@@ -216,6 +216,52 @@ export async function buildPage({ write = true } = {}) {
         throw new Error("Generated HTML still contains inline tokens.");
     }
 
+    const portfolioCases = [
+        ...indexHtml.matchAll(
+            /<a\s+class="portfolio-card-link"\s+href="\/([^"?]+)"[\s\S]*?<time[^>]+datetime="([^"]+)"[\s\S]*?<span\s+class="portfolio-card-title"[^>]*>([^<]+)<\/span\s*>[\s\S]*?<span\s+class="portfolio-card-scope">([^<]+)<\/span>/g,
+        ),
+    ].map(([, slug, date, title, scope]) => ({
+        date,
+        scope,
+        slug,
+        title,
+    }));
+    if (portfolioCases.length !== siteConfig.caseStudies.length) {
+        throw new Error("Could not derive every all-projects entry from the homepage.");
+    }
+
+    function renderCaseSuggestions(slug) {
+        return [
+            `                    <nav class="case-next" aria-label="All projects">`,
+            '                        <h2 class="case-next-heading">View next</h2>',
+            '                        <div class="case-next-list">',
+            ...portfolioCases.flatMap(
+                ({ date, scope, slug: suggestionSlug, title }) => {
+                    if (suggestionSlug === slug) {
+                        return [];
+                    }
+                    const rowStart = `                            <a class="case-next-row case-next-link" href="/${suggestionSlug}">`;
+                    return [
+                        rowStart,
+                        `                                <time datetime="${date}">`,
+                        `                                    <span class="case-next-date-full">${date}</span>`,
+                        `                                    <span class="case-next-date-year">${date.slice(0, 4)}</span>`,
+                        "                                </time>",
+                        `                                <span class="case-next-project">${title}</span>`,
+                        `                                <span class="case-next-scope">${scope}</span>`,
+                        '                                <span class="case-next-arrow" aria-hidden="true">',
+                        '                                    <span class="case-next-view">View</span>',
+                        '                                    →',
+                        "                                </span>",
+                        "                            </a>",
+                    ];
+                },
+            ),
+            '                        </div>',
+            '                    </nav>',
+        ].join("\n");
+    }
+
     async function buildCasePage({ slug }) {
         const templatePath = `src/${slug}.template.html`;
         let html = await resolveIncludes(await readText(templatePath));
@@ -226,6 +272,11 @@ export async function buildPage({ write = true } = {}) {
                 await renderCaseMarkdown({ root, slug, resolveIncludes }),
                 24,
             ),
+        );
+        html = replaceToken(
+            html,
+            "<!-- @case-next -->",
+            renderCaseSuggestions(slug),
         );
         html = replaceToken(
             html,
@@ -262,19 +313,6 @@ export async function buildPage({ write = true } = {}) {
     );
     const allStyles = await readBundle("src/styles", siteConfig.allPage.styles);
     const allScript = await readBundle("src/scripts", siteConfig.allPage.scripts);
-    const portfolioCases = [
-        ...indexHtml.matchAll(
-            /<a\s+class="portfolio-card-link"\s+href="\/([^"?]+)"[\s\S]*?<time[^>]+datetime="([^"]+)"[\s\S]*?<span\s+class="portfolio-card-title"[^>]*>([^<]+)<\/span\s*>[\s\S]*?<span\s+class="portfolio-card-scope">([^<]+)<\/span>/g,
-        ),
-    ].map(([, slug, date, title, scope]) => ({
-        date,
-        scope,
-        slug,
-        title,
-    }));
-    if (portfolioCases.length !== siteConfig.caseStudies.length) {
-        throw new Error("Could not derive every all-projects entry from the homepage.");
-    }
     let allPage = await resolveIncludes(await readText("src/all.template.html"));
     const allCases = await Promise.all(
         portfolioCases

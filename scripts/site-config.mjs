@@ -58,6 +58,22 @@ export const siteConfig = Object.freeze({
             ]),
         }),
         Object.freeze({
+            slug: "ben-davis",
+            title: "Ben Davis",
+            styles: Object.freeze([
+                ...sharedCaseStyles.slice(0, 2),
+                "30-ben-davis.css",
+                ...sharedCaseStyles.slice(2),
+            ]),
+            scripts: sharedCaseScripts,
+        }),
+        Object.freeze({
+            slug: "t3",
+            title: "T3",
+            styles: sharedCaseStyles,
+            scripts: sharedCaseScripts,
+        }),
+        Object.freeze({
             slug: "ml7",
             title: "mL7",
             styles: sharedCaseStyles,
@@ -66,6 +82,12 @@ export const siteConfig = Object.freeze({
         Object.freeze({
             slug: "n0thing",
             title: "n0thing",
+            styles: sharedCaseStyles,
+            scripts: sharedCaseScripts,
+        }),
+        Object.freeze({
+            slug: "curves",
+            title: "CURVES",
             styles: sharedCaseStyles,
             scripts: sharedCaseScripts,
         }),
@@ -86,7 +108,9 @@ export const siteConfig = Object.freeze({
             "90-responsive.css",
         ]),
         scripts: Object.freeze([
-            ...sharedCaseScripts,
+            "10-core.js",
+            "20-theme.js",
+            "30-email.js",
             "40-heph-data.js",
             "50-heph-demo.js",
             "60-all-sort.js",

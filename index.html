@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="homepage-scroll-locked">
+<html lang="en" class="homepage-scroll-locked homepage-first-paint-pending">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -164,6 +164,15 @@
                 document.getElementById("site-favicon").href =
                     "/preview-favicon.svg";
             }
+
+            try {
+                const savedTheme = window.localStorage.getItem("theme");
+                if (savedTheme === "dark" || savedTheme === "light") {
+                    document.documentElement.dataset.theme = savedTheme;
+                }
+            } catch {
+                // Preserve the system theme when storage is unavailable.
+            }
         </script>
         <script type="application/ld+json">
             {
@@ -224,6 +233,15 @@
                     },
                     {
                       "@id": "https://gildrb.com/ml7#case-study"
+                    },
+                    {
+                      "@id": "https://gildrb.com/curves#case-study"
+                    },
+                    {
+                      "@id": "https://gildrb.com/ben-davis#case-study"
+                    },
+                    {
+                      "@id": "https://gildrb.com/t3#case-study"
                     },
                     {
                       "@id": "https://gildrb.com/#heph"
@@ -341,7 +359,7 @@
                       "Identity systems",
                       "Artificial intelligence",
                       "Data science",
-                      "Brand identity",
+                      "Brand Identity",
                       "Identity design",
                       "Type-led design",
                       "Wordmarks",
@@ -357,7 +375,7 @@
                     "Identity systems",
                     "Artificial intelligence",
                     "Data science",
-                    "Brand identity",
+                    "Brand Identity",
                     "Identity design",
                     "Type-led design",
                     "Wordmarks",
@@ -442,7 +460,7 @@
                     "Data science",
                     "Software",
                     "Interfaces",
-                    "Brand identity",
+                    "Brand Identity",
                     "Typography",
                     "Type",
                     "Visual systems",
@@ -644,6 +662,81 @@
                   "headline": "A compact channel identity designed for mL7 in 2018.",
                   "description": "How Gil Rodrigues designed the mL7 logo for small stream overlays, profile images, and channel graphics.",
                   "image": "https://gildrb.com/images/optimized/gil-rodrigues-ml7-logo-system-1600.webp",
+                  "inLanguage": "en",
+                  "creator": {
+                    "@id": "https://gildrb.com/#person"
+                  },
+                  "author": {
+                    "@id": "https://gildrb.com/#person"
+                  },
+                  "publisher": {
+                    "@id": "https://gildrb.com/#person"
+                  },
+                  "isPartOf": {
+                    "@id": "https://gildrb.com/#website"
+                  }
+                },
+                {
+                  "@type": [
+                    "Article",
+                    "CreativeWork"
+                  ],
+                  "@id": "https://gildrb.com/curves#case-study",
+                  "url": "https://gildrb.com/curves",
+                  "name": "CURVES free display typeface",
+                  "headline": "A free display typeface built from one geometric construction rule.",
+                  "description": "How Gil Rodrigues designed CURVES as a 96-glyph unicase display typeface, then released it for personal and commercial use.",
+                  "image": "https://gildrb.com/images/optimized/gil-rodrigues-curves-letterforms-1280.webp",
+                  "inLanguage": "en",
+                  "creator": {
+                    "@id": "https://gildrb.com/#person"
+                  },
+                  "author": {
+                    "@id": "https://gildrb.com/#person"
+                  },
+                  "publisher": {
+                    "@id": "https://gildrb.com/#person"
+                  },
+                  "isPartOf": {
+                    "@id": "https://gildrb.com/#website"
+                  }
+                },
+                {
+                  "@type": [
+                    "Article",
+                    "CreativeWork"
+                  ],
+                  "@id": "https://gildrb.com/ben-davis#case-study",
+                  "url": "https://gildrb.com/ben-davis",
+                  "name": "Ben Davis brandmark redesign",
+                  "headline": "An unsolicited db monogram redesign for developer Ben Davis.",
+                  "description": "How Gil Rodrigues redrew Ben Davis's personal mark from mirrored letterforms and one central diagonal.",
+                  "image": "https://gildrb.com/images/optimized/gil-rodrigues-ben-davis-construction-1280.webp",
+                  "inLanguage": "en",
+                  "creator": {
+                    "@id": "https://gildrb.com/#person"
+                  },
+                  "author": {
+                    "@id": "https://gildrb.com/#person"
+                  },
+                  "publisher": {
+                    "@id": "https://gildrb.com/#person"
+                  },
+                  "isPartOf": {
+                    "@id": "https://gildrb.com/#website"
+                  }
+                },
+                {
+                  "@type": [
+                    "Article",
+                    "CreativeWork"
+                  ],
+                  "@id": "https://gildrb.com/t3#case-study",
+                  "url": "https://gildrb.com/t3",
+                  "name": "T3 logomark exploration",
+                  "headline": "A logomark system for T3.",
+                  "description": "A self-initiated T3 logomark exploration developed across products, icons, and a family of rejected directions.",
+                  "image": "https://gildrb.com/images/optimized/gil-rodrigues-t3-mark-1200.webp",
                   "inLanguage": "en",
                   "creator": {
                     "@id": "https://gildrb.com/#person"
@@ -1027,8 +1120,8 @@
             crossorigin
         />
         <style>
-@font-face{font-family:"Inter";font-style:normal;font-weight:400 600;font-display:swap;src:url("/fonts/inter-variable-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+21A9,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:"Geist Mono";font-style:normal;font-weight:400 600;font-display:swap;src:url("/fonts/geist-mono-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Inter";font-style:normal;font-weight:400 600;font-display:optional;src:url("/fonts/inter-variable-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+21A9,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Geist Mono";font-style:normal;font-weight:400 600;font-display:optional;src:url("/fonts/geist-mono-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 
 :root {
   --bg: #000000;
@@ -1083,6 +1176,7 @@
   box-sizing: border-box;
 }
 
+
 :is(a[href],
   button,
   input:not([type="hidden"]),
@@ -1092,7 +1186,8 @@
   [role="button"],
   [role="link"],
   [tabindex]:not([tabindex="-1"])):active {
-  translate: 0 1px;
+  position: relative;
+  top: 1px;
 }
 
 ::selection {
@@ -1377,6 +1472,192 @@ body {
   box-shadow: 0 0 0 1px var(--text-primary);
 }
 
+@keyframes homepage-enter {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+html.homepage-first-paint-pending body:not(.case-page) {
+    visibility: hidden;
+}
+
+/* Keep identity and positioning content immediately visible. */
+.name,
+.profile-summary {
+    opacity: 1;
+    transform: none;
+}
+
+/*
+ * Animate only after fonts, mobile columns, theme, and viewport locking have
+ * been resolved. Links begins when the final table cell starts. Contact begins
+ * when the final profile link starts, and each contact method follows one
+ * stagger at a time.
+ */
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > * {
+    animation: homepage-enter 700ms ease-out both;
+}
+
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > .links-label:first-child {
+    animation-delay: 720ms;
+}
+
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > .external-link:nth-child(2) {
+    animation-delay: 840ms;
+}
+
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > .external-link:nth-child(3) {
+    animation-delay: 960ms;
+}
+
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > .external-link:nth-child(4) {
+    animation-delay: 1080ms;
+}
+
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > .external-link:nth-child(5) {
+    animation-delay: 1200ms;
+}
+
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > .external-link:nth-child(6) {
+    animation-delay: 1320ms;
+}
+
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > .contact-label {
+    animation-delay: 1320ms;
+}
+
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > .email {
+    animation-delay: 1440ms;
+}
+
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > .contact-label
+    ~ .external-link {
+    animation-delay: 1560ms;
+}
+
+/*
+ * Reveal the table as a diagonal wave. Moving one column right or one row
+ * down adds the same 80ms delay, so the words travel toward the bottom right.
+ */
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .portfolio-table-header
+    > *,
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .portfolio-list
+    > .portfolio-card-link
+    > * {
+    animation: homepage-enter 1s ease-out both;
+    animation-delay: calc(var(--row-delay, 80ms) + var(--column-delay, 0ms));
+}
+
+.portfolio-table-header > :nth-child(1),
+.portfolio-list > .portfolio-card-link > :nth-child(1) {
+    --column-delay: 0ms;
+}
+
+.portfolio-table-header > :nth-child(2),
+.portfolio-list > .portfolio-card-link > :nth-child(2) {
+    --column-delay: 80ms;
+}
+
+.portfolio-table-header > :nth-child(3),
+.portfolio-list > .portfolio-card-link > :nth-child(3) {
+    --column-delay: 160ms;
+}
+
+.portfolio-table-header > :nth-child(4),
+.portfolio-list > .portfolio-card-link > :nth-child(4) {
+    --column-delay: 240ms;
+}
+
+.portfolio-list > .portfolio-card-link:nth-child(1) {
+    --row-delay: 160ms;
+}
+
+.portfolio-list > .portfolio-card-link:nth-child(2) {
+    --row-delay: 240ms;
+}
+
+.portfolio-list > .portfolio-card-link:nth-child(3) {
+    --row-delay: 320ms;
+}
+
+.portfolio-list > .portfolio-card-link:nth-child(4) {
+    --row-delay: 400ms;
+}
+
+.portfolio-list > .portfolio-card-link:nth-child(5) {
+    --row-delay: 480ms;
+}
+
+.portfolio-list > .portfolio-card-link:nth-child(6) {
+    --row-delay: 560ms;
+}
+
+.portfolio-list > .portfolio-card-link:nth-child(7) {
+    --row-delay: 640ms;
+}
+
+.portfolio-list > .portfolio-card-link:nth-child(8) {
+    --row-delay: 720ms;
+}
+
+.portfolio-list > .portfolio-card-link:nth-child(9) {
+    --row-delay: 800ms;
+}
+
+.portfolio-list > .portfolio-card-link:nth-child(10) {
+    --row-delay: 880ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+        .links
+        > *,
+    html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+        .portfolio-table-header
+        > *,
+    html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+        .portfolio-list
+        > .portfolio-card-link
+        > * {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.portfolio-scroll-frame {
+    display: contents;
+}
+
 .portfolio-section {
     min-width: 0;
 }
@@ -1627,6 +1908,21 @@ body {
     margin-bottom: 32px;
 }
 
+@media (min-width: 768px) {
+    .portfolio-scroll-frame {
+        display: grid;
+        grid-template-columns: max-content max-content minmax(0, 1fr) auto;
+        column-gap: 16px;
+        container-type: inline-size;
+        margin-bottom: 32px;
+    }
+
+    .portfolio-section {
+        display: contents;
+        margin-bottom: 0;
+    }
+}
+
 .portfolio-table-header {
     display: grid;
     grid-column: 1 / -1;
@@ -1862,16 +2158,6 @@ body:not(.case-page) .content {
     min-height: 100dvh;
 }
 
-html.homepage-scroll-locked,
-html.homepage-scroll-locked body {
-    height: 100dvh;
-}
-
-html.homepage-scroll-locked body .layout {
-    height: 100dvh;
-    min-height: 100dvh;
-}
-
 @media (max-width: 1400px) {
     :root {
         --layout-gap: 32px;
@@ -1930,6 +2216,18 @@ html.homepage-scroll-locked body .layout {
 }
 
 @media (max-width: 767px) {
+    .portfolio-scroll-frame {
+        display: grid;
+        grid-template-columns: max-content max-content minmax(0, 1fr) auto;
+        column-gap: clamp(8px, 3vw, 16px);
+        order: 3;
+    }
+
+    .portfolio-table-header,
+    .portfolio-section {
+        grid-column: 1 / -1;
+    }
+
     body:not(.case-page) {
         min-height: 100svh;
         height: auto;
@@ -1948,14 +2246,103 @@ html.homepage-scroll-locked body .layout {
 
     html.homepage-scroll-locked,
     html.homepage-scroll-locked body {
-        height: 100svh;
+        height: 100dvh;
+        min-height: 100dvh;
+        overflow: hidden;
     }
 
     html.homepage-scroll-locked body .layout {
-        height: 100svh;
-        min-height: 100svh;
-        align-content: center;
+        height: 100dvh;
+        min-height: 100dvh;
+        display: grid;
+        align-content: start;
+        grid-template-rows: auto auto minmax(0, 1fr) auto;
         padding-bottom: 0;
+    }
+
+    html.homepage-scroll-locked body .name,
+    html.homepage-scroll-locked body .theme-toggle {
+        grid-row: 1;
+    }
+
+    html.homepage-scroll-locked body .profile-summary {
+        grid-row: 2;
+    }
+
+    html.homepage-scroll-locked body .portfolio-scroll-frame {
+        grid-row: 3;
+        grid-template-rows: auto minmax(0, 1fr);
+        height: auto;
+        min-height: 0;
+        margin-bottom: var(--section-gap);
+        position: relative;
+    }
+
+    html.homepage-scroll-locked body .portfolio-section {
+        grid-row: 2;
+        height: auto;
+        min-height: 0;
+        margin-bottom: 0;
+        align-content: start;
+        overflow-y: auto;
+        overscroll-behavior: auto;
+        scrollbar-width: none;
+        padding-bottom: 8px;
+    }
+
+    html.homepage-scroll-locked body .portfolio-section::-webkit-scrollbar {
+        display: none;
+    }
+
+    html.homepage-scroll-locked body .portfolio-table-header {
+        grid-row: 1;
+        position: relative;
+        z-index: 3;
+        background: var(--bg);
+    }
+
+    html.homepage-scroll-locked body .portfolio-scroll-frame::before,
+    html.homepage-scroll-locked body .portfolio-scroll-frame::after {
+        position: absolute;
+        right: 0;
+        left: 0;
+        z-index: 3;
+        height: 56px;
+        content: "";
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 160ms ease-out;
+    }
+
+    html.homepage-scroll-locked body .portfolio-scroll-frame::before {
+        top: 41px;
+        z-index: 2;
+        background: linear-gradient(
+            to bottom,
+            var(--bg),
+            transparent
+        );
+    }
+
+    html.homepage-scroll-locked body .portfolio-scroll-frame::after {
+        bottom: 0;
+        z-index: 2;
+        background: linear-gradient(
+            to top,
+            var(--bg),
+            transparent
+        );
+    }
+
+    html.homepage-scroll-locked body .portfolio-scroll-frame:has(.portfolio-section.has-scroll-top)::before,
+    html.homepage-scroll-locked body .portfolio-scroll-frame:has(.portfolio-section.has-scroll-bottom)::after {
+        opacity: 1;
+    }
+
+    html.homepage-scroll-locked body .links {
+        grid-row: 4;
+        align-self: end;
+        padding-bottom: 24px;
     }
 
     .wrapper {
@@ -1981,20 +2368,7 @@ html.homepage-scroll-locked body .layout {
         padding: 0;
     }
 
-    body:not(.case-page) .name {
-        grid-column: 1;
-        order: 1;
-        position: relative;
-        z-index: 100;
-        width: calc(100% + 56px);
-        margin-left: -12px;
-        padding: 24px 44px 8px 12px;
-        background: var(--bg);
-        min-height: 0;
-        margin-bottom: var(--section-gap);
-    }
-
-    body.case-page .name {
+    .name {
         grid-column: 1;
         order: 1;
         position: sticky;
@@ -2031,11 +2405,6 @@ html.homepage-scroll-locked body .layout {
         margin-left: 16px;
         margin-bottom: 0;
         background: transparent;
-    }
-
-    body:not(.case-page) .theme-toggle {
-        position: relative;
-        top: auto;
     }
 
     .name {
@@ -2175,6 +2544,13 @@ html.homepage-scroll-locked body .layout {
     }
 }
         </style>
+        <noscript>
+            <style>
+                html.homepage-first-paint-pending body:not(.case-page) {
+                    visibility: visible;
+                }
+            </style>
+        </noscript>
     </head>
     <body id="top">
         <div
@@ -2235,13 +2611,13 @@ html.homepage-scroll-locked body .layout {
                 <meta itemprop="knowsAbout" content="Software" />
                 <meta itemprop="knowsAbout" content="Interfaces" />
                 <meta itemprop="knowsAbout" content="Typography" />
-                <meta itemprop="knowsAbout" content="Brand identity" />
+                <meta itemprop="knowsAbout" content="Brand Identity" />
                 <meta itemprop="knowsAbout" content="Identity systems" />
                 <meta itemprop="knowsAbout" content="Frontend implementation" />
                 <meta itemprop="skills" content="Software" />
                 <meta itemprop="skills" content="Interfaces" />
                 <meta itemprop="skills" content="Typography" />
-                <meta itemprop="skills" content="Brand identity" />
+                <meta itemprop="skills" content="Brand Identity" />
                 <meta itemprop="skills" content="Identity systems" />
                 <meta itemprop="skills" content="Frontend implementation" />
                 <meta
@@ -2294,10 +2670,7 @@ html.homepage-scroll-locked body .layout {
                             identity systems for software.
                         </p>
                     </section>
-                    <section
-                        class="portfolio-section"
-                        aria-label="Portfolio"
-                    >
+                    <div class="portfolio-scroll-frame">
                         <div
                             class="portfolio-table-header"
                             aria-label="Project columns"
@@ -2350,6 +2723,10 @@ html.homepage-scroll-locked body .layout {
                                 href="/all?sort=date&direction=descending"
                             >All</a>
                         </div>
+                    <section
+                        class="portfolio-section"
+                        aria-label="Portfolio"
+                    >
                         <div class="portfolio-list">
                         <a
                             class="portfolio-card-link"
@@ -2365,7 +2742,47 @@ html.homepage-scroll-locked body .layout {
                                 id="portfolio-site-title"
                                 >gildrb.com</span
                             >
-                            <span class="portfolio-card-scope">Design engineering</span>
+                            <span class="portfolio-card-scope">Design Engineering</span>
+                            <span class="portfolio-card-arrow" aria-hidden="true">
+                                <span class="portfolio-card-view">View</span>
+                                →
+                            </span>
+                        </a>
+                        <a
+                            class="portfolio-card-link"
+                            href="/t3"
+                            aria-label="Read the T3 logomark case study"
+                        >
+                            <time datetime="2026-07-25">
+                                <span class="portfolio-date-full">2026-07-25</span>
+                                <span class="portfolio-date-year">2026</span>
+                            </time>
+                            <span
+                                class="portfolio-card-title"
+                                id="portfolio-t3-title"
+                                >T3</span
+                            >
+                            <span class="portfolio-card-scope">Logomark</span>
+                            <span class="portfolio-card-arrow" aria-hidden="true">
+                                <span class="portfolio-card-view">View</span>
+                                →
+                            </span>
+                        </a>
+                        <a
+                            class="portfolio-card-link"
+                            href="/ben-davis"
+                            aria-label="Read the Ben Davis brandmark case study"
+                        >
+                            <time datetime="2026-07-07">
+                                <span class="portfolio-date-full">2026-07-07</span>
+                                <span class="portfolio-date-year">2026</span>
+                            </time>
+                            <span
+                                class="portfolio-card-title"
+                                id="portfolio-ben-davis-title"
+                                >Ben Davis</span
+                            >
+                            <span class="portfolio-card-scope">Logomark</span>
                             <span class="portfolio-card-arrow" aria-hidden="true">
                                 <span class="portfolio-card-view">View</span>
                                 →
@@ -2385,7 +2802,7 @@ html.homepage-scroll-locked body .layout {
                                 id="portfolio-heph-title"
                                 >Heph</span
                             >
-                            <span class="portfolio-card-scope">Product design and engineering</span>
+                            <span class="portfolio-card-scope">Product/Design Engineering</span>
                             <span class="portfolio-card-arrow" aria-hidden="true">
                                 <span class="portfolio-card-view">View</span>
                                 →
@@ -2405,7 +2822,7 @@ html.homepage-scroll-locked body .layout {
                                 id="portfolio-filen-title"
                                 >Filen</span
                             >
-                            <span class="portfolio-card-scope">Brand identity</span>
+                            <span class="portfolio-card-scope">Brand Identity</span>
                             <span class="portfolio-card-arrow" aria-hidden="true">
                                 <span class="portfolio-card-view">View</span>
                                 →
@@ -2433,6 +2850,26 @@ html.homepage-scroll-locked body .layout {
                         </a>
                         <a
                             class="portfolio-card-link"
+                            href="/curves"
+                            aria-label="Read the CURVES typeface case study"
+                        >
+                            <time datetime="2019-01-25">
+                                <span class="portfolio-date-full">2019-01-25</span>
+                                <span class="portfolio-date-year">2019</span>
+                            </time>
+                            <span
+                                class="portfolio-card-title"
+                                id="portfolio-curves-title"
+                                >CURVES</span
+                            >
+                            <span class="portfolio-card-scope">Typeface</span>
+                            <span class="portfolio-card-arrow" aria-hidden="true">
+                                <span class="portfolio-card-view">View</span>
+                                →
+                            </span>
+                        </a>
+                        <a
+                            class="portfolio-card-link"
                             href="/ml7"
                             aria-label="Read the mL7 case study"
                         >
@@ -2453,6 +2890,7 @@ html.homepage-scroll-locked body .layout {
                         </a>
                         </div>
                     </section>
+                    </div>
                     <footer class="site-footer">
                         <nav
                             class="references-links"
@@ -2475,10 +2913,10 @@ html.homepage-scroll-locked body .layout {
                             >
                             <a
                                 class="reference-link"
-                                href="profile.json"
-                                rel="alternate"
-                                type="application/ld+json"
-                                >profile.json</a
+                                href="https://github.com/gildrb/web"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                                >source</a
                             >
                         </nav>
                     </footer>
@@ -2534,8 +2972,6 @@ function updateHomepageDates() {
     portfolioSiteDate.setAttribute("datetime", isoDate);
 }
 
-window.addEventListener("load", updateHomepageDates);
-
 const mobileLinks = document.querySelector(
     ".case-page .case-mobile-links .links, body:not(.case-page) .links",
 );
@@ -2578,6 +3014,12 @@ function updateHomepageLock(preserveMobileState = false) {
     if (!body || body.classList.contains("case-page")) {
         root.classList.remove("homepage-scroll-locked");
         homepageLockState = "uninitialized";
+        return;
+    }
+
+    if (isMobile) {
+        root.classList.add("homepage-scroll-locked");
+        homepageLockState = "locked";
         return;
     }
 
@@ -2653,23 +3095,75 @@ function updateMobileLayout(preserveHomepageLock = false) {
     updateHomepageLock(preserveHomepageLock);
 }
 
-window.addEventListener("load", updateMobileLayout);
-window.addEventListener("resize", () => updateMobileLayout(true));
-
 const portfolioSection = document.querySelector(".portfolio-section");
 const portfolioSiteDate = document.querySelector("#portfolio-site-date");
+function updatePortfolioScrollIndicators() {
+    if (!portfolioSection) return;
+
+    portfolioSection.classList.toggle(
+        "has-scroll-top",
+        portfolioSection.scrollTop > 1,
+    );
+    portfolioSection.classList.toggle(
+        "has-scroll-bottom",
+        portfolioSection.scrollHeight -
+            portfolioSection.clientHeight -
+            portfolioSection.scrollTop >
+            1,
+    );
+}
+
+portfolioSection?.addEventListener(
+    "scroll",
+    updatePortfolioScrollIndicators,
+    { passive: true },
+);
 const mobileLayoutTargets = [
     portfolioSection,
     portfolioSiteDate,
     document.querySelector(".profile-summary"),
     mobileLinks,
 ].filter(Boolean);
+updatePortfolioScrollIndicators();
 if ("ResizeObserver" in window) {
     const updateOnResize = new ResizeObserver(() => {
         window.setTimeout(updateMobileLayout, 0);
+        window.setTimeout(updatePortfolioScrollIndicators, 0);
     });
     mobileLayoutTargets.forEach((target) => updateOnResize.observe(target));
 }
+
+async function prepareHomepageFirstPaint() {
+    const root = document.documentElement;
+    const body = document.body;
+
+    if (!body || body.classList.contains("case-page")) {
+        root.classList.remove("homepage-first-paint-pending");
+        return;
+    }
+
+    updateHomepageDates();
+    updateMobileLayout();
+
+    if (document.fonts?.load) {
+        try {
+            await document.fonts.load('400 16px "Inter"');
+        } catch {
+            // Continue with the metric-compatible system fallback.
+        }
+    }
+
+    updateHomepageDates();
+    updateMobileLayout();
+}
+
+window.homepageFirstPaintReady = prepareHomepageFirstPaint();
+
+window.addEventListener("load", () => {
+    updateHomepageDates();
+    updateMobileLayout();
+});
+window.addEventListener("resize", () => updateMobileLayout(true));
 
 if ("scrollRestoration" in window.history) {
     window.history.scrollRestoration = "manual";
@@ -2746,6 +3240,49 @@ function announce(message) {
         srOnly.textContent = "";
     }, 1000);
 }
+
+const homepageEntryRoot = document.documentElement;
+const finalHomepageEntryElement = document.querySelector(
+    ".links > .contact-label ~ .external-link:last-child",
+);
+let homepageEntryFallback;
+
+function finishHomepageEntry() {
+    homepageEntryRoot.dataset.homepageEntryComplete = "true";
+    window.clearTimeout(homepageEntryFallback);
+}
+
+function startHomepageEntry() {
+    const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (!reducedMotion) {
+        finalHomepageEntryElement?.addEventListener(
+            "animationend",
+            (event) => {
+                if (event.animationName === "homepage-enter") {
+                    finishHomepageEntry();
+                }
+            },
+            { once: true },
+        );
+    }
+
+    homepageEntryRoot.dataset.homepageFirstPaintReady = "true";
+    homepageEntryRoot.classList.remove("homepage-first-paint-pending");
+
+    if (reducedMotion) {
+        finishHomepageEntry();
+        return;
+    }
+
+    homepageEntryFallback = window.setTimeout(finishHomepageEntry, 2800);
+}
+
+Promise.resolve(window.homepageFirstPaintReady)
+    .catch(() => undefined)
+    .then(startHomepageEntry);
 
 const portfolioSortButtons = document.querySelectorAll(
     ".portfolio-sort-button",
@@ -2856,6 +3393,8 @@ portfolioSortButtons.forEach((button) => {
             "aria-label",
             `Sort projects by ${key}, currently ${description}`,
         );
+
+        document.documentElement.dataset.homepageEntryComplete = "true";
         sortPortfolioRows(key, direction);
         updatePortfolioAllLink(key, direction);
         announce(`Projects sorted by ${key}, ${description}.`);

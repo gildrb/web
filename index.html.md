@@ -39,21 +39,33 @@ Brand designer based in Germany, building identity systems for software.
 
 ## Portfolio
 
-#### gildrb.com (Design engineering)
+#### gildrb.com (Product/Design Engineering)
 
 [gildrb.com](https://gildrb.com/site) documents how the portfolio is built and verified as a static, hand-authored site.
+
+#### T3 (Logomark)
+
+[T3 logomark exploration](https://gildrb.com/t3) documents a self-initiated system developed across products, icons, and a family of rejected directions.
+
+#### Ben Davis (Logomark)
+
+[Ben Davis brandmark](https://gildrb.com/ben-davis) documents an unsolicited db monogram redesign built from mirrored letterforms and one central diagonal.
 
 #### Heph (Product design & engineering)
 
 [Heph local document agent](https://gildrb.com/heph) documents how bounded armories, explicit indexing, cited answers, and `/evidence` keep local document work inspectable. The source repository is linked inside the article.
 
-#### Filen (Brand identity)
+#### Filen (Brand Identity)
 
 [Filen identity system](https://gildrb.com/filen) documents a self-initiated identity concept developed from rejected marks into an app icon and privacy-focused campaign system.
 
 #### n0thing (Wordmark)
 
 [n0thing wordmark](https://gildrb.com/n0thing) documents how a rejected typewriter study led back to the final pixel wordmark, delivery files, and animated cursor.
+
+#### CURVES (Typeface)
+
+[CURVES display typeface](https://gildrb.com/curves) documents a free 96-glyph unicase display face built from one geometric construction rule.
 
 #### mL7 (Wordmark)
 
