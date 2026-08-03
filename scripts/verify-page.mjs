@@ -1318,7 +1318,7 @@ assert(
 );
 assert(
     baseStyles.includes(
-        ".name {\n    font-size: 19px;\n    font-weight: 400;\n    line-height: var(--link-line-height);\n    letter-spacing: -0.02em;\n    color: var(--text-primary);\n    min-height: calc(var(--link-line-height) * 2);\n    margin-bottom: calc(\n        var(--section-gap) + var(--section-content-gap) +\n            var(--text-media-gap) - var(--link-line-height)\n    );",
+        ".name {\n  font-size: 19px;\n  font-weight: 400;\n  line-height: var(--link-line-height);\n  letter-spacing: -0.02em;\n  color: var(--text-primary);\n  min-height: calc(var(--link-line-height) * 2);\n  margin-bottom: calc(var(--section-gap) + var(--section-content-gap) + var(--text-media-gap) - var(--link-line-height));",
     ),
     "The sidebar Links block must align with the homepage column header through token-based name spacing.",
 );
