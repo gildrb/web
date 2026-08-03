@@ -578,6 +578,22 @@ body {
     line-height: 24px;
 }
 
+@media (min-width: 769px) {
+    .case-next-heading {
+        position: sticky;
+        top: calc(
+            100vh - 48px - var(--footer-title-center-offset) -
+                (var(--theme-toggle-size) / 2) - 12px
+        );
+        z-index: 2;
+        background: linear-gradient(
+            to bottom,
+            var(--bg) 60%,
+            transparent
+        );
+    }
+}
+
 .case-next-list {
     display: grid;
     grid-template-columns: max-content max-content minmax(0, 1fr) auto;
@@ -1117,11 +1133,65 @@ html.homepage-scroll-locked body .layout {
     html.homepage-scroll-locked body .portfolio-section {
         grid-row: 3;
         min-height: 0;
-        margin-bottom: 0;
+        margin-bottom: var(--section-gap);
         align-content: start;
+        position: relative;
         overflow-y: auto;
         overscroll-behavior: contain;
+        scrollbar-width: none;
         padding-bottom: 8px;
+    }
+
+    html.homepage-scroll-locked body .portfolio-section::-webkit-scrollbar {
+        display: none;
+    }
+
+    html.homepage-scroll-locked body .portfolio-table-header {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background: linear-gradient(
+            to bottom,
+            var(--bg) 60%,
+            transparent
+        );
+    }
+
+    html.homepage-scroll-locked body .portfolio-section::before,
+    html.homepage-scroll-locked body .portfolio-section::after {
+        position: absolute;
+        right: 0;
+        left: 0;
+        z-index: 3;
+        height: 24px;
+        content: "";
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 160ms ease-out;
+    }
+
+    html.homepage-scroll-locked body .portfolio-section::before {
+        top: 0;
+        z-index: 1;
+        background: linear-gradient(
+            to bottom,
+            var(--bg),
+            transparent
+        );
+    }
+
+    html.homepage-scroll-locked body .portfolio-section::after {
+        bottom: 0;
+        background: linear-gradient(
+            to top,
+            var(--bg),
+            transparent
+        );
+    }
+
+    html.homepage-scroll-locked body .portfolio-section.has-scroll-top::before,
+    html.homepage-scroll-locked body .portfolio-section.has-scroll-bottom::after {
+        opacity: 1;
     }
 
     html.homepage-scroll-locked body .links {
@@ -1500,7 +1570,7 @@ html.homepage-scroll-locked body .layout {
                             </div>
                     </article>
                     <nav class="case-next" aria-label="All projects">
-                        <h2 class="case-next-heading">Read next</h2>
+                        <h2 class="case-next-heading">View next</h2>
                         <div class="case-next-list">
                             <a class="case-next-row case-next-link" href="/site">
                                 <time datetime="2026-07-15">
@@ -1508,21 +1578,24 @@ html.homepage-scroll-locked body .layout {
                                     <span class="case-next-date-year">2026</span>
                                 </time>
                                 <span class="case-next-project">gildrb.com</span>
-                                <span class="case-next-scope">Product/Design Engineering</span>
+                                <span class="case-next-scope">Design Engineering</span>
                                 <span class="case-next-arrow" aria-hidden="true">
                                     <span class="case-next-view">View</span>
                                     →
                                 </span>
                             </a>
-                            <div class="case-next-row case-next-current" aria-current="page">
+                            <a class="case-next-row case-next-link" href="/t3" aria-current="page">
                                 <time datetime="2026-07-25">
                                     <span class="case-next-date-full">2026-07-25</span>
                                     <span class="case-next-date-year">2026</span>
                                 </time>
                                 <span class="case-next-project">T3</span>
                                 <span class="case-next-scope">Logomark</span>
-                                <span class="case-next-arrow" aria-hidden="true"></span>
-                            </div>
+                                <span class="case-next-arrow" aria-hidden="true">
+                                    <span class="case-next-view">View</span>
+                                    →
+                                </span>
+                            </a>
                             <a class="case-next-row case-next-link" href="/ben-davis">
                                 <time datetime="2026-07-07">
                                     <span class="case-next-date-full">2026-07-07</span>
@@ -1784,15 +1857,38 @@ function updateMobileLayout(preserveHomepageLock = false) {
 
 const portfolioSection = document.querySelector(".portfolio-section");
 const portfolioSiteDate = document.querySelector("#portfolio-site-date");
+function updatePortfolioScrollIndicators() {
+    if (!portfolioSection) return;
+
+    portfolioSection.classList.toggle(
+        "has-scroll-top",
+        portfolioSection.scrollTop > 1,
+    );
+    portfolioSection.classList.toggle(
+        "has-scroll-bottom",
+        portfolioSection.scrollHeight -
+            portfolioSection.clientHeight -
+            portfolioSection.scrollTop >
+            1,
+    );
+}
+
+portfolioSection?.addEventListener(
+    "scroll",
+    updatePortfolioScrollIndicators,
+    { passive: true },
+);
 const mobileLayoutTargets = [
     portfolioSection,
     portfolioSiteDate,
     document.querySelector(".profile-summary"),
     mobileLinks,
 ].filter(Boolean);
+updatePortfolioScrollIndicators();
 if ("ResizeObserver" in window) {
     const updateOnResize = new ResizeObserver(() => {
         window.setTimeout(updateMobileLayout, 0);
+        window.setTimeout(updatePortfolioScrollIndicators, 0);
     });
     mobileLayoutTargets.forEach((target) => updateOnResize.observe(target));
 }

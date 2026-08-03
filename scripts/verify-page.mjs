@@ -160,7 +160,7 @@ const configuredCaseSlugs = new Set(
 const suggestionBlockPattern =
     /<nav class="case-next" aria-label="All projects">([\s\S]*?)<\/nav>/g;
 const suggestionRowPattern =
-    /<(a|div) class="case-next-row(?: case-next-link| case-next-current)"(?: href="\/([^"]+)")?(?: aria-current="page")?>[\s\S]*?<time datetime="([^"]+)">[\s\S]*?<span class="case-next-project">([^<]+)<\/span>[\s\S]*?<span class="case-next-scope">([^<]+)<\/span>/g;
+    /<a class="case-next-row case-next-link" href="\/([^"]+)"(?: aria-current="page")?>[\s\S]*?<time datetime="([^"]+)">[\s\S]*?<span class="case-next-project">([^<]+)<\/span>[\s\S]*?<span class="case-next-scope">([^<]+)<\/span>/g;
 for (const [slug, html] of Object.entries(casePages)) {
     const blocks = [...html.matchAll(suggestionBlockPattern)];
     assert(
@@ -169,15 +169,19 @@ for (const [slug, html] of Object.entries(casePages)) {
     );
     const suggestions = [
         ...blocks[0][1].matchAll(suggestionRowPattern),
-    ].map(([, tag, targetSlug, date, title, scope]) => ({
+    ].map(([, targetSlug, date, title, scope]) => ({
         date,
         scope,
-        slug: targetSlug || slug,
+        slug: targetSlug,
         title,
-        tag,
     }));
     assert(
         suggestions.length === portfolioCases.length &&
+            (html.match(
+                new RegExp(
+                    `<a class="case-next-row case-next-link" href="/${slug}" aria-current="page">`,
+                ),
+            ) || []).length === 1 &&
             suggestions.every(
                 ({ slug: targetSlug, date, title, scope, tag }, index) => {
                     const target = portfolioCases.find(
@@ -191,7 +195,7 @@ for (const [slug, html] of Object.entries(casePages)) {
                         target.date === date &&
                         target.title === title &&
                         target.scope === scope &&
-                        (targetSlug === slug ? tag === "div" : tag === "a")
+                        true
                     );
                 },
             ),
@@ -1393,7 +1397,7 @@ assert(
         ) &&
         allPage.includes('class="all-cases"') &&
         (allPage.match(/class="all-case"/g) || []).length === 8 &&
-        allPage.includes('data-date="2026-07-15" data-scope="Product/Design Engineering" data-slug="site" data-title="gildrb.com"') &&
+        allPage.includes('data-date="2026-07-15" data-scope="Design Engineering" data-slug="site" data-title="gildrb.com"') &&
         allPage.lastIndexOf('data-slug="site"') >
             allPage.indexOf('data-slug="ml7"') &&
         allScript.includes('new URLSearchParams(window.location.search)') &&
@@ -1482,7 +1486,9 @@ assert(
         (indexHtml.match(/class="portfolio-card-scope">Logomark/g) || [])
             .length === 2 &&
         (indexHtml.match(/class="portfolio-card-scope">Product\/Design Engineering/g) || [])
-            .length === 2 &&
+            .length === 1 &&
+        (indexHtml.match(/class="portfolio-card-scope">Design Engineering/g) || [])
+            .length === 1 &&
         (indexHtml.match(/class="portfolio-card-view">View<\/span>/g) || [])
             .length === 8 &&
         (indexHtml.match(/<span class="portfolio-card-view">View<\/span>\s+→/g) || [])

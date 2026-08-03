@@ -233,11 +233,11 @@ export async function buildPage({ write = true } = {}) {
     function renderCaseSuggestions(slug) {
         return [
             `                    <nav class="case-next" aria-label="All projects">`,
-            '                        <h2 class="case-next-heading">Read next</h2>',
+            '                        <h2 class="case-next-heading">View next</h2>',
             '                        <div class="case-next-list">',
             ...portfolioCases.flatMap(
                 ({ date, scope, slug: suggestionSlug, title }) => {
-                    const rowStart = `                            <${suggestionSlug === slug ? "div class=\"case-next-row case-next-current\" aria-current=\"page\"" : `a class="case-next-row case-next-link" href="/${suggestionSlug}"`}>`;
+                    const rowStart = `                            <a class="case-next-row case-next-link" href="/${suggestionSlug}"${suggestionSlug === slug ? ` aria-current="page"` : ""}>`;
                     return [
                     rowStart,
                     `                                <time datetime="${date}">`,
@@ -246,17 +246,11 @@ export async function buildPage({ write = true } = {}) {
                     "                                </time>",
                     `                                <span class="case-next-project">${title}</span>`,
                     `                                <span class="case-next-scope">${scope}</span>`,
-                    suggestionSlug === slug
-                        ? '                                <span class="case-next-arrow" aria-hidden="true"></span>'
-                        : '                                <span class="case-next-arrow" aria-hidden="true">',
-                    ...(suggestionSlug === slug
-                        ? []
-                        : [
-                              '                                    <span class="case-next-view">View</span>',
-                              '                                    →',
-                              '                                </span>',
-                          ]),
-                    `                            </${suggestionSlug === slug ? "div" : "a"}>`,
+                    '                                <span class="case-next-arrow" aria-hidden="true">',
+                    '                                    <span class="case-next-view">View</span>',
+                    '                                    →',
+                    '                                </span>',
+                    '                            </a>',
                     ];
                 },
             ),

@@ -149,15 +149,38 @@ function updateMobileLayout(preserveHomepageLock = false) {
 
 const portfolioSection = document.querySelector(".portfolio-section");
 const portfolioSiteDate = document.querySelector("#portfolio-site-date");
+function updatePortfolioScrollIndicators() {
+    if (!portfolioSection) return;
+
+    portfolioSection.classList.toggle(
+        "has-scroll-top",
+        portfolioSection.scrollTop > 1,
+    );
+    portfolioSection.classList.toggle(
+        "has-scroll-bottom",
+        portfolioSection.scrollHeight -
+            portfolioSection.clientHeight -
+            portfolioSection.scrollTop >
+            1,
+    );
+}
+
+portfolioSection?.addEventListener(
+    "scroll",
+    updatePortfolioScrollIndicators,
+    { passive: true },
+);
 const mobileLayoutTargets = [
     portfolioSection,
     portfolioSiteDate,
     document.querySelector(".profile-summary"),
     mobileLinks,
 ].filter(Boolean);
+updatePortfolioScrollIndicators();
 if ("ResizeObserver" in window) {
     const updateOnResize = new ResizeObserver(() => {
         window.setTimeout(updateMobileLayout, 0);
+        window.setTimeout(updatePortfolioScrollIndicators, 0);
     });
     mobileLayoutTargets.forEach((target) => updateOnResize.observe(target));
 }

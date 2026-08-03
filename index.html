@@ -2251,11 +2251,65 @@ html.homepage-scroll-locked body .layout {
     html.homepage-scroll-locked body .portfolio-section {
         grid-row: 3;
         min-height: 0;
-        margin-bottom: 0;
+        margin-bottom: var(--section-gap);
         align-content: start;
+        position: relative;
         overflow-y: auto;
         overscroll-behavior: contain;
+        scrollbar-width: none;
         padding-bottom: 8px;
+    }
+
+    html.homepage-scroll-locked body .portfolio-section::-webkit-scrollbar {
+        display: none;
+    }
+
+    html.homepage-scroll-locked body .portfolio-table-header {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background: linear-gradient(
+            to bottom,
+            var(--bg) 60%,
+            transparent
+        );
+    }
+
+    html.homepage-scroll-locked body .portfolio-section::before,
+    html.homepage-scroll-locked body .portfolio-section::after {
+        position: absolute;
+        right: 0;
+        left: 0;
+        z-index: 3;
+        height: 24px;
+        content: "";
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 160ms ease-out;
+    }
+
+    html.homepage-scroll-locked body .portfolio-section::before {
+        top: 0;
+        z-index: 1;
+        background: linear-gradient(
+            to bottom,
+            var(--bg),
+            transparent
+        );
+    }
+
+    html.homepage-scroll-locked body .portfolio-section::after {
+        bottom: 0;
+        background: linear-gradient(
+            to top,
+            var(--bg),
+            transparent
+        );
+    }
+
+    html.homepage-scroll-locked body .portfolio-section.has-scroll-top::before,
+    html.homepage-scroll-locked body .portfolio-section.has-scroll-bottom::after {
+        opacity: 1;
     }
 
     html.homepage-scroll-locked body .links {
@@ -2678,7 +2732,7 @@ html.homepage-scroll-locked body .layout {
                                 id="portfolio-site-title"
                                 >gildrb.com</span
                             >
-                            <span class="portfolio-card-scope">Product/Design Engineering</span>
+                            <span class="portfolio-card-scope">Design Engineering</span>
                             <span class="portfolio-card-arrow" aria-hidden="true">
                                 <span class="portfolio-card-view">View</span>
                                 →
@@ -3032,15 +3086,38 @@ function updateMobileLayout(preserveHomepageLock = false) {
 
 const portfolioSection = document.querySelector(".portfolio-section");
 const portfolioSiteDate = document.querySelector("#portfolio-site-date");
+function updatePortfolioScrollIndicators() {
+    if (!portfolioSection) return;
+
+    portfolioSection.classList.toggle(
+        "has-scroll-top",
+        portfolioSection.scrollTop > 1,
+    );
+    portfolioSection.classList.toggle(
+        "has-scroll-bottom",
+        portfolioSection.scrollHeight -
+            portfolioSection.clientHeight -
+            portfolioSection.scrollTop >
+            1,
+    );
+}
+
+portfolioSection?.addEventListener(
+    "scroll",
+    updatePortfolioScrollIndicators,
+    { passive: true },
+);
 const mobileLayoutTargets = [
     portfolioSection,
     portfolioSiteDate,
     document.querySelector(".profile-summary"),
     mobileLinks,
 ].filter(Boolean);
+updatePortfolioScrollIndicators();
 if ("ResizeObserver" in window) {
     const updateOnResize = new ResizeObserver(() => {
         window.setTimeout(updateMobileLayout, 0);
+        window.setTimeout(updatePortfolioScrollIndicators, 0);
     });
     mobileLayoutTargets.forEach((target) => updateOnResize.observe(target));
 }
