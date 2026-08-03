@@ -16,6 +16,4 @@ Stems and bowls hold one weight and one corner radius, so the mark keeps its rhy
 
 ![Construction points and final mark](media:ben-davis-construction)
 
-### What happened to it
-
-Ben replied to the post with "oooo this is sick ty". He has not put it on the site, and I did not ask him to. It cost me an evening and it keeps my drawing sharp between client projects.
+Ben replied to the post, then messaged me and we talked it through. The mark is his to use.
