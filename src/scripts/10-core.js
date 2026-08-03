@@ -30,7 +30,10 @@ const mobileLinks = document.querySelector(
 
 function updateMobileLinksLayout() {
     const links = mobileLinks;
-    const portfolioScope = document.querySelector(".portfolio-sort-scope");
+    const portfolioScope =
+        document.querySelector(".portfolio-card-scope") ??
+        document.querySelector(".case-next-scope") ??
+        document.querySelector(".portfolio-sort-scope");
     if (!links) return;
 
     if (!window.matchMedia("(max-width: 767px)").matches) {
@@ -172,6 +175,7 @@ portfolioSection?.addEventListener(
 );
 const mobileLayoutTargets = [
     portfolioSection,
+    document.querySelector(".case-next-list"),
     portfolioSiteDate,
     document.querySelector(".profile-summary"),
     mobileLinks,
@@ -189,7 +193,7 @@ async function prepareHomepageFirstPaint() {
     const root = document.documentElement;
     const body = document.body;
 
-    if (!body || body.classList.contains("case-page")) {
+    if (!body) {
         root.classList.remove("homepage-first-paint-pending");
         return;
     }
