@@ -10,7 +10,7 @@ The demo shows the actual interaction model. The active armory, selected model, 
 
 ![Heph in use](media:heph-interface)
 
-Heph requires Python 3.13 and is managed as a five-package `uv` workspace. Textual and Rich provide the terminal foundation. Retrieval uses `bm25s`, `sentence-transformers`, and scikit-learn when those backends are available. Docling handles supported document conversion, while credentials can be stored through the operating system keyring.
+Heph requires Python 3.13 and is managed as a five-package `uv` workspace. Textual and Rich provide the terminal foundation. There is one install and no optional extras: retrieval is lexical, document conversion is written against the file formats directly, and credentials can be stored through the operating system keyring. The full install is 43 packages and about 46 MB, with no machine-learning runtime, no CUDA, and no model downloads. A local `llama.cpp` model runs through a managed binary rather than a Python ML stack, so choosing local inference does not change the dependency graph.
 
 ### Armories
 
@@ -38,9 +38,9 @@ Each armory has a separate local index. When a hosted model is selected, Heph se
 
 ### Retrieval
 
-I did not implement BM25 or train an embedding model. My work is the pipeline around those components: document conversion, chunking, indexing, query changes, ranking, fallback behavior, and the source mapping used by citations.
+I did not invent BM25. My work is the pipeline around it: document conversion, chunking, indexing, query changes, ranking, fallback behavior, and the source mapping used by citations.
 
-Markdown is split by heading so its section structure survives indexing. Other text uses semantic chunking when the embedding backend is present and fixed-window chunking otherwise. Supported Office documents run through Docling in a worker with limits on time, memory, source size, and output size. PDF extraction can fall back to `pdftotext`, then to OCR with `pdftoppm` and `tesseract`. A failed document is isolated instead of stopping the full index.
+Markdown is split by heading so its section structure survives indexing. Other text uses fixed-window chunking. Office and OpenDocument files are ZIP containers of XML, so `.docx`, `.pptx`, `.xlsx`, `.odt`, and `.ods` are read directly with the standard library and a hardened XML parser, under limits on member count, declared size, and output size, and with archive member paths rejected if they escape the container. PDF extraction uses `pdftotext` when it is installed and a bundled PDFium build otherwise. Formats that cannot be read faithfully are reported with the conversion target instead of being indexed as empty. A failed document is isolated instead of stopping the full index.
 
 Each chunk records its source path and character offsets. Markdown chunks also retain the nearest heading. Indexing hashes the source files and only processes files that changed. The index is stored as JSON. Indexing also rejects path traversal and refuses to follow symlinks out of the armory.
 
@@ -49,18 +49,17 @@ A query passes through the available retrieval stages before any context reaches
 ```text title="Retrieval pipeline"
 query
   → normalize + expand
-  → sparse retrieval
-  → dense retrieval
+  → BM25
+  → TF-IDF
   → rank fusion
   → feedback (optional)
-  → rerank (optional)
   → source + quote + negation checks
   → top-k chunks
 ```
 
-Sparse retrieval prefers `bm25s`. If that backend is unavailable, Heph can use its own BM25 path and then TF-IDF as a further fallback. Dense retrieval uses `all-MiniLM-L6-v2` with cosine similarity. The optional reranker is `cross-encoder/ms-marco-MiniLM-L-6-v2`. When sparse and dense results both exist, weighted reciprocal-rank fusion combines them.
+Retrieval is lexical. BM25 and TF-IDF are both implemented against the standard library, and weighted reciprocal-rank fusion combines them. Earlier versions reached dense retrieval and cross-encoder reranking through `sentence-transformers`, which pulled Torch, CUDA, and a set of native document dependencies into every install. That cost was not proportionate for a tool meant to sit on a personal machine, so those stages were removed rather than made optional. A request for a stage that no longer exists fails with that reason instead of silently returning lexical results.
 
-Post-processing can expand a query with a small synonym set, apply pseudo-relevance feedback, favor quoted phrases, use source-path hints, and penalize results that conflict with negated terms. Every optional stage has a fallback because installations differ in available models and hardware.
+Post-processing can expand a query with a small synonym set, apply pseudo-relevance feedback, favor quoted phrases, use source-path hints, and penalize results that conflict with negated terms.
 
 ### Evidence
 
