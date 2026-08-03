@@ -1432,7 +1432,7 @@ assert(
     "Case articles and their media must stay inside the centered blog-width boundary.",
 );
 assert(
-        baseStyles.includes("--sidebar-column: 240px;") &&
+    baseStyles.includes("--sidebar-column: 240px;") &&
         baseStyles.includes("--content-column: 760px;") &&
         baseStyles.includes(
             "max-width: calc(var(--sidebar-column) + var(--layout-gap) + var(--content-column));\n  margin: 0 auto;",
