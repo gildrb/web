@@ -98,6 +98,7 @@
     padding: 8px 0;
     color: var(--text-tertiary);
     text-decoration: none;
+    touch-action: manipulation;
 }
 
 .case-next-row + .case-next-row,

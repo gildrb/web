@@ -264,6 +264,12 @@ body:not(.case-page) .content {
         background: transparent;
     }
 
+    .theme-toggle::before {
+        position: absolute;
+        inset: 6px -6px;
+        content: "";
+    }
+
     .name {
         white-space: normal;
     }
