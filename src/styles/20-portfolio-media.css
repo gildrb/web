@@ -252,6 +252,21 @@
     margin-bottom: 32px;
 }
 
+@media (min-width: 768px) {
+    .portfolio-scroll-frame {
+        display: grid;
+        grid-template-columns: max-content max-content minmax(0, 1fr) auto;
+        column-gap: 16px;
+        container-type: inline-size;
+        margin-bottom: 32px;
+    }
+
+    .portfolio-section {
+        display: contents;
+        margin-bottom: 0;
+    }
+}
+
 .portfolio-table-header {
     display: grid;
     grid-column: 1 / -1;

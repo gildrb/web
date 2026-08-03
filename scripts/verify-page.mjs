@@ -1415,6 +1415,23 @@ assert(
         !caseScript.includes("portfolioSortButtons"),
     "The homepage must use secondary-tone Date, Project, Scope, and All headings, with All preserving the active sort for the continuous projects page.",
 );
+assert(
+    portfolioOpen.indexOf('class="portfolio-table-header"') <
+        portfolioOpen.indexOf('class="portfolio-section"') &&
+        responsiveStyles.includes(
+            "html.homepage-scroll-locked body .portfolio-scroll-frame {\n        grid-row: 3;\n        grid-template-rows: auto minmax(0, 1fr);",
+        ) &&
+        responsiveStyles.includes(
+            "html.homepage-scroll-locked body .portfolio-section {\n        grid-row: 2;\n        height: auto;",
+        ) &&
+        responsiveStyles.includes(
+            "html.homepage-scroll-locked body .portfolio-section {\n        grid-row: 2;\n        height: auto;\n        min-height: 0;\n        margin-bottom: 0;\n        align-content: start;\n        overflow-y: auto;\n        overscroll-behavior: auto;",
+        ) &&
+        responsiveStyles.includes(
+            "html.homepage-scroll-locked body .portfolio-table-header {\n        grid-row: 1;\n        position: relative;",
+        ),
+    "The locked mobile homepage must keep the filter row outside the scrolling table and preserve native overscroll.",
+);
 const portfolioDates = [
     ["2026-07-25", "2026-07-25", "T3"],
     ["2026-07-07", "2026-07-07", "Ben Davis"],

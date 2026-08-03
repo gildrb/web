@@ -82,6 +82,18 @@ html.homepage-scroll-locked body .layout {
 }
 
 @media (max-width: 767px) {
+    .portfolio-scroll-frame {
+        display: grid;
+        grid-template-columns: max-content max-content minmax(0, 1fr) auto;
+        column-gap: clamp(8px, 3vw, 16px);
+        order: 3;
+    }
+
+    .portfolio-table-header,
+    .portfolio-section {
+        grid-column: 1 / -1;
+    }
+
     body:not(.case-page) {
         min-height: 100svh;
         height: auto;
@@ -124,20 +136,22 @@ html.homepage-scroll-locked body .layout {
     }
 
     html.homepage-scroll-locked body .portfolio-scroll-frame {
-        display: block;
         grid-row: 3;
+        grid-template-rows: auto minmax(0, 1fr);
+        height: auto;
         min-height: 0;
         margin-bottom: var(--section-gap);
         position: relative;
     }
 
     html.homepage-scroll-locked body .portfolio-section {
-        height: 100%;
+        grid-row: 2;
+        height: auto;
         min-height: 0;
         margin-bottom: 0;
         align-content: start;
         overflow-y: auto;
-        overscroll-behavior: contain;
+        overscroll-behavior: auto;
         scrollbar-width: none;
         padding-bottom: 8px;
     }
@@ -147,8 +161,8 @@ html.homepage-scroll-locked body .layout {
     }
 
     html.homepage-scroll-locked body .portfolio-table-header {
-        position: sticky;
-        top: 0;
+        grid-row: 1;
+        position: relative;
         z-index: 3;
         background: var(--bg);
     }
