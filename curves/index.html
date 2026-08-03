@@ -531,22 +531,6 @@ body {
     line-height: 24px;
 }
 
-@media (min-width: 769px) {
-    .case-next-heading {
-        position: sticky;
-        top: calc(
-            100vh - 48px - var(--footer-title-center-offset) -
-                (var(--theme-toggle-size) / 2) - 12px
-        );
-        z-index: 2;
-        background: linear-gradient(
-            to bottom,
-            var(--bg) 60%,
-            transparent
-        );
-    }
-}
-
 .case-next-list {
     display: grid;
     grid-template-columns: max-content max-content minmax(0, 1fr) auto;
