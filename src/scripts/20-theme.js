@@ -47,6 +47,7 @@ if (savedTheme === "dark" || savedTheme === "light") {
 updateThemeToggle();
 
 let themeToggleUsedPointer = false;
+let themeToggleSkipClick = false;
 
 themeToggle.addEventListener("pointerdown", (event) => {
     themeToggleUsedPointer =
@@ -64,7 +65,7 @@ themePreference.addEventListener("change", () => {
     }
 });
 
-themeToggle.addEventListener("click", () => {
+function toggleTheme() {
     const nextTheme = getTheme() === "dark" ? "light" : "dark";
     setTheme(nextTheme);
     trackEvent("Theme Toggle", { theme: nextTheme });
@@ -76,4 +77,24 @@ themeToggle.addEventListener("click", () => {
 
     themeToggleUsedPointer = false;
     announce(`Switched to ${nextTheme} mode`);
+}
+
+themeToggle.addEventListener("pointerup", (event) => {
+    if (event.pointerType === "touch") {
+        themeToggleSkipClick = true;
+        toggleTheme();
+    }
+});
+
+themeToggle.addEventListener("pointercancel", () => {
+    themeToggleSkipClick = false;
+});
+
+themeToggle.addEventListener("click", () => {
+    if (themeToggleSkipClick) {
+        themeToggleSkipClick = false;
+        return;
+    }
+
+    toggleTheme();
 });
