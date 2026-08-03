@@ -700,7 +700,7 @@ assert(
 );
 assert(
     benDavisStyles.includes(
-        ".case-media .ben-davis-brandmark {\n    width: 88%;\n    border-radius: 0;\n    filter: none;",
+        ".case-media .ben-davis-brandmark {\n    width: 88%;\n    margin-inline: auto;\n    border-radius: 0;\n    filter: none;",
     ) &&
         benDavisStyles.includes(
             "@media (prefers-color-scheme: light) {\n    :root:not([data-theme]) .ben-davis-brandmark {\n        filter: brightness(0);",

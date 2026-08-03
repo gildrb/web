@@ -1,5 +1,6 @@
 .case-media .ben-davis-brandmark {
     width: 88%;
+    margin-inline: auto;
     border-radius: 0;
     filter: none;
 }
