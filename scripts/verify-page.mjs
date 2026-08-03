@@ -117,12 +117,11 @@ function getSuggestionTier(current, candidate) {
         "Typeface",
         "Wordmark",
         "Logomark",
-        "Brandmark",
+        "Logomark",
     ]);
     const product = new Set([
-        "Design engineering",
-        "Product design and engineering",
-        "Brand identity",
+        "Product/Design Engineering",
+        "Brand Identity",
     ]);
     if (current.scope === candidate.scope) return 1;
     const currentFamily = typeMarks.has(current.scope)
@@ -1719,6 +1718,21 @@ assert(
         !caseStyles.includes("margin-top: auto;") &&
         !caseStyles.includes("padding-top: 80px;"),
     "Desktop case endings must keep their natural flow while reserving the theme toggle's bottom boundary.",
+);
+assert(
+    caseStyles.includes(
+        ".case-article article:has(+ .case-next) > :last-child {\n        padding-bottom: 0;",
+    ) &&
+        caseStyles.includes(
+            ".case-next {\n    width: min(100%, 760px);\n    margin: 48px auto 0;",
+        ) &&
+        caseStyles.includes(
+            "padding: var(--theme-toggle-optical-offset) 0;",
+        ) &&
+        caseStyles.includes(
+            "@media (max-width: 768px)",
+        ),
+    "Case-next pages must move toggle-boundary alignment to the suggestions block and use the existing 48px/2px spacing values.",
 );
 assert(
     caseStyles.includes(

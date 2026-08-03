@@ -237,12 +237,11 @@ export async function buildPage({ write = true } = {}) {
         "Typeface",
         "Wordmark",
         "Logomark",
-        "Brandmark",
+        "Logomark",
     ]);
     const productFamily = new Set([
-        "Design engineering",
-        "Product design and engineering",
-        "Brand identity",
+        "Product/Design Engineering",
+        "Brand Identity",
     ]);
 
     function getPortfolioFamily(scope) {
