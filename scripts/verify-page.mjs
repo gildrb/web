@@ -1605,8 +1605,14 @@ assert(
 );
 assert(
     caseStyles.includes(
-        ".case-article article:has(+ .case-next) > :last-child {\n        padding-bottom: 0;",
+        ".case-next {\n        padding-bottom: calc(\n            var(--footer-title-center-offset) +",
     ) &&
+        caseStyles.includes(
+            ".case-next-row:last-child {\n        padding-bottom: 0;",
+        ) &&
+        caseStyles.includes(
+            ".case-article article:has(+ .case-next) > :last-child {\n        padding-bottom: 0;",
+        ) &&
         caseStyles.includes(
             ".case-next {\n    width: min(100%, 760px);\n    margin: 48px auto 0;",
         ) &&

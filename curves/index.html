@@ -839,13 +839,17 @@ body {
 }
 
 @media (min-width: 769px) {
-    .case-next-row:last-child {
-        --case-final-line-height: 24px;
+    .case-next {
         padding-bottom: calc(
             var(--footer-title-center-offset) +
                 (var(--theme-toggle-size) / 2) -
-                (var(--case-final-line-height) / 2)
+                (24px / 2) -
+                var(--footer-title-optical-offset)
         );
+    }
+
+    .case-next-row:last-child {
+        padding-bottom: 0;
     }
 
     .case-article article:has(+ .case-next) > :last-child {
