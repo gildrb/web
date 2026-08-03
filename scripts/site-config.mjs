@@ -109,7 +109,9 @@ export const siteConfig = Object.freeze({
             "90-responsive.css",
         ]),
         scripts: Object.freeze([
-            ...sharedCaseScripts,
+            "10-core.js",
+            "20-theme.js",
+            "30-email.js",
             "40-heph-data.js",
             "50-heph-demo.js",
             "60-all-sort.js",
