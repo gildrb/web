@@ -138,6 +138,12 @@ body:not(.case-page) .content {
             var(--bg),
             transparent
         );
+        opacity: 0;
+        transition: opacity 180ms ease;
+    }
+
+    html.has-sticky-header-fade .name::after {
+        opacity: 1;
     }
 
     .theme-toggle {
