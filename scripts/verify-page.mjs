@@ -1190,10 +1190,9 @@ assert(
         responsiveStyles.includes(
             "body:not(.case-page) .content {\n    min-height: 100dvh;",
         ) &&
-        !responsiveStyles.includes("homepage-scroll-locked") &&
-        !responsiveStyles.includes("overflow: hidden;") &&
+        responsiveStyles.includes("html.homepage-scroll-locked") &&
         !responsiveStyles.includes("overscroll-behavior: none;"),
-    "The homepage must preserve the shared desktop shell while remaining a normally scrolling document.",
+    "The homepage must preserve the shared desktop shell with the locked mobile state.",
 );
 assert(
     responsiveStyles.includes(
@@ -1211,21 +1210,19 @@ assert(
         responsiveStyles.includes(
             "background: linear-gradient(\n            to bottom,\n            var(--bg) 60%,\n            transparent\n        );\n        min-height: 0;",
         ) &&
-        !responsiveStyles.includes("body:not(.case-page) .name") &&
-        !responsiveStyles.includes("body:not(.case-page) .theme-toggle") &&
         responsiveStyles.includes(
             ".portfolio-section {\n        order: 3;\n        margin-bottom: var(--section-gap);",
         ) &&
         responsiveStyles.includes(
             ".links {\n        grid-column: 1 / -1;\n        order: 4;\n        margin-bottom: 0;",
         ) &&
-        !responsiveStyles.includes("portfolio-scroll-frame") &&
-        !responsiveStyles.includes("has-scroll-top") &&
-        !responsiveStyles.includes("has-scroll-bottom") &&
-        !siteScript.includes("homepage-scroll-locked") &&
-        !siteScript.includes("ResizeObserver") &&
-        !siteScript.includes("updatePortfolioScrollIndicators"),
-    "The mobile homepage must remain a plain, naturally scrolling document with inline project rows and reachable footer links.",
+        responsiveStyles.includes("portfolio-scroll-frame") &&
+        responsiveStyles.includes("has-scroll-top") &&
+        responsiveStyles.includes("has-scroll-bottom") &&
+        siteScript.includes("homepage-scroll-locked") &&
+        siteScript.includes("ResizeObserver") &&
+        siteScript.includes("updatePortfolioScrollIndicators"),
+    "The mobile homepage must keep the locked table scroll region and edge indicators.",
 );
 assert(
     indexHtml.includes('class="portfolio-table-header"') &&
@@ -1332,17 +1329,16 @@ assert(
     "The homepage must use secondary-tone Date, Project, Scope, and All headings, with All preserving the active sort for the continuous projects page.",
 );
 assert(
-    portfolioOpen.indexOf('class="portfolio-section"') <
+    portfolioOpen.indexOf('class="portfolio-scroll-frame"') <
         portfolioOpen.indexOf('class="portfolio-table-header"') &&
         portfolioOpen.indexOf('class="portfolio-table-header"') <
             portfolioOpen.indexOf('class="portfolio-list"') &&
-        !portfolioOpen.includes("portfolio-scroll-frame") &&
-        !responsiveStyles.includes("homepage-scroll-locked") &&
-        !responsiveStyles.includes("overflow-y: auto") &&
-        !responsiveStyles.includes("scrollbar-width: none") &&
-        !responsiveStyles.includes("portfolio-scroll-frame::before") &&
-        !responsiveStyles.includes("portfolio-scroll-frame::after"),
-    "The homepage portfolio must be a single naturally scrolling table without nested scroll or fade chrome.",
+        responsiveStyles.includes("homepage-scroll-locked") &&
+        responsiveStyles.includes("overflow-y: auto") &&
+        responsiveStyles.includes("scrollbar-width: none") &&
+        responsiveStyles.includes("portfolio-scroll-frame::before") &&
+        responsiveStyles.includes("portfolio-scroll-frame::after"),
+    "The homepage portfolio must keep its locked table scroll region and edge fade chrome.",
 );
 const portfolioDates = [
     ["2026-07-25", "2026-07-25", "T3"],

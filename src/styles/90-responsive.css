@@ -72,6 +72,18 @@ body:not(.case-page) .content {
 }
 
 @media (max-width: 767px) {
+    .portfolio-scroll-frame {
+        display: grid;
+        grid-template-columns: max-content max-content minmax(0, 1fr) auto;
+        column-gap: clamp(8px, 3vw, 16px);
+        order: 3;
+    }
+
+    .portfolio-table-header,
+    .portfolio-section {
+        grid-column: 1 / -1;
+    }
+
     body:not(.case-page) {
         min-height: 100svh;
         height: auto;
@@ -86,6 +98,107 @@ body:not(.case-page) .content {
         overflow: visible;
         overscroll-behavior: auto;
         padding-bottom: 64px;
+    }
+
+    html.homepage-scroll-locked,
+    html.homepage-scroll-locked body {
+        height: 100dvh;
+        min-height: 100dvh;
+        overflow: hidden;
+    }
+
+    html.homepage-scroll-locked body .layout {
+        height: 100dvh;
+        min-height: 100dvh;
+        display: grid;
+        align-content: start;
+        grid-template-rows: auto auto minmax(0, 1fr) auto;
+        padding-bottom: 0;
+    }
+
+    html.homepage-scroll-locked body .name,
+    html.homepage-scroll-locked body .theme-toggle {
+        grid-row: 1;
+    }
+
+    html.homepage-scroll-locked body .profile-summary {
+        grid-row: 2;
+    }
+
+    html.homepage-scroll-locked body .portfolio-scroll-frame {
+        grid-row: 3;
+        grid-template-rows: auto minmax(0, 1fr);
+        height: auto;
+        min-height: 0;
+        margin-bottom: var(--section-gap);
+        position: relative;
+    }
+
+    html.homepage-scroll-locked body .portfolio-section {
+        grid-row: 2;
+        height: auto;
+        min-height: 0;
+        margin-bottom: 0;
+        align-content: start;
+        overflow-y: auto;
+        overscroll-behavior: auto;
+        scrollbar-width: none;
+        padding-bottom: 8px;
+    }
+
+    html.homepage-scroll-locked body .portfolio-section::-webkit-scrollbar {
+        display: none;
+    }
+
+    html.homepage-scroll-locked body .portfolio-table-header {
+        grid-row: 1;
+        position: relative;
+        z-index: 3;
+        background: var(--bg);
+    }
+
+    html.homepage-scroll-locked body .portfolio-scroll-frame::before,
+    html.homepage-scroll-locked body .portfolio-scroll-frame::after {
+        position: absolute;
+        right: 0;
+        left: 0;
+        z-index: 3;
+        height: 56px;
+        content: "";
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 160ms ease-out;
+    }
+
+    html.homepage-scroll-locked body .portfolio-scroll-frame::before {
+        top: 41px;
+        z-index: 2;
+        background: linear-gradient(
+            to bottom,
+            var(--bg),
+            transparent
+        );
+    }
+
+    html.homepage-scroll-locked body .portfolio-scroll-frame::after {
+        bottom: 0;
+        z-index: 2;
+        background: linear-gradient(
+            to top,
+            var(--bg),
+            transparent
+        );
+    }
+
+    html.homepage-scroll-locked body .portfolio-scroll-frame:has(.portfolio-section.has-scroll-top)::before,
+    html.homepage-scroll-locked body .portfolio-scroll-frame:has(.portfolio-section.has-scroll-bottom)::after {
+        opacity: 1;
+    }
+
+    html.homepage-scroll-locked body .links {
+        grid-row: 4;
+        align-self: end;
+        padding-bottom: 24px;
     }
 
     .wrapper {

@@ -51,11 +51,139 @@ function updateMobileLinksLayout() {
     );
 }
 
-function updateMobileLayout() {
-    updateMobileLinksLayout();
+let homepageLockState = "uninitialized";
+let homepageUnlockedHeight = 0;
+let homepageUnlockedContentBottom = 0;
+let homepageViewportWidth = window.innerWidth;
+
+function updateHomepageLock(preserveMobileState = false) {
+    const root = document.documentElement;
+    const body = document.body;
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    const viewportWidthChanged = window.innerWidth !== homepageViewportWidth;
+    homepageViewportWidth = window.innerWidth;
+
+    if (!body || body.classList.contains("case-page")) {
+        root.classList.remove("homepage-scroll-locked");
+        homepageLockState = "uninitialized";
+        return;
+    }
+
+    if (isMobile) {
+        root.classList.add("homepage-scroll-locked");
+        homepageLockState = "locked";
+        return;
+    }
+
+    if (
+        preserveMobileState &&
+        isMobile &&
+        !viewportWidthChanged &&
+        homepageLockState === "locked"
+    ) {
+        return;
+    }
+
+    root.classList.remove("homepage-scroll-locked");
+    const contentBottom = Math.max(
+        ...Array.from(
+            document.querySelectorAll(
+                ".profile-summary, .portfolio-section, .links, .site-footer",
+            ),
+            (element) =>
+                element.getBoundingClientRect().bottom + window.scrollY,
+        ),
+        0,
+    );
+    const fits = contentBottom <= window.innerHeight;
+    const atTop = window.scrollY === 0;
+
+    if (homepageLockState === "locked") {
+        if (atTop && fits) {
+            root.classList.add("homepage-scroll-locked");
+            return;
+        }
+
+        homepageLockState = "unlocked";
+        homepageUnlockedHeight = window.innerHeight;
+        homepageUnlockedContentBottom = contentBottom;
+        return;
+    }
+
+    if (homepageLockState === "unlocked") {
+        const viewportChanged =
+            Math.abs(
+                window.innerHeight - homepageUnlockedHeight,
+            ) >= 32;
+        const contentShrank =
+            homepageUnlockedContentBottom - contentBottom >= 32;
+
+        if (
+            !atTop ||
+            (!viewportChanged && !contentShrank) ||
+            !fits
+        ) {
+            return;
+        }
+
+        homepageLockState = "locked";
+        root.classList.add("homepage-scroll-locked");
+        return;
+    }
+
+    if (atTop && fits) {
+        homepageLockState = "locked";
+        root.classList.add("homepage-scroll-locked");
+        return;
+    }
+
+    homepageLockState = "unlocked";
+    homepageUnlockedHeight = window.innerHeight;
+    homepageUnlockedContentBottom = contentBottom;
 }
 
+function updateMobileLayout(preserveHomepageLock = false) {
+    updateMobileLinksLayout();
+    updateHomepageLock(preserveHomepageLock);
+}
+
+const portfolioSection = document.querySelector(".portfolio-section");
 const portfolioSiteDate = document.querySelector("#portfolio-site-date");
+function updatePortfolioScrollIndicators() {
+    if (!portfolioSection) return;
+
+    portfolioSection.classList.toggle(
+        "has-scroll-top",
+        portfolioSection.scrollTop > 1,
+    );
+    portfolioSection.classList.toggle(
+        "has-scroll-bottom",
+        portfolioSection.scrollHeight -
+            portfolioSection.clientHeight -
+            portfolioSection.scrollTop >
+            1,
+    );
+}
+
+portfolioSection?.addEventListener(
+    "scroll",
+    updatePortfolioScrollIndicators,
+    { passive: true },
+);
+const mobileLayoutTargets = [
+    portfolioSection,
+    portfolioSiteDate,
+    document.querySelector(".profile-summary"),
+    mobileLinks,
+].filter(Boolean);
+updatePortfolioScrollIndicators();
+if ("ResizeObserver" in window) {
+    const updateOnResize = new ResizeObserver(() => {
+        window.setTimeout(updateMobileLayout, 0);
+        window.setTimeout(updatePortfolioScrollIndicators, 0);
+    });
+    mobileLayoutTargets.forEach((target) => updateOnResize.observe(target));
+}
 
 async function prepareHomepageFirstPaint() {
     const root = document.documentElement;
@@ -87,7 +215,7 @@ window.addEventListener("load", () => {
     updateHomepageDates();
     updateMobileLayout();
 });
-window.addEventListener("resize", updateMobileLayout);
+window.addEventListener("resize", () => updateMobileLayout(true));
 
 if ("scrollRestoration" in window.history) {
     window.history.scrollRestoration = "manual";
