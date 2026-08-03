@@ -1184,6 +1184,9 @@ assert(
             "body:not(.case-page) .layout {\n        min-height: 100svh;\n        height: auto;\n        align-content: start;\n        overflow: visible;\n        overscroll-behavior: auto;\n        padding-bottom: 64px;",
         ) &&
         responsiveStyles.includes(
+            "html.homepage-scroll-locked,\n    html.homepage-scroll-locked body {\n        height: 100dvh;\n        min-height: 100dvh;",
+        ) &&
+        !responsiveStyles.includes(
             "html.homepage-scroll-locked,\n    html.homepage-scroll-locked body {\n        height: 100dvh;\n        min-height: 100dvh;\n        overflow: hidden;",
         ) &&
         responsiveStyles.includes(
