@@ -1303,7 +1303,7 @@ assert(
     siteScript.includes("function updateHomepageDates()") &&
         !siteScript.includes("copyrightYear") &&
         siteScript.includes(
-            'window.addEventListener("load", updateHomepageDates);',
+            'window.addEventListener("load", () => {\n    updateHomepageDates();\n    updateMobileLayout();\n});',
         ),
     "Homepage date updates must not retain removed copyright behavior.",
 );
