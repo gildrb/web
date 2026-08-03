@@ -1074,7 +1074,6 @@ const t3MediaSequence = [
     "gil-rodrigues-t3-feedback-board-720.webp",
     "gil-rodrigues-t3-feedback-spacing-720.webp",
     "gil-rodrigues-t3-feedback-repainted-720.webp",
-    "gil-rodrigues-t3-product-board-720.webp",
     "gil-rodrigues-t3-feedback-thinner-720.webp",
     "gil-rodrigues-t3-feedback-frames-720.webp",
     "gil-rodrigues-t3-feedback-angled-3-720.webp",
