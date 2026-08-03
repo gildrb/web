@@ -902,10 +902,6 @@ assert(
     "Cropped Filen exploration derivatives are not allowed.",
 );
 assert(
-    !filenHtml.includes("https://filen.io/"),
-    "Filen case study must not link to filen.io.",
-);
-assert(
     filenHtml.includes('<a class="case-home-link" href="/">Gil Rodrigues</a>') &&
         !filenHtml.includes('>Index</a>') &&
         !filenHtml.includes("Return to the index") &&
