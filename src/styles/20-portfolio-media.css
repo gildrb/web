@@ -247,8 +247,6 @@
 .portfolio-section {
     display: grid;
     grid-template-columns: max-content max-content minmax(0, 1fr) auto;
-    column-gap: 16px;
-    container-type: inline-size;
     margin-bottom: 32px;
 }
 
@@ -371,8 +369,7 @@
 
 @media (max-width: 767px) {
     .portfolio-section {
-        grid-template-columns: max-content max-content minmax(0, 1fr) auto;
-        column-gap: clamp(8px, 3vw, 16px);
+        grid-template-columns: subgrid;
     }
 
     .portfolio-card-view {

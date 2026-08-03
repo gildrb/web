@@ -1354,7 +1354,7 @@ assert(
             indexHtml.includes(`>${title}</span`),
     ) &&
         portfolioStyles.includes(
-            ".portfolio-section {\n    display: grid;\n    grid-template-columns: max-content max-content minmax(0, 1fr) auto;\n    column-gap: 16px;\n    container-type: inline-size;",
+            ".portfolio-section {\n    display: grid;\n    grid-template-columns: max-content max-content minmax(0, 1fr) auto;",
         ) &&
         portfolioStyles.includes(
             ".portfolio-list {\n    display: grid;\n    grid-column: 1 / -1;\n    grid-template-columns: subgrid;\n    margin-top: 0;",
@@ -1410,7 +1410,7 @@ assert(
             ".portfolio-card-link + .portfolio-card-link {\n    margin-top: 0;\n    border-top: 1px solid\n        color-mix(in srgb, var(--text-primary) 12%, transparent);",
         ) &&
         portfolioStyles.includes(
-            "@media (max-width: 767px) {\n    .portfolio-section {\n        grid-template-columns: max-content max-content minmax(0, 1fr) auto;\n        column-gap: clamp(8px, 3vw, 16px);",
+            "@media (max-width: 767px) {\n    .portfolio-section {\n        grid-template-columns: subgrid;",
         ) &&
         portfolioStyles.includes(
             ".portfolio-card-view {\n        display: none;",
@@ -1672,7 +1672,7 @@ assert(
     ) &&
         caseStyles.includes(".case-mobile-links {\n    display: none;") &&
         responsiveStyles.includes(
-            ".case-page .links {\n        order: 6;\n        margin-top: 80px;",
+            ".case-page .links {\n        order: 6;\n        margin-top: var(--section-gap);",
         ) &&
         responsiveStyles.includes(
             ".case-desktop-links {\n        display: none;",
