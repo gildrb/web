@@ -331,6 +331,7 @@ body {
   padding: 0;
   appearance: none;
   cursor: pointer;
+  touch-action: manipulation;
   margin-bottom: var(--footer-title-center-offset);
 }
 
@@ -1319,6 +1320,7 @@ body {
     padding: 8px 0;
     color: var(--text-tertiary);
     text-decoration: none;
+    touch-action: manipulation;
 }
 
 .case-next-row + .case-next-row,
@@ -1982,6 +1984,14 @@ body:not(.case-page) .content {
         margin-left: 16px;
         margin-bottom: 0;
         background: transparent;
+    }
+
+    .theme-toggle::before {
+        position: absolute;
+        inset: 6px -6px;
+        content: "";
+        border-radius: 4px;
+        touch-action: manipulation;
     }
 
     .name {

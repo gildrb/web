@@ -264,6 +264,14 @@ body:not(.case-page) .content {
         background: transparent;
     }
 
+    .theme-toggle::before {
+        position: absolute;
+        inset: 6px -6px;
+        content: "";
+        border-radius: 4px;
+        touch-action: manipulation;
+    }
+
     .name {
         white-space: normal;
     }
