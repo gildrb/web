@@ -2015,14 +2015,11 @@ document.addEventListener("pointerdown", (event) => {
 }, true);
 
 document.addEventListener("pointerup", (event) => {
-    if (event.pointerType === "touch") {
-        const shouldToggle =
-            themeToggleTouchStartedInside &&
-            isInsideTouchReleaseArea(event);
+    if (event.pointerType === "touch" && themeToggleTouchStartedInside) {
         themeToggleTouchStartedInside = false;
         suppressNextTouchClick();
 
-        if (shouldToggle) {
+        if (isInsideTouchReleaseArea(event)) {
             toggleTheme();
         }
     }
