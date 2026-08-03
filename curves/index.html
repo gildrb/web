@@ -1947,6 +1947,7 @@ updateThemeToggle();
 
 let themeToggleUsedPointer = false;
 let themeToggleSkipClick = false;
+let themeToggleSkipClickTimer;
 
 themeToggle.addEventListener("pointerdown", (event) => {
     themeToggleUsedPointer =
@@ -1978,10 +1979,29 @@ function toggleTheme() {
     announce(`Switched to ${nextTheme} mode`);
 }
 
+function suppressNextTouchClick() {
+    themeToggleSkipClick = true;
+    clearTimeout(themeToggleSkipClickTimer);
+    themeToggleSkipClickTimer = setTimeout(() => {
+        themeToggleSkipClick = false;
+    }, 500);
+}
+
 themeToggle.addEventListener("pointerup", (event) => {
     if (event.pointerType === "touch") {
-        themeToggleSkipClick = true;
-        toggleTheme();
+        suppressNextTouchClick();
+
+        const rect = themeToggle.getBoundingClientRect();
+        const hitAreaPadding = 6;
+        const insideHitArea =
+            event.clientX >= rect.left - hitAreaPadding &&
+            event.clientX <= rect.right + hitAreaPadding &&
+            event.clientY >= rect.top &&
+            event.clientY <= rect.bottom;
+
+        if (insideHitArea) {
+            toggleTheme();
+        }
     }
 });
 
@@ -1992,6 +2012,7 @@ themeToggle.addEventListener("pointercancel", () => {
 themeToggle.addEventListener("click", () => {
     if (themeToggleSkipClick) {
         themeToggleSkipClick = false;
+        clearTimeout(themeToggleSkipClickTimer);
         return;
     }
 
