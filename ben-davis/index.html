@@ -1,0 +1,1610 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="A personal db monogram redesign Gil Rodrigues drew for developer Ben Davis." />
+        <meta name="author" content="Gil Rodrigues" />
+        <meta name="creator" content="Gil Rodrigues" />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <link rel="canonical" href="https://gildrb.com/ben-davis" />
+        <link rel="alternate" type="text/markdown" href="https://gildrb.com/llms.txt" title="LLM reference for Gil Rodrigues" />
+        <link rel="alternate" type="text/markdown" href="https://gildrb.com/llms-full.txt" title="Full public website text for Gil Rodrigues" />
+        <link rel="alternate" type="text/markdown" href="https://gildrb.com/content/ben-davis.md" title="Markdown source for Ben Davis" />
+        <link rel="describedby" type="application/ld+json" href="https://gildrb.com/profile.json" title="Structured profile for Gil Rodrigues" />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://gildrb.com/ben-davis" />
+        <meta property="og:title" content="Ben Davis brandmark redesign by Gil Rodrigues" />
+        <meta property="og:description" content="An unsolicited db monogram redesign for developer Ben Davis, built from mirrored letterforms and one central diagonal." />
+        <meta property="og:image" content="https://gildrb.com/images/optimized/gil-rodrigues-ben-davis-construction-1280.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Ben Davis brandmark redesign by Gil Rodrigues" />
+        <meta name="twitter:description" content="An unsolicited db monogram redesign for developer Ben Davis, built from mirrored letterforms and one central diagonal." />
+        <meta name="twitter:image" content="https://gildrb.com/images/optimized/gil-rodrigues-ben-davis-construction-1280.webp" />
+        <title>Ben Davis</title>
+        <link id="site-favicon" rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <script>
+            if (window.location.hostname.endsWith(".vercel.app")) {
+                document.getElementById("site-favicon").href =
+                    "/preview-favicon.svg";
+            }
+        </script>
+        <link rel="preload" href="/fonts/inter-variable-latin.woff2" as="font" type="font/woff2" crossorigin />
+        <style>
+@font-face{font-family:"Inter";font-style:normal;font-weight:400 600;font-display:optional;src:url("/fonts/inter-variable-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+21A9,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Geist Mono";font-style:normal;font-weight:400 600;font-display:optional;src:url("/fonts/geist-mono-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+:root {
+  --bg: #000000;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --text-tertiary: #767676;
+  --highlight-bg: #b3b3b3;
+  --highlight-text: #ffffff;
+  --section-gap: 24px;
+  --section-content-gap: 6px;
+  --text-media-gap: 32px;
+  --case-title-text-gap: 24px;
+  --all-case-gap: calc(var(--case-title-text-gap) * 1.618);
+  --link-line-height: 24px;
+  --theme-toggle-size: 32px;
+  --theme-toggle-optical-offset: 2px;
+  --footer-stack-bottom-gap: 4px;
+  --footer-title-optical-offset: 4px;
+  --footer-title-center-offset: calc(var(--footer-stack-bottom-gap) + var(--link-line-height) + var(--section-content-gap) + var(--link-line-height) + var(--section-content-gap) + var(--link-line-height) + var(--section-content-gap) + (var(--link-line-height) / 2) - (var(--theme-toggle-size) / 2) - var(--footer-title-optical-offset));
+  --sidebar-column: 240px;
+  --content-column: 760px;
+  --layout-gap: 48px;
+  --media-radius: 22px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #ffffff;
+    --text-primary: #000000;
+    --text-secondary: #4d4d4d;
+    --text-tertiary: #767676;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #000000;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --text-tertiary: #767676;
+}
+
+:root[data-theme="light"] {
+  --bg: #ffffff;
+  --text-primary: #000000;
+  --text-secondary: #4d4d4d;
+  --text-tertiary: #767676;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+:is(a[href],
+  button,
+  input:not([type="hidden"]),
+  select,
+  textarea,
+  summary,
+  [role="button"],
+  [role="link"],
+  [tabindex]:not([tabindex="-1"])):active {
+  position: relative;
+  top: 1px;
+}
+
+::selection {
+  color: var(--highlight-text);
+  background: var(--highlight-bg);
+}
+
+.name {
+  font-size: 19px;
+  font-weight: 400;
+  line-height: var(--link-line-height);
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  min-height: calc(var(--link-line-height) * 2);
+  margin-bottom: calc(var(--section-gap) + var(--section-content-gap) + var(--text-media-gap) - var(--link-line-height));
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.name a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .name a:hover {
+    color: var(--text-primary);
+  }
+}
+
+.name a:focus-visible {
+  color: var(--text-primary);
+  outline: 1px solid var(--text-primary);
+  outline-offset: 4px;
+}
+
+.links {
+  font-size: 16px;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--section-content-gap);
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+.links-label {
+  color: var(--text-secondary);
+  width: fit-content;
+}
+
+.contact-label {
+  margin-top: calc(var(--section-gap) - var(--section-content-gap));
+}
+
+.email {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: var(--link-line-height);
+  color: var(--text-tertiary);
+  cursor: pointer;
+  width: fit-content;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-feature-settings:
+    "liga" 1,
+    "calt" 1;
+  font-weight: 400;
+  font-size: 1px;
+  line-height: 1.5;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-overflow-scrolling: touch;
+}
+
+.wrapper {
+  max-width: 1900px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-column) 1fr;
+  max-width: calc(var(--sidebar-column) + var(--layout-gap) + var(--content-column));
+  margin: 0 auto;
+  min-height: 100vh;
+  gap: var(--layout-gap);
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 48px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  z-index: 100;
+}
+
+.content {
+  min-width: 0;
+  width: 100%;
+  max-width: var(--content-column);
+  padding: 48px 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.external-link,
+.internal-link,
+.reference-link {
+  color: var(--text-tertiary);
+  text-decoration: none;
+  width: fit-content;
+}
+
+.external-link::after {
+  content: " ↗";
+  color: inherit;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+@media (hover: hover) {
+
+  .external-link:hover,
+  .internal-link:hover,
+  .reference-link:hover {
+    color: var(--text-primary);
+  }
+}
+
+.email::after {
+  content: "";
+  color: var(--text-secondary);
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .email:hover {
+    color: var(--text-primary);
+  }
+}
+
+@media (hover: hover) {
+  .email:hover::after {
+    content: " copy";
+    color: var(--text-secondary);
+  }
+}
+
+.email.copied::after {
+  content: " copied";
+  color: var(--text-secondary);
+}
+
+.email.copy-failed::after {
+  content: " failed";
+  color: var(--text-secondary);
+}
+
+.external-link:focus:not(:focus-visible),
+.internal-link:focus:not(:focus-visible),
+.reference-link:focus:not(:focus-visible),
+.email:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.external-link:focus-visible,
+.internal-link:focus-visible,
+.reference-link:focus-visible,
+.email:focus-visible {
+  color: var(--text-primary);
+  outline: 1px solid var(--text-primary);
+  outline-offset: 4px;
+}
+
+.theme-toggle {
+  width: var(--theme-toggle-size);
+  height: var(--theme-toggle-size);
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary);
+  background: none;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  appearance: none;
+  cursor: pointer;
+  margin-bottom: var(--footer-title-center-offset);
+}
+
+.theme-toggle svg {
+  width: var(--theme-icon-size);
+  height: var(--theme-icon-size);
+  display: block;
+  fill: currentColor;
+}
+
+.theme-toggle .sun-icon {
+  --theme-icon-size: 22px;
+}
+
+.theme-toggle .moon-icon {
+  --theme-icon-size: 14px;
+  display: none;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .theme-toggle {
+    color: var(--text-tertiary);
+  }
+
+  .theme-toggle .sun-icon {
+    display: none;
+  }
+
+  .theme-toggle .moon-icon {
+    display: block;
+  }
+}
+
+:root[data-theme="dark"] .theme-toggle .sun-icon {
+  display: block;
+}
+
+:root[data-theme="dark"] .theme-toggle .moon-icon {
+  display: none;
+}
+
+:root[data-theme="light"] .theme-toggle .sun-icon {
+  display: none;
+}
+
+:root[data-theme="light"] .theme-toggle {
+  color: var(--text-tertiary);
+}
+
+:root[data-theme="light"] .theme-toggle .moon-icon {
+  display: block;
+}
+
+@media (hover: hover) {
+  .theme-toggle:hover:not(.hover-suppressed) {
+    color: var(--text-primary);
+  }
+}
+
+.theme-toggle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--text-primary);
+}
+
+.case-media .ben-davis-brandmark {
+    width: 88%;
+    border-radius: 0;
+    filter: none;
+}
+
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme]) .ben-davis-brandmark {
+        filter: brightness(0);
+    }
+}
+
+:root[data-theme="light"] .ben-davis-brandmark {
+    filter: brightness(0);
+}
+
+:root[data-theme="dark"] .ben-davis-brandmark {
+    filter: none;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+}
+
+.profile-summary {
+    max-width: 760px;
+    margin-bottom: var(--text-media-gap);
+}
+
+.profile-summary .section-title {
+    color: var(--text-secondary);
+    margin-bottom: var(--section-content-gap);
+}
+
+.profile-copy {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+}
+
+.profile-copy:last-child {
+    margin-bottom: 0;
+}
+
+.site-footer {
+    margin-top: 0;
+}
+
+.references-links {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--section-content-gap);
+    margin-top: 0;
+    margin-bottom: var(--footer-stack-bottom-gap);
+    font-size: 16px;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+}
+
+.references-links .reference-link {
+    margin-bottom: 0;
+}
+
+@media (min-width: 769px) {
+    .site-footer {
+        margin-top: auto;
+    }
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.case-study-entry {
+    cursor: pointer !important;
+}
+
+.case-study-entry:focus-visible {
+    outline: 1px solid var(--text-primary);
+    outline-offset: 4px;
+}
+
+.case-page {
+    min-height: 100vh;
+    background: var(--bg);
+}
+
+.case-location {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 8px;
+    row-gap: 0;
+}
+
+.case-home-link {
+    flex-basis: 100%;
+    text-decoration: none;
+}
+
+.case-location .case-home-link,
+.case-arrow {
+    color: var(--text-tertiary);
+}
+
+@media (hover: hover) {
+    .case-location .case-home-link:hover {
+        color: var(--text-primary);
+    }
+}
+
+.case-location .case-current-link {
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.case-desktop-links {
+    display: contents;
+}
+
+.case-mobile-links {
+    display: none;
+}
+
+.case-article {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0;
+}
+
+.case-article article {
+    width: min(100%, 760px);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.all-case + .all-case {
+    margin-top: var(--all-case-gap);
+}
+
+.case-intro,
+.case-copy {
+    width: min(100%, 760px);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.case-meta dt,
+.case-caption,
+.case-code-label {
+    color: var(--text-tertiary);
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0;
+}
+
+.case-title {
+    max-width: 760px;
+    margin: 0 0 var(--case-title-text-gap);
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 36px;
+    letter-spacing: -0.02em;
+}
+
+.case-deck {
+    max-width: 680px;
+    color: var(--text-secondary);
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0;
+}
+
+.case-meta {
+    display: grid;
+    row-gap: 12px;
+    margin-top: 32px;
+}
+
+.case-meta div {
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 104px minmax(0, 1fr);
+    column-gap: 24px;
+}
+
+.case-meta dd {
+    min-width: 0;
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.case-section {
+    margin-top: 80px;
+}
+
+.case-copy h2 {
+    margin-bottom: 24px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 32px;
+    letter-spacing: 0;
+}
+
+.case-copy h3 {
+    margin: 48px 0 12px;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0;
+}
+
+.case-copy p + p {
+    margin-top: 20px;
+}
+
+.case-copy p,
+.case-copy li {
+    color: var(--text-secondary);
+}
+
+.case-copy strong {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.case-copy ul {
+    margin: 20px 0 0 20px;
+}
+
+.case-copy li + li {
+    margin-top: 8px;
+}
+
+.case-media {
+    width: 100%;
+    margin-top: var(--text-media-gap);
+}
+
+.case-media-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin-top: var(--text-media-gap);
+}
+
+.case-media figure,
+.case-media-grid figure {
+    min-width: 0;
+}
+
+.case-media img,
+.case-media-grid img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--media-radius);
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.case-caption {
+    max-width: 760px;
+    margin-top: 12px;
+}
+
+.case-media + .case-copy,
+.case-media-grid + .case-copy {
+    margin-top: var(--text-media-gap);
+}
+
+.case-code + .case-copy {
+    margin-top: var(--text-media-gap);
+}
+
+.case-code {
+    width: min(100%, var(--content-column));
+    margin: var(--text-media-gap) auto 0;
+}
+
+.case-code-label {
+    margin-bottom: 8px;
+}
+
+.case-code pre {
+    overflow-x: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--text-primary);
+    font: 14px/20px "Geist Mono", monospace;
+    letter-spacing: 0;
+    tab-size: 4;
+}
+
+.case-code .case-code-arrow {
+    font-family: "Inter", sans-serif;
+}
+
+.case-code .tok-key,
+.case-code .tok-keyword {
+    color: var(--text-primary);
+}
+
+.case-code .tok-string,
+.case-code .tok-value,
+.case-code .tok-number {
+    color: var(--text-secondary);
+}
+
+.case-code .tok-comment,
+.case-code .tok-punctuation,
+.case-code .tok-operator {
+    color: var(--text-tertiary);
+}
+
+@media (min-width: 769px) {
+    .case-article article > :last-child {
+        --case-final-line-height: 24px;
+        padding-bottom: calc(
+            var(--footer-title-center-offset) +
+                (var(--theme-toggle-size) / 2) -
+                (var(--case-final-line-height) / 2)
+        );
+    }
+
+    .case-section:last-child {
+        --case-final-line-height: 32px;
+    }
+
+    .case-section:last-child .case-copy:last-child h2:last-child {
+        margin-bottom: 0;
+    }
+}
+
+@media (hover: hover) {
+    .case-home-link:hover {
+        color: var(--text-primary);
+    }
+}
+
+.case-home-link:focus-visible {
+    outline: 1px solid var(--text-primary);
+    outline-offset: 4px;
+}
+
+@media (max-width: 768px) {
+    .case-article {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .case-title {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .case-deck {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .case-meta {
+        row-gap: 12px;
+        margin-top: 36px;
+    }
+
+    .case-meta div {
+        grid-template-columns: 88px minmax(0, 1fr);
+        column-gap: 16px;
+    }
+
+    .case-section {
+        margin-top: 80px;
+    }
+
+    .case-code {
+        margin-top: var(--text-media-gap);
+    }
+
+    .case-code + .case-copy {
+        margin-top: var(--text-media-gap);
+    }
+
+    .case-media-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .case-code pre {
+        padding: 0;
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+}
+
+body:not(.case-page) {
+    min-height: 100dvh;
+}
+
+body:not(.case-page) .layout {
+    min-height: 100dvh;
+}
+
+body:not(.case-page) .sidebar {
+    height: 100dvh;
+}
+
+body:not(.case-page) .content {
+    min-height: 100dvh;
+}
+
+html.homepage-scroll-locked,
+html.homepage-scroll-locked body {
+    height: 100dvh;
+}
+
+html.homepage-scroll-locked body .layout {
+    height: 100dvh;
+    min-height: 100dvh;
+}
+
+@media (max-width: 1400px) {
+    :root {
+        --layout-gap: 32px;
+    }
+
+    .wrapper {
+        padding: 0 32px;
+    }
+
+    .showcase {
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .showcase.reverse {
+        grid-template-columns: 1fr 2fr;
+    }
+}
+
+@media (max-width: 1100px) {
+    :root {
+        --sidebar-column: 240px;
+    }
+
+    .layout {
+        grid-template-columns: var(--sidebar-column) 1fr;
+    }
+
+    .showcase {
+        grid-template-columns: 1.8fr 1fr;
+    }
+
+    .showcase.reverse {
+        grid-template-columns: 1fr 1.8fr;
+    }
+}
+
+@media (max-width: 900px) {
+    .showcase {
+        grid-template-columns: 1fr;
+    }
+
+    .showcase.reverse {
+        grid-template-columns: 1fr;
+    }
+
+    .showcase.reverse .showcase-featured,
+    .showcase.reverse .showcase-scroll {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .showcase-featured {
+        position: relative;
+        top: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    body:not(.case-page) {
+        min-height: 100svh;
+        height: auto;
+        overflow: visible;
+        overscroll-behavior: auto;
+    }
+
+    body:not(.case-page) .layout {
+        min-height: 100svh;
+        height: auto;
+        align-content: start;
+        overflow: visible;
+        overscroll-behavior: auto;
+        padding-bottom: 64px;
+    }
+
+    html.homepage-scroll-locked,
+    html.homepage-scroll-locked body {
+        height: 100svh;
+    }
+
+    html.homepage-scroll-locked body .layout {
+        height: 100svh;
+        min-height: 100svh;
+        align-content: center;
+        padding-bottom: 0;
+    }
+
+    .wrapper {
+        padding: 0 12px;
+    }
+
+    .layout {
+        grid-template-columns: minmax(0, 1fr) 32px;
+        gap: 0;
+        min-height: auto;
+        padding: 0;
+    }
+
+    .sidebar {
+        position: relative;
+        height: auto;
+        padding: 0;
+        display: contents;
+    }
+
+    .content {
+        display: contents;
+        padding: 0;
+    }
+
+    body:not(.case-page) .name {
+        grid-column: 1;
+        order: 1;
+        position: relative;
+        z-index: 100;
+        width: calc(100% + 56px);
+        margin-left: -12px;
+        padding: 24px 44px 8px 12px;
+        background: var(--bg);
+        min-height: 0;
+        margin-bottom: var(--section-gap);
+    }
+
+    body.case-page .name {
+        grid-column: 1;
+        order: 1;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        width: calc(100% + 56px);
+        margin-left: -12px;
+        padding: 24px 44px 8px 12px;
+        background: linear-gradient(
+            to bottom,
+            var(--bg) 60%,
+            transparent
+        );
+        min-height: 0;
+        margin-bottom: var(--section-gap);
+    }
+
+    .theme-toggle {
+        grid-column: 2;
+        order: 1;
+        position: sticky;
+        top: 0;
+        z-index: 101;
+        justify-self: end;
+        align-self: start;
+        height: calc(24px + var(--link-line-height) + 8px);
+        min-height: var(--theme-toggle-size);
+        padding:
+            calc(24px + var(--theme-toggle-optical-offset)) 0
+            calc(8px - var(--theme-toggle-optical-offset));
+        align-items: center;
+        justify-content: center;
+        margin-top: 0;
+        margin-left: 16px;
+        margin-bottom: 0;
+        background: transparent;
+    }
+
+    body:not(.case-page) .theme-toggle {
+        position: relative;
+        top: auto;
+    }
+
+    .name {
+        white-space: normal;
+    }
+
+    .case-location {
+        flex-wrap: nowrap;
+        white-space: nowrap;
+    }
+
+    .case-home-link {
+        flex-basis: auto;
+    }
+
+    .content > * {
+        grid-column: 1 / -1;
+        order: 5;
+    }
+
+    .portfolio-section {
+        order: 3;
+        margin-bottom: var(--section-gap);
+    }
+
+    .links {
+        grid-column: 1 / -1;
+        order: 4;
+        margin-bottom: 0;
+        row-gap: var(--section-content-gap);
+    }
+
+    .links.mobile-links-grid {
+        display: grid;
+        grid-template-columns:
+            var(--mobile-contact-start) minmax(0, 1fr);
+        column-gap: 0;
+    }
+
+    .mobile-links-grid > .links-label:not(.contact-label),
+    .mobile-links-grid > .external-link {
+        grid-column: 1;
+    }
+
+    .mobile-links-grid > .contact-label {
+        grid-column: 2;
+        grid-row: 1;
+        margin-top: 0;
+    }
+
+    .mobile-links-grid > .contact-label ~ .email {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .mobile-links-grid > .contact-label ~ .external-link {
+        grid-column: 2;
+        grid-row: 3;
+    }
+
+    .case-page .links {
+        order: 6;
+        margin-top: 80px;
+        margin-bottom: 0;
+    }
+
+    .case-page .links.mobile-links-grid {
+        grid-template-columns: 3fr 4fr;
+    }
+
+    .case-desktop-links {
+        display: none;
+    }
+
+    .case-mobile-links {
+        display: contents;
+    }
+
+    .email {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .profile-summary {
+        grid-column: 1 / -1;
+        order: 2;
+        margin-bottom: var(--section-gap);
+    }
+
+    .portfolio-card-link {
+        padding: 7px 0;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-item.full {
+        grid-column: span 1;
+    }
+
+    .site-footer {
+        display: none;
+    }
+}
+
+@media (min-width: 769px) and (max-height: 720px) {
+    .layout {
+        align-items: start;
+    }
+
+    .sidebar {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-rows: auto auto 1fr;
+        align-content: start;
+    }
+
+    .name {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .theme-toggle {
+        grid-column: 2;
+        grid-row: 1;
+        align-self: start;
+        justify-self: end;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .links,
+    .case-desktop-links {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+}
+        </style>
+    </head>
+    <body class="case-page" id="top">
+        <div class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+        <div class="wrapper">
+            <div class="layout">
+                <aside class="sidebar" aria-label="Case study navigation">
+                    <p class="name case-location">
+                        <a class="case-home-link" href="/">Gil Rodrigues</a>
+                        <span class="case-arrow" aria-hidden="true">→</span>
+                        <a class="case-current-link" href="#top">Ben Davis</a>
+                    </p>
+                    <div class="case-desktop-links">
+                    <nav
+                        class="links"
+                        aria-label="Public profiles and contact"
+                    >
+                        <p class="links-label"><span data-nosnippet>Links</span></p>
+                        <a class="external-link" href="https://behance.net/gildrb" itemprop="sameAs" target="_blank" rel="me noopener noreferrer"><span data-nosnippet>Bēhance</span></a>
+                        <a class="external-link" href="https://github.com/gildrb" itemprop="sameAs" target="_blank" rel="me noopener noreferrer"><span data-nosnippet>GitHub</span></a>
+                        <a class="external-link" href="https://www.goodreads.com/gildrb" itemprop="sameAs" target="_blank" rel="me noopener noreferrer"><span data-nosnippet>Goodreads</span></a>
+                        <a class="external-link" href="https://letterboxd.com/gildrb/" itemprop="sameAs" target="_blank" rel="me noopener noreferrer"><span data-nosnippet>Letterboxd</span></a>
+                        <a class="external-link" href="https://www.linkedin.com/in/gildrb/" itemprop="sameAs" target="_blank" rel="me noopener noreferrer"><span data-nosnippet>LinkedIn</span></a>
+                        <p class="links-label contact-label"><span data-nosnippet>Contact</span></p>
+                        <button class="email" type="button" aria-label="Copy hi@gildrb.com"><span data-nosnippet>hi@gildrb.com</span></button>
+                        <a class="external-link" href="https://signal.me/#eu/KlFnTOEoXJTxUNhl9y4U4-QzunoZj6eX2BrkGYibTNUmKw8OszhNgaKd-aoseeUZ" target="_blank" rel="noopener noreferrer"><span data-nosnippet>Signal</span></a>
+                    </nav>
+                    </div>
+                    <button
+                        class="theme-toggle"
+                        type="button"
+                        aria-label="Switch to light mode"
+                        title="Switch to light mode"
+                    >
+                        <svg class="sun-icon" viewBox="0 0 20 20" aria-hidden="true">
+                            <path d="M10 2a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 2ZM10 15a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 15ZM10 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM15.657 5.404a.75.75 0 1 0-1.06-1.06l-1.061 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM6.464 14.596a.75.75 0 1 0-1.06-1.06l-1.06 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM18 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 18 10ZM5 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 5 10ZM14.596 15.657a.75.75 0 0 0 1.06-1.06l-1.06-1.061a.75.75 0 1 0-1.06 1.06l1.06 1.06ZM5.404 6.464a.75.75 0 0 0 1.06-1.06l-1.06-1.06a.75.75 0 0 0-1.061 1.06l1.06 1.06Z" />
+                        </svg>
+                        <svg class="moon-icon" viewBox="0 0 20 20" aria-hidden="true">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.455 2.004a.75.75 0 0 1 .26.77 7 7 0 0 0 9.958 7.967.75.75 0 0 1 1.067.853A8.5 8.5 0 1 1 6.647 1.921a.75.75 0 0 1 .808.083Z" />
+                        </svg>
+                    </button>
+                </aside>
+                <main class="content case-article">
+                    <article>
+                        <header class="case-intro">
+                            <h1 class="case-title">A redesigned mark for Ben Davis</h1>
+                        </header>
+                            <div class="case-copy">
+                                <p>Ben Davis builds software in San Francisco and co-hosts the Nerd Snipe podcast. Nobody asked for this one. In July 2026 I redrew his personal mark for my own practice, posted it on <a class="external-link" href="https://x.com/gilrdb/status/2074468837781639301" target="_blank" rel="noopener noreferrer">X</a>, and left it with him.</p>
+                            </div>
+                        <div class="case-media">
+                        <figure>
+                            <img class="ben-davis-brandmark" alt="White db monogram with a central diagonal joining mirrored letterforms" decoding="async" fetchpriority="high" height="1112" src="/images/optimized/gil-rodrigues-ben-davis-brandmark.svg" width="2000"/>
+                            <figcaption class="case-caption">Ben Davis brandmark</figcaption>
+                        </figure>
+                        </div>
+                            <div class="case-copy">
+                                <h3>Two letters, one figure</h3>
+                                <p>A d and a b are mirror images, so the pair already wants to be symmetrical. I kept that symmetry in the bowls and broke it exactly once. A single diagonal runs through the middle of the mark, carries the stem of the d down into the bowl of the b, and leaves both letters with a sheared terminal. The figure reads as a loop first and as initials second.</p>
+                                <p>Stems and bowls hold one weight and one corner radius, so the mark keeps its rhythm when it shrinks. The whole thing is one path with few enough anchor points to redraw by hand, which is what the point view on the left shows.</p>
+                            </div>
+                        <div class="case-media">
+                        <figure>
+                            <img alt="Ben Davis db monogram shown with construction points and the finished mark" decoding="async" height="2304" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-ben-davis-construction-720.webp" srcset="/images/optimized/gil-rodrigues-ben-davis-construction-480.webp 480w, /images/optimized/gil-rodrigues-ben-davis-construction-720.webp 720w, /images/optimized/gil-rodrigues-ben-davis-construction-960.webp 960w, /images/optimized/gil-rodrigues-ben-davis-construction-1280.webp 1280w, /images/optimized/gil-rodrigues-ben-davis-construction-1600.webp 1600w" width="4096"/>
+                            <figcaption class="case-caption">Construction points and final mark</figcaption>
+                        </figure>
+                        </div>
+                            <div class="case-copy">
+                                <h3>What it is worth</h3>
+                                <p>The redesign was a gift rather than a commission, so the only measure of it was whether Ben recognized himself in the mark. He did. Work like this keeps my drawing sharp between client projects and costs nothing more than an evening.</p>
+                            </div>
+                    </article>
+                </main>
+                <div class="case-mobile-links">
+                    <nav
+                        class="links"
+                        aria-label="Public profiles and contact"
+                    >
+                        <p class="links-label"><span data-nosnippet>Links</span></p>
+                        <a class="external-link" href="https://behance.net/gildrb" itemprop="sameAs" target="_blank" rel="me noopener noreferrer"><span data-nosnippet>Bēhance</span></a>
+                        <a class="external-link" href="https://github.com/gildrb" itemprop="sameAs" target="_blank" rel="me noopener noreferrer"><span data-nosnippet>GitHub</span></a>
+                        <a class="external-link" href="https://www.goodreads.com/gildrb" itemprop="sameAs" target="_blank" rel="me noopener noreferrer"><span data-nosnippet>Goodreads</span></a>
+                        <a class="external-link" href="https://letterboxd.com/gildrb/" itemprop="sameAs" target="_blank" rel="me noopener noreferrer"><span data-nosnippet>Letterboxd</span></a>
+                        <a class="external-link" href="https://www.linkedin.com/in/gildrb/" itemprop="sameAs" target="_blank" rel="me noopener noreferrer"><span data-nosnippet>LinkedIn</span></a>
+                        <p class="links-label contact-label"><span data-nosnippet>Contact</span></p>
+                        <button class="email" type="button" aria-label="Copy hi@gildrb.com"><span data-nosnippet>hi@gildrb.com</span></button>
+                        <a class="external-link" href="https://signal.me/#eu/KlFnTOEoXJTxUNhl9y4U4-QzunoZj6eX2BrkGYibTNUmKw8OszhNgaKd-aoseeUZ" target="_blank" rel="noopener noreferrer"><span data-nosnippet>Signal</span></a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <script>
+window.va =
+    window.va ||
+    function () {
+        (window.vaq = window.vaq || []).push(arguments);
+    };
+
+window.si =
+    window.si ||
+    function () {
+        (window.siq = window.siq || []).push(arguments);
+    };
+        </script>
+        <script defer src="/_vercel/insights/script.js"></script>
+        <script defer src="/_vercel/speed-insights/script.js" data-route="/ben-davis" data-path="/ben-davis"></script>
+        <script>
+const srOnly = document.querySelector(".sr-only");
+const themeToggle = document.querySelector(".theme-toggle");
+const themePreference = window.matchMedia(
+    "(prefers-color-scheme: dark)",
+);
+const scrollPositionKey = `gildrb:scroll:${window.location.pathname}${window.location.search}`;
+const navigationType = window.performance
+    .getEntriesByType("navigation")[0]?.type;
+
+function updateHomepageDates() {
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, "0");
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const year = String(now.getFullYear());
+    const isoDate = `${year}-${month}-${day}`;
+    const portfolioSiteDate = document.querySelector("#portfolio-site-date");
+
+    if (!portfolioSiteDate) return;
+
+    portfolioSiteDate.querySelector(".portfolio-date-full").textContent =
+        isoDate;
+    portfolioSiteDate.querySelector(".portfolio-date-year").textContent =
+        year;
+    portfolioSiteDate.setAttribute("datetime", isoDate);
+}
+
+const mobileLinks = document.querySelector(
+    ".case-page .case-mobile-links .links, body:not(.case-page) .links",
+);
+
+function updateMobileLinksLayout() {
+    const links = mobileLinks;
+    const portfolioScope = document.querySelector(".portfolio-sort-scope");
+    if (!links) return;
+
+    if (!window.matchMedia("(max-width: 767px)").matches) {
+        links.classList.remove("mobile-links-grid");
+        links.style.removeProperty("--mobile-contact-start");
+        return;
+    }
+
+    links.classList.add("mobile-links-grid");
+    if (!portfolioScope) return;
+
+    const start =
+        portfolioScope.getBoundingClientRect().left -
+        links.getBoundingClientRect().left;
+    links.style.setProperty(
+        "--mobile-contact-start",
+        `${Math.max(0, start)}px`,
+    );
+}
+
+let homepageLockState = "uninitialized";
+let homepageUnlockedHeight = 0;
+let homepageUnlockedContentBottom = 0;
+let homepageViewportWidth = window.innerWidth;
+
+function updateHomepageLock(preserveMobileState = false) {
+    const root = document.documentElement;
+    const body = document.body;
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    const viewportWidthChanged = window.innerWidth !== homepageViewportWidth;
+    homepageViewportWidth = window.innerWidth;
+
+    if (!body || body.classList.contains("case-page")) {
+        root.classList.remove("homepage-scroll-locked");
+        homepageLockState = "uninitialized";
+        return;
+    }
+
+    if (
+        preserveMobileState &&
+        isMobile &&
+        !viewportWidthChanged &&
+        homepageLockState === "locked"
+    ) {
+        return;
+    }
+
+    root.classList.remove("homepage-scroll-locked");
+    const contentBottom = Math.max(
+        ...Array.from(
+            document.querySelectorAll(
+                ".profile-summary, .portfolio-section, .links, .site-footer",
+            ),
+            (element) =>
+                element.getBoundingClientRect().bottom + window.scrollY,
+        ),
+        0,
+    );
+    const fits = contentBottom <= window.innerHeight;
+    const atTop = window.scrollY === 0;
+
+    if (homepageLockState === "locked") {
+        if (atTop && fits) {
+            root.classList.add("homepage-scroll-locked");
+            return;
+        }
+
+        homepageLockState = "unlocked";
+        homepageUnlockedHeight = window.innerHeight;
+        homepageUnlockedContentBottom = contentBottom;
+        return;
+    }
+
+    if (homepageLockState === "unlocked") {
+        const viewportChanged =
+            Math.abs(
+                window.innerHeight - homepageUnlockedHeight,
+            ) >= 32;
+        const contentShrank =
+            homepageUnlockedContentBottom - contentBottom >= 32;
+
+        if (
+            !atTop ||
+            (!viewportChanged && !contentShrank) ||
+            !fits
+        ) {
+            return;
+        }
+
+        homepageLockState = "locked";
+        root.classList.add("homepage-scroll-locked");
+        return;
+    }
+
+    if (atTop && fits) {
+        homepageLockState = "locked";
+        root.classList.add("homepage-scroll-locked");
+        return;
+    }
+
+    homepageLockState = "unlocked";
+    homepageUnlockedHeight = window.innerHeight;
+    homepageUnlockedContentBottom = contentBottom;
+}
+
+function updateMobileLayout(preserveHomepageLock = false) {
+    updateMobileLinksLayout();
+    updateHomepageLock(preserveHomepageLock);
+}
+
+const portfolioSection = document.querySelector(".portfolio-section");
+const portfolioSiteDate = document.querySelector("#portfolio-site-date");
+const mobileLayoutTargets = [
+    portfolioSection,
+    portfolioSiteDate,
+    document.querySelector(".profile-summary"),
+    mobileLinks,
+].filter(Boolean);
+if ("ResizeObserver" in window) {
+    const updateOnResize = new ResizeObserver(() => {
+        window.setTimeout(updateMobileLayout, 0);
+    });
+    mobileLayoutTargets.forEach((target) => updateOnResize.observe(target));
+}
+
+async function prepareHomepageFirstPaint() {
+    const root = document.documentElement;
+    const body = document.body;
+
+    if (!body || body.classList.contains("case-page")) {
+        root.classList.remove("homepage-first-paint-pending");
+        return;
+    }
+
+    updateHomepageDates();
+    updateMobileLayout();
+
+    if (document.fonts?.load) {
+        try {
+            await document.fonts.load('400 16px "Inter"');
+        } catch {
+            // Continue with the metric-compatible system fallback.
+        }
+    }
+
+    updateHomepageDates();
+    updateMobileLayout();
+}
+
+window.homepageFirstPaintReady = prepareHomepageFirstPaint();
+
+window.addEventListener("load", () => {
+    updateHomepageDates();
+    updateMobileLayout();
+});
+window.addEventListener("resize", () => updateMobileLayout(true));
+
+if ("scrollRestoration" in window.history) {
+    window.history.scrollRestoration = "manual";
+}
+
+function saveScrollPosition() {
+    try {
+        window.sessionStorage.setItem(
+            scrollPositionKey,
+            JSON.stringify({ left: window.scrollX, top: window.scrollY }),
+        );
+    } catch {
+        return;
+    }
+}
+
+function restoreScrollPosition(event) {
+    if (!event.persisted && navigationType !== "back_forward") return;
+
+    let position;
+    try {
+        position = JSON.parse(
+            window.sessionStorage.getItem(scrollPositionKey),
+        );
+    } catch {
+        return;
+    }
+    if (!position) return;
+
+    const restore = () => {
+        window.scrollTo(position.left, position.top);
+    };
+    restore();
+    window.requestAnimationFrame(() => {
+        restore();
+        window.requestAnimationFrame(restore);
+    });
+}
+
+window.addEventListener("pagehide", saveScrollPosition);
+document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") saveScrollPosition();
+});
+window.addEventListener("pageshow", restoreScrollPosition);
+
+document.querySelectorAll('a[href="#top"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.scrollTo(0, 0);
+        history.replaceState(
+            null,
+            "",
+            window.location.href.replace(/#.*$/, ""),
+        );
+    });
+});
+
+function trackEvent(name, data = {}) {
+    if (typeof window.va !== "function") return;
+
+    try {
+        window.va("event", {
+            name,
+            data,
+        });
+    } catch {
+        return;
+    }
+}
+
+function announce(message) {
+    srOnly.textContent = message;
+    setTimeout(() => {
+        srOnly.textContent = "";
+    }, 1000);
+}
+
+function getTheme() {
+    const selectedTheme = document.documentElement.dataset.theme;
+
+    if (selectedTheme === "dark" || selectedTheme === "light") {
+        return selectedTheme;
+    }
+
+    return themePreference.matches ? "dark" : "light";
+}
+
+function updateThemeToggle() {
+    const theme = getTheme();
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    const label = `Switch to ${nextTheme} mode`;
+
+    themeToggle.setAttribute("aria-label", label);
+    themeToggle.title = label;
+}
+
+function getSavedTheme() {
+    try {
+        return localStorage.getItem("theme");
+    } catch {
+        return null;
+    }
+}
+
+function saveTheme(theme) {
+    try {
+        localStorage.setItem("theme", theme);
+    } catch {
+        return;
+    }
+}
+
+function setTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    saveTheme(theme);
+    updateThemeToggle();
+}
+
+const savedTheme = getSavedTheme();
+if (savedTheme === "dark" || savedTheme === "light") {
+    document.documentElement.dataset.theme = savedTheme;
+}
+
+updateThemeToggle();
+
+let themeToggleUsedPointer = false;
+
+themeToggle.addEventListener("pointerdown", (event) => {
+    themeToggleUsedPointer =
+        event.pointerType === "mouse" ||
+        event.pointerType === "pen";
+});
+
+themeToggle.addEventListener("pointerleave", () => {
+    themeToggle.classList.remove("hover-suppressed");
+});
+
+themePreference.addEventListener("change", () => {
+    if (!document.documentElement.dataset.theme) {
+        updateThemeToggle();
+    }
+});
+
+themeToggle.addEventListener("click", () => {
+    const nextTheme = getTheme() === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+    trackEvent("Theme Toggle", { theme: nextTheme });
+
+    if (themeToggleUsedPointer) {
+        themeToggle.classList.add("hover-suppressed");
+        themeToggle.blur();
+    }
+
+    themeToggleUsedPointer = false;
+    announce(`Switched to ${nextTheme} mode`);
+});
+
+// Email copy functionality
+document.querySelectorAll(".email").forEach((email) => {
+    email.addEventListener("click", async function () {
+        this.blur();
+
+        try {
+            await navigator.clipboard.writeText("hi@gildrb.com");
+            this.classList.add("copied");
+            trackEvent("Email Copy", { result: "success" });
+            announce("Email copied to clipboard");
+        } catch {
+            this.classList.add("copy-failed");
+            trackEvent("Email Copy", { result: "failed" });
+            announce("Email could not be copied");
+        }
+
+        setTimeout(() => {
+            this.classList.remove("copied", "copy-failed");
+        }, 1500);
+    });
+});
+        </script>
+    </body>
+</html>

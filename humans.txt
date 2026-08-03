@@ -29,6 +29,7 @@ Gil, Gil Rodrigues, Gil Rodrigues Barbosa, Gil Domingos Rodrigues Barbosa, and g
 ## Portfolio
 
 - gildrb.com: Case study about the source-driven static build, shared design system, verification harness, and machine-readable discovery layer behind gildrb.com. Case study: https://gildrb.com/site
+- Ben Davis brandmark: Unsolicited db monogram redesign for developer Ben Davis, built from mirrored letterforms and one central diagonal. Case study: https://gildrb.com/ben-davis
 - Heph local document agent: Case study about bounded armories, local material indexing, cited answers, and inspectable evidence. Case study: https://gildrb.com/heph Source: https://github.com/gildrb/heph
 - Filen identity system: Self-initiated identity concept developed from rejected marks into an app icon and privacy-focused campaign system. Case study: https://gildrb.com/filen
 - n0thing wordmark: Case study following a rejected typewriter study through the final pixel wordmark, delivery files, and animated cursor. Case study: https://gildrb.com/n0thing

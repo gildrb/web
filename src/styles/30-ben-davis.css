@@ -1,0 +1,19 @@
+.case-media .ben-davis-brandmark {
+    width: 88%;
+    border-radius: 0;
+    filter: none;
+}
+
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme]) .ben-davis-brandmark {
+        filter: brightness(0);
+    }
+}
+
+:root[data-theme="light"] .ben-davis-brandmark {
+    filter: brightness(0);
+}
+
+:root[data-theme="dark"] .ben-davis-brandmark {
+    filter: none;
+}

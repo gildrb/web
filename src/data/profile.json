@@ -61,6 +61,9 @@
           "@id": "https://gildrb.com/curves#case-study"
         },
         {
+          "@id": "https://gildrb.com/ben-davis#case-study"
+        },
+        {
           "@id": "https://gildrb.com/#heph"
         },
         {
@@ -504,6 +507,31 @@
       "headline": "A free display typeface built from one geometric construction rule.",
       "description": "How Gil Rodrigues designed CURVES as a 96-glyph unicase display typeface, then released it for personal and commercial use.",
       "image": "https://gildrb.com/images/optimized/gil-rodrigues-curves-letterforms-1280.webp",
+      "inLanguage": "en",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "author": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "publisher": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "isPartOf": {
+        "@id": "https://gildrb.com/#website"
+      }
+    },
+    {
+      "@type": [
+        "Article",
+        "CreativeWork"
+      ],
+      "@id": "https://gildrb.com/ben-davis#case-study",
+      "url": "https://gildrb.com/ben-davis",
+      "name": "Ben Davis brandmark redesign",
+      "headline": "An unsolicited db monogram redesign for developer Ben Davis.",
+      "description": "How Gil Rodrigues redrew Ben Davis's personal mark from mirrored letterforms and one central diagonal.",
+      "image": "https://gildrb.com/images/optimized/gil-rodrigues-ben-davis-construction-1280.webp",
       "inLanguage": "en",
       "creator": {
         "@id": "https://gildrb.com/#person"

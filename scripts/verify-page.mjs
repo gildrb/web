@@ -133,6 +133,7 @@ const {
     ml7: ml7Html,
     n0thing: n0thingHtml,
     curves: curvesHtml,
+    "ben-davis": benDavisHtml,
     site: siteHtml,
 } = casePages;
 const caseScript = caseScripts.filen;
@@ -178,6 +179,7 @@ const responsiveStyles = await readText("src/styles/90-responsive.css");
 const baseStyles = await readText("src/styles/10-base.css");
 const portfolioStyles = await readText("src/styles/20-portfolio-media.css");
 const hephDemoStyles = await readText("src/styles/30-heph-demo.css");
+const benDavisStyles = await readText("src/styles/30-ben-davis.css");
 const hephMarkdown = await readText("content/heph.md");
 const previewContentStyles = await readText("src/styles/40-preview-content.css");
 const portfolioOpen = await readText("src/sections/portfolio-open.html");
@@ -611,6 +613,27 @@ assert(
     "Heph component styles and behavior must be bundled only into the Heph case study.",
 );
 assert(
+    benDavisStyles.includes(
+        ".case-media .ben-davis-brandmark {\n    width: 88%;\n    border-radius: 0;\n    filter: none;",
+    ) &&
+        benDavisStyles.includes(
+            "@media (prefers-color-scheme: light) {\n    :root:not([data-theme]) .ben-davis-brandmark {\n        filter: brightness(0);",
+        ) &&
+        benDavisStyles.includes(
+            ':root[data-theme="light"] .ben-davis-brandmark {\n    filter: brightness(0);',
+        ) &&
+        benDavisStyles.includes(
+            ':root[data-theme="dark"] .ben-davis-brandmark {\n    filter: none;',
+        ) &&
+        Object.entries(casePages).every(
+            ([slug, html]) =>
+                slug === "ben-davis" ||
+                !html.includes("ben-davis-brandmark"),
+        ) &&
+        benDavisHtml.includes('class="ben-davis-brandmark"'),
+    "The Ben Davis brandmark must use isolated light/dark theme-inverting CSS only on its case study.",
+);
+assert(
     hephMarkdown.includes("![Heph demo](media:heph-demo)") &&
         hephHtml.includes('class="heph-demo case-heph-demo"') &&
         hephHtml.indexOf('class="heph-demo case-heph-demo"') <
@@ -748,6 +771,10 @@ assert(
 assert(
     (indexHtml.match(/href="\/curves"/g) || []).length === 1,
     "Homepage must link to the CURVES case study exactly once.",
+);
+assert(
+    (indexHtml.match(/href="\/ben-davis"/g) || []).length === 1,
+    "Homepage must link to the Ben Davis case study exactly once.",
 );
 assert(
     !indexHtml.includes("project-summary") &&
@@ -898,6 +925,41 @@ assert(
         return position > previousPosition;
     }),
     "CURVES media must follow the authored typeface sequence.",
+);
+assert(
+    benDavisHtml.includes(
+        'rel="canonical" href="https://gildrb.com/ben-davis"',
+    ) &&
+        benDavisHtml.includes(
+            '<a class="case-home-link" href="/">Gil Rodrigues</a>',
+        ) &&
+        benDavisHtml.includes(
+            '<a class="case-current-link" href="#top">Ben Davis</a>',
+        ) &&
+        !benDavisHtml.includes('>Index</a>') &&
+        !benDavisHtml.includes("case-kicker"),
+    "Ben Davis must use the same persistent case-study navigation as the existing projects.",
+);
+assert(
+    !benDavisHtml.includes("object-fit: cover") &&
+        !benDavisHtml.includes("object-position:") &&
+        !benDavisHtml.includes(" · "),
+    "Ben Davis must preserve complete images and omit dot dividers.",
+);
+const benDavisMediaSequence = [
+    "gil-rodrigues-ben-davis-brandmark.svg",
+    "gil-rodrigues-ben-davis-construction-720.webp",
+];
+assert(
+    benDavisMediaSequence.every((asset, index) => {
+        const position = benDavisHtml.indexOf(asset);
+        const previousPosition =
+            index === 0
+                ? -1
+                : benDavisHtml.indexOf(benDavisMediaSequence[index - 1]);
+        return position > previousPosition;
+    }),
+    "Ben Davis media must follow the authored brandmark sequence.",
 );
 const n0thingMediaSequence = [
     "gil-rodrigues-n0thing-typewriter-direction-720.webp",
@@ -1211,7 +1273,7 @@ assert(
             ".all-case + .all-case {\n    margin-top: var(--all-case-gap);",
         ) &&
         allPage.includes('class="all-cases"') &&
-        (allPage.match(/class="all-case"/g) || []).length === 6 &&
+        (allPage.match(/class="all-case"/g) || []).length === 7 &&
         allPage.includes('data-date="2026-07-15" data-scope="Design engineering" data-slug="site" data-title="gildrb.com"') &&
         allPage.lastIndexOf('data-slug="site"') >
             allPage.indexOf('data-slug="ml7"') &&
@@ -1235,6 +1297,7 @@ assert(
     "The homepage must use secondary-tone Date, Project, Scope, and All headings, with All preserving the active sort for the continuous projects page.",
 );
 const portfolioDates = [
+    ["2026-07-07", "2026-07-07", "Ben Davis"],
     ["2026-04-21", "2026-04-21", "Heph"],
     ["2026-01-14", "2026-01-14", "Filen"],
     ["2019-11-15", "2019-11-15", "n0thing"],
@@ -1289,21 +1352,23 @@ assert(
         portfolioStyles.includes('font-family: "Inter", sans-serif;') &&
         !portfolioStyles.includes(".portfolio-card-arrow svg") &&
         !portfolioStyles.includes(".portfolio-card-link::after") &&
-        (indexHtml.match(/class="portfolio-card-arrow"/g) || []).length === 6 &&
+        (indexHtml.match(/class="portfolio-card-arrow"/g) || []).length === 7 &&
         (indexHtml.match(/class="portfolio-card-scope">Brand identity/g) || [])
             .length === 1 &&
         (indexHtml.match(/class="portfolio-card-scope">Wordmark/g) || [])
             .length === 2 &&
         (indexHtml.match(/class="portfolio-card-scope">Typeface/g) || [])
             .length === 1 &&
+        (indexHtml.match(/class="portfolio-card-scope">Brandmark/g) || [])
+            .length === 1 &&
         (indexHtml.match(/class="portfolio-card-scope">Design engineering/g) || [])
             .length === 1 &&
         (indexHtml.match(/class="portfolio-card-scope">Product design and engineering/g) || [])
             .length === 1 &&
         (indexHtml.match(/class="portfolio-card-view">View<\/span>/g) || [])
-            .length === 6 &&
+            .length === 7 &&
         (indexHtml.match(/<span class="portfolio-card-view">View<\/span>\s+→/g) || [])
-            .length === 6 &&
+            .length === 7 &&
         portfolioStyles.includes(
             ".portfolio-card-link + .portfolio-card-link {\n    margin-top: 0;\n    border-top: 1px solid\n        color-mix(in srgb, var(--text-primary) 12%, transparent);",
         ) &&
@@ -1369,6 +1434,7 @@ assert(
 );
 const chronologicalProjectTitles = [
     "portfolio-site-title",
+    "portfolio-ben-davis-title",
     "portfolio-heph-title",
     "portfolio-filen-title",
     "portfolio-n0thing-title",
@@ -1388,7 +1454,7 @@ assert(
         !indexHtml.includes("portfolio-group-engineering-title") &&
         !indexHtml.includes("portfolio-group-design-title") &&
         !portfolioStyles.includes(".portfolio-group") &&
-        (indexHtml.match(/class="portfolio-card-link"/g) || []).length === 6,
+        (indexHtml.match(/class="portfolio-card-link"/g) || []).length === 7,
     "Homepage projects must live in one globally sortable list without category dividers.",
 );
 assert(

@@ -43,6 +43,10 @@ Brand designer based in Germany, building identity systems for software.
 
 [gildrb.com](https://gildrb.com/site) documents how the portfolio is built and verified as a static, hand-authored site.
 
+#### Ben Davis (Brandmark)
+
+[Ben Davis brandmark](https://gildrb.com/ben-davis) documents an unsolicited db monogram redesign built from mirrored letterforms and one central diagonal.
+
 #### Heph (Product design & engineering)
 
 [Heph local document agent](https://gildrb.com/heph) documents how bounded armories, explicit indexing, cited answers, and `/evidence` keep local document work inspectable. The source repository is linked inside the article.

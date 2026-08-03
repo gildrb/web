@@ -58,6 +58,16 @@ export const siteConfig = Object.freeze({
             ]),
         }),
         Object.freeze({
+            slug: "ben-davis",
+            title: "Ben Davis",
+            styles: Object.freeze([
+                ...sharedCaseStyles.slice(0, 2),
+                "30-ben-davis.css",
+                ...sharedCaseStyles.slice(2),
+            ]),
+            scripts: sharedCaseScripts,
+        }),
+        Object.freeze({
             slug: "ml7",
             title: "mL7",
             styles: sharedCaseStyles,
