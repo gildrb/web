@@ -6,7 +6,7 @@ In January 2019 I was drawing logos out of geometric shapes and wanted to know w
 
 ### One rule for every letter
 
-Each glyph is assembled from flat stems and quarter turns drawn at a single radius. Where the rule leaves a gap, the gap stays. That is why the R breaks at the shoulder and the Q keeps an open corner instead of a tail. I drew the outlines in Illustrator and compiled the font with Fontself.
+Each glyph is assembled from flat stems and quarter turns drawn at a single radius. Where the rule leaves a gap, the gap stays. That is why the R breaks at the shoulder and the Q keeps an open corner instead of a tail. I drew the outlines in Illustrator and compiled the font with [Fontself](https://www.fontself.com/make-fonts-on-desktop).
 
 ![CURVES wordmark](media:curves-wordmark)
 

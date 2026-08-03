@@ -132,7 +132,7 @@ Markdown source: https://gildrb.com/content/filen.md
 
 # A self-initiated brand system for Filen
 
-I have used Filen for years. The product worked well for me, but its logo never did. I often redesign things I use, so I gave myself a full identity brief: a mark, wordmark, app icon, pattern language, and campaign copy. Filen did not commission the work.
+I have used [Filen](https://filen.io/) for years. The product worked well for me, but its logo never did. I often redesign things I use, so I gave myself a full identity brief: a mark, wordmark, app icon, pattern language, and campaign copy. Filen did not commission the work.
 
 ### Trying ideas
 
@@ -160,7 +160,7 @@ For the mark itself, the angled folder remained the clearest option. It reads as
 
 ### Making it work
 
-After choosing the mark, I reduced it at several sizes and built an app icon in Icon Composer.
+After choosing the mark, I reduced it at several sizes and built an app icon in [Icon Composer](https://developer.apple.com/icon-composer/).
 
 ![Brandmark scale tests](media:filen-logo-scale)
 ![Filen app icon](media:filen-app-icon)
@@ -349,7 +349,7 @@ Markdown source: https://gildrb.com/content/ben-davis.md
 
 # A redesigned mark for Ben Davis
 
-Ben Davis builds software in San Francisco and co-hosts the Nerd Snipe podcast. Nobody asked for this one. In July 2026 I redrew his personal mark for my own practice, posted it on [X](https://x.com/gilrdb/status/2074468837781639301), and left it with him.
+Ben Davis builds software in San Francisco and co-hosts the [Nerd Snipe](https://nerdsnipe.substack.com/) podcast. Nobody asked for this one. In July 2026 I redrew his personal mark for my own practice, posted it on [X](https://x.com/gilrdb/status/2074468837781639301), and left it with him.
 
 ### Two letters, one figure
 
@@ -376,7 +376,7 @@ Markdown source: https://gildrb.com/content/t3.md
 
 # A logomark system for T3
 
-T3 ships more than one product, so the mark had to hold as `T3.chat`, as `T3.code`, and on its own in a favicon or an app grid. Nobody commissioned it. I drew it across several months and posted the versions as they came, first in the T3 Discord and then as a [thread on X](https://x.com/gilrdb/status/2080990301208952994). The community, [@r_marked](https://x.com/r_marked), and [@theo](https://x.com/theo) told me which ones were working.
+T3 ships more than one product, so the mark had to hold as `T3.chat`, as [`T3.code`](https://t3.codes/), and on its own in a favicon or an app grid. Nobody commissioned it. I drew it across several months and posted the versions as they came, first in the T3 Discord and then as a [thread on X](https://x.com/gilrdb/status/2080990301208952994). The community, [@r_marked](https://x.com/r_marked), and [@theo](https://x.com/theo) told me which ones were working.
 
 ![The T3 logomark](media:t3-mark)
 
@@ -433,7 +433,7 @@ Markdown source: https://gildrb.com/content/ml7.md
 
 # The mL7 logo, made in 2018
 
-In 2018 I was playing competitive Overwatch and learning from players who were far better than me. One of them was Mihai "mL7" Lupascu. I made a logo for him as a thank-you, posted it, and expected nothing back. His manager contacted me, and the mark became mL7's channel identity. As of July 2026, his Twitch channel still uses the same mark in a different colorway.
+In 2018 I was playing competitive [Overwatch](https://overwatch.blizzard.com/en-us/) and learning from players who were far better than me. One of them was [Mihai "mL7" Lupascu](https://www.twitch.tv/ml7support). I made a logo for him as a thank-you, posted it, and expected nothing back. His manager contacted me, and the mark became mL7's channel identity. As of July 2026, his Twitch channel still uses the same mark in a different colorway.
 
 ![mL7 logo system](media:ml7-logo-system)
 
@@ -454,7 +454,7 @@ Markdown source: https://gildrb.com/content/n0thing.md
 
 # A wordmark for n0thing
 
-In late 2019, former professional Counter-Strike player Jordan "n0thing" Gilbert was looking for a logo. VisionOfVIII, an artist whose work I admired and had helped with, recommended me. Jordan commissioned a custom wordmark and asked for something serious, but left the visual direction open.
+In late 2019, former professional Counter-Strike player [Jordan "n0thing" Gilbert](https://www.n0thing.gg/) was looking for a logo. VisionOfVIII, an artist whose work I admired and had helped with, recommended me. Jordan commissioned a custom wordmark and asked for something serious, but left the visual direction open.
 
 ### Exploring directions
 
@@ -495,7 +495,7 @@ In January 2019 I was drawing logos out of geometric shapes and wanted to know w
 
 ### One rule for every letter
 
-Each glyph is assembled from flat stems and quarter turns drawn at a single radius. Where the rule leaves a gap, the gap stays. That is why the R breaks at the shoulder and the Q keeps an open corner instead of a tail. I drew the outlines in Illustrator and compiled the font with Fontself.
+Each glyph is assembled from flat stems and quarter turns drawn at a single radius. Where the rule leaves a gap, the gap stays. That is why the R breaks at the shoulder and the Q keeps an open corner instead of a tail. I drew the outlines in Illustrator and compiled the font with [Fontself](https://www.fontself.com/make-fonts-on-desktop).
 
 ![CURVES wordmark](media:curves-wordmark)
 
@@ -530,13 +530,13 @@ Markdown source: https://gildrb.com/content/site.md
 
 # The site you are on is the case study
 
-This page documents the portfolio itself. I started with an empty repository, wrote the design and build system, then prepared the static files for deployment. The repository contains both the authored source and the generated pages. Its verification script is there too.
+This page documents the portfolio itself. I started with an empty [repository](https://github.com/gildrb/web), wrote the design and build system, then prepared the static files for deployment. The repository contains both the authored source and the generated pages. Its verification script is there too.
 
 ### Built from source
 
 Case-study prose lives in Markdown and shared page structure lives in HTML partials. A dependency-free Node script renders the Markdown, assembles the CSS and JavaScript needed by each route, inlines the structured data, and writes the static pages.
 
-The pages do not depend on a client-side framework. Vercel Insights and Speed Insights are loaded separately for analytics; the portfolio remains functional if those scripts are unavailable.
+The pages do not depend on a client-side framework. [Vercel](https://vercel.com/docs/analytics) Insights and Speed Insights are loaded separately for analytics; the portfolio remains functional if those scripts are unavailable.
 
 ![Build pipeline](media:site-build-pipeline)
 

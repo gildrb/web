@@ -1,12 +1,12 @@
 # The site you are on is the case study
 
-This page documents the portfolio itself. I started with an empty repository, wrote the design and build system, then prepared the static files for deployment. The repository contains both the authored source and the generated pages. Its verification script is there too.
+This page documents the portfolio itself. I started with an empty [repository](https://github.com/gildrb/web), wrote the design and build system, then prepared the static files for deployment. The repository contains both the authored source and the generated pages. Its verification script is there too.
 
 ### Built from source
 
 Case-study prose lives in Markdown and shared page structure lives in HTML partials. A dependency-free Node script renders the Markdown, assembles the CSS and JavaScript needed by each route, inlines the structured data, and writes the static pages.
 
-The pages do not depend on a client-side framework. Vercel Insights and Speed Insights are loaded separately for analytics; the portfolio remains functional if those scripts are unavailable.
+The pages do not depend on a client-side framework. [Vercel](https://vercel.com/docs/analytics) Insights and Speed Insights are loaded separately for analytics; the portfolio remains functional if those scripts are unavailable.
 
 ![Build pipeline](media:site-build-pipeline)
 

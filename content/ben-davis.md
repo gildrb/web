@@ -1,6 +1,6 @@
 # A redesigned mark for Ben Davis
 
-Ben Davis builds software in San Francisco and co-hosts the Nerd Snipe podcast. Nobody asked for this one. In July 2026 I redrew his personal mark for my own practice, posted it on [X](https://x.com/gilrdb/status/2074468837781639301), and left it with him.
+Ben Davis builds software in San Francisco and co-hosts the [Nerd Snipe](https://nerdsnipe.substack.com/) podcast. Nobody asked for this one. In July 2026 I redrew his personal mark for my own practice, posted it on [X](https://x.com/gilrdb/status/2074468837781639301), and left it with him.
 
 ### Two letters, one figure
 

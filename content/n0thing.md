@@ -1,6 +1,6 @@
 # A wordmark for n0thing
 
-In late 2019, former professional Counter-Strike player Jordan "n0thing" Gilbert was looking for a logo. VisionOfVIII, an artist whose work I admired and had helped with, recommended me. Jordan commissioned a custom wordmark and asked for something serious, but left the visual direction open.
+In late 2019, former professional Counter-Strike player [Jordan "n0thing" Gilbert](https://www.n0thing.gg/) was looking for a logo. VisionOfVIII, an artist whose work I admired and had helped with, recommended me. Jordan commissioned a custom wordmark and asked for something serious, but left the visual direction open.
 
 ### Exploring directions
 
