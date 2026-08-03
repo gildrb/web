@@ -859,6 +859,15 @@ body {
 }
 
 @media (min-width: 769px) {
+    .case-next-row:last-child {
+        --case-final-line-height: 24px;
+        padding-bottom: calc(
+            var(--footer-title-center-offset) +
+                (var(--theme-toggle-size) / 2) -
+                (var(--case-final-line-height) / 2)
+        );
+    }
+
     .case-article article:has(+ .case-next) > :last-child {
         padding-bottom: 0;
     }
