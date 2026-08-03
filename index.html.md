@@ -39,7 +39,7 @@ Brand designer based in Germany, building identity systems for software.
 
 ## Portfolio
 
-#### gildrb.com (Design engineering)
+#### gildrb.com (Product/Design Engineering)
 
 [gildrb.com](https://gildrb.com/site) documents how the portfolio is built and verified as a static, hand-authored site.
 
@@ -47,7 +47,7 @@ Brand designer based in Germany, building identity systems for software.
 
 [T3 logomark exploration](https://gildrb.com/t3) documents a self-initiated system developed across products, icons, and a family of rejected directions.
 
-#### Ben Davis (Brandmark)
+#### Ben Davis (Logomark)
 
 [Ben Davis brandmark](https://gildrb.com/ben-davis) documents an unsolicited db monogram redesign built from mirrored letterforms and one central diagonal.
 
@@ -55,7 +55,7 @@ Brand designer based in Germany, building identity systems for software.
 
 [Heph local document agent](https://gildrb.com/heph) documents how bounded armories, explicit indexing, cited answers, and `/evidence` keep local document work inspectable. The source repository is linked inside the article.
 
-#### Filen (Brand identity)
+#### Filen (Brand Identity)
 
 [Filen identity system](https://gildrb.com/filen) documents a self-initiated identity concept developed from rejected marks into an app icon and privacy-focused campaign system.
 

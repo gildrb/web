@@ -69,7 +69,7 @@ Brand designer based in Germany, building identity systems for software.
 
 ## Portfolio
 
-#### gildrb.com (Design engineering)
+#### gildrb.com (Product/Design Engineering)
 
 [gildrb.com](https://gildrb.com/site) documents how the portfolio is built and verified as a static, hand-authored site.
 
@@ -77,7 +77,7 @@ Brand designer based in Germany, building identity systems for software.
 
 [T3 logomark exploration](https://gildrb.com/t3) documents a self-initiated system developed across products, icons, and a family of rejected directions.
 
-#### Ben Davis (Brandmark)
+#### Ben Davis (Logomark)
 
 [Ben Davis brandmark](https://gildrb.com/ben-davis) documents an unsolicited db monogram redesign built from mirrored letterforms and one central diagonal.
 
@@ -85,7 +85,7 @@ Brand designer based in Germany, building identity systems for software.
 
 [Heph local document agent](https://gildrb.com/heph) documents how bounded armories, explicit indexing, cited answers, and `/evidence` keep local document work inspectable. The source repository is linked inside the article.
 
-#### Filen (Brand identity)
+#### Filen (Brand Identity)
 
 [Filen identity system](https://gildrb.com/filen) documents a self-initiated identity concept developed from rejected marks into an app icon and privacy-focused campaign system.
 
@@ -162,7 +162,7 @@ For the mark itself, the angled folder remained the clearest option. It reads as
 
 After choosing the mark, I reduced it at several sizes and built an app icon in Icon Composer.
 
-![Brandmark scale tests](media:filen-logo-scale)
+![Logo scale tests](media:filen-logo-scale)
 ![Filen app icon](media:filen-app-icon)
 
 The light studies turned the repeated panels into a usable image system.
@@ -180,7 +180,7 @@ The final lockup pairs the folder mark with a plain wordmark. The campaign copy 
 ![Zero-knowledge campaign](media:filen-zero-knowledge-campaign)
 ![Private storage campaign](media:filen-storage-message)
 
-![Brandmark light texture](media:filen-logo-texture)
+![Logo light texture](media:filen-logo-texture)
 ![Light-driven Filen lockup](media:filen-light-lockup)
 
 ![Monochrome brand system](media:filen-brand-system-board)
@@ -351,8 +351,6 @@ Markdown source: https://gildrb.com/content/ben-davis.md
 
 Ben Davis builds software in San Francisco and co-hosts the Nerd Snipe podcast. Nobody asked for this one. In July 2026 I redrew his personal mark for my own practice, posted it on [X](https://x.com/gilrdb/status/2074468837781639301), and left it with him.
 
-![Ben Davis brandmark](media:ben-davis-brandmark)
-
 ### Two letters, one figure
 
 The mark on [davis7.sh](https://www.davis7.sh/) already used the same two letters. It sets a slab-sided d against a b built from a full circle, so the two halves never agree on a weight or a curve.
@@ -361,13 +359,13 @@ The mark on [davis7.sh](https://www.davis7.sh/) already used the same two letter
 
 A d and a b are mirror images, so the pair already wants to be symmetrical. I kept that symmetry in the bowls and broke it once. A single diagonal runs through the middle of the mark, carries the stem of the d down into the bowl of the b, and leaves both letters with a sheared terminal. At a glance it is a loop, and the initials arrive a moment later.
 
+![The redesigned mark](media:ben-davis-brandmark)
+
 Stems and bowls hold one weight and one corner radius, so the mark keeps its rhythm when it shrinks. The whole thing is one path with few enough anchor points to redraw by hand, which is what the point view on the left shows.
 
 ![Construction points and final mark](media:ben-davis-construction)
 
-### What happened to it
-
-Ben replied to the post with "oooo this is sick ty". He has not put it on the site, and I did not ask him to. It cost me an evening and it keeps my drawing sharp between client projects.
+Ben replied to the post, then messaged me and we talked it through. The mark is his to use.
 
 ---
 

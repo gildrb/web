@@ -567,7 +567,7 @@ body {
 
 .case-next {
     width: min(100%, 760px);
-    margin: 80px auto 0;
+    margin: 48px auto 0;
 }
 
 .case-next-heading {
@@ -590,7 +590,7 @@ body {
     grid-template-columns: subgrid;
     align-items: baseline;
     width: 100%;
-    padding: 8px 0;
+    padding: var(--theme-toggle-optical-offset) 0;
     color: var(--text-tertiary);
     text-decoration: none;
 }
@@ -864,6 +864,10 @@ body {
 }
 
 @media (min-width: 769px) {
+    .case-article article:has(+ .case-next) > :last-child {
+        padding-bottom: 0;
+    }
+
     .case-article article > :last-child {
         --case-final-line-height: 24px;
         padding-bottom: calc(
@@ -942,7 +946,7 @@ body {
     }
 
     .case-next {
-        margin-top: 80px;
+        margin-top: 48px;
     }
 
     .case-next-list {
@@ -1390,7 +1394,7 @@ html.homepage-scroll-locked body .layout {
                         <div class="case-media-grid">
                         <figure>
                             <img alt="Filen mark tested at four decreasing sizes" decoding="async" height="2260" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px" src="/images/optimized/gil-rodrigues-filen-logo-scale-960.webp" srcset="/images/optimized/gil-rodrigues-filen-logo-scale-480.webp 480w, /images/optimized/gil-rodrigues-filen-logo-scale-720.webp 720w, /images/optimized/gil-rodrigues-filen-logo-scale-960.webp 960w, /images/optimized/gil-rodrigues-filen-logo-scale-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-logo-scale-1600.webp 1600w" width="3940"/>
-                            <figcaption class="case-caption">Brandmark scale tests</figcaption>
+                            <figcaption class="case-caption">Logo scale tests</figcaption>
                         </figure>
                         <figure>
                             <img alt="Filen app icon using a dimensional rendering of the identity mark" decoding="async" height="2260" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px" src="/images/optimized/gil-rodrigues-filen-app-icon-960.webp" srcset="/images/optimized/gil-rodrigues-filen-app-icon-480.webp 480w, /images/optimized/gil-rodrigues-filen-app-icon-720.webp 720w, /images/optimized/gil-rodrigues-filen-app-icon-960.webp 960w, /images/optimized/gil-rodrigues-filen-app-icon-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-app-icon-1600.webp 1600w" width="3940"/>
@@ -1443,7 +1447,7 @@ html.homepage-scroll-locked body .layout {
                         <div class="case-media-grid">
                         <figure>
                             <img alt="Filen mark over a streaked monochrome visual texture" decoding="async" height="2260" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-filen-logo-texture-960.webp" srcset="/images/optimized/gil-rodrigues-filen-logo-texture-480.webp 480w, /images/optimized/gil-rodrigues-filen-logo-texture-720.webp 720w, /images/optimized/gil-rodrigues-filen-logo-texture-960.webp 960w, /images/optimized/gil-rodrigues-filen-logo-texture-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-logo-texture-1600.webp 1600w" width="3940"/>
-                            <figcaption class="case-caption">Brandmark light texture</figcaption>
+                            <figcaption class="case-caption">Logo light texture</figcaption>
                         </figure>
                         <figure>
                             <img alt="Metallic Filen lockup across vertical light panels" decoding="async" height="921" loading="lazy" sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(100vw - 336px), 760px" src="/images/optimized/gil-rodrigues-filen-light-lockup-720.webp" srcset="/images/optimized/gil-rodrigues-filen-light-lockup-480.webp 480w, /images/optimized/gil-rodrigues-filen-light-lockup-720.webp 720w, /images/optimized/gil-rodrigues-filen-light-lockup-960.webp 960w, /images/optimized/gil-rodrigues-filen-light-lockup-1280.webp 1280w, /images/optimized/gil-rodrigues-filen-light-lockup-1600.webp 1600w" width="1600"/>
@@ -1469,7 +1473,7 @@ html.homepage-scroll-locked body .layout {
                                     <span class="case-next-date-year">2026</span>
                                 </time>
                                 <span class="case-next-project">gildrb.com</span>
-                                <span class="case-next-scope">Design engineering</span>
+                                <span class="case-next-scope">Product/Design Engineering</span>
                                 <span class="case-next-arrow" aria-hidden="true">
                                     <span class="case-next-view">View</span>
                                     →
@@ -1481,7 +1485,7 @@ html.homepage-scroll-locked body .layout {
                                     <span class="case-next-date-year">2026</span>
                                 </time>
                                 <span class="case-next-project">Heph</span>
-                                <span class="case-next-scope">Product design and engineering</span>
+                                <span class="case-next-scope">Product/Design Engineering</span>
                                 <span class="case-next-arrow" aria-hidden="true">
                                     <span class="case-next-view">View</span>
                                     →

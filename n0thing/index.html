@@ -520,7 +520,7 @@ body {
 
 .case-next {
     width: min(100%, 760px);
-    margin: 80px auto 0;
+    margin: 48px auto 0;
 }
 
 .case-next-heading {
@@ -543,7 +543,7 @@ body {
     grid-template-columns: subgrid;
     align-items: baseline;
     width: 100%;
-    padding: 8px 0;
+    padding: var(--theme-toggle-optical-offset) 0;
     color: var(--text-tertiary);
     text-decoration: none;
 }
@@ -817,6 +817,10 @@ body {
 }
 
 @media (min-width: 769px) {
+    .case-article article:has(+ .case-next) > :last-child {
+        padding-bottom: 0;
+    }
+
     .case-article article > :last-child {
         --case-final-line-height: 24px;
         padding-bottom: calc(
@@ -895,7 +899,7 @@ body {
     }
 
     .case-next {
-        margin-top: 80px;
+        margin-top: 48px;
     }
 
     .case-next-list {
@@ -1368,7 +1372,7 @@ html.homepage-scroll-locked body .layout {
                                     <span class="case-next-date-year">2026</span>
                                 </time>
                                 <span class="case-next-project">Ben Davis</span>
-                                <span class="case-next-scope">Brandmark</span>
+                                <span class="case-next-scope">Logomark</span>
                                 <span class="case-next-arrow" aria-hidden="true">
                                     <span class="case-next-view">View</span>
                                     →

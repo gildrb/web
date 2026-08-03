@@ -1053,8 +1053,8 @@ assert(
     "Ben Davis must preserve complete images and omit dot dividers.",
 );
 const benDavisMediaSequence = [
-    "gil-rodrigues-ben-davis-brandmark.svg",
     "gil-rodrigues-ben-davis-original.svg",
+    "gil-rodrigues-ben-davis-brandmark.svg",
     "gil-rodrigues-ben-davis-construction-720.webp",
 ];
 assert(
@@ -1424,7 +1424,7 @@ assert(
         ) &&
         allPage.includes('class="all-cases"') &&
         (allPage.match(/class="all-case"/g) || []).length === 8 &&
-        allPage.includes('data-date="2026-07-15" data-scope="Design engineering" data-slug="site" data-title="gildrb.com"') &&
+        allPage.includes('data-date="2026-07-15" data-scope="Product/Design Engineering" data-slug="site" data-title="gildrb.com"') &&
         allPage.lastIndexOf('data-slug="site"') >
             allPage.indexOf('data-slug="ml7"') &&
         allScript.includes('new URLSearchParams(window.location.search)') &&
@@ -1504,20 +1504,16 @@ assert(
         !portfolioStyles.includes(".portfolio-card-arrow svg") &&
         !portfolioStyles.includes(".portfolio-card-link::after") &&
         (indexHtml.match(/class="portfolio-card-arrow"/g) || []).length === 8 &&
-        (indexHtml.match(/class="portfolio-card-scope">Brand identity/g) || [])
+        (indexHtml.match(/class="portfolio-card-scope">Brand Identity/g) || [])
             .length === 1 &&
         (indexHtml.match(/class="portfolio-card-scope">Wordmark/g) || [])
             .length === 2 &&
         (indexHtml.match(/class="portfolio-card-scope">Typeface/g) || [])
             .length === 1 &&
-        (indexHtml.match(/class="portfolio-card-scope">Brandmark/g) || [])
-            .length === 1 &&
         (indexHtml.match(/class="portfolio-card-scope">Logomark/g) || [])
-            .length === 1 &&
-        (indexHtml.match(/class="portfolio-card-scope">Design engineering/g) || [])
-            .length === 1 &&
-        (indexHtml.match(/class="portfolio-card-scope">Product design and engineering/g) || [])
-            .length === 1 &&
+            .length === 2 &&
+        (indexHtml.match(/class="portfolio-card-scope">Product\/Design Engineering/g) || [])
+            .length === 2 &&
         (indexHtml.match(/class="portfolio-card-view">View<\/span>/g) || [])
             .length === 8 &&
         (indexHtml.match(/<span class="portfolio-card-view">View<\/span>\s+→/g) || [])

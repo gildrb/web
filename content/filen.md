@@ -30,7 +30,7 @@ For the mark itself, the angled folder remained the clearest option. It reads as
 
 After choosing the mark, I reduced it at several sizes and built an app icon in Icon Composer.
 
-![Brandmark scale tests](media:filen-logo-scale)
+![Logo scale tests](media:filen-logo-scale)
 ![Filen app icon](media:filen-app-icon)
 
 The light studies turned the repeated panels into a usable image system.
@@ -48,7 +48,7 @@ The final lockup pairs the folder mark with a plain wordmark. The campaign copy 
 ![Zero-knowledge campaign](media:filen-zero-knowledge-campaign)
 ![Private storage campaign](media:filen-storage-message)
 
-![Brandmark light texture](media:filen-logo-texture)
+![Logo light texture](media:filen-logo-texture)
 ![Light-driven Filen lockup](media:filen-light-lockup)
 
 ![Monochrome brand system](media:filen-brand-system-board)
