@@ -6,7 +6,7 @@ I have used [Filen](https://filen.io/) for years. The product worked well for me
 
 The first rounds were broad. I tried a disappearing block that could also read as an F, but the letter depended too much on explanation.
 
-Next came a folder drawn in perspective. Its open edge suggested an F as the shape carried through the board.
+Next came a folder drawn in perspective, its open edge doing the work of an F.
 
 I also drew a heavier, architectural symbol based on stairs. Closing the staircase made it feel stable, but added too much detail for a small app icon. Another version used stacked blocks with the upper layer hidden. Neither survived the scale tests.
 
