@@ -437,7 +437,7 @@ The last pass is invisible at a glance. I thinned the joint between the crossbar
 
 ![Before and after refinement](media:t3-before-after)
 
-I posted the two curves side by side on 13 May, expecting nobody to see it. markr: "I feel insane but those changes made a difference to my perception...."
+On 13 May I posted the two curves side by side. markr: "I feel insane but those changes made a difference to my perception...."
 
 ![The pinched curve against the smoothed one](media:t3-feedback-curves)
 
