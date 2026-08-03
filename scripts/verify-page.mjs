@@ -1190,56 +1190,20 @@ assert(
         responsiveStyles.includes(
             "body:not(.case-page) .content {\n    min-height: 100dvh;",
         ) &&
-        responsiveStyles.includes(
-            "html.homepage-scroll-locked,\nhtml.homepage-scroll-locked body {\n    height: 100dvh;\n}",
-        ) &&
-        responsiveStyles.includes(
-            "html.homepage-scroll-locked body .layout {\n    height: 100dvh;\n    min-height: 100dvh;\n}",
-        ) &&
+        !responsiveStyles.includes("homepage-scroll-locked") &&
+        !responsiveStyles.includes("overflow: hidden;") &&
         !responsiveStyles.includes("overscroll-behavior: none;"),
-    "The homepage must use dynamic viewport sizing without suppressing native overscroll.",
+    "The homepage must preserve the shared desktop shell while remaining a normally scrolling document.",
 );
 assert(
     responsiveStyles.includes(
         "body:not(.case-page) {\n        min-height: 100svh;\n        height: auto;\n        overflow: visible;\n        overscroll-behavior: auto;",
     ) &&
         responsiveStyles.includes(
-            "body:not(.case-page) .layout {\n        min-height: 100svh;\n        height: auto;\n        align-content: start;\n        overflow: visible;\n        overscroll-behavior: auto;",
-        ) &&
-        responsiveStyles.includes(
             "body:not(.case-page) .layout {\n        min-height: 100svh;\n        height: auto;\n        align-content: start;\n        overflow: visible;\n        overscroll-behavior: auto;\n        padding-bottom: 64px;",
         ) &&
         responsiveStyles.includes(
-            "html.homepage-scroll-locked,\n    html.homepage-scroll-locked body {\n        height: 100dvh;\n        min-height: 100dvh;",
-        ) &&
-        !responsiveStyles.includes(
-            "html.homepage-scroll-locked,\n    html.homepage-scroll-locked body {\n        height: 100dvh;\n        min-height: 100dvh;\n        overflow: hidden;",
-        ) &&
-        responsiveStyles.includes(
-            "html.homepage-scroll-locked body .layout {\n        height: 100dvh;\n        min-height: 100dvh;\n        display: grid;\n        align-content: start;\n        grid-template-rows: auto auto minmax(0, 1fr) auto;\n        padding-bottom: 0;",
-        ) &&
-        responsiveStyles.includes(
-            "body:not(.case-page) .name {\n        grid-column: 1;\n        order: 1;\n        position: relative;\n        z-index: 100;\n        width: calc(100% + 56px);\n        margin-left: -12px;\n        padding: 24px 44px 8px 12px;\n        background: var(--bg);",
-        ) &&
-        responsiveStyles.includes(
-            "body.case-page .name {\n        grid-column: 1;\n        order: 1;\n        position: sticky;\n        top: 0;\n        z-index: 100;\n        width: calc(100% + 56px);\n        margin-left: -12px;\n        padding: 24px 44px 8px 12px;\n        background: linear-gradient(\n            to bottom,\n            var(--bg) 60%,\n            transparent\n        );",
-        ) &&
-        responsiveStyles.includes(
-            "body:not(.case-page) .theme-toggle {\n        position: relative;\n        top: auto;",
-        ) &&
-        baseStyles.includes("--theme-toggle-optical-offset: 2px;") &&
-        responsiveStyles.includes(
-            "height: calc(24px + var(--link-line-height) + 8px);\n        min-height: var(--theme-toggle-size);\n        padding:\n            calc(24px + var(--theme-toggle-optical-offset)) 0\n            calc(8px - var(--theme-toggle-optical-offset));\n        align-items: center;",
-        ) &&
-        caseHtml.every((html) =>
-            html.includes("--theme-toggle-optical-offset: 2px;"),
-        ) &&
-        baseStyles.includes("--text-media-gap: 32px;") &&
-        previewContentStyles.includes(
-            ".profile-summary {\n    max-width: 760px;\n    margin-bottom: var(--text-media-gap);",
-        ) &&
-        responsiveStyles.includes(
-            ".portfolio-section {\n        order: 3;",
+            "body:not(.case-page) .name {\n        grid-column: 1;\n        order: 1;",
         ) &&
         responsiveStyles.includes(
             ".portfolio-section {\n        order: 3;\n        margin-bottom: var(--section-gap);",
@@ -1247,98 +1211,13 @@ assert(
         responsiveStyles.includes(
             ".links {\n        grid-column: 1 / -1;\n        order: 4;\n        margin-bottom: 0;",
         ) &&
-        responsiveStyles.includes(
-            ".links.mobile-links-grid {\n        display: grid;\n        grid-template-columns:\n            var(--mobile-contact-start) minmax(0, 1fr);\n        column-gap: 0;",
-        ) &&
-        responsiveStyles.includes(
-            ".mobile-links-grid > .contact-label {\n        grid-column: 2;\n        grid-row: 1;\n        margin-top: 0;",
-        ) &&
-        responsiveStyles.includes(
-            ".mobile-links-grid > .contact-label ~ .email {\n        grid-column: 2;\n        grid-row: 2;",
-        ) &&
-        responsiveStyles.includes(
-            ".mobile-links-grid > .contact-label ~ .external-link {\n        grid-column: 2;\n        grid-row: 3;",
-        ) &&
-        responsiveStyles.includes(
-            ".case-page .links.mobile-links-grid {\n        grid-template-columns: 3fr 4fr;",
-        ) &&
-        responsiveStyles.includes("row-gap: var(--section-content-gap);") &&
-        responsiveStyles.includes(
-            ".profile-summary {\n        grid-column: 1 / -1;\n        order: 2;\n        margin-bottom: var(--section-gap);",
-        ) &&
-        responsiveStyles.includes(
-            ".portfolio-card-link {\n        padding: 7px 0;",
-        ) &&
-        siteScript.includes(
-            "portfolioScope.getBoundingClientRect().left -",
-        ) &&
-        siteScript.includes(
-            'links.style.setProperty(\n        "--mobile-contact-start",',
-        ) &&
-        siteScript.includes(
-            'const mobileLinks = document.querySelector(\n    ".case-page .case-mobile-links .links, body:not(.case-page) .links",',
-        ) &&
-        siteScript.includes(
-            'links.classList.add("mobile-links-grid");\n    if (!portfolioScope) return;',
-        ) &&
-        siteScript.includes(
-            'window.addEventListener("resize", () => updateMobileLayout(true));',
-        ) &&
-        siteScript.includes("new ResizeObserver") &&
-        siteScript.includes("mobileLayoutTargets.forEach") &&
-        siteScript.includes(
-            'let homepageLockState = "uninitialized";',
-        ) &&
-        siteScript.includes(
-            'let homepageUnlockedHeight = 0;',
-        ) &&
-        siteScript.includes(
-            'let homepageUnlockedContentBottom = 0;',
-        ) &&
-        siteScript.includes(
-            'let homepageViewportWidth = window.innerWidth;',
-        ) &&
-        siteScript.includes(
-            'function updateHomepageLock(preserveMobileState = false)',
-        ) &&
-        siteScript.includes(
-            'preserveMobileState &&\n        isMobile &&\n        !viewportWidthChanged &&\n        homepageLockState === "locked"',
-        ) &&
-        siteScript.includes(
-            'if (isMobile) {\n        root.classList.add("homepage-scroll-locked");\n        homepageLockState = "locked";',
-        ) &&
-        siteScript.includes(
-            'root.classList.remove("homepage-scroll-locked");',
-        ) &&
-        siteScript.includes(
-            'const isMobile = window.matchMedia("(max-width: 767px)").matches;',
-        ) &&
-        indexHtml.startsWith(
-            '<!doctype html>\n<html lang="en" class="homepage-scroll-locked homepage-first-paint-pending">',
-        ) &&
-        siteScript.includes(
-            "document.querySelectorAll(\n                \".profile-summary, .portfolio-section, .links, .site-footer\",",
-        ) &&
-        siteScript.includes(
-            "const fits = contentBottom <= window.innerHeight;",
-        ) &&
-        siteScript.includes("const atTop = window.scrollY === 0;") &&
-        siteScript.includes(
-            "Math.abs(\n                window.innerHeight - homepageUnlockedHeight,\n            ) >= 32",
-        ) &&
-        siteScript.includes(
-            "homepageUnlockedContentBottom - contentBottom >= 32",
-        ) &&
-        !siteScript.includes(
-            "window.scrollTo(0, 0);\n        root.classList.add",
-        ) &&
-        siteScript.includes(
-            'root.classList.add("homepage-scroll-locked");',
-        ) &&
-        siteScript.includes(
-            'window.addEventListener("load", () => {\n    updateHomepageDates();\n    updateMobileLayout();\n});',
-        ),
-    "Mobile homepage sections must preserve the requested order and compact spacing.",
+        !responsiveStyles.includes("portfolio-scroll-frame") &&
+        !responsiveStyles.includes("has-scroll-top") &&
+        !responsiveStyles.includes("has-scroll-bottom") &&
+        !siteScript.includes("homepage-scroll-locked") &&
+        !siteScript.includes("ResizeObserver") &&
+        !siteScript.includes("updatePortfolioScrollIndicators"),
+    "The mobile homepage must remain a plain, naturally scrolling document with inline project rows and reachable footer links.",
 );
 assert(
     indexHtml.includes('class="portfolio-table-header"') &&
@@ -1445,21 +1324,17 @@ assert(
     "The homepage must use secondary-tone Date, Project, Scope, and All headings, with All preserving the active sort for the continuous projects page.",
 );
 assert(
-    portfolioOpen.indexOf('class="portfolio-table-header"') <
-        portfolioOpen.indexOf('class="portfolio-section"') &&
-        responsiveStyles.includes(
-            "html.homepage-scroll-locked body .portfolio-scroll-frame {\n        grid-row: 3;\n        grid-template-rows: auto minmax(0, 1fr);",
-        ) &&
-        responsiveStyles.includes(
-            "html.homepage-scroll-locked body .portfolio-section {\n        grid-row: 2;\n        height: auto;",
-        ) &&
-        responsiveStyles.includes(
-            "html.homepage-scroll-locked body .portfolio-section {\n        grid-row: 2;\n        height: auto;\n        min-height: 0;\n        margin-bottom: 0;\n        align-content: start;\n        overflow-y: auto;\n        overscroll-behavior: auto;",
-        ) &&
-        responsiveStyles.includes(
-            "html.homepage-scroll-locked body .portfolio-table-header {\n        grid-row: 1;\n        position: relative;",
-        ),
-    "The locked mobile homepage must keep the filter row outside the scrolling table and preserve native overscroll.",
+    portfolioOpen.indexOf('class="portfolio-section"') <
+        portfolioOpen.indexOf('class="portfolio-table-header"') &&
+        portfolioOpen.indexOf('class="portfolio-table-header"') <
+            portfolioOpen.indexOf('class="portfolio-list"') &&
+        !portfolioOpen.includes("portfolio-scroll-frame") &&
+        !responsiveStyles.includes("homepage-scroll-locked") &&
+        !responsiveStyles.includes("overflow-y: auto") &&
+        !responsiveStyles.includes("scrollbar-width: none") &&
+        !responsiveStyles.includes("portfolio-scroll-frame::before") &&
+        !responsiveStyles.includes("portfolio-scroll-frame::after"),
+    "The homepage portfolio must be a single naturally scrolling table without nested scroll or fade chrome.",
 );
 const portfolioDates = [
     ["2026-07-25", "2026-07-25", "T3"],
