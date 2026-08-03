@@ -1419,7 +1419,7 @@ assert(
 );
 assert(
     baseStyles.includes(
-        "line-height: var(--link-line-height);\n    letter-spacing: -0.02em;\n    color: var(--text-primary);\n    min-height: calc(var(--link-line-height) * 2);",
+        "line-height: var(--link-line-height);\n  letter-spacing: -0.02em;\n  color: var(--text-primary);\n  min-height: calc(var(--link-line-height) * 2);",
     ) &&
         previewContentStyles.includes(
             ".profile-copy {\n    font-size: 16px;\n    font-weight: 400;\n    color: var(--text-primary);",
