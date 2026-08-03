@@ -28,7 +28,7 @@ For the mark itself, the angled folder remained the clearest option. It reads as
 
 ### Making it work
 
-After choosing the mark, I reduced it at several sizes and built an app icon in [Icon Composer](https://developer.apple.com/icon-composer/).
+After choosing the mark, I reduced it at several sizes and built an app icon in Icon Composer.
 
 ![Brandmark scale tests](media:filen-logo-scale)
 ![Filen app icon](media:filen-app-icon)
