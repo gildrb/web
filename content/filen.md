@@ -1,6 +1,6 @@
 # A self-initiated brand system for Filen
 
-I have used [Filen](https://filen.io/) for years. The product worked well for me, but its logo never did. I often redesign things I use, so I gave myself a full identity brief: a mark, wordmark, app icon, pattern language, and campaign copy. Filen did not commission the work.
+I have used Filen for years. The product worked well for me, but its logo never did. I often redesign things I use, so I gave myself a full identity brief: a mark, wordmark, app icon, pattern language, and campaign copy. Filen did not commission the work.
 
 ### Trying ideas
 
