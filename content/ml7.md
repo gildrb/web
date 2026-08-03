@@ -10,4 +10,4 @@ The logo had to remain legible in small stream overlays. I drew a compact geomet
 
 ### What it led to
 
-Mihai thanked me and insisted on paying for the work even though I had not asked. It was the first time a creator I followed treated my design as a commission. The mark then stayed with his channel for years, which mattered more to me than the initial response.
+Mihai insisted on paying for the work even though I had not asked. It was the first time a creator I followed treated my design as a commission. The mark is still on the channel eight years later, in a different colorway.

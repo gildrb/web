@@ -10,12 +10,12 @@ The mark on [davis7.sh](https://www.davis7.sh/) already used the same two letter
 
 ![The previous davis7.sh mark](media:ben-davis-original)
 
-A d and a b are mirror images, so the pair already wants to be symmetrical. I kept that symmetry in the bowls and broke it exactly once. A single diagonal runs through the middle of the mark, carries the stem of the d down into the bowl of the b, and leaves both letters with a sheared terminal. The figure reads as a loop first and as initials second.
+A d and a b are mirror images, so the pair already wants to be symmetrical. I kept that symmetry in the bowls and broke it once. A single diagonal runs through the middle of the mark, carries the stem of the d down into the bowl of the b, and leaves both letters with a sheared terminal. At a glance it is a loop, and the initials arrive a moment later.
 
 Stems and bowls hold one weight and one corner radius, so the mark keeps its rhythm when it shrinks. The whole thing is one path with few enough anchor points to redraw by hand, which is what the point view on the left shows.
 
 ![Construction points and final mark](media:ben-davis-construction)
 
-### What it is worth
+### What happened to it
 
-The redesign was a gift rather than a commission, so the only measure of it was whether Ben recognized himself in the mark. He did. Work like this keeps my drawing sharp between client projects and costs nothing more than an evening.
+Ben replied to the post with "oooo this is sick ty". He has not put it on the site, and I did not ask him to. It cost me an evening and it keeps my drawing sharp between client projects.

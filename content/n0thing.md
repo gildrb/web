@@ -24,4 +24,4 @@ I finished the identity by animating the trailing underscore. The movement is li
 
 ![Final wordmark in motion](media:n0thing-wordmark-animation)
 
-Jordan approved the mark and I delivered it in 2019. The route from the rejected typewriter study back to the first pixel idea produced a stronger final wordmark and a useful motion rule.
+Jordan approved the mark and I delivered it in 2019. The typewriter study was a detour, and drawing it is what settled the argument for the pixel version.

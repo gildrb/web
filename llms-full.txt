@@ -185,7 +185,7 @@ The final lockup pairs the folder mark with a plain wordmark. The campaign copy 
 
 ![Monochrome brand system](media:filen-brand-system-board)
 
-I shared the finished concept with the Filen community. The exercise also proved that the mark could carry a broader system. It survives in the app icon, while the panel treatment gives the campaign images a consistent surface.
+I [posted the concept](https://x.com/gilrdb/status/2021242178727452998) and shared it with the Filen community in February 2026. The whole identity is built around concealment: forms only surface when the user brings the light.
 
 ---
 
@@ -359,15 +359,15 @@ The mark on [davis7.sh](https://www.davis7.sh/) already used the same two letter
 
 ![The previous davis7.sh mark](media:ben-davis-original)
 
-A d and a b are mirror images, so the pair already wants to be symmetrical. I kept that symmetry in the bowls and broke it exactly once. A single diagonal runs through the middle of the mark, carries the stem of the d down into the bowl of the b, and leaves both letters with a sheared terminal. The figure reads as a loop first and as initials second.
+A d and a b are mirror images, so the pair already wants to be symmetrical. I kept that symmetry in the bowls and broke it once. A single diagonal runs through the middle of the mark, carries the stem of the d down into the bowl of the b, and leaves both letters with a sheared terminal. At a glance it is a loop, and the initials arrive a moment later.
 
 Stems and bowls hold one weight and one corner radius, so the mark keeps its rhythm when it shrinks. The whole thing is one path with few enough anchor points to redraw by hand, which is what the point view on the left shows.
 
 ![Construction points and final mark](media:ben-davis-construction)
 
-### What it is worth
+### What happened to it
 
-The redesign was a gift rather than a commission, so the only measure of it was whether Ben recognized himself in the mark. He did. Work like this keeps my drawing sharp between client projects and costs nothing more than an evening.
+Ben replied to the post with "oooo this is sick ty". He has not put it on the site, and I did not ask him to. It cost me an evening and it keeps my drawing sharp between client projects.
 
 ---
 
@@ -378,42 +378,44 @@ Markdown source: https://gildrb.com/content/t3.md
 
 # A logomark system for T3
 
-T3 ships more than one product, so the mark had to work as `T3.chat`, as `T3.code`, and as a bare symbol in a favicon or an app grid. I spent months on this in the open: drawing, posting, and reworking the result against feedback from the community, [@r_marked](https://x.com/r_marked), and [@theo](https://x.com/theo). None of it was commissioned.
+T3 ships more than one product, so the mark had to hold as `T3.chat`, as `T3.code`, and on its own in a favicon or an app grid. Nobody commissioned it. I drew it across several months and posted the versions as they came, first in the T3 Discord and then as a [thread on X](https://x.com/gilrdb/status/2080990301208952994). The community, [@r_marked](https://x.com/r_marked), and [@theo](https://x.com/theo) told me which ones were working.
 
 ![The T3 logomark](media:t3-mark)
 
-### One shape, drawn hundreds of times
+### Hundreds of versions, in public
 
-The whole project lives on a single canvas. Every version below sits somewhere on it, and most of them are wrong on purpose: the fastest way to find the shape is to draw the shapes it is not.
+There are hundreds of drawings behind this mark. Almost all of them were posted the day I made them, and almost all of them are wrong. Drawing the wrong shape is how I find the right one, and doing that in a channel full of people means someone tells me within the hour.
+
+The boards here are where the versions ended up, not where the work happened.
 
 ![The exploration canvas](media:t3-canvas-overview)
 
-The T and the 3 want to be one figure rather than two characters set next to each other. The crossbar of the T carries into the 3, so the pair shares a spine and reads as a single mark. Getting there meant testing how far the 3 could open, how much the terminals could shear, and how much of the T could disappear before the mark stopped being legible.
+The T and the 3 want to be one figure instead of two characters standing next to each other. The crossbar of the T carries into the 3, so the pair shares a spine. Finding that meant testing how far the 3 could open, how much the terminals could shear, and how much of the T could go missing before the mark stopped reading as T3.
 
 ![Sketch passes on the canvas](media:t3-canvas-sketches)
 ![Frame-by-frame variants](media:t3-frame-grid)
 
-Some versions went angular and mechanical. One of those is known in the thread as the meat grinder.
+Some passes went angular and mechanical, with the bowl of the 3 squared off into facets.
 
 ![Weight and angle tests](media:t3-weight-tests)
 ![Ghosted comparison grid](media:t3-ghost-grid)
 
 ### Color came last
 
-Color was a late test rather than a starting point. Pink is T3's, but the mark had to survive without it, so every candidate was judged in white on black first and only then given the palette.
+Pink belongs to T3, but the mark had to survive without it. Every candidate was judged in white on black first and only then given the palette.
 
 ![Color passes on the canvas](media:t3-canvas-color)
 ![Colorway tests](media:t3-color-tests)
 
 ### Refining the drawing
 
-The final pass is invisible at a glance and it is the part that matters. The joint between the crossbar and the bowl was thinned, the bowl was pulled tighter, and the terminals were squared so the mark holds its rhythm at favicon size.
+The last pass is invisible at a glance. I thinned the joint between the crossbar and the bowl, pulled the bowl tighter, and squared the terminals so the mark keeps its rhythm at favicon size.
 
 ![Before and after refinement](media:t3-before-after)
 
 ### Scaling across products
 
-A logomark for one product is a drawing. A logomark for a family is a system, so I built out the cases where it actually gets used: the two logotypes, the iOS icon on its grid, the favicon ladder down to sixteen pixels, and the lockup on its clear-space frame.
+A logomark for one product is a drawing. A logomark for a family has to be built out, so I drew the cases where it actually gets used: the two logotypes, the iOS icon on its grid, the favicon ladder down to sixteen pixels, and the lockup on its clear-space frame. The angular version below is the one the server started calling the meat grinder.
 
 ![Logotypes, icons, favicons, and lockup](media:t3-system-board)
 
@@ -422,7 +424,7 @@ A logomark for one product is a drawing. A logomark for a family is a system, so
 
 ![The mark rendered in light](media:t3-render)
 
-The exploration is public and unadopted. I posted it as a thread because the useful part is the pile of rejected drawings, not the one that survived.
+T3 has not adopted any of this. I posted the whole pile anyway, because the rejected drawings are the part other designers can learn something from.
 
 ---
 
@@ -443,7 +445,7 @@ The logo had to remain legible in small stream overlays. I drew a compact geomet
 
 ### What it led to
 
-Mihai thanked me and insisted on paying for the work even though I had not asked. It was the first time a creator I followed treated my design as a commission. The mark then stayed with his channel for years, which mattered more to me than the initial response.
+Mihai insisted on paying for the work even though I had not asked. It was the first time a creator I followed treated my design as a commission. The mark is still on the channel eight years later, in a different colorway.
 
 ---
 
@@ -478,7 +480,7 @@ I finished the identity by animating the trailing underscore. The movement is li
 
 ![Final wordmark in motion](media:n0thing-wordmark-animation)
 
-Jordan approved the mark and I delivered it in 2019. The route from the rejected typewriter study back to the first pixel idea produced a stronger final wordmark and a useful motion rule.
+Jordan approved the mark and I delivered it in 2019. The typewriter study was a detour, and drawing it is what settled the argument for the pixel version.
 
 ---
 
@@ -519,7 +521,7 @@ I released CURVES in early 2019 on [DaFont](https://www.dafont.com/curves.font),
 
 ![Specimen setting](media:curves-specimen)
 
-CURVES is a display face and it behaves like one. The rule that keeps a headline consistent closes the counters too far at text sizes. Kept inside that limit, it still does the job I drew it for, and it remains the project that taught me how a construction rule survives contact with an entire character set.
+CURVES is a display face and it behaves like one. The rule that keeps a headline consistent closes the counters too far at text sizes, so it falls apart in a paragraph. Kept above that size it still does the job I drew it for, seven years later.
 
 ---
 

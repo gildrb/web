@@ -53,4 +53,4 @@ The final lockup pairs the folder mark with a plain wordmark. The campaign copy 
 
 ![Monochrome brand system](media:filen-brand-system-board)
 
-I shared the finished concept with the Filen community. The exercise also proved that the mark could carry a broader system. It survives in the app icon, while the panel treatment gives the campaign images a consistent surface.
+I [posted the concept](https://x.com/gilrdb/status/2021242178727452998) and shared it with the Filen community in February 2026. The whole identity is built around concealment: forms only surface when the user brings the light.

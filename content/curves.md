@@ -30,4 +30,4 @@ I released CURVES in early 2019 on [DaFont](https://www.dafont.com/curves.font),
 
 ![Specimen setting](media:curves-specimen)
 
-CURVES is a display face and it behaves like one. The rule that keeps a headline consistent closes the counters too far at text sizes. Kept inside that limit, it still does the job I drew it for, and it remains the project that taught me how a construction rule survives contact with an entire character set.
+CURVES is a display face and it behaves like one. The rule that keeps a headline consistent closes the counters too far at text sizes, so it falls apart in a paragraph. Kept above that size it still does the job I drew it for, seven years later.
