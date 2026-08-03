@@ -99,6 +99,59 @@ function extractAssetRefs(html) {
     return refs;
 }
 
+function extractPortfolioCases(html) {
+    return [
+        ...html.matchAll(
+            /<a\s+class="portfolio-card-link"\s+href="\/([^"?]+)"[\s\S]*?<time[^>]+datetime="([^"]+)"[\s\S]*?<span\s+class="portfolio-card-title"[^>]*>([^<]+)<\/span\s*>[\s\S]*?<span\s+class="portfolio-card-scope">([^<]+)<\/span>/g,
+        ),
+    ].map(([, slug, date, title, scope]) => ({
+        date,
+        scope,
+        slug,
+        title,
+    }));
+}
+
+function getSuggestionTier(current, candidate) {
+    const typeMarks = new Set([
+        "Typeface",
+        "Wordmark",
+        "Logomark",
+        "Brandmark",
+    ]);
+    const product = new Set([
+        "Design engineering",
+        "Product design and engineering",
+        "Brand identity",
+    ]);
+    if (current.scope === candidate.scope) return 1;
+    const currentFamily = typeMarks.has(current.scope)
+        ? "type-marks"
+        : product.has(current.scope)
+          ? "product"
+          : null;
+    const candidateFamily = typeMarks.has(candidate.scope)
+        ? "type-marks"
+        : product.has(candidate.scope)
+          ? "product"
+          : null;
+    return currentFamily !== null && currentFamily === candidateFamily ? 2 : 3;
+}
+
+function expectedSuggestions(portfolioCases, slug) {
+    const current = portfolioCases.find((portfolioCase) => portfolioCase.slug === slug);
+
+    return portfolioCases
+        .filter((portfolioCase) => portfolioCase.slug !== slug)
+        .sort((left, right) => {
+            const tierDifference =
+                getSuggestionTier(current, left) -
+                getSuggestionTier(current, right);
+            return tierDifference || right.date.localeCompare(left.date);
+        })
+        .slice(0, 3);
+}
+
 async function listFiles(relativeDir) {
     const dir = path.join(root, relativeDir);
     const entries = await readdir(dir, { withFileTypes: true });
@@ -140,6 +193,55 @@ const {
 const caseScript = caseScripts.filen;
 const caseHtml = Object.values(casePages);
 const allHtml = [indexHtml, ...caseHtml];
+const portfolioCases = extractPortfolioCases(indexHtml);
+const configuredCaseSlugs = new Set(
+    siteConfig.caseStudies.map(({ slug }) => slug),
+);
+const suggestionBlockPattern =
+    /<nav class="case-next" aria-label="Suggested projects">([\s\S]*?)<\/nav>/g;
+const suggestionLinkPattern =
+    /<a class="case-next-link" href="\/([^"]+)">[\s\S]*?<time datetime="([^"]+)">[\s\S]*?<span class="case-next-project">([^<]+)<\/span>[\s\S]*?<span class="case-next-scope">([^<]+)<\/span>/g;
+for (const [slug, html] of Object.entries(casePages)) {
+    const blocks = [...html.matchAll(suggestionBlockPattern)];
+    assert(
+        blocks.length === 1,
+        `${slug} must contain exactly one suggested-projects navigation block.`,
+    );
+    const suggestions = [
+        ...blocks[0][1].matchAll(suggestionLinkPattern),
+    ].map(([, targetSlug, date, title, scope]) => ({
+        date,
+        scope,
+        slug: targetSlug,
+        title,
+    }));
+    const expected = expectedSuggestions(portfolioCases, slug);
+    assert(
+        suggestions.length === 3 &&
+            suggestions.every(
+                ({ slug: targetSlug, date, title, scope }, index) => {
+                    const target = portfolioCases.find(
+                        (portfolioCase) => portfolioCase.slug === targetSlug,
+                    );
+                    const expectedTarget = expected[index];
+                    return (
+                        targetSlug !== slug &&
+                        configuredCaseSlugs.has(targetSlug) &&
+                        target !== undefined &&
+                        expectedTarget?.slug === targetSlug &&
+                        target.date === date &&
+                        target.title === title &&
+                        target.scope === scope
+                    );
+                },
+            ),
+        `${slug} must expose three valid, correctly ranked suggested projects.`,
+    );
+}
+assert(
+    (allPage.match(/class="case-next"/g) || []).length === 0,
+    "The all-projects page must not contain suggested-projects navigation.",
+);
 const currentIndex = await readText("index.html");
 const currentCasePages = Object.fromEntries(
     await Promise.all(

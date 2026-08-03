@@ -565,6 +565,119 @@ body {
     margin-left: auto;
 }
 
+.case-next {
+    width: min(100%, 760px);
+    margin: 80px auto 0;
+}
+
+.case-next-heading {
+    margin: 0 0 8px;
+    color: var(--text-tertiary);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.case-next-list {
+    display: grid;
+    grid-template-columns: max-content max-content minmax(0, 1fr) auto;
+    column-gap: 16px;
+}
+
+.case-next-link {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: baseline;
+    width: 100%;
+    padding: 8px 0;
+    color: var(--text-tertiary);
+    text-decoration: none;
+}
+
+.case-next-link time {
+    grid-column: 1;
+    grid-row: 1;
+    display: block;
+    white-space: nowrap;
+    color: inherit;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.case-next-project {
+    grid-column: 2;
+    grid-row: 1;
+    white-space: nowrap;
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.case-next-scope {
+    grid-column: 3;
+    grid-row: 1;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--text-tertiary);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.case-next-arrow {
+    grid-column: 4;
+    grid-row: 1;
+    align-self: baseline;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    color: inherit;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.case-next-view {
+    visibility: hidden;
+}
+
+@media (hover: hover) {
+    .case-next-link:hover {
+        color: var(--text-primary);
+    }
+
+    .case-next-link:hover .case-next-scope,
+    .case-next-link:hover .case-next-arrow {
+        color: var(--text-primary);
+    }
+
+    .case-next-link:hover .case-next-view {
+        visibility: visible;
+    }
+}
+
+.case-next-link:focus-visible {
+    color: var(--text-primary);
+    outline: 1px solid var(--text-primary);
+    outline-offset: 4px;
+}
+
+.case-next-link:focus-visible .case-next-scope,
+.case-next-link:focus-visible .case-next-arrow,
+.case-next-link:focus-visible .case-next-view {
+    color: var(--text-primary);
+    visibility: visible;
+}
+
+.case-next-date-year {
+    display: none;
+}
+
 .all-case + .all-case {
     margin-top: var(--all-case-gap);
 }
@@ -826,6 +939,26 @@ body {
         padding: 0;
         font-size: 14px;
         line-height: 20px;
+    }
+
+    .case-next {
+        margin-top: 80px;
+    }
+
+    .case-next-list {
+        column-gap: clamp(8px, 3vw, 16px);
+    }
+
+    .case-next-view {
+        display: none;
+    }
+
+    .case-next-date-full {
+        display: none;
+    }
+
+    .case-next-date-year {
+        display: inline;
     }
 
 }
@@ -1327,6 +1460,47 @@ html.homepage-scroll-locked body .layout {
                                 <p>I shared the finished concept with the Filen community. The exercise also proved that the mark could carry a broader system. It survives in the app icon, while the panel treatment gives the campaign images a consistent surface.</p>
                             </div>
                     </article>
+                    <nav class="case-next" aria-label="Suggested projects">
+                        <h2 class="case-next-heading">Read next</h2>
+                        <div class="case-next-list">
+                            <a class="case-next-link" href="/site">
+                                <time datetime="2026-07-15">
+                                    <span class="case-next-date-full">2026-07-15</span>
+                                    <span class="case-next-date-year">2026</span>
+                                </time>
+                                <span class="case-next-project">gildrb.com</span>
+                                <span class="case-next-scope">Design engineering</span>
+                                <span class="case-next-arrow" aria-hidden="true">
+                                    <span class="case-next-view">View</span>
+                                    →
+                                </span>
+                            </a>
+                            <a class="case-next-link" href="/heph">
+                                <time datetime="2026-04-21">
+                                    <span class="case-next-date-full">2026-04-21</span>
+                                    <span class="case-next-date-year">2026</span>
+                                </time>
+                                <span class="case-next-project">Heph</span>
+                                <span class="case-next-scope">Product design and engineering</span>
+                                <span class="case-next-arrow" aria-hidden="true">
+                                    <span class="case-next-view">View</span>
+                                    →
+                                </span>
+                            </a>
+                            <a class="case-next-link" href="/t3">
+                                <time datetime="2026-07-25">
+                                    <span class="case-next-date-full">2026-07-25</span>
+                                    <span class="case-next-date-year">2026</span>
+                                </time>
+                                <span class="case-next-project">T3</span>
+                                <span class="case-next-scope">Logomark</span>
+                                <span class="case-next-arrow" aria-hidden="true">
+                                    <span class="case-next-view">View</span>
+                                    →
+                                </span>
+                            </a>
+                        </div>
+                    </nav>
                 </main>
                 <div class="case-mobile-links">
                     <nav

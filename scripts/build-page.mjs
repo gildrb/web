@@ -216,6 +216,94 @@ export async function buildPage({ write = true } = {}) {
         throw new Error("Generated HTML still contains inline tokens.");
     }
 
+    const portfolioCases = [
+        ...indexHtml.matchAll(
+            /<a\s+class="portfolio-card-link"\s+href="\/([^"?]+)"[\s\S]*?<time[^>]+datetime="([^"]+)"[\s\S]*?<span\s+class="portfolio-card-title"[^>]*>([^<]+)<\/span\s*>[\s\S]*?<span\s+class="portfolio-card-scope">([^<]+)<\/span>/g,
+        ),
+    ].map(([, slug, date, title, scope]) => ({
+        date,
+        scope,
+        slug,
+        title,
+    }));
+    if (portfolioCases.length !== siteConfig.caseStudies.length) {
+        throw new Error("Could not derive every all-projects entry from the homepage.");
+    }
+
+    const portfolioCaseBySlug = new Map(
+        portfolioCases.map((portfolioCase) => [portfolioCase.slug, portfolioCase]),
+    );
+    const typeMarksFamily = new Set([
+        "Typeface",
+        "Wordmark",
+        "Logomark",
+        "Brandmark",
+    ]);
+    const productFamily = new Set([
+        "Design engineering",
+        "Product design and engineering",
+        "Brand identity",
+    ]);
+
+    function getPortfolioFamily(scope) {
+        if (typeMarksFamily.has(scope)) return "type-marks";
+        if (productFamily.has(scope)) return "product";
+        return null;
+    }
+
+    function getCaseSuggestions(slug) {
+        const current = portfolioCaseBySlug.get(slug);
+        const candidates = portfolioCases.filter(
+            (portfolioCase) => portfolioCase.slug !== slug,
+        );
+        const currentFamily = getPortfolioFamily(current.scope);
+        const tier = (portfolioCase) => {
+            if (portfolioCase.scope === current.scope) return 1;
+            if (
+                currentFamily !== null &&
+                getPortfolioFamily(portfolioCase.scope) === currentFamily
+            ) {
+                return 2;
+            }
+            return 3;
+        };
+
+        return candidates
+            .sort((left, right) => {
+                const tierDifference = tier(left) - tier(right);
+                if (tierDifference !== 0) return tierDifference;
+                return right.date.localeCompare(left.date);
+            })
+            .slice(0, 3);
+    }
+
+    function renderCaseSuggestions(slug) {
+        const suggestions = getCaseSuggestions(slug);
+        return [
+            '                    <nav class="case-next" aria-label="Suggested projects">',
+            '                        <h2 class="case-next-heading">Read next</h2>',
+            '                        <div class="case-next-list">',
+            ...suggestions.flatMap(
+                ({ date, scope, slug: suggestionSlug, title }) => [
+                    `                            <a class="case-next-link" href="/${suggestionSlug}">`,
+                    `                                <time datetime="${date}">`,
+                    `                                    <span class="case-next-date-full">${date}</span>`,
+                    `                                    <span class="case-next-date-year">${date.slice(0, 4)}</span>`,
+                    "                                </time>",
+                    `                                <span class="case-next-project">${title}</span>`,
+                    `                                <span class="case-next-scope">${scope}</span>`,
+                    '                                <span class="case-next-arrow" aria-hidden="true">',
+                    '                                    <span class="case-next-view">View</span>',
+                    '                                    →',
+                    '                                </span>',
+                    '                            </a>',
+                ],
+            ),
+            '                        </div>',
+            '                    </nav>',
+        ].join("\n");
+    }
+
     async function buildCasePage({ slug }) {
         const templatePath = `src/${slug}.template.html`;
         let html = await resolveIncludes(await readText(templatePath));
@@ -226,6 +314,11 @@ export async function buildPage({ write = true } = {}) {
                 await renderCaseMarkdown({ root, slug, resolveIncludes }),
                 24,
             ),
+        );
+        html = replaceToken(
+            html,
+            "<!-- @case-next -->",
+            renderCaseSuggestions(slug),
         );
         html = replaceToken(
             html,
@@ -262,19 +355,6 @@ export async function buildPage({ write = true } = {}) {
     );
     const allStyles = await readBundle("src/styles", siteConfig.allPage.styles);
     const allScript = await readBundle("src/scripts", siteConfig.allPage.scripts);
-    const portfolioCases = [
-        ...indexHtml.matchAll(
-            /<a\s+class="portfolio-card-link"\s+href="\/([^"?]+)"[\s\S]*?<time[^>]+datetime="([^"]+)"[\s\S]*?<span\s+class="portfolio-card-title"[^>]*>([^<]+)<\/span\s*>[\s\S]*?<span\s+class="portfolio-card-scope">([^<]+)<\/span>/g,
-        ),
-    ].map(([, slug, date, title, scope]) => ({
-        date,
-        scope,
-        slug,
-        title,
-    }));
-    if (portfolioCases.length !== siteConfig.caseStudies.length) {
-        throw new Error("Could not derive every all-projects entry from the homepage.");
-    }
     let allPage = await resolveIncludes(await readText("src/all.template.html"));
     const allCases = await Promise.all(
         portfolioCases
