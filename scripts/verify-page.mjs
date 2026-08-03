@@ -450,7 +450,7 @@ const homepageFooter =
     indexHtml.match(/<footer class="site-footer">[\s\S]*?<\/footer>/)?.[0] ??
     "";
 assert(
-        homepageFooter.includes('aria-label="Metadata"') &&
+    homepageFooter.includes('aria-label="Metadata"') &&
         homepageFooter.includes('<p class="links-label">Metadata</p>') &&
         homepageFooter.includes('href="humans.txt"') &&
         homepageFooter.includes('href="llms.txt"') &&
@@ -919,10 +919,10 @@ assert(
 );
 assert(
     baseStyles.includes(
-        ".links-label {\n    color: var(--text-secondary);",
+        ".links-label {\n  color: var(--text-secondary);",
     ) &&
         baseStyles.includes(
-            ".email {\n    font-size: 16px;\n    font-weight: 400;\n    line-height: var(--link-line-height);\n    color: var(--text-tertiary);",
+            ".email {\n  font-size: 16px;\n  font-weight: 400;\n  line-height: var(--link-line-height);\n  color: var(--text-tertiary);",
         ),
     "Homepage labels and actionable links must preserve the semantic color hierarchy.",
 );
