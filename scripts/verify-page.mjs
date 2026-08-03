@@ -1203,20 +1203,16 @@ assert(
             "body:not(.case-page) .layout {\n        min-height: 100svh;\n        height: auto;\n        align-content: start;\n        overflow: visible;\n        overscroll-behavior: auto;\n        padding-bottom: 64px;",
         ) &&
         responsiveStyles.includes(
-            "    body:not(.case-page) .name {\n        grid-column: 1;\n        order: 1;\n        position: relative;\n        z-index: 100;",
+            "    .name {\n        grid-column: 1;\n        order: 1;\n        position: sticky;\n        top: 0;\n        z-index: 100;",
         ) &&
         responsiveStyles.includes(
             "    .theme-toggle {\n        grid-column: 2;\n        order: 1;\n        position: sticky;\n        top: 0;",
         ) &&
         responsiveStyles.includes(
-            "    body.case-page .name {\n        grid-column: 1;\n        order: 1;\n        position: sticky;\n        top: 0;\n        z-index: 100;",
-        ) &&
-        responsiveStyles.includes(
             "background: linear-gradient(\n            to bottom,\n            var(--bg) 60%,\n            transparent\n        );\n        min-height: 0;",
         ) &&
-        responsiveStyles.includes(
-            "    body:not(.case-page) .theme-toggle {\n        position: relative;\n        top: auto;",
-        ) &&
+        !responsiveStyles.includes("body:not(.case-page) .name") &&
+        !responsiveStyles.includes("body:not(.case-page) .theme-toggle") &&
         responsiveStyles.includes(
             ".portfolio-section {\n        order: 3;\n        margin-bottom: var(--section-gap);",
         ) &&
