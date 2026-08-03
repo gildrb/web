@@ -1654,6 +1654,10 @@ html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
     }
 }
 
+.portfolio-scroll-frame {
+    display: contents;
+}
+
 .portfolio-section {
     min-width: 0;
 }
@@ -2248,12 +2252,19 @@ html.homepage-scroll-locked body .layout {
         grid-row: 2;
     }
 
-    html.homepage-scroll-locked body .portfolio-section {
+    html.homepage-scroll-locked body .portfolio-scroll-frame {
+        display: block;
         grid-row: 3;
         min-height: 0;
         margin-bottom: var(--section-gap);
-        align-content: start;
         position: relative;
+    }
+
+    html.homepage-scroll-locked body .portfolio-section {
+        height: 100%;
+        min-height: 0;
+        margin-bottom: 0;
+        align-content: start;
         overflow-y: auto;
         overscroll-behavior: contain;
         scrollbar-width: none;
@@ -2271,8 +2282,8 @@ html.homepage-scroll-locked body .layout {
         background: var(--bg);
     }
 
-    html.homepage-scroll-locked body .portfolio-section::before,
-    html.homepage-scroll-locked body .portfolio-section::after {
+    html.homepage-scroll-locked body .portfolio-scroll-frame::before,
+    html.homepage-scroll-locked body .portfolio-scroll-frame::after {
         position: absolute;
         right: 0;
         left: 0;
@@ -2284,7 +2295,7 @@ html.homepage-scroll-locked body .layout {
         transition: opacity 160ms ease-out;
     }
 
-    html.homepage-scroll-locked body .portfolio-section::before {
+    html.homepage-scroll-locked body .portfolio-scroll-frame::before {
         top: 41px;
         z-index: 2;
         background: linear-gradient(
@@ -2294,8 +2305,8 @@ html.homepage-scroll-locked body .layout {
         );
     }
 
-    html.homepage-scroll-locked body .portfolio-section::after {
-        bottom: -8px;
+    html.homepage-scroll-locked body .portfolio-scroll-frame::after {
+        bottom: 0;
         z-index: 2;
         background: linear-gradient(
             to top,
@@ -2304,8 +2315,8 @@ html.homepage-scroll-locked body .layout {
         );
     }
 
-    html.homepage-scroll-locked body .portfolio-section.has-scroll-top::before,
-    html.homepage-scroll-locked body .portfolio-section.has-scroll-bottom::after {
+    html.homepage-scroll-locked body .portfolio-scroll-frame:has(.portfolio-section.has-scroll-top)::before,
+    html.homepage-scroll-locked body .portfolio-scroll-frame:has(.portfolio-section.has-scroll-bottom)::after {
         opacity: 1;
     }
 
@@ -2658,6 +2669,7 @@ html.homepage-scroll-locked body .layout {
                             identity systems for software.
                         </p>
                     </section>
+                    <div class="portfolio-scroll-frame">
                     <section
                         class="portfolio-section"
                         aria-label="Portfolio"
@@ -2877,6 +2889,7 @@ html.homepage-scroll-locked body .layout {
                         </a>
                         </div>
                     </section>
+                    </div>
                     <footer class="site-footer">
                         <nav
                             class="references-links"

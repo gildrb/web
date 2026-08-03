@@ -1,3 +1,7 @@
+.portfolio-scroll-frame {
+    display: contents;
+}
+
 .portfolio-section {
     min-width: 0;
 }
