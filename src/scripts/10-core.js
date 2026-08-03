@@ -55,13 +55,6 @@ function updateMobileLayout() {
     updateMobileLinksLayout();
 }
 
-function updateStickyHeaderFade() {
-    document.documentElement.classList.toggle(
-        "has-sticky-header-fade",
-        window.scrollY > 0,
-    );
-}
-
 const portfolioSiteDate = document.querySelector("#portfolio-site-date");
 
 async function prepareHomepageFirstPaint() {
@@ -94,14 +87,7 @@ window.addEventListener("load", () => {
     updateHomepageDates();
     updateMobileLayout();
 });
-window.addEventListener("scroll", updateStickyHeaderFade, {
-    passive: true,
-});
-window.addEventListener("resize", () => {
-    updateMobileLayout();
-    updateStickyHeaderFade();
-});
-updateStickyHeaderFade();
+window.addEventListener("resize", updateMobileLayout);
 
 if ("scrollRestoration" in window.history) {
     window.history.scrollRestoration = "manual";
@@ -133,7 +119,6 @@ function restoreScrollPosition(event) {
 
     const restore = () => {
         window.scrollTo(position.left, position.top);
-        updateStickyHeaderFade();
     };
     restore();
     window.requestAnimationFrame(() => {
@@ -152,7 +137,6 @@ document.querySelectorAll('a[href="#top"]').forEach((link) => {
     link.addEventListener("click", (event) => {
         event.preventDefault();
         window.scrollTo(0, 0);
-        updateStickyHeaderFade();
         history.replaceState(
             null,
             "",

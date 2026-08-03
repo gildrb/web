@@ -1212,31 +1212,6 @@ assert(
             "background: var(--bg);\n        min-height: 0;",
         ) &&
         responsiveStyles.includes(
-            "    .name::after {\n        position: absolute;\n        top: 100%;",
-        ) &&
-        responsiveStyles.includes(
-            "height: 56px;\n        content: \"\";\n        pointer-events: none;\n        background: linear-gradient(\n            to bottom,\n            var(--bg),\n            transparent\n        );",
-        ) &&
-        responsiveStyles.includes(
-            "opacity: 0;\n        transition: opacity 180ms ease;",
-        ) &&
-        responsiveStyles.includes(
-            "html.has-sticky-header-fade .name::after {\n        opacity: 1;",
-        ) &&
-        siteScript.includes("function updateStickyHeaderFade()") &&
-        siteScript.includes(
-            'window.addEventListener("scroll", updateStickyHeaderFade, {\n    passive: true,\n});',
-        ) &&
-        siteScript.includes(
-            'document.documentElement.classList.toggle(\n        "has-sticky-header-fade",',
-        ) &&
-        siteScript.includes(
-            'window.addEventListener("resize", () => {\n    updateMobileLayout();\n    updateStickyHeaderFade();\n});',
-        ) &&
-        siteScript.includes(
-            "window.scrollTo(position.left, position.top);\n        updateStickyHeaderFade();",
-        ) &&
-        responsiveStyles.includes(
             ".portfolio-section {\n        order: 3;\n        margin-bottom: var(--section-gap);",
         ) &&
         responsiveStyles.includes(

@@ -1827,27 +1827,6 @@ body:not(.case-page) .content {
         margin-bottom: var(--section-gap);
     }
 
-    .name::after {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        left: 0;
-        height: 56px;
-        content: "";
-        pointer-events: none;
-        background: linear-gradient(
-            to bottom,
-            var(--bg),
-            transparent
-        );
-        opacity: 0;
-        transition: opacity 180ms ease;
-    }
-
-    html.has-sticky-header-fade .name::after {
-        opacity: 1;
-    }
-
     .theme-toggle {
         grid-column: 2;
         order: 1;
@@ -2585,13 +2564,6 @@ function updateMobileLayout() {
     updateMobileLinksLayout();
 }
 
-function updateStickyHeaderFade() {
-    document.documentElement.classList.toggle(
-        "has-sticky-header-fade",
-        window.scrollY > 0,
-    );
-}
-
 const portfolioSiteDate = document.querySelector("#portfolio-site-date");
 
 async function prepareHomepageFirstPaint() {
@@ -2624,14 +2596,7 @@ window.addEventListener("load", () => {
     updateHomepageDates();
     updateMobileLayout();
 });
-window.addEventListener("scroll", updateStickyHeaderFade, {
-    passive: true,
-});
-window.addEventListener("resize", () => {
-    updateMobileLayout();
-    updateStickyHeaderFade();
-});
-updateStickyHeaderFade();
+window.addEventListener("resize", updateMobileLayout);
 
 if ("scrollRestoration" in window.history) {
     window.history.scrollRestoration = "manual";
@@ -2663,7 +2628,6 @@ function restoreScrollPosition(event) {
 
     const restore = () => {
         window.scrollTo(position.left, position.top);
-        updateStickyHeaderFade();
     };
     restore();
     window.requestAnimationFrame(() => {
@@ -2682,7 +2646,6 @@ document.querySelectorAll('a[href="#top"]').forEach((link) => {
     link.addEventListener("click", (event) => {
         event.preventDefault();
         window.scrollTo(0, 0);
-        updateStickyHeaderFade();
         history.replaceState(
             null,
             "",
