@@ -1087,11 +1087,7 @@ html.homepage-scroll-locked body .layout {
         position: sticky;
         top: 0;
         z-index: 2;
-        background: linear-gradient(
-            to bottom,
-            var(--bg) 60%,
-            transparent
-        );
+        background: var(--bg);
     }
 
     html.homepage-scroll-locked body .portfolio-section::before,
@@ -1100,7 +1096,7 @@ html.homepage-scroll-locked body .layout {
         right: 0;
         left: 0;
         z-index: 3;
-        height: 24px;
+        height: 56px;
         content: "";
         pointer-events: none;
         opacity: 0;
@@ -1108,7 +1104,7 @@ html.homepage-scroll-locked body .layout {
     }
 
     html.homepage-scroll-locked body .portfolio-section::before {
-        top: 0;
+        top: 41px;
         z-index: 1;
         background: linear-gradient(
             to bottom,
