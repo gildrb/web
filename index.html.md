@@ -55,6 +55,10 @@ Brand designer based in Germany, building identity systems for software.
 
 [n0thing wordmark](https://gildrb.com/n0thing) documents how a rejected typewriter study led back to the final pixel wordmark, delivery files, and animated cursor.
 
+#### CURVES (Typeface)
+
+[CURVES display typeface](https://gildrb.com/curves) documents a free 96-glyph unicase display face built from one geometric construction rule.
+
 #### mL7 (Wordmark)
 
 [mL7 identity](https://gildrb.com/ml7) documents the compact channel logo designed for mL7 in 2018 and still used in a different colorway as of July 2026.

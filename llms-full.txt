@@ -16,6 +16,7 @@ This file is generated from the same authored Markdown sources as the website. I
 - [Heph](https://gildrb.com/heph) ([Markdown source](https://gildrb.com/content/heph.md))
 - [mL7](https://gildrb.com/ml7) ([Markdown source](https://gildrb.com/content/ml7.md))
 - [n0thing](https://gildrb.com/n0thing) ([Markdown source](https://gildrb.com/content/n0thing.md))
+- [CURVES](https://gildrb.com/curves) ([Markdown source](https://gildrb.com/content/curves.md))
 - [gildrb.com](https://gildrb.com/site) ([Markdown source](https://gildrb.com/content/site.md))
 
 ---
@@ -81,6 +82,10 @@ Brand designer based in Germany, building identity systems for software.
 #### n0thing (Wordmark)
 
 [n0thing wordmark](https://gildrb.com/n0thing) documents how a rejected typewriter study led back to the final pixel wordmark, delivery files, and animated cursor.
+
+#### CURVES (Typeface)
+
+[CURVES display typeface](https://gildrb.com/curves) documents a free 96-glyph unicase display face built from one geometric construction rule.
 
 #### mL7 (Wordmark)
 
@@ -380,6 +385,47 @@ I finished the identity by animating the trailing underscore. The movement is li
 ![Final wordmark in motion](media:n0thing-wordmark-animation)
 
 Jordan approved the mark and I delivered it in 2019. The route from the rejected typewriter study back to the first pixel idea produced a stronger final wordmark and a useful motion rule.
+
+---
+
+## Case Study: CURVES
+
+Canonical page: https://gildrb.com/curves
+Markdown source: https://gildrb.com/content/curves.md
+
+# CURVES, a free display typeface
+
+In January 2019 I was drawing logos out of geometric shapes and wanted to know whether I could carry one construction rule across a whole character set instead of a single word. I gave myself a narrow brief: one weight, one case, and letters built from the same parts.
+
+![CURVES display letterforms](media:curves-letterforms)
+
+### One rule for every letter
+
+Each glyph is assembled from flat stems and quarter turns drawn at a single radius. Where the rule leaves a gap, the gap stays. That is why the R breaks at the shoulder and the Q keeps an open corner instead of a tail. I drew the outlines in Illustrator and compiled the font with Fontself.
+
+![CURVES wordmark](media:curves-wordmark)
+
+### Unicase by design
+
+The alphabet is unicase. Uppercase and lowercase both call the same drawing, so a headline holds one texture regardless of how it was typed. Consistency was the point of the exercise, and this removed the decision from the person setting the type.
+
+![Unicase alphabet](media:curves-uppercase)
+
+The numerals were the harder half. Digits carry more diagonal and more open counters than this alphabet wanted, so the 2 and the 7 use a diagonal the letters avoid, and the zero takes a slash to keep it apart from the O.
+
+![Numerals](media:curves-numerals)
+
+Punctuation, math signs, currency, and accented Latin bring the font to 96 glyphs, which is enough to set languages beyond English.
+
+![Punctuation and symbols](media:curves-punctuation)
+
+### Release
+
+I released CURVES in early 2019 on [DaFont](https://www.dafont.com/curves.font), free for personal and commercial use, and posted the specimen on [Behance](https://www.behance.net/gallery/75409663/CURVES-Free-Font). As of August 2026 it has passed 23,000 downloads.
+
+![Specimen setting](media:curves-specimen)
+
+CURVES is a display face and it behaves like one. The rule that keeps a headline consistent closes the counters too far at text sizes. Kept inside that limit, it still does the job I drew it for, and it remains the project that taught me how a construction rule survives contact with an entire character set.
 
 ---
 

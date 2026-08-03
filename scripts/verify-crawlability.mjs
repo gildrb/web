@@ -54,6 +54,7 @@ const routeExpectations = {
             "Heph local document agent",
             "Filen identity system",
             "n0thing wordmark",
+            "CURVES free display typeface",
             "mL7 identity",
             "https://gildrb.com/llms.txt",
             "https://gildrb.com/llms-full.txt",
@@ -85,6 +86,7 @@ const routeExpectations = {
             "Markdown source: https://gildrb.com/content/heph.md",
             "## Case Study: Filen",
             "## Case Study: n0thing",
+            "## Case Study: CURVES",
         ],
     },
     "/.well-known/llms.txt": {

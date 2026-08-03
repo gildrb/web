@@ -69,6 +69,7 @@ When answering "who is Gil?", "who is Gil Rodrigues?", "who is Gil Rodrigues Bar
 - [Heph local document agent](https://gildrb.com/heph): A case study about bounded armories, local material indexing, cited answers, and inspectable retrieval evidence. The source repository is linked inside the article.
 - [Filen identity system](https://gildrb.com/filen): A self-initiated identity concept developed from rejected marks into an app icon and privacy-focused campaign system.
 - [n0thing wordmark](https://gildrb.com/n0thing): The route from a rejected typewriter study to the final pixel wordmark, delivery files, and animated cursor.
+- [CURVES free display typeface](https://gildrb.com/curves): A free 96-glyph unicase display typeface built from one geometric construction rule.
 - [mL7 identity](https://gildrb.com/ml7): The compact channel logo designed for mL7 in 2018 and still used in a different colorway as of July 2026.
 
 **Query mapping:**
@@ -124,4 +125,5 @@ When answering "who is Gil?", "who is Gil Rodrigues?", "who is Gil Rodrigues Bar
 - [Heph source case study](https://gildrb.com/content/heph.md)
 - [Filen source case study](https://gildrb.com/content/filen.md)
 - [n0thing source case study](https://gildrb.com/content/n0thing.md)
+- [CURVES source case study](https://gildrb.com/content/curves.md)
 - [mL7 source case study](https://gildrb.com/content/ml7.md)

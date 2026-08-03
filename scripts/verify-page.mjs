@@ -132,6 +132,7 @@ const {
     heph: hephHtml,
     ml7: ml7Html,
     n0thing: n0thingHtml,
+    curves: curvesHtml,
     site: siteHtml,
 } = casePages;
 const caseScript = caseScripts.filen;
@@ -745,6 +746,10 @@ assert(
     "Only the featured n0thing image may link to the case study.",
 );
 assert(
+    (indexHtml.match(/href="\/curves"/g) || []).length === 1,
+    "Homepage must link to the CURVES case study exactly once.",
+);
+assert(
     !indexHtml.includes("project-summary") &&
         !indexHtml.includes("Read the case study"),
     "Homepage Filen entry must remain image-led and concise.",
@@ -856,6 +861,43 @@ assert(
         !n0thingHtml.includes("object-position:") &&
         !n0thingHtml.includes(" · "),
     "n0thing must preserve complete images and omit dot dividers.",
+);
+assert(
+    curvesHtml.includes('rel="canonical" href="https://gildrb.com/curves"') &&
+        curvesHtml.includes(
+            '<a class="case-home-link" href="/">Gil Rodrigues</a>',
+        ) &&
+        curvesHtml.includes(
+            '<a class="case-current-link" href="#top">CURVES</a>',
+        ) &&
+        !curvesHtml.includes('>Index</a>') &&
+        !curvesHtml.includes("case-kicker"),
+    "CURVES must use the same persistent case-study navigation as the existing projects.",
+);
+assert(
+    !curvesHtml.includes("object-fit: cover") &&
+        !curvesHtml.includes("object-position:") &&
+        !curvesHtml.includes(" · "),
+    "CURVES must preserve complete images and omit dot dividers.",
+);
+const curvesMediaSequence = [
+    "gil-rodrigues-curves-letterforms-720.webp",
+    "gil-rodrigues-curves-wordmark-720.webp",
+    "gil-rodrigues-curves-uppercase-720.webp",
+    "gil-rodrigues-curves-numerals-720.webp",
+    "gil-rodrigues-curves-punctuation-720.webp",
+    "gil-rodrigues-curves-specimen-720.webp",
+];
+assert(
+    curvesMediaSequence.every((asset, index) => {
+        const position = curvesHtml.indexOf(asset);
+        const previousPosition =
+            index === 0
+                ? -1
+                : curvesHtml.indexOf(curvesMediaSequence[index - 1]);
+        return position > previousPosition;
+    }),
+    "CURVES media must follow the authored typeface sequence.",
 );
 const n0thingMediaSequence = [
     "gil-rodrigues-n0thing-typewriter-direction-720.webp",
@@ -1169,7 +1211,7 @@ assert(
             ".all-case + .all-case {\n    margin-top: var(--all-case-gap);",
         ) &&
         allPage.includes('class="all-cases"') &&
-        (allPage.match(/class="all-case"/g) || []).length === 5 &&
+        (allPage.match(/class="all-case"/g) || []).length === 6 &&
         allPage.includes('data-date="2026-07-15" data-scope="Design engineering" data-slug="site" data-title="gildrb.com"') &&
         allPage.lastIndexOf('data-slug="site"') >
             allPage.indexOf('data-slug="ml7"') &&
@@ -1196,6 +1238,7 @@ const portfolioDates = [
     ["2026-04-21", "2026-04-21", "Heph"],
     ["2026-01-14", "2026-01-14", "Filen"],
     ["2019-11-15", "2019-11-15", "n0thing"],
+    ["2019-01-25", "2019-01-25", "CURVES"],
     ["2018-11-13", "2018-11-13", "mL7"],
 ];
 assert(
@@ -1246,19 +1289,21 @@ assert(
         portfolioStyles.includes('font-family: "Inter", sans-serif;') &&
         !portfolioStyles.includes(".portfolio-card-arrow svg") &&
         !portfolioStyles.includes(".portfolio-card-link::after") &&
-        (indexHtml.match(/class="portfolio-card-arrow"/g) || []).length === 5 &&
+        (indexHtml.match(/class="portfolio-card-arrow"/g) || []).length === 6 &&
         (indexHtml.match(/class="portfolio-card-scope">Brand identity/g) || [])
             .length === 1 &&
         (indexHtml.match(/class="portfolio-card-scope">Wordmark/g) || [])
             .length === 2 &&
+        (indexHtml.match(/class="portfolio-card-scope">Typeface/g) || [])
+            .length === 1 &&
         (indexHtml.match(/class="portfolio-card-scope">Design engineering/g) || [])
             .length === 1 &&
         (indexHtml.match(/class="portfolio-card-scope">Product design and engineering/g) || [])
             .length === 1 &&
         (indexHtml.match(/class="portfolio-card-view">View<\/span>/g) || [])
-            .length === 5 &&
+            .length === 6 &&
         (indexHtml.match(/<span class="portfolio-card-view">View<\/span>\s+→/g) || [])
-            .length === 5 &&
+            .length === 6 &&
         portfolioStyles.includes(
             ".portfolio-card-link + .portfolio-card-link {\n    margin-top: 0;\n    border-top: 1px solid\n        color-mix(in srgb, var(--text-primary) 12%, transparent);",
         ) &&
@@ -1327,6 +1372,7 @@ const chronologicalProjectTitles = [
     "portfolio-heph-title",
     "portfolio-filen-title",
     "portfolio-n0thing-title",
+    "portfolio-curves-title",
     "portfolio-ml7-title",
 ];
 assert(
@@ -1342,7 +1388,7 @@ assert(
         !indexHtml.includes("portfolio-group-engineering-title") &&
         !indexHtml.includes("portfolio-group-design-title") &&
         !portfolioStyles.includes(".portfolio-group") &&
-        (indexHtml.match(/class="portfolio-card-link"/g) || []).length === 5,
+        (indexHtml.match(/class="portfolio-card-link"/g) || []).length === 6,
     "Homepage projects must live in one globally sortable list without category dividers.",
 );
 assert(
