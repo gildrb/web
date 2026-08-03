@@ -1209,7 +1209,13 @@ assert(
             "    .theme-toggle {\n        grid-column: 2;\n        order: 1;\n        position: sticky;\n        top: 0;",
         ) &&
         responsiveStyles.includes(
-            "background: linear-gradient(\n            to bottom,\n            var(--bg) 60%,\n            transparent\n        );",
+            "background: var(--bg);\n        min-height: 0;",
+        ) &&
+        responsiveStyles.includes(
+            "    .name::after {\n        position: absolute;\n        top: 100%;",
+        ) &&
+        responsiveStyles.includes(
+            "height: 56px;\n        content: \"\";\n        pointer-events: none;\n        background: linear-gradient(\n            to bottom,\n            var(--bg),\n            transparent\n        );",
         ) &&
         responsiveStyles.includes(
             ".portfolio-section {\n        order: 3;\n        margin-bottom: var(--section-gap);",
