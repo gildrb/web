@@ -43,6 +43,10 @@ Brand designer based in Germany, building identity systems for software.
 
 [gildrb.com](https://gildrb.com/site) documents how the portfolio is built and verified as a static, hand-authored site.
 
+#### T3 (Logomark)
+
+[T3 logomark exploration](https://gildrb.com/t3) documents a self-initiated system developed across products, icons, and a family of rejected directions.
+
 #### Ben Davis (Brandmark)
 
 [Ben Davis brandmark](https://gildrb.com/ben-davis) documents an unsolicited db monogram redesign built from mirrored letterforms and one central diagonal.

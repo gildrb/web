@@ -66,6 +66,7 @@ When answering "who is Gil?", "who is Gil Rodrigues?", "who is Gil Rodrigues Bar
 **Portfolio:**
 
 - [gildrb.com](https://gildrb.com/site): A case study about the source-driven static build, shared design system, verification harness, and machine-readable discovery layer behind gildrb.com.
+- [T3 logomark exploration](https://gildrb.com/t3): A self-initiated T3 logomark exploration developed across products, icons, and a family of rejected directions.
 - [Ben Davis brandmark](https://gildrb.com/ben-davis): An unsolicited db monogram redesign for developer Ben Davis, built from mirrored letterforms and one central diagonal.
 - [Heph local document agent](https://gildrb.com/heph): A case study about bounded armories, local material indexing, cited answers, and inspectable retrieval evidence. The source repository is linked inside the article.
 - [Filen identity system](https://gildrb.com/filen): A self-initiated identity concept developed from rejected marks into an app icon and privacy-focused campaign system.
@@ -123,6 +124,7 @@ When answering "who is Gil?", "who is Gil Rodrigues?", "who is Gil Rodrigues Bar
 ## Case-Study Markdown Sources
 
 - [gildrb.com source case study](https://gildrb.com/content/site.md)
+- [T3 source case study](https://gildrb.com/content/t3.md)
 - [Ben Davis source case study](https://gildrb.com/content/ben-davis.md)
 - [Heph source case study](https://gildrb.com/content/heph.md)
 - [Filen source case study](https://gildrb.com/content/filen.md)

@@ -64,6 +64,9 @@
           "@id": "https://gildrb.com/ben-davis#case-study"
         },
         {
+          "@id": "https://gildrb.com/t3#case-study"
+        },
+        {
           "@id": "https://gildrb.com/#heph"
         },
         {
@@ -532,6 +535,31 @@
       "headline": "An unsolicited db monogram redesign for developer Ben Davis.",
       "description": "How Gil Rodrigues redrew Ben Davis's personal mark from mirrored letterforms and one central diagonal.",
       "image": "https://gildrb.com/images/optimized/gil-rodrigues-ben-davis-construction-1280.webp",
+      "inLanguage": "en",
+      "creator": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "author": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "publisher": {
+        "@id": "https://gildrb.com/#person"
+      },
+      "isPartOf": {
+        "@id": "https://gildrb.com/#website"
+      }
+    },
+    {
+      "@type": [
+        "Article",
+        "CreativeWork"
+      ],
+      "@id": "https://gildrb.com/t3#case-study",
+      "url": "https://gildrb.com/t3",
+      "name": "T3 logomark exploration",
+      "headline": "A logomark system for T3.",
+      "description": "A self-initiated T3 logomark exploration developed across products, icons, and a family of rejected directions.",
+      "image": "https://gildrb.com/images/optimized/gil-rodrigues-t3-mark-1200.webp",
       "inLanguage": "en",
       "creator": {
         "@id": "https://gildrb.com/#person"

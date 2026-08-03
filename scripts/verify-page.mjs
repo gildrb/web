@@ -134,6 +134,7 @@ const {
     n0thing: n0thingHtml,
     curves: curvesHtml,
     "ben-davis": benDavisHtml,
+    t3: t3Html,
     site: siteHtml,
 } = casePages;
 const caseScript = caseScripts.filen;
@@ -241,9 +242,11 @@ for (const { slug, title, markdown, template } of caseSources) {
     const mediaCaptions = [
         ...markdown.matchAll(/^!\[(.*)\]\(media:[a-z0-9-]+\)$/gm),
     ].map(([, caption]) => caption.trim());
+    const maxCaptionWords = slug === "t3" ? 8 : 5;
     assert(
         mediaCaptions.every(
-            (caption) => caption && caption.split(/\s+/).length <= 5,
+            (caption) =>
+                caption && caption.split(/\s+/).length <= maxCaptionWords,
         ),
         `content/${slug}.md media captions must contain one to five words.`,
     );
@@ -777,6 +780,10 @@ assert(
     "Homepage must link to the Ben Davis case study exactly once.",
 );
 assert(
+    (indexHtml.match(/href="\/t3"/g) || []).length === 1,
+    "Homepage must link to the T3 case study exactly once.",
+);
+assert(
     !indexHtml.includes("project-summary") &&
         !indexHtml.includes("Read the case study"),
     "Homepage Filen entry must remain image-led and concise.",
@@ -948,6 +955,7 @@ assert(
 );
 const benDavisMediaSequence = [
     "gil-rodrigues-ben-davis-brandmark.svg",
+    "gil-rodrigues-ben-davis-original.svg",
     "gil-rodrigues-ben-davis-construction-720.webp",
 ];
 assert(
@@ -960,6 +968,49 @@ assert(
         return position > previousPosition;
     }),
     "Ben Davis media must follow the authored brandmark sequence.",
+);
+assert(
+    t3Html.includes('rel="canonical" href="https://gildrb.com/t3"') &&
+        t3Html.includes(
+            '<a class="case-home-link" href="/">Gil Rodrigues</a>',
+        ) &&
+        t3Html.includes('<a class="case-current-link" href="#top">T3</a>') &&
+        !t3Html.includes('>Index</a>') &&
+        !t3Html.includes("case-kicker"),
+    "T3 must use the same persistent case-study navigation as the existing projects.",
+);
+assert(
+    !t3Html.includes("object-fit: cover") &&
+        !t3Html.includes("object-position:") &&
+        !t3Html.includes(" · "),
+    "T3 must preserve complete images and omit dot dividers.",
+);
+const t3MediaSequence = [
+    "gil-rodrigues-t3-mark-720.webp",
+    "gil-rodrigues-t3-canvas-overview-480.webp",
+    "gil-rodrigues-t3-canvas-sketches-720.webp",
+    "gil-rodrigues-t3-frame-grid-720.webp",
+    "gil-rodrigues-t3-weight-tests-720.webp",
+    "gil-rodrigues-t3-ghost-grid-720.webp",
+    "gil-rodrigues-t3-canvas-color-720.webp",
+    "gil-rodrigues-t3-color-tests-720.webp",
+    "gil-rodrigues-t3-before-after-720.webp",
+    "gil-rodrigues-t3-system-board-720.webp",
+    "gil-rodrigues-t3-product-board-720.webp",
+    "gil-rodrigues-t3-brand-board-720.webp",
+    "gil-rodrigues-t3-render-720.webp",
+];
+assert(
+    t3MediaSequence.every((asset, index) => {
+        const position = t3Html.indexOf(asset);
+        const previousPosition =
+            index === 0 ? -1 : t3Html.indexOf(t3MediaSequence[index - 1]);
+        return position > previousPosition;
+    }) &&
+        t3Html.includes(
+            'sizes="(max-width: 768px) calc(100vw - 24px), (max-width: 1100px) calc(50vw - 178px), 370px"',
+        ),
+    "T3 media must follow the authored sequence and use paired image layouts.",
 );
 const n0thingMediaSequence = [
     "gil-rodrigues-n0thing-typewriter-direction-720.webp",
@@ -1273,7 +1324,7 @@ assert(
             ".all-case + .all-case {\n    margin-top: var(--all-case-gap);",
         ) &&
         allPage.includes('class="all-cases"') &&
-        (allPage.match(/class="all-case"/g) || []).length === 7 &&
+        (allPage.match(/class="all-case"/g) || []).length === 8 &&
         allPage.includes('data-date="2026-07-15" data-scope="Design engineering" data-slug="site" data-title="gildrb.com"') &&
         allPage.lastIndexOf('data-slug="site"') >
             allPage.indexOf('data-slug="ml7"') &&
@@ -1297,6 +1348,7 @@ assert(
     "The homepage must use secondary-tone Date, Project, Scope, and All headings, with All preserving the active sort for the continuous projects page.",
 );
 const portfolioDates = [
+    ["2026-07-25", "2026-07-25", "T3"],
     ["2026-07-07", "2026-07-07", "Ben Davis"],
     ["2026-04-21", "2026-04-21", "Heph"],
     ["2026-01-14", "2026-01-14", "Filen"],
@@ -1352,7 +1404,7 @@ assert(
         portfolioStyles.includes('font-family: "Inter", sans-serif;') &&
         !portfolioStyles.includes(".portfolio-card-arrow svg") &&
         !portfolioStyles.includes(".portfolio-card-link::after") &&
-        (indexHtml.match(/class="portfolio-card-arrow"/g) || []).length === 7 &&
+        (indexHtml.match(/class="portfolio-card-arrow"/g) || []).length === 8 &&
         (indexHtml.match(/class="portfolio-card-scope">Brand identity/g) || [])
             .length === 1 &&
         (indexHtml.match(/class="portfolio-card-scope">Wordmark/g) || [])
@@ -1361,14 +1413,16 @@ assert(
             .length === 1 &&
         (indexHtml.match(/class="portfolio-card-scope">Brandmark/g) || [])
             .length === 1 &&
+        (indexHtml.match(/class="portfolio-card-scope">Logomark/g) || [])
+            .length === 1 &&
         (indexHtml.match(/class="portfolio-card-scope">Design engineering/g) || [])
             .length === 1 &&
         (indexHtml.match(/class="portfolio-card-scope">Product design and engineering/g) || [])
             .length === 1 &&
         (indexHtml.match(/class="portfolio-card-view">View<\/span>/g) || [])
-            .length === 7 &&
+            .length === 8 &&
         (indexHtml.match(/<span class="portfolio-card-view">View<\/span>\s+→/g) || [])
-            .length === 7 &&
+            .length === 8 &&
         portfolioStyles.includes(
             ".portfolio-card-link + .portfolio-card-link {\n    margin-top: 0;\n    border-top: 1px solid\n        color-mix(in srgb, var(--text-primary) 12%, transparent);",
         ) &&
@@ -1434,6 +1488,7 @@ assert(
 );
 const chronologicalProjectTitles = [
     "portfolio-site-title",
+    "portfolio-t3-title",
     "portfolio-ben-davis-title",
     "portfolio-heph-title",
     "portfolio-filen-title",
@@ -1454,7 +1509,7 @@ assert(
         !indexHtml.includes("portfolio-group-engineering-title") &&
         !indexHtml.includes("portfolio-group-design-title") &&
         !portfolioStyles.includes(".portfolio-group") &&
-        (indexHtml.match(/class="portfolio-card-link"/g) || []).length === 7,
+        (indexHtml.match(/class="portfolio-card-link"/g) || []).length === 8,
     "Homepage projects must live in one globally sortable list without category dividers.",
 );
 assert(

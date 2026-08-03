@@ -15,6 +15,7 @@ This file is generated from the same authored Markdown sources as the website. I
 - [Filen](https://gildrb.com/filen) ([Markdown source](https://gildrb.com/content/filen.md))
 - [Heph](https://gildrb.com/heph) ([Markdown source](https://gildrb.com/content/heph.md))
 - [Ben Davis](https://gildrb.com/ben-davis) ([Markdown source](https://gildrb.com/content/ben-davis.md))
+- [T3](https://gildrb.com/t3) ([Markdown source](https://gildrb.com/content/t3.md))
 - [mL7](https://gildrb.com/ml7) ([Markdown source](https://gildrb.com/content/ml7.md))
 - [n0thing](https://gildrb.com/n0thing) ([Markdown source](https://gildrb.com/content/n0thing.md))
 - [CURVES](https://gildrb.com/curves) ([Markdown source](https://gildrb.com/content/curves.md))
@@ -71,6 +72,10 @@ Brand designer based in Germany, building identity systems for software.
 #### gildrb.com (Design engineering)
 
 [gildrb.com](https://gildrb.com/site) documents how the portfolio is built and verified as a static, hand-authored site.
+
+#### T3 (Logomark)
+
+[T3 logomark exploration](https://gildrb.com/t3) documents a self-initiated system developed across products, icons, and a family of rejected directions.
 
 #### Ben Davis (Brandmark)
 
@@ -350,6 +355,10 @@ Ben Davis builds software in San Francisco and co-hosts the Nerd Snipe podcast. 
 
 ### Two letters, one figure
 
+The mark on [davis7.sh](https://www.davis7.sh/) already used the same two letters. It sets a slab-sided d against a b built from a full circle, so the two halves never agree on a weight or a curve.
+
+![The previous davis7.sh mark](media:ben-davis-original)
+
 A d and a b are mirror images, so the pair already wants to be symmetrical. I kept that symmetry in the bowls and broke it exactly once. A single diagonal runs through the middle of the mark, carries the stem of the d down into the bowl of the b, and leaves both letters with a sheared terminal. The figure reads as a loop first and as initials second.
 
 Stems and bowls hold one weight and one corner radius, so the mark keeps its rhythm when it shrinks. The whole thing is one path with few enough anchor points to redraw by hand, which is what the point view on the left shows.
@@ -359,6 +368,61 @@ Stems and bowls hold one weight and one corner radius, so the mark keeps its rhy
 ### What it is worth
 
 The redesign was a gift rather than a commission, so the only measure of it was whether Ben recognized himself in the mark. He did. Work like this keeps my drawing sharp between client projects and costs nothing more than an evening.
+
+---
+
+## Case Study: T3
+
+Canonical page: https://gildrb.com/t3
+Markdown source: https://gildrb.com/content/t3.md
+
+# A logomark system for T3
+
+T3 ships more than one product, so the mark had to work as `T3.chat`, as `T3.code`, and as a bare symbol in a favicon or an app grid. I spent months on this in the open: drawing, posting, and reworking the result against feedback from the community, [@r_marked](https://x.com/r_marked), and [@theo](https://x.com/theo). None of it was commissioned.
+
+![The T3 logomark](media:t3-mark)
+
+### One shape, drawn hundreds of times
+
+The whole project lives on a single canvas. Every version below sits somewhere on it, and most of them are wrong on purpose: the fastest way to find the shape is to draw the shapes it is not.
+
+![The exploration canvas](media:t3-canvas-overview)
+
+The T and the 3 want to be one figure rather than two characters set next to each other. The crossbar of the T carries into the 3, so the pair shares a spine and reads as a single mark. Getting there meant testing how far the 3 could open, how much the terminals could shear, and how much of the T could disappear before the mark stopped being legible.
+
+![Sketch passes on the canvas](media:t3-canvas-sketches)
+![Frame-by-frame variants](media:t3-frame-grid)
+
+Some versions went angular and mechanical. One of those is known in the thread as the meat grinder.
+
+![Weight and angle tests](media:t3-weight-tests)
+![Ghosted comparison grid](media:t3-ghost-grid)
+
+### Color came last
+
+Color was a late test rather than a starting point. Pink is T3's, but the mark had to survive without it, so every candidate was judged in white on black first and only then given the palette.
+
+![Color passes on the canvas](media:t3-canvas-color)
+![Colorway tests](media:t3-color-tests)
+
+### Refining the drawing
+
+The final pass is invisible at a glance and it is the part that matters. The joint between the crossbar and the bowl was thinned, the bowl was pulled tighter, and the terminals were squared so the mark holds its rhythm at favicon size.
+
+![Before and after refinement](media:t3-before-after)
+
+### Scaling across products
+
+A logomark for one product is a drawing. A logomark for a family is a system, so I built out the cases where it actually gets used: the two logotypes, the iOS icon on its grid, the favicon ladder down to sixteen pixels, and the lockup on its clear-space frame.
+
+![Logotypes, icons, favicons, and lockup](media:t3-system-board)
+
+![Product applications](media:t3-product-board)
+![Brand applications in T3 pink](media:t3-brand-board)
+
+![The mark rendered in light](media:t3-render)
+
+The exploration is public and unadopted. I posted it as a thread because the useful part is the pile of rejected drawings, not the one that survived.
 
 ---
 

@@ -68,6 +68,12 @@ export const siteConfig = Object.freeze({
             scripts: sharedCaseScripts,
         }),
         Object.freeze({
+            slug: "t3",
+            title: "T3",
+            styles: sharedCaseStyles,
+            scripts: sharedCaseScripts,
+        }),
+        Object.freeze({
             slug: "ml7",
             title: "mL7",
             styles: sharedCaseStyles,

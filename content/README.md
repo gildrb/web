@@ -8,6 +8,7 @@ Each case study is authored in one Markdown file:
 - `n0thing.md`
 - `curves.md`
 - `ben-davis.md`
+- `t3.md`
 - `site.md`
 
 Edit these files instead of the generated `<project>/index.html` pages or the HTML templates.
