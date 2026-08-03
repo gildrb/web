@@ -49,6 +49,7 @@ updateThemeToggle();
 let themeToggleUsedPointer = false;
 let themeToggleSkipClick = false;
 let themeToggleSkipClickTimer;
+let themeToggleTouchStartedInside = false;
 
 themeToggle.addEventListener("pointerdown", (event) => {
     themeToggleUsedPointer =
@@ -88,27 +89,43 @@ function suppressNextTouchClick() {
     }, 500);
 }
 
-themeToggle.addEventListener("pointerup", (event) => {
+function isInsideTouchReleaseArea(event) {
+    const rect = themeToggle.getBoundingClientRect();
+    const touchReleasePadding = 11;
+    const top = Math.max(rect.top, 0);
+    const bottom = Math.max(rect.bottom, top + rect.height);
+
+    return (
+        event.clientX >= rect.left - touchReleasePadding &&
+        event.clientX <= rect.right + touchReleasePadding &&
+        event.clientY >= top - touchReleasePadding &&
+        event.clientY <= bottom + touchReleasePadding
+    );
+}
+
+document.addEventListener("pointerdown", (event) => {
     if (event.pointerType === "touch") {
+        themeToggleTouchStartedInside = isInsideTouchReleaseArea(event);
+    }
+}, true);
+
+document.addEventListener("pointerup", (event) => {
+    if (event.pointerType === "touch") {
+        const shouldToggle =
+            themeToggleTouchStartedInside &&
+            isInsideTouchReleaseArea(event);
+        themeToggleTouchStartedInside = false;
         suppressNextTouchClick();
 
-        const rect = themeToggle.getBoundingClientRect();
-        const hitAreaPadding = 6;
-        const insideHitArea =
-            event.clientX >= rect.left - hitAreaPadding &&
-            event.clientX <= rect.right + hitAreaPadding &&
-            event.clientY >= rect.top &&
-            event.clientY <= rect.bottom;
-
-        if (insideHitArea) {
+        if (shouldToggle) {
             toggleTheme();
         }
     }
-});
+}, true);
 
-themeToggle.addEventListener("pointercancel", () => {
-    themeToggleSkipClick = false;
-});
+document.addEventListener("pointercancel", () => {
+    themeToggleTouchStartedInside = false;
+}, true);
 
 themeToggle.addEventListener("click", () => {
     if (themeToggleSkipClick) {
