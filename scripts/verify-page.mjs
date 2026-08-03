@@ -1672,7 +1672,7 @@ assert(
     ) &&
         caseStyles.includes(".case-mobile-links {\n    display: none;") &&
         responsiveStyles.includes(
-            ".case-page .links {\n        order: 6;\n        margin-top: 80px;",
+            ".case-page .links {\n        order: 6;\n        margin-top: var(--section-gap);",
         ) &&
         responsiveStyles.includes(
             ".case-desktop-links {\n        display: none;",

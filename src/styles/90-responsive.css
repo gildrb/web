@@ -324,7 +324,7 @@ body:not(.case-page) .content {
 
     .case-page .links {
         order: 6;
-        margin-top: 80px;
+        margin-top: var(--section-gap);
         margin-bottom: 0;
     }
 
