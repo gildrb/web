@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="homepage-scroll-locked">
+<html lang="en" class="homepage-scroll-locked homepage-first-paint-pending">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -163,6 +163,15 @@
             if (window.location.hostname.endsWith(".vercel.app")) {
                 document.getElementById("site-favicon").href =
                     "/preview-favicon.svg";
+            }
+
+            try {
+                const savedTheme = window.localStorage.getItem("theme");
+                if (savedTheme === "dark" || savedTheme === "light") {
+                    document.documentElement.dataset.theme = savedTheme;
+                }
+            } catch {
+                // Preserve the system theme when storage is unavailable.
             }
         </script>
         <script type="application/ld+json">
@@ -1027,8 +1036,8 @@
             crossorigin
         />
         <style>
-@font-face{font-family:"Inter";font-style:normal;font-weight:400 600;font-display:swap;src:url("/fonts/inter-variable-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+21A9,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:"Geist Mono";font-style:normal;font-weight:400 600;font-display:swap;src:url("/fonts/geist-mono-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Inter";font-style:normal;font-weight:400 600;font-display:optional;src:url("/fonts/inter-variable-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+21A9,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Geist Mono";font-style:normal;font-weight:400 600;font-display:optional;src:url("/fonts/geist-mono-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 
 :root {
   --bg: #000000;
@@ -1083,6 +1092,7 @@
   box-sizing: border-box;
 }
 
+
 :is(a[href],
   button,
   input:not([type="hidden"]),
@@ -1092,7 +1102,8 @@
   [role="button"],
   [role="link"],
   [tabindex]:not([tabindex="-1"])):active {
-  translate: 0 1px;
+  position: relative;
+  top: 1px;
 }
 
 ::selection {
@@ -1375,6 +1386,188 @@ body {
 .theme-toggle:focus-visible {
   outline: none;
   box-shadow: 0 0 0 1px var(--text-primary);
+}
+
+@keyframes homepage-enter {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+html.homepage-first-paint-pending body:not(.case-page) {
+    visibility: hidden;
+}
+
+/* Keep identity and positioning content immediately visible. */
+.name,
+.profile-summary {
+    opacity: 1;
+    transform: none;
+}
+
+/*
+ * Animate only after fonts, mobile columns, theme, and viewport locking have
+ * been resolved. Links begins when the final table cell starts. Contact begins
+ * when the final profile link starts, and each contact method follows one
+ * stagger at a time.
+ */
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > * {
+    animation: homepage-enter 700ms ease-out both;
+}
+
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > .links-label:first-child {
+    animation-delay: 720ms;
+}
+
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > .external-link:nth-child(2) {
+    animation-delay: 840ms;
+}
+
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > .external-link:nth-child(3) {
+    animation-delay: 960ms;
+}
+
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > .external-link:nth-child(4) {
+    animation-delay: 1080ms;
+}
+
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > .external-link:nth-child(5) {
+    animation-delay: 1200ms;
+}
+
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > .external-link:nth-child(6) {
+    animation-delay: 1320ms;
+}
+
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > .contact-label {
+    animation-delay: 1320ms;
+}
+
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > .email {
+    animation-delay: 1440ms;
+}
+
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .links
+    > .contact-label
+    ~ .external-link {
+    animation-delay: 1560ms;
+}
+
+/*
+ * Reveal the table as a diagonal wave. Moving one column right or one row
+ * down adds the same 80ms delay, so the words travel toward the bottom right.
+ */
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .portfolio-table-header
+    > *,
+html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+    .portfolio-list
+    > .portfolio-card-link
+    > * {
+    animation: homepage-enter 1s ease-out both;
+    animation-delay: calc(var(--row-delay, 80ms) + var(--column-delay, 0ms));
+}
+
+.portfolio-table-header > :nth-child(1),
+.portfolio-list > .portfolio-card-link > :nth-child(1) {
+    --column-delay: 0ms;
+}
+
+.portfolio-table-header > :nth-child(2),
+.portfolio-list > .portfolio-card-link > :nth-child(2) {
+    --column-delay: 80ms;
+}
+
+.portfolio-table-header > :nth-child(3),
+.portfolio-list > .portfolio-card-link > :nth-child(3) {
+    --column-delay: 160ms;
+}
+
+.portfolio-table-header > :nth-child(4),
+.portfolio-list > .portfolio-card-link > :nth-child(4) {
+    --column-delay: 240ms;
+}
+
+.portfolio-list > .portfolio-card-link:nth-child(1) {
+    --row-delay: 160ms;
+}
+
+.portfolio-list > .portfolio-card-link:nth-child(2) {
+    --row-delay: 240ms;
+}
+
+.portfolio-list > .portfolio-card-link:nth-child(3) {
+    --row-delay: 320ms;
+}
+
+.portfolio-list > .portfolio-card-link:nth-child(4) {
+    --row-delay: 400ms;
+}
+
+.portfolio-list > .portfolio-card-link:nth-child(5) {
+    --row-delay: 480ms;
+}
+
+.portfolio-list > .portfolio-card-link:nth-child(6) {
+    --row-delay: 560ms;
+}
+
+.portfolio-list > .portfolio-card-link:nth-child(7) {
+    --row-delay: 640ms;
+}
+
+.portfolio-list > .portfolio-card-link:nth-child(8) {
+    --row-delay: 720ms;
+}
+
+.portfolio-list > .portfolio-card-link:nth-child(9) {
+    --row-delay: 800ms;
+}
+
+.portfolio-list > .portfolio-card-link:nth-child(10) {
+    --row-delay: 880ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+        .links
+        > *,
+    html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+        .portfolio-table-header
+        > *,
+    html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
+        .portfolio-list
+        > .portfolio-card-link
+        > * {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
 }
 
 .portfolio-section {
@@ -2175,6 +2368,13 @@ html.homepage-scroll-locked body .layout {
     }
 }
         </style>
+        <noscript>
+            <style>
+                html.homepage-first-paint-pending body:not(.case-page) {
+                    visibility: visible;
+                }
+            </style>
+        </noscript>
     </head>
     <body id="top">
         <div
@@ -2475,10 +2675,10 @@ html.homepage-scroll-locked body .layout {
                             >
                             <a
                                 class="reference-link"
-                                href="profile.json"
-                                rel="alternate"
-                                type="application/ld+json"
-                                >profile.json</a
+                                href="https://github.com/gildrb/web"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                                >source</a
                             >
                         </nav>
                     </footer>
@@ -2533,8 +2733,6 @@ function updateHomepageDates() {
         year;
     portfolioSiteDate.setAttribute("datetime", isoDate);
 }
-
-window.addEventListener("load", updateHomepageDates);
 
 const mobileLinks = document.querySelector(
     ".case-page .case-mobile-links .links, body:not(.case-page) .links",
@@ -2653,9 +2851,6 @@ function updateMobileLayout(preserveHomepageLock = false) {
     updateHomepageLock(preserveHomepageLock);
 }
 
-window.addEventListener("load", updateMobileLayout);
-window.addEventListener("resize", () => updateMobileLayout(true));
-
 const portfolioSection = document.querySelector(".portfolio-section");
 const portfolioSiteDate = document.querySelector("#portfolio-site-date");
 const mobileLayoutTargets = [
@@ -2670,6 +2865,38 @@ if ("ResizeObserver" in window) {
     });
     mobileLayoutTargets.forEach((target) => updateOnResize.observe(target));
 }
+
+async function prepareHomepageFirstPaint() {
+    const root = document.documentElement;
+    const body = document.body;
+
+    if (!body || body.classList.contains("case-page")) {
+        root.classList.remove("homepage-first-paint-pending");
+        return;
+    }
+
+    updateHomepageDates();
+    updateMobileLayout();
+
+    if (document.fonts?.load) {
+        try {
+            await document.fonts.load('400 16px "Inter"');
+        } catch {
+            // Continue with the metric-compatible system fallback.
+        }
+    }
+
+    updateHomepageDates();
+    updateMobileLayout();
+}
+
+window.homepageFirstPaintReady = prepareHomepageFirstPaint();
+
+window.addEventListener("load", () => {
+    updateHomepageDates();
+    updateMobileLayout();
+});
+window.addEventListener("resize", () => updateMobileLayout(true));
 
 if ("scrollRestoration" in window.history) {
     window.history.scrollRestoration = "manual";
@@ -2746,6 +2973,49 @@ function announce(message) {
         srOnly.textContent = "";
     }, 1000);
 }
+
+const homepageEntryRoot = document.documentElement;
+const finalHomepageEntryElement = document.querySelector(
+    ".links > .contact-label ~ .external-link:last-child",
+);
+let homepageEntryFallback;
+
+function finishHomepageEntry() {
+    homepageEntryRoot.dataset.homepageEntryComplete = "true";
+    window.clearTimeout(homepageEntryFallback);
+}
+
+function startHomepageEntry() {
+    const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (!reducedMotion) {
+        finalHomepageEntryElement?.addEventListener(
+            "animationend",
+            (event) => {
+                if (event.animationName === "homepage-enter") {
+                    finishHomepageEntry();
+                }
+            },
+            { once: true },
+        );
+    }
+
+    homepageEntryRoot.dataset.homepageFirstPaintReady = "true";
+    homepageEntryRoot.classList.remove("homepage-first-paint-pending");
+
+    if (reducedMotion) {
+        finishHomepageEntry();
+        return;
+    }
+
+    homepageEntryFallback = window.setTimeout(finishHomepageEntry, 2800);
+}
+
+Promise.resolve(window.homepageFirstPaintReady)
+    .catch(() => undefined)
+    .then(startHomepageEntry);
 
 const portfolioSortButtons = document.querySelectorAll(
     ".portfolio-sort-button",
@@ -2856,6 +3126,8 @@ portfolioSortButtons.forEach((button) => {
             "aria-label",
             `Sort projects by ${key}, currently ${description}`,
         );
+
+        document.documentElement.dataset.homepageEntryComplete = "true";
         sortPortfolioRows(key, direction);
         updatePortfolioAllLink(key, direction);
         announce(`Projects sorted by ${key}, ${description}.`);

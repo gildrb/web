@@ -450,11 +450,11 @@ const homepageFooter =
     indexHtml.match(/<footer class="site-footer">[\s\S]*?<\/footer>/)?.[0] ??
     "";
 assert(
-    homepageFooter.includes('aria-label="Metadata"') &&
+        homepageFooter.includes('aria-label="Metadata"') &&
         homepageFooter.includes('<p class="links-label">Metadata</p>') &&
         homepageFooter.includes('href="humans.txt"') &&
         homepageFooter.includes('href="llms.txt"') &&
-        homepageFooter.includes('href="profile.json"') &&
+        homepageFooter.includes('href="https://github.com/gildrb/web"') &&
         !homepageFooter.includes("llms-full.txt") &&
         (homepageFooter.match(/class="reference-link"/g) || []).length === 3 &&
         allHtml.every(
