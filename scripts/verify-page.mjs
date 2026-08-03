@@ -242,11 +242,9 @@ for (const { slug, title, markdown, template } of caseSources) {
     const mediaCaptions = [
         ...markdown.matchAll(/^!\[(.*)\]\(media:[a-z0-9-]+\)$/gm),
     ].map(([, caption]) => caption.trim());
-    const maxCaptionWords = slug === "t3" ? 8 : 5;
     assert(
         mediaCaptions.every(
-            (caption) =>
-                caption && caption.split(/\s+/).length <= maxCaptionWords,
+            (caption) => caption && caption.split(/\s+/).length <= 5,
         ),
         `content/${slug}.md media captions must contain one to five words.`,
     );
