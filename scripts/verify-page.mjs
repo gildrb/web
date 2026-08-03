@@ -112,44 +112,6 @@ function extractPortfolioCases(html) {
     }));
 }
 
-function getSuggestionTier(current, candidate) {
-    const typeMarks = new Set([
-        "Typeface",
-        "Wordmark",
-        "Logomark",
-    ]);
-    const product = new Set([
-        "Product/Design Engineering",
-        "Brand Identity",
-    ]);
-    if (current.scope === candidate.scope) return 1;
-    const currentFamily = typeMarks.has(current.scope)
-        ? "type-marks"
-        : product.has(current.scope)
-          ? "product"
-          : null;
-    const candidateFamily = typeMarks.has(candidate.scope)
-        ? "type-marks"
-        : product.has(candidate.scope)
-          ? "product"
-          : null;
-    return currentFamily !== null && currentFamily === candidateFamily ? 2 : 3;
-}
-
-function expectedSuggestions(portfolioCases, slug) {
-    const current = portfolioCases.find((portfolioCase) => portfolioCase.slug === slug);
-
-    return portfolioCases
-        .filter((portfolioCase) => portfolioCase.slug !== slug)
-        .sort((left, right) => {
-            const tierDifference =
-                getSuggestionTier(current, left) -
-                getSuggestionTier(current, right);
-            return tierDifference || right.date.localeCompare(left.date);
-        })
-        .slice(0, 3);
-}
-
 async function listFiles(relativeDir) {
     const dir = path.join(root, relativeDir);
     const entries = await readdir(dir, { withFileTypes: true });
@@ -196,9 +158,9 @@ const configuredCaseSlugs = new Set(
     siteConfig.caseStudies.map(({ slug }) => slug),
 );
 const suggestionBlockPattern =
-    /<nav class="case-next" aria-label="Suggested projects" data-case-slug="([^"]+)">([\s\S]*?)<\/nav>/g;
-const suggestionLinkPattern =
-    /<a class="case-next-link"( hidden)? href="\/([^"]+)">[\s\S]*?<time datetime="([^"]+)">[\s\S]*?<span class="case-next-project">([^<]+)<\/span>[\s\S]*?<span class="case-next-scope">([^<]+)<\/span>/g;
+    /<nav class="case-next" aria-label="All projects">([\s\S]*?)<\/nav>/g;
+const suggestionRowPattern =
+    /<(a|div) class="case-next-row(?: case-next-link| case-next-current)"(?: href="\/([^"]+)")?(?: aria-current="page")?>[\s\S]*?<time datetime="([^"]+)">[\s\S]*?<span class="case-next-project">([^<]+)<\/span>[\s\S]*?<span class="case-next-scope">([^<]+)<\/span>/g;
 for (const [slug, html] of Object.entries(casePages)) {
     const blocks = [...html.matchAll(suggestionBlockPattern)];
     assert(
@@ -206,54 +168,44 @@ for (const [slug, html] of Object.entries(casePages)) {
         `${slug} must contain exactly one suggested-projects navigation block.`,
     );
     const suggestions = [
-        ...blocks[0][2].matchAll(suggestionLinkPattern),
-    ].map(([, hidden, targetSlug, date, title, scope]) => ({
+        ...blocks[0][1].matchAll(suggestionRowPattern),
+    ].map(([, tag, targetSlug, date, title, scope]) => ({
         date,
         scope,
-        slug: targetSlug,
+        slug: targetSlug || slug,
         title,
-        hidden: Boolean(hidden),
+        tag,
     }));
     assert(
-        blocks[0][1] === slug,
-        `${slug} suggestion navigation must identify its current route.`,
-    );
-    const expected = expectedSuggestions(portfolioCases, slug);
-    assert(
-        suggestions.length === portfolioCases.length - 1 &&
-            suggestions.filter(({ hidden }) => !hidden).length === 3 &&
+        suggestions.length === portfolioCases.length &&
             suggestions.every(
-                ({ slug: targetSlug, date, title, scope }, index) => {
+                ({ slug: targetSlug, date, title, scope, tag }, index) => {
                     const target = portfolioCases.find(
                         (portfolioCase) => portfolioCase.slug === targetSlug,
                     );
-                    const expectedTarget = expected[index];
+                    const expectedTarget = portfolioCases[index];
                     return (
-                        targetSlug !== slug &&
+                        expectedTarget?.slug === targetSlug &&
                         configuredCaseSlugs.has(targetSlug) &&
                         target !== undefined &&
-                        (index < 3 ? expectedTarget?.slug === targetSlug : true) &&
                         target.date === date &&
                         target.title === title &&
-                        target.scope === scope
+                        target.scope === scope &&
+                        (targetSlug === slug ? tag === "div" : tag === "a")
                     );
                 },
             ),
-        `${slug} must expose every valid candidate with three visible, correctly ranked default projects.`,
+        `${slug} must expose every configured project once in homepage order, with no self-link.`,
     );
 }
 assert(
-    Object.values(caseScripts).every(
-        (script) =>
-            script.includes('const visitedKey = "gildrb:visited-cases";') &&
-            script.includes("const prioritizeUnvisited = true;") &&
-            script.includes("link.hidden = !visible.has(link);"),
-    ),
-    "Every case route must include guarded, visited-aware dynamic suggestion selection.",
-);
-assert(
     (allPage.match(/class="case-next"/g) || []).length === 0,
     "The all-projects page must not contain suggested-projects navigation.",
+);
+assert(
+    !allPage.includes("case-next.js") &&
+        !allPage.includes('class="case-next"'),
+    "The all-projects page must not include case-next scripts or markup.",
 );
 const currentIndex = await readText("index.html");
 const currentCasePages = Object.fromEntries(
@@ -969,9 +921,9 @@ assert(
 );
 assert(
     !filenHtml.includes(" · ") &&
-        !caseStyles.includes("border-top:") &&
-        !caseStyles.includes("border-bottom:"),
-    "Filen case study must not introduce dot or rule dividers.",
+        caseStyles.includes(".case-next-row + .case-next-row") &&
+        caseStyles.includes("border-top:"),
+    "Filen case study must keep the case table free of dot dividers and own row separators in case-next.",
 );
 assert(
     ml7Html.includes('rel="canonical" href="https://gildrb.com/ml7"') &&
@@ -1232,10 +1184,10 @@ assert(
             "body:not(.case-page) .layout {\n        min-height: 100svh;\n        height: auto;\n        align-content: start;\n        overflow: visible;\n        overscroll-behavior: auto;\n        padding-bottom: 64px;",
         ) &&
         responsiveStyles.includes(
-            "html.homepage-scroll-locked,\n    html.homepage-scroll-locked body {\n        height: 100svh;\n    }",
+            "html.homepage-scroll-locked,\n    html.homepage-scroll-locked body {\n        height: 100dvh;\n        min-height: 100dvh;\n        overflow: hidden;",
         ) &&
         responsiveStyles.includes(
-            "html.homepage-scroll-locked body .layout {\n        height: 100svh;\n        min-height: 100svh;\n        align-content: center;\n        padding-bottom: 0;",
+            "html.homepage-scroll-locked body .layout {\n        height: 100dvh;\n        min-height: 100dvh;\n        display: grid;\n        align-content: start;\n        grid-template-rows: auto auto minmax(0, 1fr) auto;\n        padding-bottom: 0;",
         ) &&
         responsiveStyles.includes(
             "body:not(.case-page) .name {\n        grid-column: 1;\n        order: 1;\n        position: relative;\n        z-index: 100;\n        width: calc(100% + 56px);\n        margin-left: -12px;\n        padding: 24px 44px 8px 12px;\n        background: var(--bg);",
@@ -1322,6 +1274,9 @@ assert(
         ) &&
         siteScript.includes(
             'preserveMobileState &&\n        isMobile &&\n        !viewportWidthChanged &&\n        homepageLockState === "locked"',
+        ) &&
+        siteScript.includes(
+            'if (isMobile) {\n        root.classList.add("homepage-scroll-locked");\n        homepageLockState = "locked";',
         ) &&
         siteScript.includes(
             'root.classList.remove("homepage-scroll-locked");',
@@ -1737,12 +1692,12 @@ assert(
             ".case-next {\n    width: min(100%, 760px);\n    margin: 48px auto 0;",
         ) &&
         caseStyles.includes(
-            "padding: var(--theme-toggle-optical-offset) 0;",
+            "padding: 8px 0;",
         ) &&
         caseStyles.includes(
             "@media (max-width: 768px)",
         ),
-    "Case-next pages must move toggle-boundary alignment to the suggestions block and use the existing 48px/2px spacing values.",
+    "Case-next pages must keep the article gap and table rows on the documented spacing scale.",
 );
 assert(
     caseStyles.includes(

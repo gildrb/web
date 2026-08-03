@@ -230,71 +230,35 @@ export async function buildPage({ write = true } = {}) {
         throw new Error("Could not derive every all-projects entry from the homepage.");
     }
 
-    const portfolioCaseBySlug = new Map(
-        portfolioCases.map((portfolioCase) => [portfolioCase.slug, portfolioCase]),
-    );
-    const typeMarksFamily = new Set([
-        "Typeface",
-        "Wordmark",
-        "Logomark",
-    ]);
-    const productFamily = new Set([
-        "Product/Design Engineering",
-        "Brand Identity",
-    ]);
-
-    function getPortfolioFamily(scope) {
-        if (typeMarksFamily.has(scope)) return "type-marks";
-        if (productFamily.has(scope)) return "product";
-        return null;
-    }
-
-    function getCaseCandidates(slug) {
-        const current = portfolioCaseBySlug.get(slug);
-        const candidates = portfolioCases.filter(
-            (portfolioCase) => portfolioCase.slug !== slug,
-        );
-        const currentFamily = getPortfolioFamily(current.scope);
-        const tier = (portfolioCase) => {
-            if (portfolioCase.scope === current.scope) return 1;
-            if (
-                currentFamily !== null &&
-                getPortfolioFamily(portfolioCase.scope) === currentFamily
-            ) {
-                return 2;
-            }
-            return 3;
-        };
-
-        return candidates
-            .sort((left, right) => {
-                const tierDifference = tier(left) - tier(right);
-                if (tierDifference !== 0) return tierDifference;
-                return right.date.localeCompare(left.date);
-            });
-    }
-
     function renderCaseSuggestions(slug) {
-        const candidates = getCaseCandidates(slug);
         return [
-            `                    <nav class="case-next" aria-label="Suggested projects" data-case-slug="${slug}">`,
+            `                    <nav class="case-next" aria-label="All projects">`,
             '                        <h2 class="case-next-heading">Read next</h2>',
             '                        <div class="case-next-list">',
-            ...candidates.flatMap(
-                ({ date, scope, slug: suggestionSlug, title }, index) => [
-                    `                            <a class="case-next-link"${index >= 3 ? " hidden" : ""} href="/${suggestionSlug}">`,
+            ...portfolioCases.flatMap(
+                ({ date, scope, slug: suggestionSlug, title }) => {
+                    const rowStart = `                            <${suggestionSlug === slug ? "div class=\"case-next-row case-next-current\" aria-current=\"page\"" : `a class="case-next-row case-next-link" href="/${suggestionSlug}"`}>`;
+                    return [
+                    rowStart,
                     `                                <time datetime="${date}">`,
                     `                                    <span class="case-next-date-full">${date}</span>`,
                     `                                    <span class="case-next-date-year">${date.slice(0, 4)}</span>`,
                     "                                </time>",
                     `                                <span class="case-next-project">${title}</span>`,
                     `                                <span class="case-next-scope">${scope}</span>`,
-                    '                                <span class="case-next-arrow" aria-hidden="true">',
-                    '                                    <span class="case-next-view">View</span>',
-                    '                                    →',
-                    '                                </span>',
-                    '                            </a>',
-                ],
+                    suggestionSlug === slug
+                        ? '                                <span class="case-next-arrow" aria-hidden="true"></span>'
+                        : '                                <span class="case-next-arrow" aria-hidden="true">',
+                    ...(suggestionSlug === slug
+                        ? []
+                        : [
+                              '                                    <span class="case-next-view">View</span>',
+                              '                                    →',
+                              '                                </span>',
+                          ]),
+                    `                            </${suggestionSlug === slug ? "div" : "a"}>`,
+                    ];
+                },
             ),
             '                        </div>',
             '                    </nav>',

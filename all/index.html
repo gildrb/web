@@ -1300,18 +1300,40 @@ body {
     column-gap: 16px;
 }
 
+.case-next-row {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: baseline;
+    width: 100%;
+    padding: 8px 0;
+    color: var(--text-tertiary);
+}
+
 .case-next-link {
     display: grid;
     grid-column: 1 / -1;
     grid-template-columns: subgrid;
     align-items: baseline;
     width: 100%;
-    padding: var(--theme-toggle-optical-offset) 0;
+    padding: 8px 0;
     color: var(--text-tertiary);
     text-decoration: none;
 }
 
-.case-next-link time {
+.case-next-row + .case-next-row,
+.case-next-row + .case-next-link,
+.case-next-link + .case-next-row,
+.case-next-link + .case-next-link {
+    border-top: 1px solid
+        color-mix(in srgb, var(--text-primary) 12%, transparent);
+}
+
+.case-next-row .case-next-project {
+    color: var(--text-primary);
+}
+
+.case-next-row time {
     grid-column: 1;
     grid-row: 1;
     display: block;
@@ -1321,7 +1343,7 @@ body {
     line-height: 24px;
 }
 
-.case-next-project {
+.case-next-row .case-next-project {
     grid-column: 2;
     grid-row: 1;
     white-space: nowrap;
@@ -1331,7 +1353,7 @@ body {
     line-height: 24px;
 }
 
-.case-next-scope {
+.case-next-row .case-next-scope {
     grid-column: 3;
     grid-row: 1;
     min-width: 0;
@@ -1344,7 +1366,7 @@ body {
     line-height: 24px;
 }
 
-.case-next-arrow {
+.case-next-row .case-next-arrow {
     grid-column: 4;
     grid-row: 1;
     align-self: baseline;
@@ -1785,14 +1807,41 @@ html.homepage-scroll-locked body .layout {
 
     html.homepage-scroll-locked,
     html.homepage-scroll-locked body {
-        height: 100svh;
+        height: 100dvh;
+        min-height: 100dvh;
+        overflow: hidden;
     }
 
     html.homepage-scroll-locked body .layout {
-        height: 100svh;
-        min-height: 100svh;
-        align-content: center;
+        height: 100dvh;
+        min-height: 100dvh;
+        display: grid;
+        align-content: start;
+        grid-template-rows: auto auto minmax(0, 1fr) auto;
         padding-bottom: 0;
+    }
+
+    html.homepage-scroll-locked body .name,
+    html.homepage-scroll-locked body .theme-toggle {
+        grid-row: 1;
+    }
+
+    html.homepage-scroll-locked body .profile-summary {
+        grid-row: 2;
+    }
+
+    html.homepage-scroll-locked body .portfolio-section {
+        grid-row: 3;
+        min-height: 0;
+        margin-bottom: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        padding-bottom: 8px;
+    }
+
+    html.homepage-scroll-locked body .links {
+        grid-row: 4;
+        align-self: end;
     }
 
     .wrapper {
@@ -3002,6 +3051,12 @@ function updateHomepageLock(preserveMobileState = false) {
     if (!body || body.classList.contains("case-page")) {
         root.classList.remove("homepage-scroll-locked");
         homepageLockState = "uninitialized";
+        return;
+    }
+
+    if (isMobile) {
+        root.classList.add("homepage-scroll-locked");
+        homepageLockState = "locked";
         return;
     }
 

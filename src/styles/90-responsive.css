@@ -100,14 +100,41 @@ html.homepage-scroll-locked body .layout {
 
     html.homepage-scroll-locked,
     html.homepage-scroll-locked body {
-        height: 100svh;
+        height: 100dvh;
+        min-height: 100dvh;
+        overflow: hidden;
     }
 
     html.homepage-scroll-locked body .layout {
-        height: 100svh;
-        min-height: 100svh;
-        align-content: center;
+        height: 100dvh;
+        min-height: 100dvh;
+        display: grid;
+        align-content: start;
+        grid-template-rows: auto auto minmax(0, 1fr) auto;
         padding-bottom: 0;
+    }
+
+    html.homepage-scroll-locked body .name,
+    html.homepage-scroll-locked body .theme-toggle {
+        grid-row: 1;
+    }
+
+    html.homepage-scroll-locked body .profile-summary {
+        grid-row: 2;
+    }
+
+    html.homepage-scroll-locked body .portfolio-section {
+        grid-row: 3;
+        min-height: 0;
+        margin-bottom: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        padding-bottom: 8px;
+    }
+
+    html.homepage-scroll-locked body .links {
+        grid-row: 4;
+        align-self: end;
     }
 
     .wrapper {

@@ -69,6 +69,12 @@ function updateHomepageLock(preserveMobileState = false) {
         return;
     }
 
+    if (isMobile) {
+        root.classList.add("homepage-scroll-locked");
+        homepageLockState = "locked";
+        return;
+    }
+
     if (
         preserveMobileState &&
         isMobile &&

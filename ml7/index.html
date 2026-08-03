@@ -538,18 +538,40 @@ body {
     column-gap: 16px;
 }
 
+.case-next-row {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: baseline;
+    width: 100%;
+    padding: 8px 0;
+    color: var(--text-tertiary);
+}
+
 .case-next-link {
     display: grid;
     grid-column: 1 / -1;
     grid-template-columns: subgrid;
     align-items: baseline;
     width: 100%;
-    padding: var(--theme-toggle-optical-offset) 0;
+    padding: 8px 0;
     color: var(--text-tertiary);
     text-decoration: none;
 }
 
-.case-next-link time {
+.case-next-row + .case-next-row,
+.case-next-row + .case-next-link,
+.case-next-link + .case-next-row,
+.case-next-link + .case-next-link {
+    border-top: 1px solid
+        color-mix(in srgb, var(--text-primary) 12%, transparent);
+}
+
+.case-next-row .case-next-project {
+    color: var(--text-primary);
+}
+
+.case-next-row time {
     grid-column: 1;
     grid-row: 1;
     display: block;
@@ -559,7 +581,7 @@ body {
     line-height: 24px;
 }
 
-.case-next-project {
+.case-next-row .case-next-project {
     grid-column: 2;
     grid-row: 1;
     white-space: nowrap;
@@ -569,7 +591,7 @@ body {
     line-height: 24px;
 }
 
-.case-next-scope {
+.case-next-row .case-next-scope {
     grid-column: 3;
     grid-row: 1;
     min-width: 0;
@@ -582,7 +604,7 @@ body {
     line-height: 24px;
 }
 
-.case-next-arrow {
+.case-next-row .case-next-arrow {
     grid-column: 4;
     grid-row: 1;
     align-self: baseline;
@@ -1023,14 +1045,41 @@ html.homepage-scroll-locked body .layout {
 
     html.homepage-scroll-locked,
     html.homepage-scroll-locked body {
-        height: 100svh;
+        height: 100dvh;
+        min-height: 100dvh;
+        overflow: hidden;
     }
 
     html.homepage-scroll-locked body .layout {
-        height: 100svh;
-        min-height: 100svh;
-        align-content: center;
+        height: 100dvh;
+        min-height: 100dvh;
+        display: grid;
+        align-content: start;
+        grid-template-rows: auto auto minmax(0, 1fr) auto;
         padding-bottom: 0;
+    }
+
+    html.homepage-scroll-locked body .name,
+    html.homepage-scroll-locked body .theme-toggle {
+        grid-row: 1;
+    }
+
+    html.homepage-scroll-locked body .profile-summary {
+        grid-row: 2;
+    }
+
+    html.homepage-scroll-locked body .portfolio-section {
+        grid-row: 3;
+        min-height: 0;
+        margin-bottom: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        padding-bottom: 8px;
+    }
+
+    html.homepage-scroll-locked body .links {
+        grid-row: 4;
+        align-self: end;
     }
 
     .wrapper {
@@ -1312,58 +1361,10 @@ html.homepage-scroll-locked body .layout {
                                 <p>Mihai insisted on paying for the work even though I had not asked. It was the first time a creator I followed treated my design as a commission. The mark is still on the channel eight years later, in a different colorway.</p>
                             </div>
                     </article>
-                    <nav class="case-next" aria-label="Suggested projects" data-case-slug="ml7">
+                    <nav class="case-next" aria-label="All projects">
                         <h2 class="case-next-heading">Read next</h2>
                         <div class="case-next-list">
-                            <a class="case-next-link" href="/n0thing">
-                                <time datetime="2019-11-15">
-                                    <span class="case-next-date-full">2019-11-15</span>
-                                    <span class="case-next-date-year">2019</span>
-                                </time>
-                                <span class="case-next-project">n0thing</span>
-                                <span class="case-next-scope">Wordmark</span>
-                                <span class="case-next-arrow" aria-hidden="true">
-                                    <span class="case-next-view">View</span>
-                                    →
-                                </span>
-                            </a>
-                            <a class="case-next-link" href="/t3">
-                                <time datetime="2026-07-25">
-                                    <span class="case-next-date-full">2026-07-25</span>
-                                    <span class="case-next-date-year">2026</span>
-                                </time>
-                                <span class="case-next-project">T3</span>
-                                <span class="case-next-scope">Logomark</span>
-                                <span class="case-next-arrow" aria-hidden="true">
-                                    <span class="case-next-view">View</span>
-                                    →
-                                </span>
-                            </a>
-                            <a class="case-next-link" href="/ben-davis">
-                                <time datetime="2026-07-07">
-                                    <span class="case-next-date-full">2026-07-07</span>
-                                    <span class="case-next-date-year">2026</span>
-                                </time>
-                                <span class="case-next-project">Ben Davis</span>
-                                <span class="case-next-scope">Logomark</span>
-                                <span class="case-next-arrow" aria-hidden="true">
-                                    <span class="case-next-view">View</span>
-                                    →
-                                </span>
-                            </a>
-                            <a class="case-next-link" hidden href="/curves">
-                                <time datetime="2019-01-25">
-                                    <span class="case-next-date-full">2019-01-25</span>
-                                    <span class="case-next-date-year">2019</span>
-                                </time>
-                                <span class="case-next-project">CURVES</span>
-                                <span class="case-next-scope">Typeface</span>
-                                <span class="case-next-arrow" aria-hidden="true">
-                                    <span class="case-next-view">View</span>
-                                    →
-                                </span>
-                            </a>
-                            <a class="case-next-link" hidden href="/site">
+                            <a class="case-next-row case-next-link" href="/site">
                                 <time datetime="2026-07-15">
                                     <span class="case-next-date-full">2026-07-15</span>
                                     <span class="case-next-date-year">2026</span>
@@ -1375,7 +1376,31 @@ html.homepage-scroll-locked body .layout {
                                     →
                                 </span>
                             </a>
-                            <a class="case-next-link" hidden href="/heph">
+                            <a class="case-next-row case-next-link" href="/t3">
+                                <time datetime="2026-07-25">
+                                    <span class="case-next-date-full">2026-07-25</span>
+                                    <span class="case-next-date-year">2026</span>
+                                </time>
+                                <span class="case-next-project">T3</span>
+                                <span class="case-next-scope">Logomark</span>
+                                <span class="case-next-arrow" aria-hidden="true">
+                                    <span class="case-next-view">View</span>
+                                    →
+                                </span>
+                            </a>
+                            <a class="case-next-row case-next-link" href="/ben-davis">
+                                <time datetime="2026-07-07">
+                                    <span class="case-next-date-full">2026-07-07</span>
+                                    <span class="case-next-date-year">2026</span>
+                                </time>
+                                <span class="case-next-project">Ben Davis</span>
+                                <span class="case-next-scope">Logomark</span>
+                                <span class="case-next-arrow" aria-hidden="true">
+                                    <span class="case-next-view">View</span>
+                                    →
+                                </span>
+                            </a>
+                            <a class="case-next-row case-next-link" href="/heph">
                                 <time datetime="2026-04-21">
                                     <span class="case-next-date-full">2026-04-21</span>
                                     <span class="case-next-date-year">2026</span>
@@ -1387,7 +1412,7 @@ html.homepage-scroll-locked body .layout {
                                     →
                                 </span>
                             </a>
-                            <a class="case-next-link" hidden href="/filen">
+                            <a class="case-next-row case-next-link" href="/filen">
                                 <time datetime="2026-01-14">
                                     <span class="case-next-date-full">2026-01-14</span>
                                     <span class="case-next-date-year">2026</span>
@@ -1399,6 +1424,39 @@ html.homepage-scroll-locked body .layout {
                                     →
                                 </span>
                             </a>
+                            <a class="case-next-row case-next-link" href="/n0thing">
+                                <time datetime="2019-11-15">
+                                    <span class="case-next-date-full">2019-11-15</span>
+                                    <span class="case-next-date-year">2019</span>
+                                </time>
+                                <span class="case-next-project">n0thing</span>
+                                <span class="case-next-scope">Wordmark</span>
+                                <span class="case-next-arrow" aria-hidden="true">
+                                    <span class="case-next-view">View</span>
+                                    →
+                                </span>
+                            </a>
+                            <a class="case-next-row case-next-link" href="/curves">
+                                <time datetime="2019-01-25">
+                                    <span class="case-next-date-full">2019-01-25</span>
+                                    <span class="case-next-date-year">2019</span>
+                                </time>
+                                <span class="case-next-project">CURVES</span>
+                                <span class="case-next-scope">Typeface</span>
+                                <span class="case-next-arrow" aria-hidden="true">
+                                    <span class="case-next-view">View</span>
+                                    →
+                                </span>
+                            </a>
+                            <div class="case-next-row case-next-current" aria-current="page">
+                                <time datetime="2018-11-13">
+                                    <span class="case-next-date-full">2018-11-13</span>
+                                    <span class="case-next-date-year">2018</span>
+                                </time>
+                                <span class="case-next-project">mL7</span>
+                                <span class="case-next-scope">Wordmark</span>
+                                <span class="case-next-arrow" aria-hidden="true"></span>
+                            </div>
                         </div>
                     </nav>
                 </main>
@@ -1504,6 +1562,12 @@ function updateHomepageLock(preserveMobileState = false) {
     if (!body || body.classList.contains("case-page")) {
         root.classList.remove("homepage-scroll-locked");
         homepageLockState = "uninitialized";
+        return;
+    }
+
+    if (isMobile) {
+        root.classList.add("homepage-scroll-locked");
+        homepageLockState = "locked";
         return;
     }
 
@@ -1781,65 +1845,6 @@ themeToggle.addEventListener("click", () => {
     themeToggleUsedPointer = false;
     announce(`Switched to ${nextTheme} mode`);
 });
-
-const caseNext = document.querySelector(".case-next");
-
-if (caseNext) {
-    const links = [...caseNext.querySelectorAll(".case-next-link")];
-    const currentSlug = caseNext.dataset.caseSlug;
-    const visitedKey = "gildrb:visited-cases";
-    let visited = [];
-
-    try {
-        const saved = JSON.parse(localStorage.getItem(visitedKey) || "[]");
-        if (Array.isArray(saved)) {
-            visited = saved.filter((slug) => typeof slug === "string");
-        }
-    } catch {
-        visited = [];
-    }
-
-    if (currentSlug && !visited.includes(currentSlug)) {
-        visited.push(currentSlug);
-    }
-
-    try {
-        localStorage.setItem(visitedKey, JSON.stringify(visited));
-    } catch {
-        visited = [];
-    }
-
-    const candidates = links.filter(
-        (link) => link.getAttribute("href") !== `/${currentSlug}`,
-    );
-    const unvisited = candidates.filter(
-        (link) => !visited.includes(link.getAttribute("href").slice(1)),
-    );
-    const alreadyVisited = candidates.filter((link) =>
-        visited.includes(link.getAttribute("href").slice(1)),
-    );
-    const prioritizeUnvisited = true;
-    const groups = prioritizeUnvisited
-        ? [unvisited, alreadyVisited]
-        : [alreadyVisited, unvisited];
-    const selected = [];
-
-    for (const group of groups) {
-        for (let index = group.length - 1; index > 0; index -= 1) {
-            const randomIndex = Math.floor(Math.random() * (index + 1));
-            [group[index], group[randomIndex]] = [
-                group[randomIndex],
-                group[index],
-            ];
-        }
-        selected.push(...group);
-    }
-
-    const visible = new Set(selected.slice(0, 3));
-    for (const link of links) {
-        link.hidden = !visible.has(link);
-    }
-}
 
 // Email copy functionality
 document.querySelectorAll(".email").forEach((email) => {
