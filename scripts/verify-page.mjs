@@ -1125,21 +1125,14 @@ const publicCopy = [
 ]
     .join("\n")
     .replace(/<[^>]+>/g, " ");
-const publicCopyForStyleChecks = publicCopy.replace(
-    /iteration\s+\u2014\s+not sold/g,
-    "iteration not sold",
-).replace(
-    /\s+\u2014\s+23,000 downloads, seven years on\./g,
-    " 23,000 downloads, seven years on.",
-);
 const stockAiPhrasePattern =
     /\b(?:delve|tapestry)\b|in today['’]s fast-paced world|crucial to note|ever-evolving landscape|certainly[!,].{0,20}here['’]s|sure[!,].{0,20}here['’]s|i['’]d be happy to/i;
 const stockContrastPattern =
     /\bnot (?:just|only)\b[^.!?]{0,160}\bbut(?: also)?\b/i;
 assert(
-    !publicCopyForStyleChecks.includes("\u2014") &&
-        !stockAiPhrasePattern.test(publicCopyForStyleChecks) &&
-        !stockContrastPattern.test(publicCopyForStyleChecks),
+    !publicCopy.includes("\u2014") &&
+        !stockAiPhrasePattern.test(publicCopy) &&
+        !stockContrastPattern.test(publicCopy),
     "Public copy and metadata must omit em dashes and stock AI phrasing.",
 );
 assert(

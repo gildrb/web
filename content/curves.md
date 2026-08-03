@@ -30,4 +30,4 @@ I released CURVES in early 2019 on [DaFont](https://www.dafont.com/curves.font),
 
 ![Specimen setting](media:curves-specimen)
 
-The rule that holds a headline together closes the counters too far at text sizes. It is a display face and it is used as one — 23,000 downloads, seven years on.
+The rule that holds a headline together closes the counters too far at text sizes. It is a display face and it is used as one: 23,000 downloads, seven years on.
