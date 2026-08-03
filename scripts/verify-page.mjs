@@ -176,18 +176,17 @@ for (const [slug, html] of Object.entries(casePages)) {
         title,
     }));
     assert(
-        suggestions.length === portfolioCases.length &&
-            (html.match(
-                new RegExp(
-                    `<a class="case-next-row case-next-link" href="/${slug}" aria-current="page">`,
-                ),
-            ) || []).length === 1 &&
+        suggestions.length === portfolioCases.length - 1 &&
+            !suggestions.some(({ slug: targetSlug }) => targetSlug === slug) &&
             suggestions.every(
                 ({ slug: targetSlug, date, title, scope, tag }, index) => {
                     const target = portfolioCases.find(
                         (portfolioCase) => portfolioCase.slug === targetSlug,
                     );
-                    const expectedTarget = portfolioCases[index];
+                    const expectedTargets = portfolioCases.filter(
+                        (portfolioCase) => portfolioCase.slug !== slug,
+                    );
+                    const expectedTarget = expectedTargets[index];
                     return (
                         expectedTarget?.slug === targetSlug &&
                         configuredCaseSlugs.has(targetSlug) &&
@@ -199,7 +198,7 @@ for (const [slug, html] of Object.entries(casePages)) {
                     );
                 },
             ),
-        `${slug} must expose every configured project once in homepage order, with no self-link.`,
+        `${slug} must expose every other configured project once in homepage order, without a self-link.`,
     );
 }
 assert(
@@ -1069,7 +1068,6 @@ const t3MediaSequence = [
     "gil-rodrigues-t3-mark-720.webp",
     "gil-rodrigues-t3-canvas-overview-480.webp",
     "gil-rodrigues-t3-canvas-sketches-720.webp",
-    "gil-rodrigues-t3-frame-grid-720.webp",
     "gil-rodrigues-t3-system-board-720.webp",
     "gil-rodrigues-t3-feedback-board-720.webp",
     "gil-rodrigues-t3-feedback-spacing-720.webp",

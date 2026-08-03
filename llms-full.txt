@@ -388,8 +388,6 @@ There are hundreds of drawings behind this mark. Most went up the day I drew the
 The T and the 3 want to be one figure instead of two characters standing next to each other. The crossbar of the T carries into the 3, so the pair shares a spine. Finding that meant testing how far the 3 could open, how much the terminals could shear, and how much of the T could go missing before the mark stopped reading as T3.
 
 ![Sketch passes on the canvas](media:t3-canvas-sketches)
-![Frame-by-frame variants](media:t3-frame-grid)
-
 ### Feedback in the open
 
 The first thing I posted was the system board. A mark that ships across a family has to be drawn where it gets used, so I built the cases out: the two logotypes, the iOS icon on its grid, the favicon ladder down to sixteen pixels, and the lockup on its clear-space frame. The angular version below is the one the server started calling the meat grinder.

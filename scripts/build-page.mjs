@@ -237,20 +237,23 @@ export async function buildPage({ write = true } = {}) {
             '                        <div class="case-next-list">',
             ...portfolioCases.flatMap(
                 ({ date, scope, slug: suggestionSlug, title }) => {
-                    const rowStart = `                            <a class="case-next-row case-next-link" href="/${suggestionSlug}"${suggestionSlug === slug ? ` aria-current="page"` : ""}>`;
+                    if (suggestionSlug === slug) {
+                        return [];
+                    }
+                    const rowStart = `                            <a class="case-next-row case-next-link" href="/${suggestionSlug}">`;
                     return [
-                    rowStart,
-                    `                                <time datetime="${date}">`,
-                    `                                    <span class="case-next-date-full">${date}</span>`,
-                    `                                    <span class="case-next-date-year">${date.slice(0, 4)}</span>`,
-                    "                                </time>",
-                    `                                <span class="case-next-project">${title}</span>`,
-                    `                                <span class="case-next-scope">${scope}</span>`,
-                    '                                <span class="case-next-arrow" aria-hidden="true">',
-                    '                                    <span class="case-next-view">View</span>',
-                    '                                    →',
-                    '                                </span>',
-                    '                            </a>',
+                        rowStart,
+                        `                                <time datetime="${date}">`,
+                        `                                    <span class="case-next-date-full">${date}</span>`,
+                        `                                    <span class="case-next-date-year">${date.slice(0, 4)}</span>`,
+                        "                                </time>",
+                        `                                <span class="case-next-project">${title}</span>`,
+                        `                                <span class="case-next-scope">${scope}</span>`,
+                        '                                <span class="case-next-arrow" aria-hidden="true">',
+                        '                                    <span class="case-next-view">View</span>',
+                        '                                    →',
+                        "                                </span>",
+                        "                            </a>",
                     ];
                 },
             ),
