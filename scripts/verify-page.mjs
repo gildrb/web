@@ -1062,7 +1062,7 @@ assert(
             'const isMobile = window.matchMedia("(max-width: 767px)").matches;',
         ) &&
         indexHtml.startsWith(
-            '<!doctype html>\n<html lang="en" class="homepage-scroll-locked">',
+            '<!doctype html>\n<html lang="en" class="homepage-scroll-locked homepage-first-paint-pending">',
         ) &&
         siteScript.includes(
             "document.querySelectorAll(\n                \".profile-summary, .portfolio-section, .links, .site-footer\",",
@@ -1084,7 +1084,7 @@ assert(
             'root.classList.add("homepage-scroll-locked");',
         ) &&
         siteScript.includes(
-            'window.addEventListener("load", updateMobileLayout);',
+            'window.addEventListener("load", () => {\n    updateHomepageDates();\n    updateMobileLayout();\n});',
         ),
     "Mobile homepage sections must preserve the requested order and compact spacing.",
 );
