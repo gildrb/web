@@ -313,9 +313,20 @@ for (const { slug, title, markdown, template } of caseSources) {
     const mediaCaptions = [
         ...markdown.matchAll(/^!\[(.*)\]\(media:[a-z0-9-]+\)$/gm),
     ].map(([, caption]) => caption.trim());
+    const allowedLongMediaCaptions =
+        slug === "t3"
+            ? new Set([
+                  "The application board posted for feedback",
+                  "Feedback on the spacing between the glyphs",
+                  "Nine frames and the replies they drew",
+              ])
+            : new Set();
     assert(
         mediaCaptions.every(
-            (caption) => caption && caption.split(/\s+/).length <= 5,
+            (caption) =>
+                caption &&
+                (caption.split(/\s+/).length <= 5 ||
+                    allowedLongMediaCaptions.has(caption)),
         ),
         `content/${slug}.md media captions must contain one to five words.`,
     );
@@ -1055,6 +1066,9 @@ const t3MediaSequence = [
     "gil-rodrigues-t3-canvas-overview-480.webp",
     "gil-rodrigues-t3-canvas-sketches-720.webp",
     "gil-rodrigues-t3-frame-grid-720.webp",
+    "gil-rodrigues-t3-feedback-board-720.webp",
+    "gil-rodrigues-t3-feedback-spacing-720.webp",
+    "gil-rodrigues-t3-feedback-frames-720.webp",
     "gil-rodrigues-t3-weight-tests-720.webp",
     "gil-rodrigues-t3-ghost-grid-720.webp",
     "gil-rodrigues-t3-canvas-color-720.webp",
