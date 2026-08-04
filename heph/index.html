@@ -86,7 +86,7 @@
 }
 
 
-:is(a[href],
+:is(a[href]:not(.heph-demo-close-link),
   button,
   input:not([type="hidden"]),
   select,
@@ -452,6 +452,7 @@ body {
     left: 4px;
     display: none;
 }
+
 
 .heph-demo-zoom-link:focus-visible,
 .heph-demo-close-link:focus-visible {

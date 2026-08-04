@@ -832,6 +832,12 @@ assert(
     "The Heph article must replace the homepage zoom interaction with a red window control that returns to the portfolio.",
 );
 assert(
+    baseStyles.includes(
+        ":is(a[href]:not(.heph-demo-close-link),\n  button,",
+    ),
+    "The global active nudge must not move the Heph close control.",
+);
+assert(
     hephDemoStyles.includes(
         ".heph-demo-evidence-item:hover,\n    .heph-demo-evidence-item.is-active:hover,\n    .heph-demo-citation-button:hover {\n        color: var(--text-primary);",
     ),
