@@ -1,6 +1,7 @@
 # The site you are on is the case study
 
 This repository is both the portfolio and its proof. Authored Markdown, shared HTML partials, route CSS and JavaScript, media, generated pages, machine-readable mirrors, and verification scripts live together so a source change can be rebuilt and checked from one checkout.
+You can read the [source code on GitHub](https://github.com/gildrb/web), including the templates, scripts, styles, media, and generated output.
 
 ### Built from source
 

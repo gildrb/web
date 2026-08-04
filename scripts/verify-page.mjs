@@ -833,6 +833,12 @@ assert(
 );
 assert(
     hephDemoStyles.includes(
+        ".heph-demo-frame .heph-demo-close-link:active {\n    top: 4px;",
+    ),
+    "The Heph close control must not move on activation.",
+);
+assert(
+    hephDemoStyles.includes(
         ".heph-demo-evidence-item:hover,\n    .heph-demo-evidence-item.is-active:hover,\n    .heph-demo-citation-button:hover {\n        color: var(--text-primary);",
     ),
     "Interactive evidence excerpts and citations must use the primary hover color, including the active right-side excerpt.",
