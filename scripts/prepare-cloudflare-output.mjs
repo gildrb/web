@@ -1,30 +1,49 @@
-import { cp, mkdir, readFile, readdir, rm } from "node:fs/promises";
+import { cp, mkdir, readFile, rm } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { siteConfig } from "./site-config.mjs";
+
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const output = path.join(root, "public");
-const excludedEntries = new Set([
-    ".git",
-    ".github",
-    "functions",
-    "node_modules",
-    "public",
-    "scripts",
-    "package.json",
-    "package-lock.json",
+const publishedEntries = new Set([
+    ".well-known",
+    "36729bcbe2a8c2d375ce91a993cbc5d4.txt",
+    "404.html",
+    "_headers",
+    "_redirects",
+    "_routes.json",
+    "all",
+    "api-docs.md",
+    "auth.md",
+    "content",
+    "favicon.svg",
+    "feed.xml",
+    "fonts",
+    "humans.txt",
+    "images",
+    "index.html",
+    "index.html.md",
+    "llms-full.txt",
+    "llms.txt",
+    "openapi.json",
+    "preview-favicon.svg",
+    "profile.json",
+    "robots.txt",
+    "sitemap.xml",
+    ...siteConfig.caseStudies.map(({ slug }) => slug),
 ]);
 
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
 
-for (const entry of await readdir(root, { withFileTypes: true })) {
-    if (excludedEntries.has(entry.name)) continue;
-
-    await cp(path.join(root, entry.name), path.join(output, entry.name), {
-        recursive: true,
-    });
-}
+await Promise.all(
+    [...publishedEntries].map((entry) =>
+        cp(path.join(root, entry), path.join(output, entry), {
+            recursive: true,
+        }),
+    ),
+);
 
 const homepage = await readFile(path.join(output, "index.html"), "utf8");
 const homepageByteBudget = 128 * 1024;
@@ -36,7 +55,7 @@ if (Buffer.byteLength(homepage) > homepageByteBudget) {
 const requiredFragments = [
     'window.localStorage.getItem("theme")',
     "font-display:optional",
-    "data-cfasync=\"false\"",
+    'data-cfasync="false"',
     "<!--email_off-->",
 ];
 const missingFragments = requiredFragments.filter(
@@ -68,7 +87,7 @@ const rejectedFragments = [
     "font-display:swap",
     "homepage-first-paint-pending",
     'document.fonts.load(\'400 16px "Inter"\')',
-    "IoskeleyMono-Regular.woff2\" as=\"font",
+    'IoskeleyMono-Regular.woff2" as="font',
     "gildrb-homepage-entry-seen",
     'window.addEventListener("beforeunload", prepareHomepageExit',
     'window.addEventListener("pagehide", prepareHomepageExit',
@@ -86,5 +105,5 @@ if (presentRejectedFragments.length > 0) {
 }
 
 console.log(
-    "Prepared performance-first Cloudflare Pages output without render gates or unused font preloads.",
+    `Prepared ${publishedEntries.size} allowlisted entries for Cloudflare Pages without render gates or unused font preloads.`,
 );
