@@ -375,7 +375,7 @@ Markdown source: https://gildrb.com/content/t3.md
 
 # A logomark system for T3
 
-T3 ships more than one product, so the mark had to hold as [`T3.chat`](https://t3.chat/), as [`T3.code`](https://t3.codes/), and on its own in a favicon or an app grid. Nobody commissioned it. I drew it between March and May 2026 and posted the versions as they came, first in the T3 Discord and then as a [thread on X](https://x.com/gilrdb/status/2080990301208952994). The community, [@r_marked](https://x.com/r_marked), and [@theo](https://x.com/theo) told me which ones were working.
+T3 ships more than one product, so the mark had to hold as [t3.chat](https://t3.chat/), as [t3.code](https://t3.codes/), and on its own in a favicon or an app grid. Nobody commissioned it. I drew it between March and May 2026 and posted the versions as they came, first in the T3 Discord and then as a [thread on X](https://x.com/gilrdb/status/2080990301208952994). The community, [@r_marked](https://x.com/r_marked), and [@theo](https://x.com/theo) told me which ones were working.
 
 ![The T3 logomark](media:t3-mark)
 
