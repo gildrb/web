@@ -146,9 +146,6 @@ export async function buildPage({ write = true } = {}) {
         "src/styles",
         siteConfig.homepage.styles,
     );
-    const analyticsBootstrap = (
-        await readText(`src/scripts/${siteConfig.analyticsScript}`)
-    ).trimEnd();
     const siteScript = await readBundle(
         "src/scripts",
         siteConfig.homepage.scripts,
@@ -203,11 +200,6 @@ export async function buildPage({ write = true } = {}) {
     );
     indexHtml = replaceToken(
         indexHtml,
-        "<!-- @inline-js:analytics-bootstrap -->",
-        analyticsBootstrap,
-    );
-    indexHtml = replaceToken(
-        indexHtml,
         "<!-- @inline-js:site -->",
         siteScript,
     );
@@ -215,7 +207,10 @@ export async function buildPage({ write = true } = {}) {
     if (indexHtml.includes("<!-- @inline-")) {
         throw new Error("Generated HTML still contains inline tokens.");
     }
-
+    indexHtml = indexHtml.replaceAll(
+        "<script>",
+        '<script data-cfasync="false">',
+    );
     const portfolioCases = [
         ...indexHtml.matchAll(
             /<a\s+class="portfolio-card-link"\s+href="\/([^"?]+)"[\s\S]*?<time[^>]+datetime="([^"]+)"[\s\S]*?<span\s+class="portfolio-card-title"[^>]*>([^<]+)<\/span\s*>[\s\S]*?<span\s+class="portfolio-card-scope">([^<]+)<\/span>/g,
@@ -285,11 +280,6 @@ export async function buildPage({ write = true } = {}) {
         );
         html = replaceToken(
             html,
-            "<!-- @inline-js:analytics-bootstrap -->",
-            analyticsBootstrap,
-        );
-        html = replaceToken(
-            html,
             "<!-- @inline-js:case -->",
             caseScripts[slug],
         );
@@ -300,7 +290,7 @@ export async function buildPage({ write = true } = {}) {
             );
         }
 
-        return html;
+        return html.replaceAll("<script>", '<script data-cfasync="false">');
     }
 
     const casePages = Object.fromEntries(
@@ -338,16 +328,12 @@ export async function buildPage({ write = true } = {}) {
         allCases.join("\n"),
     );
     allPage = replaceToken(allPage, "<!-- @inline-css:all -->", allStyles);
-    allPage = replaceToken(
-        allPage,
-        "<!-- @inline-js:analytics-bootstrap -->",
-        analyticsBootstrap,
-    );
     allPage = replaceToken(allPage, "<!-- @inline-js:all -->", allScript);
 
     if (allPage.includes("<!-- @inline-") || allPage.includes("<!-- @all-")) {
         throw new Error("Generated all-projects page still contains build tokens.");
     }
+    allPage = allPage.replaceAll("<script>", '<script data-cfasync="false">');
 
     if (write) {
         await writeFile(path.join(root, "index.html"), indexHtml);

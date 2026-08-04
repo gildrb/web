@@ -1,7 +1,8 @@
 .DS_Store
 AGENTS.md
 node_modules/
-.vercel/
+public/
+.wrangler/
 
 .env
 .env.*

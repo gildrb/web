@@ -1,0 +1,30 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json",
+  "name": "com.gildrb/portfolio",
+  "title": "Gil Rodrigues Portfolio",
+  "version": "1.0.0",
+  "description": "Read-only discovery and retrieval for the public portfolio pages on gildrb.com.",
+  "websiteUrl": "https://gildrb.com/",
+  "serverInfo": {
+    "name": "com.gildrb/portfolio",
+    "version": "1.0.0"
+  },
+  "transport": {
+    "type": "streamable-http",
+    "endpoint": "https://gildrb.com/mcp"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://gildrb.com/mcp",
+      "supportedProtocolVersions": ["2025-11-25", "2025-06-18"]
+    }
+  ],
+  "capabilities": {
+    "tools": {}
+  },
+  "repository": {
+    "source": "github",
+    "url": "https://github.com/gildrb/web"
+  }
+}

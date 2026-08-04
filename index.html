@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="homepage-scroll-locked homepage-first-paint-pending">
+<html lang="en" class="homepage-scroll-locked">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -159,8 +159,8 @@
             type="image/svg+xml"
             href="/favicon.svg"
         />
-        <script>
-            if (window.location.hostname.endsWith(".vercel.app")) {
+        <script data-cfasync="false">
+            if (window.location.hostname.endsWith(".pages.dev")) {
                 document.getElementById("site-favicon").href =
                     "/preview-favicon.svg";
             }
@@ -1112,13 +1112,6 @@
             type="font/woff2"
             crossorigin
         />
-        <link
-            rel="preload"
-            href="fonts/IoskeleyMono-Regular.woff2"
-            as="font"
-            type="font/woff2"
-            crossorigin
-        />
         <style>
 @font-face{font-family:"Inter";font-style:normal;font-weight:400 600;font-display:optional;src:url("/fonts/inter-variable-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+21A9,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Ioskeley Mono";font-style:normal;font-weight:400;font-display:optional;src:url("/fonts/IoskeleyMono-Regular.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2199,U+21A9,U+2212,U+2215,U+FEFF,U+FFFD}
@@ -1471,188 +1464,6 @@ body {
 .theme-toggle:focus-visible {
   outline: none;
   box-shadow: 0 0 0 1px var(--text-primary);
-}
-
-@keyframes homepage-enter {
-    from {
-        opacity: 0;
-        transform: translateY(-4px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-html.homepage-first-paint-pending body:not(.case-page) {
-    visibility: hidden;
-}
-
-/* Keep identity and positioning content immediately visible. */
-.name,
-.profile-summary {
-    opacity: 1;
-    transform: none;
-}
-
-/*
- * Animate only after fonts, mobile columns, theme, and viewport locking have
- * been resolved. Links begins when the final table cell starts. Contact begins
- * when the final profile link starts, and each contact method follows one
- * stagger at a time.
- */
-html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
-    .links
-    > * {
-    animation: homepage-enter 700ms ease-out both;
-}
-
-html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
-    .links
-    > .links-label:first-child {
-    animation-delay: 720ms;
-}
-
-html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
-    .links
-    > .external-link:nth-child(2) {
-    animation-delay: 840ms;
-}
-
-html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
-    .links
-    > .external-link:nth-child(3) {
-    animation-delay: 960ms;
-}
-
-html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
-    .links
-    > .external-link:nth-child(4) {
-    animation-delay: 1080ms;
-}
-
-html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
-    .links
-    > .external-link:nth-child(5) {
-    animation-delay: 1200ms;
-}
-
-html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
-    .links
-    > .external-link:nth-child(6) {
-    animation-delay: 1320ms;
-}
-
-html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
-    .links
-    > .contact-label {
-    animation-delay: 1320ms;
-}
-
-html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
-    .links
-    > .email {
-    animation-delay: 1440ms;
-}
-
-html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
-    .links
-    > .contact-label
-    ~ .external-link {
-    animation-delay: 1560ms;
-}
-
-/*
- * Reveal the table as a diagonal wave. Moving one column right or one row
- * down adds the same 80ms delay, so the words travel toward the bottom right.
- */
-html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
-    .portfolio-table-header
-    > *,
-html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
-    .portfolio-list
-    > .portfolio-card-link
-    > * {
-    animation: homepage-enter 1s ease-out both;
-    animation-delay: calc(var(--row-delay, 80ms) + var(--column-delay, 0ms));
-}
-
-.portfolio-table-header > :nth-child(1),
-.portfolio-list > .portfolio-card-link > :nth-child(1) {
-    --column-delay: 0ms;
-}
-
-.portfolio-table-header > :nth-child(2),
-.portfolio-list > .portfolio-card-link > :nth-child(2) {
-    --column-delay: 80ms;
-}
-
-.portfolio-table-header > :nth-child(3),
-.portfolio-list > .portfolio-card-link > :nth-child(3) {
-    --column-delay: 160ms;
-}
-
-.portfolio-table-header > :nth-child(4),
-.portfolio-list > .portfolio-card-link > :nth-child(4) {
-    --column-delay: 240ms;
-}
-
-.portfolio-list > .portfolio-card-link:nth-child(1) {
-    --row-delay: 160ms;
-}
-
-.portfolio-list > .portfolio-card-link:nth-child(2) {
-    --row-delay: 240ms;
-}
-
-.portfolio-list > .portfolio-card-link:nth-child(3) {
-    --row-delay: 320ms;
-}
-
-.portfolio-list > .portfolio-card-link:nth-child(4) {
-    --row-delay: 400ms;
-}
-
-.portfolio-list > .portfolio-card-link:nth-child(5) {
-    --row-delay: 480ms;
-}
-
-.portfolio-list > .portfolio-card-link:nth-child(6) {
-    --row-delay: 560ms;
-}
-
-.portfolio-list > .portfolio-card-link:nth-child(7) {
-    --row-delay: 640ms;
-}
-
-.portfolio-list > .portfolio-card-link:nth-child(8) {
-    --row-delay: 720ms;
-}
-
-.portfolio-list > .portfolio-card-link:nth-child(9) {
-    --row-delay: 800ms;
-}
-
-.portfolio-list > .portfolio-card-link:nth-child(10) {
-    --row-delay: 880ms;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
-        .links
-        > *,
-    html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
-        .portfolio-table-header
-        > *,
-    html[data-homepage-first-paint-ready]:not([data-homepage-entry-complete])
-        .portfolio-list
-        > .portfolio-card-link
-        > * {
-        animation: none;
-        opacity: 1;
-        transform: none;
-    }
 }
 
 .portfolio-scroll-frame {
@@ -2556,13 +2367,6 @@ body:not(.case-page) .content {
     }
 }
         </style>
-        <noscript>
-            <style>
-                html.homepage-first-paint-pending body:not(.case-page) {
-                    visibility: visible;
-                }
-            </style>
-        </noscript>
     </head>
     <body id="top">
         <div
@@ -2651,7 +2455,9 @@ body:not(.case-page) .content {
                         <a class="external-link" href="https://letterboxd.com/gildrb/" itemprop="sameAs" target="_blank" rel="me noopener noreferrer"><span data-nosnippet>Letterboxd</span></a>
                         <a class="external-link" href="https://www.linkedin.com/in/gildrb/" itemprop="sameAs" target="_blank" rel="me noopener noreferrer"><span data-nosnippet>LinkedIn</span></a>
                         <p class="links-label contact-label"><span data-nosnippet>Contact</span></p>
+                        <!--email_off-->
                         <button class="email" type="button" aria-label="Copy hi@gildrb.com"><span data-nosnippet>hi@gildrb.com</span></button>
+                        <!--/email_off-->
                         <a class="external-link" href="https://signal.me/#eu/KlFnTOEoXJTxUNhl9y4U4-QzunoZj6eX2BrkGYibTNUmKw8OszhNgaKd-aoseeUZ" target="_blank" rel="noopener noreferrer"><span data-nosnippet>Signal</span></a>
                         <a class="external-link" href="https://x.com/gilrdb" target="_blank" rel="noopener noreferrer"><span data-nosnippet>X</span></a>
                     </nav>
@@ -2744,7 +2550,6 @@ body:not(.case-page) .content {
                         <a
                             class="portfolio-card-link"
                             href="/site"
-                            aria-label="Read the gildrb.com case study"
                         >
                             <time id="portfolio-site-date" datetime="2026-07-15">
                                 <span class="portfolio-date-full">2026-07-15</span>
@@ -2764,7 +2569,6 @@ body:not(.case-page) .content {
                         <a
                             class="portfolio-card-link"
                             href="/t3"
-                            aria-label="Read the T3 logomark case study"
                         >
                             <time datetime="2026-07-25">
                                 <span class="portfolio-date-full">2026-07-25</span>
@@ -2784,7 +2588,6 @@ body:not(.case-page) .content {
                         <a
                             class="portfolio-card-link"
                             href="/ben-davis"
-                            aria-label="Read the Ben Davis brandmark case study"
                         >
                             <time datetime="2026-07-07">
                                 <span class="portfolio-date-full">2026-07-07</span>
@@ -2804,7 +2607,6 @@ body:not(.case-page) .content {
                         <a
                             class="portfolio-card-link"
                             href="/heph"
-                            aria-label="Read the Heph local document agent case study"
                         >
                             <time datetime="2026-04-21">
                                 <span class="portfolio-date-full">2026-04-21</span>
@@ -2824,7 +2626,6 @@ body:not(.case-page) .content {
                         <a
                             class="portfolio-card-link"
                             href="/filen"
-                            aria-label="Read the Filen identity system case study"
                         >
                             <time datetime="2026-01-14">
                                 <span class="portfolio-date-full">2026-01-14</span>
@@ -2844,7 +2645,6 @@ body:not(.case-page) .content {
                         <a
                             class="portfolio-card-link"
                             href="/n0thing"
-                            aria-label="Read the n0thing case study"
                         >
                             <time datetime="2019-11-15">
                                 <span class="portfolio-date-full">2019-11-15</span>
@@ -2864,7 +2664,6 @@ body:not(.case-page) .content {
                         <a
                             class="portfolio-card-link"
                             href="/curves"
-                            aria-label="Read the CURVES typeface case study"
                         >
                             <time datetime="2019-01-25">
                                 <span class="portfolio-date-full">2019-01-25</span>
@@ -2884,7 +2683,6 @@ body:not(.case-page) .content {
                         <a
                             class="portfolio-card-link"
                             href="/ml7"
-                            aria-label="Read the mL7 case study"
                         >
                             <time datetime="2018-11-13">
                                 <span class="portfolio-date-full">2018-11-13</span>
@@ -2937,28 +2735,7 @@ body:not(.case-page) .content {
                 </main>
             </div>
         </div>
-
-        <script>
-window.va =
-    window.va ||
-    function () {
-        (window.vaq = window.vaq || []).push(arguments);
-    };
-
-window.si =
-    window.si ||
-    function () {
-        (window.siq = window.siq || []).push(arguments);
-    };
-        </script>
-        <script defer src="/_vercel/insights/script.js"></script>
-        <script
-            defer
-            src="/_vercel/speed-insights/script.js"
-            data-route="/"
-            data-path="/"
-        ></script>
-        <script>
+        <script data-cfasync="false">
 const srOnly = document.querySelector(".sr-only");
 const themeToggle = document.querySelector(".theme-toggle");
 const themePreference = window.matchMedia(
@@ -3150,31 +2927,16 @@ if ("ResizeObserver" in window) {
     mobileLayoutTargets.forEach((target) => updateOnResize.observe(target));
 }
 
-async function prepareHomepageFirstPaint() {
-    const root = document.documentElement;
+function prepareHomepageFirstPaint() {
     const body = document.body;
 
-    if (!body) {
-        root.classList.remove("homepage-first-paint-pending");
-        return;
-    }
-
-    updateHomepageDates();
-    updateMobileLayout();
-
-    if (document.fonts?.load) {
-        try {
-            await document.fonts.load('400 16px "Inter"');
-        } catch {
-            // Continue with the metric-compatible system fallback.
-        }
-    }
+    if (!body) return;
 
     updateHomepageDates();
     updateMobileLayout();
 }
 
-window.homepageFirstPaintReady = prepareHomepageFirstPaint();
+prepareHomepageFirstPaint();
 
 window.addEventListener("load", () => {
     updateHomepageDates();
@@ -3257,49 +3019,6 @@ function announce(message) {
         srOnly.textContent = "";
     }, 1000);
 }
-
-const homepageEntryRoot = document.documentElement;
-const finalHomepageEntryElement = document.querySelector(
-    ".links > .contact-label ~ .external-link:last-child",
-);
-let homepageEntryFallback;
-
-function finishHomepageEntry() {
-    homepageEntryRoot.dataset.homepageEntryComplete = "true";
-    window.clearTimeout(homepageEntryFallback);
-}
-
-function startHomepageEntry() {
-    const reducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (!reducedMotion) {
-        finalHomepageEntryElement?.addEventListener(
-            "animationend",
-            (event) => {
-                if (event.animationName === "homepage-enter") {
-                    finishHomepageEntry();
-                }
-            },
-            { once: true },
-        );
-    }
-
-    homepageEntryRoot.dataset.homepageFirstPaintReady = "true";
-    homepageEntryRoot.classList.remove("homepage-first-paint-pending");
-
-    if (reducedMotion) {
-        finishHomepageEntry();
-        return;
-    }
-
-    homepageEntryFallback = window.setTimeout(finishHomepageEntry, 2800);
-}
-
-Promise.resolve(window.homepageFirstPaintReady)
-    .catch(() => undefined)
-    .then(startHomepageEntry);
 
 const portfolioSortButtons = document.querySelectorAll(
     ".portfolio-sort-button",
@@ -3649,6 +3368,85 @@ document.addEventListener("keydown", function (e) {
 
     arrowNavigationItems[nextIndex].focus();
 });
+
+const webMcpPages = Object.freeze([
+	"site",
+	"t3",
+	"ben-davis",
+	"heph",
+	"filen",
+	"n0thing",
+	"curves",
+	"ml7",
+]);
+
+const webMcpTools = [
+	{
+		name: "list_portfolio_pages",
+		title: "List portfolio pages",
+		description:
+			"List Gil Rodrigues's public portfolio pages and Markdown sources.",
+		inputSchema: {
+			type: "object",
+			properties: {},
+			additionalProperties: false,
+		},
+		annotations: { readOnlyHint: true, untrustedContentHint: false },
+		execute: async () => ({
+			pages: webMcpPages.map((slug) => ({
+				slug,
+				url: new URL(`/${slug}`, window.location.origin).href,
+				markdown: new URL(`/content/${slug}.md`, window.location.origin).href,
+			})),
+		}),
+	},
+	{
+		name: "open_portfolio_page",
+		title: "Open a portfolio page",
+		description:
+			"Open a selected public portfolio case study in the current tab.",
+		inputSchema: {
+			type: "object",
+			properties: {
+				slug: {
+					type: "string",
+					enum: webMcpPages,
+					description: "The portfolio page to open.",
+				},
+			},
+			required: ["slug"],
+			additionalProperties: false,
+		},
+		annotations: { readOnlyHint: false, untrustedContentHint: false },
+		execute: async ({ slug }) => {
+			if (!webMcpPages.includes(slug)) {
+				throw new TypeError(`Unknown portfolio slug: ${String(slug)}`);
+			}
+			const url = new URL(`/${slug}`, window.location.origin);
+			window.location.assign(url);
+			return { opened: url.href };
+		},
+	},
+];
+
+const webMcpContext = navigator.modelContext ?? document.modelContext;
+if (typeof webMcpContext?.registerTool === "function") {
+	const webMcpAbortController = new AbortController();
+	window.addEventListener("pagehide", () => webMcpAbortController.abort(), {
+		once: true,
+	});
+	Promise.all(
+		webMcpTools.map((tool) =>
+			webMcpContext.registerTool(tool, {
+				signal: webMcpAbortController.signal,
+			}),
+		),
+	).catch(() => {
+		// WebMCP is experimental; the page remains fully usable if registration fails.
+	});
+} else if (typeof navigator.modelContext?.provideContext === "function") {
+	navigator.modelContext.provideContext({ tools: webMcpTools });
+}
         </script>
     </body>
 </html>

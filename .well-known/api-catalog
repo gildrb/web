@@ -1,0 +1,46 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://gildrb.com/api/profile",
+      "service-desc": [
+        {
+          "href": "https://gildrb.com/openapi.json",
+          "type": "application/vnd.oai.openapi+json;version=3.1"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://gildrb.com/api-docs.md",
+          "type": "text/markdown"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://gildrb.com/api/status",
+          "type": "application/json"
+        }
+      ]
+    },
+    {
+      "anchor": "https://gildrb.com/mcp",
+      "service-desc": [
+        {
+          "href": "https://gildrb.com/openapi.json",
+          "type": "application/vnd.oai.openapi+json;version=3.1"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://gildrb.com/api-docs.md",
+          "type": "text/markdown"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://gildrb.com/api/status",
+          "type": "application/json"
+        }
+      ]
+    }
+  ]
+}

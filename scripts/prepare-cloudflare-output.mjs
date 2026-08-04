@@ -7,13 +7,12 @@ const output = path.join(root, "public");
 const excludedEntries = new Set([
     ".git",
     ".github",
-    ".vercel",
+    "functions",
     "node_modules",
     "public",
     "scripts",
     "package.json",
     "package-lock.json",
-    "vercel.json",
 ]);
 
 await rm(output, { recursive: true, force: true });
@@ -28,24 +27,17 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
 }
 
 const homepage = await readFile(path.join(output, "index.html"), "utf8");
+const homepageByteBudget = 128 * 1024;
+if (Buffer.byteLength(homepage) > homepageByteBudget) {
+    throw new Error(
+        `Exported homepage exceeds its ${homepageByteBudget}-byte uncompressed budget.`,
+    );
+}
 const requiredFragments = [
-    "@keyframes homepage-enter",
-    "homepage-first-paint-pending",
-    "data-homepage-first-paint-ready",
-    "data-homepage-entry-complete",
     'window.localStorage.getItem("theme")',
     "font-display:optional",
-    "window.homepageFirstPaintReady = prepareHomepageFirstPaint()",
-    'document.fonts.load(\'400 16px "Inter"\')',
-    "Promise.resolve(window.homepageFirstPaintReady)",
-    'document.documentElement.dataset.homepageEntryComplete = "true"',
-    'event.animationName === "homepage-enter"',
-    "window.setTimeout(finishHomepageEntry, 2800)",
-    "animation: homepage-enter 700ms ease-out both",
-    "animation-delay: 720ms",
-    "animation-delay: 1320ms",
-    "animation-delay: 1440ms",
-    "animation-delay: 1560ms",
+    "data-cfasync=\"false\"",
+    "<!--email_off-->",
 ];
 const missingFragments = requiredFragments.filter(
     (fragment) => !homepage.includes(fragment),
@@ -74,6 +66,9 @@ if (
 
 const rejectedFragments = [
     "font-display:swap",
+    "homepage-first-paint-pending",
+    'document.fonts.load(\'400 16px "Inter"\')',
+    "IoskeleyMono-Regular.woff2\" as=\"font",
     "gildrb-homepage-entry-seen",
     'window.addEventListener("beforeunload", prepareHomepageExit',
     'window.addEventListener("pagehide", prepareHomepageExit',
@@ -91,5 +86,5 @@ if (presentRejectedFragments.length > 0) {
 }
 
 console.log(
-    "Prepared Vercel output with theme, font, and layout stabilized before entry motion.",
+    "Prepared performance-first Cloudflare Pages output without render gates or unused font preloads.",
 );

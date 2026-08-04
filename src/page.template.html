@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="homepage-scroll-locked homepage-first-paint-pending">
+<html lang="en" class="homepage-scroll-locked">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -160,7 +160,7 @@
             href="/favicon.svg"
         />
         <script>
-            if (window.location.hostname.endsWith(".vercel.app")) {
+            if (window.location.hostname.endsWith(".pages.dev")) {
                 document.getElementById("site-favicon").href =
                     "/preview-favicon.svg";
             }
@@ -184,23 +184,9 @@
             type="font/woff2"
             crossorigin
         />
-        <link
-            rel="preload"
-            href="fonts/IoskeleyMono-Regular.woff2"
-            as="font"
-            type="font/woff2"
-            crossorigin
-        />
         <style>
 <!-- @inline-css:site -->
         </style>
-        <noscript>
-            <style>
-                html.homepage-first-paint-pending body:not(.case-page) {
-                    visibility: visible;
-                }
-            </style>
-        </noscript>
     </head>
     <body id="top">
 <!-- @template-only:start -->
@@ -226,17 +212,6 @@
 <!-- @include:sections/portfolio-close.html -->
 <!-- @include:partials/references.html -->
 <!-- @include:partials/layout-close.html -->
-
-        <script>
-<!-- @inline-js:analytics-bootstrap -->
-        </script>
-        <script defer src="/_vercel/insights/script.js"></script>
-        <script
-            defer
-            src="/_vercel/speed-insights/script.js"
-            data-route="/"
-            data-path="/"
-        ></script>
         <script>
 <!-- @inline-js:site -->
         </script>

@@ -1,0 +1,10 @@
+{
+  "specVersion": "1.0",
+  "entries": [
+    {
+      "identifier": "urn:air:gildrb.com:mcp:portfolio",
+      "type": "application/mcp-server-card+json",
+      "url": "https://gildrb.com/.well-known/mcp/server-card.json"
+    }
+  ]
+}

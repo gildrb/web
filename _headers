@@ -1,0 +1,110 @@
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+  Cross-Origin-Opener-Policy: same-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()
+  Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Vary: Accept
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Content-Signal: search=yes, ai-input=yes, ai-train=yes
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: index, follow, max-snippet:-1, max-image-preview:large
+  Link: <https://gildrb.com/>; rel="canonical"; type="text/html", <https://gildrb.com/llms.txt>; rel="alternate describedby"; type="text/markdown", <https://gildrb.com/index.html.md>; rel="alternate"; type="text/markdown", <https://gildrb.com/profile.json>; rel="alternate describedby"; type="application/ld+json", <https://gildrb.com/.well-known/api-catalog>; rel="service-desc"; type="application/linkset+json", <https://gildrb.com/.well-known/mcp/server-card.json>; rel="service-desc"; type="application/mcp-server-card+json"
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: index, follow, max-snippet:-1, max-image-preview:large
+
+/404.html
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: noindex, follow
+/llms.txt
+  Cache-Control: public, max-age=0, must-revalidate
+  Content-Type: text/markdown; charset=utf-8
+
+/.well-known/llms.txt
+  Cache-Control: public, max-age=0, must-revalidate
+  Content-Type: text/markdown; charset=utf-8
+
+/index.html.md
+  Cache-Control: public, max-age=0, must-revalidate
+  Content-Type: text/markdown; charset=utf-8
+
+/llms-full.txt
+  Cache-Control: public, max-age=0, must-revalidate
+  Content-Type: text/markdown; charset=utf-8
+
+/content/*
+  Cache-Control: public, max-age=0, must-revalidate
+  Content-Type: text/markdown; charset=utf-8
+  Link: <https://gildrb.com/llms-full.txt>; rel="alternate describedby"; type="text/markdown", <https://gildrb.com/llms.txt>; rel="alternate"; type="text/markdown"
+
+/profile.json
+  Cache-Control: public, max-age=0, must-revalidate
+  Content-Type: application/ld+json; charset=utf-8
+
+/.well-known/webfinger
+  Cache-Control: public, max-age=0, must-revalidate
+  Content-Type: application/jrd+json; charset=utf-8
+
+/.well-known/host-meta.json
+  Cache-Control: public, max-age=0, must-revalidate
+  Content-Type: application/jrd+json; charset=utf-8
+
+/.well-known/host-meta
+  Cache-Control: public, max-age=0, must-revalidate
+  Content-Type: application/xrd+xml; charset=utf-8
+
+/.well-known/api-catalog
+  Cache-Control: public, max-age=3600
+  Content-Type: application/linkset+json; charset=utf-8
+
+/.well-known/ai-catalog.json
+  Cache-Control: public, max-age=3600
+  Content-Type: application/ai-catalog+json; charset=utf-8
+
+/.well-known/mcp/server-card.json
+  Access-Control-Allow-Headers: Content-Type, If-None-Match
+  Access-Control-Allow-Methods: GET
+  Access-Control-Allow-Origin: *
+  Access-Control-Expose-Headers: ETag
+  Cache-Control: public, max-age=3600
+  Content-Type: application/mcp-server-card+json; charset=utf-8
+
+/.well-known/agent-skills/index.json
+  Cache-Control: public, max-age=3600
+  Content-Type: application/json; charset=utf-8
+
+/.well-known/agent-skills/*/SKILL.md
+  Cache-Control: public, max-age=3600
+  Content-Type: text/markdown; charset=utf-8
+
+/auth.md
+  Content-Type: text/markdown; charset=utf-8
+
+/api-docs.md
+  Content-Type: text/markdown; charset=utf-8
+
+/openapi.json
+  Content-Type: application/vnd.oai.openapi+json;version=3.1; charset=utf-8
+
+/feed.xml
+  Content-Type: application/rss+xml; charset=utf-8
+
+/sitemap.xml
+  Content-Type: application/xml; charset=utf-8
+
+/humans.txt
+  Content-Type: text/plain; charset=utf-8
+
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
+
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable

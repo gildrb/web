@@ -1,0 +1,76 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "gildrb.com public API",
+    "version": "1.0.0",
+    "description": "Public, read-only profile and portfolio agent endpoints."
+  },
+  "servers": [{ "url": "https://gildrb.com" }],
+  "paths": {
+    "/api/profile": {
+      "get": {
+        "operationId": "getProfile",
+        "summary": "Get the canonical JSON-LD profile",
+        "responses": {
+          "200": {
+            "description": "Profile graph",
+            "content": {
+              "application/ld+json": {
+                "schema": { "type": "object", "additionalProperties": true }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/status": {
+      "get": {
+        "operationId": "getStatus",
+        "summary": "Get public API status",
+        "responses": {
+          "200": {
+            "description": "Service is available",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["status", "service", "timestamp"],
+                  "properties": {
+                    "status": { "const": "ok" },
+                    "service": { "type": "string" },
+                    "timestamp": { "type": "string", "format": "date-time" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mcp": {
+      "post": {
+        "operationId": "callMcp",
+        "summary": "Send a JSON-RPC request to the MCP server",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "type": "object", "additionalProperties": true }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON-RPC response",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "additionalProperties": true }
+              }
+            }
+          },
+          "202": { "description": "Notification accepted" }
+        }
+      }
+    }
+  }
+}

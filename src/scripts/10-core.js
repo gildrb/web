@@ -189,31 +189,16 @@ if ("ResizeObserver" in window) {
     mobileLayoutTargets.forEach((target) => updateOnResize.observe(target));
 }
 
-async function prepareHomepageFirstPaint() {
-    const root = document.documentElement;
+function prepareHomepageFirstPaint() {
     const body = document.body;
 
-    if (!body) {
-        root.classList.remove("homepage-first-paint-pending");
-        return;
-    }
-
-    updateHomepageDates();
-    updateMobileLayout();
-
-    if (document.fonts?.load) {
-        try {
-            await document.fonts.load('400 16px "Inter"');
-        } catch {
-            // Continue with the metric-compatible system fallback.
-        }
-    }
+    if (!body) return;
 
     updateHomepageDates();
     updateMobileLayout();
 }
 
-window.homepageFirstPaintReady = prepareHomepageFirstPaint();
+prepareHomepageFirstPaint();
 
 window.addEventListener("load", () => {
     updateHomepageDates();

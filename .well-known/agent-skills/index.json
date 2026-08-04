@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "portfolio-discovery",
+      "type": "skill-md",
+      "description": "Discover and retrieve Gil Rodrigues's public portfolio pages, profile metadata, and authored Markdown.",
+      "url": "https://gildrb.com/.well-known/agent-skills/portfolio-discovery/SKILL.md",
+      "digest": "sha256:984bb9d27337dbdaf56becca428fdb243891ef5adfe3ff64d1d2f653747ce464"
+    }
+  ]
+}

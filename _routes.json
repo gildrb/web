@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "include": [
+    "/",
+    "/all",
+    "/filen",
+    "/heph",
+    "/ben-davis",
+    "/t3",
+    "/ml7",
+    "/n0thing",
+    "/curves",
+    "/site",
+    "/api/profile",
+    "/api/status",
+    "/mcp",
+    "/mcp/server-card"
+  ],
+  "exclude": []
+}

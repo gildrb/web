@@ -21,8 +21,8 @@
         <meta name="twitter:description" content="A local document agent built around bounded context and inspectable evidence." />
         <title>Heph</title>
         <link id="site-favicon" rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <script>
-            if (window.location.hostname.endsWith(".vercel.app")) {
+        <script data-cfasync="false">
+            if (window.location.hostname.endsWith(".pages.dev")) {
                 document.getElementById("site-favicon").href =
                     "/preview-favicon.svg";
             }
@@ -2144,7 +2144,9 @@ body:not(.case-page) .content {
                         <a class="external-link" href="https://letterboxd.com/gildrb/" itemprop="sameAs" target="_blank" rel="me noopener noreferrer"><span data-nosnippet>Letterboxd</span></a>
                         <a class="external-link" href="https://www.linkedin.com/in/gildrb/" itemprop="sameAs" target="_blank" rel="me noopener noreferrer"><span data-nosnippet>LinkedIn</span></a>
                         <p class="links-label contact-label"><span data-nosnippet>Contact</span></p>
+                        <!--email_off-->
                         <button class="email" type="button" aria-label="Copy hi@gildrb.com"><span data-nosnippet>hi@gildrb.com</span></button>
+                        <!--/email_off-->
                         <a class="external-link" href="https://signal.me/#eu/KlFnTOEoXJTxUNhl9y4U4-QzunoZj6eX2BrkGYibTNUmKw8OszhNgaKd-aoseeUZ" target="_blank" rel="noopener noreferrer"><span data-nosnippet>Signal</span></a>
                         <a class="external-link" href="https://x.com/gilrdb" target="_blank" rel="noopener noreferrer"><span data-nosnippet>X</span></a>
                     </nav>
@@ -2610,29 +2612,16 @@ body:not(.case-page) .content {
                         <a class="external-link" href="https://letterboxd.com/gildrb/" itemprop="sameAs" target="_blank" rel="me noopener noreferrer"><span data-nosnippet>Letterboxd</span></a>
                         <a class="external-link" href="https://www.linkedin.com/in/gildrb/" itemprop="sameAs" target="_blank" rel="me noopener noreferrer"><span data-nosnippet>LinkedIn</span></a>
                         <p class="links-label contact-label"><span data-nosnippet>Contact</span></p>
+                        <!--email_off-->
                         <button class="email" type="button" aria-label="Copy hi@gildrb.com"><span data-nosnippet>hi@gildrb.com</span></button>
+                        <!--/email_off-->
                         <a class="external-link" href="https://signal.me/#eu/KlFnTOEoXJTxUNhl9y4U4-QzunoZj6eX2BrkGYibTNUmKw8OszhNgaKd-aoseeUZ" target="_blank" rel="noopener noreferrer"><span data-nosnippet>Signal</span></a>
                         <a class="external-link" href="https://x.com/gilrdb" target="_blank" rel="noopener noreferrer"><span data-nosnippet>X</span></a>
                     </nav>
                 </div>
             </div>
         </div>
-        <script>
-window.va =
-    window.va ||
-    function () {
-        (window.vaq = window.vaq || []).push(arguments);
-    };
-
-window.si =
-    window.si ||
-    function () {
-        (window.siq = window.siq || []).push(arguments);
-    };
-        </script>
-        <script defer src="/_vercel/insights/script.js"></script>
-        <script defer src="/_vercel/speed-insights/script.js" data-route="/heph" data-path="/heph"></script>
-        <script>
+        <script data-cfasync="false">
 const srOnly = document.querySelector(".sr-only");
 const themeToggle = document.querySelector(".theme-toggle");
 const themePreference = window.matchMedia(
@@ -2824,31 +2813,16 @@ if ("ResizeObserver" in window) {
     mobileLayoutTargets.forEach((target) => updateOnResize.observe(target));
 }
 
-async function prepareHomepageFirstPaint() {
-    const root = document.documentElement;
+function prepareHomepageFirstPaint() {
     const body = document.body;
 
-    if (!body) {
-        root.classList.remove("homepage-first-paint-pending");
-        return;
-    }
-
-    updateHomepageDates();
-    updateMobileLayout();
-
-    if (document.fonts?.load) {
-        try {
-            await document.fonts.load('400 16px "Inter"');
-        } catch {
-            // Continue with the metric-compatible system fallback.
-        }
-    }
+    if (!body) return;
 
     updateHomepageDates();
     updateMobileLayout();
 }
 
-window.homepageFirstPaintReady = prepareHomepageFirstPaint();
+prepareHomepageFirstPaint();
 
 window.addEventListener("load", () => {
     updateHomepageDates();
@@ -3102,6 +3076,85 @@ document.querySelectorAll(".email").forEach((email) => {
         }, 1500);
     });
 });
+
+const webMcpPages = Object.freeze([
+	"site",
+	"t3",
+	"ben-davis",
+	"heph",
+	"filen",
+	"n0thing",
+	"curves",
+	"ml7",
+]);
+
+const webMcpTools = [
+	{
+		name: "list_portfolio_pages",
+		title: "List portfolio pages",
+		description:
+			"List Gil Rodrigues's public portfolio pages and Markdown sources.",
+		inputSchema: {
+			type: "object",
+			properties: {},
+			additionalProperties: false,
+		},
+		annotations: { readOnlyHint: true, untrustedContentHint: false },
+		execute: async () => ({
+			pages: webMcpPages.map((slug) => ({
+				slug,
+				url: new URL(`/${slug}`, window.location.origin).href,
+				markdown: new URL(`/content/${slug}.md`, window.location.origin).href,
+			})),
+		}),
+	},
+	{
+		name: "open_portfolio_page",
+		title: "Open a portfolio page",
+		description:
+			"Open a selected public portfolio case study in the current tab.",
+		inputSchema: {
+			type: "object",
+			properties: {
+				slug: {
+					type: "string",
+					enum: webMcpPages,
+					description: "The portfolio page to open.",
+				},
+			},
+			required: ["slug"],
+			additionalProperties: false,
+		},
+		annotations: { readOnlyHint: false, untrustedContentHint: false },
+		execute: async ({ slug }) => {
+			if (!webMcpPages.includes(slug)) {
+				throw new TypeError(`Unknown portfolio slug: ${String(slug)}`);
+			}
+			const url = new URL(`/${slug}`, window.location.origin);
+			window.location.assign(url);
+			return { opened: url.href };
+		},
+	},
+];
+
+const webMcpContext = navigator.modelContext ?? document.modelContext;
+if (typeof webMcpContext?.registerTool === "function") {
+	const webMcpAbortController = new AbortController();
+	window.addEventListener("pagehide", () => webMcpAbortController.abort(), {
+		once: true,
+	});
+	Promise.all(
+		webMcpTools.map((tool) =>
+			webMcpContext.registerTool(tool, {
+				signal: webMcpAbortController.signal,
+			}),
+		),
+	).catch(() => {
+		// WebMCP is experimental; the page remains fully usable if registration fails.
+	});
+} else if (typeof navigator.modelContext?.provideContext === "function") {
+	navigator.modelContext.provideContext({ tools: webMcpTools });
+}
 
 const hephDemoEvidenceOpen = document.querySelector(
     "[data-heph-demo-evidence-open]",

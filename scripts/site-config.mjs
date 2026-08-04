@@ -2,6 +2,7 @@ const sharedCaseScripts = Object.freeze([
     "10-core.js",
     "20-theme.js",
     "30-email.js",
+    "80-webmcp.js",
 ]);
 
 const sharedCaseStyles = Object.freeze([
@@ -13,24 +14,22 @@ const sharedCaseStyles = Object.freeze([
 ]);
 
 export const siteConfig = Object.freeze({
-    analyticsScript: "00-analytics-bootstrap.js",
     profileSource: "src/data/profile.json",
     homepage: Object.freeze({
         styles: Object.freeze([
             "00-fonts.css",
             "10-base.css",
-            "15-homepage-entry.css",
             "20-portfolio-media.css",
             "40-preview-content.css",
             "90-responsive.css",
         ]),
         scripts: Object.freeze([
             "10-core.js",
-            "12-homepage-entry.js",
             "15-portfolio-sort.js",
             "20-theme.js",
             "30-email.js",
             "70-links-navigation.js",
+            "80-webmcp.js",
         ]),
     }),
     caseStudies: Object.freeze([
@@ -114,6 +113,7 @@ export const siteConfig = Object.freeze({
             "40-heph-data.js",
             "50-heph-demo.js",
             "60-all-sort.js",
+            "80-webmcp.js",
         ]),
     }),
 });

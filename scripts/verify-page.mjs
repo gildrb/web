@@ -67,8 +67,7 @@ function extractAssetRefs(html) {
             value.startsWith("data:") ||
             value.startsWith("mailto:") ||
             value.startsWith("http://") ||
-            value.startsWith("https://") ||
-            value.startsWith("/_vercel/")
+            value.startsWith("https://")
         ) {
             return;
         }
@@ -255,10 +254,9 @@ const hephMarkdown = await readText("content/heph.md");
 const previewContentStyles = await readText("src/styles/40-preview-content.css");
 const portfolioOpen = await readText("src/sections/portfolio-open.html");
 const previewFavicon = await readText("preview-favicon.svg");
-const vercelConfig = JSON.parse(await readText("vercel.json"));
-const vercelHeaderSources = new Map(
-    vercelConfig.headers.map(({ headers, source }) => [source, headers]),
-);
+const cloudflareHeaders = await readText("_headers");
+const cloudflareRedirects = await readText("_redirects");
+const cloudflareRoutes = await readText("_routes.json");
 const sharedCacheFreshnessToken = ["s", "maxage"].join("-");
 const staleRevalidationToken = ["stale", "while", "revalidate"].join("-");
 const caseSources = await Promise.all(
@@ -437,6 +435,21 @@ assert(
 new Function(siteScript);
 new Function(caseScript);
 assert(
+    [indexHtml, allPage, ...caseHtml].every(
+        (html) =>
+            html.includes('<script data-cfasync="false">') &&
+            !html.includes("<script>") &&
+            !html.includes("/_vercel/") &&
+            html.includes("<!--email_off-->") &&
+            html.includes("<!--/email_off-->"),
+    ) &&
+        !indexHtml.includes("homepage-first-paint-pending") &&
+        !siteScript.includes("document.fonts.load") &&
+        !/<link[^>]+IoskeleyMono-Regular\.woff2/.test(indexHtml) &&
+        !indexHtml.includes('aria-label="Read the'),
+    "Public pages must render immediately, prevent Cloudflare script deferral and email injection, avoid unused font preloads, and use visible link text as accessible names.",
+);
+assert(
     caseScript.includes('querySelectorAll(".email")') &&
         caseScript.includes("navigator.clipboard") &&
         caseScript.includes("copy-failed"),
@@ -592,19 +605,15 @@ assert(
     "Public discovery files must advertise the full public website text endpoint.",
 );
 assert(
-    vercelHeaderSources.has("/llms-full.txt") &&
-        vercelHeaderSources.has("/content/(.*)") &&
-        JSON.stringify(vercelConfig.headers).includes(llmFullTextRoute) &&
-        !JSON.stringify(
-            vercelConfig.headers.filter(
-                ({ source }) =>
-                    source !== "/images/(.*)" && source !== "/fonts/(.*)",
-            ),
-        ).includes(sharedCacheFreshnessToken) &&
-        !JSON.stringify(vercelConfig.headers).includes(
-            staleRevalidationToken,
+    cloudflareHeaders.includes("/llms-full.txt") &&
+        cloudflareHeaders.includes("/content/*") &&
+        cloudflareHeaders.includes(llmFullTextRoute) &&
+        !cloudflareHeaders.includes(sharedCacheFreshnessToken) &&
+        !cloudflareHeaders.includes(staleRevalidationToken) &&
+        ["/", "/api/profile", "/api/status", "/mcp"].every((route) =>
+            cloudflareRoutes.includes(`"${route}"`),
         ),
-    "Vercel headers must expose the full-text and content Markdown routes without shared-cache stale windows.",
+    "Cloudflare Pages headers must expose the full-text and content Markdown routes without shared-cache stale windows.",
 );
 const documentedPortfolioTexts = [
     llmsText,
@@ -929,15 +938,10 @@ assert(
     "Filen navigation must use the persistent Gil Rodrigues to Filen location.",
 );
 assert(
-    ["/index/filen", "/index/filen/"].every((source) =>
-        vercelConfig.redirects.some(
-            (redirect) =>
-                redirect.source === source &&
-                redirect.destination === "/filen" &&
-                redirect.permanent === true,
-        ),
+    ["/index/filen /filen 301", "/index/filen/ /filen 301"].every(
+        (rule) => cloudflareRedirects.includes(rule),
     ),
-    "Legacy Filen routes must redirect permanently to /filen.",
+    "Cloudflare Pages must redirect legacy Filen routes permanently to /filen.",
 );
 assert(
     !filenHtml.includes(" · ") &&
@@ -1150,10 +1154,10 @@ assert(
     allHtml.every(
         (html) =>
             html.includes('id="site-favicon"') &&
-            html.includes('window.location.hostname.endsWith(".vercel.app")') &&
+            html.includes('window.location.hostname.endsWith(".pages.dev")') &&
             html.includes('"/preview-favicon.svg"'),
     ),
-    "Every page must use the distinct preview favicon on Vercel hosts.",
+    "Every page must use the distinct preview favicon on Cloudflare Pages hosts.",
 );
 assert(
     previewFavicon.includes(

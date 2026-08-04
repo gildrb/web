@@ -30,8 +30,8 @@
         />
         <title>gildrb.com</title>
         <link id="site-favicon" rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <script>
-            if (window.location.hostname.endsWith(".vercel.app")) {
+        <script data-cfasync="false">
+            if (window.location.hostname.endsWith(".pages.dev")) {
                 document.getElementById("site-favicon").href =
                     "/preview-favicon.svg";
             }
@@ -1407,7 +1407,9 @@ body:not(.case-page) .content {
                         <a class="external-link" href="https://letterboxd.com/gildrb/" itemprop="sameAs" target="_blank" rel="me noopener noreferrer"><span data-nosnippet>Letterboxd</span></a>
                         <a class="external-link" href="https://www.linkedin.com/in/gildrb/" itemprop="sameAs" target="_blank" rel="me noopener noreferrer"><span data-nosnippet>LinkedIn</span></a>
                         <p class="links-label contact-label"><span data-nosnippet>Contact</span></p>
+                        <!--email_off-->
                         <button class="email" type="button" aria-label="Copy hi@gildrb.com"><span data-nosnippet>hi@gildrb.com</span></button>
+                        <!--/email_off-->
                         <a class="external-link" href="https://signal.me/#eu/KlFnTOEoXJTxUNhl9y4U4-QzunoZj6eX2BrkGYibTNUmKw8OszhNgaKd-aoseeUZ" target="_blank" rel="noopener noreferrer"><span data-nosnippet>Signal</span></a>
                         <a class="external-link" href="https://x.com/gilrdb" target="_blank" rel="noopener noreferrer"><span data-nosnippet>X</span></a>
                     </nav>
@@ -1434,9 +1436,9 @@ body:not(.case-page) .content {
                             <div class="case-copy">
                                 <p>This repository is both the portfolio and its proof. Authored Markdown, shared HTML partials, route CSS and JavaScript, media, generated pages, machine-readable mirrors, and verification scripts live together so a source change can be rebuilt and checked from one checkout. You can read the <a class="external-link" href="https://github.com/gildrb/web" target="_blank" rel="noopener noreferrer">source code</a>.</p>
                                 <h3>Built from source</h3>
-                                <p>The package exposes one build command: <code>npm run build</code>. It runs <code>node scripts/build-page.mjs</code> and <code>node scripts/prepare-vercel-output.mjs</code>.</p>
+                                <p>The package exposes one build command: <code>npm run build</code>. It runs <code>node scripts/build-page.mjs</code>, verifies the public agent-discovery contracts, and prepares the Cloudflare Pages output.</p>
                                 <p><code>scripts/site-config.mjs</code> is the route registry. It defines the homepage bundle, eight case studies - Filen, Heph, Ben Davis, T3, mL7, n0thing, CURVES, and gildrb.com - and the <code>/all</code> bundle. <code>scripts/build-page.mjs</code> resolves HTML includes, renders the Markdown, bundles route-specific CSS and JavaScript, inlines the profile JSON-LD, and writes the homepage, <code>/all</code>, all eight case pages, <code>profile.json</code>, and <code>llms-full.txt</code>.</p>
-                                <p><code>scripts/prepare-vercel-output.mjs</code> copies the publishable tree to <code>public/</code>, then checks that the saved theme is applied before the homepage CSS, the first-paint markers exist, the Inter font wait remains in the entry sequence, and superseded entry behavior is absent.</p>
+                                <p><code>scripts/prepare-cloudflare-output.mjs</code> copies the publishable tree to <code>public/</code>, enforces the homepage byte budget, and rejects render gates, unused font preloads, or superseded entry behavior. Cloudflare Pages Functions provide Markdown negotiation and the public API and MCP routes.</p>
                             </div>
                         <div class="case-media">
                         <figure>
@@ -1533,7 +1535,7 @@ body:not(.case-page) .content {
                                 <h3>Machine-readable routes</h3>
                                 <p>The site publishes a Schema.org identity graph, WebFinger records, host metadata, an <code>llms.txt</code> reference, the generated <code>llms-full.txt</code> export, an RSS feed, a <code>humans.txt</code> file, and a sitemap. The homepage and every case page advertise the relevant Markdown, full-text, profile, and identity references. Its <code>Content-Signal</code> header permits search, AI input, and AI training.</p>
                                 <h3>Delivery and access</h3>
-                                <p>Functional CSS and JavaScript are inlined by route. The homepage preloads the self-hosted interface and code fonts, and responsive image sets let the browser choose an appropriate file for the viewport. The HTML uses landmarks, live regions, visible keyboard focus, and reduced-motion handling. Vercel keeps clean URLs, permanent legacy redirects, and route-specific discovery headers.</p>
+                                <p>Functional CSS and JavaScript are inlined by route. The homepage preloads only its self-hosted interface font, and responsive image sets let the browser choose an appropriate file for the viewport. The HTML uses landmarks, live regions, visible keyboard focus, and reduced-motion handling. Cloudflare Pages serves the static output, Functions provide content negotiation and public agent endpoints, and <code>_headers</code>, <code>_redirects</code>, and <code>_routes.json</code> define delivery policy.</p>
                                 <p>The page above is generated by the same system it describes.</p>
                             </div>
                     </article>
@@ -1639,29 +1641,16 @@ body:not(.case-page) .content {
                         <a class="external-link" href="https://letterboxd.com/gildrb/" itemprop="sameAs" target="_blank" rel="me noopener noreferrer"><span data-nosnippet>Letterboxd</span></a>
                         <a class="external-link" href="https://www.linkedin.com/in/gildrb/" itemprop="sameAs" target="_blank" rel="me noopener noreferrer"><span data-nosnippet>LinkedIn</span></a>
                         <p class="links-label contact-label"><span data-nosnippet>Contact</span></p>
+                        <!--email_off-->
                         <button class="email" type="button" aria-label="Copy hi@gildrb.com"><span data-nosnippet>hi@gildrb.com</span></button>
+                        <!--/email_off-->
                         <a class="external-link" href="https://signal.me/#eu/KlFnTOEoXJTxUNhl9y4U4-QzunoZj6eX2BrkGYibTNUmKw8OszhNgaKd-aoseeUZ" target="_blank" rel="noopener noreferrer"><span data-nosnippet>Signal</span></a>
                         <a class="external-link" href="https://x.com/gilrdb" target="_blank" rel="noopener noreferrer"><span data-nosnippet>X</span></a>
                     </nav>
                 </div>
             </div>
         </div>
-        <script>
-window.va =
-    window.va ||
-    function () {
-        (window.vaq = window.vaq || []).push(arguments);
-    };
-
-window.si =
-    window.si ||
-    function () {
-        (window.siq = window.siq || []).push(arguments);
-    };
-        </script>
-        <script defer src="/_vercel/insights/script.js"></script>
-        <script defer src="/_vercel/speed-insights/script.js" data-route="/site" data-path="/site"></script>
-        <script>
+        <script data-cfasync="false">
 const srOnly = document.querySelector(".sr-only");
 const themeToggle = document.querySelector(".theme-toggle");
 const themePreference = window.matchMedia(
@@ -1853,31 +1842,16 @@ if ("ResizeObserver" in window) {
     mobileLayoutTargets.forEach((target) => updateOnResize.observe(target));
 }
 
-async function prepareHomepageFirstPaint() {
-    const root = document.documentElement;
+function prepareHomepageFirstPaint() {
     const body = document.body;
 
-    if (!body) {
-        root.classList.remove("homepage-first-paint-pending");
-        return;
-    }
-
-    updateHomepageDates();
-    updateMobileLayout();
-
-    if (document.fonts?.load) {
-        try {
-            await document.fonts.load('400 16px "Inter"');
-        } catch {
-            // Continue with the metric-compatible system fallback.
-        }
-    }
+    if (!body) return;
 
     updateHomepageDates();
     updateMobileLayout();
 }
 
-window.homepageFirstPaintReady = prepareHomepageFirstPaint();
+prepareHomepageFirstPaint();
 
 window.addEventListener("load", () => {
     updateHomepageDates();
@@ -2131,6 +2105,85 @@ document.querySelectorAll(".email").forEach((email) => {
         }, 1500);
     });
 });
+
+const webMcpPages = Object.freeze([
+	"site",
+	"t3",
+	"ben-davis",
+	"heph",
+	"filen",
+	"n0thing",
+	"curves",
+	"ml7",
+]);
+
+const webMcpTools = [
+	{
+		name: "list_portfolio_pages",
+		title: "List portfolio pages",
+		description:
+			"List Gil Rodrigues's public portfolio pages and Markdown sources.",
+		inputSchema: {
+			type: "object",
+			properties: {},
+			additionalProperties: false,
+		},
+		annotations: { readOnlyHint: true, untrustedContentHint: false },
+		execute: async () => ({
+			pages: webMcpPages.map((slug) => ({
+				slug,
+				url: new URL(`/${slug}`, window.location.origin).href,
+				markdown: new URL(`/content/${slug}.md`, window.location.origin).href,
+			})),
+		}),
+	},
+	{
+		name: "open_portfolio_page",
+		title: "Open a portfolio page",
+		description:
+			"Open a selected public portfolio case study in the current tab.",
+		inputSchema: {
+			type: "object",
+			properties: {
+				slug: {
+					type: "string",
+					enum: webMcpPages,
+					description: "The portfolio page to open.",
+				},
+			},
+			required: ["slug"],
+			additionalProperties: false,
+		},
+		annotations: { readOnlyHint: false, untrustedContentHint: false },
+		execute: async ({ slug }) => {
+			if (!webMcpPages.includes(slug)) {
+				throw new TypeError(`Unknown portfolio slug: ${String(slug)}`);
+			}
+			const url = new URL(`/${slug}`, window.location.origin);
+			window.location.assign(url);
+			return { opened: url.href };
+		},
+	},
+];
+
+const webMcpContext = navigator.modelContext ?? document.modelContext;
+if (typeof webMcpContext?.registerTool === "function") {
+	const webMcpAbortController = new AbortController();
+	window.addEventListener("pagehide", () => webMcpAbortController.abort(), {
+		once: true,
+	});
+	Promise.all(
+		webMcpTools.map((tool) =>
+			webMcpContext.registerTool(tool, {
+				signal: webMcpAbortController.signal,
+			}),
+		),
+	).catch(() => {
+		// WebMCP is experimental; the page remains fully usable if registration fails.
+	});
+} else if (typeof navigator.modelContext?.provideContext === "function") {
+	navigator.modelContext.provideContext({ tools: webMcpTools });
+}
         </script>
     </body>
 </html>
