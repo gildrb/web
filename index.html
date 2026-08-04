@@ -2469,7 +2469,11 @@ body:not(.case-page) .content {
 
     .mobile-links-grid > .contact-label ~ .external-link {
         grid-column: 2;
-        grid-row: auto;
+        grid-row: 3;
+    }
+
+    .mobile-links-grid > .contact-label ~ .external-link + .external-link {
+        grid-row: 4;
     }
 
     .case-page .links {
