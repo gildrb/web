@@ -100,7 +100,7 @@
 }
 
 
-:is(a[href],
+:is(a[href]:not(.heph-demo-close-link),
   button,
   input:not([type="hidden"]),
   select,
@@ -467,9 +467,6 @@ body {
     display: none;
 }
 
-.heph-demo-frame .heph-demo-close-link:active {
-    top: 4px;
-}
 
 .heph-demo-zoom-link:focus-visible,
 .heph-demo-close-link:focus-visible {
@@ -2971,8 +2968,8 @@ body:not(.case-page) .content {
                                     <p>This repository is both the portfolio and its proof. Authored Markdown, shared HTML partials, route CSS and JavaScript, media, generated pages, machine-readable mirrors, and verification scripts live together so a source change can be rebuilt and checked from one checkout. You can read the <a class="external-link" href="https://github.com/gildrb/web" target="_blank" rel="noopener noreferrer">source code</a>.</p>
                                     <h3>Built from source</h3>
                                     <p>The package exposes one build command: <code>npm run build</code>. It runs <code>node scripts/build-page.mjs</code> and <code>node scripts/prepare-vercel-output.mjs</code>.</p>
-                                    <p><code>site-config.mjs</code> is the route registry. It defines the homepage bundle, eight case studies - Filen, Heph, Ben Davis, T3, mL7, n0thing, CURVES, and gildrb.com - and the <code>/all</code> bundle. <code>build-page.mjs</code> resolves HTML includes, renders the Markdown, bundles route-specific CSS and JavaScript, inlines the profile JSON-LD, and writes the homepage, <code>/all</code>, all eight case pages, <code>profile.json</code>, and <code>llms-full.txt</code>.</p>
-                                    <p><code>prepare-vercel-output.mjs</code> copies the publishable tree to <code>public/</code>, then checks that the saved theme is applied before the homepage CSS, the first-paint markers exist, the Inter font wait remains in the entry sequence, and superseded entry behavior is absent.</p>
+                                    <p><code>scripts/site-config.mjs</code> is the route registry. It defines the homepage bundle, eight case studies - Filen, Heph, Ben Davis, T3, mL7, n0thing, CURVES, and gildrb.com - and the <code>/all</code> bundle. <code>scripts/build-page.mjs</code> resolves HTML includes, renders the Markdown, bundles route-specific CSS and JavaScript, inlines the profile JSON-LD, and writes the homepage, <code>/all</code>, all eight case pages, <code>profile.json</code>, and <code>llms-full.txt</code>.</p>
+                                    <p><code>scripts/prepare-vercel-output.mjs</code> copies the publishable tree to <code>public/</code>, then checks that the saved theme is applied before the homepage CSS, the first-paint markers exist, the Inter font wait remains in the entry sequence, and superseded entry behavior is absent.</p>
                                 </div>
                             <div class="case-media">
                             <figure>

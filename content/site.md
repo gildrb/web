@@ -7,9 +7,9 @@ You can read the [source code](https://github.com/gildrb/web).
 
 The package exposes one build command: `npm run build`. It runs `node scripts/build-page.mjs` and `node scripts/prepare-vercel-output.mjs`.
 
-`site-config.mjs` is the route registry. It defines the homepage bundle, eight case studies - Filen, Heph, Ben Davis, T3, mL7, n0thing, CURVES, and gildrb.com - and the `/all` bundle. `build-page.mjs` resolves HTML includes, renders the Markdown, bundles route-specific CSS and JavaScript, inlines the profile JSON-LD, and writes the homepage, `/all`, all eight case pages, `profile.json`, and `llms-full.txt`.
+`scripts/site-config.mjs` is the route registry. It defines the homepage bundle, eight case studies - Filen, Heph, Ben Davis, T3, mL7, n0thing, CURVES, and gildrb.com - and the `/all` bundle. `scripts/build-page.mjs` resolves HTML includes, renders the Markdown, bundles route-specific CSS and JavaScript, inlines the profile JSON-LD, and writes the homepage, `/all`, all eight case pages, `profile.json`, and `llms-full.txt`.
 
-`prepare-vercel-output.mjs` copies the publishable tree to `public/`, then checks that the saved theme is applied before the homepage CSS, the first-paint markers exist, the Inter font wait remains in the entry sequence, and superseded entry behavior is absent.
+`scripts/prepare-vercel-output.mjs` copies the publishable tree to `public/`, then checks that the saved theme is applied before the homepage CSS, the first-paint markers exist, the Inter font wait remains in the entry sequence, and superseded entry behavior is absent.
 
 ![Build pipeline](media:site-build-pipeline)
 
