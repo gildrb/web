@@ -247,6 +247,9 @@ const identityTexts = await Promise.all(
 const caseStyles = await readText("src/styles/50-case-study.css");
 const responsiveStyles = await readText("src/styles/90-responsive.css");
 const baseStyles = await readText("src/styles/10-base.css");
+const homepageEntryStyles = await readText(
+    "src/styles/15-homepage-entry.css",
+);
 const portfolioStyles = await readText("src/styles/20-portfolio-media.css");
 const hephDemoStyles = await readText("src/styles/30-heph-demo.css");
 const benDavisStyles = await readText("src/styles/30-ben-davis.css");
@@ -444,10 +447,30 @@ assert(
             html.includes("<!--/email_off-->"),
     ) &&
         !indexHtml.includes("homepage-first-paint-pending") &&
+        homepageEntryStyles.includes("@keyframes homepage-fade") &&
+        homepageEntryStyles.includes("@keyframes homepage-rise") &&
+        homepageEntryStyles.includes("filter: blur(6px);") &&
+        homepageEntryStyles.includes("transform: translateY(12px);") &&
+        homepageEntryStyles.includes(
+            "animation: homepage-fade 700ms cubic-bezier(0.16, 1, 0.3, 1) both;",
+        ) &&
+        homepageEntryStyles.includes(
+            "animation: homepage-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both;",
+        ) &&
+        homepageEntryStyles.includes(
+            "@media screen and (prefers-reduced-motion: no-preference)",
+        ) &&
+        homepageEntryStyles.includes(
+            "--homepage-entry-delay: 570ms;",
+        ) &&
+        !homepageEntryStyles.includes("visibility: hidden") &&
+        !homepageEntryStyles.includes("will-change") &&
+        siteConfig.homepage.styles.includes("15-homepage-entry.css") &&
+        !siteConfig.homepage.scripts.includes("12-homepage-entry.js") &&
         !siteScript.includes("document.fonts.load") &&
         !/<link[^>]+IoskeleyMono-Regular\.woff2/.test(indexHtml) &&
         !indexHtml.includes('aria-label="Read the'),
-    "Public pages must render immediately, prevent Cloudflare script deferral and email injection, avoid unused font preloads, and use visible link text as accessible names.",
+    "Public pages must paint identity content immediately, use bounded dependency-free entry motion with reduced-motion support, prevent Cloudflare injection, avoid unused font preloads, and use visible link text as accessible names.",
 );
 assert(
     caseScript.includes('querySelectorAll(".email")') &&

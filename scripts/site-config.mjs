@@ -19,6 +19,7 @@ export const siteConfig = Object.freeze({
         styles: Object.freeze([
             "00-fonts.css",
             "10-base.css",
+            "15-homepage-entry.css",
             "20-portfolio-media.css",
             "40-preview-content.css",
             "90-responsive.css",

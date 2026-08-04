@@ -1466,6 +1466,130 @@ body {
   box-shadow: 0 0 0 1px var(--text-primary);
 }
 
+@keyframes homepage-fade {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes homepage-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*
+ * Nelson-inspired progressive entry motion without a runtime dependency.
+ * Identity and summary content paint immediately; secondary navigation and
+ * portfolio rows then resolve through a short container fade and bounded rise.
+ */
+@media screen and (prefers-reduced-motion: no-preference) {
+  .links,
+  .portfolio-scroll-frame {
+    animation: homepage-fade 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 80ms;
+  }
+
+  .links > *,
+  .portfolio-table-header,
+  .portfolio-list > .portfolio-card-link {
+    animation: homepage-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--homepage-entry-delay, 120ms);
+  }
+
+  .links > :nth-child(2) {
+    --homepage-entry-delay: 170ms;
+  }
+
+  .links > :nth-child(3) {
+    --homepage-entry-delay: 220ms;
+  }
+
+  .links > :nth-child(4) {
+    --homepage-entry-delay: 270ms;
+  }
+
+  .links > :nth-child(5) {
+    --homepage-entry-delay: 320ms;
+  }
+
+  .links > :nth-child(6) {
+    --homepage-entry-delay: 370ms;
+  }
+
+  .links > :nth-child(7) {
+    --homepage-entry-delay: 420ms;
+  }
+
+  .links > :nth-child(8) {
+    --homepage-entry-delay: 470ms;
+  }
+
+  .links > :nth-child(9) {
+    --homepage-entry-delay: 520ms;
+  }
+
+  .links > :nth-child(10) {
+    --homepage-entry-delay: 570ms;
+  }
+
+  .portfolio-table-header {
+    --homepage-entry-delay: 120ms;
+  }
+
+  .portfolio-list > .portfolio-card-link:nth-child(1) {
+    --homepage-entry-delay: 165ms;
+  }
+
+  .portfolio-list > .portfolio-card-link:nth-child(2) {
+    --homepage-entry-delay: 210ms;
+  }
+
+  .portfolio-list > .portfolio-card-link:nth-child(3) {
+    --homepage-entry-delay: 255ms;
+  }
+
+  .portfolio-list > .portfolio-card-link:nth-child(4) {
+    --homepage-entry-delay: 300ms;
+  }
+
+  .portfolio-list > .portfolio-card-link:nth-child(5) {
+    --homepage-entry-delay: 345ms;
+  }
+
+  .portfolio-list > .portfolio-card-link:nth-child(6) {
+    --homepage-entry-delay: 390ms;
+  }
+
+  .portfolio-list > .portfolio-card-link:nth-child(7) {
+    --homepage-entry-delay: 435ms;
+  }
+
+  .portfolio-list > .portfolio-card-link:nth-child(8) {
+    --homepage-entry-delay: 480ms;
+  }
+
+  .portfolio-list > .portfolio-card-link:nth-child(9) {
+    --homepage-entry-delay: 525ms;
+  }
+
+  .portfolio-list > .portfolio-card-link:nth-child(10) {
+    --homepage-entry-delay: 570ms;
+  }
+}
+
 .portfolio-scroll-frame {
     display: contents;
 }
