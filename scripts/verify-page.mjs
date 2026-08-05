@@ -887,9 +887,10 @@ assert(
         ":is(a[href]:not(.heph-demo-close-link),\n  button,",
     ) &&
         baseStyles.includes(
-            '[tabindex]:not([tabindex="-1"])):active:not(.portfolio-sort-button) {',
-        ),
-    "The global active nudge must not move the Heph close control or portfolio sort headings.",
+            '[tabindex]:not([tabindex="-1"])):active {',
+        ) &&
+        !baseStyles.includes(":active:not(.portfolio-sort-button)"),
+    "The global active nudge must move portfolio sort headings while leaving the Heph close control excluded.",
 );
 assert(
     hephDemoStyles.includes(
