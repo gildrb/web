@@ -745,24 +745,30 @@ assert(
 );
 assert(
     benDavisStyles.includes(
-        ".case-media .ben-davis-brandmark {\n    width: 88%;\n    margin-inline: auto;\n    border-radius: 0;\n    filter: none;",
+        ".case-media .ben-davis-brandmark {\n    width: 88%;\n    margin-inline: auto;\n    border-radius: 0;\n}",
     ) &&
-        benDavisStyles.includes(
+        !benDavisStyles.includes("filter:") &&
+        previewContentStyles.includes(
+            ".ben-davis-brandmark {\n    filter: none;",
+        ) &&
+        previewContentStyles.includes(
             "@media (prefers-color-scheme: light) {\n    :root:not([data-theme]) .ben-davis-brandmark {\n        filter: brightness(0);",
         ) &&
-        benDavisStyles.includes(
+        previewContentStyles.includes(
             ':root[data-theme="light"] .ben-davis-brandmark {\n    filter: brightness(0);',
         ) &&
-        benDavisStyles.includes(
+        previewContentStyles.includes(
             ':root[data-theme="dark"] .ben-davis-brandmark {\n    filter: none;',
         ) &&
+        siteConfig.allPage.styles.includes("40-preview-content.css") &&
         Object.entries(casePages).every(
             ([slug, html]) =>
                 slug === "ben-davis" ||
-                !html.includes("ben-davis-brandmark"),
+                !html.includes('<img class="ben-davis-brandmark"'),
         ) &&
-        benDavisHtml.includes('class="ben-davis-brandmark"'),
-    "The Ben Davis brandmark must use isolated light/dark theme-inverting CSS only on its case study.",
+        benDavisHtml.includes('class="ben-davis-brandmark"') &&
+        allPage.includes('class="ben-davis-brandmark"'),
+    "The Ben Davis brandmark must invert for accessible light/dark contrast on both its case study and the all-projects view, while case-specific sizing remains isolated.",
 );
 assert(
     hephMarkdown.includes("![Heph demo](media:heph-demo)") &&

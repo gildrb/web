@@ -458,6 +458,24 @@ body {
     border-width: 0;
 }
 
+.ben-davis-brandmark {
+    filter: none;
+}
+
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme]) .ben-davis-brandmark {
+        filter: brightness(0);
+    }
+}
+
+:root[data-theme="light"] .ben-davis-brandmark {
+    filter: brightness(0);
+}
+
+:root[data-theme="dark"] .ben-davis-brandmark {
+    filter: none;
+}
+
 .case-study-entry {
     cursor: pointer !important;
 }
