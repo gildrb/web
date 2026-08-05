@@ -1272,7 +1272,7 @@ assert(
     "The mobile homepage must keep the locked table scroll region and edge indicators.",
 );
 assert(
-    baseStyles.includes("--portfolio-mobile-cell-end-space: 8px;") &&
+    baseStyles.includes("--portfolio-mobile-cell-end-space: 10px;") &&
         baseStyles.includes(
             "max-content max-content minmax(0, 1fr)",
         ) &&
@@ -1282,14 +1282,14 @@ assert(
         portfolioStyles.includes(
             "grid-template-columns: var(--portfolio-table-columns);",
         ) &&
-        portfolioStyles.includes("font-variant-numeric: tabular-nums;") &&
+        !portfolioStyles.includes("font-variant-numeric: tabular-nums;") &&
         portfolioStyles.includes(
             ".portfolio-card-link time,\n    .portfolio-card-title {\n        padding-inline-end: var(--portfolio-mobile-cell-end-space);",
         ) &&
         caseStyles.includes(
             ".case-next-list {\n    display: grid;\n    grid-template-columns: var(--portfolio-table-columns);",
         ) &&
-        caseStyles.includes("font-variant-numeric: tabular-nums;") &&
+        !caseStyles.includes("font-variant-numeric: tabular-nums;") &&
         caseStyles.includes(
             ".case-next-row {\n        padding: 7px 0;",
         ) &&
@@ -1494,7 +1494,7 @@ assert(
             ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 1;\n    display: block;\n    color: var(--text-tertiary);\n    font-size: 16px;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 1;\n    display: block;\n    white-space: nowrap;\n    color: inherit;\n    font-size: 16px;\n    line-height: 24px;\n    font-variant-numeric: tabular-nums;",
+            ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 1;\n    display: block;\n    white-space: nowrap;\n    color: inherit;\n    font-size: 16px;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
             ".portfolio-card-arrow {\n    grid-column: 4;\n    grid-row: 1;\n    align-self: baseline;\n    display: inline-flex;",
