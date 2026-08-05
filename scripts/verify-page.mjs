@@ -1272,6 +1272,37 @@ assert(
     "The mobile homepage must keep the locked table scroll region and edge indicators.",
 );
 assert(
+    baseStyles.includes("--portfolio-date-column: 49px;") &&
+        baseStyles.includes("--portfolio-project-column: 80px;") &&
+        baseStyles.includes("--portfolio-arrow-column: 19px;") &&
+        baseStyles.includes("--portfolio-contact-column-start: calc(") &&
+        portfolioStyles.includes(
+            "grid-template-columns: var(--portfolio-table-columns);",
+        ) &&
+        portfolioStyles.includes("font-variant-numeric: tabular-nums;") &&
+        caseStyles.includes(
+            ".case-next-list {\n    display: grid;\n    grid-template-columns: var(--portfolio-table-columns);",
+        ) &&
+        caseStyles.includes("font-variant-numeric: tabular-nums;") &&
+        caseStyles.includes(
+            ".case-next-row {\n        padding: 7px 0;",
+        ) &&
+        responsiveStyles.includes(
+            "grid-template-columns: var(--portfolio-mobile-table-columns);",
+        ) &&
+        responsiveStyles.includes(
+            "var(--portfolio-contact-column-start) minmax(0, 1fr);",
+        ) &&
+        !responsiveStyles.includes("--mobile-contact-start") &&
+        siteScript.includes(
+            'links.classList.toggle("mobile-links-grid", isMobile);',
+        ) &&
+        !siteScript.includes(
+            'links.style.setProperty("--mobile-contact-start"',
+        ),
+    "Homepage and case-next tables must share deterministic Date, Project, Scope, and arrow tracks so the mobile Links/Contact grid starts at the same Scope column.",
+);
+assert(
     indexHtml.includes('class="portfolio-table-header"') &&
         indexHtml.includes('aria-label="Project columns"') &&
         indexHtml.includes('data-sort-key="date"') &&
@@ -1430,7 +1461,7 @@ assert(
             indexHtml.includes(`>${title}</span`),
     ) &&
         portfolioStyles.includes(
-            ".portfolio-section {\n    display: grid;\n    grid-template-columns: max-content max-content minmax(0, 1fr) auto;",
+            ".portfolio-section {\n    display: grid;\n    grid-template-columns: var(--portfolio-table-columns);",
         ) &&
         portfolioStyles.includes(
             ".portfolio-list {\n    display: grid;\n    grid-column: 1 / -1;\n    grid-template-columns: subgrid;\n    margin-top: 0;",
@@ -1454,7 +1485,7 @@ assert(
             ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 1;\n    display: block;\n    color: var(--text-tertiary);\n    font-size: 16px;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
-            ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 1;\n    display: block;\n    white-space: nowrap;\n    color: inherit;\n    font-size: 16px;\n    line-height: 24px;",
+            ".portfolio-card-link time {\n    grid-column: 1;\n    grid-row: 1;\n    display: block;\n    white-space: nowrap;\n    color: inherit;\n    font-size: 16px;\n    line-height: 24px;\n    font-variant-numeric: tabular-nums;",
         ) &&
         portfolioStyles.includes(
             ".portfolio-card-arrow {\n    grid-column: 4;\n    grid-row: 1;\n    align-self: baseline;\n    display: inline-flex;",

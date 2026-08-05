@@ -20,6 +20,22 @@
   --content-column: 760px;
   --layout-gap: 48px;
   --media-radius: 22px;
+  --portfolio-date-column: 49px;
+  --portfolio-project-column: 80px;
+  --portfolio-arrow-column: 19px;
+  --portfolio-table-gap: 16px;
+  --portfolio-mobile-table-gap: clamp(8px, 3vw, 16px);
+  --portfolio-table-columns:
+    minmax(var(--portfolio-date-column), max-content)
+    minmax(var(--portfolio-project-column), max-content) minmax(0, 1fr)
+    minmax(var(--portfolio-arrow-column), max-content);
+  --portfolio-mobile-table-columns:
+    var(--portfolio-date-column) var(--portfolio-project-column) minmax(0, 1fr)
+    var(--portfolio-arrow-column);
+  --portfolio-contact-column-start: calc(
+    var(--portfolio-date-column) + var(--portfolio-project-column) +
+      var(--portfolio-mobile-table-gap) + var(--portfolio-mobile-table-gap)
+  );
 }
 
 @media (prefers-color-scheme: light) {

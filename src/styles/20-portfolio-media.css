@@ -221,6 +221,7 @@
     color: inherit;
     font-size: 16px;
     line-height: 24px;
+    font-variant-numeric: tabular-nums;
 }
 
 .portfolio-date-year {
@@ -247,15 +248,15 @@
 
 .portfolio-section {
     display: grid;
-    grid-template-columns: max-content max-content minmax(0, 1fr) auto;
+    grid-template-columns: var(--portfolio-table-columns);
     margin-bottom: 32px;
 }
 
 @media (min-width: 768px) {
     .portfolio-scroll-frame {
         display: grid;
-        grid-template-columns: max-content max-content minmax(0, 1fr) auto;
-        column-gap: 16px;
+        grid-template-columns: var(--portfolio-table-columns);
+        column-gap: var(--portfolio-table-gap);
         container-type: inline-size;
         margin-bottom: 32px;
     }

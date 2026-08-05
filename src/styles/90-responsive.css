@@ -74,8 +74,8 @@ body:not(.case-page) .content {
 @media (max-width: 767px) {
     .portfolio-scroll-frame {
         display: grid;
-        grid-template-columns: max-content max-content minmax(0, 1fr) auto;
-        column-gap: clamp(8px, 3vw, 16px);
+        grid-template-columns: var(--portfolio-mobile-table-columns);
+        column-gap: var(--portfolio-mobile-table-gap);
         container-type: inline-size;
         order: 3;
     }
@@ -303,7 +303,7 @@ body:not(.case-page) .content {
     .links.mobile-links-grid {
         display: grid;
         grid-template-columns:
-            var(--mobile-contact-start) minmax(0, 1fr);
+            var(--portfolio-contact-column-start) minmax(0, 1fr);
         column-gap: 0;
     }
 
@@ -338,10 +338,6 @@ body:not(.case-page) .content {
         margin-bottom: 0;
     }
 
-    .case-page .links.mobile-links-grid {
-        grid-template-columns:
-            var(--mobile-contact-start, 3fr) minmax(0, 4fr);
-    }
 
     .case-desktop-links {
         display: none;
