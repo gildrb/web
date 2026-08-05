@@ -1721,7 +1721,7 @@ assert(
 );
 assert(
     caseStyles.includes(
-        ".case-next {\n        margin-top: auto;\n        padding-top: 48px;\n        padding-bottom: calc(\n            var(--footer-title-center-offset) +",
+        ".case-next {\n        margin-top: auto;\n        padding-top: 48px;\n        padding-bottom: calc(\n            var(--footer-title-center-offset) +\n                (var(--theme-toggle-size) / 2) -\n                (24px / 2)\n        );",
     ) &&
         caseStyles.includes(
             ".case-next-row:last-child {\n        padding-bottom: 0;",
@@ -1738,7 +1738,7 @@ assert(
         caseStyles.includes(
             "@media (max-width: 768px)",
         ),
-    "Case-next pages must preserve a 48px article gap, use spare desktop height before the table, and optically align the final row with the theme toggle.",
+    "Case-next pages must preserve a 48px article gap, use spare desktop height before the table, and visually center the final row with the theme icon on every page.",
 );
 assert(
     caseStyles.includes(
