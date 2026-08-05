@@ -335,7 +335,6 @@ Those drawings produced the current Heph lockup.
 
 Heph is in beta. My next task is better retrieval on messy collections. I also want faster indexing and a shorter path from a citation to its source passage. The provider layer can change without altering the armory format or evidence IDs.
 
-I use Heph for my own document work every day.
 
 [GitHub repository](https://github.com/gildrb/heph)
 

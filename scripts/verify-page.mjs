@@ -1716,13 +1716,12 @@ assert(
         caseStyles.includes(
             ".case-section:last-child .case-copy:last-child h2:last-child {\n        margin-bottom: 0;",
         ) &&
-        !caseStyles.includes("margin-top: auto;") &&
         !caseStyles.includes("padding-top: 80px;"),
     "Desktop case endings must keep their natural flow while reserving the theme toggle's bottom boundary.",
 );
 assert(
     caseStyles.includes(
-        ".case-next {\n        padding-bottom: calc(\n            var(--footer-title-center-offset) +",
+        ".case-next {\n        margin-top: auto;\n        padding-top: 48px;\n        padding-bottom: calc(\n            var(--footer-title-center-offset) +",
     ) &&
         caseStyles.includes(
             ".case-next-row:last-child {\n        padding-bottom: 0;",
@@ -1739,7 +1738,7 @@ assert(
         caseStyles.includes(
             "@media (max-width: 768px)",
         ),
-    "Case-next pages must keep the article gap and table rows on the documented spacing scale.",
+    "Case-next pages must preserve a 48px article gap, use spare desktop height before the table, and optically align the final row with the theme toggle.",
 );
 assert(
     caseStyles.includes(
