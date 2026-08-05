@@ -749,26 +749,25 @@ assert(
     ) &&
         !benDavisStyles.includes("filter:") &&
         previewContentStyles.includes(
-            ".ben-davis-brandmark {\n    filter: none;",
+            ".theme-adaptive-monochrome-artwork {\n    filter: none;",
         ) &&
         previewContentStyles.includes(
-            "@media (prefers-color-scheme: light) {\n    :root:not([data-theme]) .ben-davis-brandmark {\n        filter: brightness(0);",
+            "@media (prefers-color-scheme: light) {\n    :root:not([data-theme]) .theme-adaptive-monochrome-artwork {\n        filter: brightness(0);",
         ) &&
         previewContentStyles.includes(
-            ':root[data-theme="light"] .ben-davis-brandmark {\n    filter: brightness(0);',
+            ':root[data-theme="light"] .theme-adaptive-monochrome-artwork {\n    filter: brightness(0);',
         ) &&
         previewContentStyles.includes(
-            ':root[data-theme="dark"] .ben-davis-brandmark {\n    filter: none;',
+            ':root[data-theme="dark"] .theme-adaptive-monochrome-artwork {\n    filter: none;',
         ) &&
         siteConfig.allPage.styles.includes("40-preview-content.css") &&
-        Object.entries(casePages).every(
-            ([slug, html]) =>
-                slug === "ben-davis" ||
-                !html.includes('<img class="ben-davis-brandmark"'),
+        benDavisHtml.includes(
+            'class="ben-davis-brandmark theme-adaptive-monochrome-artwork"',
         ) &&
-        benDavisHtml.includes('class="ben-davis-brandmark"') &&
-        allPage.includes('class="ben-davis-brandmark"'),
-    "The Ben Davis brandmark must invert for accessible light/dark contrast on both its case study and the all-projects view, while case-specific sizing remains isolated.",
+        allPage.includes(
+            'class="ben-davis-brandmark theme-adaptive-monochrome-artwork"',
+        ),
+    "Theme-adaptive monochrome artwork must use one shared light/dark contrast utility on every rendered route; Ben Davis remains the current cross-route fixture while sizing stays case-specific.",
 );
 assert(
     hephMarkdown.includes("![Heph demo](media:heph-demo)") &&
