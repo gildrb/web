@@ -284,7 +284,7 @@
 .portfolio-sort-button {
     display: inline-grid;
     grid-template-columns: auto 1ch;
-    column-gap: 4px;
+    column-gap: 0;
     align-items: baseline;
     justify-self: start;
     appearance: none;
@@ -303,6 +303,14 @@
     visibility: hidden;
     font-family: "Inter", sans-serif;
     text-align: center;
+}
+
+.portfolio-sort-title .portfolio-sort-indicator {
+    transform: translateX(2.3px);
+}
+
+.portfolio-sort-scope .portfolio-sort-indicator {
+    transform: translateX(1.3px);
 }
 
 .portfolio-sort-button[data-sort-direction]

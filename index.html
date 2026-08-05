@@ -1178,7 +1178,7 @@
   summary,
   [role="button"],
   [role="link"],
-  [tabindex]:not([tabindex="-1"])):active {
+  [tabindex]:not([tabindex="-1"])):active:not(.portfolio-sort-button) {
   position: relative;
   top: 1px;
 }
@@ -1467,127 +1467,164 @@ body {
 }
 
 @keyframes homepage-fade {
-  from {
-    opacity: 0;
-    filter: blur(6px);
-  }
+	from {
+		opacity: 0;
+		filter: blur(6px);
+	}
 
-  to {
-    opacity: 1;
-    filter: blur(0);
-  }
+	to {
+		opacity: 1;
+		filter: blur(0);
+	}
 }
 
 @keyframes homepage-rise {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
+	from {
+		opacity: 0;
+		transform: translateY(12px);
+	}
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 /*
  * Nelson-inspired progressive entry motion without a runtime dependency.
- * Identity and summary content paint immediately; secondary navigation and
- * portfolio rows then resolve through a short container fade and bounded rise.
+ * Run it only until the first sort interaction so reordered rows cannot
+ * re-enter from their new stagger positions.
  */
 @media screen and (prefers-reduced-motion: no-preference) {
-  .links,
-  .portfolio-scroll-frame {
-    animation: homepage-fade 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
-    animation-delay: 80ms;
-  }
+	html:not([data-homepage-entry-complete]) .links,
+	html:not([data-homepage-entry-complete]) .portfolio-scroll-frame {
+		animation: homepage-fade 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+		animation-delay: 80ms;
+	}
 
-  .links > *,
-  .portfolio-table-header,
-  .portfolio-list > .portfolio-card-link {
-    animation: homepage-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
-    animation-delay: var(--homepage-entry-delay, 120ms);
-  }
+	html:not([data-homepage-entry-complete]) .links > *,
+	html:not([data-homepage-entry-complete]) .portfolio-table-header,
+	html:not([data-homepage-entry-complete])
+		.portfolio-list
+		> .portfolio-card-link {
+		animation: homepage-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+		animation-delay: var(--homepage-entry-delay, 120ms);
+	}
 
-  .links > :nth-child(2) {
-    --homepage-entry-delay: 170ms;
-  }
+	.links > :nth-child(2) {
+		--homepage-entry-delay: 170ms;
+	}
 
-  .links > :nth-child(3) {
-    --homepage-entry-delay: 220ms;
-  }
+	.links > :nth-child(3) {
+		--homepage-entry-delay: 220ms;
+	}
 
-  .links > :nth-child(4) {
-    --homepage-entry-delay: 270ms;
-  }
+	.links > :nth-child(4) {
+		--homepage-entry-delay: 270ms;
+	}
 
-  .links > :nth-child(5) {
-    --homepage-entry-delay: 320ms;
-  }
+	.links > :nth-child(5) {
+		--homepage-entry-delay: 320ms;
+	}
 
-  .links > :nth-child(6) {
-    --homepage-entry-delay: 370ms;
-  }
+	.links > :nth-child(6) {
+		--homepage-entry-delay: 370ms;
+	}
 
-  .links > :nth-child(7) {
-    --homepage-entry-delay: 420ms;
-  }
+	.links > :nth-child(7) {
+		--homepage-entry-delay: 420ms;
+	}
 
-  .links > :nth-child(8) {
-    --homepage-entry-delay: 470ms;
-  }
+	.links > :nth-child(8) {
+		--homepage-entry-delay: 470ms;
+	}
 
-  .links > :nth-child(9) {
-    --homepage-entry-delay: 520ms;
-  }
+	.links > :nth-child(9) {
+		--homepage-entry-delay: 520ms;
+	}
 
-  .links > :nth-child(10) {
-    --homepage-entry-delay: 570ms;
-  }
+	.links > :nth-child(10) {
+		--homepage-entry-delay: 570ms;
+	}
 
-  .portfolio-table-header {
-    --homepage-entry-delay: 120ms;
-  }
+	.portfolio-table-header {
+		--homepage-entry-delay: 120ms;
+	}
 
-  .portfolio-list > .portfolio-card-link:nth-child(1) {
-    --homepage-entry-delay: 165ms;
-  }
+	.portfolio-list > .portfolio-card-link:nth-child(1) {
+		--homepage-entry-delay: 165ms;
+	}
 
-  .portfolio-list > .portfolio-card-link:nth-child(2) {
-    --homepage-entry-delay: 210ms;
-  }
+	.portfolio-list > .portfolio-card-link:nth-child(2) {
+		--homepage-entry-delay: 210ms;
+	}
 
-  .portfolio-list > .portfolio-card-link:nth-child(3) {
-    --homepage-entry-delay: 255ms;
-  }
+	.portfolio-list > .portfolio-card-link:nth-child(3) {
+		--homepage-entry-delay: 255ms;
+	}
 
-  .portfolio-list > .portfolio-card-link:nth-child(4) {
-    --homepage-entry-delay: 300ms;
-  }
+	.portfolio-list > .portfolio-card-link:nth-child(4) {
+		--homepage-entry-delay: 300ms;
+	}
 
-  .portfolio-list > .portfolio-card-link:nth-child(5) {
-    --homepage-entry-delay: 345ms;
-  }
+	.portfolio-list > .portfolio-card-link:nth-child(5) {
+		--homepage-entry-delay: 345ms;
+	}
 
-  .portfolio-list > .portfolio-card-link:nth-child(6) {
-    --homepage-entry-delay: 390ms;
-  }
+	.portfolio-list > .portfolio-card-link:nth-child(6) {
+		--homepage-entry-delay: 390ms;
+	}
 
-  .portfolio-list > .portfolio-card-link:nth-child(7) {
-    --homepage-entry-delay: 435ms;
-  }
+	.portfolio-list > .portfolio-card-link:nth-child(7) {
+		--homepage-entry-delay: 435ms;
+	}
 
-  .portfolio-list > .portfolio-card-link:nth-child(8) {
-    --homepage-entry-delay: 480ms;
-  }
+	.portfolio-list > .portfolio-card-link:nth-child(8) {
+		--homepage-entry-delay: 480ms;
+	}
 
-  .portfolio-list > .portfolio-card-link:nth-child(9) {
-    --homepage-entry-delay: 525ms;
-  }
+	.portfolio-list > .portfolio-card-link:nth-child(9) {
+		--homepage-entry-delay: 525ms;
+	}
 
-  .portfolio-list > .portfolio-card-link:nth-child(10) {
-    --homepage-entry-delay: 570ms;
-  }
+	.portfolio-list > .portfolio-card-link:nth-child(10) {
+		--homepage-entry-delay: 570ms;
+	}
+
+	/* Mobile places Links and Contact side by side below the portfolio. */
+	@media (max-width: 767px) {
+		html:not([data-homepage-entry-complete]) .links {
+			animation-delay: 480ms;
+		}
+
+		.links > :nth-child(1),
+		.links > :nth-child(7) {
+			--homepage-entry-delay: 525ms;
+		}
+
+		.links > :nth-child(2),
+		.links > :nth-child(8) {
+			--homepage-entry-delay: 570ms;
+		}
+
+		.links > :nth-child(3),
+		.links > :nth-child(9) {
+			--homepage-entry-delay: 615ms;
+		}
+
+		.links > :nth-child(4),
+		.links > :nth-child(10) {
+			--homepage-entry-delay: 660ms;
+		}
+
+		.links > :nth-child(5) {
+			--homepage-entry-delay: 705ms;
+		}
+
+		.links > :nth-child(6) {
+			--homepage-entry-delay: 750ms;
+		}
+	}
 }
 
 .portfolio-scroll-frame {
@@ -1876,7 +1913,7 @@ body {
 .portfolio-sort-button {
     display: inline-grid;
     grid-template-columns: auto 1ch;
-    column-gap: 4px;
+    column-gap: 0;
     align-items: baseline;
     justify-self: start;
     appearance: none;
@@ -1895,6 +1932,14 @@ body {
     visibility: hidden;
     font-family: "Inter", sans-serif;
     text-align: center;
+}
+
+.portfolio-sort-title .portfolio-sort-indicator {
+    transform: translateX(2.3px);
+}
+
+.portfolio-sort-scope .portfolio-sort-indicator {
+    transform: translateX(1.3px);
 }
 
 .portfolio-sort-button[data-sort-direction]
@@ -2626,7 +2671,7 @@ body:not(.case-page) .content {
                                 aria-pressed="true"
                                 aria-label="Sort projects by date, currently newest first"
                             >
-                                Date
+                                <span class="portfolio-sort-label">Date&nbsp;</span>
                                 <span
                                     class="portfolio-sort-indicator"
                                     aria-hidden="true"
@@ -2640,7 +2685,7 @@ body:not(.case-page) .content {
                                 aria-pressed="false"
                                 aria-label="Sort projects by title"
                             >
-                                Project
+                                <span class="portfolio-sort-label">Project&nbsp;</span>
                                 <span
                                     class="portfolio-sort-indicator"
                                     aria-hidden="true"
@@ -2654,7 +2699,7 @@ body:not(.case-page) .content {
                                 aria-pressed="false"
                                 aria-label="Sort projects by scope"
                             >
-                                Scope
+                                <span class="portfolio-sort-label">Scope&nbsp;</span>
                                 <span
                                     class="portfolio-sort-indicator"
                                     aria-hidden="true"
@@ -3179,6 +3224,7 @@ function sortPortfolioRows(key, direction) {
     const rows = [
         ...portfolioList.querySelectorAll(".portfolio-card-link"),
     ];
+    const slots = [...rows];
 
     rows.sort((left, right) => {
         const leftValue = getPortfolioRowValue(left, key);
@@ -3201,7 +3247,38 @@ function sortPortfolioRows(key, direction) {
         );
     });
 
-    rows.forEach((row) => portfolioList.append(row));
+    const projects = rows.map((row) => {
+        const time = row.querySelector("time");
+        const title = row.querySelector(".portfolio-card-title");
+
+        return {
+            href: row.getAttribute("href"),
+            datetime: time.getAttribute("datetime"),
+            timeId: time.id,
+            fullDate: time.querySelector(".portfolio-date-full").textContent,
+            year: time.querySelector(".portfolio-date-year").textContent,
+            title: title.textContent,
+            titleId: title.id,
+            scope: row.querySelector(".portfolio-card-scope").textContent,
+        };
+    });
+
+    slots.forEach((row, index) => {
+        const project = projects[index];
+        const time = row.querySelector("time");
+        const title = row.querySelector(".portfolio-card-title");
+
+        row.setAttribute("href", project.href);
+        time.setAttribute("datetime", project.datetime);
+        if (project.timeId) time.id = project.timeId;
+        else time.removeAttribute("id");
+        time.querySelector(".portfolio-date-full").textContent =
+            project.fullDate;
+        time.querySelector(".portfolio-date-year").textContent = project.year;
+        title.textContent = project.title;
+        title.id = project.titleId;
+        row.querySelector(".portfolio-card-scope").textContent = project.scope;
+    });
 }
 
 function updatePortfolioAllLink(key, direction) {

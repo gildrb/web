@@ -460,6 +460,19 @@ assert(
         homepageEntryStyles.includes(
             "@media screen and (prefers-reduced-motion: no-preference)",
         ) &&
+        homepageEntryStyles.includes("@media (max-width: 767px)") &&
+        homepageEntryStyles.includes(
+            ".links > :nth-child(1),\n\t\t.links > :nth-child(7) {",
+        ) &&
+        homepageEntryStyles.includes("animation-delay: 480ms;") &&
+        homepageEntryStyles.includes("--homepage-entry-delay: 525ms;") &&
+        homepageEntryStyles.includes("--homepage-entry-delay: 750ms;") &&
+        homepageEntryStyles.includes(
+            "html:not([data-homepage-entry-complete]) .portfolio-table-header",
+        ) &&
+        siteScript.includes(
+            'document.documentElement.dataset.homepageEntryComplete = "true";',
+        ) &&
         homepageEntryStyles.includes(
             "--homepage-entry-delay: 570ms;",
         ) &&
@@ -470,7 +483,7 @@ assert(
         !siteScript.includes("document.fonts.load") &&
         !/<link[^>]+IoskeleyMono-Regular\.woff2/.test(indexHtml) &&
         !indexHtml.includes('aria-label="Read the'),
-    "Public pages must paint identity content immediately, use bounded dependency-free entry motion with reduced-motion support, prevent Cloudflare injection, avoid unused font preloads, and use visible link text as accessible names.",
+    "Public pages must paint identity content immediately, preserve desktop entry motion, follow mobile visual rows with bounded reduced-motion-safe animation, prevent Cloudflare injection, avoid unused font preloads, and use visible link text as accessible names.",
 );
 assert(
     caseScript.includes('querySelectorAll(".email")') &&
@@ -866,8 +879,11 @@ assert(
 assert(
     baseStyles.includes(
         ":is(a[href]:not(.heph-demo-close-link),\n  button,",
-    ),
-    "The global active nudge must not move the Heph close control.",
+    ) &&
+        baseStyles.includes(
+            '[tabindex]:not([tabindex="-1"])):active:not(.portfolio-sort-button) {',
+        ),
+    "The global active nudge must not move the Heph close control or portfolio sort headings.",
 );
 assert(
     hephDemoStyles.includes(
@@ -1257,9 +1273,15 @@ assert(
         indexHtml.includes('data-sort-key="scope"') &&
         indexHtml.match(/class="portfolio-sort-indicator"/g)?.length === 3 &&
         indexHtml.includes('aria-hidden="true"') &&
-        indexHtml.includes(">\n                                Date\n") &&
-        indexHtml.includes(">\n                                Project\n") &&
-        indexHtml.includes(">\n                                Scope\n") &&
+        indexHtml.includes(
+            '<span class="portfolio-sort-label">Date&nbsp;</span>',
+        ) &&
+        indexHtml.includes(
+            '<span class="portfolio-sort-label">Project&nbsp;</span>',
+        ) &&
+        indexHtml.includes(
+            '<span class="portfolio-sort-label">Scope&nbsp;</span>',
+        ) &&
         indexHtml.includes(
             'class="portfolio-link-heading"\n                                href="/all?sort=date&direction=descending"\n                            >All</a>',
         ) &&
@@ -1316,7 +1338,14 @@ assert(
         siteScript.includes(
             'return direction === "descending" ? "A to Z" : "Z to A";',
         ) &&
+        siteScript.includes("const slots = [...rows];") &&
+        siteScript.includes("slots.forEach((row, index) => {") &&
+        siteScript.includes('row.setAttribute("href", project.href);') &&
         siteScript.includes(
+            'row.querySelector(".portfolio-card-scope").textContent = project.scope;',
+        ) &&
+        !siteScript.includes("portfolioList.replaceChildren(...rows);") &&
+        !siteScript.includes(
             "rows.forEach((row) => portfolioList.append(row));",
         ) &&
         siteScript.includes(
@@ -1350,8 +1379,16 @@ assert(
         siteScript.includes('"A to Z"') &&
         siteScript.includes('"Z to A"') &&
         siteScript.includes("if (event.detail !== 0) button.blur();") &&
+        portfolioStyles.includes("column-gap: 0;") &&
+        portfolioStyles.includes(
+            ".portfolio-sort-title .portfolio-sort-indicator {\n    transform: translateX(2.3px);",
+        ) &&
+        portfolioStyles.includes(
+            ".portfolio-sort-scope .portfolio-sort-indicator {\n    transform: translateX(1.3px);",
+        ) &&
+        (portfolioOpen.match(/class="portfolio-sort-label"/g) || []).length === 3 &&
         !caseScript.includes("portfolioSortButtons"),
-    "The homepage must use secondary-tone Date, Project, Scope, and All headings, with All preserving the active sort for the continuous projects page.",
+    "The homepage must keep sorting stable after its one-time entry animation and use consistent Date, Project, Scope, and All heading spacing while All preserves the active sort for the continuous projects page.",
 );
 assert(
     portfolioOpen.indexOf('class="portfolio-scroll-frame"') <

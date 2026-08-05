@@ -33,6 +33,7 @@ function sortPortfolioRows(key, direction) {
     const rows = [
         ...portfolioList.querySelectorAll(".portfolio-card-link"),
     ];
+    const slots = [...rows];
 
     rows.sort((left, right) => {
         const leftValue = getPortfolioRowValue(left, key);
@@ -55,7 +56,38 @@ function sortPortfolioRows(key, direction) {
         );
     });
 
-    rows.forEach((row) => portfolioList.append(row));
+    const projects = rows.map((row) => {
+        const time = row.querySelector("time");
+        const title = row.querySelector(".portfolio-card-title");
+
+        return {
+            href: row.getAttribute("href"),
+            datetime: time.getAttribute("datetime"),
+            timeId: time.id,
+            fullDate: time.querySelector(".portfolio-date-full").textContent,
+            year: time.querySelector(".portfolio-date-year").textContent,
+            title: title.textContent,
+            titleId: title.id,
+            scope: row.querySelector(".portfolio-card-scope").textContent,
+        };
+    });
+
+    slots.forEach((row, index) => {
+        const project = projects[index];
+        const time = row.querySelector("time");
+        const title = row.querySelector(".portfolio-card-title");
+
+        row.setAttribute("href", project.href);
+        time.setAttribute("datetime", project.datetime);
+        if (project.timeId) time.id = project.timeId;
+        else time.removeAttribute("id");
+        time.querySelector(".portfolio-date-full").textContent =
+            project.fullDate;
+        time.querySelector(".portfolio-date-year").textContent = project.year;
+        title.textContent = project.title;
+        title.id = project.titleId;
+        row.querySelector(".portfolio-card-scope").textContent = project.scope;
+    });
 }
 
 function updatePortfolioAllLink(key, direction) {
