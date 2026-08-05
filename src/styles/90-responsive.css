@@ -303,7 +303,7 @@ body:not(.case-page) .content {
     .links.mobile-links-grid {
         display: grid;
         grid-template-columns:
-            var(--portfolio-contact-column-start) minmax(0, 1fr);
+            var(--mobile-contact-start, 3fr) minmax(0, 4fr);
         column-gap: 0;
     }
 

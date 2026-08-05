@@ -383,6 +383,11 @@
         grid-template-columns: subgrid;
     }
 
+    .portfolio-card-link time,
+    .portfolio-card-title {
+        padding-inline-end: var(--portfolio-mobile-cell-end-space);
+    }
+
     .portfolio-card-view {
         display: none;
     }

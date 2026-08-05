@@ -1272,14 +1272,20 @@ assert(
     "The mobile homepage must keep the locked table scroll region and edge indicators.",
 );
 assert(
-    baseStyles.includes("--portfolio-date-column: 49px;") &&
-        baseStyles.includes("--portfolio-project-column: 80px;") &&
-        baseStyles.includes("--portfolio-arrow-column: 19px;") &&
-        baseStyles.includes("--portfolio-contact-column-start: calc(") &&
+    baseStyles.includes("--portfolio-mobile-cell-end-space: 8px;") &&
+        baseStyles.includes(
+            "max-content max-content minmax(0, 1fr)",
+        ) &&
+        baseStyles.includes(
+            "--portfolio-mobile-table-columns: var(--portfolio-table-columns);",
+        ) &&
         portfolioStyles.includes(
             "grid-template-columns: var(--portfolio-table-columns);",
         ) &&
         portfolioStyles.includes("font-variant-numeric: tabular-nums;") &&
+        portfolioStyles.includes(
+            ".portfolio-card-link time,\n    .portfolio-card-title {\n        padding-inline-end: var(--portfolio-mobile-cell-end-space);",
+        ) &&
         caseStyles.includes(
             ".case-next-list {\n    display: grid;\n    grid-template-columns: var(--portfolio-table-columns);",
         ) &&
@@ -1287,20 +1293,23 @@ assert(
         caseStyles.includes(
             ".case-next-row {\n        padding: 7px 0;",
         ) &&
+        caseStyles.includes(
+            ".case-next-row time,\n    .case-next-project {\n        padding-inline-end: var(--portfolio-mobile-cell-end-space);",
+        ) &&
         responsiveStyles.includes(
             "grid-template-columns: var(--portfolio-mobile-table-columns);",
         ) &&
         responsiveStyles.includes(
-            "var(--portfolio-contact-column-start) minmax(0, 1fr);",
+            "var(--mobile-contact-start, 3fr) minmax(0, 4fr);",
         ) &&
-        !responsiveStyles.includes("--mobile-contact-start") &&
         siteScript.includes(
-            'links.classList.toggle("mobile-links-grid", isMobile);',
+            'links.classList.add("mobile-links-grid");',
         ) &&
-        !siteScript.includes(
-            'links.style.setProperty("--mobile-contact-start"',
-        ),
-    "Homepage and case-next tables must share deterministic Date, Project, Scope, and arrow tracks so the mobile Links/Contact grid starts at the same Scope column.",
+        siteScript.includes(
+            'links.style.setProperty(\n        "--mobile-contact-start",',
+        ) &&
+        siteScript.includes("portfolioScope.getBoundingClientRect().left"),
+    "Each portfolio table must derive Date and Project tracks from its visible rows, preserve equal mobile trailing space, and align Contact to its resulting Scope column.",
 );
 assert(
     indexHtml.includes('class="portfolio-table-header"') &&

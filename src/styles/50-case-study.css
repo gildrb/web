@@ -489,6 +489,11 @@
         padding: 7px 0;
     }
 
+    .case-next-row time,
+    .case-next-project {
+        padding-inline-end: var(--portfolio-mobile-cell-end-space);
+    }
+
     .case-next-view {
         display: none;
     }
