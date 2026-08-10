@@ -1451,7 +1451,7 @@ assert(
 const portfolioDates = [
     ["2026-07-25", "2026-07-25", "T3"],
     ["2026-07-07", "2026-07-07", "Ben Davis"],
-    ["2026-04-21", "2026-04-21", "Heph"],
+    ["2026-04-21", "2026-04-21", "Heph-Agent"],
     ["2026-01-14", "2026-01-14", "Filen"],
     ["2019-11-15", "2019-11-15", "n0thing"],
     ["2019-01-25", "2019-01-25", "CURVES"],
@@ -1601,7 +1601,7 @@ assert(
         .every((position, index, positions) =>
             index === 0 ? position !== -1 : position > positions[index - 1],
         ),
-    "Homepage projects must default to one global newest-first order: gildrb.com, Heph, Filen, n0thing, mL7.",
+    "Homepage projects must default to one global newest-first order: gildrb.com, Heph-Agent, Filen, n0thing, mL7.",
 );
 assert(
     indexHtml.includes('class="portfolio-list"') &&
