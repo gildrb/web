@@ -134,17 +134,16 @@ const markdownRoutes = [
 	"/site",
 ];
 assert(
-    markdownRoutes.every(
-        (route) =>
-            pagesRouter.includes(`[\"${route}\",`) &&
-            cloudflareRoutes.include.includes(route),
+    markdownRoutes.every((route) =>
+        pagesRouter.includes(`[\"${route}\",`),
     ) &&
+        cloudflareRoutes.include.includes("/*") &&
         pagesRouter.includes('includes(\"text/markdown\")') &&
         pagesRouter.includes(
             '\"Content-Type\": \"text/markdown; charset=utf-8\"',
         ) &&
         cloudflareHeaders.includes("Vary: Accept"),
-    "Every HTML page must negotiate Markdown through a bounded Cloudflare Pages Function route.",
+    "Every HTML page must negotiate Markdown through the catch-all Cloudflare Pages Function route.",
 );
 
 assert(

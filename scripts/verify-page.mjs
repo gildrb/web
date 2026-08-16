@@ -260,6 +260,13 @@ const previewFavicon = await readText("preview-favicon.svg");
 const cloudflareHeaders = await readText("_headers");
 const cloudflareRedirects = await readText("_redirects");
 const cloudflareRoutes = await readText("_routes.json");
+const cloudflareFunctionsCatchAll = "/*";
+const directStaticAssetRoutes = ["/content/*", "/fonts/*", "/images/*"];
+const legacyRedirectSources = cloudflareRedirects
+    .split("\n")
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith("https://"))
+    .map((line) => line.split(/\s+/)[0]);
 const sharedCacheFreshnessToken = ["s", "maxage"].join("-");
 const staleRevalidationToken = ["stale", "while", "revalidate"].join("-");
 const caseSources = await Promise.all(
@@ -646,10 +653,14 @@ assert(
         cloudflareHeaders.includes(llmFullTextRoute) &&
         !cloudflareHeaders.includes(sharedCacheFreshnessToken) &&
         !cloudflareHeaders.includes(staleRevalidationToken) &&
-        ["/", "/api/profile", "/api/status", "/mcp"].every((route) =>
-            cloudflareRoutes.includes(`"${route}"`),
-        ),
-    "Cloudflare Pages headers must expose the full-text and content Markdown routes without shared-cache stale windows.",
+        cloudflareRoutes.includes(`"${cloudflareFunctionsCatchAll}"`) &&
+            directStaticAssetRoutes.every((route) =>
+                cloudflareRoutes.includes(`"${route}"`),
+            ) &&
+            legacyRedirectSources.every((route) =>
+                cloudflareRoutes.includes(`"${route}"`),
+            ),
+    "Cloudflare Pages headers and routes must expose the full-text and content Markdown routes, with Functions covering every non-redirect path so percent-encoded repo files stay blocked, without shared-cache stale windows.",
 );
 const documentedPortfolioTexts = [
     llmsText,

@@ -7,7 +7,36 @@ const blockedFiles = new Set([
 	"/package-lock.json",
 	"/package.json",
 ]);
-const blockedPrefixes = ["/.wrangler/", "/functions/", "/scripts/", "/src/"];
+const blockedPrefixes = [
+	"/.git/",
+	"/.wrangler/",
+	"/functions/",
+	"/node_modules/",
+	"/public/",
+	"/scripts/",
+	"/src/",
+];
+
+function normalizePathname(pathname) {
+	let decoded;
+	try {
+		decoded = decodeURIComponent(pathname);
+	} catch {
+		return null;
+	}
+	const segments = [];
+	for (const segment of decoded.split("/")) {
+		if (segment === "." || segment === "") {
+			continue;
+		}
+		if (segment === "..") {
+			segments.pop();
+		} else {
+			segments.push(segment);
+		}
+	}
+	return `/${segments.join("/")}`;
+}
 
 export function onRequest(context) {
 	let pathname;
@@ -16,9 +45,11 @@ export function onRequest(context) {
 	} catch {
 		return new Response("Invalid request URL\n", { status: 400 });
 	}
+	const normalized = normalizePathname(pathname);
 	if (
-		blockedFiles.has(pathname) ||
-		blockedPrefixes.some((prefix) => pathname.startsWith(prefix))
+		normalized === null ||
+		blockedFiles.has(normalized) ||
+		blockedPrefixes.some((prefix) => normalized.startsWith(prefix))
 	) {
 		return new Response("Not found\n", {
 			status: 404,
