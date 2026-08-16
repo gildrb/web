@@ -371,6 +371,14 @@
     outline-offset: 4px;
 }
 
+.portfolio-link-heading:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.portfolio-link-heading:focus-visible {
+    outline: 1px solid var(--text-primary);
+    outline-offset: 4px;
+}
 @media (min-width: 768px) {
     .portfolio-table-header {
         padding-top: 0;

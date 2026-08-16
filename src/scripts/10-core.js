@@ -20,7 +20,7 @@ function updateHomepageDates() {
     portfolioSiteDate.querySelector(".portfolio-date-full").textContent =
         isoDate;
     portfolioSiteDate.querySelector(".portfolio-date-year").textContent =
-        year;
+        `${year}-${month}`;
     portfolioSiteDate.setAttribute("datetime", isoDate);
 }
 

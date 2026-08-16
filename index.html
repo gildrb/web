@@ -2014,6 +2014,14 @@ body {
     outline-offset: 4px;
 }
 
+.portfolio-link-heading:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.portfolio-link-heading:focus-visible {
+    outline: 1px solid var(--text-primary);
+    outline-offset: 4px;
+}
 @media (min-width: 768px) {
     .portfolio-table-header {
         padding-top: 0;
@@ -2756,7 +2764,7 @@ body:not(.case-page) .content {
                         >
                             <time id="portfolio-site-date" datetime="2026-07-15">
                                 <span class="portfolio-date-full">2026-07-15</span>
-                                <span class="portfolio-date-year">2026</span>
+                                <span class="portfolio-date-year">2026-07</span>
                             </time>
                             <span
                                 class="portfolio-card-title"
@@ -2775,7 +2783,7 @@ body:not(.case-page) .content {
                         >
                             <time datetime="2026-07-25">
                                 <span class="portfolio-date-full">2026-07-25</span>
-                                <span class="portfolio-date-year">2026</span>
+                                <span class="portfolio-date-year">2026-07</span>
                             </time>
                             <span
                                 class="portfolio-card-title"
@@ -2794,7 +2802,7 @@ body:not(.case-page) .content {
                         >
                             <time datetime="2026-07-07">
                                 <span class="portfolio-date-full">2026-07-07</span>
-                                <span class="portfolio-date-year">2026</span>
+                                <span class="portfolio-date-year">2026-07</span>
                             </time>
                             <span
                                 class="portfolio-card-title"
@@ -2813,7 +2821,7 @@ body:not(.case-page) .content {
                         >
                             <time datetime="2026-04-21">
                                 <span class="portfolio-date-full">2026-04-21</span>
-                                <span class="portfolio-date-year">2026</span>
+                                <span class="portfolio-date-year">2026-04</span>
                             </time>
                             <span
                                 class="portfolio-card-title"
@@ -2832,7 +2840,7 @@ body:not(.case-page) .content {
                         >
                             <time datetime="2026-01-14">
                                 <span class="portfolio-date-full">2026-01-14</span>
-                                <span class="portfolio-date-year">2026</span>
+                                <span class="portfolio-date-year">2026-01</span>
                             </time>
                             <span
                                 class="portfolio-card-title"
@@ -2851,7 +2859,7 @@ body:not(.case-page) .content {
                         >
                             <time datetime="2019-11-15">
                                 <span class="portfolio-date-full">2019-11-15</span>
-                                <span class="portfolio-date-year">2019</span>
+                                <span class="portfolio-date-year">2019-11</span>
                             </time>
                             <span
                                 class="portfolio-card-title"
@@ -2870,7 +2878,7 @@ body:not(.case-page) .content {
                         >
                             <time datetime="2019-01-25">
                                 <span class="portfolio-date-full">2019-01-25</span>
-                                <span class="portfolio-date-year">2019</span>
+                                <span class="portfolio-date-year">2019-01</span>
                             </time>
                             <span
                                 class="portfolio-card-title"
@@ -2889,7 +2897,7 @@ body:not(.case-page) .content {
                         >
                             <time datetime="2018-11-13">
                                 <span class="portfolio-date-full">2018-11-13</span>
-                                <span class="portfolio-date-year">2018</span>
+                                <span class="portfolio-date-year">2018-11</span>
                             </time>
                             <span
                                 class="portfolio-card-title"
@@ -2961,7 +2969,7 @@ function updateHomepageDates() {
     portfolioSiteDate.querySelector(".portfolio-date-full").textContent =
         isoDate;
     portfolioSiteDate.querySelector(".portfolio-date-year").textContent =
-        year;
+        `${year}-${month}`;
     portfolioSiteDate.setAttribute("datetime", isoDate);
 }
 

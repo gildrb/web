@@ -240,7 +240,7 @@ export async function buildPage({ write = true } = {}) {
                         rowStart,
                         `                                <time datetime="${date}">`,
                         `                                    <span class="case-next-date-full">${date}</span>`,
-                        `                                    <span class="case-next-date-year">${date.slice(0, 4)}</span>`,
+                        `                                    <span class="case-next-date-year">${date.slice(0, 7)}</span>`,
                         "                                </time>",
                         `                                <span class="case-next-project">${title}</span>`,
                         `                                <span class="case-next-scope">${scope}</span>`,

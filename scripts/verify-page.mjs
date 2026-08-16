@@ -1465,7 +1465,7 @@ assert(
                 `<span class="portfolio-date-full">${date}</span>`,
             ) &&
             indexHtml.includes(
-                `<span class="portfolio-date-year">${date.slice(0, 4)}</span>`,
+                `<span class="portfolio-date-year">${date.slice(0, 7)}</span>`,
             ) &&
             indexHtml.includes(`>${title}</span`),
     ) &&

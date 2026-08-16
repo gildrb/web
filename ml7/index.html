@@ -1482,7 +1482,7 @@ body:not(.case-page) .content {
                             <a class="case-next-row case-next-link" href="/site">
                                 <time datetime="2026-07-15">
                                     <span class="case-next-date-full">2026-07-15</span>
-                                    <span class="case-next-date-year">2026</span>
+                                    <span class="case-next-date-year">2026-07</span>
                                 </time>
                                 <span class="case-next-project">gildrb.com</span>
                                 <span class="case-next-scope">Design Engineering</span>
@@ -1494,7 +1494,7 @@ body:not(.case-page) .content {
                             <a class="case-next-row case-next-link" href="/t3">
                                 <time datetime="2026-07-25">
                                     <span class="case-next-date-full">2026-07-25</span>
-                                    <span class="case-next-date-year">2026</span>
+                                    <span class="case-next-date-year">2026-07</span>
                                 </time>
                                 <span class="case-next-project">T3</span>
                                 <span class="case-next-scope">Logomark</span>
@@ -1506,7 +1506,7 @@ body:not(.case-page) .content {
                             <a class="case-next-row case-next-link" href="/ben-davis">
                                 <time datetime="2026-07-07">
                                     <span class="case-next-date-full">2026-07-07</span>
-                                    <span class="case-next-date-year">2026</span>
+                                    <span class="case-next-date-year">2026-07</span>
                                 </time>
                                 <span class="case-next-project">Ben Davis</span>
                                 <span class="case-next-scope">Logomark</span>
@@ -1518,7 +1518,7 @@ body:not(.case-page) .content {
                             <a class="case-next-row case-next-link" href="/heph">
                                 <time datetime="2026-04-21">
                                     <span class="case-next-date-full">2026-04-21</span>
-                                    <span class="case-next-date-year">2026</span>
+                                    <span class="case-next-date-year">2026-04</span>
                                 </time>
                                 <span class="case-next-project">Heph-Agent</span>
                                 <span class="case-next-scope">Product/Design Engineering</span>
@@ -1530,7 +1530,7 @@ body:not(.case-page) .content {
                             <a class="case-next-row case-next-link" href="/filen">
                                 <time datetime="2026-01-14">
                                     <span class="case-next-date-full">2026-01-14</span>
-                                    <span class="case-next-date-year">2026</span>
+                                    <span class="case-next-date-year">2026-01</span>
                                 </time>
                                 <span class="case-next-project">Filen</span>
                                 <span class="case-next-scope">Brand Identity</span>
@@ -1542,7 +1542,7 @@ body:not(.case-page) .content {
                             <a class="case-next-row case-next-link" href="/n0thing">
                                 <time datetime="2019-11-15">
                                     <span class="case-next-date-full">2019-11-15</span>
-                                    <span class="case-next-date-year">2019</span>
+                                    <span class="case-next-date-year">2019-11</span>
                                 </time>
                                 <span class="case-next-project">n0thing</span>
                                 <span class="case-next-scope">Wordmark</span>
@@ -1554,7 +1554,7 @@ body:not(.case-page) .content {
                             <a class="case-next-row case-next-link" href="/curves">
                                 <time datetime="2019-01-25">
                                     <span class="case-next-date-full">2019-01-25</span>
-                                    <span class="case-next-date-year">2019</span>
+                                    <span class="case-next-date-year">2019-01</span>
                                 </time>
                                 <span class="case-next-project">CURVES</span>
                                 <span class="case-next-scope">Typeface</span>
@@ -1610,7 +1610,7 @@ function updateHomepageDates() {
     portfolioSiteDate.querySelector(".portfolio-date-full").textContent =
         isoDate;
     portfolioSiteDate.querySelector(".portfolio-date-year").textContent =
-        year;
+        `${year}-${month}`;
     portfolioSiteDate.setAttribute("datetime", isoDate);
 }
 
