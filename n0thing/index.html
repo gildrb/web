@@ -164,6 +164,12 @@
   margin-top: calc(var(--section-gap) - var(--section-content-gap));
 }
 
+.links > .external-link,
+.links > .email {
+  padding-block: calc(var(--section-content-gap) / 2);
+  margin-block: calc(var(--section-content-gap) / -2);
+}
+
 .email {
   font-size: 16px;
   font-weight: 400;
@@ -444,7 +450,8 @@ body {
 }
 
 .references-links .reference-link {
-    margin-bottom: 0;
+    padding-block: calc(var(--section-content-gap) / 2);
+    margin-block: calc(var(--section-content-gap) / -2);
 }
 
 @media (min-width: 769px) {

@@ -128,6 +128,12 @@
   margin-top: calc(var(--section-gap) - var(--section-content-gap));
 }
 
+.links > .external-link,
+.links > .email {
+  padding-block: calc(var(--section-content-gap) / 2);
+  margin-block: calc(var(--section-content-gap) / -2);
+}
+
 .email {
   font-size: 16px;
   font-weight: 400;
