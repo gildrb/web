@@ -105,6 +105,72 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://gildrb.com/about</loc>
+    <lastmod>2026-08-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gildrb.com/contact</loc>
+    <lastmod>2026-08-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gildrb.com/privacy</loc>
+    <lastmod>2026-08-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gildrb.com/developers</loc>
+    <lastmod>2026-08-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gildrb.com/content/about.md</loc>
+    <lastmod>2026-08-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gildrb.com/content/contact.md</loc>
+    <lastmod>2026-08-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gildrb.com/content/privacy.md</loc>
+    <lastmod>2026-08-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gildrb.com/content/developers.md</loc>
+    <lastmod>2026-08-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gildrb.com/api-docs.md</loc>
+    <lastmod>2026-08-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gildrb.com/auth.md</loc>
+    <lastmod>2026-08-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gildrb.com/openapi.json</loc>
+    <lastmod>2026-08-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://gildrb.com/llms.txt</loc>
     <lastmod>2026-07-26T11:08:53+00:00</lastmod>
     <changefreq>monthly</changefreq>

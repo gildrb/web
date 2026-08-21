@@ -142,7 +142,17 @@
             content="Brand designer based in Germany, building identity systems for software."
         />
         <meta property="og:site_name" content="Gil Rodrigues" />
-        <meta name="twitter:card" content="summary" />
+        <meta
+            property="og:image"
+            content="https://gildrb.com/images/og-image.png"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta
+            property="og:image:alt"
+            content="Gil Rodrigues (gildrb) - brand and identity systems for software"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://gildrb.com/" />
         <meta
             name="twitter:title"
@@ -1836,6 +1846,7 @@ body {
 .portfolio-card-title {
     grid-column: 2;
     grid-row: 1;
+    margin: 0;
     white-space: nowrap;
     color: var(--text-primary);
     font-size: 16px;
@@ -2757,6 +2768,7 @@ body:not(.case-page) .content {
                         class="portfolio-section"
                         aria-label="Portfolio"
                     >
+                        <h2 class="sr-only">Portfolio</h2>
                         <div class="portfolio-list">
                         <a
                             class="portfolio-card-link"
@@ -2766,10 +2778,10 @@ body:not(.case-page) .content {
                                 <span class="portfolio-date-full">2026-07-15</span>
                                 <span class="portfolio-date-year">2026-07</span>
                             </time>
-                            <span
+                            <h3
                                 class="portfolio-card-title"
                                 id="portfolio-site-title"
-                                >gildrb.com</span
+                                >gildrb.com</h3
                             >
                             <span class="portfolio-card-scope">Design Engineering</span>
                             <span class="portfolio-card-arrow" aria-hidden="true">
@@ -2785,10 +2797,10 @@ body:not(.case-page) .content {
                                 <span class="portfolio-date-full">2026-07-25</span>
                                 <span class="portfolio-date-year">2026-07</span>
                             </time>
-                            <span
+                            <h3
                                 class="portfolio-card-title"
                                 id="portfolio-t3-title"
-                                >T3</span
+                                >T3</h3
                             >
                             <span class="portfolio-card-scope">Logomark</span>
                             <span class="portfolio-card-arrow" aria-hidden="true">
@@ -2804,10 +2816,10 @@ body:not(.case-page) .content {
                                 <span class="portfolio-date-full">2026-07-07</span>
                                 <span class="portfolio-date-year">2026-07</span>
                             </time>
-                            <span
+                            <h3
                                 class="portfolio-card-title"
                                 id="portfolio-ben-davis-title"
-                                >Ben Davis</span
+                                >Ben Davis</h3
                             >
                             <span class="portfolio-card-scope">Logomark</span>
                             <span class="portfolio-card-arrow" aria-hidden="true">
@@ -2823,10 +2835,10 @@ body:not(.case-page) .content {
                                 <span class="portfolio-date-full">2026-04-21</span>
                                 <span class="portfolio-date-year">2026-04</span>
                             </time>
-                            <span
+                            <h3
                                 class="portfolio-card-title"
                                 id="portfolio-heph-title"
-                                >Heph-Agent</span
+                                >Heph-Agent</h3
                             >
                             <span class="portfolio-card-scope">Product/Design Engineering</span>
                             <span class="portfolio-card-arrow" aria-hidden="true">
@@ -2842,10 +2854,10 @@ body:not(.case-page) .content {
                                 <span class="portfolio-date-full">2026-01-14</span>
                                 <span class="portfolio-date-year">2026-01</span>
                             </time>
-                            <span
+                            <h3
                                 class="portfolio-card-title"
                                 id="portfolio-filen-title"
-                                >Filen</span
+                                >Filen</h3
                             >
                             <span class="portfolio-card-scope">Brand Identity</span>
                             <span class="portfolio-card-arrow" aria-hidden="true">
@@ -2861,10 +2873,10 @@ body:not(.case-page) .content {
                                 <span class="portfolio-date-full">2019-11-15</span>
                                 <span class="portfolio-date-year">2019-11</span>
                             </time>
-                            <span
+                            <h3
                                 class="portfolio-card-title"
                                 id="portfolio-n0thing-title"
-                                >n0thing</span
+                                >n0thing</h3
                             >
                             <span class="portfolio-card-scope">Wordmark</span>
                             <span class="portfolio-card-arrow" aria-hidden="true">
@@ -2880,10 +2892,10 @@ body:not(.case-page) .content {
                                 <span class="portfolio-date-full">2019-01-25</span>
                                 <span class="portfolio-date-year">2019-01</span>
                             </time>
-                            <span
+                            <h3
                                 class="portfolio-card-title"
                                 id="portfolio-curves-title"
-                                >CURVES</span
+                                >CURVES</h3
                             >
                             <span class="portfolio-card-scope">Typeface</span>
                             <span class="portfolio-card-arrow" aria-hidden="true">
@@ -2899,10 +2911,10 @@ body:not(.case-page) .content {
                                 <span class="portfolio-date-full">2018-11-13</span>
                                 <span class="portfolio-date-year">2018-11</span>
                             </time>
-                            <span
+                            <h3
                                 class="portfolio-card-title"
                                 id="portfolio-ml7-title"
-                                >mL7</span
+                                >mL7</h3
                             >
                             <span class="portfolio-card-scope">Wordmark</span>
                             <span class="portfolio-card-arrow" aria-hidden="true">
@@ -2932,6 +2944,16 @@ body:not(.case-page) .content {
                                 rel="alternate"
                                 type="text/markdown"
                                 >llms.txt</a
+                            >
+                            <a
+                                class="reference-link"
+                                href="/developers"
+                                >developers</a
+                            >
+                            <a
+                                class="reference-link"
+                                href="/about"
+                                >about</a
                             >
                             <a
                                 class="reference-link"

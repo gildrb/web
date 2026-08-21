@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, follow" />
-    <title>Not found</title>
+    <link rel="canonical" href="https://gildrb.com/404.html" />
+    <title>Not found - gildrb.com</title>
     <style>
       :root {
         color-scheme: dark light;
@@ -19,12 +20,37 @@
       a {
         color: inherit;
       }
+      ul {
+        padding-left: 20px;
+      }
+      li {
+        margin: 4px 0;
+      }
     </style>
   </head>
   <body>
     <main>
       <h1>Not found</h1>
-      <p><a href="/">Return to gildrb.com</a></p>
+      <p>
+        This page does not exist on gildrb.com, the portfolio of Gil Rodrigues
+        (gildrb). The response is a real HTTP 404.
+      </p>
+      <h2>Where to look next</h2>
+      <ul>
+        <li><a href="/">Homepage</a></li>
+        <li><a href="/all">All projects</a></li>
+        <li><a href="/sitemap.xml">Sitemap</a> - every public URL</li>
+        <li><a href="/llms.txt">llms.txt</a> - canonical LLM reference</li>
+        <li><a href="/llms-full.txt">llms-full.txt</a> - full site text in one request</li>
+        <li><a href="/developers">Developer resources</a> - API, OpenAPI, and MCP docs</li>
+        <li><a href="/about">About</a> - <a href="/contact">Contact</a> - <a href="/privacy">Privacy</a></li>
+      </ul>
+      <p>
+        Agents: prefer <a href="/llms.txt">llms.txt</a> or
+        <a href="/llms-full.txt">llms-full.txt</a> over recursive crawling. API
+        errors are returned as <code>application/problem+json</code>; see
+        <a href="/api-docs.md">api-docs.md</a>.
+      </p>
     </main>
   </body>
 </html>

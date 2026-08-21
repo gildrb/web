@@ -101,7 +101,7 @@ function extractAssetRefs(html) {
 function extractPortfolioCases(html) {
     return [
         ...html.matchAll(
-            /<a\s+class="portfolio-card-link"\s+href="\/([^"?]+)"[\s\S]*?<time[^>]+datetime="([^"]+)"[\s\S]*?<span\s+class="portfolio-card-title"[^>]*>([^<]+)<\/span\s*>[\s\S]*?<span\s+class="portfolio-card-scope">([^<]+)<\/span>/g,
+            /<a\s+class="portfolio-card-link"\s+href="\/([^"?]+)"[\s\S]*?<time[^>]+datetime="([^"]+)"[\s\S]*?<h3\s+class="portfolio-card-title"[^>]*>([^<]+)<\/h3\s*>[\s\S]*?<span\s+class="portfolio-card-scope">([^<]+)<\/span>/g,
         ),
     ].map(([, slug, date, title, scope]) => ({
         date,
@@ -567,6 +567,8 @@ assert(
 const referencedImages = new Set(
     [...assetRefs].filter((ref) => ref.startsWith("images/")),
 );
+// The Open Graph image is referenced by absolute URL in social metadata.
+referencedImages.add("images/og-image.png");
 const imageFiles = (await listFiles("images")).filter(
     (file) => !file.endsWith(".DS_Store"),
 );
@@ -599,9 +601,11 @@ assert(
         homepageFooter.includes('<p class="links-label">Metadata</p>') &&
         homepageFooter.includes('href="humans.txt"') &&
         homepageFooter.includes('href="llms.txt"') &&
+        homepageFooter.includes('href="/developers"') &&
+        homepageFooter.includes('href="/about"') &&
         homepageFooter.includes('href="https://github.com/gildrb/web"') &&
         !homepageFooter.includes("llms-full.txt") &&
-        (homepageFooter.match(/class="reference-link"/g) || []).length === 3 &&
+        (homepageFooter.match(/class="reference-link"/g) || []).length === 5 &&
         allHtml.every(
             (html) =>
                 !html.includes('class="copyright"') &&
@@ -610,7 +614,7 @@ assert(
         caseHtml.every(
             (html) => !html.includes('class="site-footer"'),
         ),
-    "The homepage-only footer must keep the three visible Metadata links without a copyright label.",
+    "The homepage-only footer must keep the five visible Metadata links without a copyright label.",
 );
 const hephAsciiSignature =
     "HEPH // BRANDMARK RASTER 64x22 // GIL RODRIGUES / GILDRB";
@@ -1478,7 +1482,7 @@ assert(
             indexHtml.includes(
                 `<span class="portfolio-date-year">${date.slice(0, 7)}</span>`,
             ) &&
-            indexHtml.includes(`>${title}</span`),
+            indexHtml.includes(`>${title}</h3`),
     ) &&
         portfolioStyles.includes(
             ".portfolio-section {\n    display: grid;\n    grid-template-columns: var(--portfolio-table-columns);",
@@ -1493,7 +1497,7 @@ assert(
         !portfolioStyles.includes("width: calc(100% + 20px);") &&
         !portfolioStyles.includes("margin-inline: -10px;") &&
         portfolioStyles.includes(
-            ".portfolio-card-title {\n    grid-column: 2;\n    grid-row: 1;\n    white-space: nowrap;\n    color: var(--text-primary);\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 24px;",
+            ".portfolio-card-title {\n    grid-column: 2;\n    grid-row: 1;\n    margin: 0;\n    white-space: nowrap;\n    color: var(--text-primary);\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 24px;",
         ) &&
         portfolioStyles.includes(
             ".portfolio-card-scope {\n    grid-column: 3;\n    grid-row: 1;\n    min-width: 0;\n    overflow: hidden;\n    white-space: nowrap;\n    text-overflow: ellipsis;\n    color: var(--text-tertiary);\n    font-size: 16px;\n    font-weight: 400;\n    line-height: 24px;",

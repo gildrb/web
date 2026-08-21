@@ -52,6 +52,9 @@ function responseHeaders(origin) {
 			"Content-Type, MCP-Protocol-Version, MCP-Session-Id",
 		"Cache-Control": "no-store",
 		"Content-Type": "application/json; charset=utf-8",
+		"RateLimit-Limit": "60",
+		"RateLimit-Policy": "60;w=60",
+		"X-API-Version": "v1",
 		"X-Content-Type-Options": "nosniff",
 	});
 	if (origin) {
@@ -75,6 +78,27 @@ function jsonResponse(body, status, origin) {
 		status,
 		headers: responseHeaders(origin),
 	});
+}
+
+function problemJsonResponse(origin, status, title, detail) {
+	const headers = responseHeaders(origin);
+	headers.set("Content-Type", "application/problem+json; charset=utf-8");
+	return new Response(
+		`${JSON.stringify(
+			{
+				type: "https://gildrb.com/api-docs.md#errors",
+				title,
+				status,
+				detail,
+			},
+			null,
+			2,
+		)}\n`,
+		{
+			status,
+			headers,
+		},
+	);
 }
 
 function jsonRpcError(id, code, message) {
@@ -170,7 +194,12 @@ export async function onRequest({ env, request }) {
 	}
 	const origin = request.headers.get("Origin");
 	if (!isAllowedOrigin(origin)) {
-		return jsonResponse({ error: "Origin not allowed" }, 403);
+		return problemJsonResponse(
+			origin,
+			403,
+			"Forbidden",
+			"Origin not allowed by the MCP CORS policy.",
+		);
 	}
 	if (request.method === "OPTIONS") {
 		return new Response(null, {
@@ -179,14 +208,24 @@ export async function onRequest({ env, request }) {
 		});
 	}
 	if (request.method !== "POST") {
-		const response = jsonResponse({ error: "Method not allowed" }, 405, origin);
+		const response = problemJsonResponse(
+			origin,
+			405,
+			"Method Not Allowed",
+			"Use POST with a JSON-RPC body, or OPTIONS for CORS preflight.",
+		);
 		response.headers.set("Allow", "POST, OPTIONS");
 		return response;
 	}
 
 	const contentLength = Number(request.headers.get("Content-Length") ?? 0);
 	if (!Number.isFinite(contentLength) || contentLength > 65_536) {
-		return jsonResponse({ error: "Request body too large" }, 413, origin);
+		return problemJsonResponse(
+			origin,
+			413,
+			"Content Too Large",
+			"Request body exceeds the 64 KiB limit.",
+		);
 	}
 
 	let message;

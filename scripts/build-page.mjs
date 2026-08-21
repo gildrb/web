@@ -213,7 +213,7 @@ export async function buildPage({ write = true } = {}) {
     );
     const portfolioCases = [
         ...indexHtml.matchAll(
-            /<a\s+class="portfolio-card-link"\s+href="\/([^"?]+)"[\s\S]*?<time[^>]+datetime="([^"]+)"[\s\S]*?<span\s+class="portfolio-card-title"[^>]*>([^<]+)<\/span\s*>[\s\S]*?<span\s+class="portfolio-card-scope">([^<]+)<\/span>/g,
+            /<a\s+class="portfolio-card-link"\s+href="\/([^"?]+)"[\s\S]*?<time[^>]+datetime="([^"]+)"[\s\S]*?<h3\s+class="portfolio-card-title"[^>]*>([^<]+)<\/h3\s*>[\s\S]*?<span\s+class="portfolio-card-scope">([^<]+)<\/span>/g,
         ),
     ].map(([, slug, date, title, scope]) => ({
         date,

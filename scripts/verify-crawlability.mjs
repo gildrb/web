@@ -35,12 +35,72 @@ const caseRoutes = Object.freeze(
 const caseMarkdownRoutes = Object.freeze(
     siteConfig.caseStudies.map(({ slug }) => `/content/${slug}.md`),
 );
+const trustRoutes = Object.freeze([
+    "/about",
+    "/contact",
+    "/privacy",
+    "/developers",
+    "/content/about.md",
+    "/content/contact.md",
+    "/content/privacy.md",
+    "/content/developers.md",
+]);
 const expectedRoutes = Object.freeze([
     ...discoveryRoutes,
+    ...trustRoutes,
     ...caseRoutes,
     ...caseMarkdownRoutes,
 ]);
 const routeExpectations = {
+    "/about": {
+        contentType: "text/html",
+        minBytes: 2000,
+        indexable: true,
+        markers: ["About Gil Rodrigues (gildrb)", "hi@gildrb.com"],
+    },
+    "/contact": {
+        contentType: "text/html",
+        minBytes: 2000,
+        indexable: true,
+        markers: ["Contact Gil Rodrigues (gildrb)", "hi@gildrb.com"],
+    },
+    "/privacy": {
+        contentType: "text/html",
+        minBytes: 2000,
+        indexable: true,
+        markers: ["Privacy", "localStorage"],
+    },
+    "/developers": {
+        contentType: "text/html",
+        minBytes: 2000,
+        indexable: true,
+        markers: [
+            "developer resources",
+            "/api/v1/profile",
+            "openapi.json",
+            "gildrb.com/mcp",
+        ],
+    },
+    "/content/about.md": {
+        contentType: "text/markdown",
+        minBytes: 500,
+        markers: ["# About Gil Rodrigues (gildrb)"],
+    },
+    "/content/contact.md": {
+        contentType: "text/markdown",
+        minBytes: 500,
+        markers: ["# Contact Gil Rodrigues (gildrb)"],
+    },
+    "/content/privacy.md": {
+        contentType: "text/markdown",
+        minBytes: 500,
+        markers: ["# Privacy"],
+    },
+    "/content/developers.md": {
+        contentType: "text/markdown",
+        minBytes: 500,
+        markers: ["# gildrb.com developer resources"],
+    },
     "/": {
         contentType: "text/html",
         minBytes: 50000,

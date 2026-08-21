@@ -3,47 +3,56 @@
   "info": {
     "title": "gildrb.com public API",
     "version": "1.0.0",
-    "description": "Public, read-only profile and portfolio agent endpoints."
+    "description": "Public, read-only profile and portfolio agent endpoints for gildrb.com. Versioned in the URL path (/api/v1/...); unversioned /api/... paths are stable aliases of v1. Breaking changes ship only under a new path version; deprecated paths answer with Deprecation and Sunset headers for at least 180 days before removal. Errors use RFC 9457 application/problem+json. Every response carries RateLimit-Limit and RateLimit-Policy headers (60 requests per 60 seconds); a 429 response additionally carries Retry-After. No authentication is required."
   },
   "servers": [{ "url": "https://gildrb.com" }],
   "paths": {
-    "/api/profile": {
+    "/api/v1/profile": {
       "get": {
         "operationId": "getProfile",
         "summary": "Get the canonical JSON-LD profile",
+        "description": "Returns the structured identity and portfolio graph for Gil Rodrigues (gildrb) as JSON-LD. Equivalent to fetching /profile.json.",
         "responses": {
           "200": {
             "description": "Profile graph",
+            "headers": {
+              "RateLimit-Limit": { "$ref": "#/components/headers/RateLimitLimit" },
+              "RateLimit-Policy": { "$ref": "#/components/headers/RateLimitPolicy" },
+              "X-API-Version": { "$ref": "#/components/headers/XApiVersion" }
+            },
             "content": {
               "application/ld+json": {
-                "schema": { "type": "object", "additionalProperties": true }
+                "schema": { "$ref": "#/components/schemas/ProfileGraph" }
               }
             }
-          }
+          },
+          "429": { "$ref": "#/components/responses/TooManyRequests" },
+          "default": { "$ref": "#/components/responses/UnexpectedError" }
         }
       }
     },
-    "/api/status": {
+    "/api/v1/status": {
       "get": {
         "operationId": "getStatus",
         "summary": "Get public API status",
+        "description": "Liveness probe for the public API. Returns service name, version, and an ISO-8601 timestamp.",
         "responses": {
           "200": {
             "description": "Service is available",
+            "headers": {
+              "RateLimit-Limit": { "$ref": "#/components/headers/RateLimitLimit" },
+              "RateLimit-Policy": { "$ref": "#/components/headers/RateLimitPolicy" },
+              "X-API-Version": { "$ref": "#/components/headers/XApiVersion" }
+            },
             "content": {
               "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": ["status", "service", "timestamp"],
-                  "properties": {
-                    "status": { "const": "ok" },
-                    "service": { "type": "string" },
-                    "timestamp": { "type": "string", "format": "date-time" }
-                  }
-                }
+                "schema": { "$ref": "#/components/schemas/Status" }
               }
             }
-          }
+          },
+          "405": { "$ref": "#/components/responses/MethodNotAllowed" },
+          "429": { "$ref": "#/components/responses/TooManyRequests" },
+          "default": { "$ref": "#/components/responses/UnexpectedError" }
         }
       }
     },
@@ -51,24 +60,235 @@
       "post": {
         "operationId": "callMcp",
         "summary": "Send a JSON-RPC request to the MCP server",
+        "description": "Stateless MCP Streamable HTTP endpoint implementing initialize, ping, tools/list, and tools/call for two read-only portfolio tools. Discover connection metadata at /.well-known/mcp/server-card.json.",
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "type": "object", "additionalProperties": true }
+              "schema": {
+                "type": "object",
+                "required": ["jsonrpc", "method"],
+                "properties": {
+                  "jsonrpc": { "const": "2.0", "description": "JSON-RPC protocol version" },
+                  "id": {
+                    "description": "Request id; omit for notifications",
+                    "oneOf": [{ "type": "string" }, { "type": "number" }, { "type": "null" }]
+                  },
+                  "method": {
+                    "type": "string",
+                    "enum": ["initialize", "ping", "tools/list", "tools/call"],
+                    "description": "JSON-RPC method to invoke"
+                  },
+                  "params": {
+                    "type": "object",
+                    "description": "Method parameters; tools/call requires name and arguments",
+                    "properties": {
+                      "name": { "type": "string", "description": "Tool name for tools/call" },
+                      "arguments": {
+                        "type": "object",
+                        "description": "Tool arguments; get_portfolio_page requires slug",
+                        "properties": {
+                          "slug": {
+                            "type": "string",
+                            "enum": [
+                              "site",
+                              "t3",
+                              "ben-davis",
+                              "heph",
+                              "filen",
+                              "n0thing",
+                              "curves",
+                              "ml7"
+                            ],
+                            "description": "Case-study slug to retrieve"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "responses": {
           "200": {
             "description": "JSON-RPC response",
+            "headers": {
+              "RateLimit-Limit": { "$ref": "#/components/headers/RateLimitLimit" },
+              "RateLimit-Policy": { "$ref": "#/components/headers/RateLimitPolicy" }
+            },
             "content": {
               "application/json": {
-                "schema": { "type": "object", "additionalProperties": true }
+                "schema": {
+                  "type": "object",
+                  "required": ["jsonrpc", "id"],
+                  "properties": {
+                    "jsonrpc": { "const": "2.0" },
+                    "id": {},
+                    "result": {
+                      "type": "object",
+                      "description": "Method result; tools/call returns content arrays"
+                    },
+                    "error": {
+                      "type": "object",
+                      "description": "JSON-RPC error object",
+                      "properties": {
+                        "code": { "type": "integer" },
+                        "message": { "type": "string" }
+                      }
+                    }
+                  }
+                }
               }
             }
           },
-          "202": { "description": "Notification accepted" }
+          "202": { "description": "Notification accepted with no response body" },
+          "400": { "$ref": "#/components/responses/Problem400" },
+          "403": { "$ref": "#/components/responses/Problem403" },
+          "405": { "$ref": "#/components/responses/Problem405" },
+          "413": { "$ref": "#/components/responses/Problem413" },
+          "429": { "$ref": "#/components/responses/TooManyRequests" },
+          "default": { "$ref": "#/components/responses/UnexpectedError" }
+        }
+      }
+    }
+  },
+  "components": {
+    "headers": {
+      "RateLimitLimit": {
+        "description": "Maximum requests per rate-limit window (RFC 9451 RateLimit fields).",
+        "schema": { "type": "string", "examples": ["60"] }
+      },
+      "RateLimitPolicy": {
+        "description": "Rate-limit policy expression (RFC 9451).",
+        "schema": { "type": "string", "examples": ["60;w=60"] }
+      },
+      "XApiVersion": {
+        "description": "API path version that served the request.",
+        "schema": { "type": "string", "enum": ["v1"] }
+      }
+    },
+    "schemas": {
+      "Problem": {
+        "type": "object",
+        "description": "RFC 9457 problem details error body returned by every 4xx and 5xx response.",
+        "required": ["title", "status"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "format": "uri-reference",
+            "description": "Pointer to the human-readable error documentation."
+          },
+          "title": {
+            "type": "string",
+            "description": "Short machine-usable error label, stable across occurrences."
+          },
+          "status": {
+            "type": "integer",
+            "description": "HTTP status code mirrored in the response."
+          },
+          "detail": {
+            "type": "string",
+            "description": "Human-readable explanation and a resolution hint."
+          },
+          "instance": {
+            "type": "string",
+            "description": "The request path that produced the error."
+          }
+        }
+      },
+      "ProfileGraph": {
+        "type": "object",
+        "description": "JSON-LD identity graph; the root is a schema:Person with sameAs links.",
+        "required": ["@context"],
+        "properties": {
+          "@context": {},
+          "@type": { "type": "string" },
+          "name": { "type": "string" },
+          "alternateName": { "type": "array", "items": { "type": "string" } },
+          "url": { "type": "string", "format": "uri" },
+          "sameAs": {
+            "type": "array",
+            "items": { "type": "string", "format": "uri" }
+          }
+        },
+        "additionalProperties": true
+      },
+      "Status": {
+        "type": "object",
+        "required": ["status", "service", "version", "timestamp"],
+        "properties": {
+          "status": { "const": "ok", "description": "Fixed liveness value" },
+          "service": { "const": "gildrb-public-api" },
+          "version": { "const": "v1", "description": "API path version" },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Server time when the response was generated"
+          }
+        }
+      }
+    },
+    "responses": {
+      "Problem400": {
+        "description": "Malformed JSON-RPC request body",
+        "content": {
+          "application/problem+json": {
+            "schema": { "$ref": "#/components/schemas/Problem" }
+          }
+        }
+      },
+      "Problem403": {
+        "description": "Origin not allowed by the MCP CORS policy",
+        "content": {
+          "application/problem+json": {
+            "schema": { "$ref": "#/components/schemas/Problem" }
+          }
+        }
+      },
+      "Problem405": {
+        "description": "HTTP method not allowed for this endpoint",
+        "headers": {
+          "Allow": {
+            "description": "Methods accepted by the endpoint.",
+            "schema": { "type": "string" }
+          }
+        },
+        "content": {
+          "application/problem+json": {
+            "schema": { "$ref": "#/components/schemas/Problem" }
+          }
+        }
+      },
+      "Problem413": {
+        "description": "Request body exceeds the 64 KiB limit",
+        "content": {
+          "application/problem+json": {
+            "schema": { "$ref": "#/components/schemas/Problem" }
+          }
+        }
+      },
+      "TooManyRequests": {
+        "description": "Rate limit exceeded; retry after the indicated delay",
+        "headers": {
+          "Retry-After": {
+            "description": "Seconds to wait before retrying.",
+            "schema": { "type": "integer" }
+          }
+        },
+        "content": {
+          "application/problem+json": {
+            "schema": { "$ref": "#/components/schemas/Problem" }
+          }
+        }
+      },
+      "UnexpectedError": {
+        "description": "Unexpected server error",
+        "content": {
+          "application/problem+json": {
+            "schema": { "$ref": "#/components/schemas/Problem" }
+          }
         }
       }
     }

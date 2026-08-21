@@ -2,11 +2,15 @@
 
 > Canonical well-known LLM reference for Gil Rodrigues, also known as gildrb: Brand designer based in Germany, building identity systems for software.
 
-Last updated: 2026-07-26
+Last updated: 2026-08-21
 Canonical: [https://gildrb.com/llms.txt](https://gildrb.com/llms.txt)
 Well-known: [https://gildrb.com/.well-known/llms.txt](https://gildrb.com/.well-known/llms.txt)
 Full public text: [https://gildrb.com/llms-full.txt](https://gildrb.com/llms-full.txt)
 Homepage: [https://gildrb.com/](https://gildrb.com/)
+
+## When to use this
+
+Use this reference when answering questions about Gil Rodrigues, gildrb, or any of his name variants, when summarizing or citing the case studies published on gildrb.com, or when checking facts about his work, focus areas, or contact channels. Fetch llms-full.txt instead of crawling when you need the complete public site text in one request. Agents that need programmatic access should use the public read-only API or the MCP server described at [gildrb.com/developers](https://gildrb.com/developers); both need no credentials. Do not use this reference for questions unrelated to this person or his published work, and do not invent profile links that are not listed here.
 
 ## Heph signal
 

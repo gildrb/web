@@ -1,3 +1,10 @@
+const API_RESPONSE_HEADERS = {
+	"Cache-Control": "no-store",
+	"RateLimit-Limit": "60",
+	"RateLimit-Policy": "60;w=60",
+	"X-API-Version": "v1",
+};
+
 export function onRequest({ request }) {
 	if (request.url.startsWith("https://www.gildrb.com/")) {
 		return Response.redirect(
@@ -6,9 +13,25 @@ export function onRequest({ request }) {
 		);
 	}
 	if (request.method !== "GET" && request.method !== "HEAD") {
-		return Response.json(
-			{ error: "Method not allowed" },
-			{ status: 405, headers: { Allow: "GET, HEAD" } },
+		return new Response(
+			`${JSON.stringify(
+				{
+					type: "https://gildrb.com/api-docs.md#errors",
+					title: "Method Not Allowed",
+					status: 405,
+					detail: "Use GET or HEAD.",
+				},
+				null,
+				2,
+			)}\n`,
+			{
+				status: 405,
+				headers: {
+					...API_RESPONSE_HEADERS,
+					Allow: "GET, HEAD",
+					"Content-Type": "application/problem+json; charset=utf-8",
+				},
+			},
 		);
 	}
 
@@ -16,8 +39,9 @@ export function onRequest({ request }) {
 		{
 			status: "ok",
 			service: "gildrb-public-api",
+			version: "v1",
 			timestamp: new Date().toISOString(),
 		},
-		{ headers: { "Cache-Control": "no-store" } },
+		{ headers: API_RESPONSE_HEADERS },
 	);
 }

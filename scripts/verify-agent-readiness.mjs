@@ -99,10 +99,121 @@ assert(
 
 assert(
 	openapi.openapi === "3.1.0" &&
-		openapi.paths["/api/profile"] &&
-		openapi.paths["/api/status"] &&
+		openapi.paths["/api/v1/profile"] &&
+		openapi.paths["/api/v1/status"] &&
 		openapi.paths["/mcp"],
-	"OpenAPI must describe profile, status, and MCP endpoints.",
+	"OpenAPI must describe versioned profile, status, and MCP endpoints.",
+);
+
+assert(
+	openapi.components?.schemas?.Problem?.required?.includes("title") &&
+		Object.values(openapi.components.responses).some(
+			(response) =>
+				response.content?.["application/problem+json"]?.schema?.$ref ===
+				"#/components/schemas/Problem",
+		) &&
+		Object.values(openapi.paths).every((path) =>
+			Object.values(path).every(
+				(operation) => operation.responses && operation.description,
+			),
+		),
+	"OpenAPI must define a typed problem-details error model, use it on error responses, and describe every operation.",
+);
+
+assert(
+	openapi.components?.headers?.RateLimitPolicy &&
+		openapi.components?.responses?.TooManyRequests?.headers?.["Retry-After"],
+	"OpenAPI must document rate-limit headers and Retry-After on 429.",
+);
+
+const [
+    cloudflareMiddleware,
+    statusFunction,
+    statusV1Function,
+    llmsReference,
+    wellKnownLlms,
+    sitemap,
+    pageTemplate,
+    notFoundPage,
+    apiDocs,
+] = await Promise.all([
+    readText("functions/_middleware.js"),
+    readText("functions/api/status.js"),
+    readText("functions/api/v1/status.js"),
+    readText("llms.txt"),
+    readText(".well-known/llms.txt"),
+    readText("sitemap.xml"),
+    readText("src/page.template.html"),
+    readText("404.html"),
+    readText("api-docs.md"),
+]);
+
+assert(
+	pagesRouter.includes('["/api/v1/profile", "/profile.json"]') &&
+		statusV1Function.includes('from "../status.js"') &&
+		pagesRouter.includes('"/api/v1/"') &&
+		cloudflareMiddleware.includes("application/problem+json") &&
+		pagesRouter.includes("application/problem+json") &&
+		statusFunction.includes("application/problem+json"),
+	"API v1 aliases must route, and API errors must return RFC 9457 problem+json.",
+);
+
+assert(
+	pagesRouter.includes('"RateLimit-Limit": "60"') &&
+		pagesRouter.includes('"RateLimit-Policy": "60;w=60"') &&
+		statusFunction.includes('"RateLimit-Limit": "60"') &&
+		mcpFunction.includes('"RateLimit-Limit": "60"'),
+	"Every API surface must advertise rate-limit headers.",
+);
+
+const trustPages = ["about", "contact", "privacy", "developers"];
+for (const page of trustPages) {
+	const html = await readText(`${page}/index.html`);
+	const markdown = await readText(`content/${page}.md`);
+	assert(
+		html.includes(`href="https://gildrb.com/${page}"`) &&
+			html.includes(`href="https://gildrb.com/content/${page}.md"`) &&
+			markdown.replace(/\s/g, "").length >= 500,
+		`The /${page} trust page must be canonical, link its Markdown form, and hold at least 500 characters of content.`,
+	);
+	assert(
+		pagesRouter.includes(`["/${page}", "/content/${page}.md"]`) &&
+			sitemap.includes(`https://gildrb.com/${page}`) &&
+			sitemap.includes(`https://gildrb.com/content/${page}.md`),
+		`The /${page} page must negotiate Markdown and appear in the sitemap.`,
+	);
+}
+
+assert(
+	llmsReference.includes("## When to use this") &&
+		wellKnownLlms.includes("## When to use this") &&
+		llmsReference.includes("https://gildrb.com/developers") &&
+		llmsReference.includes("https://gildrb.com/about") &&
+		llmsReference.includes("https://gildrb.com/contact") &&
+		llmsReference.includes("https://gildrb.com/privacy"),
+	"Both LLM references must carry when-to-use guidance and link the trust and developer pages.",
+);
+
+assert(
+	pageTemplate.includes('property="og:image"') &&
+		pageTemplate.includes("https://gildrb.com/images/og-image.png"),
+	"The homepage must publish an absolute og:image for entity resolution.",
+);
+
+assert(
+	notFoundPage.includes('href="/llms.txt"') &&
+		notFoundPage.includes('href="/sitemap.xml"') &&
+		notFoundPage.includes('href="/developers"') &&
+		notFoundPage.includes("HTTP 404"),
+	"The 404 page must help agents recover with sitemap, llms.txt, and developer links.",
+);
+
+assert(
+	apiDocs.includes("/api/v1/") &&
+		apiDocs.includes("RateLimit-Policy") &&
+		apiDocs.includes("problem+json") &&
+		apiDocs.includes("Sunset"),
+	"api-docs.md must document versioning, rate limits, and the error model.",
 );
 
 assert(

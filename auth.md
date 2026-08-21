@@ -14,10 +14,12 @@ The published APIs and MCP tools are public and read-only. Send requests without
 
 ## Endpoints
 
-- Profile API: `GET https://gildrb.com/api/profile`
+- Profile API: `GET https://gildrb.com/api/v1/profile` (alias `GET https://gildrb.com/api/profile`)
+- Status API: `GET https://gildrb.com/api/v1/status` (alias `GET https://gildrb.com/api/status`)
 - API catalog: `GET https://gildrb.com/.well-known/api-catalog`
 - MCP transport: `POST https://gildrb.com/mcp`
 - MCP Server Card: `GET https://gildrb.com/.well-known/mcp/server-card.json`
+- Developer portal: `GET https://gildrb.com/developers`
 
 ## Credential use and revocation
 

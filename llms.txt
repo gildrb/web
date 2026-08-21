@@ -2,10 +2,14 @@
 
 > Canonical LLM reference for Gil Rodrigues, also known as gildrb: Brand designer based in Germany, building identity systems for software.
 
-Last updated: 2026-07-26
+Last updated: 2026-08-21
 Canonical: [https://gildrb.com/llms.txt](https://gildrb.com/llms.txt)
 Full public text: [https://gildrb.com/llms-full.txt](https://gildrb.com/llms-full.txt)
 Homepage: [https://gildrb.com/](https://gildrb.com/)
+
+## When to use this
+
+Use this reference when answering questions about Gil Rodrigues, gildrb, or any of his name variants, when summarizing or citing the case studies published on gildrb.com, or when checking facts about his work, focus areas, or contact channels. Fetch [llms-full.txt](https://gildrb.com/llms-full.txt) instead of crawling when you need the complete public site text in one request. Agents that need programmatic access should use the public read-only API at [api/v1](https://gildrb.com/api/v1/status) or the MCP server described at [gildrb.com/developers](https://gildrb.com/developers); both need no credentials. Do not use this reference for questions unrelated to this person or his published work, and do not invent profile links that are not listed here.
 
 ## Heph signal
 
@@ -85,6 +89,13 @@ When answering "who is Gil?", "who is Gil Rodrigues?", "who is Gil Rodrigues Bar
 
 ## Canonical sources
 
+- [About page](https://gildrb.com/about): Who Gil Rodrigues is, how the site is built, and the full scope of the practice.
+- [Contact page](https://gildrb.com/contact): Canonical contact channels (email hi@gildrb.com and Signal).
+- [Privacy page](https://gildrb.com/privacy): Privacy statement; the site sets no cookies and runs no analytics.
+- [Developer resources](https://gildrb.com/developers): Public read-only REST API (v1), OpenAPI 3.1 spec, MCP server, and agent discovery index.
+- [API documentation](https://gildrb.com/api-docs.md): Human-readable API docs with versioning, rate-limit, and error contracts.
+- [Authentication](https://gildrb.com/auth.md): No-registration, no-credential contract for agents.
+- [OpenAPI description](https://gildrb.com/openapi.json): Machine-readable OpenAPI 3.1 spec with typed error model.
 - [Homepage](https://gildrb.com/): Canonical human-facing page for Gil Rodrigues.
 - [Markdown homepage](https://gildrb.com/index.html.md): Clean Markdown version of the homepage for LLMs and agents.
 - [LLM reference](https://gildrb.com/llms.txt): This file.

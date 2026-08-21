@@ -9,12 +9,23 @@ const markdownRepresentations = new Map([
 	["/n0thing", "/content/n0thing.md"],
 	["/curves", "/content/curves.md"],
 	["/site", "/content/site.md"],
+	["/about", "/content/about.md"],
+	["/contact", "/content/contact.md"],
+	["/privacy", "/content/privacy.md"],
+	["/developers", "/content/developers.md"],
 ]);
 
 const staticAliases = new Map([
 	["/api/profile", "/profile.json"],
+	["/api/v1/profile", "/profile.json"],
 	["/mcp/server-card", "/.well-known/mcp/server-card.json"],
 ]);
+
+const API_RESPONSE_HEADERS = {
+	"RateLimit-Limit": "60",
+	"RateLimit-Policy": "60;w=60",
+	"X-API-Version": "v1",
+};
 
 function withHeaders(response, headers) {
 	const nextHeaders = new Headers(response.headers);
@@ -59,14 +70,47 @@ export async function onRequest({ env, request }) {
 		}),
 	);
 
+	const isApiPath =
+		pathname === "/api" ||
+		pathname === "/api/v1" ||
+		pathname.startsWith("/api/") ||
+		pathname.startsWith("/api/v1/");
+	if (isApiPath && response.status === 404) {
+		return withHeaders(
+			new Response(
+				`${JSON.stringify(
+					{
+						type: "https://gildrb.com/api-docs.md#errors",
+						title: "Not Found",
+						status: 404,
+						detail:
+							"Unknown API resource. See https://gildrb.com/api-docs.md for available endpoints.",
+						instance: pathname,
+					},
+					null,
+					2,
+				)}\n`,
+				{
+					status: 404,
+					headers: {
+						"Cache-Control": "no-store",
+						"Content-Type": "application/problem+json; charset=utf-8",
+					},
+				},
+			),
+			API_RESPONSE_HEADERS,
+		);
+	}
+
 	if (acceptsMarkdown && markdownPath) {
 		return withHeaders(response, {
 			"Content-Type": "text/markdown; charset=utf-8",
 			Vary: "Accept",
 		});
 	}
-	if (pathname === "/api/profile") {
+	if (pathname === "/api/profile" || pathname === "/api/v1/profile") {
 		return withHeaders(response, {
+			...API_RESPONSE_HEADERS,
 			"Content-Type": "application/ld+json; charset=utf-8",
 		});
 	}

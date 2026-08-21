@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="gildrb.com developer resources: public REST API, OpenAPI spec, MCP server, and agent discovery files." />
+    <link rel="canonical" href="https://gildrb.com/developers" />
+    <link rel="alternate" type="text/markdown" href="https://gildrb.com/content/developers.md" title="Developer resources as Markdown" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Developer resources - gildrb.com" />
+    <meta property="og:description" content="Public read-only REST API (v1), OpenAPI 3.1 spec, MCP server, and agent discovery for gildrb.com." />
+    <meta property="og:url" content="https://gildrb.com/developers" />
+    <meta property="og:image" content="https://gildrb.com/images/og-image.png" />
+    <title>Developers - gildrb.com</title>
+    <style>
+      :root { color-scheme: dark light; }
+      body { margin: 0; padding: 48px; font: 16px/1.6 system-ui, sans-serif; max-width: 720px; }
+      a { color: inherit; }
+      code { font: 0.9em ui-monospace, monospace; }
+      ul { padding-left: 20px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>gildrb.com developer resources</h1>
+      <p>
+        Everything on gildrb.com is built to be readable by agents as well as
+        humans. There is no API key, sandbox, or registration: all surfaces
+        are public and read-only, and no <code>Authorization</code> header is
+        required (see <a href="https://gildrb.com/auth.md">auth.md</a>).
+      </p>
+      <h2>REST API (v1)</h2>
+      <ul>
+        <li><code>GET https://gildrb.com/api/v1/profile</code> - canonical JSON-LD identity and portfolio graph (alias: <code>/api/profile</code>)</li>
+        <li><code>GET https://gildrb.com/api/v1/status</code> - liveness probe (alias: <code>/api/status</code>)</li>
+        <li>Errors use RFC 9457 <code>application/problem+json</code> with a stable <code>title</code> and a <code>detail</code> resolution hint.</li>
+        <li>Rate limits are 60 requests per 60 seconds, advertised via <code>RateLimit-Limit</code> and <code>RateLimit-Policy</code> headers; a 429 also carries <code>Retry-After</code>.</li>
+      </ul>
+      <h2>OpenAPI</h2>
+      <p>
+        Machine-readable OpenAPI 3.1 description:
+        <a href="https://gildrb.com/openapi.json">openapi.json</a>.
+        Human-readable docs:
+        <a href="https://gildrb.com/api-docs.md">api-docs.md</a>. API catalog
+        (linkset):
+        <a href="https://gildrb.com/.well-known/api-catalog">/.well-known/api-catalog</a>.
+      </p>
+      <h2>MCP server</h2>
+      <p>
+        A stateless MCP Streamable HTTP server is available at
+        <code>POST https://gildrb.com/mcp</code> with two read-only tools:
+        <code>list_portfolio_pages</code> and <code>get_portfolio_page</code>.
+        Connection metadata:
+        <a href="https://gildrb.com/.well-known/mcp/server-card.json">/.well-known/mcp/server-card.json</a>.
+      </p>
+      <h2>Agent discovery</h2>
+      <ul>
+        <li><a href="https://gildrb.com/llms.txt">llms.txt</a> - canonical LLM reference with when-to-use guidance</li>
+        <li><a href="https://gildrb.com/llms-full.txt">llms-full.txt</a> - the complete public site text in one request</li>
+        <li><a href="https://gildrb.com/sitemap.xml">sitemap.xml</a> and <a href="https://gildrb.com/robots.txt">robots.txt</a> - crawl policy (all search and AI crawlers allowed)</li>
+        <li>Every HTML page negotiates Markdown via <code>Accept: text/markdown</code></li>
+        <li><a href="https://gildrb.com/.well-known/ai-catalog.json">ai-catalog.json</a> and <a href="https://gildrb.com/.well-known/agent-skills/index.json">agent-skills</a> - structured agent discovery</li>
+      </ul>
+      <h2>Site source</h2>
+      <p>
+        The entire site, including these endpoints' source, is open at
+        <a href="https://github.com/gildrb/web">github.com/gildrb/web</a>.
+        There is no CLI tool; script interactions should use the REST API or
+        MCP server above.
+      </p>
+      <p>
+        <a href="https://gildrb.com/">Home</a> ·
+        <a href="https://gildrb.com/about">About</a> ·
+        <a href="https://gildrb.com/contact">Contact</a> ·
+        <a href="https://gildrb.com/privacy">Privacy</a>
+      </p>
+    </main>
+  </body>
+</html>
