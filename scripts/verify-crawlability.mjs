@@ -279,9 +279,10 @@ function headerIncludes(response, name, expected) {
 async function fetchText(route, userAgent = "ChatGPT-User") {
     const response = await fetch(routeUrl(route), {
         headers: {
+            // Request HTML so content-negotiated pages are checked in their
+            // rendered form; static Markdown files still serve as Markdown.
             Accept: [
                 "text/html",
-                "text/markdown",
                 "application/ld+json",
                 "application/jrd+json",
                 "application/rss+xml",

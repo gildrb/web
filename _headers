@@ -12,7 +12,7 @@
 /
   Cache-Control: public, max-age=0, must-revalidate
   X-Robots-Tag: index, follow, max-snippet:-1, max-image-preview:large
-  Link: <https://gildrb.com/>; rel="canonical"; type="text/html", <https://gildrb.com/llms.txt>; rel="alternate describedby"; type="text/markdown", <https://gildrb.com/index.html.md>; rel="alternate"; type="text/markdown", <https://gildrb.com/profile.json>; rel="alternate describedby"; type="application/ld+json", <https://gildrb.com/.well-known/api-catalog>; rel="service-desc"; type="application/linkset+json", <https://gildrb.com/.well-known/mcp/server-card.json>; rel="service-desc"; type="application/mcp-server-card+json"
+  Link: <https://gildrb.com/>; rel="canonical"; type="text/html", <https://gildrb.com/llms.txt>; rel="alternate describedby"; type="text/markdown", <https://gildrb.com/llms-full.txt>; rel="alternate"; type="text/markdown", <https://gildrb.com/index.html.md>; rel="alternate"; type="text/markdown", <https://gildrb.com/profile.json>; rel="alternate describedby"; type="application/ld+json", <https://gildrb.com/.well-known/api-catalog>; rel="service-desc"; type="application/linkset+json", <https://gildrb.com/.well-known/mcp/server-card.json>; rel="service-desc"; type="application/mcp-server-card+json"
 
 /index.html
   Cache-Control: public, max-age=0, must-revalidate
