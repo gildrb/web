@@ -24,6 +24,7 @@
   X-Robots-Tag: noindex, follow
 /llms.txt
   Cache-Control: public, max-age=0, must-revalidate
+  Link: <https://gildrb.com/llms.txt>; rel="alternate describedby"; type="text/markdown", <https://gildrb.com/llms-full.txt>; rel="alternate"; type="text/markdown", <https://gildrb.com/profile.json>; rel="alternate describedby"; type="application/ld+json"
   Content-Type: text/markdown; charset=utf-8
 
 /.well-known/llms.txt
@@ -32,10 +33,12 @@
 
 /index.html.md
   Cache-Control: public, max-age=0, must-revalidate
+  Link: <https://gildrb.com/llms.txt>; rel="alternate describedby"; type="text/markdown", <https://gildrb.com/llms-full.txt>; rel="alternate"; type="text/markdown", <https://gildrb.com/profile.json>; rel="alternate describedby"; type="application/ld+json"
   Content-Type: text/markdown; charset=utf-8
 
 /llms-full.txt
   Cache-Control: public, max-age=0, must-revalidate
+  Link: <https://gildrb.com/llms.txt>; rel="alternate describedby"; type="text/markdown", <https://gildrb.com/llms-full.txt>; rel="alternate"; type="text/markdown", <https://gildrb.com/profile.json>; rel="alternate describedby"; type="application/ld+json"
   Content-Type: text/markdown; charset=utf-8
 
 /content/*
@@ -45,6 +48,7 @@
 
 /profile.json
   Cache-Control: public, max-age=0, must-revalidate
+  Link: <https://gildrb.com/llms.txt>; rel="alternate describedby"; type="text/markdown", <https://gildrb.com/llms-full.txt>; rel="alternate"; type="text/markdown", <https://gildrb.com/profile.json>; rel="alternate describedby"; type="application/ld+json"
   Content-Type: application/ld+json; charset=utf-8
 
 /.well-known/webfinger
