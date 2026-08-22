@@ -7,6 +7,88 @@
   },
   "servers": [{ "url": "https://gildrb.com" }],
   "paths": {
+    "/api/v1": {
+      "get": {
+        "operationId": "getApiIndex",
+        "summary": "Get the API discovery index",
+        "description": "Returns a JSON index of every versioned endpoint, its legacy alias, the OpenAPI description, and the MCP manifest location. Machine-verifiable API entry point.",
+        "responses": {
+          "200": {
+            "description": "API index document",
+            "headers": {
+              "X-API-Version": { "$ref": "#/components/headers/XApiVersion" }
+            },
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiIndex" }
+              }
+            }
+          },
+          "default": { "$ref": "#/components/responses/UnexpectedError" }
+        }
+      }
+    },
+    "/api/profile": {
+      "get": {
+        "operationId": "getProfileLegacy",
+        "summary": "Get the canonical JSON-LD profile (legacy alias)",
+        "deprecated": true,
+        "description": "Unversioned legacy alias of /api/v1/profile. Responses carry Deprecation and Sunset headers; migrate to the versioned path before the Sunset date. See the versioning policy in the info.description.",
+        "responses": {
+          "200": {
+            "description": "Profile graph",
+            "headers": {
+              "Deprecation": {
+                "description": "Signals the unversioned alias is superseded by /api/v1/profile.",
+                "schema": { "type": "string", "examples": ["version=v1"] }
+              },
+              "Sunset": {
+                "description": "Date after which this alias may stop answering.",
+                "schema": { "type": "string", "examples": ["Sun, 01 Aug 2027 00:00:00 GMT"] }
+              }
+            },
+            "content": {
+              "application/ld+json": {
+                "schema": { "$ref": "#/components/schemas/ProfileGraph" }
+              }
+            }
+          },
+          "429": { "$ref": "#/components/responses/TooManyRequests" },
+          "default": { "$ref": "#/components/responses/UnexpectedError" }
+        }
+      }
+    },
+    "/api/status": {
+      "get": {
+        "operationId": "getStatusLegacy",
+        "summary": "Get public API status (legacy alias)",
+        "deprecated": true,
+        "description": "Unversioned legacy alias of /api/v1/status. Responses carry Deprecation and Sunset headers; migrate to the versioned path before the Sunset date.",
+        "responses": {
+          "200": {
+            "description": "Service is available",
+            "headers": {
+              "Deprecation": {
+                "description": "Signals the unversioned alias is superseded by /api/v1/status.",
+                "schema": { "type": "string", "examples": ["version=v1"] }
+              },
+              "Sunset": {
+                "description": "Date after which this alias may stop answering.",
+                "schema": { "type": "string", "examples": ["Sun, 01 Aug 2027 00:00:00 GMT"] }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Status" }
+              }
+            }
+          },
+          "405": { "$ref": "#/components/responses/MethodNotAllowed" },
+          "429": { "$ref": "#/components/responses/TooManyRequests" },
+          "default": { "$ref": "#/components/responses/UnexpectedError" }
+        }
+      }
+    },
     "/api/v1/profile": {
       "get": {
         "operationId": "getProfile",
@@ -26,6 +108,7 @@
               }
             }
           },
+          "404": { "$ref": "#/components/responses/NotFound" },
           "429": { "$ref": "#/components/responses/TooManyRequests" },
           "default": { "$ref": "#/components/responses/UnexpectedError" }
         }
@@ -50,6 +133,7 @@
               }
             }
           },
+          "404": { "$ref": "#/components/responses/NotFound" },
           "405": { "$ref": "#/components/responses/MethodNotAllowed" },
           "429": { "$ref": "#/components/responses/TooManyRequests" },
           "default": { "$ref": "#/components/responses/UnexpectedError" }
@@ -200,20 +284,63 @@
       },
       "ProfileGraph": {
         "type": "object",
-        "description": "JSON-LD identity graph; the root is a schema:Person with sameAs links.",
-        "required": ["@context"],
+        "description": "JSON-LD identity graph; the root WebSite node references a schema:Person via @id nodes in @graph.",
+        "required": ["@context", "@graph"],
         "properties": {
-          "@context": {},
-          "@type": { "type": "string" },
-          "name": { "type": "string" },
-          "alternateName": { "type": "array", "items": { "type": "string" } },
-          "url": { "type": "string", "format": "uri" },
-          "sameAs": {
+          "@context": { "type": "string", "const": "https://schema.org" },
+          "@graph": {
             "type": "array",
-            "items": { "type": "string", "format": "uri" }
+            "description": "schema.org nodes: WebSite root, Person, and case-study CreativeWork entries.",
+            "items": {
+              "type": "object",
+              "required": ["@type"],
+              "properties": {
+                "@type": { "type": "string" },
+                "@id": { "type": "string", "format": "uri" },
+                "name": { "type": "string" },
+                "url": { "type": "string", "format": "uri" },
+                "alternateName": { "type": "array", "items": { "type": "string" } },
+                "description": { "type": "string" },
+                "sameAs": { "type": "array", "items": { "type": "string", "format": "uri" } }
+              },
+              "additionalProperties": true
+            }
           }
         },
-        "additionalProperties": true
+        "additionalProperties": false
+      },
+      "ApiIndex": {
+        "type": "object",
+        "description": "Discovery index served at /api/v1.",
+        "required": ["name", "version", "documentation", "openapi", "endpoints", "mcp"],
+        "properties": {
+          "name": { "type": "string" },
+          "version": { "const": "v1" },
+          "documentation": { "type": "string", "format": "uri" },
+          "openapi": { "type": "string", "format": "uri" },
+          "developers": { "type": "string", "format": "uri" },
+          "endpoints": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["path", "method", "description"],
+              "properties": {
+                "path": { "type": "string" },
+                "method": { "type": "string", "enum": ["GET"] },
+                "description": { "type": "string" },
+                "alias": { "type": "string" }
+              }
+            }
+          },
+          "mcp": {
+            "type": "object",
+            "required": ["transport", "manifest"],
+            "properties": {
+              "transport": { "type": "string", "format": "uri" },
+              "manifest": { "type": "string", "format": "uri" }
+            }
+          }
+        }
       },
       "Status": {
         "type": "object",
@@ -231,6 +358,14 @@
       }
     },
     "responses": {
+      "NotFound": {
+        "description": "Unknown API resource",
+        "content": {
+          "application/problem+json": {
+            "schema": { "$ref": "#/components/schemas/Problem" }
+          }
+        }
+      },
       "Problem400": {
         "description": "Malformed JSON-RPC request body",
         "content": {

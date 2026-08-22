@@ -1,10 +1,23 @@
 {
   "specVersion": "1.0",
+  "host": {
+    "displayName": "gildrb",
+    "identifier": "gildrb.com",
+    "documentationUrl": "https://gildrb.com/developers"
+  },
   "entries": [
     {
       "identifier": "urn:air:gildrb.com:mcp:portfolio",
+      "displayName": "gildrb.com portfolio MCP server",
       "type": "application/mcp-server-card+json",
-      "url": "https://gildrb.com/.well-known/mcp/server-card.json"
+      "url": "https://gildrb.com/.well-known/mcp/server-card.json",
+      "description": "Read-only MCP server exposing the public gildrb.com portfolio: list_portfolio_pages and get_portfolio_page.",
+      "capabilities": ["list_portfolio_pages", "get_portfolio_page"],
+      "representativeQueries": [
+        "list the case studies published on gildrb.com",
+        "fetch the Heph local document agent case study"
+      ],
+      "version": "1.0.0"
     }
   ]
 }

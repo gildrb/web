@@ -278,8 +278,13 @@ const caseSources = await Promise.all(
     })),
 );
 assert(
-    indexHtml.includes("<title>Gil Rodrigues</title>"),
-    "The homepage browser title must be only Gil Rodrigues.",
+    indexHtml.includes("<title>Gil Rodrigues (gildrb)</title>"),
+    "The homepage browser title must be Gil Rodrigues (gildrb).",
+);
+assert(
+    indexHtml.includes('property="og:title"\n            content="Gil Rodrigues (gildrb)"') &&
+        indexHtml.includes('name="twitter:title"\n            content="Gil Rodrigues (gildrb)"'),
+    "The homepage social titles must carry the gildrb handle.",
 );
 assert(
     indexHtml.includes(
@@ -601,11 +606,11 @@ assert(
         homepageFooter.includes('<p class="links-label">Metadata</p>') &&
         homepageFooter.includes('href="humans.txt"') &&
         homepageFooter.includes('href="llms.txt"') &&
-        homepageFooter.includes('href="/developers"') &&
-        homepageFooter.includes('href="/about"') &&
         homepageFooter.includes('href="https://github.com/gildrb/web"') &&
         !homepageFooter.includes("llms-full.txt") &&
-        (homepageFooter.match(/class="reference-link"/g) || []).length === 5 &&
+        !homepageFooter.includes('href="/developers"') &&
+        !homepageFooter.includes('href="/about"') &&
+        (homepageFooter.match(/class="reference-link"/g) || []).length === 3 &&
         allHtml.every(
             (html) =>
                 !html.includes('class="copyright"') &&
@@ -614,7 +619,7 @@ assert(
         caseHtml.every(
             (html) => !html.includes('class="site-footer"'),
         ),
-    "The homepage-only footer must keep the five visible Metadata links without a copyright label.",
+    "The homepage-only footer must keep the three visible Metadata links without a copyright label.",
 );
 const hephAsciiSignature =
     "HEPH // BRANDMARK RASTER 64x22 // GIL RODRIGUES / GILDRB";

@@ -1,0 +1,22 @@
+{
+  "mcp_version": "2025-11-25",
+  "server_name": "gildrb.com portfolio MCP server",
+  "server_version": "1.0.0",
+  "endpoints": {
+    "streamable_http": "https://gildrb.com/mcp"
+  },
+  "capabilities": {
+    "tools": true,
+    "resources": false,
+    "prompts": false,
+    "sampling": false,
+    "roots": false
+  },
+  "authentication": {
+    "required": false
+  },
+  "rate_limits": {
+    "requests_per_minute": 60
+  },
+  "documentation": "https://gildrb.com/api-docs.md"
+}

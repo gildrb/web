@@ -25,8 +25,9 @@ const [
     apiCatalog,
     skillsIndex,
     skill,
-    serverCard,
-    aiCatalog,
+	serverCard,
+	mcpManifest,
+	aiCatalog,
     openapi,
     authMarkdown,
     webMcp,
@@ -41,6 +42,7 @@ const [
     readJson(".well-known/agent-skills/index.json"),
     readText(".well-known/agent-skills/portfolio-discovery/SKILL.md"),
     readJson(".well-known/mcp/server-card.json"),
+    readJson(".well-known/mcp.json"),
     readJson(".well-known/ai-catalog.json"),
     readJson("openapi.json"),
     readText("auth.md"),
@@ -87,14 +89,27 @@ assert(
 		serverCard.capabilities?.tools,
 	"MCP Server Card identity, transport, and capabilities must remain consistent.",
 );
+assert(
+	aiCatalog.host?.displayName &&
+		Array.isArray(aiCatalog.entries) &&
+		aiCatalog.entries.length > 0 &&
+		aiCatalog.entries.every(
+			(entry) =>
+				entry.identifier?.startsWith("urn:air:gildrb.com:") &&
+				entry.displayName &&
+				entry.type &&
+				Boolean(entry.url) !== Boolean(entry.data),
+		),
+	"AI Catalog entries must carry a domain-anchored identifier, a display name, a type, and exactly one of url or data.",
+);
 
 assert(
-	aiCatalog.entries?.some(
-		(entry) =>
-			entry.type === "application/mcp-server-card+json" &&
-			entry.url === "https://gildrb.com/.well-known/mcp/server-card.json",
-	),
-	"AI Catalog must advertise the MCP Server Card.",
+	mcpManifest.mcpVersion === undefined &&
+		typeof mcpManifest.mcp_version === "string" &&
+		mcpManifest.endpoints?.streamable_http === "https://gildrb.com/mcp" &&
+		mcpManifest.capabilities?.tools === true &&
+		mcpManifest.authentication?.required === false,
+	"The MCP manifest at /.well-known/mcp must advertise the Streamable HTTP endpoint without authentication.",
 );
 
 assert(
@@ -192,6 +207,22 @@ assert(
 		llmsReference.includes("https://gildrb.com/contact") &&
 		llmsReference.includes("https://gildrb.com/privacy"),
 	"Both LLM references must carry when-to-use guidance and link the trust and developer pages.",
+);
+
+const devResourceUrls = [
+	"https://gildrb.com/api-docs.md",
+	"https://gildrb.com/auth.md",
+	"https://gildrb.com/openapi.json",
+	"https://gildrb.com/.well-known/mcp",
+];
+
+assert(
+	llmsReference.includes("## Developer resources") &&
+		wellKnownLlms.includes("## Developer resources") &&
+		devResourceUrls.every(
+			(url) => llmsReference.includes(url) && wellKnownLlms.includes(url),
+		),
+	"Both LLM references must expose a named developer resources section covering docs, auth, OpenAPI, and the MCP manifest.",
 );
 
 assert(

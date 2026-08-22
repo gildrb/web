@@ -4,7 +4,7 @@ The API exposes public, read-only portfolio information. It does not require reg
 
 ## Versioning
 
-Versioned endpoints live under `/api/v1/`. The unversioned paths (`/api/profile`, `/api/status`) are stable aliases of v1. Breaking changes ship only under a new path version (`/api/v2/`). When a path version is deprecated it keeps answering with `Deprecation` and `Sunset` headers for at least 180 days before removal. Every API response carries `X-API-Version: v1`.
+Versioned endpoints live under `/api/v1/`. The unversioned paths (`/api/profile`, `/api/status`) are deprecated legacy aliases of v1: their responses carry `Deprecation` and `Sunset` headers (currently `Sun, 01 Aug 2027 00:00:00 GMT`). Breaking changes ship only under a new path version (`/api/v2/`). When a path version is deprecated it keeps answering with `Deprecation` and `Sunset` headers for at least 180 days before removal. Every API response carries `X-API-Version: v1`. `GET /api/v1` returns a machine-readable index of all endpoints.
 
 ## Profile
 
@@ -16,7 +16,7 @@ Versioned endpoints live under `/api/v1/`. The unversioned paths (`/api/profile`
 
 ## MCP
 
-`POST /mcp` implements stateless MCP Streamable HTTP for `initialize`, `ping`, `tools/list`, and `tools/call`. The server exposes two read-only portfolio tools. Discover connection metadata at `/.well-known/mcp/server-card.json`.
+`POST /mcp` implements stateless MCP Streamable HTTP for `initialize`, `ping`, `tools/list`, and `tools/call`. The server exposes two read-only portfolio tools. Discover connection metadata at `/.well-known/mcp` (SEP-1960 manifest) or `/.well-known/mcp/server-card.json` (server card).
 
 ## Rate limits
 

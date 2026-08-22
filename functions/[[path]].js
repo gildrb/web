@@ -19,6 +19,7 @@ const staticAliases = new Map([
 	["/api/profile", "/profile.json"],
 	["/api/v1/profile", "/profile.json"],
 	["/mcp/server-card", "/.well-known/mcp/server-card.json"],
+	["/.well-known/mcp", "/.well-known/mcp.json"],
 ]);
 
 const API_RESPONSE_HEADERS = {
@@ -26,6 +27,26 @@ const API_RESPONSE_HEADERS = {
 	"RateLimit-Policy": "60;w=60",
 	"X-API-Version": "v1",
 };
+
+const DEPRECATED_ALIAS_HEADERS = {
+	Deprecation: "version=v1",
+	Sunset: "Sun, 01 Aug 2027 00:00:00 GMT",
+	"Sunset-Context": "Unversioned alias of /api/v1/profile; prefer the versioned path. Policy: https://gildrb.com/api-docs.md#versioning",
+};
+
+const NOT_FOUND_MARKDOWN = `# Not found
+
+This path does not exist on gildrb.com. The response is a real HTTP 404.
+
+## Where to look next
+
+- [Homepage](https://gildrb.com/)
+- [All projects](https://gildrb.com/all)
+- [Sitemap](https://gildrb.com/sitemap.xml)
+- [llms.txt](https://gildrb.com/llms.txt)
+- [llms-full.txt](https://gildrb.com/llms-full.txt)
+- [Developer resources](https://gildrb.com/developers)
+`;
 
 function withHeaders(response, headers) {
 	const nextHeaders = new Headers(response.headers);
@@ -108,7 +129,30 @@ export async function onRequest({ env, request }) {
 			Vary: "Accept",
 		});
 	}
-	if (pathname === "/api/profile" || pathname === "/api/v1/profile") {
+	if (
+		response.status === 404 &&
+		acceptsMarkdown &&
+		!isApiPath &&
+		request.method !== "HEAD"
+	) {
+		return new Response(NOT_FOUND_MARKDOWN, {
+			status: 404,
+			headers: {
+				"Cache-Control": "no-store",
+				"Content-Type": "text/markdown; charset=utf-8",
+				Vary: "Accept",
+				"X-Content-Type-Options": "nosniff",
+			},
+		});
+	}
+	if (pathname === "/api/profile") {
+		return withHeaders(response, {
+			...API_RESPONSE_HEADERS,
+			...DEPRECATED_ALIAS_HEADERS,
+			"Content-Type": "application/ld+json; charset=utf-8",
+		});
+	}
+	if (pathname === "/api/v1/profile") {
 		return withHeaders(response, {
 			...API_RESPONSE_HEADERS,
 			"Content-Type": "application/ld+json; charset=utf-8",

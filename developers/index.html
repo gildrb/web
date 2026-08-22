@@ -11,7 +11,7 @@
     <meta property="og:description" content="Public read-only REST API (v1), OpenAPI 3.1 spec, MCP server, and agent discovery for gildrb.com." />
     <meta property="og:url" content="https://gildrb.com/developers" />
     <meta property="og:image" content="https://gildrb.com/images/og-image.png" />
-    <title>Developers - gildrb.com</title>
+    <title>gildrb developers - gildrb.com</title>
     <style>
       :root { color-scheme: dark light; }
       body { margin: 0; padding: 48px; font: 16px/1.6 system-ui, sans-serif; max-width: 720px; }
@@ -33,6 +33,7 @@
       <ul>
         <li><code>GET https://gildrb.com/api/v1/profile</code> - canonical JSON-LD identity and portfolio graph (alias: <code>/api/profile</code>)</li>
         <li><code>GET https://gildrb.com/api/v1/status</code> - liveness probe (alias: <code>/api/status</code>)</li>
+        <li><code>GET https://gildrb.com/api/v1</code> - machine-readable index of every endpoint</li>
         <li>Errors use RFC 9457 <code>application/problem+json</code> with a stable <code>title</code> and a <code>detail</code> resolution hint.</li>
         <li>Rate limits are 60 requests per 60 seconds, advertised via <code>RateLimit-Limit</code> and <code>RateLimit-Policy</code> headers; a 429 also carries <code>Retry-After</code>.</li>
       </ul>
@@ -51,7 +52,8 @@
         <code>POST https://gildrb.com/mcp</code> with two read-only tools:
         <code>list_portfolio_pages</code> and <code>get_portfolio_page</code>.
         Connection metadata:
-        <a href="https://gildrb.com/.well-known/mcp/server-card.json">/.well-known/mcp/server-card.json</a>.
+        <a href="https://gildrb.com/.well-known/mcp">/.well-known/mcp</a> (manifest) or
+        <a href="https://gildrb.com/.well-known/mcp/server-card.json">/.well-known/mcp/server-card.json</a> (server card).
       </p>
       <h2>Agent discovery</h2>
       <ul>

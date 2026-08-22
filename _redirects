@@ -1,4 +1,7 @@
 https://www.gildrb.com/* https://gildrb.com/:splat 301
+/docs /developers 301
+/docs/ /developers 301
+/api-docs /api-docs.md 301
 /gil /
 /gil/ /
 /gildrb /

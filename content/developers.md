@@ -8,6 +8,7 @@ Everything on gildrb.com is built to be readable by agents as well as humans. Th
 
 - `GET https://gildrb.com/api/v1/profile` - canonical JSON-LD identity and portfolio graph (alias: `/api/profile`)
 - `GET https://gildrb.com/api/v1/status` - liveness probe returning `status`, `service`, `version`, `timestamp` (alias: `/api/status`)
+- `GET https://gildrb.com/api/v1` - machine-readable index of every endpoint
 - Errors use RFC 9457 `application/problem+json` with a stable `title` and a `detail` resolution hint.
 - Rate limits are 60 requests per 60 seconds and are advertised on every response via `RateLimit-Limit` and `RateLimit-Policy`; a 429 also carries `Retry-After`.
 
@@ -17,7 +18,7 @@ The machine-readable OpenAPI 3.1 description, including the typed error model, i
 
 ## MCP server
 
-A stateless MCP Streamable HTTP server is available at `POST https://gildrb.com/mcp` with two read-only tools: `list_portfolio_pages` and `get_portfolio_page`. Connection metadata: [/.well-known/mcp/server-card.json](https://gildrb.com/.well-known/mcp/server-card.json).
+A stateless MCP Streamable HTTP server is available at `POST https://gildrb.com/mcp` with two read-only tools: `list_portfolio_pages` and `get_portfolio_page`. Connection metadata: [/.well-known/mcp](https://gildrb.com/.well-known/mcp) (manifest) or [/.well-known/mcp/server-card.json](https://gildrb.com/.well-known/mcp/server-card.json) (server card).
 
 ## Agent discovery
 

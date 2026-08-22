@@ -71,6 +71,18 @@
   Cache-Control: public, max-age=3600
   Content-Type: application/ai-catalog+json; charset=utf-8
 
+/.well-known/mcp
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+  Content-Type: application/json; charset=utf-8
+  X-Content-Type-Options: nosniff
+
+/.well-known/mcp.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+  Content-Type: application/json; charset=utf-8
+  X-Content-Type-Options: nosniff
+
 /.well-known/mcp/server-card.json
   Access-Control-Allow-Headers: Content-Type, If-None-Match
   Access-Control-Allow-Methods: GET

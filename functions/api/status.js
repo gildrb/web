@@ -12,6 +12,14 @@ export function onRequest({ request }) {
 			301,
 		);
 	}
+	const isLegacyAlias = new URL(request.url).pathname === "/api/status";
+	const headers = {
+		...API_RESPONSE_HEADERS,
+		...(isLegacyAlias && {
+			Deprecation: "version=v1",
+			Sunset: "Sun, 01 Aug 2027 00:00:00 GMT",
+		}),
+	};
 	if (request.method !== "GET" && request.method !== "HEAD") {
 		return new Response(
 			`${JSON.stringify(
@@ -27,7 +35,7 @@ export function onRequest({ request }) {
 			{
 				status: 405,
 				headers: {
-					...API_RESPONSE_HEADERS,
+					...headers,
 					Allow: "GET, HEAD",
 					"Content-Type": "application/problem+json; charset=utf-8",
 				},
@@ -42,6 +50,6 @@ export function onRequest({ request }) {
 			version: "v1",
 			timestamp: new Date().toISOString(),
 		},
-		{ headers: API_RESPONSE_HEADERS },
+		{ headers },
 	);
 }
