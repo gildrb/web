@@ -1304,8 +1304,11 @@ assert(
     "The mobile homepage must keep the locked table scroll region and edge indicators.",
 );
 assert(
-    baseStyles.includes("--portfolio-mobile-cell-end-space: 10px;") &&
-        baseStyles.includes("--mobile-links-column-gap: 4px;") &&
+    indexHtml.includes(
+        'class="external-link mobile-links-guardrail" href="https://www.goodreads.com/gildrb"',
+    ) &&
+        baseStyles.includes("--portfolio-mobile-cell-end-space: 10px;") &&
+        baseStyles.includes("--mobile-links-column-gap: 4ch;") &&
         baseStyles.includes(
             "max-content max-content minmax(0, 1fr)",
         ) &&
@@ -1333,14 +1336,18 @@ assert(
             "grid-template-columns: var(--portfolio-mobile-table-columns);",
         ) &&
         responsiveStyles.includes(
-            ".links.mobile-links-grid {\n        display: grid;\n        grid-template-columns: max-content minmax(0, 1fr);\n        column-gap: var(--mobile-links-column-gap);",
+            ".links.mobile-links-grid {\n        display: grid;\n        grid-template-columns:\n            var(--mobile-contact-start, max-content) minmax(0, 1fr);\n        column-gap: var(--mobile-links-column-gap);",
         ) &&
         siteScript.includes(
-            'mobileLinks.classList.toggle(\n        "mobile-links-grid",',
+            'mobileLinks.classList.toggle("mobile-links-grid", isMobile);',
         ) &&
-        !siteScript.includes("--mobile-contact-start") &&
+        siteScript.includes('".mobile-links-guardrail"') &&
+        siteScript.includes("mobileLinksGuardrail.getBoundingClientRect().right") &&
+        siteScript.includes(
+            'mobileLinks.style.setProperty(\n        "--mobile-contact-start",',
+        ) &&
         !siteScript.includes("portfolioScope.getBoundingClientRect().left"),
-    "Mobile Links/Contact must place Contact four pixels after the longest profile link without changing the portfolio table tracks.",
+    "Mobile Links/Contact must place Contact four character spaces after Goodreads' external arrow without changing the portfolio table tracks.",
 );
 assert(
     indexHtml.includes('class="portfolio-table-header"') &&

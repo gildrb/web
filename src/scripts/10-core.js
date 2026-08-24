@@ -27,13 +27,26 @@ function updateHomepageDates() {
 const mobileLinks = document.querySelector(
     ".case-page .case-mobile-links .links, body:not(.case-page) .links",
 );
+const mobileLinksGuardrail = mobileLinks?.querySelector(
+    ".mobile-links-guardrail",
+);
 
 function updateMobileLinksLayout() {
     if (!mobileLinks) return;
 
-    mobileLinks.classList.toggle(
-        "mobile-links-grid",
-        window.matchMedia("(max-width: 767px)").matches,
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    mobileLinks.classList.toggle("mobile-links-grid", isMobile);
+    if (!isMobile || !mobileLinksGuardrail) {
+        mobileLinks.style.removeProperty("--mobile-contact-start");
+        return;
+    }
+
+    const start =
+        mobileLinksGuardrail.getBoundingClientRect().right -
+        mobileLinks.getBoundingClientRect().left;
+    mobileLinks.style.setProperty(
+        "--mobile-contact-start",
+        `${Math.max(0, start)}px`,
     );
 }
 
