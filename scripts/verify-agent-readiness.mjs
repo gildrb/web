@@ -120,23 +120,40 @@ assert(
 
 assert(
 	mcpManifest.mcpVersion === undefined &&
+		mcpManifest.name === "com.gildrb/portfolio" &&
 		typeof mcpManifest.mcp_version === "string" &&
+		mcpManifest.transport?.type === "streamable-http" &&
+		mcpManifest.transport?.url === "https://gildrb.com/mcp" &&
 		mcpManifest.endpoints?.streamable_http === "https://gildrb.com/mcp" &&
+		mcpManifest.tools?.map(({ name }) => name).join(",") ===
+			"list_portfolio_pages,get_portfolio_page" &&
+		Array.isArray(mcpManifest.resources) &&
+		mcpManifest.resources.length === 0 &&
 		mcpManifest.capabilities?.tools === true &&
 		mcpManifest.authentication?.required === false,
-	"The MCP manifest at /.well-known/mcp must advertise the Streamable HTTP endpoint without authentication.",
+	"The MCP manifest at /.well-known/mcp must advertise the real Streamable HTTP endpoint, tools, and empty resource surface without authentication.",
 );
 
 assert(
 	openapi.openapi === "3.1.0" &&
 		openapi.paths["/api/v1/profile"] &&
 		openapi.paths["/api/v1/status"] &&
-		openapi.paths["/mcp"],
-	"OpenAPI must describe versioned profile, status, and MCP endpoints.",
+		openapi.paths["/mcp"] &&
+		Object.values(openapi.paths)
+			.flatMap((path) => Object.values(path))
+			.every(
+				(operation) =>
+					operation.operationId &&
+					(operation.requestBody || Array.isArray(operation.parameters)),
+			),
+	"OpenAPI must describe every operation with an ID and an explicit request body or parameter surface.",
 );
 
 assert(
 	openapi.components?.schemas?.Problem?.required?.includes("title") &&
+		openapi.paths["/api/v1/profile"].get.responses["404"]?.content?.[
+			"application/problem+json"
+		]?.schema?.$ref === "#/components/schemas/Problem" &&
 		Object.values(openapi.components.responses).some(
 			(response) =>
 				response.content?.["application/problem+json"]?.schema?.$ref ===

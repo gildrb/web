@@ -12,6 +12,7 @@
         "operationId": "getApiIndex",
         "summary": "Get the API discovery index",
         "description": "Returns a JSON index of every versioned endpoint, its legacy alias, the OpenAPI description, and the MCP manifest location. Machine-verifiable API entry point.",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "API index document",
@@ -34,6 +35,7 @@
         "summary": "Get the canonical JSON-LD profile (legacy alias)",
         "deprecated": true,
         "description": "Unversioned legacy alias of /api/v1/profile. Responses carry Deprecation and Sunset headers; migrate to the versioned path before the Sunset date. See the versioning policy in the info.description.",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Profile graph",
@@ -64,6 +66,7 @@
         "summary": "Get public API status (legacy alias)",
         "deprecated": true,
         "description": "Unversioned legacy alias of /api/v1/status. Responses carry Deprecation and Sunset headers; migrate to the versioned path before the Sunset date.",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Service is available",
@@ -94,6 +97,7 @@
         "operationId": "getProfile",
         "summary": "Get the canonical JSON-LD profile",
         "description": "Returns the structured identity and portfolio graph for Gil Rodrigues (gildrb) as JSON-LD. Equivalent to fetching /profile.json.",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Profile graph",
@@ -108,7 +112,14 @@
               }
             }
           },
-          "404": { "$ref": "#/components/responses/NotFound" },
+          "404": {
+            "description": "Profile asset not found",
+            "content": {
+              "application/problem+json": {
+                "schema": { "$ref": "#/components/schemas/Problem" }
+              }
+            }
+          },
           "429": { "$ref": "#/components/responses/TooManyRequests" },
           "default": { "$ref": "#/components/responses/UnexpectedError" }
         }
@@ -119,6 +130,7 @@
         "operationId": "getStatus",
         "summary": "Get public API status",
         "description": "Liveness probe for the public API. Returns service name, version, and an ISO-8601 timestamp.",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Service is available",

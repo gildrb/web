@@ -1,10 +1,44 @@
 {
+  "name": "com.gildrb/portfolio",
+  "description": "Read-only discovery and retrieval for the public portfolio pages on gildrb.com.",
+  "version": "1.0.0",
+  "transport": {
+    "type": "streamable-http",
+    "url": "https://gildrb.com/mcp"
+  },
   "mcp_version": "2025-11-25",
   "server_name": "gildrb.com portfolio MCP server",
   "server_version": "1.0.0",
   "endpoints": {
     "streamable_http": "https://gildrb.com/mcp"
   },
+  "tools": [
+    {
+      "name": "list_portfolio_pages",
+      "description": "List the public portfolio pages and their Markdown URLs.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_portfolio_page",
+      "description": "Read one public portfolio case study as Markdown.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string",
+            "enum": ["site", "t3", "ben-davis", "heph", "filen", "n0thing", "curves", "ml7"]
+          }
+        },
+        "required": ["slug"],
+        "additionalProperties": false
+      }
+    }
+  ],
+  "resources": [],
   "capabilities": {
     "tools": true,
     "resources": false,

@@ -290,8 +290,11 @@ const caseSources = await Promise.all(
     })),
 );
 assert(
-    indexHtml.includes("<title>Gil Rodrigues (gildrb)</title>"),
-    "The homepage browser title must be Gil Rodrigues (gildrb).",
+    indexHtml.includes("<title>Gil Rodrigues (gildrb)</title>") &&
+        indexHtml.includes(
+            '<a class="sr-only" href="/developers" tabindex="-1">gildrb.com developer resources</a>',
+        ),
+    "The homepage must name Gil Rodrigues and directly expose its developer resources without changing the visible navigation.",
 );
 assert(
     indexHtml.includes('property="og:title"\n            content="Gil Rodrigues (gildrb)"') &&
