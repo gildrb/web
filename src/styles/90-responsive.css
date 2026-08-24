@@ -310,6 +310,11 @@ body:not(.case-page) .content {
     .mobile-links-grid > .links-label:not(.contact-label),
     .mobile-links-grid > .external-link {
         grid-column: 1;
+        justify-self: start;
+    }
+
+    .mobile-links-grid > .external-link {
+        width: max-content;
     }
 
     .mobile-links-grid > .contact-label {

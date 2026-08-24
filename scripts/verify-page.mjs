@@ -1338,6 +1338,10 @@ assert(
         responsiveStyles.includes(
             ".links.mobile-links-grid {\n        display: grid;\n        grid-template-columns:\n            var(--mobile-contact-start, max-content) minmax(0, 1fr);\n        column-gap: var(--mobile-links-column-gap);",
         ) &&
+        responsiveStyles.includes(
+            ".mobile-links-grid > .external-link {\n        width: max-content;",
+        ) &&
+        responsiveStyles.includes("justify-self: start;") &&
         siteScript.includes(
             'mobileLinks.classList.toggle("mobile-links-grid", isMobile);',
         ) &&
