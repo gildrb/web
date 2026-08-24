@@ -7,7 +7,9 @@
   --highlight-text: #ffffff;
   --section-gap: 24px;
   --section-content-gap: 6px;
-  --mobile-links-column-gap: 4ch;
+  --mobile-links-column-gap: calc(
+    var(--portfolio-mobile-cell-end-space) + var(--portfolio-mobile-table-gap)
+  );
   --text-media-gap: 32px;
   --case-title-text-gap: 24px;
   --all-case-gap: calc(var(--case-title-text-gap) * 1.618);

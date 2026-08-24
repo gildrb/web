@@ -1308,7 +1308,9 @@ assert(
         'class="external-link mobile-links-guardrail" href="https://www.goodreads.com/gildrb"',
     ) &&
         baseStyles.includes("--portfolio-mobile-cell-end-space: 10px;") &&
-        baseStyles.includes("--mobile-links-column-gap: 4ch;") &&
+        baseStyles.includes(
+            "--mobile-links-column-gap: calc(\n    var(--portfolio-mobile-cell-end-space) + var(--portfolio-mobile-table-gap)\n  );",
+        ) &&
         baseStyles.includes(
             "max-content max-content minmax(0, 1fr)",
         ) &&
@@ -1351,7 +1353,7 @@ assert(
             'mobileLinks.style.setProperty(\n        "--mobile-contact-start",',
         ) &&
         !siteScript.includes("portfolioScope.getBoundingClientRect().left"),
-    "Mobile Links/Contact must place Contact four character spaces after Goodreads' external arrow without changing the portfolio table tracks.",
+    "Mobile Links/Contact must match the portfolio table's visible column spacing after Goodreads' external arrow without changing the table tracks.",
 );
 assert(
     indexHtml.includes('class="portfolio-table-header"') &&
