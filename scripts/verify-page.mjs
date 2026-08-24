@@ -1305,6 +1305,7 @@ assert(
 );
 assert(
     baseStyles.includes("--portfolio-mobile-cell-end-space: 10px;") &&
+        baseStyles.includes("--mobile-links-column-gap: 4px;") &&
         baseStyles.includes(
             "max-content max-content minmax(0, 1fr)",
         ) &&
@@ -1332,16 +1333,14 @@ assert(
             "grid-template-columns: var(--portfolio-mobile-table-columns);",
         ) &&
         responsiveStyles.includes(
-            "var(--mobile-contact-start, 3fr) minmax(0, 4fr);",
+            ".links.mobile-links-grid {\n        display: grid;\n        grid-template-columns: max-content minmax(0, 1fr);\n        column-gap: var(--mobile-links-column-gap);",
         ) &&
         siteScript.includes(
-            'links.classList.add("mobile-links-grid");',
+            'mobileLinks.classList.toggle(\n        "mobile-links-grid",',
         ) &&
-        siteScript.includes(
-            'links.style.setProperty(\n        "--mobile-contact-start",',
-        ) &&
-        siteScript.includes("portfolioScope.getBoundingClientRect().left"),
-    "Each portfolio table must derive Date and Project tracks from its visible rows, preserve equal mobile trailing space, and align Contact to its resulting Scope column.",
+        !siteScript.includes("--mobile-contact-start") &&
+        !siteScript.includes("portfolioScope.getBoundingClientRect().left"),
+    "Mobile Links/Contact must place Contact four pixels after the longest profile link without changing the portfolio table tracks.",
 );
 assert(
     indexHtml.includes('class="portfolio-table-header"') &&

@@ -302,9 +302,8 @@ body:not(.case-page) .content {
 
     .links.mobile-links-grid {
         display: grid;
-        grid-template-columns:
-            var(--mobile-contact-start, 3fr) minmax(0, 4fr);
-        column-gap: 0;
+        grid-template-columns: max-content minmax(0, 1fr);
+        column-gap: var(--mobile-links-column-gap);
     }
 
     .mobile-links-grid > .links-label:not(.contact-label),

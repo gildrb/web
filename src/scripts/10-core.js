@@ -29,28 +29,11 @@ const mobileLinks = document.querySelector(
 );
 
 function updateMobileLinksLayout() {
-    const links = mobileLinks;
-    const portfolioScope =
-        document.querySelector(".portfolio-card-scope") ??
-        document.querySelector(".case-next-scope") ??
-        document.querySelector(".portfolio-sort-scope");
-    if (!links) return;
+    if (!mobileLinks) return;
 
-    if (!window.matchMedia("(max-width: 767px)").matches) {
-        links.classList.remove("mobile-links-grid");
-        links.style.removeProperty("--mobile-contact-start");
-        return;
-    }
-
-    links.classList.add("mobile-links-grid");
-    if (!portfolioScope) return;
-
-    const start =
-        portfolioScope.getBoundingClientRect().left -
-        links.getBoundingClientRect().left;
-    links.style.setProperty(
-        "--mobile-contact-start",
-        `${Math.max(0, start)}px`,
+    mobileLinks.classList.toggle(
+        "mobile-links-grid",
+        window.matchMedia("(max-width: 767px)").matches,
     );
 }
 
