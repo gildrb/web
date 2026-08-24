@@ -13,6 +13,12 @@ const sharedCaseStyles = Object.freeze([
     "90-responsive.css",
 ]);
 
+export const sitePaths = Object.freeze({
+    contentSource: "src/content",
+    output: "public",
+    staticSource: "src/static",
+});
+
 export const siteConfig = Object.freeze({
     profileSource: "src/data/profile.json",
     homepage: Object.freeze({

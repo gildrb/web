@@ -4,12 +4,18 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { buildPage } from "./build-page.mjs";
-import { siteConfig } from "./site-config.mjs";
+import { siteConfig, sitePaths } from "./site-config.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const output = path.join(root, sitePaths.output);
+const outputPrefix = `${sitePaths.output}/`;
 
 async function readText(relativePath) {
     return readFile(path.join(root, relativePath), "utf8");
+}
+
+async function readPublicText(relativePath) {
+    return readFile(path.join(output, relativePath), "utf8");
 }
 
 function assert(condition, message) {
@@ -209,40 +215,46 @@ assert(
         !allPage.includes('class="case-next"'),
     "The all-projects page must not include case-next scripts or markup.",
 );
-const currentIndex = await readText("index.html");
+const currentIndex = await readPublicText("index.html");
 const currentCasePages = Object.fromEntries(
     await Promise.all(
         siteConfig.caseStudies.map(async ({ slug }) => [
             slug,
-            await readText(`${slug}/index.html`),
+            await readPublicText(`${slug}/index.html`),
         ]),
     ),
 );
-const currentProfile = await readText("profile.json");
-const currentFullSiteText = await readText("llms-full.txt");
-const llmsText = await readText("llms.txt");
-const wellKnownLlmsText = await readText(".well-known/llms.txt");
-const contentGuide = await readText("content/README.md");
-const homepageMarkdown = await readText("index.html.md");
-const humansText = await readText("humans.txt");
-const sitemapText = await readText("sitemap.xml");
-const feedText = await readText("feed.xml");
+const currentProfile = await readPublicText("profile.json");
+const currentFullSiteText = await readPublicText("llms-full.txt");
+const llmsText = await readPublicText("llms.txt");
+const wellKnownLlmsText = await readPublicText(".well-known/llms.txt");
+const contentGuide = await readText(`${sitePaths.contentSource}/README.md`);
+const homepageMarkdown = await readText(`${sitePaths.staticSource}/index.html.md`);
+const humansText = await readPublicText("humans.txt");
+const sitemapText = await readPublicText("sitemap.xml");
+const feedText = await readPublicText("feed.xml");
 const identityTexts = await Promise.all(
     [
-        ".well-known/llms.txt",
-        ".well-known/webfinger",
-        "feed.xml",
-        "humans.txt",
-        "index.html",
-        "index.html.md",
-        "llms.txt",
-        "profile.json",
-        "llms-full.txt",
+        `${outputPrefix}.well-known/llms.txt`,
+        `${outputPrefix}.well-known/webfinger`,
+        `${outputPrefix}feed.xml`,
+        `${outputPrefix}humans.txt`,
+        `${outputPrefix}index.html`,
+        `${outputPrefix}index.html.md`,
+        `${outputPrefix}llms.txt`,
+        `${outputPrefix}profile.json`,
+        `${outputPrefix}llms-full.txt`,
         siteConfig.profileSource,
+        `${sitePaths.staticSource}/index.html.md`,
         "src/page.template.html",
         "src/partials/layout-open.html",
         "src/sections/profile-summary.html",
-    ].map(async (file) => ({ file, text: await readText(file) })),
+    ].map(async (file) => ({
+        file,
+        text: file.startsWith(outputPrefix)
+            ? await readPublicText(file.slice(outputPrefix.length))
+            : await readText(file),
+    })),
 );
 const caseStyles = await readText("src/styles/50-case-study.css");
 const responsiveStyles = await readText("src/styles/90-responsive.css");
@@ -253,13 +265,13 @@ const homepageEntryStyles = await readText(
 const portfolioStyles = await readText("src/styles/20-portfolio-media.css");
 const hephDemoStyles = await readText("src/styles/30-heph-demo.css");
 const benDavisStyles = await readText("src/styles/30-ben-davis.css");
-const hephMarkdown = await readText("content/heph.md");
+const hephMarkdown = await readText(`${sitePaths.contentSource}/heph.md`);
 const previewContentStyles = await readText("src/styles/40-preview-content.css");
 const portfolioOpen = await readText("src/sections/portfolio-open.html");
-const previewFavicon = await readText("preview-favicon.svg");
-const cloudflareHeaders = await readText("_headers");
-const cloudflareRedirects = await readText("_redirects");
-const cloudflareRoutes = await readText("_routes.json");
+const previewFavicon = await readText(`${sitePaths.staticSource}/preview-favicon.svg`);
+const cloudflareHeaders = await readText(`${sitePaths.staticSource}/_headers`);
+const cloudflareRedirects = await readText(`${sitePaths.staticSource}/_redirects`);
+const cloudflareRoutes = await readText(`${sitePaths.staticSource}/_routes.json`);
 const cloudflareFunctionsCatchAll = "/*";
 const directStaticAssetRoutes = ["/content/*", "/fonts/*", "/images/*"];
 const legacyRedirectSources = cloudflareRedirects
@@ -273,7 +285,7 @@ const caseSources = await Promise.all(
     siteConfig.caseStudies.map(async ({ slug, title }) => ({
         slug,
         title,
-        markdown: await readText(`content/${slug}.md`),
+        markdown: await readText(`${sitePaths.contentSource}/${slug}.md`),
         template: await readText(`src/${slug}.template.html`),
     })),
 );
@@ -509,7 +521,7 @@ const assetRefs = new Set([
     ...caseHtml.flatMap((html) => [...extractAssetRefs(html)]),
 ]);
 const missingAssets = [...assetRefs].filter(
-    (ref) => !existsSync(path.join(root, ref)),
+    (ref) => !existsSync(path.join(output, ref)),
 );
 
 assert(
@@ -574,9 +586,9 @@ const referencedImages = new Set(
 );
 // The Open Graph image is referenced by absolute URL in social metadata.
 referencedImages.add("images/og-image.png");
-const imageFiles = (await listFiles("images")).filter(
-    (file) => !file.endsWith(".DS_Store"),
-);
+const imageFiles = (await listFiles(`${sitePaths.output}/images`))
+    .map((file) => file.slice(outputPrefix.length))
+    .filter((file) => !file.endsWith(".DS_Store"));
 const unreferencedImages = imageFiles.filter(
     (file) => !referencedImages.has(file),
 );
@@ -642,9 +654,9 @@ assert(
         humansText,
         sitemapText,
         currentFullSiteText,
-        await readText(".well-known/webfinger"),
-        await readText(".well-known/host-meta"),
-        await readText(".well-known/host-meta.json"),
+        await readPublicText(".well-known/webfinger"),
+        await readPublicText(".well-known/host-meta"),
+        await readPublicText(".well-known/host-meta.json"),
     ].every((text) => text.includes(llmFullTextRoute)) &&
         currentFullSiteText.includes(
             "This file is generated from the same authored Markdown sources as the website.",

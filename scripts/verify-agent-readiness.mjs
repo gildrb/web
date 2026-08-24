@@ -3,10 +3,17 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { sitePaths } from "./site-config.mjs";
+
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const output = path.join(root, sitePaths.output);
 
 async function readText(relativePath) {
 	return readFile(path.join(root, relativePath), "utf8");
+}
+
+async function readPublicText(relativePath) {
+	return readFile(path.join(output, relativePath), "utf8");
 }
 
 async function readJson(relativePath) {
@@ -14,6 +21,14 @@ async function readJson(relativePath) {
 		return JSON.parse(await readText(relativePath));
 	} catch (error) {
 		throw new Error(`Invalid JSON in ${relativePath}`, { cause: error });
+	}
+}
+
+async function readPublicJson(relativePath) {
+	try {
+		return JSON.parse(await readPublicText(relativePath));
+	} catch (error) {
+		throw new Error(`Invalid JSON in public/${relativePath}`, { cause: error });
 	}
 }
 
@@ -38,18 +53,18 @@ const [
     mcpFunction,
     packageJson,
  ] = await Promise.all([
-    readJson(".well-known/api-catalog"),
-    readJson(".well-known/agent-skills/index.json"),
-    readText(".well-known/agent-skills/portfolio-discovery/SKILL.md"),
-    readJson(".well-known/mcp/server-card.json"),
-    readJson(".well-known/mcp.json"),
-    readJson(".well-known/ai-catalog.json"),
-    readJson("openapi.json"),
-    readText("auth.md"),
+    readPublicJson(".well-known/api-catalog"),
+    readPublicJson(".well-known/agent-skills/index.json"),
+    readPublicText(".well-known/agent-skills/portfolio-discovery/SKILL.md"),
+    readPublicJson(".well-known/mcp/server-card.json"),
+    readPublicJson(".well-known/mcp.json"),
+    readPublicJson(".well-known/ai-catalog.json"),
+    readPublicJson("openapi.json"),
+    readPublicText("auth.md"),
     readText("src/scripts/80-webmcp.js"),
-    readText("_headers"),
-    readText("_redirects"),
-    readJson("_routes.json"),
+    readPublicText("_headers"),
+    readPublicText("_redirects"),
+    readPublicJson("_routes.json"),
     readText("functions/[[path]].js"),
     readText("functions/mcp.js"),
     readJson("package.json"),
@@ -155,12 +170,12 @@ const [
     readText("functions/_middleware.js"),
     readText("functions/api/status.js"),
     readText("functions/api/v1/status.js"),
-    readText("llms.txt"),
-    readText(".well-known/llms.txt"),
-    readText("sitemap.xml"),
+    readPublicText("llms.txt"),
+    readPublicText(".well-known/llms.txt"),
+    readPublicText("sitemap.xml"),
     readText("src/page.template.html"),
-    readText("404.html"),
-    readText("api-docs.md"),
+    readPublicText("404.html"),
+    readPublicText("api-docs.md"),
 ]);
 
 assert(
@@ -183,8 +198,8 @@ assert(
 
 const trustPages = ["about", "contact", "privacy", "developers"];
 for (const page of trustPages) {
-	const html = await readText(`${page}/index.html`);
-	const markdown = await readText(`content/${page}.md`);
+	const html = await readPublicText(`${page}/index.html`);
+	const markdown = await readText(`${sitePaths.contentSource}/${page}.md`);
 	assert(
 		html.includes(`href="https://gildrb.com/${page}"`) &&
 			html.includes(`href="https://gildrb.com/content/${page}.md"`) &&

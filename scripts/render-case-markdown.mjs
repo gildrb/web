@@ -1,5 +1,6 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
+import { sitePaths } from "./site-config.mjs";
 
 function escapeHtml(value) {
     return value
@@ -493,7 +494,7 @@ async function renderMedia(root, slug, media, resolveIncludes) {
 }
 
 export async function renderCaseMarkdown({ root, slug, resolveIncludes }) {
-    const markdown = await readFile(path.join(root, "content", `${slug}.md`), "utf8");
+    const markdown = await readFile(path.join(root, sitePaths.contentSource, `${slug}.md`), "utf8");
     const parsed = parseMarkdown(markdown);
     const output = [
         '<header class="case-intro">',

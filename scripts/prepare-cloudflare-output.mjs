@@ -1,54 +1,14 @@
-import { cp, mkdir, readFile, rm } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { siteConfig } from "./site-config.mjs";
+import { buildPage } from "./build-page.mjs";
+import { sitePaths } from "./site-config.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const output = path.join(root, "public");
-const publishedEntries = new Set([
-	".well-known",
-	"36729bcbe2a8c2d375ce91a993cbc5d4.txt",
-	"404.html",
-	"_headers",
-	"_redirects",
-	"_routes.json",
-	"about",
-	"all",
-	"api-docs.md",
-	"auth.md",
-	"contact",
-	"content",
-	"developers",
-	"content",
-	"favicon.svg",
-	"feed.xml",
-	"fonts",
-	"humans.txt",
-	"images",
-	"index.html",
-	"index.html.md",
-	"llms-full.txt",
-	"llms.txt",
-	"openapi.json",
-	"preview-favicon.svg",
-	"privacy",
-	"profile.json",
-	"robots.txt",
-	"sitemap.xml",
-	...siteConfig.caseStudies.map(({ slug }) => slug),
-]);
+const output = path.join(root, sitePaths.output);
 
-await rm(output, { recursive: true, force: true });
-await mkdir(output, { recursive: true });
-
-await Promise.all(
-	[...publishedEntries].map((entry) =>
-		cp(path.join(root, entry), path.join(output, entry), {
-			recursive: true,
-		}),
-	),
-);
+await buildPage();
 
 const homepage = await readFile(path.join(output, "index.html"), "utf8");
 const homepageByteBudget = 128 * 1024;
@@ -110,5 +70,5 @@ if (presentRejectedFragments.length > 0) {
 }
 
 console.log(
-	`Prepared ${publishedEntries.size} allowlisted entries for Cloudflare Pages without render gates or unused font preloads.`,
+	"Prepared Cloudflare Pages output from source assets without render gates or unused font preloads.",
 );

@@ -2,7 +2,7 @@
   "name": "gildrb-web",
   "private": true,
   "scripts": {
-    "build": "node scripts/build-page.mjs && node scripts/verify-agent-readiness.mjs && node scripts/prepare-cloudflare-output.mjs",
-    "verify": "node scripts/verify-page.mjs && node scripts/verify-agent-readiness.mjs"
+    "build": "node scripts/prepare-cloudflare-output.mjs && node scripts/verify-agent-readiness.mjs",
+    "verify": "node scripts/prepare-cloudflare-output.mjs && node scripts/verify-page.mjs && node scripts/verify-agent-readiness.mjs"
   }
 }

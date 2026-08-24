@@ -1,10 +1,13 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { renderCaseMarkdown } from "./render-case-markdown.mjs";
-import { siteConfig } from "./site-config.mjs";
+import { siteConfig, sitePaths } from "./site-config.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const output = path.join(root, sitePaths.output);
+const staticSource = sitePaths.staticSource;
+const contentSource = sitePaths.contentSource;
 
 async function readText(relativePath) {
     return readFile(path.join(root, relativePath), "utf8");
@@ -79,11 +82,11 @@ function extractHomepageUpdatedDate(homepageMarkdown) {
 }
 
 async function buildFullSiteText() {
-    const homepageMarkdown = await readText("index.html.md");
+    const homepageMarkdown = await readText(`${staticSource}/index.html.md`);
     const lastUpdated = extractHomepageUpdatedDate(homepageMarkdown);
     const caseMarkdown = await Promise.all(
         siteConfig.caseStudies.map(async ({ slug, title }) => ({
-            markdown: await readText(`content/${slug}.md`),
+            markdown: await readText(`${contentSource}/${slug}.md`),
             slug,
             title,
         })),
@@ -336,16 +339,24 @@ export async function buildPage({ write = true } = {}) {
     allPage = allPage.replaceAll("<script>", '<script data-cfasync="false">');
 
     if (write) {
-        await writeFile(path.join(root, "index.html"), indexHtml);
-        await writeFile(path.join(root, "llms-full.txt"), fullSiteText);
-        await writeFile(path.join(root, "profile.json"), profileJson);
-        await mkdir(path.join(root, "all"), { recursive: true });
-        await writeFile(path.join(root, "all", "index.html"), allPage);
+        await rm(output, { recursive: true, force: true });
+        await mkdir(output, { recursive: true });
+        await cp(path.join(root, staticSource), output, { recursive: true });
+        await cp(
+            path.join(root, contentSource),
+            path.join(output, "content"),
+            { recursive: true },
+        );
+        await writeFile(path.join(output, "index.html"), indexHtml);
+        await writeFile(path.join(output, "llms-full.txt"), fullSiteText);
+        await writeFile(path.join(output, "profile.json"), profileJson);
+        await mkdir(path.join(output, "all"), { recursive: true });
+        await writeFile(path.join(output, "all", "index.html"), allPage);
 
         await Promise.all(
             Object.entries(casePages).map(async ([slug, html]) => {
-                await mkdir(path.join(root, slug), { recursive: true });
-                await writeFile(path.join(root, slug, "index.html"), html);
+                await mkdir(path.join(output, slug), { recursive: true });
+                await writeFile(path.join(output, slug, "index.html"), html);
             }),
         );
     }
