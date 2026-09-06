@@ -7,7 +7,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:5174. Vite builds the site on startup and rebuilds and refreshes the browser when files in `src/` change. Edit source files, not generated `public/` files. Port 5174 avoids the existing Taxis server on 5173.
+Run `poros npm run dev` for a private HTTPS link. Vite starts at port 5174 and automatically tries the next port if it is occupied; use the URL printed by Vite or Poros. It builds the site on startup and rebuilds and refreshes the browser when files in `src/` change. Edit source files, not generated `public/` files.
 
 Vite previews the pages and assets; it does not run Cloudflare Pages Functions or apply Cloudflare headers and redirects. To test those locally, run `npm run build` followed by `npx wrangler pages dev public --port 8788`.
 
