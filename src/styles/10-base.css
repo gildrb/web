@@ -364,20 +364,23 @@ body {
 }
 
 @media (min-width: 768px) {
-  body:not(.case-page) {
+  body {
     --link-line-height: 1.5rem;
     --sidebar-baseline-pitch: 2rem;
     --portfolio-baseline-pitch: 2.5rem;
     --portfolio-row-padding: calc((var(--portfolio-baseline-pitch) - var(--link-line-height)) / 2);
   }
 
-  body:not(.case-page) .links {
+  body .links {
     row-gap: calc(var(--sidebar-baseline-pitch) - var(--link-line-height));
   }
 
+  body :is(.links, .email) {
+    font-size: 1rem;
+    line-height: var(--link-line-height);
+  }
+
   body:not(.case-page) :is(
-    .links,
-    .email,
     .portfolio-table-header,
     .portfolio-sort-button,
     .portfolio-link-heading,

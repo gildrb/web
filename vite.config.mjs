@@ -1,16 +1,20 @@
-import { existsSync } from "node:fs";
+import { existsSync, mkdtempSync, realpathSync } from "node:fs";
+import { rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import { buildPage } from "./scripts/build-page.mjs";
-import { sitePaths } from "./scripts/site-config.mjs";
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const source = path.join(root, "src");
-const output = path.join(root, sitePaths.output);
+const output = realpathSync(mkdtempSync(path.join(tmpdir(), "gildrb-vite-")));
+const cacheDir = `${output}-cache`;
+let pending = Promise.resolve();
 
 export default defineConfig({
     root: output,
+    cacheDir,
     publicDir: false,
     appType: "mpa",
     server: {
@@ -20,9 +24,14 @@ export default defineConfig({
     },
     plugins: [{
         name: "portfolio-pages",
+        async closeBundle() {
+            await pending;
+            await Promise.all([output, cacheDir].map((directory) =>
+                rm(directory, { recursive: true, force: true }),
+            ));
+        },
         async configureServer(server) {
-            await buildPage();
-            let pending = Promise.resolve();
+            await buildPage({ output });
             server.watcher.add(source);
             server.watcher.on("all", (event, file) => {
                 if (!["add", "change", "unlink"].includes(event) ||
@@ -30,7 +39,7 @@ export default defineConfig({
 
                 pending = pending.then(async () => {
                     try {
-                        await buildPage();
+                        await buildPage({ output });
                         server.ws.send({ type: "full-reload" });
                     } catch (error) {
                         server.config.logger.error(error.stack);

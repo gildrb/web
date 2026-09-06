@@ -5,7 +5,7 @@ import { renderCaseMarkdown } from "./render-case-markdown.mjs";
 import { siteConfig, sitePaths } from "./site-config.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const output = path.join(root, sitePaths.output);
+const defaultOutput = path.join(root, sitePaths.output);
 const staticSource = sitePaths.staticSource;
 const contentSource = sitePaths.contentSource;
 
@@ -141,15 +141,19 @@ async function buildFullSiteText() {
     ].join("\n")}\n`;
 }
 
-export async function buildPage({ write = true } = {}) {
+export async function buildPage({ write = true, output = defaultOutput } = {}) {
     const profile = JSON.parse(await readText(siteConfig.profileSource));
     const profileJson = `${JSON.stringify(profile, null, 2)}\n`;
+    const homepageDescription = profile["@graph"].find(
+        (entity) => entity["@type"] === "WebSite",
+    ).description;
+    const introScript = `const homepageSummaryText = ${JSON.stringify(homepageDescription).replaceAll("<", "\\u003c")};\n\n`;
     const fullSiteText = await buildFullSiteText();
     const homepageStyles = await readBundle(
         "src/styles",
         siteConfig.homepage.styles,
     );
-    const siteScript = await readBundle(
+    const siteScript = introScript + await readBundle(
         "src/scripts",
         siteConfig.homepage.scripts,
     );
@@ -170,7 +174,7 @@ export async function buildPage({ write = true } = {}) {
         if (!scriptBundles.has(bundleKey)) {
             scriptBundles.set(
                 bundleKey,
-                await readBundle("src/scripts", scripts),
+                introScript + await readBundle("src/scripts", scripts),
             );
         }
     }
@@ -190,6 +194,11 @@ export async function buildPage({ write = true } = {}) {
 
     let indexHtml = await resolveIncludes(
         await readText("src/page.template.html"),
+    );
+    indexHtml = replaceToken(
+        indexHtml,
+        "<!-- @homepage-description -->",
+        homepageDescription.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;"),
     );
     indexHtml = replaceToken(
         indexHtml,
@@ -305,7 +314,7 @@ export async function buildPage({ write = true } = {}) {
         ),
     );
     const allStyles = await readBundle("src/styles", siteConfig.allPage.styles);
-    const allScript = await readBundle("src/scripts", siteConfig.allPage.scripts);
+    const allScript = introScript + await readBundle("src/scripts", siteConfig.allPage.scripts);
     let allPage = await resolveIncludes(await readText("src/all.template.html"));
     const allCases = await Promise.all(
         portfolioCases

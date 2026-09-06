@@ -308,7 +308,7 @@ assert(
         indexHtml.includes("<span data-nosnippet>Links</span>") &&
         indexHtml.includes("<span data-nosnippet>About</span>") &&
         indexHtml.includes(
-            "Brand designer based in Germany, building\n                            identity systems for software.",
+            "Designer based in Germany.",
         ),
     "The homepage must keep its canonical description eligible for search snippets and exclude navigation labels.",
 );
@@ -655,6 +655,27 @@ assert(
         portfolioStyles.includes("box-shadow: inset 0 -1px") &&
         portfolioStyles.includes("box-shadow: inset 0 1px"),
     "Desktop homepage must share intro tracks and paint table separators outside its baseline geometry.",
+);
+assert(
+    baseStyles.includes("body .links {\n    row-gap: calc(var(--sidebar-baseline-pitch) - var(--link-line-height));") &&
+        caseStyles.includes("padding-block: var(--portfolio-row-padding);") &&
+        caseStyles.includes(".case-next-row + .case-next-row {\n        border-top: 0;") &&
+        caseStyles.includes("box-shadow: inset 0 1px"),
+    "Desktop case pages must share the sidebar and table baseline rhythm without changing mobile spacing.",
+);
+assert(
+    responsiveStyles.includes("scrollbar-gutter: stable;") &&
+        responsiveStyles.includes("body .sidebar .theme-toggle:active {\n        position: fixed;\n        top: auto;") &&
+        responsiveStyles.includes("bottom: calc(var(--desktop-footer-inset) + (var(--desktop-footer-height) - var(--theme-toggle-size)) / 2);"),
+    "Desktop navigation and theme controls must keep their viewport position across routes and while pressed.",
+);
+assert(
+    siteScript.includes("const homepageSummaryText = ") &&
+        caseHtml.every((html) => html.includes("const homepageSummaryText = ")) &&
+        siteScript.includes('style.setProperty("--desktop-intro-height", `${height}px`)') &&
+        responsiveStyles.includes("min-height: var(--desktop-intro-height,") &&
+        !indexHtml.includes("<!-- @homepage-description -->"),
+    "Every route must measure the same source-backed intro height before positioning Contact and Links.",
 );
 const hephAsciiSignature =
     "HEPH // BRANDMARK RASTER 64x22 // GIL RODRIGUES / GILDRB";
@@ -1699,18 +1720,16 @@ assert(
 );
 assert(
     caseStyles.includes(
-        ".case-title {\n    max-width: 760px;\n    margin: 0 0 var(--case-title-text-gap);\n    font-size: 28px;\n    font-weight: 500;\n    line-height: 36px;\n    letter-spacing: -0.02em;",
+        ".case-title {\n    max-width: 760px;\n    margin: 0 0 var(--case-title-text-gap);",
     ) &&
         caseStyles.includes(
-            ".case-copy h2 {\n    margin-bottom: 24px;\n    font-size: 24px;\n    font-weight: 500;\n    line-height: 32px;",
+            ".case-title,\n.case-copy h3 {\n    font-size: 19px;\n    font-weight: 500;\n    line-height: 28px;",
         ) &&
         caseStyles.includes(
-            ".case-copy h3 {\n    margin: 48px 0 12px;\n    font-size: 19px;\n    font-weight: 500;\n    line-height: 28px;",
+            ".case-copy h3 {\n    margin: 48px 0 12px;",
         ) &&
-        caseStyles.includes(
-            ".case-title {\n        font-size: 24px;\n        line-height: 32px;",
-        ),
-    "Case-study headings must use the calm 19/24/28px hierarchy, tighten the page title, and align it to the article top.",
+        !caseStyles.includes("font-size: 28px;"),
+    "Case titles and authored subheadings must share the 19px type style without a larger title override.",
 );
 assert(
     caseStyles.includes(

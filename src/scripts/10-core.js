@@ -147,7 +147,40 @@ function updateHomepageLock(preserveMobileState = false) {
     homepageUnlockedContentBottom = contentBottom;
 }
 
+const introTextContext = document.createElement("canvas").getContext("2d");
+
+function updateDesktopIntroHeight() {
+    if (!window.matchMedia("(min-width: 768px)").matches) {
+        document.body.style.removeProperty("--desktop-intro-height");
+        return;
+    }
+
+    const content = document.querySelector(".content");
+    const links = document.querySelector(".sidebar .links");
+    if (!content || !links || !introTextContext) return;
+
+    const style = getComputedStyle(links);
+    introTextContext.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+    const width = content.getBoundingClientRect().width;
+    let line = "";
+    let lines = 1;
+    for (const word of homepageSummaryText.split(/\s+/)) {
+        const next = line ? `${line} ${word}` : word;
+        if (line && introTextContext.measureText(next).width > width) {
+            lines += 1;
+            line = word;
+        } else {
+            line = next;
+        }
+    }
+
+    const height = (lines + 1) * parseFloat(style.lineHeight) +
+        parseFloat(style.getPropertyValue("--section-content-gap"));
+    document.body.style.setProperty("--desktop-intro-height", `${height}px`);
+}
+
 function updateMobileLayout(preserveHomepageLock = false) {
+    updateDesktopIntroHeight();
     updateMobileLinksLayout();
     updateHomepageLock(preserveHomepageLock);
 }
@@ -180,6 +213,8 @@ const mobileLayoutTargets = [
     document.querySelector(".case-next-list"),
     portfolioSiteDate,
     document.querySelector(".profile-summary"),
+    document.querySelector(".sidebar .links"),
+    document.querySelector(".content"),
     mobileLinks,
 ].filter(Boolean);
 updatePortfolioScrollIndicators();
@@ -201,6 +236,7 @@ function prepareHomepageFirstPaint() {
 }
 
 prepareHomepageFirstPaint();
+document.fonts.addEventListener("loadingdone", updateDesktopIntroHeight);
 
 window.addEventListener("load", () => {
     updateHomepageDates();
