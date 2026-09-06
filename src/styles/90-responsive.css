@@ -317,6 +317,12 @@ body:not(.case-page) .content {
         width: max-content;
     }
 
+    .mobile-links-grid > .contact-label,
+    .mobile-links-grid > .contact-label ~ * {
+        justify-self: end;
+        text-align: right;
+    }
+
     .mobile-links-grid > .contact-label {
         grid-column: 2;
         grid-row: 1;
