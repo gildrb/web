@@ -41,7 +41,9 @@ function updateMobileLinksLayout() {
         return;
     }
 
-    const scopeColumn = document.querySelector(".portfolio-sort-scope");
+    const scopeColumn = document.querySelector(
+        ".portfolio-sort-scope, .case-next-scope",
+    );
     const columnGap = parseFloat(getComputedStyle(mobileLinks).columnGap);
     const start = scopeColumn
         ? scopeColumn.getBoundingClientRect().left -
