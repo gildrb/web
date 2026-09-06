@@ -319,8 +319,8 @@ body:not(.case-page) .content {
 
     .mobile-links-grid > .contact-label,
     .mobile-links-grid > .contact-label ~ * {
-        justify-self: end;
-        text-align: right;
+        justify-self: start;
+        text-align: left;
     }
 
     .mobile-links-grid > .contact-label {

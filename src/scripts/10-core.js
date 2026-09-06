@@ -41,9 +41,13 @@ function updateMobileLinksLayout() {
         return;
     }
 
-    const start =
-        mobileLinksGuardrail.getBoundingClientRect().right -
-        mobileLinks.getBoundingClientRect().left;
+    const scopeColumn = document.querySelector(".portfolio-sort-scope");
+    const columnGap = parseFloat(getComputedStyle(mobileLinks).columnGap);
+    const start = scopeColumn
+        ? scopeColumn.getBoundingClientRect().left -
+          mobileLinks.getBoundingClientRect().left - columnGap
+        : mobileLinksGuardrail.getBoundingClientRect().right -
+          mobileLinks.getBoundingClientRect().left;
     mobileLinks.style.setProperty(
         "--mobile-contact-start",
         `${Math.max(0, start)}px`,
