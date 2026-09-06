@@ -2,7 +2,11 @@
   "name": "gildrb-web",
   "private": true,
   "scripts": {
+    "dev": "vite",
     "build": "node scripts/prepare-cloudflare-output.mjs && node scripts/verify-agent-readiness.mjs",
     "verify": "node scripts/prepare-cloudflare-output.mjs && node scripts/verify-page.mjs && node scripts/verify-agent-readiness.mjs"
+  },
+  "devDependencies": {
+    "vite": "^8.2.2"
   }
 }
