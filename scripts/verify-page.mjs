@@ -636,6 +636,26 @@ assert(
         ),
     "The homepage-only footer must keep three resource links without a Metadata heading or copyright label.",
 );
+assert(
+    baseStyles.includes("--sidebar-baseline-pitch: 2rem;") &&
+        baseStyles.includes("--portfolio-baseline-pitch: 2.5rem;") &&
+        baseStyles.includes("--portfolio-row-padding: calc((var(--portfolio-baseline-pitch) - var(--link-line-height)) / 2);") &&
+        baseStyles.includes("row-gap: calc(var(--sidebar-baseline-pitch) - var(--link-line-height));") &&
+        baseStyles.includes("--section-content-gap: 6px;") &&
+        baseStyles.includes("margin-block: calc(var(--section-content-gap) / -2);"),
+    "Desktop homepage rhythm must derive sidebar gaps and project padding without changing shared interaction compensation.",
+);
+assert(
+    responsiveStyles.includes("grid-template-rows: auto minmax(min-content, 1fr) auto;") &&
+        responsiveStyles.includes("grid-template-rows: subgrid;") &&
+        responsiveStyles.includes("margin-top: var(--sidebar-baseline-pitch);") &&
+        !responsiveStyles.includes("margin-top: 44px;") &&
+        portfolioStyles.includes("border-bottom: 0;") &&
+        portfolioStyles.includes("border-top: 0;") &&
+        portfolioStyles.includes("box-shadow: inset 0 -1px") &&
+        portfolioStyles.includes("box-shadow: inset 0 1px"),
+    "Desktop homepage must share intro tracks and paint table separators outside its baseline geometry.",
+);
 const hephAsciiSignature =
     "HEPH // BRANDMARK RASTER 64x22 // GIL RODRIGUES / GILDRB";
 assert(
