@@ -43,40 +43,44 @@
 		animation-delay: var(--homepage-entry-delay, 120ms);
 	}
 
-	.links > :nth-child(2) {
-		--homepage-entry-delay: 170ms;
-	}
-
-	.links > :nth-child(3) {
-		--homepage-entry-delay: 220ms;
-	}
-
-	.links > :nth-child(4) {
-		--homepage-entry-delay: 270ms;
-	}
-
-	.links > :nth-child(5) {
+	.links > :nth-child(1) {
 		--homepage-entry-delay: 320ms;
 	}
 
-	.links > :nth-child(6) {
+	.links > :nth-child(2) {
 		--homepage-entry-delay: 370ms;
 	}
 
-	.links > :nth-child(7) {
+	.links > :nth-child(3) {
 		--homepage-entry-delay: 420ms;
 	}
 
-	.links > :nth-child(8) {
+	.links > :nth-child(4) {
 		--homepage-entry-delay: 470ms;
 	}
 
-	.links > :nth-child(9) {
+	.links > :nth-child(5) {
 		--homepage-entry-delay: 520ms;
 	}
 
-	.links > :nth-child(10) {
+	.links > :nth-child(6) {
 		--homepage-entry-delay: 570ms;
+	}
+
+	.links > :nth-child(7) {
+		--homepage-entry-delay: 120ms;
+	}
+
+	.links > :nth-child(8) {
+		--homepage-entry-delay: 170ms;
+	}
+
+	.links > :nth-child(9) {
+		--homepage-entry-delay: 220ms;
+	}
+
+	.links > :nth-child(10) {
+		--homepage-entry-delay: 270ms;
 	}
 
 	.portfolio-table-header {
