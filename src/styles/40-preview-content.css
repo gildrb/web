@@ -38,10 +38,11 @@
 
 .references-links {
     display: flex;
-    flex-direction: column;
-    row-gap: var(--section-content-gap);
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--portfolio-table-gap);
+    min-height: var(--theme-toggle-size);
     margin-top: 0;
-    margin-bottom: var(--footer-stack-bottom-gap);
     font-size: 16px;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
@@ -54,7 +55,7 @@
     margin-block: calc(var(--section-content-gap) / -2);
 }
 
-@media (min-width: 769px) {
+@media (min-width: 768px) {
     .site-footer {
         margin-top: auto;
     }

@@ -618,7 +618,7 @@ const homepageFooter =
     "";
 assert(
     homepageFooter.includes('aria-label="Metadata"') &&
-        homepageFooter.includes('<p class="links-label">Metadata</p>') &&
+        !homepageFooter.includes('<p class="links-label">Metadata</p>') &&
         homepageFooter.includes('href="humans.txt"') &&
         homepageFooter.includes('href="llms.txt"') &&
         homepageFooter.includes('href="https://github.com/gildrb/web"') &&
@@ -634,7 +634,7 @@ assert(
         caseHtml.every(
             (html) => !html.includes('class="site-footer"'),
         ),
-    "The homepage-only footer must keep the three visible Metadata links without a copyright label.",
+    "The homepage-only footer must keep three resource links without a Metadata heading or copyright label.",
 );
 const hephAsciiSignature =
     "HEPH // BRANDMARK RASTER 64x22 // GIL RODRIGUES / GILDRB";
@@ -861,11 +861,11 @@ assert(
         ".site-footer {\n    margin-top: 0;",
     ) &&
         previewContentStyles.includes(
-            ".references-links {\n    display: flex;\n    flex-direction: column;\n    row-gap: var(--section-content-gap);\n    margin-top: 0;",
+            ".references-links {\n    display: flex;\n    align-items: center;\n    justify-content: flex-start;",
         ) &&
         !previewContentStyles.includes(".copyright") &&
         previewContentStyles.includes(
-            "@media (min-width: 769px) {\n    .site-footer {\n        margin-top: auto;",
+            "@media (min-width: 768px) {\n    .site-footer {\n        margin-top: auto;",
         ) &&
         responsiveStyles.includes(
             ".site-footer {\n        display: none;",
@@ -1747,12 +1747,11 @@ assert(
 );
 assert(
     responsiveStyles.includes(
-        "@media (min-width: 769px) and (max-height: 720px)",
+        ".links > .contact-label,\n    .links > .contact-label ~ * {\n        order: -1;",
     ) &&
-        responsiveStyles.includes(
-            ".theme-toggle {\n        grid-column: 2;\n        grid-row: 1;\n        align-self: start;\n        justify-self: end;\n        margin-top: 0;\n        margin-bottom: 0;",
-        ),
-    "Short desktop windows must not let the theme toggle footer margin stretch the location row.",
+        baseStyles.includes("--footer-title-center-offset: 0px;") &&
+        !responsiveStyles.includes("(max-height: 720px)"),
+    "Desktop contact must precede profiles, and the theme control must stay on the footer row at every height.",
 );
 assert(
     caseStyles.includes("@media (min-width: 769px)") &&
