@@ -106,6 +106,10 @@ function getSortDescription(key, direction) {
     return direction === "descending" ? "A to Z" : "Z to A";
 }
 
+if (portfolioList) {
+    sortPortfolioRows("date", "descending");
+}
+
 portfolioSortButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
         const key = button.dataset.sortKey;
