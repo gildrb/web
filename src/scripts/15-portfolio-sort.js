@@ -62,6 +62,7 @@ function sortPortfolioRows(key, direction) {
 
         return {
             href: row.getAttribute("href"),
+            arrow: row.querySelector(".portfolio-card-arrow").innerHTML,
             datetime: time.getAttribute("datetime"),
             timeId: time.id,
             fullDate: time.querySelector(".portfolio-date-full").textContent,
@@ -78,6 +79,7 @@ function sortPortfolioRows(key, direction) {
         const title = row.querySelector(".portfolio-card-title");
 
         row.setAttribute("href", project.href);
+        row.querySelector(".portfolio-card-arrow").innerHTML = project.arrow;
         time.setAttribute("datetime", project.datetime);
         if (project.timeId) time.id = project.timeId;
         else time.removeAttribute("id");
